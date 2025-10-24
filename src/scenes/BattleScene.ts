@@ -824,7 +824,9 @@ export class BattleScene extends Phaser.Scene {
       if (hp1 <= 0) {
         if (side2 === 'player') {
           const bonusXP = calculateKillBonusXP(unit1.getData('cost') || 50);
-          this.addXP(bonusXP);
+          this.addXP(bonusXP, unit1.x, unit1.y);
+          // Also add gold reward for kill
+          this.addGold(10, unit1.x, unit1.y);
         }
         this.recycleUnit(unit1);
       } else {
@@ -837,7 +839,9 @@ export class BattleScene extends Phaser.Scene {
       if (hp2 <= 0) {
         if (side1 === 'player') {
           const bonusXP = calculateKillBonusXP(unit2.getData('cost') || 50);
-          this.addXP(bonusXP);
+          this.addXP(bonusXP, unit2.x, unit2.y);
+          // Also add gold reward for kill
+          this.addGold(10, unit2.x, unit2.y);
         }
         this.recycleUnit(unit2);
       } else {
@@ -891,13 +895,15 @@ export class BattleScene extends Phaser.Scene {
     // Award XP for damage
     if (projectile.getData('owner') === 'player') {
       const xpFromDamage = calculateXPFromDamage(damage, hpBefore);
-      this.addXP(xpFromDamage);
+      this.addXP(xpFromDamage, target.x, target.y);
     }
     
     if (hp <= 0) {
       if (projectile.getData('owner') === 'player') {
         const bonusXP = calculateKillBonusXP(target.getData('cost') || 50);
-        this.addXP(bonusXP);
+        this.addXP(bonusXP, target.x, target.y);
+        // Also add gold reward for kill
+        this.addGold(10, target.x, target.y);
       }
       this.recycleUnit(target);
     }
@@ -928,9 +934,15 @@ export class BattleScene extends Phaser.Scene {
     }
   }
 
-  private addXP(amount: number): void {
+  private addXP(amount: number, x?: number, y?: number): void {
     this.xp += amount;
     const currentEpoch = this.getCurrentEpoch();
+    
+    // Visual feedback: Floating XP text
+    if (x !== undefined && y !== undefined) {
+      this.showFloatingText(x, y, `+${amount} XP`, '#FFD700', 20);
+      this.showXPParticles(x, y);
+    }
     
     // Check for epoch progression using helper
     if (canAdvanceEpoch(this.xp, currentEpoch)) {
@@ -965,8 +977,19 @@ export class BattleScene extends Phaser.Scene {
     }
   }
 
-  private addGold(amount: number): void {
+  private addGold(amount: number, x?: number, y?: number): void {
     this.gold += amount;
+    
+    // Visual feedback: Floating gold text
+    if (x !== undefined && y !== undefined && amount > 0) {
+      // Color based on amount
+      let color = '#FFFFFF'; // White for small amounts
+      if (amount >= 50) color = '#FFD700'; // Gold for large amounts
+      else if (amount >= 10) color = '#FFFF00'; // Yellow for medium amounts
+      
+      this.showFloatingText(x, y, `+${amount}g`, color, 18);
+      this.showGoldParticles(x, y);
+    }
     
     // Update TestUI
     if (this.goldText) this.goldText.setText(`Gold: ${this.gold}`);
@@ -975,14 +998,86 @@ export class BattleScene extends Phaser.Scene {
     uiScene.events.emit('updateGold', this.gold);
   }
 
+  // ===== VISUAL FEEDBACK METHODS =====
+  
+  /**
+   * Show floating text that rises and fades out
+   */
+  private showFloatingText(x: number, y: number, text: string, color: string, fontSize: number): void {
+    const floatingText = this.add.text(x, y, text, {
+      fontSize: `${fontSize}px`,
+      color: color,
+      fontStyle: 'bold',
+      stroke: '#000000',
+      strokeThickness: 4
+    });
+    floatingText.setOrigin(0.5, 0.5);
+    floatingText.setDepth(1000); // Above everything
+    
+    // Animate: Float up and fade out
+    this.tweens.add({
+      targets: floatingText,
+      y: y - 60,
+      alpha: 0,
+      duration: 1500,
+      ease: 'Cubic.easeOut',
+      onComplete: () => {
+        floatingText.destroy();
+      }
+    });
+  }
+  
+  /**
+   * Show golden sparkle particles for XP gains
+   */
+  private showXPParticles(x: number, y: number): void {
+    // Create temporary particle emitter
+    const particles = this.add.particles(x, y, 'xp-star', {
+      speed: { min: 50, max: 150 },
+      scale: { start: 0.4, end: 0 },
+      alpha: { start: 1, end: 0 },
+      angle: { min: 0, max: 360 },
+      lifespan: 800,
+      quantity: 8,
+      gravityY: -100
+    });
+    
+    // Destroy after animation
+    this.time.delayedCall(1000, () => {
+      particles.destroy();
+    });
+  }
+  
+  /**
+   * Show gold coin particles
+   */
+  private showGoldParticles(x: number, y: number): void {
+    // Create temporary particle emitter
+    const particles = this.add.particles(x, y, 'gold-coin', {
+      speed: { min: 30, max: 100 },
+      scale: { start: 0.3, end: 0 },
+      alpha: { start: 1, end: 0 },
+      angle: { min: -45, max: -135 }, // Fly upward and to the left (toward UI)
+      lifespan: 600,
+      quantity: 5,
+      gravityY: -80
+    });
+    
+    // Destroy after animation
+    this.time.delayedCall(800, () => {
+      particles.destroy();
+    });
+  }
+
   update(_time: number, delta: number): void {
-    // Gold accumulator tick (6 gold per second)
+    // Gold accumulator tick (8 gold per second)
     this.goldAccumulator += delta;
-    const goldTickInterval = 1000 / this.goldPerSecond; // ~166ms per gold
+    const goldTickInterval = 1000 / this.goldPerSecond; // ~125ms per gold
     
     while (this.goldAccumulator >= goldTickInterval) {
       this.goldAccumulator -= goldTickInterval;
-      this.addGold(1);
+      // Show floating text near player base for passive gold
+      this.addGold(1, PLAYER_BASE_X + 50, LANE_Y - 50);
     }
     
     // Update health bars for all units
