@@ -110,11 +110,9 @@ export class BattleScene extends Phaser.Scene {
   // Background
   private backgroundImage!: Phaser.GameObjects.Image;
 
-  // Unit Formation System
+  // Unit Formation System - DISABLED (keep on same height like original)
   private spawnQueue: Array<{ side: 'player' | 'enemy', unitData: UnitType, delay: number }> = [];
   private lastSpawnTime: Record<'player' | 'enemy', number> = { player: 0, enemy: 0 };
-  private spawnFormationOffset: Record<'player' | 'enemy', number> = { player: 0, enemy: 0 };
-  private readonly FORMATION_SPACING = 25; // Vertical spacing between units
   private readonly SPAWN_QUEUE_DELAY = 250; // ms delay between queued spawns
 
   constructor() {
@@ -704,9 +702,8 @@ export class BattleScene extends Phaser.Scene {
   /**
    * Spawn a unit directly using UnitType data (for UI buttons)
    * This ensures the correct unit is spawned regardless of database index changes
-   * Now with formation support!
    */
-  private spawnUnitByData(side: 'player' | 'enemy', unitData: UnitType, formationOffset: number = 0): void {
+  private spawnUnitByData(side: 'player' | 'enemy', unitData: UnitType): void {
     // Apply difficulty multiplier to enemy units
     const statMultiplier = side === 'enemy' ? this.difficultyMultipliers[this.difficulty].enemyStats : 1.0;
     
@@ -723,7 +720,7 @@ export class BattleScene extends Phaser.Scene {
     // Get appropriate unit texture based on unit type
     const texture = this.getUnitTexture(unitData);
     const spawnX = side === 'player' ? PLAYER_SPAWN_X : ENEMY_SPAWN_X;
-    const spawnY = LANE_Y + formationOffset; // Apply formation offset
+    const spawnY = LANE_Y; // Always spawn on same height (like original Age of War)
     
     // Get unit from appropriate collision group
     const unitGroup = side === 'player' ? this.playerUnits : this.enemyUnits;
@@ -807,21 +804,11 @@ export class BattleScene extends Phaser.Scene {
   }
 
   /**
-   * Spawn unit with formation offset
+   * Spawn unit without formation (like original Age of War - same height)
    */
   private spawnUnitWithFormation(side: 'player' | 'enemy', unitData: UnitType): void {
-    // Calculate formation offset (cycles between -SPACING, 0, +SPACING)
-    const offset = this.spawnFormationOffset[side];
-    this.spawnUnitByData(side, unitData, offset);
-    
-    // Cycle offset: -25 → 0 → +25 → -25 → ...
-    if (offset === -this.FORMATION_SPACING) {
-      this.spawnFormationOffset[side] = 0;
-    } else if (offset === 0) {
-      this.spawnFormationOffset[side] = this.FORMATION_SPACING;
-    } else {
-      this.spawnFormationOffset[side] = -this.FORMATION_SPACING;
-    }
+    // Just spawn directly on the lane - no formation offset
+    this.spawnUnitByData(side, unitData);
   }
 
   /**
@@ -1139,12 +1126,12 @@ export class BattleScene extends Phaser.Scene {
     floatingText.setOrigin(0.5, 0.5);
     floatingText.setDepth(1000); // Above everything
     
-    // Animate: Float up and fade out
+    // Animate: Float up and fade out - reduced
     this.tweens.add({
       targets: floatingText,
-      y: y - 60,
+      y: y - 40, // Reduced from 60
       alpha: 0,
-      duration: 1500,
+      duration: 1000, // Reduced from 1500ms
       ease: 'Cubic.easeOut',
       onComplete: () => {
         floatingText.destroy();
@@ -1158,34 +1145,34 @@ export class BattleScene extends Phaser.Scene {
   private showXPParticles(x: number, y: number): void {
     // Create temporary particle emitter with one-shot emission
     const particles = this.add.particles(x, y, 'xp-star', {
-      speed: { min: 50, max: 150 },
-      scale: { start: 0.12, end: 0 }, // Reduced from 0.3 to 0.12 - much smaller sparkles
-      alpha: { start: 1, end: 0 },
+      speed: { min: 30, max: 80 }, // Reduced from 50-150
+      scale: { start: 0.08, end: 0 }, // Reduced from 0.12 - even smaller
+      alpha: { start: 0.8, end: 0 }, // Slightly less visible
       angle: { min: 0, max: 360 },
-      lifespan: 800,
-      gravityY: -100,
-      emitting: false // Don't emit continuously
+      lifespan: 600, // Reduced from 800ms
+      gravityY: -80, // Reduced from -100
+      emitting: false
     });
     
-    // Emit particles once
-    particles.emitParticle(8);
+    // Emit fewer particles (was 8)
+    particles.emitParticle(4);
     
     // Destroy after animation
-    this.time.delayedCall(1000, () => {
+    this.time.delayedCall(800, () => {
       particles.destroy();
     });
   }
 
   private showGoldParticles(x: number, y: number, amount: number): void {
-    // Create gold coin particles
+    // Create gold coin particles - reduced effect
     const particles = this.add.particles(x, y, 'rock', { // Using rock as placeholder
-      speed: { min: 50, max: 100 },
+      speed: { min: 40, max: 80 }, // Reduced from 50-100
       angle: { min: 240, max: 300 },
-      scale: { start: 0.15, end: 0 },
+      scale: { start: 0.08, end: 0 }, // Reduced from 0.15 - smaller
       tint: 0xffd700,
-      lifespan: 800,
-      gravityY: 200,
-      quantity: Math.min(Math.floor(amount / 2), 8), // More particles for bigger rewards
+      lifespan: 600, // Reduced from 800ms
+      gravityY: 250, // Faster fall
+      quantity: Math.min(Math.floor(amount / 4), 4), // Reduced from /2 and max 8
       emitting: false
     });
     
@@ -1193,7 +1180,7 @@ export class BattleScene extends Phaser.Scene {
     particles.emitParticle();
     
     // Destroy after animation
-    this.time.delayedCall(1000, () => {
+    this.time.delayedCall(800, () => {
       particles.destroy();
     });
   }
