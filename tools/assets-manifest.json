@@ -1,0 +1,63 @@
+[
+  {"id":1,  "slug":"clubman",        "filename":"asset-1-clubman.png",       "w":64,   "h":64,   "prompt":"Pixel art side-view sprite of a primitive caveman warrior holding a wooden club, wearing animal fur, brown and tan colors, 64x64 pixels, transparent background, retro game sprite style, crisp pixel edges"},
+  {"id":2,  "slug":"spearman",       "filename":"asset-2-spearman.png",      "w":64,   "h":64,   "prompt":"Pixel art side-view sprite of a Stone Age warrior with stone-tipped spear, leather armor, brown earth tones, 64x64 pixels, transparent background, retro game sprite"},
+  {"id":3,  "slug":"slinger",        "filename":"asset-3-slinger.png",       "w":64,   "h":64,   "prompt":"Pixel art side-view sprite of primitive slinger holding sling weapon, light tribal clothing, brown and beige tones, 64x64 pixels, transparent background, retro game sprite"},
+  {"id":4,  "slug":"dino-rider",     "filename":"asset-4-dino-rider.png",    "w":96,   "h":96,   "prompt":"Pixel art side-view sprite of caveman riding small dinosaur, prehistoric theme, brown and green colors, 96x96 pixels, transparent background, retro game sprite"},
+
+  {"id":5,  "slug":"swordsman",      "filename":"asset-5-swordsman.png",     "w":64,   "h":64,   "prompt":"Pixel art side-view sprite of medieval knight with sword and shield, chainmail armor, grey and silver colors, 64x64 pixels, transparent background, retro game sprite"},
+  {"id":6,  "slug":"archer",         "filename":"asset-6-archer.png",        "w":64,   "h":64,   "prompt":"Pixel art side-view sprite of medieval archer drawing longbow, leather armor, brown and grey tones, 64x64 pixels, transparent background, retro game sprite"},
+  {"id":7,  "slug":"knight",         "filename":"asset-7-knight.png",        "w":96,   "h":96,   "prompt":"Pixel art side-view sprite of armored knight on horseback, full plate armor, grey and silver metallic, 96x96 pixels, transparent background, retro game sprite"},
+  {"id":8,  "slug":"ballista",       "filename":"asset-8-ballista.png",      "w":96,   "h":96,   "prompt":"Pixel art side-view sprite of medieval siege ballista, wooden frame with metal reinforcements, brown and grey, 96x96 pixels, transparent background, retro game sprite"},
+
+  {"id":9,  "slug":"musketeer",      "filename":"asset-9-musketeer.png",     "w":64,   "h":64,   "prompt":"Pixel art side-view sprite of Renaissance musketeer with musket rifle, fancy plumed hat, blue and gold uniform, 64x64 pixels, transparent background, retro game sprite"},
+  {"id":10, "slug":"cavalry",        "filename":"asset-10-cavalry.png",      "w":96,   "h":96,   "prompt":"Pixel art side-view sprite of Renaissance cavalry soldier on horse, bronze armor with blue accents, 96x96 pixels, transparent background, retro game sprite"},
+  {"id":11, "slug":"cannon",         "filename":"asset-11-cannon.png",       "w":96,   "h":96,   "prompt":"Pixel art side-view sprite of Renaissance cannon on wooden wheels, bronze barrel, 96x96 pixels, transparent background, retro game sprite"},
+  {"id":12, "slug":"duelist",        "filename":"asset-12-duelist.png",      "w":64,   "h":64,   "prompt":"Pixel art side-view sprite of Renaissance duelist with rapier sword, elegant clothing with burgundy and gold, 64x64 pixels, transparent background, retro game sprite"},
+
+  {"id":13, "slug":"rifleman",       "filename":"asset-13-rifleman.png",     "w":64,   "h":64,   "prompt":"Pixel art side-view sprite of WW1 soldier with rifle, military uniform, olive green and brown, 64x64 pixels, transparent background, retro game sprite"},
+  {"id":14, "slug":"grenadier",      "filename":"asset-14-grenadier.png",    "w":64,   "h":64,   "prompt":"Pixel art side-view sprite of modern grenadier with grenade launcher, tactical gear, dark green and black, 64x64 pixels, transparent background, retro game sprite"},
+  {"id":15, "slug":"tank",           "filename":"asset-15-tank.png",         "w":128,  "h":96,   "prompt":"Pixel art side-view sprite of modern military tank, angular armor, olive green and grey camouflage, 128x96 pixels, transparent background, retro game sprite"},
+  {"id":16, "slug":"sniper",         "filename":"asset-16-sniper.png",       "w":64,   "h":64,   "prompt":"Pixel art side-view sprite of military sniper with scoped rifle, camouflage ghillie suit, green and brown tones, 64x64 pixels, transparent background, retro game sprite"},
+
+  {"id":17, "slug":"stone-tower-t1", "filename":"asset-17-stone-tower-t1.png","w":48,  "h":48,   "prompt":"Pixel art top-down view of basic Stone Age defensive tower, wooden structure with stone reinforcements, brown tones, level 1, 48x48 pixels, transparent background, retro game sprite"},
+  {"id":18, "slug":"stone-tower-t2", "filename":"asset-18-stone-tower-t2.png","w":48,  "h":48,   "prompt":"Pixel art top-down view of improved Stone Age tower, more stones and wood, brown tones, level 2 upgrade, 48x48 pixels, transparent background, retro game sprite"},
+  {"id":19, "slug":"stone-tower-t3", "filename":"asset-19-stone-tower-t3.png","w":48,  "h":48,   "prompt":"Pixel art top-down view of advanced Stone Age tower, reinforced with rocks, brown tones, level 3 upgrade, 48x48 pixels, transparent background, retro game sprite"},
+
+  {"id":20, "slug":"castle-tower-t1","filename":"asset-20-castle-tower-t1.png","w":48, "h":48,   "prompt":"Pixel art top-down view of basic medieval stone tower, grey stone construction with battlements, level 1, 48x48 pixels, transparent background, retro game sprite"},
+  {"id":21, "slug":"castle-tower-t2","filename":"asset-21-castle-tower-t2.png","w":48, "h":48,   "prompt":"Pixel art top-down view of reinforced medieval tower, taller stone structure, grey, level 2, 48x48 pixels, transparent background, retro game sprite"},
+  {"id":22, "slug":"castle-tower-t3","filename":"asset-22-castle-tower-t3.png","w":48, "h":48,   "prompt":"Pixel art top-down view of fortified medieval tower, heavy stone fortress, grey, level 3, 48x48 pixels, transparent background, retro game sprite"},
+
+  {"id":23, "slug":"cannon-tower-t1","filename":"asset-23-cannon-tower-t1.png","w":48, "h":48,   "prompt":"Pixel art top-down view of basic Renaissance cannon tower, bronze cannon on stone platform, level 1, 48x48 pixels, transparent background, retro game sprite"},
+  {"id":24, "slug":"cannon-tower-t2","filename":"asset-24-cannon-tower-t2.png","w":48, "h":48,   "prompt":"Pixel art top-down view of improved cannon tower, larger bronze cannon, level 2, 48x48 pixels, transparent background, retro game sprite"},
+  {"id":25, "slug":"cannon-tower-t3","filename":"asset-25-cannon-tower-t3.png","w":48, "h":48,   "prompt":"Pixel art top-down view of advanced cannon tower, double cannons, bronze and blue, level 3, 48x48 pixels, transparent background, retro game sprite"},
+
+  {"id":26, "slug":"gun-turret-t1",  "filename":"asset-26-gun-turret-t1.png", "w":48,  "h":48,   "prompt":"Pixel art top-down view of basic modern gun turret, steel bunker with mounted machine gun, grey and dark green, level 1, 48x48 pixels, transparent background, retro game sprite"},
+  {"id":27, "slug":"gun-turret-t2",  "filename":"asset-27-gun-turret-t2.png", "w":48,  "h":48,   "prompt":"Pixel art top-down view of reinforced gun turret, concrete bunker with dual guns, level 2, 48x48 pixels, transparent background, retro game sprite"},
+  {"id":28, "slug":"gun-turret-t3",  "filename":"asset-28-gun-turret-t3.png", "w":48,  "h":48,   "prompt":"Pixel art top-down view of advanced gun turret, armored bunker with heavy weapons, level 3, 48x48 pixels, transparent background, retro game sprite"},
+
+  {"id":29, "slug":"laser-turret-t1","filename":"asset-29-laser-turret-t1.png","w":48, "h":48,   "prompt":"Pixel art top-down view of basic futuristic laser turret, sleek metallic design with glowing cyan energy core, level 1, 48x48 pixels, transparent background, retro game sprite"},
+  {"id":30, "slug":"laser-turret-t2","filename":"asset-30-laser-turret-t2.png","w":48, "h":48,   "prompt":"Pixel art top-down view of improved laser turret, larger glowing core, cyan and purple, level 2, 48x48 pixels, transparent background, retro game sprite"},
+  {"id":31, "slug":"laser-turret-t3","filename":"asset-31-laser-turret-t3.png","w":48, "h":48,   "prompt":"Pixel art top-down view of advanced laser turret, sci-fi design with bright cyan energy, level 3, 48x48 pixels, transparent background, retro game sprite"},
+
+  {"id":32, "slug":"player-base",    "filename":"asset-32-player-base.png",   "w":64,  "h":128,  "prompt":"Pixel art side-view sprite of fortified main base building with blue color theme, defensive structure, 64x128 pixels, transparent background, retro game sprite"},
+  {"id":33, "slug":"enemy-base",     "filename":"asset-33-enemy-base.png",    "w":64,  "h":128,  "prompt":"Pixel art side-view sprite of fortified enemy base building with red color theme, defensive structure, 64x128 pixels, transparent background, retro game sprite"},
+
+  {"id":34, "slug":"rock",           "filename":"asset-34-rock.png",         "w":16,  "h":16,   "prompt":"Pixel art sprite of thrown rock projectile, brown stone, simple shape, 16x16 pixels, transparent background, retro game sprite"},
+  {"id":35, "slug":"arrow",          "filename":"asset-35-arrow.png",        "w":24,  "h":8,    "prompt":"Pixel art sprite of flying arrow projectile, wooden shaft with metal tip, horizontal orientation, 24x8 pixels, transparent background, retro game sprite"},
+  {"id":36, "slug":"cannonball",     "filename":"asset-36-cannonball.png",   "w":16,  "h":16,   "prompt":"Pixel art sprite of iron cannonball projectile, dark grey sphere, 16x16 pixels, transparent background, retro game sprite"},
+  {"id":37, "slug":"bullet",         "filename":"asset-37-bullet.png",       "w":12,  "h":4,    "prompt":"Pixel art sprite of bullet projectile, small brass shell, 12x4 pixels, transparent background, retro game sprite"},
+  {"id":38, "slug":"laser",          "filename":"asset-38-laser.png",        "w":32,  "h":8,    "prompt":"Pixel art sprite of futuristic laser beam, glowing cyan energy bolt, 32x8 pixels, transparent background, retro game sprite"},
+
+  {"id":39, "slug":"gold-coin",      "filename":"asset-39-gold-coin.png",    "w":32,  "h":32,   "prompt":"Pixel art icon of gold coin, shiny yellow with highlights, 32x32 pixels, transparent background, retro game UI asset"},
+  {"id":40, "slug":"xp-star",        "filename":"asset-40-xp-star.png",      "w":32,  "h":32,   "prompt":"Pixel art icon of experience star, glowing white and yellow star shape, 32x32 pixels, transparent background, retro game UI asset"},
+  {"id":41, "slug":"raining-rocks",  "filename":"asset-41-raining-rocks.png", "w":48,  "h":48,   "prompt":"Pixel art icon showing falling rocks/meteors from sky, brown and orange colors, 48x48 pixels, transparent background, retro game UI button"},
+  {"id":42, "slug":"artillery-strike","filename":"asset-42-artillery-strike.png","w":48,"h":48,  "prompt":"Pixel art icon showing explosion bombardment, orange and red colors, 48x48 pixels, transparent background, retro game UI button"},
+  {"id":43, "slug":"turret-placeholder","filename":"asset-43-turret-placeholder.png","w":32,"h":32,"prompt":"Pixel art icon of generic turret silhouette, grey color, simple shape, 32x32 pixels, transparent background, retro game UI asset"},
+
+  {"id":44, "slug":"stone-age-bg",   "filename":"asset-44-stone-age-bg.png", "w":1280, "h":720,  "prompt":"Pixel art game background, prehistoric landscape with caves and primitive trees, earth tones, 1280x720 pixels, parallax-ready, retro game background"},
+  {"id":45, "slug":"castle-age-bg",  "filename":"asset-45-castle-age-bg.png", "w":1280, "h":720,  "prompt":"Pixel art game background, medieval castle walls and banners, grey stone with blue sky, 1280x720 pixels, parallax-ready, retro game background"},
+  {"id":46, "slug":"renaissance-bg", "filename":"asset-46-renaissance-bg.png","w":1280, "h":720,  "prompt":"Pixel art game background, Renaissance city with architecture and flags, warm tones, 1280x720 pixels, parallax-ready, retro game background"},
+  {"id":47, "slug":"modern-bg",      "filename":"asset-47-modern-bg.png",    "w":1280, "h":720,  "prompt":"Pixel art game background, modern city ruins and battlefield, grey and brown tones, 1280x720 pixels, parallax-ready, retro game background"},
+  {"id":48, "slug":"future-bg",      "filename":"asset-48-future-bg.png",    "w":1280, "h":720,  "prompt":"Pixel art game background, futuristic sci-fi cityscape with neon lights, cyan and purple colors, 1280x720 pixels, parallax-ready, retro game background"}
+]
+

@@ -1,0 +1,87 @@
+[
+  {
+    "id": "stone",
+    "name": "Stone Age",
+    "xpToNext": 200,
+    "unlocks": {
+      "units": [
+        "clubman",
+        "slinger",
+        "spearman"
+      ],
+      "turrets": [
+        "rock-thrower",
+        "wooden-spike",
+        "basic-tower"
+      ]
+    }
+  },
+  {
+    "id": "castle",
+    "name": "Castle Age",
+    "xpToNext": 400,
+    "unlocks": {
+      "units": [
+        "swordsman",
+        "archer",
+        "knight"
+      ],
+      "turrets": [
+        "arrow-tower",
+        "ballista",
+        "trebuchet"
+      ]
+    }
+  },
+  {
+    "id": "renaissance",
+    "name": "Renaissance",
+    "xpToNext": 800,
+    "unlocks": {
+      "units": [
+        "musketeer",
+        "pikeman",
+        "cavalry"
+      ],
+      "turrets": [
+        "cannon",
+        "musket-tower",
+        "fortress"
+      ]
+    }
+  },
+  {
+    "id": "modern",
+    "name": "Modern Age",
+    "xpToNext": 1500,
+    "unlocks": {
+      "units": [
+        "rifleman",
+        "tank",
+        "bazooka"
+      ],
+      "turrets": [
+        "machine-gun",
+        "anti-tank",
+        "artillery"
+      ]
+    }
+  },
+  {
+    "id": "future",
+    "name": "Future Age",
+    "xpToNext": 0,
+    "unlocks": {
+      "units": [
+        "laser-soldier",
+        "mech",
+        "plasma-trooper"
+      ],
+      "turrets": [
+        "laser-turret",
+        "rail-gun",
+        "ion-cannon"
+      ]
+    }
+  }
+]
