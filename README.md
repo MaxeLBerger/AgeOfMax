@@ -28,8 +28,9 @@ A strategic tower defense game inspired by the classic Age of War series. Build 
 ### Installation
 
 \\\ash
+```bash
 # Clone the repository
-git clone https://github.com/MaximilianHaak/AgeOfMax.git
+git clone https://github.com/MaxelBerger/AgeOfMax.git
 
 # Navigate to project directory
 cd AgeOfMax
@@ -172,7 +173,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ##  Known Issues
 
-See [Issues](https://github.com/MaximilianHaak/AgeOfMax/issues) for current bugs and feature requests.
+See [Issues](https://github.com/MaxelBerger/AgeOfMax/issues) for current bugs and feature requests.
 
 ##  License
 
@@ -181,8 +182,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ##  Author
 
 **Maximilian Haak**
-- GitHub: [@MaximilianHaak](https://github.com/MaximilianHaak)
-- Support: [GitHub Sponsors](https://github.com/sponsors/MaximilianHaak)
+- GitHub: [@MaxelBerger](https://github.com/MaxelBerger)
+- Support: [GitHub Sponsors](https://github.com/sponsors/MaxelBerger)
 
 ##  Acknowledgments
 
@@ -194,7 +195,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ##  Support
 
 If you encounter any issues or have questions:
-- Open an [Issue](https://github.com/MaximilianHaak/AgeOfMax/issues)
+- Open an [Issue](https://github.com/MaxelBerger/AgeOfMax/issues)
 - Check the [Documentation](./docs/)
 - Contact via GitHub
 

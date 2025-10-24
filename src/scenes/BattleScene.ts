@@ -83,6 +83,12 @@ export class BattleScene extends Phaser.Scene {
   private epochs: Epoch[] = epochsData as Epoch[];
   private currentEpochIndex = 0;
 
+  // Kill Streak System
+  private killStreak = 0;
+  private lastKillTime = 0;
+  private readonly KILL_STREAK_TIMEOUT = 5000; // 5 seconds to maintain streak
+  private streakText?: Phaser.GameObjects.Text;
+
   // Difficulty settings
   private difficulty: 'easy' | 'medium' | 'hard' = 'medium';
   private difficultyMultipliers = {
@@ -103,6 +109,13 @@ export class BattleScene extends Phaser.Scene {
 
   // Background
   private backgroundImage!: Phaser.GameObjects.Image;
+
+  // Unit Formation System
+  private spawnQueue: Array<{ side: 'player' | 'enemy', unitData: UnitType, delay: number }> = [];
+  private lastSpawnTime: Record<'player' | 'enemy', number> = { player: 0, enemy: 0 };
+  private spawnFormationOffset: Record<'player' | 'enemy', number> = { player: 0, enemy: 0 };
+  private readonly FORMATION_SPACING = 25; // Vertical spacing between units
+  private readonly SPAWN_QUEUE_DELAY = 250; // ms delay between queued spawns
 
   constructor() {
     super({ key: 'BattleScene' });
@@ -146,6 +159,15 @@ export class BattleScene extends Phaser.Scene {
     uiScene.events.emit('updateGold', this.gold);
     uiScene.events.emit('updateXP', this.xp, this.getCurrentEpoch().xpToNext);
     uiScene.events.emit('updateEpoch', this.getCurrentEpoch().name);
+    
+    // Create kill streak UI element (top-center)
+    this.streakText = this.add.text(640, 30, '', {
+      fontSize: '24px',
+      fontStyle: 'bold',
+      color: '#ffffff',
+      stroke: '#000000',
+      strokeThickness: 4
+    }).setOrigin(0.5).setDepth(3000).setVisible(false);
   }
 
   private getCurrentEpoch(): Epoch {
@@ -281,7 +303,7 @@ export class BattleScene extends Phaser.Scene {
   private goldText!: Phaser.GameObjects.Text;
   private xpText!: Phaser.GameObjects.Text;
   private epochText!: Phaser.GameObjects.Text;
-  private unitButtons: Array<{btn: Phaser.GameObjects.Rectangle, nameText: Phaser.GameObjects.Text, costText: Phaser.GameObjects.Text, unitIndex: number}> = [];
+  private unitButtons: Array<{btn: Phaser.GameObjects.Rectangle, nameText: Phaser.GameObjects.Text, costText: Phaser.GameObjects.Text, unitData: UnitType | null}> = [];
 
   private createTestUI(): void {
     // Test UI direkt in der BattleScene erstellen
@@ -327,12 +349,13 @@ export class BattleScene extends Phaser.Scene {
       }).setOrigin(0.5);
       costText.setDepth(2000);
       
-      this.unitButtons.push({btn, nameText, costText, unitIndex: -1});
+      this.unitButtons.push({btn, nameText, costText, unitData: null});
       
       btn.on('pointerdown', () => {
         const buttonData = this.unitButtons[i];
-        if (buttonData.unitIndex >= 0) {
-          this.spawnUnit('player', buttonData.unitIndex);
+        if (buttonData.unitData !== null) {
+          // Use queue system for formations
+          this.queueUnitSpawn('player', buttonData.unitData);
         }
       });
     }
@@ -380,10 +403,9 @@ export class BattleScene extends Phaser.Scene {
       
       if (i < availableUnits.length) {
         const unit = availableUnits[i];
-        const unitIndex = this.unitsDatabase.indexOf(unit);
         
-        // Button aktivieren
-        buttonData.unitIndex = unitIndex;
+        // Store the actual unit data reference (not the index!)
+        buttonData.unitData = unit;
         buttonData.nameText.setText(unit.name);
         buttonData.costText.setText(`${unit.goldCost}g`);
         buttonData.btn.setFillStyle(0x444444);
@@ -392,7 +414,7 @@ export class BattleScene extends Phaser.Scene {
         buttonData.costText.setVisible(true);
       } else {
         // Button deaktivieren (nicht genug Units in dieser Epoche)
-        buttonData.unitIndex = -1;
+        buttonData.unitData = null;
         buttonData.nameText.setText('---');
         buttonData.costText.setText('');
         buttonData.btn.setFillStyle(0x222222);
@@ -666,7 +688,7 @@ export class BattleScene extends Phaser.Scene {
       'sniper': 0.1,
       
       // Medium units (96x96) - minimal
-      'dino-rider': 0.08,
+      'dino-rider': 0.10, // Increased from 0.08 - mounted units should be larger
       'knight': 0.08,
       'cavalry': 0.08,
       'ballista': 0.08,
@@ -679,10 +701,12 @@ export class BattleScene extends Phaser.Scene {
     return unitScales[unitData.id] || 0.1;
   }
 
-  private spawnUnit(side: 'player' | 'enemy', unitIndex: number): void {
-    // Get unit data from database
-    const unitData = this.unitsDatabase[Math.min(unitIndex, this.unitsDatabase.length - 1)];
-    
+  /**
+   * Spawn a unit directly using UnitType data (for UI buttons)
+   * This ensures the correct unit is spawned regardless of database index changes
+   * Now with formation support!
+   */
+  private spawnUnitByData(side: 'player' | 'enemy', unitData: UnitType, formationOffset: number = 0): void {
     // Apply difficulty multiplier to enemy units
     const statMultiplier = side === 'enemy' ? this.difficultyMultipliers[this.difficulty].enemyStats : 1.0;
     
@@ -699,10 +723,11 @@ export class BattleScene extends Phaser.Scene {
     // Get appropriate unit texture based on unit type
     const texture = this.getUnitTexture(unitData);
     const spawnX = side === 'player' ? PLAYER_SPAWN_X : ENEMY_SPAWN_X;
+    const spawnY = LANE_Y + formationOffset; // Apply formation offset
     
     // Get unit from appropriate collision group
     const unitGroup = side === 'player' ? this.playerUnits : this.enemyUnits;
-    const unit = unitGroup.get(spawnX, LANE_Y, texture) as Phaser.Physics.Arcade.Sprite;
+    const unit = unitGroup.get(spawnX, spawnY, texture) as Phaser.Physics.Arcade.Sprite;
     
     if (unit) {
       // Initialize unit with data from JSON
@@ -754,6 +779,74 @@ export class BattleScene extends Phaser.Scene {
     }
   }
 
+  private spawnUnit(side: 'player' | 'enemy', unitIndex: number): void {
+    // Get unit data from database
+    const unitData = this.unitsDatabase[Math.min(unitIndex, this.unitsDatabase.length - 1)];
+    
+    // Delegate to spawnUnitByData for consistency
+    this.spawnUnitByData(side, unitData);
+  }
+
+  /**
+   * Queue-based spawn system with formation support
+   * Adds unit to spawn queue with calculated formation offset
+   */
+  private queueUnitSpawn(side: 'player' | 'enemy', unitData: UnitType): void {
+    const now = this.time.now;
+    const timeSinceLastSpawn = now - this.lastSpawnTime[side];
+    
+    // If enough time has passed, spawn immediately
+    if (timeSinceLastSpawn >= this.SPAWN_QUEUE_DELAY) {
+      this.spawnUnitWithFormation(side, unitData);
+      this.lastSpawnTime[side] = now;
+    } else {
+      // Otherwise add to queue
+      const delay = this.SPAWN_QUEUE_DELAY - timeSinceLastSpawn;
+      this.spawnQueue.push({ side, unitData, delay });
+    }
+  }
+
+  /**
+   * Spawn unit with formation offset
+   */
+  private spawnUnitWithFormation(side: 'player' | 'enemy', unitData: UnitType): void {
+    // Calculate formation offset (cycles between -SPACING, 0, +SPACING)
+    const offset = this.spawnFormationOffset[side];
+    this.spawnUnitByData(side, unitData, offset);
+    
+    // Cycle offset: -25 → 0 → +25 → -25 → ...
+    if (offset === -this.FORMATION_SPACING) {
+      this.spawnFormationOffset[side] = 0;
+    } else if (offset === 0) {
+      this.spawnFormationOffset[side] = this.FORMATION_SPACING;
+    } else {
+      this.spawnFormationOffset[side] = -this.FORMATION_SPACING;
+    }
+  }
+
+  /**
+   * Process spawn queue in update loop
+   */
+  private processSpawnQueue(currentTime: number): void {
+    // Process queue items whose delay has expired
+    const toSpawn: Array<{ side: 'player' | 'enemy', unitData: UnitType }> = [];
+    
+    this.spawnQueue = this.spawnQueue.filter(item => {
+      item.delay -= this.game.loop.delta;
+      if (item.delay <= 0) {
+        toSpawn.push({ side: item.side, unitData: item.unitData });
+        return false; // Remove from queue
+      }
+      return true; // Keep in queue
+    });
+    
+    // Spawn queued units
+    toSpawn.forEach(({ side, unitData }) => {
+      this.spawnUnitWithFormation(side, unitData);
+      this.lastSpawnTime[side] = currentTime;
+    });
+  }
+
   private handleUnitCollision(unit1: Phaser.Physics.Arcade.Sprite, unit2: Phaser.Physics.Arcade.Sprite): void {
     // Check if units are already in combat (prevent multiple collision triggers)
     if (unit1.getData('inCombat') || unit2.getData('inCombat')) {
@@ -775,8 +868,28 @@ export class BattleScene extends Phaser.Scene {
     
     // Schedule combat exchange after cooldown
     this.time.delayedCall(COMBAT_COOLDOWN_MS, () => {
-      // Check if units still exist
-      if (!unit1.active || !unit2.active) {
+      // Check if units still exist - if one died, release the other
+      if (!unit1.active && !unit2.active) {
+        return; // Both dead, nothing to do
+      }
+      
+      if (!unit1.active) {
+        // Unit1 died, release unit2
+        if (unit2.active) {
+          unit2.setData('inCombat', false);
+          const speed2 = unit2.getData('speed');
+          unit2.setVelocityX(side2 === 'player' ? speed2 : -speed2);
+        }
+        return;
+      }
+      
+      if (!unit2.active) {
+        // Unit2 died, release unit1
+        if (unit1.active) {
+          unit1.setData('inCombat', false);
+          const speed1 = unit1.getData('speed');
+          unit1.setVelocityX(side1 === 'player' ? speed1 : -speed1);
+        }
         return;
       }
       
@@ -820,34 +933,50 @@ export class BattleScene extends Phaser.Scene {
         this.addXP(xpFromDamage);
       }
       
-      // Handle unit death
+      // Handle unit death - ALWAYS clear inCombat flag before recycling
       if (hp1 <= 0) {
         if (side2 === 'player') {
           const bonusXP = calculateKillBonusXP(unit1.getData('cost') || 50);
           this.addXP(bonusXP, unit1.x, unit1.y);
-          // Also add gold reward for kill
-          this.addGold(10, unit1.x, unit1.y);
+          // Kill streak gold bonus
+          const goldReward = this.addKillToStreak();
+          this.addGold(goldReward, unit1.x, unit1.y);
+          this.showGoldParticles(unit1.x, unit1.y, goldReward);
         }
+        unit1.setData('inCombat', false); // Clear flag before recycling
         this.recycleUnit(unit1);
-      } else {
-        // Resume marching if still alive
-        unit1.setData('inCombat', false);
-        const speed1 = unit1.getData('speed');
-        unit1.setVelocityX(side1 === 'player' ? speed1 : -speed1);
-      }
-      
-      if (hp2 <= 0) {
+        
+        // Release the survivor immediately
+        if (hp2 > 0 && unit2.active) {
+          unit2.setData('inCombat', false);
+          const speed2 = unit2.getData('speed');
+          unit2.setVelocityX(side2 === 'player' ? speed2 : -speed2);
+        }
+      } else if (hp2 <= 0) {
         if (side1 === 'player') {
           const bonusXP = calculateKillBonusXP(unit2.getData('cost') || 50);
           this.addXP(bonusXP, unit2.x, unit2.y);
-          // Also add gold reward for kill
-          this.addGold(10, unit2.x, unit2.y);
+          // Kill streak gold bonus
+          const goldReward = this.addKillToStreak();
+          this.addGold(goldReward, unit2.x, unit2.y);
+          this.showGoldParticles(unit2.x, unit2.y, goldReward);
         }
+        unit2.setData('inCombat', false); // Clear flag before recycling
         this.recycleUnit(unit2);
+        
+        // Release the survivor immediately
+        if (hp1 > 0 && unit1.active) {
+          unit1.setData('inCombat', false);
+          const speed1 = unit1.getData('speed');
+          unit1.setVelocityX(side1 === 'player' ? speed1 : -speed1);
+        }
       } else {
-        // Resume marching if still alive
+        // Both survived - resume marching for both
+        unit1.setData('inCombat', false);
         unit2.setData('inCombat', false);
+        const speed1 = unit1.getData('speed');
         const speed2 = unit2.getData('speed');
+        unit1.setVelocityX(side1 === 'player' ? speed1 : -speed1);
         unit2.setVelocityX(side2 === 'player' ? speed2 : -speed2);
       }
     });
@@ -903,7 +1032,7 @@ export class BattleScene extends Phaser.Scene {
         const bonusXP = calculateKillBonusXP(target.getData('cost') || 50);
         this.addXP(bonusXP, target.x, target.y);
         // Also add gold reward for kill
-        this.addGold(10, target.x, target.y);
+        this.addGold(10);
       }
       this.recycleUnit(target);
     }
@@ -980,22 +1109,18 @@ export class BattleScene extends Phaser.Scene {
   private addGold(amount: number, x?: number, y?: number): void {
     this.gold += amount;
     
-    // Visual feedback: Floating gold text
-    if (x !== undefined && y !== undefined && amount > 0) {
-      // Color based on amount
-      let color = '#FFFFFF'; // White for small amounts
-      if (amount >= 50) color = '#FFD700'; // Gold for large amounts
-      else if (amount >= 10) color = '#FFFF00'; // Yellow for medium amounts
-      
-      this.showFloatingText(x, y, `+${amount}g`, color, 18);
-      this.showGoldParticles(x, y);
-    }
-    
     // Update TestUI
     if (this.goldText) this.goldText.setText(`Gold: ${this.gold}`);
     
     const uiScene = this.scene.get('UIScene');
     uiScene.events.emit('updateGold', this.gold);
+    
+    // Show floating gold text if position provided
+    if (x !== undefined && y !== undefined) {
+      const color = amount >= 50 ? '#ffd700' : (amount >= 10 ? '#ffff00' : '#ffffff');
+      this.showFloatingText(x, y, `+${amount}g`, color, 18);
+      this.showGoldParticles(x, y, amount);
+    }
   }
 
   // ===== VISUAL FEEDBACK METHODS =====
@@ -1031,53 +1156,122 @@ export class BattleScene extends Phaser.Scene {
    * Show golden sparkle particles for XP gains
    */
   private showXPParticles(x: number, y: number): void {
-    // Create temporary particle emitter
+    // Create temporary particle emitter with one-shot emission
     const particles = this.add.particles(x, y, 'xp-star', {
       speed: { min: 50, max: 150 },
-      scale: { start: 0.4, end: 0 },
+      scale: { start: 0.12, end: 0 }, // Reduced from 0.3 to 0.12 - much smaller sparkles
       alpha: { start: 1, end: 0 },
       angle: { min: 0, max: 360 },
       lifespan: 800,
-      quantity: 8,
-      gravityY: -100
+      gravityY: -100,
+      emitting: false // Don't emit continuously
     });
+    
+    // Emit particles once
+    particles.emitParticle(8);
     
     // Destroy after animation
     this.time.delayedCall(1000, () => {
       particles.destroy();
     });
   }
-  
-  /**
-   * Show gold coin particles
-   */
-  private showGoldParticles(x: number, y: number): void {
-    // Create temporary particle emitter
-    const particles = this.add.particles(x, y, 'gold-coin', {
-      speed: { min: 30, max: 100 },
-      scale: { start: 0.3, end: 0 },
-      alpha: { start: 1, end: 0 },
-      angle: { min: -45, max: -135 }, // Fly upward and to the left (toward UI)
-      lifespan: 600,
-      quantity: 5,
-      gravityY: -80
+
+  private showGoldParticles(x: number, y: number, amount: number): void {
+    // Create gold coin particles
+    const particles = this.add.particles(x, y, 'rock', { // Using rock as placeholder
+      speed: { min: 50, max: 100 },
+      angle: { min: 240, max: 300 },
+      scale: { start: 0.15, end: 0 },
+      tint: 0xffd700,
+      lifespan: 800,
+      gravityY: 200,
+      quantity: Math.min(Math.floor(amount / 2), 8), // More particles for bigger rewards
+      emitting: false
     });
     
+    // Emit particles once
+    particles.emitParticle();
+    
     // Destroy after animation
-    this.time.delayedCall(800, () => {
+    this.time.delayedCall(1000, () => {
       particles.destroy();
     });
   }
 
+  /**
+   * Kill Streak System - returns gold reward based on streak
+   */
+  private addKillToStreak(): number {
+    const now = this.time.now;
+    
+    // Check if streak expired
+    if (now - this.lastKillTime > this.KILL_STREAK_TIMEOUT) {
+      this.killStreak = 0;
+    }
+    
+    // Increment streak
+    this.killStreak++;
+    this.lastKillTime = now;
+    
+    // Calculate gold multiplier
+    let multiplier = 1.0;
+    let streakName = '';
+    let streakColor = '#ffffff';
+    
+    if (this.killStreak >= 15) {
+      multiplier = 2.5;
+      streakName = '🔥 MEGA STREAK! 🔥';
+      streakColor = '#ff0000';
+    } else if (this.killStreak >= 10) {
+      multiplier = 2.0;
+      streakName = '⚡ LEGENDARY! ⚡';
+      streakColor = '#ff4500';
+    } else if (this.killStreak >= 5) {
+      multiplier = 1.5;
+      streakName = '💎 ELITE STREAK!';
+      streakColor = '#ffd700';
+    } else if (this.killStreak >= 3) {
+      multiplier = 1.2;
+      streakName = '⭐ STREAK!';
+      streakColor = '#ffff00';
+    }
+    
+    // Update streak display
+    if (this.killStreak >= 3 && this.streakText) {
+      this.streakText.setText(`${this.killStreak}x ${streakName}`);
+      this.streakText.setColor(streakColor);
+      this.streakText.setVisible(true);
+      
+      // Pulse effect
+      this.tweens.add({
+        targets: this.streakText,
+        scale: { from: 1.2, to: 1.0 },
+        duration: 200,
+        ease: 'Back.out'
+      });
+    } else if (this.streakText) {
+      this.streakText.setVisible(false);
+    }
+    
+    // Calculate gold reward
+    const baseGold = 10;
+    const reward = Math.round(baseGold * multiplier);
+    
+    console.log(`Kill Streak: ${this.killStreak}x | Reward: ${reward}g (${multiplier}x)`);
+    return reward;
+  }
+
   update(_time: number, delta: number): void {
+    // Process spawn queue
+    this.processSpawnQueue(_time);
+    
     // Gold accumulator tick (8 gold per second)
     this.goldAccumulator += delta;
     const goldTickInterval = 1000 / this.goldPerSecond; // ~125ms per gold
     
     while (this.goldAccumulator >= goldTickInterval) {
       this.goldAccumulator -= goldTickInterval;
-      // Show floating text near player base for passive gold
-      this.addGold(1, PLAYER_BASE_X + 50, LANE_Y - 50);
+      this.addGold(1);
     }
     
     // Update health bars for all units
@@ -1517,7 +1711,9 @@ export class BattleScene extends Phaser.Scene {
       delay: spawnRate,
       callback: () => {
         const enemyUnitIndex = this.getSmartEnemyUnit();
-        this.spawnUnit('enemy', enemyUnitIndex);
+        const unitData = this.unitsDatabase[enemyUnitIndex];
+        // Use formation queue system
+        this.queueUnitSpawn('enemy', unitData);
       },
       loop: true
     });

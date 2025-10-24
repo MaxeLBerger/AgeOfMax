@@ -55,26 +55,24 @@ export class MenuScene extends Phaser.Scene {
     }).setOrigin(0.5);
   }
 
-  private createButton(x: number, y: number, text: string, color: number): Phaser.GameObjects.Container {
+  private createButton(x: number, y: number, text: string, color: number): Phaser.GameObjects.Rectangle {
     const width = 320;
     const height = 60;
 
-    const bg = this.add.rectangle(0, 0, width, height, color)
+    const bg = this.add.rectangle(x, y, width, height, color)
       .setInteractive({ useHandCursor: true });
     
-    const label = this.add.text(0, 0, text, {
+    const label = this.add.text(x, y, text, {
       fontSize: '28px',
       color: '#ffffff',
       fontStyle: 'bold'
     }).setOrigin(0.5);
 
-    const container = this.add.container(x, y, [bg, label]);
-
     // Hover effects
     bg.on('pointerover', () => {
       bg.setFillStyle(color, 0.8);
       this.tweens.add({
-        targets: container,
+        targets: [bg, label],
         scaleX: 1.05,
         scaleY: 1.05,
         duration: 150,
@@ -85,7 +83,7 @@ export class MenuScene extends Phaser.Scene {
     bg.on('pointerout', () => {
       bg.setFillStyle(color, 1);
       this.tweens.add({
-        targets: container,
+        targets: [bg, label],
         scaleX: 1,
         scaleY: 1,
         duration: 150,
@@ -93,6 +91,6 @@ export class MenuScene extends Phaser.Scene {
       });
     });
 
-    return container;
+    return bg;
   }
 }

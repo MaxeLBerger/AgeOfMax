@@ -49,10 +49,10 @@ export class CreditsScene extends Phaser.Scene {
     githubText.on('pointerover', () => githubText.setColor('#6ab0f2'));
     githubText.on('pointerout', () => githubText.setColor('#4a90e2'));
     githubText.on('pointerdown', () => {
-      window.open('https://github.com/MaximilianHaak', '_blank');
+      window.open('https://github.com/MaxelBerger', '_blank');
     });
 
-    this.add.text(centerX, 355, 'github.com/MaximilianHaak', {
+    this.add.text(centerX, 355, 'github.com/MaxelBerger', {
       fontSize: '16px',
       color: '#666666'
     }).setOrigin(0.5);
@@ -72,7 +72,7 @@ export class CreditsScene extends Phaser.Scene {
     const supportBtn = this.createButton(centerX, 540, 'SUPPORT THE PROJECT', 0x26a69a);
     supportBtn.on('pointerdown', () => {
       // You can replace this with your actual donation link
-      window.open('https://github.com/sponsors/MaximilianHaak', '_blank');
+      window.open('https://github.com/sponsors/MaxelBerger', '_blank');
     });
 
     // Back button
@@ -86,25 +86,23 @@ export class CreditsScene extends Phaser.Scene {
     backBtn.on('pointerdown', () => this.scene.start('MenuScene'));
   }
 
-  private createButton(x: number, y: number, text: string, color: number): Phaser.GameObjects.Container {
+  private createButton(x: number, y: number, text: string, color: number): Phaser.GameObjects.Rectangle {
     const width = 320;
     const height = 50;
 
-    const bg = this.add.rectangle(0, 0, width, height, color)
+    const bg = this.add.rectangle(x, y, width, height, color)
       .setInteractive({ useHandCursor: true });
     
-    const label = this.add.text(0, 0, text, {
+    const label = this.add.text(x, y, text, {
       fontSize: '20px',
       color: '#ffffff',
       fontStyle: 'bold'
     }).setOrigin(0.5);
 
-    const container = this.add.container(x, y, [bg, label]);
-
     bg.on('pointerover', () => {
       bg.setFillStyle(color, 0.8);
       this.tweens.add({
-        targets: container,
+        targets: [bg, label],
         scaleX: 1.05,
         scaleY: 1.05,
         duration: 150,
@@ -115,7 +113,7 @@ export class CreditsScene extends Phaser.Scene {
     bg.on('pointerout', () => {
       bg.setFillStyle(color, 1);
       this.tweens.add({
-        targets: container,
+        targets: [bg, label],
         scaleX: 1,
         scaleY: 1,
         duration: 150,
@@ -123,6 +121,6 @@ export class CreditsScene extends Phaser.Scene {
       });
     });
 
-    return container;
+    return bg;
   }
 }

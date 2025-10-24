@@ -22,7 +22,7 @@
     "nodejs",
     "server"
   ],
-  "author": "MaximilianHaak",
+  "author": "MaxelBerger",
   "license": "MIT",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0",

@@ -112,7 +112,7 @@ def horde_submit_job(api_key: str, prompt: str, width: int, height: int) -> str:
         "apikey": api_key or "0000000000",  # anonymous if empty
         "accept": "application/json",
         "Content-Type": "application/json",
-        "Client-Agent": "AgeOfMax/1.0 (github.com/MaximilianHaak)"
+        "Client-Agent": "AgeOfMax/1.0 (github.com/MaxelBerger)"
     }
     # Clamp dims to Horde supported ranges; multiples of 64 for SDXL recommended
     def clamp64(v: int) -> int:
@@ -156,7 +156,7 @@ def horde_poll_result(api_key: str, job_id: str, name: str, poll_interval: float
     headers = {
         "apikey": api_key or "0000000000",
         "accept": "application/json",
-        "Client-Agent": "AgeOfMax/1.0 (github.com/MaximilianHaak)"
+        "Client-Agent": "AgeOfMax/1.0 (github.com/MaxelBerger)"
     }
     status_url = HORDE_STATUS_ENDPOINT.format(id=job_id)
     start = time.time()

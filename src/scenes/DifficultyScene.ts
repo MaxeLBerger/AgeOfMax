@@ -57,32 +57,30 @@ export class DifficultyScene extends Phaser.Scene {
     backBtn.on('pointerdown', () => this.scene.start('MenuScene'));
   }
 
-  private createDifficultyButton(x: number, y: number, text: string, color: number, features: string[]): Phaser.GameObjects.Container {
+  private createDifficultyButton(x: number, y: number, text: string, color: number, features: string[]): Phaser.GameObjects.Rectangle {
     const width = 500;
     const height = 120;
 
-    const bg = this.add.rectangle(0, 0, width, height, color)
+    const bg = this.add.rectangle(x, y, width, height, color)
       .setInteractive({ useHandCursor: true });
     
-    const label = this.add.text(0, -30, text, {
+    const label = this.add.text(x, y - 30, text, {
       fontSize: '36px',
       color: '#ffffff',
       fontStyle: 'bold'
     }).setOrigin(0.5);
 
-    const desc = this.add.text(0, 10, features.join('  '), {
+    const desc = this.add.text(x, y + 10, features.join('  '), {
       fontSize: '14px',
       color: '#ffffff',
       wordWrap: { width: width - 40 }
     }).setOrigin(0.5);
 
-    const container = this.add.container(x, y, [bg, label, desc]);
-
     // Hover effects
     bg.on('pointerover', () => {
       bg.setFillStyle(color, 0.8);
       this.tweens.add({
-        targets: container,
+        targets: [bg, label, desc],
         scaleX: 1.05,
         scaleY: 1.05,
         duration: 150,
@@ -93,7 +91,7 @@ export class DifficultyScene extends Phaser.Scene {
     bg.on('pointerout', () => {
       bg.setFillStyle(color, 1);
       this.tweens.add({
-        targets: container,
+        targets: [bg, label, desc],
         scaleX: 1,
         scaleY: 1,
         duration: 150,
@@ -101,7 +99,7 @@ export class DifficultyScene extends Phaser.Scene {
       });
     });
 
-    return container;
+    return bg;
   }
 
   private startGame(difficulty: DifficultyLevel): void {
