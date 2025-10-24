@@ -6,23 +6,33 @@ export class BootScene extends Phaser.Scene {
   }
 
   preload(): void {
-    // Load unit assets
-    this.load.image('archer', 'assets/units/archer_1.png');
-    this.load.image('ballista', 'assets/units/ballista.png');
-    this.load.image('cannon', 'assets/units/cannon.png');
-    this.load.image('cavalry', 'assets/units/cavalry.png');
-    this.load.image('clubman', 'assets/units/clubman.png');
-    this.load.image('dino-rider', 'assets/units/dino-rider.png');
-    this.load.image('duelist', 'assets/units/duelist.png');
-    this.load.image('grenadier', 'assets/units/grenadier.png');
-    this.load.image('knight', 'assets/units/knight.png');
-    this.load.image('musketeer', 'assets/units/musketeer.png');
-    this.load.image('rifleman', 'assets/units/rifleman.png');
-    this.load.image('slinger', 'assets/units/slinger.png');
-    this.load.image('sniper', 'assets/units/sniper.png');
-    this.load.image('spearman', 'assets/units/spearman.png');
-    this.load.image('swordsman', 'assets/units/swordsman.png');
-    this.load.image('tank', 'assets/units/tank.png');
+    // Load unit assets - with variants (_2) where available
+    // Stone Age
+    this.load.image('clubman', 'assets/units/stone_age/clubman.png');
+    this.load.image('clubman_2', 'assets/units/stone_age/clubman_2.png');
+    this.load.image('spearman', 'assets/units/stone_age/spearman.png');
+    this.load.image('slinger', 'assets/units/stone_age/slinger.png');
+    this.load.image('dino-rider', 'assets/units/stone_age/dino-rider.png');
+    
+    // Castle Age
+    this.load.image('swordsman', 'assets/units/castle_age/swordsman.png');
+    this.load.image('knight', 'assets/units/castle_age/knight.png');
+    this.load.image('cavalry', 'assets/units/castle_age/cavalry.png');
+    this.load.image('cannon', 'assets/units/castle_age/cannon.png');
+    
+    // Renaissance Age
+    this.load.image('archer', 'assets/units/renaissance_age/archer.png');
+    this.load.image('archer_2', 'assets/units/renaissance_age/archer_2.png');
+    this.load.image('ballista', 'assets/units/renaissance_age/ballista.png');
+    this.load.image('musketeer', 'assets/units/renaissance_age/musketeer.png');
+    this.load.image('duelist', 'assets/units/renaissance_age/duelist.png');
+    this.load.image('grenadier', 'assets/units/renaissance_age/grenadier.png');
+    
+    // Modern Age
+    this.load.image('rifleman', 'assets/units/modern_age/rifleman.png');
+    this.load.image('rifleman_2', 'assets/units/modern_age/rifleman_2.png');
+    this.load.image('sniper', 'assets/units/modern_age/sniper.png');
+    this.load.image('tank', 'assets/units/modern_age/tank.png');
 
     // Load turret assets
     this.load.image('stone-tower-1', 'assets/turrets/stone_age_tower_1.png');
@@ -39,6 +49,19 @@ export class BootScene extends Phaser.Scene {
     this.load.image('player-base', 'assets/buildings/player_base.png');
     this.load.image('enemy-base', 'assets/buildings/enemy_base.png');
 
+    // Load background assets
+    this.load.image('stone-age-bg', 'assets/backgrounds/stone_age_background.png');
+    this.load.image('castle-age-bg', 'assets/backgrounds/castle_age_background.png');
+    this.load.image('renaissance-bg', 'assets/backgrounds/renaissance_background.png');
+    this.load.image('modern-bg', 'assets/backgrounds/modern_background.png');
+
+    // Load UI icons
+    this.load.image('gold-coin', 'assets/ui/gold_coin_icon.png');
+    this.load.image('xp-star', 'assets/ui/xp_star_icon.png');
+    this.load.image('raining-rocks-icon', 'assets/ui/raining_rocks_icon.png');
+    this.load.image('artillery-strike-icon', 'assets/ui/artillery_strike_icon.png');
+    this.load.image('turret-placeholder', 'assets/ui/turret_placeholder.png');
+
     // Load projectile assets
     this.load.image('arrow', 'assets/projectiles/arrow.png');
     this.load.image('bullet', 'assets/projectiles/bullet.png');
@@ -53,8 +76,7 @@ export class BootScene extends Phaser.Scene {
   create(): void {
     console.log('BootScene: Starting game...');
     this.createPlaceholderAssets();
-    this.scene.launch('UIScene');
-    this.scene.launch('BattleScene');
+    this.scene.start('MenuScene'); // Start with menu instead of directly launching battle
     this.scene.stop();
   }
 

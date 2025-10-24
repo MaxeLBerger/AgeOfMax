@@ -27,11 +27,24 @@ export class UIScene extends Phaser.Scene {
   }
 
   private createHUD(): void {
-    this.goldText = this.add.text(20, 20, `Gold: ${this.economy.gold}`, { fontSize: '24px', color: '#ffd700' });
-    this.xpText = this.add.text(20, 50, `XP: ${this.economy.xp}/${this.currentEpoch.xpToNext}`, { fontSize: '20px', color: '#00ff00' });
+    // Gold display with icon - hohe Depth für UI
+    const goldIcon = this.add.image(15, 30, 'gold-coin').setScale(0.4);
+    goldIcon.setDepth(1000); // Sehr hohe Depth
+    this.goldText = this.add.text(35, 20, `Gold: ${this.economy.gold}`, { fontSize: '24px', color: '#ffd700' });
+    this.goldText.setDepth(1000);
+    
+    // XP display with icon - hohe Depth für UI
+    const xpIcon = this.add.image(15, 60, 'xp-star').setScale(0.4);
+    xpIcon.setDepth(1000);
+    this.xpText = this.add.text(35, 50, `XP: ${this.economy.xp}/${this.currentEpoch.xpToNext}`, { fontSize: '20px', color: '#00ff00' });
+    this.xpText.setDepth(1000);
+    
     this.epochText = this.add.text(20, 80, `Epoch: ${this.currentEpoch.name}`, { fontSize: '20px', color: '#ffffff' });
-    this.baseHpText = this.add.text(20, 380, 'Base HP: 1000/1000', { fontSize: '20px', color: '#ff4444' }); // Moved below turret grid
+    this.epochText.setDepth(1000);
+    this.baseHpText = this.add.text(20, 450, 'Base HP: 1000/1000', { fontSize: '20px', color: '#ff4444' });
+    this.baseHpText.setDepth(1000);
     this.feedbackText = this.add.text(640, 350, '', { fontSize: '20px', color: '#ff0000' }).setOrigin(0.5);
+    this.feedbackText.setDepth(1000);
     this.createSpecialButtons();
     this.createToolbar();
   }
@@ -94,19 +107,29 @@ export class UIScene extends Phaser.Scene {
     const specialButtonsX = 900;
     const specialButtonsY = 50;
     
-    // Raining Rocks button
+    // Raining Rocks button with icon
     this.rainingRocksButton = this.add.rectangle(specialButtonsX, specialButtonsY, 120, 60, 0x8B4513).setInteractive();
-    this.add.text(specialButtonsX, specialButtonsY - 10, '🪨 Rocks', { fontSize: '16px', color: '#ffffff' }).setOrigin(0.5);
+    this.rainingRocksButton.setDepth(1000);
+    const rocksIcon = this.add.image(specialButtonsX - 25, specialButtonsY - 10, 'raining-rocks-icon').setScale(0.3);
+    rocksIcon.setDepth(1000);
+    const rocksText = this.add.text(specialButtonsX + 5, specialButtonsY - 10, 'Rocks', { fontSize: '16px', color: '#ffffff' }).setOrigin(0.5);
+    rocksText.setDepth(1000);
     this.rainingRocksCooldownText = this.add.text(specialButtonsX, specialButtonsY + 10, 'Ready', { fontSize: '14px', color: '#00ff00' }).setOrigin(0.5);
+    this.rainingRocksCooldownText.setDepth(1000);
     
     this.rainingRocksButton.on('pointerdown', () => {
       this.events.emit('useRainingRocks');
     });
     
-    // Artillery Strike button
+    // Artillery Strike button with icon
     this.artilleryStrikeButton = this.add.rectangle(specialButtonsX + 140, specialButtonsY, 120, 60, 0xFF4500).setInteractive();
-    this.add.text(specialButtonsX + 140, specialButtonsY - 10, '💥 Artillery', { fontSize: '16px', color: '#ffffff' }).setOrigin(0.5);
+    this.artilleryStrikeButton.setDepth(1000);
+    const artilleryIcon = this.add.image(specialButtonsX + 140 - 25, specialButtonsY - 10, 'artillery-strike-icon').setScale(0.3);
+    artilleryIcon.setDepth(1000);
+    const artilleryText = this.add.text(specialButtonsX + 140 + 5, specialButtonsY - 10, 'Artillery', { fontSize: '16px', color: '#ffffff' }).setOrigin(0.5);
+    artilleryText.setDepth(1000);
     this.artilleryStrikeCooldownText = this.add.text(specialButtonsX + 140, specialButtonsY + 10, 'Ready', { fontSize: '14px', color: '#00ff00' }).setOrigin(0.5);
+    this.artilleryStrikeCooldownText.setDepth(1000);
     
     this.artilleryStrikeButton.on('pointerdown', () => {
       this.events.emit('useArtilleryStrike');
@@ -145,7 +168,9 @@ export class UIScene extends Phaser.Scene {
     // Unit spawn buttons
     for (let i = 0; i < 5; i++) {
       const btn = this.add.rectangle(200 + i * 80, buttonY, 70, 50, 0x444444).setInteractive();
-      this.add.text(200 + i * 80, buttonY, `U${i + 1}`, { fontSize: '18px' }).setOrigin(0.5);
+      btn.setDepth(1000);
+      const unitText = this.add.text(200 + i * 80, buttonY, `U${i + 1}`, { fontSize: '18px' }).setOrigin(0.5);
+      unitText.setDepth(1000);
       btn.on('pointerdown', () => this.onUnitButtonClick(i));
     }
 
@@ -156,8 +181,11 @@ export class UIScene extends Phaser.Scene {
       if (!turretData) continue;
 
       const btn = this.add.rectangle(200 + i * 80, turretButtonY, 70, 50, 0x663300).setInteractive();
+      btn.setDepth(1000);
       const text = this.add.text(200 + i * 80, turretButtonY - 10, `T${i + 1}`, { fontSize: '16px' }).setOrigin(0.5);
+      text.setDepth(1000);
       const costText = this.add.text(200 + i * 80, turretButtonY + 10, `${turretData.goldCost}g`, { fontSize: '12px', color: '#ffd700' }).setOrigin(0.5);
+      costText.setDepth(1000);
 
       btn.on('pointerdown', () => this.onTurretButtonClick(i));
       

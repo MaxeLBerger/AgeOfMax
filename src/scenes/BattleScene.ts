@@ -11,20 +11,22 @@ import {
 } from '../utils/gameHelpers';
 
 // Lane configuration constants
-const LANE_Y = 360;
+const LANE_Y = 500; // Ganz unten am Boden der Basen
 const LANE_WIDTH = 1280;
 const LANE_HEIGHT = 120;
 const PLAYER_SPAWN_X = 150;
 const ENEMY_SPAWN_X = 1130;
 const PLAYER_BASE_X = 100;
 const ENEMY_BASE_X = 1180;
+const BASE_ATTACK_RANGE = 100; // Units start attacking base from this distance
+const BASE_MAX_HP = 1500; // Extracted base HP for easy tuning
 const UNIT_CLEANUP_MARGIN = 50;
 const KNOCKBACK_DISTANCE = 5;
-const COMBAT_COOLDOWN_MS = 1000;
+const COMBAT_COOLDOWN_MS = 800; // Reduced from 1000ms to 800ms for more dynamic fights
 
 // Turret grid constants
 const TURRET_GRID_START_X = 50;
-const TURRET_GRID_START_Y = 150;
+const TURRET_GRID_START_Y = 170; // Weiter nach unten verschoben, weg von der Epochenanzeige
 const TURRET_CELL_SIZE = 60;
 const TURRET_GRID_ROWS = 3;
 const TURRET_GRID_COLS = 5;
@@ -48,6 +50,20 @@ interface TurretSlot {
   lastFireTime: number;
 }
 
+interface UnitHealthBar {
+  background: Phaser.GameObjects.Rectangle;
+  fill: Phaser.GameObjects.Rectangle;
+  container: Phaser.GameObjects.Container;
+}
+
+interface GameUnit extends Phaser.Physics.Arcade.Sprite {
+  unitData?: UnitType;
+  maxHp?: number;
+  currentHp?: number;
+  healthBar?: UnitHealthBar;
+  side?: 'player' | 'enemy';
+}
+
 export class BattleScene extends Phaser.Scene {
   private playerBase!: Base;
   private enemyBase!: Base;
@@ -62,10 +78,18 @@ export class BattleScene extends Phaser.Scene {
   // Economy & Progression
   private gold = 100;
   private xp = 0;
-  private goldPerSecond = 2; // Reduced from 8 to 2 for better game balance
+  private goldPerSecond = 8; // MCP Recommendation: Increased from 2 to 8 per balance pass
   private goldAccumulator = 0;
   private epochs: Epoch[] = epochsData as Epoch[];
   private currentEpochIndex = 0;
+
+  // Difficulty settings
+  private difficulty: 'easy' | 'medium' | 'hard' = 'medium';
+  private difficultyMultipliers = {
+    easy: { enemySpawnRate: 6000, enemyStats: 0.7, startingGold: 200 },
+    medium: { enemySpawnRate: 4000, enemyStats: 1.0, startingGold: 100 },
+    hard: { enemySpawnRate: 3000, enemyStats: 1.3, startingGold: 50 }
+  };
 
   // Special abilities
   private rainingRocksLastUsed = -RAINING_ROCKS_COOLDOWN; // Available at start
@@ -77,17 +101,30 @@ export class BattleScene extends Phaser.Scene {
   private debugLastUpdate = 0;
   private readonly DEBUG_UPDATE_INTERVAL = 100; // 10 Hz throttle
 
+  // Background
+  private backgroundImage!: Phaser.GameObjects.Image;
+
   constructor() {
     super({ key: 'BattleScene' });
   }
 
   create(): void {
     console.log('BattleScene: Initializing battlefield...');
-    this.createBases();
-    this.createLane();
+    
+    // Load difficulty from registry
+    this.difficulty = this.registry.get('difficulty') || 'medium';
+    console.log(`🎮 Difficulty: ${this.difficulty.toUpperCase()}`);
+    
+    // Apply difficulty-based starting gold
+    this.gold = this.difficultyMultipliers[this.difficulty].startingGold;
+    
+    this.createBackground(); // Hintergrund zuerst erstellen
+    this.createLane();     // Zuerst den Weg erstellen
+    this.createBases();    // Dann die Basen darüber
     this.createTurretGrid();
     this.setupPools();
     this.setupColliders();
+    this.createTestUI();   // Test UI direkt hier
     this.listenToUIEvents();
     this.syncInitialStateToUI();
     this.setupDebugControls();
@@ -115,36 +152,290 @@ export class BattleScene extends Phaser.Scene {
     return getEpochSafe(this.epochs, this.currentEpochIndex);
   }
 
-  private createBases(): void {
-    this.playerBase = { hp: 1000, maxHp: 1000, x: PLAYER_BASE_X, y: LANE_Y, side: 'player' };
-    this.enemyBase = { hp: 1000, maxHp: 1000, x: ENEMY_BASE_X, y: LANE_Y, side: 'enemy' };
+  private createBackground(): void {
+    // Set initial background based on current epoch
+    const backgroundKey = this.getBackgroundKey();
+    this.backgroundImage = this.add.image(640, 360, backgroundKey);
     
-    // Create visible base representations (larger rectangles)
-    this.add.rectangle(this.playerBase.x, this.playerBase.y, 40, 80, 0x4169E1); // Blue player base
-    this.add.rectangle(this.enemyBase.x, this.enemyBase.y, 40, 80, 0xFF4444); // Red enemy base
+    // Scale to fit screen (1280x720)
+    this.backgroundImage.setDisplaySize(1280, 720);
+    this.backgroundImage.setDepth(-100); // Weit hinter allem anderen, besonders UI
+  }
+
+  private getBackgroundKey(): string {
+    const epoch = this.getCurrentEpoch();
+    const epochId = epoch.id;
+    
+    const backgroundMap: Record<string, string> = {
+      'stone': 'stone-age-bg',
+      'castle': 'castle-age-bg',
+      'renaissance': 'renaissance-bg',
+      'modern': 'modern-bg',
+      'future': 'modern-bg' // Fallback to modern for future
+    };
+    
+    return backgroundMap[epochId] || 'stone-age-bg';
+  }
+
+  private updateBackground(): void {
+    const newBackgroundKey = this.getBackgroundKey();
+    if (this.backgroundImage && this.backgroundImage.texture.key !== newBackgroundKey) {
+      this.backgroundImage.setTexture(newBackgroundKey);
+    }
+  }
+
+  private createBases(): void {
+    this.playerBase = { hp: BASE_MAX_HP, maxHp: BASE_MAX_HP, x: PLAYER_BASE_X, y: LANE_Y, side: 'player' };
+    this.enemyBase = { hp: BASE_MAX_HP, maxHp: BASE_MAX_HP, x: ENEMY_BASE_X, y: LANE_Y, side: 'enemy' };
+    
+    // Create visible base representations using PNG assets
+    // Position them higher so units walk at their base (units are now at Y=500)
+    const baseVisualY = LANE_Y - 40; // Basen deutlich höher, da Units jetzt bei Y=500 laufen
+    this.add.image(this.playerBase.x, baseVisualY, 'player-base').setScale(0.2);
+    this.add.image(this.enemyBase.x, baseVisualY, 'enemy-base').setScale(0.2);
   }
 
   private createLane(): void {
-    const graphics = this.add.graphics();
-    graphics.fillStyle(0x333333);
-    graphics.fillRect(0, LANE_Y - LANE_HEIGHT / 2, LANE_WIDTH, LANE_HEIGHT);
+    // Lane ist jetzt transparent - die visuelle Lane kommt vom Hintergrundbild
+    // Keine visuellen Elemente mehr, nur Kollisionserkennung wenn nötig
+  }
+
+  private createHealthBar(unit: Phaser.Physics.Arcade.Sprite): UnitHealthBar {
+    const barWidth = 30;
+    const barHeight = 4;
+    const barOffsetY = -35; // Höher über der Unit
+    
+    // Hintergrund (dunkelrot)
+    const background = this.add.rectangle(
+      unit.x, 
+      unit.y + barOffsetY, 
+      barWidth, 
+      barHeight, 
+      0x660000
+    );
+    
+    // Gesundheitsbalken (grün) - anchor links setzen für right-to-left abbau
+    const fill = this.add.rectangle(
+      unit.x, 
+      unit.y + barOffsetY, 
+      barWidth, 
+      barHeight, 
+      0x00ff00
+    );
+    fill.setOrigin(1, 0.5); // Origin rechts, damit von rechts nach links abbaut
+    
+    // Container für einfache Bewegung
+    const container = this.add.container(0, 0, [background, fill]);
+    container.setDepth(10); // Über allem anderen
+    
+    return {
+      background,
+      fill,
+      container
+    };
+  }
+
+  private updateHealthBar(unit: GameUnit): void {
+    if (!unit.healthBar || !unit.maxHp || !unit.currentHp) return;
+    
+    const healthPercent = unit.currentHp / unit.maxHp;
+    const barWidth = 30;
+    
+    // Position der Healthbar über der Unit aktualisieren
+    const barOffsetY = -35; // Höher über der Unit
+    const barCenterX = unit.x;
+    
+    // Background bleibt zentriert
+    unit.healthBar.background.setPosition(barCenterX, unit.y + barOffsetY);
+    
+    // Fill ist rechts-verankert, positioniere am rechten Rand
+    unit.healthBar.fill.setPosition(barCenterX + barWidth / 2, unit.y + barOffsetY);
+    
+    // Breite des Gesundheitsbalkens anpassen (von rechts nach links)
+    unit.healthBar.fill.setDisplaySize(barWidth * healthPercent, 4);
+    
+    // Farbe je nach Gesundheit ändern
+    if (healthPercent > 0.6) {
+      unit.healthBar.fill.setFillStyle(0x00ff00); // Grün
+    } else if (healthPercent > 0.3) {
+      unit.healthBar.fill.setFillStyle(0xffff00); // Gelb
+    } else {
+      unit.healthBar.fill.setFillStyle(0xff6600); // Orange
+    }
+    
+    // Healthbar verstecken wenn Unit tot
+    if (unit.currentHp <= 0) {
+      unit.healthBar.container.setVisible(false);
+    }
+  }
+
+  private destroyHealthBar(unit: GameUnit): void {
+    if (unit.healthBar) {
+      unit.healthBar.background.destroy();
+      unit.healthBar.fill.destroy();
+      unit.healthBar.container.destroy();
+      unit.healthBar = undefined;
+    }
+  }
+
+  private goldText!: Phaser.GameObjects.Text;
+  private xpText!: Phaser.GameObjects.Text;
+  private epochText!: Phaser.GameObjects.Text;
+  private unitButtons: Array<{btn: Phaser.GameObjects.Rectangle, nameText: Phaser.GameObjects.Text, costText: Phaser.GameObjects.Text, unitIndex: number}> = [];
+
+  private createTestUI(): void {
+    // Test UI direkt in der BattleScene erstellen
+    this.goldText = this.add.text(20, 20, `Gold: ${this.gold}`, { 
+      fontSize: '24px', 
+      color: '#ffd700',
+      backgroundColor: '#000000',
+      padding: { x: 10, y: 5 }
+    });
+    this.goldText.setDepth(2000);
+    
+    this.xpText = this.add.text(20, 50, `XP: ${this.xp}/${this.getCurrentEpoch().xpToNext}`, { 
+      fontSize: '20px', 
+      color: '#00ff00',
+      backgroundColor: '#000000',
+      padding: { x: 10, y: 5 }
+    });
+    this.xpText.setDepth(2000);
+    
+    this.epochText = this.add.text(20, 80, `Epoch: ${this.getCurrentEpoch().name}`, { 
+      fontSize: '20px', 
+      color: '#ffffff',
+      backgroundColor: '#000000',
+      padding: { x: 10, y: 5 }
+    });
+    this.epochText.setDepth(2000);
+    
+    // Unit spawn buttons (U1-U5) - dynamisch basierend auf Epoche
+    const buttonY = 660;
+    for (let i = 0; i < 5; i++) {
+      const btn = this.add.rectangle(200 + i * 80, buttonY, 70, 50, 0x444444).setInteractive();
+      btn.setDepth(2000);
+      
+      const nameText = this.add.text(200 + i * 80, buttonY - 10, '', { 
+        fontSize: '11px', 
+        color: '#ffffff' 
+      }).setOrigin(0.5);
+      nameText.setDepth(2000);
+      
+      const costText = this.add.text(200 + i * 80, buttonY + 10, '', { 
+        fontSize: '12px', 
+        color: '#ffd700' 
+      }).setOrigin(0.5);
+      costText.setDepth(2000);
+      
+      this.unitButtons.push({btn, nameText, costText, unitIndex: -1});
+      
+      btn.on('pointerdown', () => {
+        const buttonData = this.unitButtons[i];
+        if (buttonData.unitIndex >= 0) {
+          this.spawnUnit('player', buttonData.unitIndex);
+        }
+      });
+    }
+    
+    // Initial update für verfügbare Units
+    this.updateAvailableUnits();
+    
+    // Turret placement buttons (T1-T5)
+    const turretButtonY = 600;
+    for (let i = 0; i < 5; i++) {
+      const turretData = this.turretsDatabase[i];
+      const btn = this.add.rectangle(200 + i * 80, turretButtonY, 70, 50, 0x663300).setInteractive();
+      btn.setDepth(2000);
+      const text = this.add.text(200 + i * 80, turretButtonY - 10, turretData.name, { 
+        fontSize: '11px', 
+        color: '#ffffff' 
+      }).setOrigin(0.5);
+      text.setDepth(2000);
+      const costText = this.add.text(200 + i * 80, turretButtonY + 10, `${turretData.goldCost}g`, { 
+        fontSize: '12px', 
+        color: '#ffd700' 
+      }).setOrigin(0.5);
+      costText.setDepth(2000);
+      
+      btn.on('pointerdown', () => {
+        console.log(`Selected turret ${i + 1}: ${turretData.name}`);
+        this.selectedTurretIndex = i;
+      });
+    }
+    
+    console.log('Test UI with buttons created with depth 2000');
+  }
+
+  private updateAvailableUnits(): void {
+    // Hole die Units für die aktuelle Epoche
+    const currentEpoch = this.getCurrentEpoch();
+    const epochId = currentEpoch.id;
+    
+    // Filtere Units nach Epoche (alle Units dieser Epoche, maximal 5 für UI)
+    const availableUnits = this.unitsDatabase.filter(unit => unit.epoch === epochId).slice(0, 5);
+    
+    // Aktualisiere die Button-Anzeigen
+    for (let i = 0; i < this.unitButtons.length; i++) {
+      const buttonData = this.unitButtons[i];
+      
+      if (i < availableUnits.length) {
+        const unit = availableUnits[i];
+        const unitIndex = this.unitsDatabase.indexOf(unit);
+        
+        // Button aktivieren
+        buttonData.unitIndex = unitIndex;
+        buttonData.nameText.setText(unit.name);
+        buttonData.costText.setText(`${unit.goldCost}g`);
+        buttonData.btn.setFillStyle(0x444444);
+        buttonData.btn.setInteractive();
+        buttonData.nameText.setVisible(true);
+        buttonData.costText.setVisible(true);
+      } else {
+        // Button deaktivieren (nicht genug Units in dieser Epoche)
+        buttonData.unitIndex = -1;
+        buttonData.nameText.setText('---');
+        buttonData.costText.setText('');
+        buttonData.btn.setFillStyle(0x222222);
+        buttonData.btn.disableInteractive();
+        buttonData.nameText.setVisible(true);
+        buttonData.costText.setVisible(false);
+      }
+    }
+    
+    console.log(`📋 ${currentEpoch.name} - Available units: ${availableUnits.map(u => u.name).join(', ')}`);
+  }
+
+  private updateAllHealthBars(): void {
+    // Update healthbars for all active player units
+    this.playerUnits.children.entries.forEach((unit) => {
+      const gameUnit = unit as GameUnit;
+      if (gameUnit.active && gameUnit.healthBar) {
+        this.updateHealthBar(gameUnit);
+      }
+    });
+    
+    // Update healthbars for all active enemy units
+    this.enemyUnits.children.entries.forEach((unit) => {
+      const gameUnit = unit as GameUnit;
+      if (gameUnit.active && gameUnit.healthBar) {
+        this.updateHealthBar(gameUnit);
+      }
+    });
   }
 
   private createTurretGrid(): void {
-    const graphics = this.add.graphics();
-    
-    // Initialize turret grid slots
+    // Initialize turret grid slots (ohne visuelle Grid-Linien)
     for (let row = 0; row < TURRET_GRID_ROWS; row++) {
       this.turretGrid[row] = [];
       for (let col = 0; col < TURRET_GRID_COLS; col++) {
         const x = TURRET_GRID_START_X + col * TURRET_CELL_SIZE;
         const y = TURRET_GRID_START_Y + row * TURRET_CELL_SIZE;
         
-        // Draw grid cell border
-        graphics.lineStyle(2, 0x555555);
-        graphics.strokeRect(x - TURRET_CELL_SIZE / 2, y - TURRET_CELL_SIZE / 2, TURRET_CELL_SIZE, TURRET_CELL_SIZE);
+        // Keine visuellen Grid-Linien mehr
+        // graphics.lineStyle() - entfernt
+        // graphics.strokeRect() - entfernt
         
-        // Create interactive zone for placement
+        // Create interactive zone for placement (unsichtbar)
         const zone = this.add.zone(x, y, TURRET_CELL_SIZE, TURRET_CELL_SIZE).setInteractive();
         zone.setData('row', row);
         zone.setData('col', col);
@@ -279,8 +570,9 @@ export class BattleScene extends Phaser.Scene {
     // Get appropriate turret texture based on type and epoch
     const turretTexture = this.getTurretTexture(turretData);
     
-    // Create turret sprite
+    // Create turret sprite with proper scaling
     const turret = this.add.sprite(slot.x, slot.y, turretTexture);
+    turret.setScale(0.15); // Minimal size für perfekte Grid-Passung
     
     // Update slot
     slot.occupied = true;
@@ -324,40 +616,75 @@ export class BattleScene extends Phaser.Scene {
   }
 
   private getUnitTexture(unitData: UnitType): string {
-    // Map unit IDs to texture keys  
-    const unitTextures: Record<string, string> = {
-      'clubman': 'clubman',
-      'slinger': 'slinger', 
-      'spearman': 'spearman',
-      'swordsman': 'swordsman',
-      'archer': 'archer',
-      'knight': 'knight',
-      'cavalry': 'cavalry',
-      'musketeer': 'musketeer',
-      'duelist': 'duelist',
-      'rifleman': 'rifleman',
-      'tank': 'tank',
-      'grenadier': 'grenadier',
-      'sniper': 'sniper'
+    // Map unit IDs to texture keys with variants support
+    // Each unit can have multiple variants that will be randomly selected
+    const unitTextures: Record<string, string[]> = {
+      // Stone Age
+      'clubman': ['clubman', 'clubman_2'],
+      'spearman': ['spearman'],
+      'slinger': ['slinger'], 
+      'dino-rider': ['dino-rider'],
+      
+      // Castle Age
+      'swordsman': ['swordsman'],
+      'knight': ['knight'],
+      'cavalry': ['cavalry'],
+      'ballista': ['ballista'],
+      
+      // Renaissance Age
+      'archer': ['archer', 'archer_2'],
+      'musketeer': ['musketeer'],
+      'duelist': ['duelist'],
+      'cannon': ['cannon'],
+      'grenadier': ['grenadier'],
+      
+      // Modern Age
+      'rifleman': ['rifleman', 'rifleman_2'],
+      'tank': ['tank'],
+      'sniper': ['sniper']
     };
     
-    return unitTextures[unitData.id] || 'clubman';
+    const variants = unitTextures[unitData.id] || ['clubman'];
+    // Randomly select a variant for visual variety
+    const randomIndex = Math.floor(Math.random() * variants.length);
+    return variants[randomIndex];
   }
 
-  private getTurretColor(epoch: string): number {
-    const colors: Record<string, number> = {
-      stone: 0x8B4513,
-      castle: 0x808080,
-      renaissance: 0xCD7F32,
-      modern: 0x4169E1,
-      future: 0x00FFFF
+  private getUnitScale(unitData: UnitType): number {
+    // Set appropriate scales for different unit types (minimal size!)
+    const unitScales: Record<string, number> = {
+      // Small units (64x64) - minimal
+      'clubman': 0.1,
+      'slinger': 0.1, 
+      'spearman': 0.1,
+      'swordsman': 0.1,
+      'archer': 0.1,
+      'musketeer': 0.1,
+      'duelist': 0.1,
+      'rifleman': 0.1,
+      'grenadier': 0.1,
+      'sniper': 0.1,
+      
+      // Medium units (96x96) - minimal
+      'dino-rider': 0.08,
+      'knight': 0.08,
+      'cavalry': 0.08,
+      'ballista': 0.08,
+      'cannon': 0.08,
+      
+      // Large units (128x96) - minimal
+      'tank': 0.06
     };
-    return colors[epoch] || 0xFFFFFF;
+    
+    return unitScales[unitData.id] || 0.1;
   }
 
   private spawnUnit(side: 'player' | 'enemy', unitIndex: number): void {
     // Get unit data from database
     const unitData = this.unitsDatabase[Math.min(unitIndex, this.unitsDatabase.length - 1)];
+    
+    // Apply difficulty multiplier to enemy units
+    const statMultiplier = side === 'enemy' ? this.difficultyMultipliers[this.difficulty].enemyStats : 1.0;
     
     // Check cost for player units
     if (side === 'player') {
@@ -380,11 +707,38 @@ export class BattleScene extends Phaser.Scene {
     if (unit) {
       // Initialize unit with data from JSON
       unit.setActive(true).setVisible(true);
+      
+      // Set appropriate scale based on unit type
+      const scale = this.getUnitScale(unitData);
+      unit.setScale(scale);
+      
+      // Set direction: Player units face right, enemy units face left
+      if (side === 'enemy') {
+        unit.setFlipX(true); // Flip enemy units to face left
+      } else {
+        unit.setFlipX(false); // Player units face right (default)
+      }
+      
+      // Apply difficulty multiplier to stats
+      const adjustedHp = Math.round(unitData.hp * statMultiplier);
+      const adjustedDamage = Math.round(unitData.damage * statMultiplier);
+      const adjustedSpeed = unitData.speed; // Speed nicht anpassen
+      
+      // Extend unit with health properties
+      const gameUnit = unit as GameUnit;
+      gameUnit.unitData = unitData;
+      gameUnit.maxHp = adjustedHp;
+      gameUnit.currentHp = adjustedHp;
+      gameUnit.side = side;
+      
+      // Healthbar wird erst bei Schaden erstellt - nicht sofort
+      gameUnit.healthBar = undefined;
+      
       unit.setData('side', side);
-      unit.setData('hp', unitData.hp);
-      unit.setData('maxHp', unitData.hp);
-      unit.setData('damage', unitData.damage);
-      unit.setData('speed', unitData.speed);
+      unit.setData('hp', adjustedHp);
+      unit.setData('maxHp', adjustedHp);
+      unit.setData('damage', adjustedDamage);
+      unit.setData('speed', adjustedSpeed);
       unit.setData('range', unitData.range);
       unit.setData('attackSpeed', unitData.attackSpeed);
       unit.setData('cost', unitData.goldCost);
@@ -393,10 +747,10 @@ export class BattleScene extends Phaser.Scene {
       unit.setData('lastAttackTime', 0);
       
       // Set constant marching velocity
-      const velocityX = side === 'player' ? unitData.speed : -unitData.speed;
+      const velocityX = side === 'player' ? adjustedSpeed : -adjustedSpeed;
       unit.setVelocityX(velocityX);
       
-      console.log(`Spawned ${unitData.name} (${side}) - HP: ${unitData.hp}, Speed: ${unitData.speed}, Damage: ${unitData.damage}`);
+      console.log(`Spawned ${unitData.name} (${side}) - HP: ${adjustedHp}, Speed: ${adjustedSpeed}, Damage: ${adjustedDamage}`);
     }
   }
 
@@ -435,6 +789,26 @@ export class BattleScene extends Phaser.Scene {
       
       unit1.setData('hp', hp1);
       unit2.setData('hp', hp2);
+      
+      // Update GameUnit health properties and healthbars
+      const gameUnit1 = unit1 as GameUnit;
+      const gameUnit2 = unit2 as GameUnit;
+      
+      if (gameUnit1.currentHp !== undefined) {
+        gameUnit1.currentHp = hp1;
+        if (!gameUnit1.healthBar) {
+          gameUnit1.healthBar = this.createHealthBar(unit1);
+        }
+        this.updateHealthBar(gameUnit1);
+      }
+      
+      if (gameUnit2.currentHp !== undefined) {
+        gameUnit2.currentHp = hp2;
+        if (!gameUnit2.healthBar) {
+          gameUnit2.healthBar = this.createHealthBar(unit2);
+        }
+        this.updateHealthBar(gameUnit2);
+      }
       
       // Award XP for damage dealt
       if (side1 === 'player') {
@@ -476,6 +850,10 @@ export class BattleScene extends Phaser.Scene {
   }
 
   private recycleUnit(unit: Phaser.Physics.Arcade.Sprite): void {
+    // Destroy health bar first
+    const gameUnit = unit as GameUnit;
+    this.destroyHealthBar(gameUnit);
+    
     // Return unit to pool for recycling
     const side = unit.getData('side') as 'player' | 'enemy';
     unit.setActive(false);
@@ -496,6 +874,19 @@ export class BattleScene extends Phaser.Scene {
     const hpBefore = target.getData('hp');
     const hp = hpBefore - damage;
     target.setData('hp', hp);
+    
+    // Update GameUnit health properties and healthbar
+    const gameUnit = target as GameUnit;
+    if (gameUnit.currentHp !== undefined) {
+      gameUnit.currentHp = hp;
+      
+      // Erstelle Healthbar erst beim ersten Schaden
+      if (!gameUnit.healthBar) {
+        gameUnit.healthBar = this.createHealthBar(target);
+      }
+      
+      this.updateHealthBar(gameUnit);
+    }
     
     // Award XP for damage
     if (projectile.getData('owner') === 'player') {
@@ -522,6 +913,21 @@ export class BattleScene extends Phaser.Scene {
     projectile.setVelocity(0, 0);
   }
 
+  private attackBase(unit: Phaser.Physics.Arcade.Sprite, targetBaseSide: 'player' | 'enemy'): void {
+    const now = this.time.now;
+    const lastAttackTime = unit.getData('lastAttackTime') || 0;
+    const attackSpeed = unit.getData('attackSpeed') || 1000; // Default 1 attack per second
+    
+    // Check if enough time has passed since last attack
+    if (now - lastAttackTime >= attackSpeed) {
+      const damage = unit.getData('damage') || 10;
+      this.damageBase(targetBaseSide, damage);
+      unit.setData('lastAttackTime', now);
+      
+      console.log(`Unit attacking ${targetBaseSide} base for ${damage} damage`);
+    }
+  }
+
   private addXP(amount: number): void {
     this.xp += amount;
     const currentEpoch = this.getCurrentEpoch();
@@ -534,12 +940,25 @@ export class BattleScene extends Phaser.Scene {
         const newEpoch = this.getCurrentEpoch();
         console.log(`🎉 Epoch advanced to: ${newEpoch.name}`);
         
+        // Update background for new epoch
+        this.updateBackground();
+        
+        // Update available units for new epoch
+        this.updateAvailableUnits();
+        
+        // Update TestUI
+        if (this.xpText) this.xpText.setText(`XP: ${this.xp}/${newEpoch.xpToNext}`);
+        if (this.epochText) this.epochText.setText(`Epoch: ${newEpoch.name}`);
+        
         // Notify UI
         const uiScene = this.scene.get('UIScene');
         uiScene.events.emit('updateEpoch', newEpoch.name);
         uiScene.events.emit('updateXP', this.xp, newEpoch.xpToNext);
       }
     } else {
+      // Update TestUI
+      if (this.xpText) this.xpText.setText(`XP: ${this.xp}/${currentEpoch.xpToNext}`);
+      
       // Update UI with XP progress
       const uiScene = this.scene.get('UIScene');
       uiScene.events.emit('updateXP', this.xp, currentEpoch.xpToNext);
@@ -548,6 +967,10 @@ export class BattleScene extends Phaser.Scene {
 
   private addGold(amount: number): void {
     this.gold += amount;
+    
+    // Update TestUI
+    if (this.goldText) this.goldText.setText(`Gold: ${this.gold}`);
+    
     const uiScene = this.scene.get('UIScene');
     uiScene.events.emit('updateGold', this.gold);
   }
@@ -562,6 +985,9 @@ export class BattleScene extends Phaser.Scene {
       this.addGold(1);
     }
     
+    // Update health bars for all units
+    this.updateAllHealthBars();
+    
     // Update special ability cooldowns
     this.updateSpecialCooldowns();
     
@@ -574,15 +1000,15 @@ export class BattleScene extends Phaser.Scene {
       this.drawDebugOverlay();
     }
     
-    // Clean up units that left the battlefield (recycling to pool)
+    // Base attack logic - Units attack bases continuously
     this.playerUnits.children.entries.forEach((unit) => {
       const sprite = unit as Phaser.Physics.Arcade.Sprite;
       if (!sprite.active) return;
       
-      if (sprite.x > LANE_WIDTH + UNIT_CLEANUP_MARGIN) {
-        // Player unit reached enemy base
-        this.damageBase('enemy', sprite.getData('damage'));
-        this.recycleUnit(sprite);
+      // Player unit reached enemy base attack range - start attacking
+      if (sprite.x >= ENEMY_BASE_X - BASE_ATTACK_RANGE) {
+        sprite.setVelocityX(0); // Stop movement
+        this.attackBase(sprite, 'enemy');
       }
     });
     
@@ -590,10 +1016,10 @@ export class BattleScene extends Phaser.Scene {
       const sprite = unit as Phaser.Physics.Arcade.Sprite;
       if (!sprite.active) return;
       
-      if (sprite.x < -UNIT_CLEANUP_MARGIN) {
-        // Enemy unit reached player base
-        this.damageBase('player', sprite.getData('damage'));
-        this.recycleUnit(sprite);
+      // Enemy unit reached player base attack range - start attacking
+      if (sprite.x <= PLAYER_BASE_X + BASE_ATTACK_RANGE) {
+        sprite.setVelocityX(0); // Stop movement  
+        this.attackBase(sprite, 'player');
       }
     });
     
@@ -632,16 +1058,17 @@ export class BattleScene extends Phaser.Scene {
     }
   }
 
+  /**
+   * Find closest target in range (simplified)
+   */
   private findTargetInRange(turretX: number, turretY: number, range: number): Phaser.Physics.Arcade.Sprite | null {
     let closestTarget: Phaser.Physics.Arcade.Sprite | null = null;
     let closestDistance = Infinity;
     
-    // Only target enemy units
+    // Find closest enemy unit in range
     this.enemyUnits.children.entries.forEach((unit) => {
       const sprite = unit as Phaser.Physics.Arcade.Sprite;
       if (!sprite.active) return;
-      
-      // Only target enemy units
       if (sprite.getData('side') !== 'enemy') return;
       
       const distance = Phaser.Math.Distance.Between(turretX, turretY, sprite.x, sprite.y);
@@ -658,14 +1085,21 @@ export class BattleScene extends Phaser.Scene {
   private fireTurretProjectile(slot: TurretSlot, target: Phaser.Physics.Arcade.Sprite): void {
     if (!slot.turretData) return;
     
+    // Get appropriate projectile texture based on turret type
+    const projectileTexture = this.getProjectileTexture(slot.turretData);
+    
     // Get projectile from pool
-    const projectile = this.projectiles.get(slot.x, slot.y, 'projectile') as Phaser.Physics.Arcade.Sprite;
+    const projectile = this.projectiles.get(slot.x, slot.y, projectileTexture) as Phaser.Physics.Arcade.Sprite;
     
     if (projectile) {
       projectile.setActive(true).setVisible(true);
+      
+      // Scale projectiles appropriately
+      const scale = this.getProjectileScale(projectileTexture);
+      projectile.setScale(scale);
+      
       projectile.setData('owner', 'player');
       projectile.setData('damage', slot.turretData.damage);
-      projectile.setTint(0xFFFF00); // Yellow for turret projectiles
       
       // Calculate velocity toward target
       const angle = Phaser.Math.Angle.Between(slot.x, slot.y, target.x, target.y);
@@ -678,6 +1112,50 @@ export class BattleScene extends Phaser.Scene {
     }
   }
 
+  private getProjectileTexture(turretData: TurretType): string {
+    // Map turret types to projectile textures
+    const projectileTextures: Record<string, string> = {
+      // Stone Age
+      'rock-thrower': 'rock',
+      'wooden-spike': 'rock',
+      'basic-tower': 'rock',
+      
+      // Castle Age  
+      'arrow-tower': 'arrow',
+      'ballista': 'arrow',
+      'trebuchet': 'rock',
+      
+      // Renaissance
+      'cannon': 'cannonball',
+      'musket-tower': 'bullet',
+      'fortress': 'cannonball',
+      
+      // Modern
+      'machine-gun': 'bullet',
+      'anti-tank': 'bullet',
+      'artillery': 'cannonball',
+      
+      // Future (no laser texture yet, use bullet)
+      'laser-turret': 'bullet',
+      'rail-gun': 'bullet', 
+      'ion-cannon': 'bullet'
+    };
+    
+    return projectileTextures[turretData.id] || 'rock';
+  }
+
+  private getProjectileScale(projectileTexture: string): number {
+    // Set appropriate scales for different projectile types (minimal!)
+    const projectileScales: Record<string, number> = {
+      'rock': 0.2,
+      'arrow': 0.25,
+      'cannonball': 0.2,
+      'bullet': 0.15
+    };
+    
+    return projectileScales[projectileTexture] || 0.2;
+  }
+
   private damageBase(side: 'player' | 'enemy', damage: number): void {
     const base = side === 'player' ? this.playerBase : this.enemyBase;
     base.hp = Math.max(0, base.hp - damage);
@@ -688,8 +1166,34 @@ export class BattleScene extends Phaser.Scene {
     
     if (base.hp <= 0) {
       console.log(`💥 ${side === 'player' ? 'Player' : 'Enemy'} base destroyed!`);
-      // TODO: Trigger game over
+      this.handleGameOver(side);
     }
+  }
+
+  private handleGameOver(loserSide: 'player' | 'enemy'): void {
+    // Stop the game
+    this.scene.pause();
+    
+    // Show game over message
+    const winnerText = loserSide === 'player' ? 'ENEMY WINS!' : 'PLAYER WINS!';
+    const gameOverText = this.add.text(640, 360, winnerText, {
+      fontSize: '64px',
+      color: loserSide === 'player' ? '#ff0000' : '#00ff00',
+      backgroundColor: '#000000',
+      padding: { x: 20, y: 10 }
+    }).setOrigin(0.5);
+    gameOverText.setDepth(2000); // Über allem anderen
+    
+    // Add restart hint
+    const restartText = this.add.text(640, 420, 'Press F5 to restart', {
+      fontSize: '24px',
+      color: '#ffffff',
+      backgroundColor: '#000000',
+      padding: { x: 10, y: 5 }
+    }).setOrigin(0.5);
+    restartText.setDepth(2000);
+    
+    console.log(`🎮 Game Over! ${winnerText}`);
   }
 
   // Special Abilities
@@ -910,16 +1414,38 @@ export class BattleScene extends Phaser.Scene {
   // Enemy AI System
 
   private startEnemySpawner(): void {
-    // Spawn enemy units periodically
+    // Get spawn rate based on difficulty
+    const spawnRate = this.difficultyMultipliers[this.difficulty].enemySpawnRate;
+    console.log(`⏱️ Enemy spawn rate: ${spawnRate}ms (${this.difficulty})`);
+    
     this.time.addEvent({
-      delay: 5000, // Every 5 seconds
+      delay: spawnRate,
       callback: () => {
-        // Random unit from current epoch
-        const unitIndex = Math.floor(Math.random() * Math.min(this.currentEpochIndex + 3, this.unitsDatabase.length));
-        this.spawnUnit('enemy', unitIndex);
+        const enemyUnitIndex = this.getSmartEnemyUnit();
+        this.spawnUnit('enemy', enemyUnitIndex);
       },
       loop: true
     });
+  }
+
+  /**
+   * Smart Enemy AI: Spawns varied units from current epoch
+   */
+  private getSmartEnemyUnit(): number {
+    // Get available units for current epoch
+    const currentEpoch = this.epochs[this.currentEpochIndex];
+    const availableUnits = this.unitsDatabase
+      .map((unit, index) => ({ unit, index }))
+      .filter(({unit}) => unit.epoch === currentEpoch.id);
+    
+    if (availableUnits.length === 0) {
+      // Fallback to random unit
+      return Math.floor(Math.random() * Math.min(this.currentEpochIndex + 3, this.unitsDatabase.length));
+    }
+    
+    // Random unit from current epoch for variety
+    const chosen = availableUnits[Math.floor(Math.random() * availableUnits.length)];
+    return chosen.index;
   }
 
   // Debug Overlay System

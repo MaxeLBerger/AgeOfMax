@@ -12,6 +12,18 @@
     "type": "melee"
   },
   {
+    "id": "spearman",
+    "name": "Spearman",
+    "epoch": "stone",
+    "hp": 120,
+    "damage": 10,
+    "speed": 38,
+    "range": 50,
+    "attackSpeed": 1.8,
+    "goldCost": 70,
+    "type": "melee"
+  },
+  {
     "id": "slinger",
     "name": "Slinger",
     "epoch": "stone",
@@ -24,15 +36,15 @@
     "type": "ranged"
   },
   {
-    "id": "spearman",
-    "name": "Spearman",
+    "id": "dino-rider",
+    "name": "Dino Rider",
     "epoch": "stone",
-    "hp": 120,
-    "damage": 10,
-    "speed": 38,
-    "range": 50,
-    "attackSpeed": 1.8,
-    "goldCost": 70,
+    "hp": 150,
+    "damage": 12,
+    "speed": 50,
+    "range": 30,
+    "attackSpeed": 1.6,
+    "goldCost": 90,
     "type": "melee"
   },
   {
@@ -72,6 +84,18 @@
     "type": "melee"
   },
   {
+    "id": "ballista",
+    "name": "Ballista",
+    "epoch": "castle",
+    "hp": 100,
+    "damage": 30,
+    "speed": 25,
+    "range": 250,
+    "attackSpeed": 3.5,
+    "goldCost": 180,
+    "type": "ranged"
+  },
+  {
     "id": "musketeer",
     "name": "Musketeer",
     "epoch": "renaissance",
@@ -84,18 +108,6 @@
     "type": "ranged"
   },
   {
-    "id": "pikeman",
-    "name": "Pikeman",
-    "epoch": "renaissance",
-    "hp": 140,
-    "damage": 22,
-    "speed": 42,
-    "range": 60,
-    "attackSpeed": 1.9,
-    "goldCost": 160,
-    "type": "melee"
-  },
-  {
     "id": "cavalry",
     "name": "Cavalry",
     "epoch": "renaissance",
@@ -105,6 +117,30 @@
     "range": 30,
     "attackSpeed": 1.875,
     "goldCost": 220,
+    "type": "melee"
+  },
+  {
+    "id": "cannon",
+    "name": "Cannon",
+    "epoch": "renaissance",
+    "hp": 120,
+    "damage": 40,
+    "speed": 20,
+    "range": 280,
+    "attackSpeed": 4,
+    "goldCost": 260,
+    "type": "ranged"
+  },
+  {
+    "id": "duelist",
+    "name": "Duelist",
+    "epoch": "renaissance",
+    "hp": 140,
+    "damage": 22,
+    "speed": 42,
+    "range": 40,
+    "attackSpeed": 1.2,
+    "goldCost": 160,
     "type": "melee"
   },
   {
@@ -120,6 +156,18 @@
     "type": "ranged"
   },
   {
+    "id": "grenadier",
+    "name": "Grenadier",
+    "epoch": "modern",
+    "hp": 110,
+    "damage": 42,
+    "speed": 40,
+    "range": 220,
+    "attackSpeed": 3.2,
+    "goldCost": 280,
+    "type": "ranged"
+  },
+  {
     "id": "tank",
     "name": "Tank",
     "epoch": "modern",
@@ -132,15 +180,15 @@
     "type": "ranged"
   },
   {
-    "id": "bazooka",
-    "name": "Bazooka",
+    "id": "sniper",
+    "name": "Sniper",
     "epoch": "modern",
-    "hp": 90,
-    "damage": 54,
-    "speed": 38,
-    "range": 350,
+    "hp": 70,
+    "damage": 60,
+    "speed": 35,
+    "range": 400,
     "attackSpeed": 4,
-    "goldCost": 300,
+    "goldCost": 320,
     "type": "ranged"
   },
   {

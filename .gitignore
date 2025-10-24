@@ -1,10 +1,70 @@
-node_modules
-dist
-.vscode
-*.log
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Build output
+dist/
+build/
+.vite/
+*.local
+
+# Environment variables
 .env
-coverage
-playwright-report
-test-results
+.env.local
+.env.*.local
+*.env
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.code-workspace
+
+# OS files
 .DS_Store
+Thumbs.db
+desktop.ini
+
+# Log files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Test coverage
+coverage/
+.nyc_output/
+test-results/
+playwright-report/
+e2e-results/
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+.parcel-cache/
+.turbo/
+
+# API keys and secrets
 key.md
+*.pem
+*.key
+*.cert
+
+# Large downloads
+downloads/
+generated-assets/
+
+# Backup files
+*.backup
+*.bak
+*~

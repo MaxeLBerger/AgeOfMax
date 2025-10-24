@@ -6,8 +6,9 @@
     "unlocks": {
       "units": [
         "clubman",
+        "spearman",
         "slinger",
-        "spearman"
+        "dino-rider"
       ],
       "turrets": [
         "rock-thrower",
@@ -24,7 +25,8 @@
       "units": [
         "swordsman",
         "archer",
-        "knight"
+        "knight",
+        "ballista"
       ],
       "turrets": [
         "arrow-tower",
@@ -40,8 +42,9 @@
     "unlocks": {
       "units": [
         "musketeer",
-        "pikeman",
-        "cavalry"
+        "cavalry",
+        "cannon",
+        "duelist"
       ],
       "turrets": [
         "cannon",
@@ -57,8 +60,9 @@
     "unlocks": {
       "units": [
         "rifleman",
+        "grenadier",
         "tank",
-        "bazooka"
+        "sniper"
       ],
       "turrets": [
         "machine-gun",
@@ -75,7 +79,8 @@
       "units": [
         "laser-soldier",
         "mech",
-        "plasma-trooper"
+        "plasma-trooper",
+        "super-heavy"
       ],
       "turrets": [
         "laser-turret",
