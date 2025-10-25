@@ -647,19 +647,19 @@ export class BattleScene extends Phaser.Scene {
       
       // Castle Age
       'swordsman': ['swordsman'],
+      'archer': ['archer', 'archer_2'], // MOVED from Renaissance
       'knight': ['knight'],
-      'cavalry': ['cavalry'],
-      'ballista': ['ballista'],
+      'ballista': ['ballista'], // MOVED from Renaissance
       
       // Renaissance Age
-      'archer': ['archer', 'archer_2'],
       'musketeer': ['musketeer'],
+      'cavalry': ['cavalry'], // MOVED from Castle
+      'cannon': ['cannon'], // MOVED from Castle
       'duelist': ['duelist'],
-      'cannon': ['cannon'],
-      'grenadier': ['grenadier'],
       
       // Modern Age
       'rifleman': ['rifleman', 'rifleman_2'],
+      'grenadier': ['grenadier'], // MOVED from Renaissance
       'tank': ['tank'],
       'sniper': ['sniper']
     };
@@ -671,29 +671,31 @@ export class BattleScene extends Phaser.Scene {
   }
 
   private getUnitScale(unitData: UnitType): number {
-    // Set appropriate scales for different unit types (minimal size!)
+    // Size-based scaling for visual hierarchy
     const unitScales: Record<string, number> = {
-      // Small units (64x64) - minimal
-      'clubman': 0.1,
-      'slinger': 0.1, 
-      'spearman': 0.1,
-      'swordsman': 0.1,
-      'archer': 0.1,
-      'musketeer': 0.1,
-      'duelist': 0.1,
-      'rifleman': 0.1,
-      'grenadier': 0.1,
-      'sniper': 0.1,
+      // Infantry units (64x64) - Base size
+      'clubman': 0.10,
+      'slinger': 0.10, 
+      'spearman': 0.10,
+      'swordsman': 0.10,
+      'archer': 0.10,
+      'musketeer': 0.10,
+      'duelist': 0.10,
+      'rifleman': 0.10,
+      'grenadier': 0.10,
+      'sniper': 0.10,
       
-      // Medium units (96x96) - minimal
-      'dino-rider': 0.10, // Increased from 0.08 - mounted units should be larger
-      'knight': 0.08,
-      'cavalry': 0.08,
-      'ballista': 0.08,
-      'cannon': 0.08,
+      // Mounted units (96x96) - 20% larger than infantry
+      'dino-rider': 0.12,
+      'knight': 0.12, // Increased from 0.08
+      'cavalry': 0.12, // Increased from 0.08
       
-      // Large units (128x96) - minimal
-      'tank': 0.06
+      // Siege units (96x96) - Same as mounted
+      'ballista': 0.12, // Increased from 0.08
+      'cannon': 0.12, // Increased from 0.08
+      
+      // Heavy vehicles (128x96) - 40% larger than infantry
+      'tank': 0.14 // Increased from 0.06
     };
     
     return unitScales[unitData.id] || 0.1;

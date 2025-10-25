@@ -16,21 +16,21 @@ export class BootScene extends Phaser.Scene {
     
     // Castle Age
     this.load.image('swordsman', 'assets/units/castle_age/swordsman.png');
+    this.load.image('archer', 'assets/units/castle_age/archer.png'); // MOVED from Renaissance
+    this.load.image('archer_2', 'assets/units/castle_age/archer_2.png'); // MOVED from Renaissance
     this.load.image('knight', 'assets/units/castle_age/knight.png');
-    this.load.image('cavalry', 'assets/units/castle_age/cavalry.png');
-    this.load.image('cannon', 'assets/units/castle_age/cannon.png');
+    this.load.image('ballista', 'assets/units/castle_age/ballista.png'); // MOVED from Renaissance
     
     // Renaissance Age
-    this.load.image('archer', 'assets/units/renaissance_age/archer.png');
-    this.load.image('archer_2', 'assets/units/renaissance_age/archer_2.png');
-    this.load.image('ballista', 'assets/units/renaissance_age/ballista.png');
     this.load.image('musketeer', 'assets/units/renaissance_age/musketeer.png');
+    this.load.image('cavalry', 'assets/units/renaissance_age/cavalry.png'); // MOVED from Castle
+    this.load.image('cannon', 'assets/units/renaissance_age/cannon.png'); // MOVED from Castle
     this.load.image('duelist', 'assets/units/renaissance_age/duelist.png');
-    this.load.image('grenadier', 'assets/units/renaissance_age/grenadier.png');
     
     // Modern Age
     this.load.image('rifleman', 'assets/units/modern_age/rifleman.png');
     this.load.image('rifleman_2', 'assets/units/modern_age/rifleman_2.png');
+    this.load.image('grenadier', 'assets/units/modern_age/grenadier.png'); // MOVED from Renaissance
     this.load.image('sniper', 'assets/units/modern_age/sniper.png');
     this.load.image('tank', 'assets/units/modern_age/tank.png');
 
