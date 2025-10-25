@@ -9,6 +9,7 @@ import {
   canAdvanceEpoch,
   getEpochSafe
 } from '../utils/gameHelpers';
+import { gameLogger } from '../utils/logger';
 
 // Lane configuration constants
 const LANE_Y = 500; // Ganz unten am Boden der Basen
@@ -708,6 +709,8 @@ export class BattleScene extends Phaser.Scene {
     // Developer Mode: Log texture selection for debugging
     if (this.developerMode) {
       console.log(`🎨 Texture Selection: ${unitData.name} (${unitData.id}) → ${selectedTexture} [${randomIndex + 1}/${variants.length} variants]`);
+      // Also log to game logger for MCP analysis
+      gameLogger.textureSelection(unitData.name, unitData.id, selectedTexture, randomIndex + 1, variants.length);
     }
     
     return selectedTexture;
@@ -824,6 +827,9 @@ export class BattleScene extends Phaser.Scene {
       
       // Enhanced logging with texture info
       console.log(`✅ Spawned ${unitData.name} (${side}) | Texture: ${texture} | HP: ${adjustedHp}/${unitData.hp} | DMG: ${adjustedDamage} | SPD: ${adjustedSpeed} | Epoch: ${unitData.epoch}`);
+      
+      // Log to game logger for MCP analysis
+      gameLogger.unitSpawn(unitData.name, side, texture, `${adjustedHp}/${unitData.hp}`, adjustedDamage, adjustedSpeed, unitData.epoch);
     }
   }
 
