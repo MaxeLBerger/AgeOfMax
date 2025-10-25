@@ -5,6 +5,7 @@ interface GameSettings {
   musicVolume: number;
   showFPS: boolean;
   showDebugOverlay: boolean;
+  developerMode: boolean;
 }
 
 export class SettingsScene extends Phaser.Scene {
@@ -12,7 +13,8 @@ export class SettingsScene extends Phaser.Scene {
     sfxVolume: 0.7,
     musicVolume: 0.5,
     showFPS: false,
-    showDebugOverlay: false
+    showDebugOverlay: false,
+    developerMode: false
   };
 
   constructor() {
@@ -64,8 +66,24 @@ export class SettingsScene extends Phaser.Scene {
     // Show Debug Overlay toggle
     this.createToggle(centerX, 520, 'Debug Overlay (F2)', 'showDebugOverlay');
 
+    // Developer Mode section
+    this.add.text(centerX, 590, 'DEVELOPER', {
+      fontSize: '28px',
+      color: '#ff6b6b',
+      fontStyle: 'bold'
+    }).setOrigin(0.5);
+
+    // Developer Mode toggle
+    this.createToggle(centerX, 650, 'Developer Mode (F3)', 'developerMode');
+    
+    this.add.text(centerX, 690, 'Shows detailed unit stats above each unit', {
+      fontSize: '12px',
+      color: '#666666',
+      fontStyle: 'italic'
+    }).setOrigin(0.5);
+
     // Info text
-    this.add.text(centerX, 600, 'Settings are saved automatically', {
+    this.add.text(centerX, 730, 'Settings are saved automatically', {
       fontSize: '14px',
       color: '#888888',
       fontStyle: 'italic'
@@ -169,6 +187,10 @@ export class SettingsScene extends Phaser.Scene {
 
   private saveSettings(): void {
     this.registry.set('settings', this.settings);
+    
+    // Sync Developer Mode to localStorage for BattleScene
+    localStorage.setItem('developerMode', this.settings.developerMode.toString());
+    
     console.log('Settings saved:', this.settings);
   }
 }

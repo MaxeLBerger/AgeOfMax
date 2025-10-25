@@ -107,6 +107,10 @@ export class BattleScene extends Phaser.Scene {
   private debugLastUpdate = 0;
   private readonly DEBUG_UPDATE_INTERVAL = 100; // 10 Hz throttle
 
+  // Developer Mode - Advanced debugging
+  private developerMode = false;
+  private unitDebugTexts: Map<number, Phaser.GameObjects.Text> = new Map();
+
   // Background
   private backgroundImage!: Phaser.GameObjects.Image;
 
@@ -140,12 +144,44 @@ export class BattleScene extends Phaser.Scene {
     this.syncInitialStateToUI();
     this.setupDebugControls();
     
+    // Load developer mode from localStorage
+    const savedDevMode = localStorage.getItem('developerMode');
+    this.developerMode = savedDevMode === 'true';
+    console.log(`🔧 Developer Mode: ${this.developerMode ? 'ENABLED' : 'DISABLED'}`);
+    
     // Initialize debug graphics
     this.debugGfx = this.add.graphics().setDepth(9999);
     this.input.keyboard!.on('keydown-F2', () => {
       this.debugEnabled = !this.debugEnabled;
       console.log(`Debug overlay: ${this.debugEnabled ? 'ENABLED' : 'DISABLED'}`);
       if (!this.debugEnabled) this.debugGfx.clear();
+    });
+    
+    // F3 toggles Developer Mode
+    this.input.keyboard!.on('keydown-F3', () => {
+      this.developerMode = !this.developerMode;
+      localStorage.setItem('developerMode', this.developerMode.toString());
+      console.log(`🔧 Developer Mode: ${this.developerMode ? 'ENABLED' : 'DISABLED'}`);
+      
+      // Clear existing debug texts if disabling
+      if (!this.developerMode) {
+        this.unitDebugTexts.forEach(text => text.destroy());
+        this.unitDebugTexts.clear();
+      }
+      
+      // Show notification
+      const notif = this.add.text(640, 360, 
+        `Developer Mode: ${this.developerMode ? 'ON' : 'OFF'}\n(F3 to toggle)`, 
+        {
+          fontSize: '32px',
+          fontStyle: 'bold',
+          color: this.developerMode ? '#00ff00' : '#ff0000',
+          backgroundColor: '#000000',
+          padding: { x: 20, y: 10 }
+        }
+      ).setOrigin(0.5).setDepth(10000);
+      
+      this.time.delayedCall(2000, () => notif.destroy());
     });
     
     // Start enemy spawning
@@ -774,6 +810,11 @@ export class BattleScene extends Phaser.Scene {
       const velocityX = side === 'player' ? adjustedSpeed : -adjustedSpeed;
       unit.setVelocityX(velocityX);
       
+      // Developer Mode: Create debug text for this unit
+      if (this.developerMode) {
+        this.createUnitDebugText(gameUnit);
+      }
+      
       console.log(`Spawned ${unitData.name} (${side}) - HP: ${adjustedHp}, Speed: ${adjustedSpeed}, Damage: ${adjustedDamage}`);
     }
   }
@@ -1265,6 +1306,11 @@ export class BattleScene extends Phaser.Scene {
     
     // Update health bars for all units
     this.updateAllHealthBars();
+    
+    // Update Developer Mode debug texts
+    if (this.developerMode) {
+      this.updateUnitDebugTexts();
+    }
     
     // Update special ability cooldowns
     this.updateSpecialCooldowns();
@@ -1807,4 +1853,113 @@ export class BattleScene extends Phaser.Scene {
     drawUnitGroup(this.enemyUnits, 0xff0000);
     drawProjectileGroup(this.projectiles);
   }
+
+  // Developer Mode Methods
+
+  /**
+   * Create detailed debug text for a unit (Developer Mode)
+   */
+  private createUnitDebugText(unit: GameUnit): void {
+    if (!unit.unitData) return;
+
+    const debugText = this.add.text(unit.x, unit.y - 50, '', {
+      fontSize: '9px',
+      color: '#ffffff',
+      backgroundColor: '#000000',
+      padding: { x: 3, y: 2 },
+      align: 'left'
+    }).setOrigin(0.5, 1).setDepth(5000);
+
+    // Store reference using unique ID
+    const unitId = unit.getData('unitId') || Date.now() + Math.random();
+    unit.setData('unitId', unitId);
+    this.unitDebugTexts.set(unitId, debugText);
+  }
+
+  /**
+   * Update all unit debug texts (called every frame if Developer Mode is on)
+   */
+  private updateUnitDebugTexts(): void {
+    if (!this.developerMode) return;
+
+    // Update player units
+    this.playerUnits.children.entries.forEach(child => {
+      const unit = child as GameUnit;
+      if (!unit.active || !unit.unitData) return;
+      this.updateSingleUnitDebugText(unit);
+    });
+
+    // Update enemy units
+    this.enemyUnits.children.entries.forEach(child => {
+      const unit = child as GameUnit;
+      if (!unit.active || !unit.unitData) return;
+      this.updateSingleUnitDebugText(unit);
+    });
+
+    // Clean up destroyed units
+    const activeUnitIds = new Set<number>();
+    [...this.playerUnits.children.entries, ...this.enemyUnits.children.entries].forEach(child => {
+      const unit = child as GameUnit;
+      if (unit.active) {
+        const unitId = unit.getData('unitId');
+        if (unitId) activeUnitIds.add(unitId);
+      }
+    });
+
+    // Remove debug texts for destroyed units
+    this.unitDebugTexts.forEach((text, id) => {
+      if (!activeUnitIds.has(id)) {
+        text.destroy();
+        this.unitDebugTexts.delete(id);
+      }
+    });
+  }
+
+  /**
+   * Update debug text for a single unit
+   */
+  private updateSingleUnitDebugText(unit: GameUnit): void {
+    const unitId = unit.getData('unitId');
+    if (!unitId) return;
+
+    const debugText = this.unitDebugTexts.get(unitId);
+    if (!debugText) return;
+
+    const data = unit.unitData!;
+    const currentHp = unit.currentHp || 0;
+    const maxHp = unit.maxHp || 0;
+    const damage = unit.getData('damage') || 0;
+    const speed = unit.getData('speed') || 0;
+    const range = unit.getData('range') || 0;
+    const attackSpeed = unit.getData('attackSpeed') || 0;
+    const cost = unit.getData('cost') || 0;
+    const type = unit.getData('type') || 'unknown';
+    const inCombat = unit.getData('inCombat') || false;
+    const side = unit.side || 'unknown';
+    const velocityX = Math.round(unit.body?.velocity.x || 0);
+    const scale = unit.scaleX;
+    const texture = unit.texture.key;
+
+    // Build comprehensive debug info
+    const lines = [
+      `${data.name} (${side.toUpperCase()})`,
+      `HP: ${currentHp}/${maxHp}`,
+      `DMG: ${damage} | SPD: ${speed}`,
+      `RNG: ${range} | ATK: ${attackSpeed}s`,
+      `Type: ${type} | Cost: ${cost}g`,
+      `Combat: ${inCombat ? 'YES' : 'NO'}`,
+      `Vel: ${velocityX} | Scale: ${scale.toFixed(2)}`,
+      `Texture: ${texture}`,
+      `Epoch: ${data.epoch}`
+    ];
+
+    debugText.setText(lines.join('\n'));
+    
+    // Position above unit
+    debugText.setPosition(unit.x, unit.y - 60);
+    
+    // Color code by side
+    debugText.setBackgroundColor(side === 'player' ? '#003300' : '#330000');
+  }
 }
+
