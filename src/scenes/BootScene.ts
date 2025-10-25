@@ -103,6 +103,25 @@ export class BootScene extends Phaser.Scene {
     graphics.fillStyle(0x333333);
     graphics.fillRect(10, 5, 20, 30);
     graphics.generateTexture('turret', 40, 40);
+    graphics.clear();
+    
+    // Create particle textures with proper transparency
+    // Golden circle particle for XP - small sparkle
+    graphics.fillStyle(0xFFD700, 1);
+    graphics.fillCircle(8, 8, 6);
+    graphics.fillStyle(0xFFFFFF, 0.8);
+    graphics.fillCircle(8, 8, 3);
+    graphics.generateTexture('particle-star', 16, 16);
+    graphics.clear();
+    
+    // Golden circle particle for Gold
+    graphics.fillStyle(0xFFD700, 1);
+    graphics.fillCircle(6, 6, 5);
+    graphics.fillStyle(0xFFAA00, 1);
+    graphics.fillCircle(6, 6, 3);
+    graphics.generateTexture('particle-gold', 12, 12);
+    graphics.clear();
+    
     graphics.destroy();
   }
 }

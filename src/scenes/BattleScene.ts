@@ -703,7 +703,14 @@ export class BattleScene extends Phaser.Scene {
     const variants = unitTextures[unitData.id] || ['clubman'];
     // Randomly select a variant for visual variety
     const randomIndex = Math.floor(Math.random() * variants.length);
-    return variants[randomIndex];
+    const selectedTexture = variants[randomIndex];
+    
+    // Developer Mode: Log texture selection for debugging
+    if (this.developerMode) {
+      console.log(`🎨 Texture Selection: ${unitData.name} (${unitData.id}) → ${selectedTexture} [${randomIndex + 1}/${variants.length} variants]`);
+    }
+    
+    return selectedTexture;
   }
 
   private getUnitScale(unitData: UnitType): number {
@@ -815,7 +822,8 @@ export class BattleScene extends Phaser.Scene {
         this.createUnitDebugText(gameUnit);
       }
       
-      console.log(`Spawned ${unitData.name} (${side}) - HP: ${adjustedHp}, Speed: ${adjustedSpeed}, Damage: ${adjustedDamage}`);
+      // Enhanced logging with texture info
+      console.log(`✅ Spawned ${unitData.name} (${side}) | Texture: ${texture} | HP: ${adjustedHp}/${unitData.hp} | DMG: ${adjustedDamage} | SPD: ${adjustedSpeed} | Epoch: ${unitData.epoch}`);
     }
   }
 
@@ -1187,10 +1195,10 @@ export class BattleScene extends Phaser.Scene {
    */
   private showXPParticles(x: number, y: number): void {
     // Create temporary particle emitter with one-shot emission
-    const particles = this.add.particles(x, y, 'xp-star', {
+    const particles = this.add.particles(x, y, 'particle-star', {
       speed: { min: 30, max: 80 }, // Reduced from 50-150
-      scale: { start: 0.08, end: 0 }, // Reduced from 0.12 - even smaller
-      alpha: { start: 0.8, end: 0 }, // Slightly less visible
+      scale: { start: 0.8, end: 0 }, // Start at 80% of 16px = ~13px
+      alpha: { start: 1.0, end: 0 }, // Full visibility to fade
       angle: { min: 0, max: 360 },
       lifespan: 600, // Reduced from 800ms
       gravityY: -80, // Reduced from -100
@@ -1208,11 +1216,11 @@ export class BattleScene extends Phaser.Scene {
 
   private showGoldParticles(x: number, y: number, amount: number): void {
     // Create gold coin particles - reduced effect
-    const particles = this.add.particles(x, y, 'rock', { // Using rock as placeholder
+    const particles = this.add.particles(x, y, 'particle-gold', {
       speed: { min: 40, max: 80 }, // Reduced from 50-100
       angle: { min: 240, max: 300 },
-      scale: { start: 0.08, end: 0 }, // Reduced from 0.15 - smaller
-      tint: 0xffd700,
+      scale: { start: 0.8, end: 0 }, // Start at 80% of 12px = ~10px
+      alpha: { start: 1.0, end: 0 },
       lifespan: 600, // Reduced from 800ms
       gravityY: 250, // Faster fall
       quantity: Math.min(Math.floor(amount / 4), 4), // Reduced from /2 and max 8
