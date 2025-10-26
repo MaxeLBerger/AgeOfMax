@@ -110,7 +110,7 @@ export class BattleScene extends Phaser.Scene {
 
   // Developer Mode - Advanced debugging
   private developerMode = false;
-  private unitDebugTexts: Map<number, Phaser.GameObjects.Text> = new Map();
+  private unitDebugTexts: Map<Phaser.Physics.Arcade.Sprite, Phaser.GameObjects.Text> = new Map();
 
   // Background
   private backgroundImage!: Phaser.GameObjects.Image;
@@ -164,8 +164,33 @@ export class BattleScene extends Phaser.Scene {
       localStorage.setItem('developerMode', this.developerMode.toString());
       console.log(`🔧 Developer Mode: ${this.developerMode ? 'ENABLED' : 'DISABLED'}`);
       
-      // Clear existing debug texts if disabling
-      if (!this.developerMode) {
+      if (this.developerMode) {
+        // Developer Mode ENABLED: Create debug texts for all existing active units
+        this.playerUnits.children.entries.forEach((unit) => {
+          const sprite = unit as Phaser.Physics.Arcade.Sprite;
+          if (sprite.active) {
+            const gameUnit = sprite as GameUnit;
+            // Only create if doesn't exist yet
+            if (!this.unitDebugTexts.has(sprite)) {
+              this.createUnitDebugText(gameUnit);
+            }
+          }
+        });
+        
+        this.enemyUnits.children.entries.forEach((unit) => {
+          const sprite = unit as Phaser.Physics.Arcade.Sprite;
+          if (sprite.active) {
+            const gameUnit = sprite as GameUnit;
+            // Only create if doesn't exist yet
+            if (!this.unitDebugTexts.has(sprite)) {
+              this.createUnitDebugText(gameUnit);
+            }
+          }
+        });
+        
+        console.log(`✅ Created debug overlays for ${this.unitDebugTexts.size} existing units`);
+      } else {
+        // Developer Mode DISABLED: Clear existing debug texts
         this.unitDebugTexts.forEach(text => text.destroy());
         this.unitDebugTexts.clear();
       }
@@ -332,6 +357,15 @@ export class BattleScene extends Phaser.Scene {
       unit.healthBar.fill.destroy();
       unit.healthBar.container.destroy();
       unit.healthBar = undefined;
+    }
+    
+    // Also destroy debug text if Developer Mode is on
+    if (this.developerMode) {
+      const debugText = this.unitDebugTexts.get(unit);
+      if (debugText) {
+        debugText.destroy();
+        this.unitDebugTexts.delete(unit);
+      }
     }
   }
 
@@ -1931,10 +1965,8 @@ export class BattleScene extends Phaser.Scene {
       align: 'left'
     }).setOrigin(0.5, 1).setDepth(5000);
 
-    // Store reference using unique ID
-    const unitId = unit.getData('unitId') || Date.now() + Math.random();
-    unit.setData('unitId', unitId);
-    this.unitDebugTexts.set(unitId, debugText);
+    // Store reference using sprite instance as key
+    this.unitDebugTexts.set(unit, debugText);
   }
 
   /**
@@ -1957,21 +1989,11 @@ export class BattleScene extends Phaser.Scene {
       this.updateSingleUnitDebugText(unit);
     });
 
-    // Clean up destroyed units
-    const activeUnitIds = new Set<number>();
-    [...this.playerUnits.children.entries, ...this.enemyUnits.children.entries].forEach(child => {
-      const unit = child as GameUnit;
-      if (unit.active) {
-        const unitId = unit.getData('unitId');
-        if (unitId) activeUnitIds.add(unitId);
-      }
-    });
-
-    // Remove debug texts for destroyed units
-    this.unitDebugTexts.forEach((text, id) => {
-      if (!activeUnitIds.has(id)) {
+    // Clean up destroyed units: Remove debug texts for inactive sprites
+    this.unitDebugTexts.forEach((text, sprite) => {
+      if (!sprite.active) {
         text.destroy();
-        this.unitDebugTexts.delete(id);
+        this.unitDebugTexts.delete(sprite);
       }
     });
   }
@@ -1980,10 +2002,7 @@ export class BattleScene extends Phaser.Scene {
    * Update debug text for a single unit
    */
   private updateSingleUnitDebugText(unit: GameUnit): void {
-    const unitId = unit.getData('unitId');
-    if (!unitId) return;
-
-    const debugText = this.unitDebugTexts.get(unitId);
+    const debugText = this.unitDebugTexts.get(unit);
     if (!debugText) return;
 
     const data = unit.unitData!;
