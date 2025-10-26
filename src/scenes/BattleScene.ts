@@ -276,6 +276,12 @@ export class BattleScene extends Phaser.Scene {
     return getEpochSafe(this.epochs, this.currentEpochIndex);
   }
 
+  private getBaseMaxHP(epochIndex: number): number {
+    // Base HP scales with epoch progression
+    const baseHPPerEpoch = [5000, 7500, 10000, 15000, 20000, 30000];
+    return baseHPPerEpoch[Math.min(epochIndex, baseHPPerEpoch.length - 1)];
+  }
+
   private createBackground(): void {
     // Set initial background based on current epoch
     const backgroundKey = this.getBackgroundKey();
@@ -309,8 +315,10 @@ export class BattleScene extends Phaser.Scene {
   }
 
   private createBases(): void {
-    this.playerBase = { hp: BASE_MAX_HP, maxHp: BASE_MAX_HP, x: PLAYER_BASE_X, y: LANE_Y, side: 'player' };
-    this.enemyBase = { hp: BASE_MAX_HP, maxHp: BASE_MAX_HP, x: ENEMY_BASE_X, y: LANE_Y, side: 'enemy' };
+    // Use epoch-scaled HP
+    const maxHP = this.getBaseMaxHP(this.currentEpochIndex);
+    this.playerBase = { hp: maxHP, maxHp: maxHP, x: PLAYER_BASE_X, y: LANE_Y, side: 'player' };
+    this.enemyBase = { hp: maxHP, maxHp: maxHP, x: ENEMY_BASE_X, y: LANE_Y, side: 'enemy' };
     
     // Create visible base representations using PNG assets
     // Position them higher so units walk at their base (units are now at Y=500)
@@ -886,7 +894,7 @@ export class BattleScene extends Phaser.Scene {
       'swordsman': 0.10,
       'archer': 0.10,
       'musketeer': 0.10,
-      'duelist': 0.10,
+      'duelist': 0.14, // Issue #36: Increased from 0.10 to match Knight size
       'rifleman': 0.10,
       'grenadier': 0.10,
       'sniper': 0.10,
@@ -943,6 +951,11 @@ export class BattleScene extends Phaser.Scene {
       // Set appropriate scale based on unit type
       const scale = this.getUnitScale(unitData);
       unit.setScale(scale);
+      
+      // Issue #37: Cannon needs lower Y position to appear grounded
+      if (unitData.id === 'cannon') {
+        unit.y += 12;
+      }
       
       // Set direction: Player units face right, enemy units face left
       if (side === 'enemy') {
@@ -1339,6 +1352,22 @@ export class BattleScene extends Phaser.Scene {
         
         // Play epoch advancement sound
         this.soundEffects.playEpochAdvance();
+        
+        // Scale Base HP for new epoch (maintain HP percentage)
+        const newMaxHP = this.getBaseMaxHP(this.currentEpochIndex);
+        const playerHPPercent = this.playerBase.hp / this.playerBase.maxHp;
+        const enemyHPPercent = this.enemyBase.hp / this.enemyBase.maxHp;
+        
+        this.playerBase.maxHp = newMaxHP;
+        this.enemyBase.maxHp = newMaxHP;
+        this.playerBase.hp = Math.round(newMaxHP * playerHPPercent);
+        this.enemyBase.hp = Math.round(newMaxHP * enemyHPPercent);
+        
+        // Update health bar displays
+        this.updateBaseHealthBar('player');
+        this.updateBaseHealthBar('enemy');
+        
+        console.log(`📊 Base HP scaled to ${newMaxHP} (Player: ${this.playerBase.hp}/${newMaxHP}, Enemy: ${this.enemyBase.hp}/${newMaxHP})`);
         
         // Update background for new epoch
         this.updateBackground();
