@@ -10,6 +10,8 @@ import {
   getEpochSafe
 } from '../utils/gameHelpers';
 import { gameLogger } from '../utils/logger';
+import { XPFeedbackSystem } from '../utils/XPFeedbackSystem';
+import { GoldFeedbackSystem } from '../utils/GoldFeedbackSystem';
 
 // Lane configuration constants
 const LANE_Y = 500; // Ganz unten am Boden der Basen
@@ -84,6 +86,10 @@ export class BattleScene extends Phaser.Scene {
   private epochs: Epoch[] = epochsData as Epoch[];
   private currentEpochIndex = 0;
 
+  // Feedback Systems
+  private xpFeedback!: XPFeedbackSystem;
+  private goldFeedback!: GoldFeedbackSystem;
+
   // Kill Streak System
   private killStreak = 0;
   private lastKillTime = 0;
@@ -133,6 +139,10 @@ export class BattleScene extends Phaser.Scene {
     
     // Apply difficulty-based starting gold
     this.gold = this.difficultyMultipliers[this.difficulty].startingGold;
+    
+    // Initialize feedback systems
+    this.xpFeedback = new XPFeedbackSystem(this);
+    this.goldFeedback = new GoldFeedbackSystem(this);
     
     this.createBackground(); // Hintergrund zuerst erstellen
     this.createLane();     // Zuerst den Weg erstellen
@@ -573,12 +583,12 @@ export class BattleScene extends Phaser.Scene {
   }
 
   private setupColliders(): void {
-    // Optimized collision groups - only check enemy vs player
-    this.physics.add.overlap(this.playerUnits, this.enemyUnits, (obj1, obj2) => {
+    // Use collider instead of overlap to ensure units can't pass through each other
+    this.physics.add.collider(this.playerUnits, this.enemyUnits, (obj1, obj2) => {
       const unit1 = obj1 as Phaser.Physics.Arcade.Sprite;
       const unit2 = obj2 as Phaser.Physics.Arcade.Sprite;
       this.handleUnitCollision(unit1, unit2);
-    });
+    }, undefined, this);
     
     // Projectiles vs enemy units
     this.physics.add.overlap(this.projectiles, this.enemyUnits, (proj, unit) => {
@@ -938,12 +948,22 @@ export class BattleScene extends Phaser.Scene {
       return;
     }
     
-    // Stop units and apply minimal knockback
+    // Verify units are from opposite sides
     const side1 = unit1.getData('side');
     const side2 = unit2.getData('side');
     
+    if (side1 === side2) {
+      return; // Same side, don't fight
+    }
+    
+    // CRITICAL FIX: Immediately stop units to prevent pass-through
     unit1.setVelocityX(0);
     unit2.setVelocityX(0);
+    
+    // Make bodies immovable during combat
+    if (unit1.body) (unit1.body as Phaser.Physics.Arcade.Body).immovable = true;
+    if (unit2.body) (unit2.body as Phaser.Physics.Arcade.Body).immovable = true;
+    
     unit1.setData('inCombat', true);
     unit2.setData('inCombat', true);
     
@@ -1034,6 +1054,7 @@ export class BattleScene extends Phaser.Scene {
         // Release the survivor immediately
         if (hp2 > 0 && unit2.active) {
           unit2.setData('inCombat', false);
+          if (unit2.body) (unit2.body as Phaser.Physics.Arcade.Body).immovable = false;
           const speed2 = unit2.getData('speed');
           unit2.setVelocityX(side2 === 'player' ? speed2 : -speed2);
         }
@@ -1052,6 +1073,7 @@ export class BattleScene extends Phaser.Scene {
         // Release the survivor immediately
         if (hp1 > 0 && unit1.active) {
           unit1.setData('inCombat', false);
+          if (unit1.body) (unit1.body as Phaser.Physics.Arcade.Body).immovable = false;
           const speed1 = unit1.getData('speed');
           unit1.setVelocityX(side1 === 'player' ? speed1 : -speed1);
         }
@@ -1059,6 +1081,11 @@ export class BattleScene extends Phaser.Scene {
         // Both survived - resume marching for both
         unit1.setData('inCombat', false);
         unit2.setData('inCombat', false);
+        
+        // Reset immovable state
+        if (unit1.body) (unit1.body as Phaser.Physics.Arcade.Body).immovable = false;
+        if (unit2.body) (unit2.body as Phaser.Physics.Arcade.Body).immovable = false;
+        
         const speed1 = unit1.getData('speed');
         const speed2 = unit2.getData('speed');
         unit1.setVelocityX(side1 === 'player' ? speed1 : -speed1);
@@ -1156,10 +1183,9 @@ export class BattleScene extends Phaser.Scene {
     this.xp += amount;
     const currentEpoch = this.getCurrentEpoch();
     
-    // Visual feedback: Floating XP text
+    // Visual feedback with new XP Feedback System
     if (x !== undefined && y !== undefined) {
-      this.showFloatingText(x, y, `+${amount} XP`, '#FFD700', 20);
-      this.showXPParticles(x, y);
+      this.xpFeedback.showXPGain(x, y, amount);
     }
     
     // Check for epoch progression using helper
@@ -1204,11 +1230,9 @@ export class BattleScene extends Phaser.Scene {
     const uiScene = this.scene.get('UIScene');
     uiScene.events.emit('updateGold', this.gold);
     
-    // Show floating gold text if position provided
+    // Visual feedback with new Gold Feedback System
     if (x !== undefined && y !== undefined) {
-      const color = amount >= 50 ? '#ffd700' : (amount >= 10 ? '#ffff00' : '#ffffff');
-      this.showFloatingText(x, y, `+${amount}g`, color, 18);
-      this.showGoldParticles(x, y, amount);
+      this.goldFeedback.showGoldGain(x, y, amount, false);
     }
   }
 
