@@ -1,6 +1,6 @@
 ﻿
 // Kill Streak System
-class KillStreakManager {
+export class KillStreakManager {
   private scene: Phaser.Scene;
   private currentStreak: number = 0;
   private lastKillTime: number = 0;

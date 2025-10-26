@@ -1,6 +1,6 @@
 ﻿
 // Unit Formation System
-class FormationManager {
+export class FormationManager {
   private scene: Phaser.Scene;
   private spawnQueue: Array<{unit: any, lane: number}> = [];
   private laneOffsets: Map<number, number> = new Map();

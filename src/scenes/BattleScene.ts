@@ -15,6 +15,8 @@ import { GoldFeedbackSystem } from '../utils/GoldFeedbackSystem';
 import { SoundEffectsManager } from '../utils/SoundEffectsManager';
 import { MusicManager } from '../utils/MusicManager';
 import { UnitSelectionSystem } from '../utils/UnitSelectionSystem';
+import { FormationManager } from '../utils/FormationManager';
+import { KillStreakManager } from '../utils/KillStreakManager';
 
 // Lane configuration constants
 const LANE_Y = 500; // Ganz unten am Boden der Basen
@@ -101,6 +103,10 @@ export class BattleScene extends Phaser.Scene {
   
   // Unit Selection System
   private unitSelection!: UnitSelectionSystem;
+  
+  // Formation and Kill Streak Systems
+  private formationManager!: FormationManager;
+  private killStreakManager!: KillStreakManager;
 
   // Kill Streak System
   private killStreak = 0;
@@ -162,6 +168,10 @@ export class BattleScene extends Phaser.Scene {
     
     // Initialize unit selection system
     this.unitSelection = new UnitSelectionSystem(this);
+    
+    // Initialize formation and kill streak systems
+    this.formationManager = new FormationManager(this);
+    this.killStreakManager = new KillStreakManager(this);
     
     this.createBackground(); // Hintergrund zuerst erstellen
     this.createLane();     // Zuerst den Weg erstellen
@@ -1454,63 +1464,10 @@ export class BattleScene extends Phaser.Scene {
    * Kill Streak System - returns gold reward based on streak
    */
   private addKillToStreak(): number {
-    const now = this.time.now;
-    
-    // Check if streak expired
-    if (now - this.lastKillTime > this.KILL_STREAK_TIMEOUT) {
-      this.killStreak = 0;
-    }
-    
-    // Increment streak
-    this.killStreak++;
-    this.lastKillTime = now;
-    
-    // Calculate gold multiplier
-    let multiplier = 1.0;
-    let streakName = '';
-    let streakColor = '#ffffff';
-    
-    if (this.killStreak >= 15) {
-      multiplier = 2.5;
-      streakName = '🔥 MEGA STREAK! 🔥';
-      streakColor = '#ff0000';
-    } else if (this.killStreak >= 10) {
-      multiplier = 2.0;
-      streakName = '⚡ LEGENDARY! ⚡';
-      streakColor = '#ff4500';
-    } else if (this.killStreak >= 5) {
-      multiplier = 1.5;
-      streakName = '💎 ELITE STREAK!';
-      streakColor = '#ffd700';
-    } else if (this.killStreak >= 3) {
-      multiplier = 1.2;
-      streakName = '⭐ STREAK!';
-      streakColor = '#ffff00';
-    }
-    
-    // Update streak display
-    if (this.killStreak >= 3 && this.streakText) {
-      this.streakText.setText(`${this.killStreak}x ${streakName}`);
-      this.streakText.setColor(streakColor);
-      this.streakText.setVisible(true);
-      
-      // Pulse effect
-      this.tweens.add({
-        targets: this.streakText,
-        scale: { from: 1.2, to: 1.0 },
-        duration: 200,
-        ease: 'Back.out'
-      });
-    } else if (this.streakText) {
-      this.streakText.setVisible(false);
-    }
-    
-    // Calculate gold reward
+    // Use the KillStreakManager for consistent streak handling
     const baseGold = 10;
-    const reward = Math.round(baseGold * multiplier);
-    
-    console.log(`Kill Streak: ${this.killStreak}x | Reward: ${reward}g (${multiplier}x)`);
-    return reward;
+    const bonusGold = this.killStreakManager.registerKill(baseGold);
+    return baseGold + bonusGold;
   }
 
   update(_time: number, delta: number): void {
