@@ -12,6 +12,9 @@ import {
 import { gameLogger } from '../utils/logger';
 import { XPFeedbackSystem } from '../utils/XPFeedbackSystem';
 import { GoldFeedbackSystem } from '../utils/GoldFeedbackSystem';
+import { SoundEffectsManager } from '../utils/SoundEffectsManager';
+import { MusicManager } from '../utils/MusicManager';
+import { UnitSelectionSystem } from '../utils/UnitSelectionSystem';
 
 // Lane configuration constants
 const LANE_Y = 500; // Ganz unten am Boden der Basen
@@ -91,6 +94,13 @@ export class BattleScene extends Phaser.Scene {
   // Feedback Systems
   private xpFeedback!: XPFeedbackSystem;
   private goldFeedback!: GoldFeedbackSystem;
+  
+  // Audio Systems
+  private soundEffects!: SoundEffectsManager;
+  private music!: MusicManager;
+  
+  // Unit Selection System
+  private unitSelection!: UnitSelectionSystem;
 
   // Kill Streak System
   private killStreak = 0;
@@ -146,6 +156,13 @@ export class BattleScene extends Phaser.Scene {
     this.xpFeedback = new XPFeedbackSystem(this);
     this.goldFeedback = new GoldFeedbackSystem(this);
     
+    // Initialize audio systems
+    this.soundEffects = new SoundEffectsManager(this);
+    this.music = new MusicManager(this);
+    
+    // Initialize unit selection system
+    this.unitSelection = new UnitSelectionSystem(this);
+    
     this.createBackground(); // Hintergrund zuerst erstellen
     this.createLane();     // Zuerst den Weg erstellen
     this.createBases();    // Dann die Basen darüber
@@ -156,6 +173,9 @@ export class BattleScene extends Phaser.Scene {
     this.listenToUIEvents();
     this.syncInitialStateToUI();
     this.setupDebugControls();
+    
+    // Start battle music for current epoch
+    this.music.playBattleMusic(this.currentEpochIndex + 1);
     
     // Load developer mode from localStorage
     const savedDevMode = localStorage.getItem('developerMode');
@@ -960,6 +980,9 @@ export class BattleScene extends Phaser.Scene {
       // Enhanced logging with texture info
       console.log(`✅ Spawned ${unitData.name} (${side}) | Texture: ${texture} | HP: ${adjustedHp}/${unitData.hp} | DMG: ${adjustedDamage} | SPD: ${adjustedSpeed} | Epoch: ${unitData.epoch}`);
       
+      // Play spawn sound effect
+      this.soundEffects.playUnitSpawn(this.currentEpochIndex);
+      
       // Log to game logger for MCP analysis
       gameLogger.unitSpawn(unitData.name, side, texture, `${adjustedHp}/${unitData.hp}`, adjustedDamage, adjustedSpeed, unitData.epoch);
     }
@@ -1288,6 +1311,9 @@ export class BattleScene extends Phaser.Scene {
     this.xp += amount;
     const currentEpoch = this.getCurrentEpoch();
     
+    // Play XP gain sound
+    this.soundEffects.playXPGain();
+    
     // Visual feedback with new XP Feedback System
     if (x !== undefined && y !== undefined) {
       this.xpFeedback.showXPGain(x, y, amount);
@@ -1300,6 +1326,9 @@ export class BattleScene extends Phaser.Scene {
         this.xp = 0; // Reset XP for new epoch
         const newEpoch = this.getCurrentEpoch();
         console.log(`🎉 Epoch advanced to: ${newEpoch.name}`);
+        
+        // Play epoch advancement sound
+        this.soundEffects.playEpochAdvance();
         
         // Update background for new epoch
         this.updateBackground();
@@ -1328,6 +1357,11 @@ export class BattleScene extends Phaser.Scene {
 
   private addGold(amount: number, x?: number, y?: number): void {
     this.gold += amount;
+    
+    // Play sound only for positive gains (not for spending)
+    if (amount > 0) {
+      this.soundEffects.playGoldCollect();
+    }
     
     // Update TestUI
     if (this.goldText) this.goldText.setText(`Gold: ${this.gold}`);

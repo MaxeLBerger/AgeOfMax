@@ -1,6 +1,7 @@
 ﻿version: '3.8'
 
 services:
+  # Production game server
   age-of-max:
     build:
       context: .
@@ -14,3 +15,56 @@ services:
     labels:
       - "com.age-of-max.description=Age of Max - Tower Defense Game"
       - "com.age-of-max.version=1.0.0"
+    profiles:
+      - production
+
+  # Development game server with hot-reload
+  game-dev:
+    image: node:20-alpine
+    container_name: age-of-max-dev
+    working_dir: /app
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - "5173:5173"
+    command: sh -c "npm install && npm run dev -- --host"
+    environment:
+      - NODE_ENV=development
+    profiles:
+      - dev
+
+  # MCP Server for automated analysis and fixes
+  mcp-server:
+    image: node:20-alpine
+    container_name: age-of-max-mcp
+    working_dir: /app/simple-mcp-server
+    volumes:
+      - .:/app
+      - /app/simple-mcp-server/node_modules
+    ports:
+      - "3000:3000"
+    command: sh -c "npm install && npm run dev:http"
+    environment:
+      - NODE_ENV=development
+      - MCP_AUTO_FIX=true
+    restart: unless-stopped
+    profiles:
+      - dev
+
+  # Issue analyzer and auto-fixer
+  auto-fixer:
+    image: node:20-alpine
+    container_name: age-of-max-fixer
+    working_dir: /app
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: sh -c "npm install && node scripts/auto-fix-runner.js"
+    environment:
+      - NODE_ENV=development
+      - MCP_SERVER_URL=http://mcp-server:3000
+    depends_on:
+      - mcp-server
+    profiles:
+      - dev
