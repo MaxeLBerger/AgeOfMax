@@ -899,6 +899,11 @@ export class BattleScene extends Phaser.Scene {
       return;
     }
     
+    // Verify both units are still active before starting combat
+    if (!unit1.active || !unit2.active) {
+      return;
+    }
+    
     // Stop units and apply minimal knockback
     const side1 = unit1.getData('side');
     const side2 = unit2.getData('side');
@@ -1024,6 +1029,10 @@ export class BattleScene extends Phaser.Scene {
         const speed2 = unit2.getData('speed');
         unit1.setVelocityX(side1 === 'player' ? speed1 : -speed1);
         unit2.setVelocityX(side2 === 'player' ? speed2 : -speed2);
+        
+        // Apply small separation to prevent instant re-collision
+        unit1.x += side1 === 'player' ? 2 : -2;
+        unit2.x += side2 === 'player' ? 2 : -2;
       }
     });
   }
@@ -1345,6 +1354,9 @@ export class BattleScene extends Phaser.Scene {
       const sprite = unit as Phaser.Physics.Arcade.Sprite;
       if (!sprite.active) return;
       
+      // Skip units that are in combat with other units
+      if (sprite.getData('inCombat')) return;
+      
       // Player unit reached enemy base attack range - start attacking
       if (sprite.x >= ENEMY_BASE_X - BASE_ATTACK_RANGE) {
         sprite.setVelocityX(0); // Stop movement
@@ -1355,6 +1367,9 @@ export class BattleScene extends Phaser.Scene {
     this.enemyUnits.children.entries.forEach((unit) => {
       const sprite = unit as Phaser.Physics.Arcade.Sprite;
       if (!sprite.active) return;
+      
+      // Skip units that are in combat with other units
+      if (sprite.getData('inCombat')) return;
       
       // Enemy unit reached player base attack range - start attacking
       if (sprite.x <= PLAYER_BASE_X + BASE_ATTACK_RANGE) {
@@ -1370,6 +1385,36 @@ export class BattleScene extends Phaser.Scene {
       
       if (sprite.x < -UNIT_CLEANUP_MARGIN || sprite.x > LANE_WIDTH + UNIT_CLEANUP_MARGIN) {
         this.recycleProjectile(sprite);
+      }
+    });
+    
+    // Safety check: Ensure all non-combat units are moving
+    // This catches units that got "stuck" due to race conditions
+    this.playerUnits.children.entries.forEach((unit) => {
+      const sprite = unit as Phaser.Physics.Arcade.Sprite;
+      if (!sprite.active) return;
+      
+      // If unit is not in combat and not at base, ensure it's moving
+      if (!sprite.getData('inCombat') && sprite.x < ENEMY_BASE_X - BASE_ATTACK_RANGE) {
+        const velocity = sprite.body?.velocity.x || 0;
+        if (Math.abs(velocity) < 5) { // Velocity too low, unit is stuck
+          const speed = sprite.getData('speed');
+          sprite.setVelocityX(speed);
+        }
+      }
+    });
+    
+    this.enemyUnits.children.entries.forEach((unit) => {
+      const sprite = unit as Phaser.Physics.Arcade.Sprite;
+      if (!sprite.active) return;
+      
+      // If unit is not in combat and not at base, ensure it's moving
+      if (!sprite.getData('inCombat') && sprite.x > PLAYER_BASE_X + BASE_ATTACK_RANGE) {
+        const velocity = sprite.body?.velocity.x || 0;
+        if (Math.abs(velocity) < 5) { // Velocity too low, unit is stuck
+          const speed = sprite.getData('speed');
+          sprite.setVelocityX(-speed);
+        }
       }
     });
   }
