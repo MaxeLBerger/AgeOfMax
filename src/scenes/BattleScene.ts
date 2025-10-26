@@ -956,6 +956,25 @@ export class BattleScene extends Phaser.Scene {
       return; // Same side, don't fight
     }
     
+    // NEW: Check if either unit is ranged - prevent melee combat
+    const type1 = unit1.getData('type');
+    const type2 = unit2.getData('type');
+    
+    if (type1 === 'ranged' || type2 === 'ranged') {
+      // Ranged units don't engage in melee - push them apart
+      const pushDistance = 15;
+      unit1.x -= side1 === 'player' ? pushDistance : -pushDistance;
+      unit2.x -= side2 === 'player' ? pushDistance : -pushDistance;
+      
+      // Ensure they keep moving
+      const speed1 = unit1.getData('speed');
+      const speed2 = unit2.getData('speed');
+      unit1.setVelocityX(side1 === 'player' ? speed1 : -speed1);
+      unit2.setVelocityX(side2 === 'player' ? speed2 : -speed2);
+      return; // No melee combat
+    }
+    
+    // MELEE COMBAT: Both units are melee type
     // CRITICAL FIX: Immediately stop units to prevent pass-through
     unit1.setVelocityX(0);
     unit2.setVelocityX(0);
@@ -1401,6 +1420,9 @@ export class BattleScene extends Phaser.Scene {
     // Turret firing logic
     this.updateTurrets();
     
+    // NEW: Ranged unit combat system
+    this.updateRangedUnits();
+    
     // Update debug overlay if enabled (throttled to 10 Hz)
     if (this.debugEnabled && _time - this.debugLastUpdate >= this.DEBUG_UPDATE_INTERVAL) {
       this.debugLastUpdate = _time;
@@ -1499,6 +1521,135 @@ export class BattleScene extends Phaser.Scene {
         }
       }
     }
+  }
+
+  /**
+   * Update ranged units - handle range-based combat
+   */
+  private updateRangedUnits(): void {
+    // Check player ranged units
+    this.playerUnits.children.entries.forEach((unit) => {
+      const sprite = unit as Phaser.Physics.Arcade.Sprite;
+      if (!sprite.active) return;
+      if (sprite.getData('inCombat')) return; // Skip if in melee combat
+      if (sprite.getData('type') !== 'ranged') return; // Only ranged units
+      
+      const range = sprite.getData('range') || 150;
+      const target = this.findEnemyInRange(sprite.x, sprite.y, range, 'enemy');
+      
+      if (target) {
+        // Stop and attack
+        sprite.setVelocityX(0);
+        this.handleRangedAttack(sprite, target);
+      } else if (sprite.x < ENEMY_BASE_X - BASE_ATTACK_RANGE) {
+        // No target, resume marching
+        const speed = sprite.getData('speed');
+        if (Math.abs(sprite.body?.velocity.x || 0) < 5) {
+          sprite.setVelocityX(speed);
+        }
+      }
+    });
+    
+    // Check enemy ranged units
+    this.enemyUnits.children.entries.forEach((unit) => {
+      const sprite = unit as Phaser.Physics.Arcade.Sprite;
+      if (!sprite.active) return;
+      if (sprite.getData('inCombat')) return;
+      if (sprite.getData('type') !== 'ranged') return;
+      
+      const range = sprite.getData('range') || 150;
+      const target = this.findEnemyInRange(sprite.x, sprite.y, range, 'player');
+      
+      if (target) {
+        sprite.setVelocityX(0);
+        this.handleRangedAttack(sprite, target);
+      } else if (sprite.x > PLAYER_BASE_X + BASE_ATTACK_RANGE) {
+        const speed = sprite.getData('speed');
+        if (Math.abs(sprite.body?.velocity.x || 0) < 5) {
+          sprite.setVelocityX(-speed);
+        }
+      }
+    });
+  }
+
+  /**
+   * Find enemy unit in attack range
+   */
+  private findEnemyInRange(x: number, y: number, range: number, targetSide: 'player' | 'enemy'): Phaser.Physics.Arcade.Sprite | null {
+    let closestTarget: Phaser.Physics.Arcade.Sprite | null = null;
+    let closestDistance = Infinity;
+    
+    const targetGroup = targetSide === 'enemy' ? this.enemyUnits : this.playerUnits;
+    
+    targetGroup.children.entries.forEach((unit) => {
+      const sprite = unit as Phaser.Physics.Arcade.Sprite;
+      if (!sprite.active) return;
+      
+      const distance = Phaser.Math.Distance.Between(x, y, sprite.x, sprite.y);
+      
+      if (distance <= range && distance < closestDistance) {
+        closestDistance = distance;
+        closestTarget = sprite;
+      }
+    });
+    
+    return closestTarget;
+  }
+
+  /**
+   * Handle ranged attack with cooldown
+   */
+  private handleRangedAttack(attacker: Phaser.Physics.Arcade.Sprite, target: Phaser.Physics.Arcade.Sprite): void {
+    const now = this.time.now;
+    const lastAttack = attacker.getData('lastRangedAttack') || 0;
+    const attackSpeed = (attacker.getData('attackSpeed') || 2) * 1000; // Convert to ms
+    
+    if (now - lastAttack < attackSpeed) return;
+    
+    // Fire projectile
+    this.fireUnitProjectile(attacker, target);
+    attacker.setData('lastRangedAttack', now);
+  }
+
+  /**
+   * Fire projectile from unit to target
+   */
+  private fireUnitProjectile(shooter: Phaser.Physics.Arcade.Sprite, target: Phaser.Physics.Arcade.Sprite): void {
+    const projectileTexture = this.getUnitProjectileTexture(shooter);
+    const projectile = this.projectiles.get(shooter.x, shooter.y, projectileTexture);
+    
+    if (!projectile) return;
+    
+    projectile.setActive(true).setVisible(true);
+    projectile.setScale(0.2);
+    
+    // Aim at target with prediction
+    const angle = Phaser.Math.Angle.Between(shooter.x, shooter.y, target.x, target.y);
+    const speed = 400;
+    this.physics.velocityFromRotation(angle, speed, projectile.body!.velocity);
+    projectile.setRotation(angle);
+    
+    projectile.setData('damage', shooter.getData('damage') || 10);
+    projectile.setData('owner', shooter.getData('side'));
+  }
+
+  /**
+   * Get projectile texture for unit type
+   */
+  private getUnitProjectileTexture(unit: Phaser.Physics.Arcade.Sprite): string {
+    const epoch = unit.getData('epoch') || 'stone';
+    
+    // Map epochs to projectile types
+    const projectileMap: Record<string, string> = {
+      'stone': 'rock',
+      'ancient': 'arrow',
+      'castle': 'arrow',
+      'renaissance': 'cannonball',
+      'modern': 'bullet',
+      'future': 'bullet'
+    };
+    
+    return projectileMap[epoch] || 'rock';
   }
 
   /**
