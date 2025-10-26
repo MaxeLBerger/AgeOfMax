@@ -1,0 +1,16 @@
+﻿version: '3.8'
+
+services:
+  age-of-max:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: age-of-max-game
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    labels:
+      - "com.age-of-max.description=Age of Max - Tower Defense Game"
+      - "com.age-of-max.version=1.0.0"

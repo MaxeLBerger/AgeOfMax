@@ -1,0 +1,53 @@
+﻿# Node modules
+node_modules/
+npm-debug.log
+
+# Build output
+dist/
+
+# Testing
+test-results/
+coverage/
+*.spec.ts
+e2e/
+
+# Development files
+.vscode/
+.git/
+.gitignore
+*.md
+logs/
+
+# Environment files
+.env
+.env.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Documentation
+docs/
+downloads/
+
+# Scripts and tools (not needed in container)
+scripts/
+tools/
+*.bat
+*.ps1
+
+# Test files
+test-*.js
+test-*.html
+verify-*.js
+collect-logs.js
+
+# Conda environment
+.conda/
+
+# Workspace files
+*.code-workspace
+
+# Keys and sensitive data
+key.md
+*.key
