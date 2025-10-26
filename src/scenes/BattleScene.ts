@@ -70,6 +70,8 @@ interface GameUnit extends Phaser.Physics.Arcade.Sprite {
 export class BattleScene extends Phaser.Scene {
   private playerBase!: Base;
   private enemyBase!: Base;
+  private playerBaseHealthBar?: { background: Phaser.GameObjects.Rectangle; fill: Phaser.GameObjects.Rectangle; text: Phaser.GameObjects.Text };
+  private enemyBaseHealthBar?: { background: Phaser.GameObjects.Rectangle; fill: Phaser.GameObjects.Rectangle; text: Phaser.GameObjects.Text };
   private projectiles!: Phaser.Physics.Arcade.Group;
   private playerUnits!: Phaser.Physics.Arcade.Group;
   private enemyUnits!: Phaser.Physics.Arcade.Group;
@@ -285,6 +287,10 @@ export class BattleScene extends Phaser.Scene {
     const baseVisualY = LANE_Y - 40; // Basen deutlich höher, da Units jetzt bei Y=500 laufen
     this.add.image(this.playerBase.x, baseVisualY, 'player-base').setScale(0.2);
     this.add.image(this.enemyBase.x, baseVisualY, 'enemy-base').setScale(0.2);
+
+    // Create health bars for bases
+    this.createBaseHealthBar('player');
+    this.createBaseHealthBar('enemy');
   }
 
   private createLane(): void {
@@ -325,6 +331,86 @@ export class BattleScene extends Phaser.Scene {
       fill,
       container
     };
+  }
+
+  private createBaseHealthBar(side: 'player' | 'enemy'): void {
+    const base = side === 'player' ? this.playerBase : this.enemyBase;
+    const barWidth = 200;
+    const barHeight = 20;
+    const barY = 420; // Position above the base
+    const barX = base.x;
+
+    // Background (dark red)
+    const background = this.add.rectangle(
+      barX,
+      barY,
+      barWidth,
+      barHeight,
+      0x660000
+    );
+    background.setOrigin(0.5, 0.5);
+
+    // Health fill (green for player, red for enemy)
+    const fillColor = side === 'player' ? 0x00ff00 : 0xff6600;
+    const fill = this.add.rectangle(
+      barX,
+      barY,
+      barWidth,
+      barHeight,
+      fillColor
+    );
+    fill.setOrigin(0.5, 0.5);
+
+    // Health text
+    const text = this.add.text(
+      barX,
+      barY,
+      `${base.hp}/${base.maxHp}`,
+      {
+        fontSize: '14px',
+        color: '#ffffff',
+        fontStyle: 'bold'
+      }
+    );
+    text.setOrigin(0.5, 0.5);
+    text.setDepth(12);
+
+    // Set depth
+    background.setDepth(10);
+    fill.setDepth(11);
+
+    // Store references
+    if (side === 'player') {
+      this.playerBaseHealthBar = { background, fill, text };
+    } else {
+      this.enemyBaseHealthBar = { background, fill, text };
+    }
+  }
+
+  private updateBaseHealthBar(side: 'player' | 'enemy'): void {
+    const base = side === 'player' ? this.playerBase : this.enemyBase;
+    const healthBar = side === 'player' ? this.playerBaseHealthBar : this.enemyBaseHealthBar;
+    
+    if (!healthBar) return;
+
+    // Calculate health percentage
+    const healthPercent = base.hp / base.maxHp;
+    const barWidth = 200;
+    
+    // Update fill width
+    healthBar.fill.width = barWidth * healthPercent;
+    
+    // Update text
+    healthBar.text.setText(`${Math.ceil(base.hp)}/${base.maxHp}`);
+    
+    // Change color based on health percentage
+    if (healthPercent > 0.6) {
+      healthBar.fill.setFillStyle(side === 'player' ? 0x00ff00 : 0xff6600);
+    } else if (healthPercent > 0.3) {
+      healthBar.fill.setFillStyle(0xffaa00);
+    } else {
+      healthBar.fill.setFillStyle(0xff0000);
+    }
   }
 
   private updateHealthBar(unit: GameUnit): void {
@@ -1753,6 +1839,9 @@ export class BattleScene extends Phaser.Scene {
   private damageBase(side: 'player' | 'enemy', damage: number): void {
     const base = side === 'player' ? this.playerBase : this.enemyBase;
     base.hp = Math.max(0, base.hp - damage);
+    
+    // Update visual health bar
+    this.updateBaseHealthBar(side);
     
     // Update UI
     const uiScene = this.scene.get('UIScene');
