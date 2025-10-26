@@ -773,8 +773,10 @@ export class BattleScene extends Phaser.Scene {
     // Get unit from appropriate collision group
     const unitGroup = side === 'player' ? this.playerUnits : this.enemyUnits;
     const unit = unitGroup.get(spawnX, spawnY, texture) as Phaser.Physics.Arcade.Sprite;
-    
+
     if (unit) {
+      // CRITICAL FIX: Explicitly set texture on pooled sprite to prevent old textures from persisting
+      unit.setTexture(texture);
       // Initialize unit with data from JSON
       unit.setActive(true).setVisible(true);
       
