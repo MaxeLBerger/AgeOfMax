@@ -1,0 +1,36 @@
+﻿# MUSIC GENERATION PROMPTS FOR SUNO AI
+
+Visit: https://suno.ai
+
+Steps:
+1. Create free account
+2. Click ''Create'' button
+3. Paste each prompt below
+4. Download MP3 and save to public/assets/music/
+
+## battle_medieval.mp3
+```
+[Instrumental][Genre: Chiptune, Medieval][Mood: Epic, Heroic][BPM: 110][Instruments: Medieval strings, lute, epic choir sounds][Length: 60s][Loop: Yes] Medieval castle battle music, knights and honor
+```
+
+## battle_modern.mp3
+```
+[Instrumental][Genre: Chiptune, Industrial][Mood: Intense, Military][BPM: 130][Instruments: Electronic drums, brass, industrial sounds][Length: 60s][Loop: Yes] Modern warfare theme, tanks and rifles
+```
+
+## battle_future.mp3
+```
+[Instrumental][Genre: Synthwave, Chiptune][Mood: Futuristic][BPM: 140][Instruments: Synthesizers, electronic beats, sci-fi atmosphere][Length: 60s][Loop: Yes] Future warfare, laser weapons and mechs
+```
+
+## battle_renaissance.mp3
+```
+[Instrumental][Genre: Chiptune, Military March][Mood: Triumphant][BPM: 120][Instruments: Harpsichord, trumpets, marching drums][Length: 60s][Loop: Yes] Renaissance warfare, muskets and cannons
+```
+
+## battle_ancient.mp3
+```
+[Instrumental][Genre: Chiptune, 8-bit][Mood: Primitive, Tribal][BPM: 100][Instruments: Tribal drums, primitive flutes][Length: 60s][Loop: Yes] Tribal battle theme for stone age warriors
+```
+
+

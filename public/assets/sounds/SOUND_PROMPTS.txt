@@ -1,0 +1,29 @@
+﻿# SOUND EFFECTS PROMPTS FOR ELEVENLABS
+
+Visit: https://elevenlabs.io/sound-effects
+
+## gold_collect.mp3
+Retro coin collection sound, ching with sparkle, 8-bit arcade style, 250ms, happy tone
+
+## epoch_advance.mp3
+Epic 8-bit fanfare, retro victory theme, triumphant trumpet-like melody, 1 second duration
+
+## sword_clash.mp3
+8-bit retro sword clash sound, metal clang with reverb, medieval combat, 300ms duration, arcade game style
+
+## gun_shot.mp3
+Sharp retro gun shot, 8-bit rifle crack, military FPS style but simplified, 150ms
+
+## explosion.mp3
+Deep retro explosion boom, 8-bit style bomb blast, impactful, 500ms duration
+
+## xp_gain.mp3
+8-bit level up sound, magical sparkle chime, retro RPG style, ascending notes, 300ms
+
+## arrow_fire.mp3
+Retro bow and arrow sound effect, whoosh then thud, 8-bit style, 400ms, arcade game
+
+## unit_spawn.mp3
+Short 8-bit retro video game sound effect: unit spawning, pop sound with slight whoosh, 200ms duration, arcade style
+
+

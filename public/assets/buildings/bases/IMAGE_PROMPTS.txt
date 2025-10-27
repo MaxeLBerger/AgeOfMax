@@ -1,0 +1,17 @@
+﻿# BASE BUILDING PROMPTS FOR DALL-E / BING IMAGE CREATOR
+
+Visit: https://www.bing.com/images/create (FREE!)
+
+## player-base-castle.png
+Pixel art medieval castle base for RTS game, side-view, 128x128 pixels, stone castle with blue flags and battlements, gray stone blue accents, 16-bit pixel art style, transparent PNG background, facing right, heroic and defensive look
+
+## enemy-base-castle.png
+Pixel art dark fortress for RTS game enemy, side-view, 128x128 pixels, black stone castle with red flags, dark gray and red colors, 16-bit pixel art style, transparent PNG background, facing left, intimidating appearance
+
+## player-base-stone.png
+Pixel art stone age base building for RTS game, side-view, 128x128 pixels, primitive stone hut with wooden support beams and thatched roof, brown and tan colors, 16-bit pixel art style, transparent PNG background, facing right, detailed but not cluttered
+
+## enemy-base-stone.png
+Pixel art stone age enemy base for RTS game, side-view, 128x128 pixels, dark cave entrance with wooden barricades, dark grays and browns, 16-bit pixel art style, transparent PNG background, facing left, slightly menacing look
+
+
