@@ -202,3 +202,4 @@ If you encounter any issues or have questions:
 ---
 
 **Enjoy the game! ** If you like it, consider giving it a  on GitHub!
+Test auto-update
