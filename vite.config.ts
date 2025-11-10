@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 
-export default defineConfig({
-  base: process.env.NODE_ENV === 'production' ? '/AgeOfMax/' : '/',
+export default defineConfig(({ mode }) => ({
+  base: mode === 'production' ? '/AgeOfMax/' : '/',
   server: {
     port: 5173,
     open: true
@@ -11,4 +11,4 @@ export default defineConfig({
     assetsDir: 'assets',
     sourcemap: true
   }
-});
+}));
