@@ -8,3 +8,4 @@ Step 5: Future age content integration (units, turrets, background)
 Step 6: Code hygiene adjustments (unused params underscores, sound volume workaround)
 Step 7: Unit selection system simplification (remove stored selectedUnit)
 Step 8: Remove obsolete asset generation scripts (manual deletion)
+Step 9: Add XP clamp unit tests (xpClamp.test) to prevent regressions
