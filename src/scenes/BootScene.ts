@@ -34,6 +34,12 @@ export class BootScene extends Phaser.Scene {
     this.load.image('sniper', 'assets/units/modern_age/sniper.png');
     this.load.image('tank', 'assets/units/modern_age/tank.png');
 
+    // Future Age
+    this.load.image('laser-soldier', 'assets/units/future_age/laser-soldier.png');
+    this.load.image('mech', 'assets/units/future_age/mech.png');
+    this.load.image('plasma-trooper', 'assets/units/future_age/plasma-trooper.png');
+    this.load.image('super-heavy', 'assets/units/future_age/super-heavy.png');
+
     // Load turret assets
     this.load.image('stone-tower-1', 'assets/turrets/stone_age_tower_1.png');
     this.load.image('stone-tower-2', 'assets/turrets/stone_age_tower_2.png');
@@ -44,6 +50,12 @@ export class BootScene extends Phaser.Scene {
     this.load.image('renaissance-tower-1', 'assets/turrets/renaissance_age_tower_1.png');
     this.load.image('renaissance-tower-2', 'assets/turrets/renaissance_age_tower_2.png');
     this.load.image('renaissance-tower-3', 'assets/turrets/renaissance_age_tower_3.png');
+    this.load.image('modern-tower-1', 'assets/turrets/modern_age_tower_1.png');
+    this.load.image('modern-tower-2', 'assets/turrets/modern_age_tower_2.png');
+    this.load.image('modern-tower-3', 'assets/turrets/modern_age_tower_3.png');
+    this.load.image('future-tower-1', 'assets/turrets/future_age_tower_1.png');
+    this.load.image('future-tower-2', 'assets/turrets/future_age_tower_2.png');
+    this.load.image('future-tower-3', 'assets/turrets/future_age_tower_3.png');
 
     // Load building assets
     this.load.image('player-base', 'assets/buildings/player_base.png');
@@ -54,6 +66,7 @@ export class BootScene extends Phaser.Scene {
     this.load.image('castle-age-bg', 'assets/backgrounds/castle_age_background.png');
     this.load.image('renaissance-bg', 'assets/backgrounds/renaissance_background.png');
     this.load.image('modern-bg', 'assets/backgrounds/modern_background.png');
+    this.load.image('future-bg', 'assets/backgrounds/future_background.png');
 
     // Load UI icons
     this.load.image('gold-coin', 'assets/ui/gold_coin_icon.png');

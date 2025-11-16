@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Asset Preview - Age of Max</title>
+    <style>
+        body { background: #2a2a2a; color: white; font-family: Arial; padding: 20px; }
+        .container { display: flex; gap: 40px; flex-wrap: wrap; }
+        .section { background: #3a3a3a; padding: 20px; border-radius: 10px; }
+        .asset { display: inline-block; margin: 10px; text-align: center; background: #4a4a4a; padding: 15px; border-radius: 5px; }
+        .asset img { image-rendering: pixelated; background: white; padding: 10px; border-radius: 5px; }
+        .asset-title { margin-top: 10px; font-size: 12px; color: #aaa; }
+        h2 { color: #4af; border-bottom: 2px solid #4af; padding-bottom: 10px; }
+        .new { border: 3px solid #4f4; }
+        .existing { border: 3px solid #44f; }
+    </style>
+</head>
+<body>
+    <h1> Asset Preview - Age of Max</h1>
+    
+    <div class=\"container\">
+        <div class=\"section\">
+            <h2> NEU GENERIERT (Pixel Art Prompts)</h2>
+            <div class=\"asset new\">
+                <img src=\"assets/units/future_age/laser-soldier.png\" width=\"128\" height=\"128\">
+                <div class=\"asset-title\">Laser Soldier (NEW)</div>
+            </div>
+            <div class=\"asset new\">
+                <img src=\"assets/units/future_age/mech.png\" width=\"128\" height=\"128\">
+                <div class=\"asset-title\">Mech (NEW)</div>
+            </div>
+        </div>
+        
+        <div class=\"section\">
+            <h2> EXISTIERENDE UNITS (Ziel-Stil)</h2>
+            <div class=\"asset existing\">
+                <img src=\"assets/units/stone_age/clubman.png\" width=\"128\" height=\"128\">
+                <div class=\"asset-title\">Clubman (Referenz)</div>
+            </div>
+            <div class=\"asset existing\">
+                <img src=\"assets/units/stone_age/spearman.png\" width=\"128\" height=\"128\">
+                <div class=\"asset-title\">Spearman (Referenz)</div>
+            </div>
+            <div class=\"asset existing\">
+                <img src=\"assets/units/castle_age/knight.png\" width=\"128\" height=\"128\">
+                <div class=\"asset-title\">Knight (Referenz)</div>
+            </div>
+            <div class=\"asset existing\">
+                <img src=\"assets/units/modern_age/tank.png\" width=\"128\" height=\"128\">
+                <div class=\"asset-title\">Tank (Referenz)</div>
+            </div>
+        </div>
+    </div>
+    
+    <div style=\"margin-top: 40px; padding: 20px; background: #1a1a1a; border-radius: 10px;\">
+        <h3> Checkliste:</h3>
+        <ul>
+            <li> Pixel Art Stil? (nicht 3D/realistisch)</li>
+            <li> Ähnliche Farbpalette wie Clubman/Spearman?</li>
+            <li> Transparenter Hintergrund?</li>
+            <li> Side View (Seitenansicht)?</li>
+            <li> Passende Größe?</li>
+        </ul>
+        <p><strong>Wenn JA:</strong> Weiter mit Generierung!</p>
+        <p><strong>Wenn NEIN:</strong> Prompts in generate_assets.py anpassen</p>
+    </div>
+</body>
+</html>

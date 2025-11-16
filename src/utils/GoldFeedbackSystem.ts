@@ -42,7 +42,7 @@ export class GoldFeedbackSystem {
     }
   }
   
-  animateCounterIncrement(counterText: Phaser.GameObjects.Text, newValue: number) {
+  animateCounterIncrement(counterText: Phaser.GameObjects.Text, _newValue: number) {
     // Scale pulse effect
     this.scene.tweens.add({
       targets: counterText,

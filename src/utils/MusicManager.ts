@@ -72,7 +72,8 @@ export class MusicManager {
   setVolume(volume: number) {
     this.volume = Math.max(0, Math.min(1, volume));
     if (this.currentMusic) {
-      this.currentMusic.setVolume(this.volume);
+      // Use property assignment to avoid BaseSound typing issues
+      (this.currentMusic as any).volume = this.volume;
     }
   }
   

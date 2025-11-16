@@ -20,7 +20,7 @@ export class SoundEffectsManager {
     ];
     
     // Load each sound
-    soundList.forEach(key => {
+    soundList.forEach(_key => {
       // this.scene.load.audio(key, `assets/sounds/${key}.mp3`);
     });
   }
@@ -37,7 +37,7 @@ export class SoundEffectsManager {
     }
   }
   
-  playUnitSpawn(epoch: number) {
+  playUnitSpawn(_epoch: number) {
     this.play('unit_spawn', 0.3);
   }
   

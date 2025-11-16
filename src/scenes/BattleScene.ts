@@ -1,4 +1,5 @@
-﻿import Phaser from 'phaser';
+﻿import { clampXPEvent } from '../utils/xpClamp.ts';
+import Phaser from 'phaser';
 import type { Base, Epoch, UnitType, TurretType } from '../game/types';
 import epochsData from '../../data/epochs.json';
 import unitsData from '../../data/units.json';
@@ -27,10 +28,12 @@ const ENEMY_SPAWN_X = 1130;
 const PLAYER_BASE_X = 100;
 const ENEMY_BASE_X = 1180;
 const BASE_ATTACK_RANGE = 100; // Units start attacking base from this distance
-const BASE_MAX_HP = 5000; // Extracted base HP for easy tuning
 const UNIT_CLEANUP_MARGIN = 50;
 const KNOCKBACK_DISTANCE = 5;
 const COMBAT_COOLDOWN_MS = 800; // Reduced from 1000ms to 800ms for more dynamic fights
+// Ranged balance knobs
+const RANGED_DAMAGE_MULTIPLIER = 0.75; // Reduce ranged damage slightly
+const RANGED_ATTACKSPEED_MULTIPLIER = 1.2; // Increase time between ranged shots by 20%
 
 // Turret grid constants
 const TURRET_GRID_START_X = 50;
@@ -101,18 +104,8 @@ export class BattleScene extends Phaser.Scene {
   private soundEffects!: SoundEffectsManager;
   private music!: MusicManager;
   
-  // Unit Selection System
-  private unitSelection!: UnitSelectionSystem;
-  
-  // Formation and Kill Streak Systems
-  private formationManager!: FormationManager;
+  // Unit Selection System (instantiated for side effects)
   private killStreakManager!: KillStreakManager;
-
-  // Kill Streak System
-  private killStreak = 0;
-  private lastKillTime = 0;
-  private readonly KILL_STREAK_TIMEOUT = 5000; // 5 seconds to maintain streak
-  private streakText?: Phaser.GameObjects.Text;
 
   // Difficulty settings
   private difficulty: 'easy' | 'medium' | 'hard' = 'medium';
@@ -166,11 +159,11 @@ export class BattleScene extends Phaser.Scene {
     this.soundEffects = new SoundEffectsManager(this);
     this.music = new MusicManager(this);
     
-    // Initialize unit selection system
-    this.unitSelection = new UnitSelectionSystem(this);
+  // Initialize unit selection system (no persistent reference needed)
+  new UnitSelectionSystem(this);
     
-    // Initialize formation and kill streak systems
-    this.formationManager = new FormationManager(this);
+  // Initialize formation and kill streak systems (formation currently not fully integrated)
+  new FormationManager(this);
     this.killStreakManager = new KillStreakManager(this);
     
     this.createBackground(); // Hintergrund zuerst erstellen
@@ -263,7 +256,7 @@ export class BattleScene extends Phaser.Scene {
     uiScene.events.emit('updateEpoch', this.getCurrentEpoch().name);
     
     // Create kill streak UI element (top-center)
-    this.streakText = this.add.text(640, 30, '', {
+    this.add.text(640, 30, '', {
       fontSize: '24px',
       fontStyle: 'bold',
       color: '#ffffff',
@@ -301,7 +294,7 @@ export class BattleScene extends Phaser.Scene {
       'castle': 'castle-age-bg',
       'renaissance': 'renaissance-bg',
       'modern': 'modern-bg',
-      'future': 'modern-bg' // Fallback to modern for future
+      'future': 'future-bg'
     };
     
     return backgroundMap[epochId] || 'stone-age-bg';
@@ -373,23 +366,24 @@ export class BattleScene extends Phaser.Scene {
 
   private createBaseHealthBar(side: 'player' | 'enemy'): void {
     const base = side === 'player' ? this.playerBase : this.enemyBase;
-    const barWidth = 200;
-    const barHeight = 20;
+    const barWidth = 160;
+    const barHeight = 12;
     const barY = 420; // Position above the base
     const barX = base.x;
 
-    // Background (dark red)
+    // Background (subtle dark)
     const background = this.add.rectangle(
       barX,
       barY,
       barWidth,
       barHeight,
-      0x660000
+      0x000000
     );
     background.setOrigin(0.5, 0.5);
+    background.setFillStyle(0x000000, 0.4);
 
-    // Health fill (green for player, red for enemy)
-    const fillColor = side === 'player' ? 0x00ff00 : 0xff6600;
+    // Health fill (subtle colors + alpha)
+    const fillColor = side === 'player' ? 0x2ecc71 : 0xff5555;
     const fill = this.add.rectangle(
       barX,
       barY,
@@ -398,6 +392,7 @@ export class BattleScene extends Phaser.Scene {
       fillColor
     );
     fill.setOrigin(0.5, 0.5);
+    fill.setFillStyle(fillColor, 0.8);
 
     // Health text
     const text = this.add.text(
@@ -405,9 +400,8 @@ export class BattleScene extends Phaser.Scene {
       barY,
       `${base.hp}/${base.maxHp}`,
       {
-        fontSize: '14px',
-        color: '#ffffff',
-        fontStyle: 'bold'
+        fontSize: '12px',
+        color: '#e0e0e0'
       }
     );
     text.setOrigin(0.5, 0.5);
@@ -433,21 +427,21 @@ export class BattleScene extends Phaser.Scene {
 
     // Calculate health percentage
     const healthPercent = base.hp / base.maxHp;
-    const barWidth = 200;
+  const barWidth = 160;
     
-    // Update fill width
-    healthBar.fill.width = barWidth * healthPercent;
+  // Update fill width
+  healthBar.fill.width = barWidth * healthPercent;
     
     // Update text
     healthBar.text.setText(`${Math.ceil(base.hp)}/${base.maxHp}`);
     
     // Change color based on health percentage
     if (healthPercent > 0.6) {
-      healthBar.fill.setFillStyle(side === 'player' ? 0x00ff00 : 0xff6600);
+      healthBar.fill.setFillStyle(side === 'player' ? 0x2ecc71 : 0xff5555, 0.8);
     } else if (healthPercent > 0.3) {
-      healthBar.fill.setFillStyle(0xffaa00);
+      healthBar.fill.setFillStyle(0xffaa00, 0.8);
     } else {
-      healthBar.fill.setFillStyle(0xff0000);
+      healthBar.fill.setFillStyle(0xff4444, 0.8);
     }
   }
 
@@ -826,15 +820,15 @@ export class BattleScene extends Phaser.Scene {
       'musket-tower': 'renaissance-tower-2',
       'fortress': 'renaissance-tower-3',
       
-      // Modern turrets (use renaissance for now)
-      'machine-gun': 'renaissance-tower-1',
-      'anti-tank': 'renaissance-tower-2',
-      'artillery': 'renaissance-tower-3',
+      // Modern turrets
+      'machine-gun': 'modern-tower-1',
+      'anti-tank': 'modern-tower-2',
+      'artillery': 'modern-tower-3',
       
-      // Future turrets (use renaissance for now)
-      'laser-turret': 'renaissance-tower-1',
-      'rail-gun': 'renaissance-tower-2',
-      'ion-cannon': 'renaissance-tower-3'
+      // Future turrets
+      'laser-turret': 'future-tower-1',
+      'rail-gun': 'future-tower-2',
+      'ion-cannon': 'future-tower-3'
     };
     
     return turretTextures[turretData.id] || 'stone-tower-1';
@@ -866,7 +860,13 @@ export class BattleScene extends Phaser.Scene {
       'rifleman': ['rifleman', 'rifleman_2'],
       'grenadier': ['grenadier'], // MOVED from Renaissance
       'tank': ['tank'],
-      'sniper': ['sniper']
+      'sniper': ['sniper'],
+      
+      // Future Age
+      'laser-soldier': ['laser-soldier'],
+      'mech': ['mech'],
+      'plasma-trooper': ['plasma-trooper'],
+      'super-heavy': ['super-heavy']
     };
     
     const variants = unitTextures[unitData.id] || ['clubman'];
@@ -909,7 +909,13 @@ export class BattleScene extends Phaser.Scene {
       'cannon': 0.12, // Increased from 0.08
       
       // Heavy vehicles (128x96) - 40% larger than infantry
-      'tank': 0.14 // Increased from 0.06
+      'tank': 0.14, // Increased from 0.06
+      
+      // Future Age units
+      'laser-soldier': 0.10, // Infantry size
+      'plasma-trooper': 0.10, // Infantry size
+      'mech': 0.14, // Large unit
+      'super-heavy': 0.16 // Very large unit
     };
     
     return unitScales[unitData.id] || 0.1;
@@ -947,6 +953,9 @@ export class BattleScene extends Phaser.Scene {
       unit.setTexture(texture);
       // Initialize unit with data from JSON
       unit.setActive(true).setVisible(true);
+      // Movement tracking for stuck detection
+      unit.setData('lastMoveX', unit.x);
+      unit.setData('lastMoveTime', this.time.now);
       
       // Set appropriate scale based on unit type
       const scale = this.getUnitScale(unitData);
@@ -965,9 +974,10 @@ export class BattleScene extends Phaser.Scene {
       }
       
       // Apply difficulty multiplier to stats
-      const adjustedHp = Math.round(unitData.hp * statMultiplier);
-      const adjustedDamage = Math.round(unitData.damage * statMultiplier);
-      const adjustedSpeed = unitData.speed; // Speed nicht anpassen
+  const adjustedHp = Math.round(unitData.hp * statMultiplier);
+  const isRanged = unitData.type === 'ranged';
+  const adjustedDamage = Math.round((isRanged ? unitData.damage * RANGED_DAMAGE_MULTIPLIER : unitData.damage) * statMultiplier);
+  const adjustedSpeed = unitData.speed; // Speed nicht anpassen
       
       // Extend unit with health properties
       const gameUnit = unit as GameUnit;
@@ -979,21 +989,29 @@ export class BattleScene extends Phaser.Scene {
       // Healthbar wird erst bei Schaden erstellt - nicht sofort
       gameUnit.healthBar = undefined;
       
-      unit.setData('side', side);
+  unit.setData('side', side);
+  unit.setData('epoch', unitData.epoch);
+  unit.setData('isUnit', true);
       unit.setData('hp', adjustedHp);
       unit.setData('maxHp', adjustedHp);
       unit.setData('damage', adjustedDamage);
       unit.setData('speed', adjustedSpeed);
       unit.setData('range', unitData.range);
-      unit.setData('attackSpeed', unitData.attackSpeed);
+  // Slightly slower fire rate for ranged
+  const adjustedAttackSpeed = isRanged ? unitData.attackSpeed * RANGED_ATTACKSPEED_MULTIPLIER : unitData.attackSpeed;
+  unit.setData('attackSpeed', adjustedAttackSpeed);
       unit.setData('cost', unitData.goldCost);
       unit.setData('type', unitData.type);
       unit.setData('inCombat', false);
-      unit.setData('lastAttackTime', 0);
+  unit.setData('lastAttackTime', 0);
+  // XP tracking flags (reset whenever sprite reused from pool)
+  unit.setData('xpAwarded', false);
+  unit.setData('spawnTimestamp', this.time.now);
       
       // Set constant marching velocity
       const velocityX = side === 'player' ? adjustedSpeed : -adjustedSpeed;
       unit.setVelocityX(velocityX);
+  unit.setData('initialVelocityX', velocityX);
       
       // Developer Mode: Create debug text for this unit
       if (this.developerMode) {
@@ -1008,6 +1026,33 @@ export class BattleScene extends Phaser.Scene {
       
       // Log to game logger for MCP analysis
       gameLogger.unitSpawn(unitData.name, side, texture, `${adjustedHp}/${unitData.hp}`, adjustedDamage, adjustedSpeed, unitData.epoch);
+    }
+  }
+
+  // --- Stuck Detection & Recovery ---
+  private readonly STUCK_TIMEOUT_MS = 2000; // Time with negligible progress before recovery
+  private readonly STUCK_MIN_DELTA_X = 1; // Minimum horizontal progress (px)
+
+  private recoverStuckUnit(sprite: Phaser.Physics.Arcade.Sprite): void {
+    const side = sprite.getData('side');
+    const speed = sprite.getData('speed');
+    // Clear stale combat flag if any
+    if (sprite.getData('inCombat') && !sprite.body?.touching) {
+      sprite.setData('inCombat', false);
+    }
+    // Ensure body is movable again
+    if (sprite.body) {
+      (sprite.body as Phaser.Physics.Arcade.Body).immovable = false;
+    }
+    // Reapply velocity
+    sprite.setVelocityX(side === 'player' ? speed : -speed);
+    // Nudge forward slightly to break collision overlap
+    sprite.x += side === 'player' ? 4 : -4;
+    // Update tracking
+    sprite.setData('lastMoveX', sprite.x);
+    sprite.setData('lastMoveTime', this.time.now);
+    if (this.developerMode) {
+      console.log(`🛠️ Recovering stuck unit (${sprite.getData('side')}) id=${sprite.getData('type')} at x=${Math.round(sprite.x)}`);
     }
   }
 
@@ -1158,6 +1203,13 @@ export class BattleScene extends Phaser.Scene {
       
       unit1.setData('hp', hp1);
       unit2.setData('hp', hp2);
+
+  // Melee strike micro-animations
+  this.tweens.add({ targets: unit1, x: unit1.x + (side1 === 'player' ? 4 : -4), duration: 60, yoyo: true, ease: 'Cubic.easeOut' });
+  this.tweens.add({ targets: unit2, x: unit2.x + (side2 === 'player' ? -4 : 4), duration: 60, yoyo: true, ease: 'Cubic.easeOut' });
+  unit1.setTintFill(0xffffff);
+  unit2.setTintFill(0xffffff);
+  this.time.delayedCall(50, () => { if (unit1.active) unit1.clearTint(); if (unit2.active) unit2.clearTint(); });
       
       // Update GameUnit health properties and healthbars
       const gameUnit1 = unit1 as GameUnit;
@@ -1191,9 +1243,10 @@ export class BattleScene extends Phaser.Scene {
       
       // Handle unit death - ALWAYS clear inCombat flag before recycling
       if (hp1 <= 0) {
-        if (side2 === 'player') {
+        if (side2 === 'player' && !unit1.getData('xpAwarded')) {
           const bonusXP = calculateKillBonusXP(unit1.getData('cost') || 50);
           this.addXP(bonusXP, unit1.x, unit1.y);
+          unit1.setData('xpAwarded', true);
           // Kill streak gold bonus
           const goldReward = this.addKillToStreak();
           this.addGold(goldReward, unit1.x, unit1.y);
@@ -1210,9 +1263,10 @@ export class BattleScene extends Phaser.Scene {
           unit2.setVelocityX(side2 === 'player' ? speed2 : -speed2);
         }
       } else if (hp2 <= 0) {
-        if (side1 === 'player') {
+        if (side1 === 'player' && !unit2.getData('xpAwarded')) {
           const bonusXP = calculateKillBonusXP(unit2.getData('cost') || 50);
           this.addXP(bonusXP, unit2.x, unit2.y);
+          unit2.setData('xpAwarded', true);
           // Kill streak gold bonus
           const goldReward = this.addKillToStreak();
           this.addGold(goldReward, unit2.x, unit2.y);
@@ -1270,6 +1324,12 @@ export class BattleScene extends Phaser.Scene {
   }
 
   private handleProjectileHit(projectile: Phaser.Physics.Arcade.Sprite, target: Phaser.Physics.Arcade.Sprite): void {
+    // Prevent double-processing the same projectile
+    if (projectile.getData('consumed')) return;
+    projectile.setData('consumed', true);
+    if (projectile.body) {
+      (projectile.body as Phaser.Physics.Arcade.Body).enable = false;
+    }
     const damage = projectile.getData('damage');
     const hpBefore = target.getData('hp');
     const hp = hpBefore - damage;
@@ -1288,16 +1348,17 @@ export class BattleScene extends Phaser.Scene {
       this.updateHealthBar(gameUnit);
     }
     
-    // Award XP for damage
+    // Award XP for damage (no floating text to avoid spam on rapid hits)
     if (projectile.getData('owner') === 'player') {
       const xpFromDamage = calculateXPFromDamage(damage, hpBefore);
-      this.addXP(xpFromDamage, target.x, target.y);
+      this.addXP(xpFromDamage);
     }
     
     if (hp <= 0) {
-      if (projectile.getData('owner') === 'player') {
+      if (projectile.getData('owner') === 'player' && !target.getData('xpAwarded')) {
         const bonusXP = calculateKillBonusXP(target.getData('cost') || 50);
         this.addXP(bonusXP, target.x, target.y);
+        target.setData('xpAwarded', true);
         // Also add gold reward for kill
         this.addGold(10);
       }
@@ -1331,7 +1392,9 @@ export class BattleScene extends Phaser.Scene {
   }
 
   private addXP(amount: number, x?: number, y?: number): void {
-    this.xp += amount;
+    // Centralized clamp utility for easier future tuning
+    const safeAmount = clampXPEvent(amount);
+    this.xp += safeAmount;
     const currentEpoch = this.getCurrentEpoch();
     
     // Play XP gain sound
@@ -1339,7 +1402,7 @@ export class BattleScene extends Phaser.Scene {
     
     // Visual feedback with new XP Feedback System
     if (x !== undefined && y !== undefined) {
-      this.xpFeedback.showXPGain(x, y, amount);
+      this.xpFeedback.showXPGain(x, y, safeAmount);
     }
     
     // Check for epoch progression using helper
@@ -1415,57 +1478,6 @@ export class BattleScene extends Phaser.Scene {
   }
 
   // ===== VISUAL FEEDBACK METHODS =====
-  
-  /**
-   * Show floating text that rises and fades out
-   */
-  private showFloatingText(x: number, y: number, text: string, color: string, fontSize: number): void {
-    const floatingText = this.add.text(x, y, text, {
-      fontSize: `${fontSize}px`,
-      color: color,
-      fontStyle: 'bold',
-      stroke: '#000000',
-      strokeThickness: 4
-    });
-    floatingText.setOrigin(0.5, 0.5);
-    floatingText.setDepth(1000); // Above everything
-    
-    // Animate: Float up and fade out - reduced
-    this.tweens.add({
-      targets: floatingText,
-      y: y - 40, // Reduced from 60
-      alpha: 0,
-      duration: 1000, // Reduced from 1500ms
-      ease: 'Cubic.easeOut',
-      onComplete: () => {
-        floatingText.destroy();
-      }
-    });
-  }
-  
-  /**
-   * Show golden sparkle particles for XP gains
-   */
-  private showXPParticles(x: number, y: number): void {
-    // Create temporary particle emitter with one-shot emission
-    const particles = this.add.particles(x, y, 'particle-star', {
-      speed: { min: 30, max: 80 }, // Reduced from 50-150
-      scale: { start: 0.8, end: 0 }, // Start at 80% of 16px = ~13px
-      alpha: { start: 1.0, end: 0 }, // Full visibility to fade
-      angle: { min: 0, max: 360 },
-      lifespan: 600, // Reduced from 800ms
-      gravityY: -80, // Reduced from -100
-      emitting: false
-    });
-    
-    // Emit fewer particles (was 8)
-    particles.emitParticle(4);
-    
-    // Destroy after animation
-    this.time.delayedCall(800, () => {
-      particles.destroy();
-    });
-  }
 
   private showGoldParticles(x: number, y: number, amount: number): void {
     // Create gold coin particles - reduced effect
@@ -1572,6 +1584,16 @@ export class BattleScene extends Phaser.Scene {
       if (sprite.x < -UNIT_CLEANUP_MARGIN || sprite.x > LANE_WIDTH + UNIT_CLEANUP_MARGIN) {
         this.recycleProjectile(sprite);
       }
+      // Update projectile visuals: arrows face velocity; rocks/cannonballs spin
+      const body = sprite.body as Phaser.Physics.Arcade.Body | undefined;
+      if (body) {
+        if (sprite.getData('arrow')) {
+          sprite.rotation = Math.atan2(body.velocity.y, body.velocity.x);
+        }
+        if (sprite.getData('spin')) {
+          sprite.rotation += 0.2;
+        }
+      }
     });
     
     // Safety check: Ensure all non-combat units are moving
@@ -1587,6 +1609,19 @@ export class BattleScene extends Phaser.Scene {
           const speed = sprite.getData('speed');
           sprite.setVelocityX(speed);
         }
+        // Progress-based stuck recovery (ignores ranged units that intentionally stop to fire)
+        const lastMoveX = sprite.getData('lastMoveX') ?? sprite.x;
+        const lastMoveTime = sprite.getData('lastMoveTime') ?? this.time.now;
+        const type = sprite.getData('type');
+        if (type !== 'ranged') {
+          const deltaX = Math.abs(sprite.x - lastMoveX);
+          if (deltaX < this.STUCK_MIN_DELTA_X && (_time - lastMoveTime) >= this.STUCK_TIMEOUT_MS) {
+            this.recoverStuckUnit(sprite);
+          } else if (deltaX >= this.STUCK_MIN_DELTA_X) {
+            sprite.setData('lastMoveX', sprite.x);
+            sprite.setData('lastMoveTime', _time);
+          }
+        }
       }
     });
     
@@ -1600,6 +1635,18 @@ export class BattleScene extends Phaser.Scene {
         if (Math.abs(velocity) < 5) { // Velocity too low, unit is stuck
           const speed = sprite.getData('speed');
           sprite.setVelocityX(-speed);
+        }
+        const lastMoveX = sprite.getData('lastMoveX') ?? sprite.x;
+        const lastMoveTime = sprite.getData('lastMoveTime') ?? this.time.now;
+        const type = sprite.getData('type');
+        if (type !== 'ranged') {
+          const deltaX = Math.abs(sprite.x - lastMoveX);
+          if (deltaX < this.STUCK_MIN_DELTA_X && (_time - lastMoveTime) >= this.STUCK_TIMEOUT_MS) {
+            this.recoverStuckUnit(sprite);
+          } else if (deltaX >= this.STUCK_MIN_DELTA_X) {
+            sprite.setData('lastMoveX', sprite.x);
+            sprite.setData('lastMoveTime', _time);
+          }
         }
       }
     });
@@ -1714,6 +1761,8 @@ export class BattleScene extends Phaser.Scene {
     
     // Fire projectile
     this.fireUnitProjectile(attacker, target);
+    // Visual recoil on shooter
+  this.animateRangedAttack(attacker);
     attacker.setData('lastRangedAttack', now);
   }
 
@@ -1722,21 +1771,68 @@ export class BattleScene extends Phaser.Scene {
    */
   private fireUnitProjectile(shooter: Phaser.Physics.Arcade.Sprite, target: Phaser.Physics.Arcade.Sprite): void {
     const projectileTexture = this.getUnitProjectileTexture(shooter);
-    const projectile = this.projectiles.get(shooter.x, shooter.y, projectileTexture);
+    const projectile = this.projectiles.get(shooter.x, shooter.y, projectileTexture) as Phaser.Physics.Arcade.Sprite;
     
     if (!projectile) return;
     
     projectile.setActive(true).setVisible(true);
-    projectile.setScale(0.2);
+    // Ensure texture and appropriate size for pooled sprite
+    projectile.setTexture(projectileTexture);
+    projectile.setScale(this.getUnitProjectileScale(projectileTexture));
+    projectile.setData('consumed', false);
+    if (projectile.body) {
+      (projectile.body as Phaser.Physics.Arcade.Body).enable = true;
+    }
     
-    // Aim at target with prediction
+    // Aim and fire
     const angle = Phaser.Math.Angle.Between(shooter.x, shooter.y, target.x, target.y);
-    const speed = 400;
+    const speed = 420;
     this.physics.velocityFromRotation(angle, speed, projectile.body!.velocity);
     projectile.setRotation(angle);
     
     projectile.setData('damage', shooter.getData('damage') || 10);
     projectile.setData('owner', shooter.getData('side'));
+    projectile.setDepth(1500);
+
+    // Behavior flags for visuals
+    const isArc = this.isArcProjectile(projectileTexture);
+    projectile.setData('spin', projectileTexture === 'rock' || projectileTexture === 'cannonball');
+    projectile.setData('arrow', projectileTexture === 'arrow');
+    if (projectile.body) {
+      const body = projectile.body as Phaser.Physics.Arcade.Body;
+      if (isArc) {
+        body.setAcceleration(0, 300);
+        body.velocity.y -= 40; // slight lift for short throws
+      } else {
+        body.setAcceleration(0, 0);
+      }
+    }
+  }
+
+  private getUnitProjectileScale(tex: string): number {
+    const map: Record<string, number> = { rock: 0.12, arrow: 0.12, cannonball: 0.14, bullet: 0.08 };
+    return map[tex] ?? 0.12;
+  }
+
+  private isArcProjectile(tex: string): boolean {
+    return tex === 'rock' || tex === 'cannonball';
+  }
+
+  /**
+   * Simple recoil animation for ranged units
+   */
+  private animateRangedAttack(attacker: Phaser.Physics.Arcade.Sprite): void {
+    const originalX = attacker.x;
+    const dir = attacker.getData('side') === 'player' ? -1 : 1;
+    this.tweens.add({
+      targets: attacker,
+      x: originalX + dir * 6,
+      duration: 70,
+      yoyo: true,
+      ease: 'Cubic.easeOut'
+    });
+    attacker.setTintFill(0xffffff);
+    this.time.delayedCall(60, () => attacker.clearTint());
   }
 
   /**
@@ -1800,6 +1896,10 @@ export class BattleScene extends Phaser.Scene {
       
       projectile.setData('owner', 'player');
       projectile.setData('damage', slot.turretData.damage);
+      projectile.setData('consumed', false);
+      if (projectile.body) {
+        (projectile.body as Phaser.Physics.Arcade.Body).enable = true;
+      }
       
       // Calculate velocity toward target
       const angle = Phaser.Math.Angle.Between(slot.x, slot.y, target.x, target.y);
@@ -1990,8 +2090,11 @@ export class BattleScene extends Phaser.Scene {
         });
         
         if (hp <= 0) {
-          const bonusXP = calculateKillBonusXP(sprite.getData('cost') || 50);
-          this.addXP(bonusXP);
+          if (!sprite.getData('xpAwarded')) {
+            const bonusXP = calculateKillBonusXP(sprite.getData('cost') || 50);
+            this.addXP(bonusXP);
+            sprite.setData('xpAwarded', true);
+          }
           this.recycleUnit(sprite);
         }
       }
@@ -2106,8 +2209,11 @@ export class BattleScene extends Phaser.Scene {
         sprite.y += Math.sin(angle) * 15;
         
         if (hp <= 0) {
-          const bonusXP = calculateKillBonusXP(sprite.getData('cost') || 50);
-          this.addXP(bonusXP);
+          if (!sprite.getData('xpAwarded')) {
+            const bonusXP = calculateKillBonusXP(sprite.getData('cost') || 50);
+            this.addXP(bonusXP);
+            sprite.setData('xpAwarded', true);
+          }
           this.recycleUnit(sprite);
         }
       }

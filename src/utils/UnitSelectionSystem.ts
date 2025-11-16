@@ -2,7 +2,6 @@
 // Unit Selection System
 export class UnitSelectionSystem {
   private scene: Phaser.Scene;
-  private selectedUnit: any = null;
   private selectionIndicator?: Phaser.GameObjects.Graphics;
   private infoPanel?: Phaser.GameObjects.Container;
   
@@ -12,7 +11,7 @@ export class UnitSelectionSystem {
   }
   
   private setupClickHandlers() {
-    this.scene.input.on('gameobjectdown', (pointer: any, gameObject: any) => {
+    this.scene.input.on('gameobjectdown', (_pointer: any, gameObject: any) => {
       if (gameObject.getData('isUnit')) {
         this.selectUnit(gameObject);
       }
@@ -20,7 +19,6 @@ export class UnitSelectionSystem {
   }
   
   selectUnit(unit: any) {
-    this.selectedUnit = unit;
     this.showSelectionIndicator(unit);
     this.showInfoPanel(unit);
   }
@@ -84,7 +82,6 @@ export class UnitSelectionSystem {
   }
   
   clearSelection() {
-    this.selectedUnit = null;
     if (this.selectionIndicator) {
       this.selectionIndicator.destroy();
     }
