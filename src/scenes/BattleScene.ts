@@ -136,6 +136,8 @@ export class BattleScene extends Phaser.Scene {
   private spawnQueue: Array<{ side: 'player' | 'enemy', unitData: UnitType, delay: number }> = [];
   private lastSpawnTime: Record<'player' | 'enemy', number> = { player: 0, enemy: 0 };
   private readonly SPAWN_QUEUE_DELAY = 250; // ms delay between queued spawns
+  // Internal UID counter to deduplicate projectile hits across frames
+  private unitUidCounter = 1;
 
   constructor() {
     super({ key: 'BattleScene' });
@@ -949,6 +951,13 @@ export class BattleScene extends Phaser.Scene {
     const unit = unitGroup.get(spawnX, spawnY, texture) as Phaser.Physics.Arcade.Sprite;
 
     if (unit) {
+      // Reset any pooled state that may persist from a previous life
+      unit.clearTint();
+      if (unit.body) {
+        const body = unit.body as Phaser.Physics.Arcade.Body;
+        body.enable = true;
+        body.immovable = false;
+      }
       // CRITICAL FIX: Explicitly set texture on pooled sprite to prevent old textures from persisting
       unit.setTexture(texture);
       // Initialize unit with data from JSON
@@ -985,6 +994,8 @@ export class BattleScene extends Phaser.Scene {
       gameUnit.maxHp = adjustedHp;
       gameUnit.currentHp = adjustedHp;
       gameUnit.side = side;
+  // Assign a unique, stable UID so projectiles can avoid re-hitting the same unit
+  unit.setData('uid', this.unitUidCounter++);
       
       // Healthbar wird erst bei Schaden erstellt - nicht sofort
       gameUnit.healthBar = undefined;
@@ -1207,6 +1218,7 @@ export class BattleScene extends Phaser.Scene {
   // Melee strike micro-animations
   this.tweens.add({ targets: unit1, x: unit1.x + (side1 === 'player' ? 4 : -4), duration: 60, yoyo: true, ease: 'Cubic.easeOut' });
   this.tweens.add({ targets: unit2, x: unit2.x + (side2 === 'player' ? -4 : 4), duration: 60, yoyo: true, ease: 'Cubic.easeOut' });
+  // Damage flash (original white) – will be refined in separate commit
   unit1.setTintFill(0xffffff);
   unit2.setTintFill(0xffffff);
   this.time.delayedCall(50, () => { if (unit1.active) unit1.clearTint(); if (unit2.active) unit2.clearTint(); });
@@ -1310,10 +1322,17 @@ export class BattleScene extends Phaser.Scene {
     
     // Return unit to pool for recycling
     const side = unit.getData('side') as 'player' | 'enemy';
+    // Ensure any visual/physics state is reset so pooled sprite doesn't carry over
+    unit.clearTint();
     unit.setActive(false);
     unit.setVisible(false);
     unit.setVelocity(0, 0);
     unit.setData('inCombat', false);
+    if (unit.body) {
+      const body = unit.body as Phaser.Physics.Arcade.Body;
+      body.immovable = false;
+      body.enable = false;
+    }
     
     // Return to appropriate group pool
     if (side === 'player') {
@@ -1324,12 +1343,21 @@ export class BattleScene extends Phaser.Scene {
   }
 
   private handleProjectileHit(projectile: Phaser.Physics.Arcade.Sprite, target: Phaser.Physics.Arcade.Sprite): void {
+    // If this projectile uses manual swept collision, ignore physics overlap callbacks
+    if (projectile.getData('manualCollision')) return;
     // Prevent double-processing the same projectile
     if (projectile.getData('consumed')) return;
-    projectile.setData('consumed', true);
-    if (projectile.body) {
-      (projectile.body as Phaser.Physics.Arcade.Body).enable = false;
+    // Enforce pierce limits (default 0 = destroy on first impact)
+    const targetUid = (target.getData('uid') as number) ?? -1;
+    let hitSet = projectile.getData('hitUids') as Set<number> | undefined;
+    if (!hitSet) {
+      hitSet = new Set<number>();
+      projectile.setData('hitUids', hitSet);
     }
+    if (targetUid !== -1 && hitSet.has(targetUid)) {
+      return; // already hit this target in a previous frame
+    }
+    hitSet.add(targetUid);
     const damage = projectile.getData('damage');
     const hpBefore = target.getData('hp');
     const hp = hpBefore - damage;
@@ -1364,9 +1392,19 @@ export class BattleScene extends Phaser.Scene {
       }
       this.recycleUnit(target);
     }
-    
-    // Recycle projectile
-    this.recycleProjectile(projectile);
+    // Pierce handling: remaining hits allowed beyond this impact
+    let pierce = (projectile.getData('pierce') as number) ?? 0;
+    if (pierce <= 0) {
+      // Consume projectile now
+      projectile.setData('consumed', true);
+      if (projectile.body) {
+        (projectile.body as Phaser.Physics.Arcade.Body).enable = false;
+      }
+      this.recycleProjectile(projectile);
+    } else {
+      pierce -= 1;
+      projectile.setData('pierce', pierce);
+    }
   }
 
   private recycleProjectile(projectile: Phaser.Physics.Arcade.Sprite): void {
@@ -1577,6 +1615,7 @@ export class BattleScene extends Phaser.Scene {
     });
     
     // Clean up projectiles that left the battlefield
+    // Clean up projectiles that left the battlefield and process manual swept collisions
     this.projectiles.children.entries.forEach((proj) => {
       const sprite = proj as Phaser.Physics.Arcade.Sprite;
       if (!sprite.active) return;
@@ -1594,6 +1633,13 @@ export class BattleScene extends Phaser.Scene {
           sprite.rotation += 0.2;
         }
       }
+      // Manual swept collision for heavy projectiles
+      if (sprite.getData('manualCollision')) {
+        this.processManualProjectile(sprite);
+      }
+      // Track previous position for swept tests
+      sprite.setData('prevX', sprite.x);
+      sprite.setData('prevY', sprite.y);
     });
     
     // Safety check: Ensure all non-combat units are moving
@@ -1608,6 +1654,10 @@ export class BattleScene extends Phaser.Scene {
         if (Math.abs(velocity) < 5) { // Velocity too low, unit is stuck
           const speed = sprite.getData('speed');
           sprite.setVelocityX(speed);
+        }
+        // Reset any stale immovable flags from previous combats
+        if (sprite.body) {
+          (sprite.body as Phaser.Physics.Arcade.Body).immovable = false;
         }
         // Progress-based stuck recovery (ignores ranged units that intentionally stop to fire)
         const lastMoveX = sprite.getData('lastMoveX') ?? sprite.x;
@@ -1635,6 +1685,9 @@ export class BattleScene extends Phaser.Scene {
         if (Math.abs(velocity) < 5) { // Velocity too low, unit is stuck
           const speed = sprite.getData('speed');
           sprite.setVelocityX(-speed);
+        }
+        if (sprite.body) {
+          (sprite.body as Phaser.Physics.Arcade.Body).immovable = false;
         }
         const lastMoveX = sprite.getData('lastMoveX') ?? sprite.x;
         const lastMoveTime = sprite.getData('lastMoveTime') ?? this.time.now;
@@ -1776,10 +1829,17 @@ export class BattleScene extends Phaser.Scene {
     if (!projectile) return;
     
     projectile.setActive(true).setVisible(true);
+    projectile.setActive(true).setVisible(true);
     // Ensure texture and appropriate size for pooled sprite
     projectile.setTexture(projectileTexture);
     projectile.setScale(this.getUnitProjectileScale(projectileTexture));
     projectile.setData('consumed', false);
+    projectile.setData('hitUids', new Set<number>());
+    projectile.setData('prevX', projectile.x);
+    projectile.setData('prevY', projectile.y);
+    projectile.setData('hitRadius', this.getProjectileHitRadius(projectileTexture));
+    // Default: no pierce for unit projectiles
+    projectile.setData('pierce', this.getDefaultPierceForUnitProjectile(projectileTexture));
     if (projectile.body) {
       (projectile.body as Phaser.Physics.Arcade.Body).enable = true;
     }
@@ -1798,6 +1858,8 @@ export class BattleScene extends Phaser.Scene {
     const isArc = this.isArcProjectile(projectileTexture);
     projectile.setData('spin', projectileTexture === 'rock' || projectileTexture === 'cannonball');
     projectile.setData('arrow', projectileTexture === 'arrow');
+    // Heavy arc projectiles use manual swept collision to avoid multi-hit bugs
+    projectile.setData('manualCollision', isArc);
     if (projectile.body) {
       const body = projectile.body as Phaser.Physics.Arcade.Body;
       if (isArc) {
@@ -1806,6 +1868,120 @@ export class BattleScene extends Phaser.Scene {
       } else {
         body.setAcceleration(0, 0);
       }
+    }
+  }
+  // ===== Manual Swept Collision for Heavy Projectiles =====
+  private getProjectileHitRadius(texture: string): number {
+    const map: Record<string, number> = {
+      rock: 16,
+      cannonball: 14,
+      arrow: 8,
+      bullet: 6
+    };
+    return map[texture] ?? 10;
+  }
+
+  private getDefaultPierceForUnitProjectile(texture: string): number {
+    // Keep unit projectiles simple: arrows/bullets do not pierce by default
+    if (texture === 'arrow' || texture === 'bullet') return 0;
+    return 0; // rocks/cannonballs also 0
+  }
+
+  private processManualProjectile(projectile: Phaser.Physics.Arcade.Sprite): void {
+    if (!projectile.active) return;
+    if (projectile.getData('consumed')) return;
+
+    const prevX = (projectile.getData('prevX') as number) ?? projectile.x;
+    const prevY = (projectile.getData('prevY') as number) ?? projectile.y;
+    const currX = projectile.x;
+    const currY = projectile.y;
+    const r = (projectile.getData('hitRadius') as number) ?? 10;
+    const owner = (projectile.getData('owner') as 'player' | 'enemy') ?? 'player';
+    const group = owner === 'player' ? this.enemyUnits : this.playerUnits;
+    const hitSet = (projectile.getData('hitUids') as Set<number>) ?? new Set<number>();
+    if (!projectile.getData('hitUids')) projectile.setData('hitUids', hitSet);
+
+    type HitCandidate = { target: Phaser.Physics.Arcade.Sprite; t: number };
+    const candidates: HitCandidate[] = [];
+
+    const abx = currX - prevX;
+    const aby = currY - prevY;
+    const abLen2 = abx * abx + aby * aby || 0.0001;
+
+    group.children.entries.forEach((child) => {
+      const unit = child as Phaser.Physics.Arcade.Sprite;
+      if (!unit.active) return;
+      const uid = (unit.getData('uid') as number) ?? -1;
+      if (uid !== -1 && hitSet.has(uid)) return;
+      const cx = unit.x;
+      const cy = unit.y;
+      // Project center onto segment
+      const acx = cx - prevX;
+      const acy = cy - prevY;
+  const t = (acx * abx + acy * aby) / abLen2;
+      if (t < 0 || t > 1) return; // closest approach outside this segment
+      const closestX = prevX + abx * t;
+      const closestY = prevY + aby * t;
+      const dist2 = (cx - closestX) * (cx - closestX) + (cy - closestY) * (cy - closestY);
+      if (dist2 <= r * r) {
+        candidates.push({ target: unit, t });
+      }
+    });
+
+    if (candidates.length === 0) return;
+    // Process in order along the path
+    candidates.sort((a, b) => a.t - b.t);
+
+    let pierce = (projectile.getData('pierce') as number) ?? 0;
+    let hitsRemaining = pierce + 1; // total hits allowed including this frame
+
+    for (const { target } of candidates) {
+      if (hitsRemaining <= 0) break;
+      // Apply damage similar to handleProjectileHit, but without physics overlap
+      const targetUid = (target.getData('uid') as number) ?? -1;
+      if (targetUid !== -1) hitSet.add(targetUid);
+
+      const damage = projectile.getData('damage');
+      const hpBefore = target.getData('hp');
+      const hp = hpBefore - damage;
+      target.setData('hp', hp);
+
+      const gameUnit = target as GameUnit;
+      if (gameUnit.currentHp !== undefined) {
+        gameUnit.currentHp = hp;
+        if (!gameUnit.healthBar) {
+          gameUnit.healthBar = this.createHealthBar(target);
+        }
+        this.updateHealthBar(gameUnit);
+      }
+
+      if (owner === 'player') {
+        const xpFromDamage = calculateXPFromDamage(damage, hpBefore);
+        this.addXP(xpFromDamage);
+      }
+
+      if (hp <= 0) {
+        if (owner === 'player' && !target.getData('xpAwarded')) {
+          const bonusXP = calculateKillBonusXP(target.getData('cost') || 50);
+          this.addXP(bonusXP, target.x, target.y);
+          target.setData('xpAwarded', true);
+          this.addGold(10);
+        }
+        this.recycleUnit(target);
+      }
+
+      hitsRemaining -= 1;
+      pierce -= 1;
+    }
+
+    if (hitsRemaining <= 0) {
+      projectile.setData('consumed', true);
+      if (projectile.body) {
+        (projectile.body as Phaser.Physics.Arcade.Body).enable = false;
+      }
+      this.recycleProjectile(projectile);
+    } else {
+      projectile.setData('pierce', Math.max(0, pierce));
     }
   }
 
@@ -1831,8 +2007,8 @@ export class BattleScene extends Phaser.Scene {
       yoyo: true,
       ease: 'Cubic.easeOut'
     });
-    attacker.setTintFill(0xffffff);
-    this.time.delayedCall(60, () => attacker.clearTint());
+  attacker.setTintFill(0xffffff);
+  this.time.delayedCall(60, () => attacker.clearTint());
   }
 
   /**
@@ -2083,8 +2259,8 @@ export class BattleScene extends Phaser.Scene {
         const xpFromDamage = calculateXPFromDamage(RAINING_ROCKS_DAMAGE, hpBefore);
         this.addXP(xpFromDamage);
         
-        // Visual feedback - flash white
-        sprite.setTint(0xFFFFFF);
+  // Visual feedback - flash white (will adjust later)
+  sprite.setTint(0xFFFFFF);
         this.time.delayedCall(100, () => {
           if (sprite.active) sprite.clearTint();
         });
