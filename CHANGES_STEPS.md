@@ -4,3 +4,4 @@ Step 1: XP system fix (kill duplication guard, per-event clamp via clampXPEvent,
 Step 2: Stuck unit detection & recovery logic
 Step 3: Ranged projectile balance & visual improvements (spin, arc, recoil)
 Step 4: Base health bar UI refinements (size, colors, alpha)
+Step 5: Future age content integration (units, turrets, background)
