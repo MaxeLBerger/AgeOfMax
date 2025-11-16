@@ -21,6 +21,11 @@
 </head>
 <body>
   <div id="game-canvas"></div>
+  <!--
+    Dev-only module load. In production the built /AgeOfMax/index.html from dist
+    is served directly and contains the compiled bundle reference injected by Vite.
+    Removing the previous redirect avoids navigation to a non-existent /AgeOfMax/dist/ path on GitHub Pages.
+  -->
   <script type="module" src="/src/main.ts"></script>
 </body>
 </html>

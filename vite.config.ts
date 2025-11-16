@@ -9,6 +9,7 @@ export default defineConfig(({ mode }) => ({
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
-    sourcemap: true
+    // Disable source maps in production to reduce bundle size and parse time.
+    sourcemap: mode !== 'production'
   }
 }));
