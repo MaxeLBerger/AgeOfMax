@@ -1844,11 +1844,19 @@ export class BattleScene extends Phaser.Scene {
       (projectile.body as Phaser.Physics.Arcade.Body).enable = true;
     }
     
-    // Aim and fire
+    // Aim and fire with spawn muzzle offset
+    const side = shooter.getData('side');
+    const muzzleOffset = 12 * (side === 'player' ? 1 : -1);
+    projectile.x = shooter.x + muzzleOffset;
     const angle = Phaser.Math.Angle.Between(shooter.x, shooter.y, target.x, target.y);
-    const speed = 420;
+    const speedMap: Record<string, number> = { bullet: 540, cannonball: 460, arrow: 480, rock: 420 };
+    const speed = speedMap[projectileTexture] ?? 450;
     this.physics.velocityFromRotation(angle, speed, projectile.body!.velocity);
-    projectile.setRotation(angle);
+    if (projectileTexture === 'arrow' || projectileTexture === 'rock') {
+      projectile.setRotation(angle);
+    } else {
+      projectile.rotation = 0; // keep bullets/cannonballs level
+    }
     
     projectile.setData('damage', shooter.getData('damage') || 10);
     projectile.setData('owner', shooter.getData('side'));
@@ -1856,19 +1864,27 @@ export class BattleScene extends Phaser.Scene {
 
     // Behavior flags for visuals
     const isArc = this.isArcProjectile(projectileTexture);
-    projectile.setData('spin', projectileTexture === 'rock' || projectileTexture === 'cannonball');
+    projectile.setData('spin', projectileTexture === 'rock');
     projectile.setData('arrow', projectileTexture === 'arrow');
-    // Heavy arc projectiles use manual swept collision to avoid multi-hit bugs
     projectile.setData('manualCollision', isArc);
     if (projectile.body) {
       const body = projectile.body as Phaser.Physics.Arcade.Body;
       if (isArc) {
-        body.setAcceleration(0, 300);
-        body.velocity.y -= 40; // slight lift for short throws
+        body.setAcceleration(0, 280); // pronounced arc only for thrown rock
+        body.velocity.y -= 60;
+      } else if (projectileTexture === 'cannonball') {
+        body.setAcceleration(0, 120); // shallow ballistic drop
+        body.velocity.y -= 20;
+      } else if (projectileTexture === 'arrow') {
+        body.setAcceleration(0, 90); // very light arrow drop
+        body.velocity.y -= 15;
       } else {
-        body.setAcceleration(0, 0);
+        body.setAcceleration(0, 0); // bullets straight
+        body.velocity.y = 0;
       }
     }
+    // Muzzle flash
+    this.spawnMuzzleFlash(projectile.x, projectile.y, side);
   }
   // ===== Manual Swept Collision for Heavy Projectiles =====
   private getProjectileHitRadius(texture: string): number {
@@ -1986,12 +2002,14 @@ export class BattleScene extends Phaser.Scene {
   }
 
   private getUnitProjectileScale(tex: string): number {
-    const map: Record<string, number> = { rock: 0.12, arrow: 0.12, cannonball: 0.14, bullet: 0.08 };
-    return map[tex] ?? 0.12;
+    // Reduced sizes for less clutter and clearer silhouettes
+    const map: Record<string, number> = { rock: 0.09, arrow: 0.085, cannonball: 0.10, bullet: 0.06 };
+    return map[tex] ?? 0.08;
   }
 
   private isArcProjectile(tex: string): boolean {
-    return tex === 'rock' || tex === 'cannonball';
+    // Only primitive thrown rocks get a full arc now
+    return tex === 'rock';
   }
 
   /**
@@ -2009,6 +2027,21 @@ export class BattleScene extends Phaser.Scene {
     });
   attacker.setTint(0xff9999);
   this.time.delayedCall(60, () => attacker.clearTint());
+  }
+
+  private spawnMuzzleFlash(x: number, y: number, side: 'player' | 'enemy'): void {
+    const flash = this.add.image(x, y - 6, 'muzzle-flash')
+      .setDepth(2000)
+      .setScale(0.6)
+      .setBlendMode(Phaser.BlendModes.ADD);
+    if (side === 'enemy') flash.setFlipX(true);
+    this.tweens.add({
+      targets: flash,
+      alpha: 0,
+      scale: 0.3,
+      duration: 100,
+      onComplete: () => flash.destroy()
+    });
   }
 
   /**

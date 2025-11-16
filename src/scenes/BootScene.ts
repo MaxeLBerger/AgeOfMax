@@ -134,6 +134,16 @@ export class BootScene extends Phaser.Scene {
     graphics.fillCircle(6, 6, 3);
     graphics.generateTexture('particle-gold', 12, 12);
     graphics.clear();
+
+    // Simple muzzle flash (used for ranged attack feedback)
+    graphics.fillStyle(0xFFFF66, 1);
+    graphics.fillCircle(8, 8, 6);
+    graphics.fillStyle(0xFFCC33, 0.9);
+    graphics.fillCircle(8, 8, 4);
+    graphics.fillStyle(0xFFFFFF, 0.8);
+    graphics.fillCircle(8, 8, 2);
+    graphics.generateTexture('muzzle-flash', 16, 16);
+    graphics.clear();
     
     graphics.destroy();
   }
