@@ -1218,10 +1218,10 @@ export class BattleScene extends Phaser.Scene {
   // Melee strike micro-animations
   this.tweens.add({ targets: unit1, x: unit1.x + (side1 === 'player' ? 4 : -4), duration: 60, yoyo: true, ease: 'Cubic.easeOut' });
   this.tweens.add({ targets: unit2, x: unit2.x + (side2 === 'player' ? -4 : 4), duration: 60, yoyo: true, ease: 'Cubic.easeOut' });
-  // Damage flash (original white) – will be refined in separate commit
-  unit1.setTintFill(0xffffff);
-  unit2.setTintFill(0xffffff);
-  this.time.delayedCall(50, () => { if (unit1.active) unit1.clearTint(); if (unit2.active) unit2.clearTint(); });
+  // Subtle damage flash (soft red) to avoid confusing white flash
+  unit1.setTint(0xff7777);
+  unit2.setTint(0xff7777);
+  this.time.delayedCall(80, () => { if (unit1.active) unit1.clearTint(); if (unit2.active) unit2.clearTint(); });
       
       // Update GameUnit health properties and healthbars
       const gameUnit1 = unit1 as GameUnit;
@@ -2007,7 +2007,7 @@ export class BattleScene extends Phaser.Scene {
       yoyo: true,
       ease: 'Cubic.easeOut'
     });
-  attacker.setTintFill(0xffffff);
+  attacker.setTint(0xff9999);
   this.time.delayedCall(60, () => attacker.clearTint());
   }
 
@@ -2259,8 +2259,8 @@ export class BattleScene extends Phaser.Scene {
         const xpFromDamage = calculateXPFromDamage(RAINING_ROCKS_DAMAGE, hpBefore);
         this.addXP(xpFromDamage);
         
-  // Visual feedback - flash white (will adjust later)
-  sprite.setTint(0xFFFFFF);
+  // Visual feedback - flash orange (avoid confusing white flash)
+  sprite.setTint(0xFFA040);
         this.time.delayedCall(100, () => {
           if (sprite.active) sprite.clearTint();
         });
