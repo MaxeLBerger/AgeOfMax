@@ -102,15 +102,42 @@ export class DifficultyScene extends Phaser.Scene {
     return bg;
   }
 
-  private startGame(difficulty: DifficultyLevel): void {
+  private async startGame(difficulty: DifficultyLevel): Promise<void> {
     console.log(`Starting game with difficulty: ${difficulty}`);
-    
-    // Pass difficulty to game registry
+
+    // Show a lightweight loading indicator while dynamic chunks load
+    const loadingText = this.add.text(this.cameras.main.width / 2, this.cameras.main.height - 80, 'Lade Spielszenen...', {
+      fontSize: '20px',
+      color: '#ffffff'
+    }).setOrigin(0.5);
+
+    // Pass difficulty to game registry immediately
     this.registry.set('difficulty', difficulty);
-    
+
+    // Dynamically import heavy scenes if not already added
+    await this.ensureGameplayScenesLoaded();
+
     // Start the game scenes
     this.scene.start('BattleScene');
     this.scene.launch('UIScene');
+    loadingText.destroy();
     this.scene.stop();
+  }
+
+  private async ensureGameplayScenesLoaded(): Promise<void> {
+    // BattleScene
+    let battleExists = true;
+    try { this.scene.get('BattleScene'); } catch { battleExists = false; }
+    if (!battleExists) {
+      const { BattleScene } = await import('./BattleScene');
+      this.scene.add('BattleScene', BattleScene, false);
+    }
+    // UIScene
+    let uiExists = true;
+    try { this.scene.get('UIScene'); } catch { uiExists = false; }
+    if (!uiExists) {
+      const { UIScene } = await import('./UIScene');
+      this.scene.add('UIScene', UIScene, false);
+    }
   }
 }
