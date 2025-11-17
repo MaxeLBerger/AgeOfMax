@@ -128,19 +128,29 @@ export class DifficultyScene extends Phaser.Scene {
   }
 
   private async ensureGameplayScenesLoaded(): Promise<void> {
+    // Always attempt to register scenes. If already present, ignore duplicate add.
+    const sceneKeys = (this.scene as unknown as { manager?: { keys?: Record<string, unknown> } }).manager?.keys ?? {};
+
     // BattleScene
-    let battleExists = true;
-    try { this.scene.get('BattleScene'); } catch { battleExists = false; }
-    if (!battleExists) {
-      const { BattleScene } = await import('./BattleScene');
-      this.scene.add('BattleScene', BattleScene, false);
+    if (!sceneKeys['BattleScene']) {
+      try {
+        const { BattleScene } = await import('./BattleScene');
+        this.scene.add('BattleScene', BattleScene, false);
+      } catch (e) {
+        console.error('[DifficultyScene] Failed to load BattleScene chunk', e);
+        throw e;
+      }
     }
+
     // UIScene
-    let uiExists = true;
-    try { this.scene.get('UIScene'); } catch { uiExists = false; }
-    if (!uiExists) {
-      const { UIScene } = await import('./UIScene');
-      this.scene.add('UIScene', UIScene, false);
+    if (!sceneKeys['UIScene']) {
+      try {
+        const { UIScene } = await import('./UIScene');
+        this.scene.add('UIScene', UIScene, false);
+      } catch (e) {
+        console.error('[DifficultyScene] Failed to load UIScene chunk', e);
+        throw e;
+      }
     }
   }
 }
