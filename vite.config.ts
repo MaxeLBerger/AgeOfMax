@@ -1,8 +1,8 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig(({ mode }) => ({
-  // Use exact production base path matching deployment URL casing
-  base: mode === 'production' ? '/AgeOFMax/' : '/',
+  // IMPORTANT: must match exact deployed path casing for dynamic imports
+  base: mode === 'production' ? '/AgeOfMax/' : '/',
   server: {
     port: 5173,
     open: true
