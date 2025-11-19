@@ -117,13 +117,16 @@ export class DifficultyScene extends Phaser.Scene {
     // Dynamically import heavy scenes if not already added
     await this.ensureGameplayScenesLoaded();
 
-  // Start the game scenes.
-  // Launch UI first to ensure it's available when BattleScene emits events.
-  this.scene.launch('UIScene');
-  // Give Phaser a tick to initialize the UI scene before starting BattleScene
-  await new Promise<void>((resolve) => setTimeout(() => resolve(), 0));
-  this.scene.start('BattleScene');
+    // Clean up loading text before scene transition
     loadingText.destroy();
+    
+    // Start the game scenes.
+    // Launch UI first to ensure it's available when BattleScene emits events.
+    this.scene.launch('UIScene');
+    // Give Phaser a tick to initialize the UI scene before starting BattleScene
+    await new Promise<void>((resolve) => setTimeout(() => resolve(), 16));
+    // Start BattleScene and stop DifficultyScene
+    this.scene.start('BattleScene');
     this.scene.stop();
   }
 

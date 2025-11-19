@@ -262,7 +262,7 @@ export class BattleScene extends Phaser.Scene {
     }
     uiScene.events.emit('updateGold', this.gold);
     uiScene.events.emit('updateXP', this.xp, this.getCurrentEpoch().xpToNext);
-    uiScene.events.emit('updateEpoch', this.getCurrentEpoch().name);
+    uiScene.events.emit('updateEpoch', this.getCurrentEpoch());
     
     // Create kill streak UI element (top-center)
   this.add.text(640, 30, '', {
@@ -1489,7 +1489,7 @@ export class BattleScene extends Phaser.Scene {
         
         // Notify UI
         const uiScene = this.scene.get('UIScene');
-        uiScene.events.emit('updateEpoch', newEpoch.name);
+        uiScene.events.emit('updateEpoch', newEpoch);
         uiScene.events.emit('updateXP', this.xp, newEpoch.xpToNext);
       }
     } else {
