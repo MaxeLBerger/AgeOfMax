@@ -6,6 +6,13 @@ export class BootScene extends Phaser.Scene {
   }
 
   preload(): void {
+    // Runtime asset diagnostics
+    const failedAssets: string[] = [];
+    this.load.on('loaderror', (_file: any) => {
+      // _file may differ based on Phaser version; capture src/url when available
+      const src = (_file && (_file.src || _file.url || _file.key)) ?? 'unknown';
+      failedAssets.push(src);
+    });
     // Load unit assets - with variants (_2) where available
     // Stone Age
     this.load.image('clubman', 'assets/units/stone_age/clubman.png');
@@ -87,6 +94,10 @@ export class BootScene extends Phaser.Scene {
 
     this.load.on('complete', () => {
       console.log('Assets loaded');
+      if (failedAssets.length) {
+        console.warn('[BootScene] Missing assets detected:', failedAssets);
+        this.showAssetDiagnostics(failedAssets);
+      }
     });
   }
 
@@ -193,5 +204,15 @@ export class BootScene extends Phaser.Scene {
     unitSquare('super-heavy', 0xCCCCCC);
 
     graphics.destroy();
+  }
+
+  private showAssetDiagnostics(failed: string[]): void {
+    // Simple in-canvas overlay so users understand incomplete visuals
+    const bg = this.add.rectangle(640, 360, 800, 400, 0x000000, 0.85).setOrigin(0.5).setDepth(9999);
+    const title = this.add.text(640, 200, 'Asset Ladefehler', { fontSize: '42px', color: '#ff4444', fontStyle: 'bold' }).setOrigin(0.5).setDepth(10000);
+    const info = this.add.text(640, 260, 'Einige Grafiken konnten nicht geladen werden. Platzhalter werden angezeigt.', { fontSize: '20px', color: '#ffffff', align: 'center', wordWrap: { width: 700 } }).setOrigin(0.5).setDepth(10000);
+    const list = failed.slice(0, 15).map(a => `• ${a}`).join('\n');
+    this.add.text(640, 330, list, { fontSize: '16px', color: '#ffcc00', wordWrap: { width: 760 } }).setOrigin(0.5).setDepth(10000);
+    this.time.delayedCall(8000, () => { bg.destroy(); title.destroy(); info.destroy(); });
   }
 }
