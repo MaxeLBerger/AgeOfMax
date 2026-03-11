@@ -35,10 +35,12 @@ export class BootScene extends Phaser.Scene {
     this.load.image('tank', 'assets/units/modern_age/tank.png');
 
     // Future Age
-    this.load.image('laser-soldier', 'assets/units/future_age/laser-soldier.png');
-    this.load.image('mech', 'assets/units/future_age/mech.png');
-    this.load.image('plasma-trooper', 'assets/units/future_age/plasma-trooper.png');
-    this.load.image('super-heavy', 'assets/units/future_age/super-heavy.png');
+    // NOTE: Skip loading non-existent future unit assets in production to avoid 404s and slow startup.
+    // Placeholders will be generated for these keys in createPlaceholderAssets().
+    // this.load.image('laser-soldier', 'assets/units/future_age/laser-soldier.png');
+    // this.load.image('mech', 'assets/units/future_age/mech.png');
+    // this.load.image('plasma-trooper', 'assets/units/future_age/plasma-trooper.png');
+    // this.load.image('super-heavy', 'assets/units/future_age/super-heavy.png');
 
     // Load turret assets
     this.load.image('stone-tower-1', 'assets/turrets/stone_age_tower_1.png');
@@ -50,12 +52,13 @@ export class BootScene extends Phaser.Scene {
     this.load.image('renaissance-tower-1', 'assets/turrets/renaissance_age_tower_1.png');
     this.load.image('renaissance-tower-2', 'assets/turrets/renaissance_age_tower_2.png');
     this.load.image('renaissance-tower-3', 'assets/turrets/renaissance_age_tower_3.png');
-    this.load.image('modern-tower-1', 'assets/turrets/modern_age_tower_1.png');
-    this.load.image('modern-tower-2', 'assets/turrets/modern_age_tower_2.png');
-    this.load.image('modern-tower-3', 'assets/turrets/modern_age_tower_3.png');
-    this.load.image('future-tower-1', 'assets/turrets/future_age_tower_1.png');
-    this.load.image('future-tower-2', 'assets/turrets/future_age_tower_2.png');
-    this.load.image('future-tower-3', 'assets/turrets/future_age_tower_3.png');
+    // Modern/Future turret PNGs are not present yet – generate placeholders instead to prevent 404s.
+    // this.load.image('modern-tower-1', 'assets/turrets/modern_age_tower_1.png');
+    // this.load.image('modern-tower-2', 'assets/turrets/modern_age_tower_2.png');
+    // this.load.image('modern-tower-3', 'assets/turrets/modern_age_tower_3.png');
+    // this.load.image('future-tower-1', 'assets/turrets/future_age_tower_1.png');
+    // this.load.image('future-tower-2', 'assets/turrets/future_age_tower_2.png');
+    // this.load.image('future-tower-3', 'assets/turrets/future_age_tower_3.png');
 
     // Load building assets
     this.load.image('player-base', 'assets/buildings/player_base.png');
@@ -66,7 +69,8 @@ export class BootScene extends Phaser.Scene {
     this.load.image('castle-age-bg', 'assets/backgrounds/castle_age_background.png');
     this.load.image('renaissance-bg', 'assets/backgrounds/renaissance_background.png');
     this.load.image('modern-bg', 'assets/backgrounds/modern_background.png');
-    this.load.image('future-bg', 'assets/backgrounds/future_background.png');
+    // Future background PNG is not present yet – generate a placeholder texture for 'future-bg'.
+    // this.load.image('future-bg', 'assets/backgrounds/future_background.png');
 
     // Load UI icons
     this.load.image('gold-coin', 'assets/ui/gold_coin_icon.png');
@@ -91,8 +95,10 @@ export class BootScene extends Phaser.Scene {
       console.log('Assets loaded');
       // Create placeholder fallback textures for any failed loads
       if (failedKeys.size > 0) {
-        console.log(`⚠️ Creating fallbacks for ${failedKeys.size} missing assets: ${[...failedKeys].join(', ')}`);
+        const failedList = [...failedKeys];
+        console.warn(`⚠️ Creating fallbacks for ${failedKeys.size} missing assets:`, failedList);
         this.createFallbackTextures(failedKeys);
+        this.showAssetDiagnostics(failedList);
       }
     });
   }
@@ -174,6 +180,23 @@ export class BootScene extends Phaser.Scene {
     graphics.fillRect(10, 5, 20, 30);
     graphics.generateTexture('turret', 40, 40);
     graphics.clear();
+
+    // Generate explicit turret placeholders to match keys used across epochs
+    // Stone/Castle/Renaissance are loaded from files; Modern/Future use generated placeholders.
+    const makeTurretVariant = (key: string, tint: number) => {
+      graphics.fillStyle(0x8B4513);
+      graphics.fillRect(0, 0, 40, 40);
+      graphics.fillStyle(tint);
+      graphics.fillRect(10, 5, 20, 30);
+      graphics.generateTexture(key, 40, 40);
+      graphics.clear();
+    };
+    makeTurretVariant('modern-tower-1', 0x555555);
+    makeTurretVariant('modern-tower-2', 0x666666);
+    makeTurretVariant('modern-tower-3', 0x777777);
+    makeTurretVariant('future-tower-1', 0x00FFCC);
+    makeTurretVariant('future-tower-2', 0x33CCFF);
+    makeTurretVariant('future-tower-3', 0xFF33CC);
     
     // Create particle textures with proper transparency
     // Golden circle particle for XP - small sparkle
@@ -202,6 +225,42 @@ export class BootScene extends Phaser.Scene {
     graphics.generateTexture('muzzle-flash', 16, 16);
     graphics.clear();
     
+    // Background placeholders for future (and safety fallbacks)
+    const makeBackground = (key: string, top: number, bottom: number) => {
+      const w = 1024;
+      const h = 512;
+      // simple two-tone background
+      graphics.fillStyle(top);
+      graphics.fillRect(0, 0, w, h / 2);
+      graphics.fillStyle(bottom);
+      graphics.fillRect(0, h / 2, w, h / 2);
+      graphics.generateTexture(key, w, h);
+      graphics.clear();
+    };
+    makeBackground('future-bg', 0x0a0f1f, 0x111133);
+
+    // Minimal placeholders for future units (keys only, not used until that epoch)
+    const unitSquare = (key: string, color: number) => {
+      graphics.fillStyle(color);
+      graphics.fillRect(0, 0, 32, 32);
+      graphics.generateTexture(key, 32, 32);
+      graphics.clear();
+    };
+    unitSquare('laser-soldier', 0x99FFEE);
+    unitSquare('mech', 0x88AAFF);
+    unitSquare('plasma-trooper', 0xFF88EE);
+    unitSquare('super-heavy', 0xCCCCCC);
+
     graphics.destroy();
+  }
+
+  private showAssetDiagnostics(failed: string[]): void {
+    // Simple in-canvas overlay so users understand incomplete visuals
+    const bg = this.add.rectangle(640, 360, 800, 400, 0x000000, 0.85).setOrigin(0.5).setDepth(9999);
+    const title = this.add.text(640, 200, 'Asset Ladefehler', { fontSize: '42px', color: '#ff4444', fontStyle: 'bold' }).setOrigin(0.5).setDepth(10000);
+    const info = this.add.text(640, 260, 'Einige Grafiken konnten nicht geladen werden. Platzhalter werden angezeigt.', { fontSize: '20px', color: '#ffffff', align: 'center', wordWrap: { width: 700 } }).setOrigin(0.5).setDepth(10000);
+    const list = failed.slice(0, 15).map(a => `• ${a}`).join('\n');
+    this.add.text(640, 330, list, { fontSize: '16px', color: '#ffcc00', wordWrap: { width: 760 } }).setOrigin(0.5).setDepth(10000);
+    this.time.delayedCall(8000, () => { bg.destroy(); title.destroy(); info.destroy(); });
   }
 }

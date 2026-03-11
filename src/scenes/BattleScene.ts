@@ -268,10 +268,17 @@ export class BattleScene extends Phaser.Scene {
   }
 
   private syncInitialStateToUI(): void {
-    const uiScene = this.scene.get('UIScene');
+    // UIScene might not be ready in the very first tick if scenes were launched
+    // dynamically. Retry briefly until available to avoid runtime errors.
+    let uiScene: Phaser.Scene | undefined;
+    try { uiScene = this.scene.get('UIScene'); } catch { /* not ready yet */ }
+    if (!uiScene) {
+      this.time.delayedCall(16, () => this.syncInitialStateToUI());
+      return;
+    }
     uiScene.events.emit('updateGold', this.gold);
     uiScene.events.emit('updateXP', this.xp, this.getCurrentEpoch().xpToNext);
-    uiScene.events.emit('updateEpoch', this.getCurrentEpoch().name, this.getCurrentEpoch().id);
+    uiScene.events.emit('updateEpoch', this.getCurrentEpoch());
     
     // Create kill streak UI element (top-center)
     this.add.text(640, 30, '', {
@@ -1612,7 +1619,7 @@ export class BattleScene extends Phaser.Scene {
         
         // Notify UI (include epoch ID for filtering)
         const uiScene = this.scene.get('UIScene');
-        uiScene.events.emit('updateEpoch', newEpoch.name, newEpoch.id);
+        uiScene.events.emit('updateEpoch', newEpoch);
         uiScene.events.emit('updateXP', this.xp, newEpoch.xpToNext);
       }
     } else {

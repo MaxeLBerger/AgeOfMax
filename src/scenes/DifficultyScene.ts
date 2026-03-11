@@ -114,17 +114,47 @@ export class DifficultyScene extends Phaser.Scene {
     // Pass difficulty to game registry immediately
     this.registry.set('difficulty', difficulty);
 
-    // Start the game scenes (now pre-registered in main.ts)
-    try {
-      this.scene.start('BattleScene');
-      this.scene.launch('UIScene');
-    } catch (e) {
-      console.error('Failed to start gameplay scenes:', e);
-      loadingText.setText('Fehler beim Starten der Spielszenen.');
-      return;
-    }
+
+    // Dynamically import heavy scenes if not already added
+    await this.ensureGameplayScenesLoaded();
+
+    // Clean up loading text before scene transition
     loadingText.destroy();
+    
+    // Start the game scenes.
+    // Launch UI first to ensure it's available when BattleScene emits events.
+    this.scene.launch('UIScene');
+    // Give Phaser a tick to initialize the UI scene before starting BattleScene
+    await new Promise<void>((resolve) => setTimeout(() => resolve(), 16));
+    // Start BattleScene and stop DifficultyScene
+    this.scene.start('BattleScene');
     this.scene.stop();
   }
 
+  private async ensureGameplayScenesLoaded(): Promise<void> {
+    // Always attempt to register scenes. If already present, ignore duplicate add.
+    const sceneKeys = (this.scene as unknown as { manager?: { keys?: Record<string, unknown> } }).manager?.keys ?? {};
+
+    // BattleScene
+    if (!sceneKeys['BattleScene']) {
+      try {
+        const { BattleScene } = await import('./BattleScene');
+        this.scene.add('BattleScene', BattleScene, false);
+      } catch (e) {
+        console.error('[DifficultyScene] Failed to load BattleScene chunk', e);
+        throw e;
+      }
+    }
+
+    // UIScene
+    if (!sceneKeys['UIScene']) {
+      try {
+        const { UIScene } = await import('./UIScene');
+        this.scene.add('UIScene', UIScene, false);
+      } catch (e) {
+        console.error('[DifficultyScene] Failed to load UIScene chunk', e);
+        throw e;
+      }
+    }
+  }
 }

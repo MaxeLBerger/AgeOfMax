@@ -133,10 +133,10 @@ export class UIScene extends Phaser.Scene {
       this.xpProgressBar.setDisplaySize(200 * progress, 15);
     });
 
-    this.events.on('updateEpoch', (epochName: string, epochId?: string) => {
-      this.currentEpoch.name = epochName;
-      if (epochId) this.currentEpochId = epochId;
-      this.epochText.setText(`Epoch: ${epochName}`);
+    this.events.on('updateEpoch', (epoch: Epoch) => {
+      this.currentEpoch = epoch;
+      this.currentEpochId = epoch.id;
+      this.epochText.setText(`Epoch: ${epoch.name}`);
       this.updateAvailableUnits();
       this.updateAvailableTurrets();
     });
