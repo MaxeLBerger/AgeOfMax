@@ -4,8 +4,9 @@ import { MenuScene } from './scenes/MenuScene';
 import { DifficultyScene } from './scenes/DifficultyScene';
 import { CreditsScene } from './scenes/CreditsScene';
 import { SettingsScene } from './scenes/SettingsScene';
-// Note: UIScene and BattleScene are now loaded dynamically on demand to
-// reduce initial bundle size and speed up first paint.
+// Register gameplay scenes up-front for reliability across dev/prod
+import { UIScene } from './scenes/UIScene';
+import { BattleScene } from './scenes/BattleScene';
 
 const config: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
@@ -24,10 +25,9 @@ const config: Phaser.Types.Core.GameConfig = {
       debug: false
     }
   },
-  // Only early/lightweight scenes are registered up-front. Heavy gameplay
-  // scenes (BattleScene + UIScene) are code-split and added at runtime
-  // after the player selects a difficulty.
-  scene: [BootScene, MenuScene, DifficultyScene, CreditsScene, SettingsScene]
+  // Register all scenes up-front. This avoids lazy-loading chunk issues in
+  // some hosting environments and simplifies scene transitions.
+  scene: [BootScene, MenuScene, DifficultyScene, CreditsScene, SettingsScene, UIScene, BattleScene]
 };
 
 new Phaser.Game(config);

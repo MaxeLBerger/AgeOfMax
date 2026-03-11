@@ -114,30 +114,17 @@ export class DifficultyScene extends Phaser.Scene {
     // Pass difficulty to game registry immediately
     this.registry.set('difficulty', difficulty);
 
-    // Dynamically import heavy scenes if not already added
-    await this.ensureGameplayScenesLoaded();
-
-    // Start the game scenes
-    this.scene.start('BattleScene');
-    this.scene.launch('UIScene');
+    // Start the game scenes (now pre-registered in main.ts)
+    try {
+      this.scene.start('BattleScene');
+      this.scene.launch('UIScene');
+    } catch (e) {
+      console.error('Failed to start gameplay scenes:', e);
+      loadingText.setText('Fehler beim Starten der Spielszenen.');
+      return;
+    }
     loadingText.destroy();
     this.scene.stop();
   }
 
-  private async ensureGameplayScenesLoaded(): Promise<void> {
-    // BattleScene
-    let battleExists = true;
-    try { this.scene.get('BattleScene'); } catch { battleExists = false; }
-    if (!battleExists) {
-      const { BattleScene } = await import('./BattleScene');
-      this.scene.add('BattleScene', BattleScene, false);
-    }
-    // UIScene
-    let uiExists = true;
-    try { this.scene.get('UIScene'); } catch { uiExists = false; }
-    if (!uiExists) {
-      const { UIScene } = await import('./UIScene');
-      this.scene.add('UIScene', UIScene, false);
-    }
-  }
 }

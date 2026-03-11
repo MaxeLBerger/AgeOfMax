@@ -1,4 +1,4 @@
-﻿import Phaser from 'phaser';
+import Phaser from 'phaser';
 
 export class BootScene extends Phaser.Scene {
   constructor() {
@@ -81,8 +81,19 @@ export class BootScene extends Phaser.Scene {
     this.load.image('cannonball', 'assets/projectiles/cannonball.png');
     this.load.image('rock', 'assets/projectiles/rock.png');
 
+    // Track failed loads to create fallbacks
+    const failedKeys = new Set<string>();
+    this.load.on('loaderror', (file: Phaser.Loader.File) => {
+      failedKeys.add(file.key);
+    });
+
     this.load.on('complete', () => {
       console.log('Assets loaded');
+      // Create placeholder fallback textures for any failed loads
+      if (failedKeys.size > 0) {
+        console.log(`⚠️ Creating fallbacks for ${failedKeys.size} missing assets: ${[...failedKeys].join(', ')}`);
+        this.createFallbackTextures(failedKeys);
+      }
     });
   }
 
@@ -91,6 +102,52 @@ export class BootScene extends Phaser.Scene {
     this.createPlaceholderAssets();
     this.scene.start('MenuScene'); // Start with menu instead of directly launching battle
     this.scene.stop();
+  }
+
+  private createFallbackTextures(failedKeys: Set<string>): void {
+    const graphics = this.add.graphics();
+    
+    for (const key of failedKeys) {
+      // Choose color based on asset type
+      let color = 0x888888;
+      let width = 64;
+      let height = 64;
+      
+      if (key.includes('bg') || key.includes('background')) {
+        color = 0x2a2a4a;
+        width = 1280;
+        height = 720;
+      } else if (key.includes('tower')) {
+        color = 0x666699;
+        width = 128;
+        height = 128;
+      } else if (key.includes('soldier') || key.includes('trooper') || key.includes('mech') || key.includes('heavy')) {
+        // Future age units - use distinct futuristic colors
+        const unitColors: Record<string, number> = {
+          'laser-soldier': 0x00ccff,
+          'mech': 0x7777ff,
+          'plasma-trooper': 0xff00ff,
+          'super-heavy': 0xcc0000
+        };
+        color = unitColors[key] || 0x888888;
+        width = 512;
+        height = 512;
+      }
+      
+      graphics.clear();
+      graphics.fillStyle(color, 1);
+      graphics.fillRect(0, 0, width, height);
+      // Add a border so it's visually distinct as a placeholder
+      graphics.lineStyle(3, 0xffffff, 0.5);
+      graphics.strokeRect(2, 2, width - 4, height - 4);
+      // Add an X marker
+      graphics.lineStyle(2, 0xffffff, 0.3);
+      graphics.lineBetween(0, 0, width, height);
+      graphics.lineBetween(width, 0, 0, height);
+      graphics.generateTexture(key, width, height);
+    }
+    
+    graphics.destroy();
   }
 
   private createPlaceholderAssets(): void {

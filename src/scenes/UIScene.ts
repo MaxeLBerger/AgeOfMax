@@ -1,4 +1,4 @@
-﻿import Phaser from 'phaser';
+import Phaser from 'phaser';
 import type { Economy, Epoch, TurretType, UnitType } from '../game/types';
 import turretsData from '../../data/turrets.json';
 import unitsData from '../../data/units.json';
@@ -17,6 +17,7 @@ export class UIScene extends Phaser.Scene {
   private artilleryStrikeCooldownText!: Phaser.GameObjects.Text;
   private economy: Economy = { gold: 100, xp: 0, goldPerTick: 10, tickInterval: 3000 };
   private currentEpoch: Epoch = { id: 'stone', name: 'Stone Age', xpToNext: 100, unlocks: { units: [], turrets: [] } };
+  private currentEpochId: string = 'stone'; // Track epoch ID for filtering
   private turretsDatabase: TurretType[] = turretsData as TurretType[];
   private unitsDatabase: UnitType[] = unitsData as UnitType[];
   private unitButtons: Array<{btn: Phaser.GameObjects.Rectangle, nameText: Phaser.GameObjects.Text, costText: Phaser.GameObjects.Text, unitIndex: number}> = [];
@@ -132,8 +133,9 @@ export class UIScene extends Phaser.Scene {
       this.xpProgressBar.setDisplaySize(200 * progress, 15);
     });
 
-    this.events.on('updateEpoch', (epochName: string) => {
+    this.events.on('updateEpoch', (epochName: string, epochId?: string) => {
       this.currentEpoch.name = epochName;
+      if (epochId) this.currentEpochId = epochId;
       this.epochText.setText(`Epoch: ${epochName}`);
       this.updateAvailableUnits();
       this.updateAvailableTurrets();
@@ -228,8 +230,7 @@ export class UIScene extends Phaser.Scene {
       }
     });
     this.rainingRocksButton.on('pointerdown', () => {
-      const battleScene = this.scene.get('BattleScene');
-      battleScene.events.emit('useRainingRocks');
+      this.events.emit('useRainingRocks');
     });
     
     // Artillery Strike button
@@ -262,8 +263,7 @@ export class UIScene extends Phaser.Scene {
       }
     });
     this.artilleryStrikeButton.on('pointerdown', () => {
-      const battleScene = this.scene.get('BattleScene');
-      battleScene.events.emit('useArtilleryStrike');
+      this.events.emit('useArtilleryStrike');
     });
   }
 
@@ -311,9 +311,19 @@ export class UIScene extends Phaser.Scene {
     turretTitle.setDepth(UI_DEPTH + 1);
     
     const turretButtonY = 610;
+    const epochOrder = ['stone', 'castle', 'renaissance', 'modern', 'future'];
+    const currentEpochIdx = epochOrder.indexOf(this.currentEpochId);
+    // Filter turrets for current epoch and below
+    const availableTurrets = this.turretsDatabase.filter(t => {
+      const turretEpochIdx = epochOrder.indexOf(t.epoch);
+      return turretEpochIdx <= currentEpochIdx;
+    });
+    // Show up to 5 turrets from available ones (prioritize current epoch)
+    const displayTurrets = availableTurrets.slice(-5); // Last 5 = current + recent epoch turrets
     for (let i = 0; i < 5; i++) {
-      const turretData = this.turretsDatabase[i];
+      const turretData = displayTurrets[i];
       if (!turretData) continue;
+      const turretIndex = this.turretsDatabase.indexOf(turretData);
 
       const btn = this.add.rectangle(200 + i * 90, turretButtonY, 80, 50, 0x663300);
       btn.setInteractive({ useHandCursor: true });
@@ -333,7 +343,7 @@ export class UIScene extends Phaser.Scene {
       }).setOrigin(0.5);
       costText.setDepth(UI_DEPTH + 2);
       
-      this.turretButtons.push({ btn, nameText, costText, turretIndex: i });
+      this.turretButtons.push({ btn, nameText, costText, turretIndex });
 
       btn.on('pointerover', () => {
         if (this.economy.gold >= turretData.goldCost) {
@@ -359,7 +369,7 @@ export class UIScene extends Phaser.Scene {
     unitTitle.setDepth(UI_DEPTH + 1);
     
     const unitButtonY = 690;
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 4; i++) { // Only 4 slots — every epoch has exactly 4 units
       const btn = this.add.rectangle(200 + i * 90, unitButtonY, 80, 50, 0x444444);
       btn.setInteractive({ useHandCursor: true });
       btn.setDepth(UI_DEPTH + 1);
@@ -453,10 +463,9 @@ export class UIScene extends Phaser.Scene {
   
   private updateAvailableUnits(): void {
     // Get units for current epoch
-    const currentEpochId = this.currentEpoch.id;
     const availableUnits = this.unitsDatabase
-      .filter(unit => unit.epoch === currentEpochId)
-      .slice(0, 5);
+      .filter(unit => unit.epoch === this.currentEpochId)
+      .slice(0, 4); // Max 4 units per epoch
     
     // Update button displays
     for (let i = 0; i < this.unitButtons.length; i++) {

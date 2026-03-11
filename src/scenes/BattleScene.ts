@@ -1,4 +1,4 @@
-﻿import { clampXPEvent } from '../utils/xpClamp.ts';
+import { clampXPEvent } from '../utils/xpClamp.ts';
 import Phaser from 'phaser';
 import type { Base, Epoch, UnitType, TurretType } from '../game/types';
 import epochsData from '../../data/epochs.json';
@@ -59,6 +59,7 @@ interface TurretSlot {
   turret?: Phaser.GameObjects.Sprite;
   turretData?: TurretType;
   lastFireTime: number;
+  gridVisual?: Phaser.GameObjects.Rectangle;
 }
 
 interface UnitHealthBar {
@@ -91,10 +92,15 @@ export class BattleScene extends Phaser.Scene {
   // Economy & Progression
   private gold = 100;
   private xp = 0;
-  private goldPerSecond = 8; // MCP Recommendation: Increased from 2 to 8 per balance pass
+  private goldPerSecond = 15; // Rebalanced: 15g/s lets player afford ~1 Clubman every 3.3s
   private goldAccumulator = 0;
   private epochs: Epoch[] = epochsData as Epoch[];
   private currentEpochIndex = 0;
+
+  // Enemy has its own epoch progression (advances on timer independently)
+  private enemyEpochIndex = 0;
+  private enemyEpochTimer = 0;
+  private readonly ENEMY_EPOCH_ADVANCE_TIME = 90000; // 90 seconds per enemy epoch advance
 
   // Feedback Systems
   private xpFeedback!: XPFeedbackSystem;
@@ -110,9 +116,9 @@ export class BattleScene extends Phaser.Scene {
   // Difficulty settings
   private difficulty: 'easy' | 'medium' | 'hard' = 'medium';
   private difficultyMultipliers = {
-    easy: { enemySpawnRate: 6000, enemyStats: 0.7, startingGold: 200 },
-    medium: { enemySpawnRate: 4000, enemyStats: 1.0, startingGold: 100 },
-    hard: { enemySpawnRate: 3000, enemyStats: 1.3, startingGold: 50 }
+    easy: { enemySpawnRate: 6000, enemyStats: 0.7, startingGold: 300 },
+    medium: { enemySpawnRate: 4000, enemyStats: 1.0, startingGold: 200 },
+    hard: { enemySpawnRate: 3000, enemyStats: 1.3, startingGold: 100 }
   };
 
   // Special abilities
@@ -138,6 +144,9 @@ export class BattleScene extends Phaser.Scene {
   private readonly SPAWN_QUEUE_DELAY = 250; // ms delay between queued spawns
   // Internal UID counter to deduplicate projectile hits across frames
   private unitUidCounter = 1;
+
+  // Turret button references for dynamic updates
+  private turretBtnRefs: Array<{ btn: Phaser.GameObjects.Rectangle, nameText: Phaser.GameObjects.Text, costText: Phaser.GameObjects.Text, turretIndex: number }> = [];
 
   constructor() {
     super({ key: 'BattleScene' });
@@ -247,15 +256,22 @@ export class BattleScene extends Phaser.Scene {
       this.time.delayedCall(2000, () => notif.destroy());
     });
     
-    // Start enemy spawning
-    this.startEnemySpawner();
+    // Auto-spawn a free starting unit for the player so they have something on the field
+    this.spawnFreeStartingUnit();
+    
+    // Grace period before enemies start spawning (gives player time to orient)
+    const graceDelay = { easy: 8000, medium: 6000, hard: 4000 }[this.difficulty];
+    console.log(`⏳ Enemy grace period: ${graceDelay}ms (${this.difficulty})`);
+    this.time.delayedCall(graceDelay, () => {
+      this.startEnemySpawner();
+    });
   }
 
   private syncInitialStateToUI(): void {
     const uiScene = this.scene.get('UIScene');
     uiScene.events.emit('updateGold', this.gold);
     uiScene.events.emit('updateXP', this.xp, this.getCurrentEpoch().xpToNext);
-    uiScene.events.emit('updateEpoch', this.getCurrentEpoch().name);
+    uiScene.events.emit('updateEpoch', this.getCurrentEpoch().name, this.getCurrentEpoch().id);
     
     // Create kill streak UI element (top-center)
     this.add.text(640, 30, '', {
@@ -508,31 +524,34 @@ export class BattleScene extends Phaser.Scene {
     // Test UI direkt in der BattleScene erstellen
     this.goldText = this.add.text(20, 20, `Gold: ${this.gold}`, { 
       fontSize: '24px', 
+      fontFamily: 'monospace',
       color: '#ffd700',
-      backgroundColor: '#000000',
+      backgroundColor: '#000000aa',
       padding: { x: 10, y: 5 }
     });
     this.goldText.setDepth(2000);
     
-    this.xpText = this.add.text(20, 50, `XP: ${this.xp}/${this.getCurrentEpoch().xpToNext}`, { 
+    this.xpText = this.add.text(20, 55, `XP: ${this.xp}/${this.getCurrentEpoch().xpToNext}`, { 
       fontSize: '20px', 
+      fontFamily: 'monospace',
       color: '#00ff00',
-      backgroundColor: '#000000',
+      backgroundColor: '#000000aa',
       padding: { x: 10, y: 5 }
     });
     this.xpText.setDepth(2000);
     
-    this.epochText = this.add.text(20, 80, `Epoch: ${this.getCurrentEpoch().name}`, { 
+    this.epochText = this.add.text(20, 88, `Epoch: ${this.getCurrentEpoch().name}`, { 
       fontSize: '20px', 
+      fontFamily: 'monospace',
       color: '#ffffff',
-      backgroundColor: '#000000',
+      backgroundColor: '#000000aa',
       padding: { x: 10, y: 5 }
     });
     this.epochText.setDepth(2000);
     
-    // Unit spawn buttons (U1-U5) - dynamisch basierend auf Epoche
+    // Unit spawn buttons (U1-U4) - dynamisch basierend auf Epoche
     const buttonY = 660;
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 4; i++) {
       const btn = this.add.rectangle(200 + i * 80, buttonY, 70, 50, 0x444444).setInteractive();
       btn.setDepth(2000);
       
@@ -562,28 +581,55 @@ export class BattleScene extends Phaser.Scene {
     // Initial update für verfügbare Units
     this.updateAvailableUnits();
     
-    // Turret placement buttons (T1-T5)
+    // Turret placement buttons (T1-T5) - dynamisch basierend auf Epoche
     const turretButtonY = 600;
+    this.turretBtnRefs = [];
     for (let i = 0; i < 5; i++) {
-      const turretData = this.turretsDatabase[i];
       const btn = this.add.rectangle(200 + i * 80, turretButtonY, 70, 50, 0x663300).setInteractive();
       btn.setDepth(2000);
-      const text = this.add.text(200 + i * 80, turretButtonY - 10, turretData.name, { 
+      const nameText = this.add.text(200 + i * 80, turretButtonY - 10, '', { 
         fontSize: '11px', 
         color: '#ffffff' 
       }).setOrigin(0.5);
-      text.setDepth(2000);
-      const costText = this.add.text(200 + i * 80, turretButtonY + 10, `${turretData.goldCost}g`, { 
+      nameText.setDepth(2000);
+      const costText = this.add.text(200 + i * 80, turretButtonY + 10, '', { 
         fontSize: '12px', 
         color: '#ffd700' 
       }).setOrigin(0.5);
       costText.setDepth(2000);
       
+      this.turretBtnRefs.push({ btn, nameText, costText, turretIndex: -1 });
+      
       btn.on('pointerdown', () => {
-        console.log(`Selected turret ${i + 1}: ${turretData.name}`);
-        this.selectedTurretIndex = i;
+        const ref = this.turretBtnRefs[i];
+        if (ref.turretIndex >= 0) {
+          this.selectedTurretIndex = ref.turretIndex;
+          console.log(`Selected turret: ${this.turretsDatabase[ref.turretIndex]?.name}`);
+          this.showTurretGrid();
+        }
       });
     }
+    this.updateAvailableTurrets();
+    
+    // Special ability buttons (Meteor + Artillery)
+    const specialY = 20;
+    const specialX = 920;
+    
+    const meteorBtn = this.add.rectangle(specialX, specialY + 20, 100, 40, 0x8B4513).setInteractive({ useHandCursor: true });
+    meteorBtn.setDepth(2000);
+    this.add.text(specialX, specialY + 12, '🪨 Meteor', { fontSize: '13px', color: '#ffffff', fontStyle: 'bold' })
+      .setOrigin(0.5).setDepth(2001);
+    this.add.text(specialX, specialY + 28, 'Ready', { fontSize: '11px', color: '#00ff00' })
+      .setOrigin(0.5).setDepth(2001);
+    meteorBtn.on('pointerdown', () => this.useRainingRocks());
+    
+    const artilleryBtn = this.add.rectangle(specialX + 120, specialY + 20, 100, 40, 0xFF4500).setInteractive({ useHandCursor: true });
+    artilleryBtn.setDepth(2000);
+    this.add.text(specialX + 120, specialY + 12, '💥 Artillery', { fontSize: '13px', color: '#ffffff', fontStyle: 'bold' })
+      .setOrigin(0.5).setDepth(2001);
+    this.add.text(specialX + 120, specialY + 28, 'Ready', { fontSize: '11px', color: '#00ff00' })
+      .setOrigin(0.5).setDepth(2001);
+    artilleryBtn.on('pointerdown', () => this.useArtilleryStrike());
     
     console.log('Test UI with buttons created with depth 2000');
   }
@@ -594,7 +640,7 @@ export class BattleScene extends Phaser.Scene {
     const epochId = currentEpoch.id;
     
     // Filtere Units nach Epoche (alle Units dieser Epoche, maximal 5 für UI)
-    const availableUnits = this.unitsDatabase.filter(unit => unit.epoch === epochId).slice(0, 5);
+    const availableUnits = this.unitsDatabase.filter(unit => unit.epoch === epochId).slice(0, 4); // Every epoch has 4 units
     
     // Aktualisiere die Button-Anzeigen
     for (let i = 0; i < this.unitButtons.length; i++) {
@@ -605,7 +651,7 @@ export class BattleScene extends Phaser.Scene {
         
         // Store the actual unit data reference (not the index!)
         buttonData.unitData = unit;
-        buttonData.nameText.setText(unit.name);
+        buttonData.nameText.setText(unit.name.substring(0, 10));
         buttonData.costText.setText(`${unit.goldCost}g`);
         buttonData.btn.setFillStyle(0x444444);
         buttonData.btn.setInteractive();
@@ -614,7 +660,7 @@ export class BattleScene extends Phaser.Scene {
       } else {
         // Button deaktivieren (nicht genug Units in dieser Epoche)
         buttonData.unitData = null;
-        buttonData.nameText.setText('---');
+        buttonData.nameText.setText('');
         buttonData.costText.setText('');
         buttonData.btn.setFillStyle(0x222222);
         buttonData.btn.disableInteractive();
@@ -624,6 +670,39 @@ export class BattleScene extends Phaser.Scene {
     }
     
     console.log(`📋 ${currentEpoch.name} - Available units: ${availableUnits.map(u => u.name).join(', ')}`);
+  }
+
+  /**
+   * Update turret buttons based on current epoch
+   */
+  private updateAvailableTurrets(): void {
+    const currentEpoch = this.getCurrentEpoch();
+    const epochOrder = ['stone', 'castle', 'renaissance', 'modern', 'future'];
+    const currentEpochIdx = epochOrder.indexOf(currentEpoch.id);
+    
+    // Filter turrets for current epoch and below
+    const availableTurrets = this.turretsDatabase.filter(t => {
+      const turretEpochIdx = epochOrder.indexOf(t.epoch);
+      return turretEpochIdx <= currentEpochIdx;
+    });
+    // Show last 5 available turrets (prioritize current epoch)
+    const displayTurrets = availableTurrets.slice(-5);
+    
+    for (let i = 0; i < this.turretBtnRefs.length; i++) {
+      const ref = this.turretBtnRefs[i];
+      if (i < displayTurrets.length) {
+        const turretData = displayTurrets[i];
+        ref.turretIndex = this.turretsDatabase.indexOf(turretData);
+        ref.nameText.setText(turretData.name.substring(0, 10));
+        ref.costText.setText(`${turretData.goldCost}g`);
+        ref.btn.setFillStyle(0x663300);
+      } else {
+        ref.turretIndex = -1;
+        ref.nameText.setText('');
+        ref.costText.setText('');
+        ref.btn.setFillStyle(0x332200);
+      }
+    }
   }
 
   private updateAllHealthBars(): void {
@@ -645,18 +724,21 @@ export class BattleScene extends Phaser.Scene {
   }
 
   private createTurretGrid(): void {
-    // Initialize turret grid slots (ohne visuelle Grid-Linien)
+    // Initialize turret grid slots with visual highlights
     for (let row = 0; row < TURRET_GRID_ROWS; row++) {
       this.turretGrid[row] = [];
       for (let col = 0; col < TURRET_GRID_COLS; col++) {
         const x = TURRET_GRID_START_X + col * TURRET_CELL_SIZE;
         const y = TURRET_GRID_START_Y + row * TURRET_CELL_SIZE;
         
-        // Keine visuellen Grid-Linien mehr
-        // graphics.lineStyle() - entfernt
-        // graphics.strokeRect() - entfernt
+        // Create visual grid slot highlight (hidden by default)
+        const gridVisual = this.add.rectangle(x, y, TURRET_CELL_SIZE - 4, TURRET_CELL_SIZE - 4);
+        gridVisual.setStrokeStyle(2, 0x00ff00, 0.8);
+        gridVisual.setFillStyle(0x00ff00, 0.15);
+        gridVisual.setDepth(1500);
+        gridVisual.setVisible(false);
         
-        // Create interactive zone for placement (unsichtbar)
+        // Create interactive zone for placement
         const zone = this.add.zone(x, y, TURRET_CELL_SIZE, TURRET_CELL_SIZE).setInteractive();
         zone.setData('row', row);
         zone.setData('col', col);
@@ -670,8 +752,38 @@ export class BattleScene extends Phaser.Scene {
           x,
           y,
           occupied: false,
-          lastFireTime: 0
+          lastFireTime: 0,
+          gridVisual
         };
+      }
+    }
+  }
+
+  private showTurretGrid(): void {
+    for (let row = 0; row < TURRET_GRID_ROWS; row++) {
+      for (let col = 0; col < TURRET_GRID_COLS; col++) {
+        const slot = this.turretGrid[row][col];
+        if (slot.gridVisual) {
+          slot.gridVisual.setVisible(true);
+          if (slot.occupied) {
+            slot.gridVisual.setStrokeStyle(2, 0xff0000, 0.8);
+            slot.gridVisual.setFillStyle(0xff0000, 0.15);
+          } else {
+            slot.gridVisual.setStrokeStyle(2, 0x00ff00, 0.8);
+            slot.gridVisual.setFillStyle(0x00ff00, 0.15);
+          }
+        }
+      }
+    }
+  }
+
+  private hideTurretGrid(): void {
+    for (let row = 0; row < TURRET_GRID_ROWS; row++) {
+      for (let col = 0; col < TURRET_GRID_COLS; col++) {
+        const slot = this.turretGrid[row][col];
+        if (slot.gridVisual) {
+          slot.gridVisual.setVisible(false);
+        }
       }
     }
   }
@@ -750,6 +862,7 @@ export class BattleScene extends Phaser.Scene {
   private selectTurretType(index: number): void {
     this.selectedTurretIndex = index;
     console.log(`Selected turret type: ${this.turretsDatabase[index]?.name || 'Unknown'}`);
+    this.showTurretGrid();
   }
 
   private onTurretSlotClick(row: number, col: number): void {
@@ -783,6 +896,7 @@ export class BattleScene extends Phaser.Scene {
     this.placeTurret(row, col, turretData);
     this.addGold(-turretData.goldCost);
     this.selectedTurretIndex = -1; // Reset selection
+    this.hideTurretGrid(); // Hide grid after placement
   }
 
   private placeTurret(row: number, col: number, turretData: TurretType): void {
@@ -1259,10 +1373,13 @@ export class BattleScene extends Phaser.Scene {
           const bonusXP = calculateKillBonusXP(unit1.getData('cost') || 50);
           this.addXP(bonusXP, unit1.x, unit1.y);
           unit1.setData('xpAwarded', true);
-          // Kill streak gold bonus
+          // Kill streak gold bonus + bounty based on enemy unit cost
           const goldReward = this.addKillToStreak();
-          this.addGold(goldReward, unit1.x, unit1.y);
-          this.showGoldParticles(unit1.x, unit1.y, goldReward);
+          const unitCost = unit1.getData('cost') || 50;
+          const bountyGold = Math.ceil(unitCost * 0.25); // 25% of unit cost as bounty
+          const totalGold = goldReward + bountyGold;
+          this.addGold(totalGold, unit1.x, unit1.y);
+          this.showGoldParticles(unit1.x, unit1.y, totalGold);
         }
         unit1.setData('inCombat', false); // Clear flag before recycling
         this.recycleUnit(unit1);
@@ -1279,10 +1396,13 @@ export class BattleScene extends Phaser.Scene {
           const bonusXP = calculateKillBonusXP(unit2.getData('cost') || 50);
           this.addXP(bonusXP, unit2.x, unit2.y);
           unit2.setData('xpAwarded', true);
-          // Kill streak gold bonus
+          // Kill streak gold bonus + bounty based on enemy unit cost
           const goldReward = this.addKillToStreak();
-          this.addGold(goldReward, unit2.x, unit2.y);
-          this.showGoldParticles(unit2.x, unit2.y, goldReward);
+          const unitCost = unit2.getData('cost') || 50;
+          const bountyGold = Math.ceil(unitCost * 0.25); // 25% of unit cost as bounty
+          const totalGold = goldReward + bountyGold;
+          this.addGold(totalGold, unit2.x, unit2.y);
+          this.showGoldParticles(unit2.x, unit2.y, totalGold);
         }
         unit2.setData('inCombat', false); // Clear flag before recycling
         this.recycleUnit(unit2);
@@ -1363,6 +1483,11 @@ export class BattleScene extends Phaser.Scene {
     const hp = hpBefore - damage;
     target.setData('hp', hp);
     
+    // Visual hit feedback: tint flash + floating damage number
+    target.setTint(0xff7777);
+    this.time.delayedCall(80, () => { if (target.active) target.clearTint(); });
+    this.showFloatingDamage(target.x, target.y - 20, damage);
+    
     // Update GameUnit health properties and healthbar
     const gameUnit = target as GameUnit;
     if (gameUnit.currentHp !== undefined) {
@@ -1387,9 +1512,15 @@ export class BattleScene extends Phaser.Scene {
         const bonusXP = calculateKillBonusXP(target.getData('cost') || 50);
         this.addXP(bonusXP, target.x, target.y);
         target.setData('xpAwarded', true);
-        // Also add gold reward for kill
-        this.addGold(10);
+        // Kill streak gold bonus + bounty based on enemy unit cost (same as melee)
+        const goldReward = this.addKillToStreak();
+        const unitCost = target.getData('cost') || 50;
+        const bountyGold = Math.ceil(unitCost * 0.25); // 25% of unit cost as bounty
+        const totalGold = goldReward + bountyGold;
+        this.addGold(totalGold, target.x, target.y);
+        this.showGoldParticles(target.x, target.y, totalGold);
       }
+      this.showDeathEffect(target.x, target.y);
       this.recycleUnit(target);
     }
     // Pierce handling: remaining hits allowed beyond this impact
@@ -1424,8 +1555,6 @@ export class BattleScene extends Phaser.Scene {
       const damage = unit.getData('damage') || 10;
       this.damageBase(targetBaseSide, damage);
       unit.setData('lastAttackTime', now);
-      
-      console.log(`Unit attacking ${targetBaseSide} base for ${damage} damage`);
     }
   }
 
@@ -1475,14 +1604,15 @@ export class BattleScene extends Phaser.Scene {
         
         // Update available units for new epoch
         this.updateAvailableUnits();
+        this.updateAvailableTurrets();
         
         // Update TestUI
         if (this.xpText) this.xpText.setText(`XP: ${this.xp}/${newEpoch.xpToNext}`);
         if (this.epochText) this.epochText.setText(`Epoch: ${newEpoch.name}`);
         
-        // Notify UI
+        // Notify UI (include epoch ID for filtering)
         const uiScene = this.scene.get('UIScene');
-        uiScene.events.emit('updateEpoch', newEpoch.name);
+        uiScene.events.emit('updateEpoch', newEpoch.name, newEpoch.id);
         uiScene.events.emit('updateXP', this.xp, newEpoch.xpToNext);
       }
     } else {
@@ -1540,11 +1670,51 @@ export class BattleScene extends Phaser.Scene {
   }
 
   /**
+   * Show floating damage number above a unit
+   */
+  private showFloatingDamage(x: number, y: number, damage: number): void {
+    const dmgText = this.add.text(x, y, `-${damage}`, {
+      fontSize: '16px',
+      fontStyle: 'bold',
+      color: '#ff4444',
+      stroke: '#000000',
+      strokeThickness: 3
+    }).setOrigin(0.5).setDepth(3000);
+    
+    this.tweens.add({
+      targets: dmgText,
+      y: y - 30,
+      alpha: 0,
+      duration: 600,
+      ease: 'Power2',
+      onComplete: () => dmgText.destroy()
+    });
+  }
+
+  /**
+   * Show death puff effect when a unit dies
+   */
+  private showDeathEffect(x: number, y: number): void {
+    // Small burst of particles
+    const particles = this.add.particles(x, y, 'particle-star', {
+      speed: { min: 30, max: 70 },
+      angle: { min: 0, max: 360 },
+      scale: { start: 0.6, end: 0 },
+      alpha: { start: 0.8, end: 0 },
+      lifespan: 400,
+      quantity: 5,
+      emitting: false
+    });
+    particles.emitParticle();
+    this.time.delayedCall(500, () => particles.destroy());
+  }
+
+  /**
    * Kill Streak System - returns gold reward based on streak
    */
   private addKillToStreak(): number {
     // Use the KillStreakManager for consistent streak handling
-    const baseGold = 10;
+    const baseGold = 15; // Increased base kill reward from 10 to 15
     const bonusGold = this.killStreakManager.registerKill(baseGold);
     return baseGold + bonusGold;
   }
@@ -1560,6 +1730,15 @@ export class BattleScene extends Phaser.Scene {
     while (this.goldAccumulator >= goldTickInterval) {
       this.goldAccumulator -= goldTickInterval;
       this.addGold(1);
+    }
+    
+    // Enemy epoch progression timer (independent of player)
+    this.enemyEpochTimer += delta;
+    const enemyAdvanceTime = this.ENEMY_EPOCH_ADVANCE_TIME * (this.difficulty === 'easy' ? 1.3 : this.difficulty === 'hard' ? 0.7 : 1.0);
+    if (this.enemyEpochTimer >= enemyAdvanceTime && this.enemyEpochIndex < this.epochs.length - 1) {
+      this.enemyEpochIndex++;
+      this.enemyEpochTimer = 0;
+      console.log(`⚔️ Enemy epoch advanced to: ${this.epochs[this.enemyEpochIndex].name}`);
     }
     
     // Update health bars for all units
@@ -1981,7 +2160,13 @@ export class BattleScene extends Phaser.Scene {
           const bonusXP = calculateKillBonusXP(target.getData('cost') || 50);
           this.addXP(bonusXP, target.x, target.y);
           target.setData('xpAwarded', true);
-          this.addGold(10);
+          // Kill streak gold bonus + bounty based on enemy unit cost (same as melee)
+          const goldReward = this.addKillToStreak();
+          const unitCost = target.getData('cost') || 50;
+          const bountyGold = Math.ceil(unitCost * 0.25); // 25% of unit cost as bounty
+          const totalGold = goldReward + bountyGold;
+          this.addGold(totalGold, target.x, target.y);
+          this.showGoldParticles(target.x, target.y, totalGold);
         }
         this.recycleUnit(target);
       }
@@ -2431,6 +2616,26 @@ export class BattleScene extends Phaser.Scene {
 
   // Enemy AI System
 
+  /**
+   * Spawn a free starting unit so the player has something on the field immediately.
+   * Uses the cheapest unit from the current epoch.
+   */
+  private spawnFreeStartingUnit(): void {
+    const currentEpoch = this.getCurrentEpoch();
+    const startingUnits = this.unitsDatabase.filter(u => u.epoch === currentEpoch.id);
+    if (startingUnits.length > 0) {
+      // Sort by cost to pick cheapest units
+      const sorted = [...startingUnits].sort((a, b) => a.goldCost - b.goldCost);
+      
+      // Spawn 2 free starting units so the player has a small squad
+      const freeCount = Math.min(2, sorted.length);
+      for (let i = 0; i < freeCount; i++) {
+        this.queueUnitSpawn('player', sorted[i]);
+        console.log(`🎁 Free starting unit ${i + 1}: ${sorted[i].name}`);
+      }
+    }
+  }
+
   private startEnemySpawner(): void {
     // Get spawn rate based on difficulty
     const spawnRate = this.difficultyMultipliers[this.difficulty].enemySpawnRate;
@@ -2449,21 +2654,21 @@ export class BattleScene extends Phaser.Scene {
   }
 
   /**
-   * Smart Enemy AI: Spawns varied units from current epoch
+   * Smart Enemy AI: Spawns varied units from enemy's own epoch (independent of player)
    */
   private getSmartEnemyUnit(): number {
-    // Get available units for current epoch
-    const currentEpoch = this.epochs[this.currentEpochIndex];
+    // Get available units for enemy's current epoch (independent from player)
+    const enemyEpoch = this.epochs[this.enemyEpochIndex];
     const availableUnits = this.unitsDatabase
       .map((unit, index) => ({ unit, index }))
-      .filter(({unit}) => unit.epoch === currentEpoch.id);
+      .filter(({unit}) => unit.epoch === enemyEpoch.id);
     
     if (availableUnits.length === 0) {
       // Fallback to random unit
-      return Math.floor(Math.random() * Math.min(this.currentEpochIndex + 3, this.unitsDatabase.length));
+      return Math.floor(Math.random() * Math.min(this.enemyEpochIndex + 3, this.unitsDatabase.length));
     }
     
-    // Random unit from current epoch for variety
+    // Random unit from enemy epoch for variety
     const chosen = availableUnits[Math.floor(Math.random() * availableUnits.length)];
     return chosen.index;
   }

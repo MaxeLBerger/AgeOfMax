@@ -1,4 +1,4 @@
-﻿
+
 // Sound Effects System
 export class SoundEffectsManager {
   private scene: Phaser.Scene;
@@ -26,14 +26,18 @@ export class SoundEffectsManager {
   }
   
   play(soundKey: string, volume?: number) {
+    // Only play if the sound is actually loaded in the audio cache
+    if (!this.scene.cache.audio.exists(soundKey)) {
+      return; // Silently skip - audio files not yet added
+    }
     try {
       const sound = this.scene.sound.add(soundKey, {
         volume: volume !== undefined ? volume : this.volume
       });
       sound.play();
       this.sounds.set(soundKey, sound);
-    } catch (error) {
-      console.warn(`Sound not found: ${soundKey}`);
+    } catch (_error) {
+      // Silently fail - sound system not ready or other issue
     }
   }
   

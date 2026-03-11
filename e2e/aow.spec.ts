@@ -3,13 +3,20 @@
 test.describe("Age of War - Smoke Tests", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("http://localhost:5173");
-    await page.waitForTimeout(2000);
+    await page.waitForTimeout(1000);
+
+    // Navigate through menu -> difficulty -> start game
+    const canvas = page.locator("canvas");
+    await canvas.click({ position: { x: 640, y: 300 } }); // START GAME
+    await page.waitForTimeout(300);
+    await canvas.click({ position: { x: 640, y: 360 } }); // MEDIUM
+    await page.waitForTimeout(1000);
   });
 
   test("1) App loads and toolbar elements are visible", async ({ page }) => {
     await expect(page).toHaveTitle(/Age of Max/i);
     
-    const canvas = page.locator("canvas");
+  const canvas = page.locator("canvas");
     await expect(canvas).toBeVisible();
     
     const canvasSize = await canvas.boundingBox();
