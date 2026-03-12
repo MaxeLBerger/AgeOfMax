@@ -37,7 +37,7 @@ const RANGED_ATTACKSPEED_MULTIPLIER = 1.2; // Increase time between ranged shots
 
 // Turret grid constants
 const TURRET_GRID_START_X = 50;
-const TURRET_GRID_START_Y = 170; // Weiter nach unten verschoben, weg von der Epochenanzeige
+const TURRET_GRID_START_Y = 360; // Lowered to sit visually on the castle architecture
 const TURRET_CELL_SIZE = 60;
 const TURRET_GRID_ROWS = 3;
 const TURRET_GRID_COLS = 5;

@@ -43,26 +43,26 @@ export class UIScene extends Phaser.Scene {
     resourcePanel.setDepth(UI_DEPTH);
     
     // Gold display with icon
-    const goldIcon = this.add.image(20, 25, 'gold-coin').setScale(0.5);
+    const goldIcon = this.add.image(20, 25, 'gold-coin').setDisplaySize(32, 32);
     goldIcon.setDepth(UI_DEPTH + 1);
     this.goldText = this.add.text(50, 15, `Gold: ${this.economy.gold}`, { 
-      fontSize: '28px', 
+      fontSize: '24px', 
       color: '#ffd700',
       fontStyle: 'bold',
       stroke: '#000000',
-      strokeThickness: 3
+      strokeThickness: 2
     });
     this.goldText.setDepth(UI_DEPTH + 1);
     
     // XP display with progress bar
-    const xpIcon = this.add.image(20, 70, 'xp-star').setScale(0.5);
+    const xpIcon = this.add.image(20, 70, 'xp-star').setDisplaySize(32, 32);
     xpIcon.setDepth(UI_DEPTH + 1);
     this.xpText = this.add.text(50, 60, `XP: ${this.economy.xp}/${this.currentEpoch.xpToNext}`, { 
-      fontSize: '22px', 
+      fontSize: '20px', 
       color: '#00ff00',
       fontStyle: 'bold',
       stroke: '#000000',
-      strokeThickness: 3
+      strokeThickness: 2
     });
     this.xpText.setDepth(UI_DEPTH + 1);
     
@@ -92,7 +92,7 @@ export class UIScene extends Phaser.Scene {
       color: '#00ff00',
       fontStyle: 'bold',
       stroke: '#000000',
-      strokeThickness: 3
+      strokeThickness: 2
     });
     this.baseHpText.setDepth(UI_DEPTH + 1);
     
@@ -113,6 +113,7 @@ export class UIScene extends Phaser.Scene {
       padding: { x: 20, y: 10 }
     }).setOrigin(0.5);
     this.feedbackText.setDepth(UI_DEPTH + 10);
+    this.feedbackText.setVisible(false);
     
     this.createSpecialButtons();
     this.createToolbar();
@@ -181,8 +182,10 @@ export class UIScene extends Phaser.Scene {
 
   private showFeedback(message: string): void {
     this.feedbackText.setText(message);
+    this.feedbackText.setVisible(true);
     this.time.delayedCall(2000, () => {
       this.feedbackText.setText('');
+      this.feedbackText.setVisible(false);
     });
   }
 

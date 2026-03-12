@@ -122,6 +122,9 @@ export class DifficultyScene extends Phaser.Scene {
     loadingText.destroy();
     
     // Start the game scenes.
+    // Ensure any old UIScene instance is stopped before we launch a new one
+    // to prevent text stacking/shadowing from previous game runs.
+    this.scene.stop('UIScene');
     // Launch UI first to ensure it's available when BattleScene emits events.
     this.scene.launch('UIScene');
     // Give Phaser a tick to initialize the UI scene before starting BattleScene
