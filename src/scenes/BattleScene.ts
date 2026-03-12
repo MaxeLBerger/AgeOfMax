@@ -186,6 +186,9 @@ export class BattleScene extends Phaser.Scene {
     this.syncInitialStateToUI();
     this.setupDebugControls();
     
+    // Ensure the UI scene is rendered on top of the battle scene
+    this.scene.bringToTop('UIScene');
+    
     // Start battle music for current epoch
     this.music.playBattleMusic(this.currentEpochIndex + 1);
     
