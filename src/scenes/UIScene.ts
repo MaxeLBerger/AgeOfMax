@@ -36,6 +36,7 @@ export class UIScene extends Phaser.Scene {
 
   private createHUD(): void {
     const UI_DEPTH = 2000;
+    const { width, height } = this.scale;
     
     // Top-left resources panel - semi-transparent background
     const resourcePanel = this.add.rectangle(0, 0, 300, 150, 0x000000, 0.7).setOrigin(0, 0);
@@ -82,10 +83,11 @@ export class UIScene extends Phaser.Scene {
     this.epochText.setDepth(UI_DEPTH + 1);
     
     // Base HP panel (left side, middle)
-    const baseHpPanel = this.add.rectangle(0, 400, 280, 80, 0x000000, 0.7).setOrigin(0, 0);
+    const baseHpPanelY = height / 2 + 50;
+    const baseHpPanel = this.add.rectangle(0, baseHpPanelY, 280, 80, 0x000000, 0.7).setOrigin(0, 0);
     baseHpPanel.setDepth(UI_DEPTH);
     
-    this.baseHpText = this.add.text(20, 415, 'Base HP: ---/---', { 
+    this.baseHpText = this.add.text(20, baseHpPanelY + 15, 'Base HP: ---/---', { 
       fontSize: '24px', 
       color: '#00ff00',
       fontStyle: 'bold',
@@ -95,13 +97,13 @@ export class UIScene extends Phaser.Scene {
     this.baseHpText.setDepth(UI_DEPTH + 1);
     
     // Base HP Progress Bar
-    const baseHpBarBg = this.add.rectangle(20, 450, 240, 20, 0x660000).setOrigin(0, 0);
+    const baseHpBarBg = this.add.rectangle(20, baseHpPanelY + 50, 240, 20, 0x660000).setOrigin(0, 0);
     baseHpBarBg.setDepth(UI_DEPTH + 1);
-    this.baseHpBar = this.add.rectangle(20, 450, 240, 20, 0x00ff00).setOrigin(0, 0);
+    this.baseHpBar = this.add.rectangle(20, baseHpPanelY + 50, 240, 20, 0x00ff00).setOrigin(0, 0);
     this.baseHpBar.setDepth(UI_DEPTH + 2);
     
     // Feedback text (center screen)
-    this.feedbackText = this.add.text(640, 300, '', { 
+    this.feedbackText = this.add.text(width / 2, height / 2 - 60, '', { 
       fontSize: '28px', 
       color: '#ff0000',
       fontStyle: 'bold',
@@ -186,7 +188,8 @@ export class UIScene extends Phaser.Scene {
 
   private createSpecialButtons(): void {
     const UI_DEPTH = 2000;
-    const specialButtonsX = 1050;
+    const { width } = this.scale;
+    const specialButtonsX = width - 230;
     const specialButtonsY = 30;
     
     // Panel background
@@ -295,13 +298,16 @@ export class UIScene extends Phaser.Scene {
 
   private createToolbar(): void {
     const UI_DEPTH = 2000;
+    const { width, height } = this.scale;
+    const toolbarHeight = 170;
+    const toolbarY = height - toolbarHeight;
     
     // Bottom toolbar panel
-    const toolbarBg = this.add.rectangle(0, 550, 1280, 170, 0x1a1a1a, 0.9).setOrigin(0, 0);
+    const toolbarBg = this.add.rectangle(0, toolbarY, width, toolbarHeight, 0x1a1a1a, 0.9).setOrigin(0, 0);
     toolbarBg.setDepth(UI_DEPTH);
     
     // Turrets section
-    const turretTitle = this.add.text(640, 565, '🏰 TURRETS - Click to Select, then Click Grid to Place', { 
+    const turretTitle = this.add.text(width / 2, toolbarY + 15, '🏰 TURRETS - Click to Select, then Click Grid to Place', { 
       fontSize: '18px', 
       color: '#ff8800',
       fontStyle: 'bold',
@@ -310,7 +316,7 @@ export class UIScene extends Phaser.Scene {
     }).setOrigin(0.5);
     turretTitle.setDepth(UI_DEPTH + 1);
     
-    const turretButtonY = 610;
+    const turretButtonY = toolbarY + 60;
     const epochOrder = ['stone', 'castle', 'renaissance', 'modern', 'future'];
     const currentEpochIdx = epochOrder.indexOf(this.currentEpochId);
     // Filter turrets for current epoch and below
@@ -325,18 +331,20 @@ export class UIScene extends Phaser.Scene {
       if (!turretData) continue;
       const turretIndex = this.turretsDatabase.indexOf(turretData);
 
-      const btn = this.add.rectangle(200 + i * 90, turretButtonY, 80, 50, 0x663300);
+      const btnX = (width / 2) - 180 + (i * 90);
+
+      const btn = this.add.rectangle(btnX, turretButtonY, 80, 50, 0x663300);
       btn.setInteractive({ useHandCursor: true });
       btn.setDepth(UI_DEPTH + 1);
       
-      const nameText = this.add.text(200 + i * 90, turretButtonY - 12, turretData.name.substring(0, 8), { 
+      const nameText = this.add.text(btnX, turretButtonY - 12, turretData.name.substring(0, 8), { 
         fontSize: '11px', 
         color: '#ffffff',
         fontStyle: 'bold'
       }).setOrigin(0.5);
       nameText.setDepth(UI_DEPTH + 2);
       
-      const costText = this.add.text(200 + i * 90, turretButtonY + 10, `${turretData.goldCost}g`, { 
+      const costText = this.add.text(btnX, turretButtonY + 10, `${turretData.goldCost}g`, { 
         fontSize: '14px', 
         color: '#ffd700',
         fontStyle: 'bold'
@@ -359,7 +367,7 @@ export class UIScene extends Phaser.Scene {
     }
     
     // Units section
-    const unitTitle = this.add.text(640, 655, '⚔️ UNITS - Click to Spawn', { 
+    const unitTitle = this.add.text(width / 2, toolbarY + 105, '⚔️ UNITS - Click to Spawn', { 
       fontSize: '18px', 
       color: '#00ff00',
       fontStyle: 'bold',
@@ -368,20 +376,22 @@ export class UIScene extends Phaser.Scene {
     }).setOrigin(0.5);
     unitTitle.setDepth(UI_DEPTH + 1);
     
-    const unitButtonY = 690;
+    const unitButtonY = toolbarY + 140;
     for (let i = 0; i < 4; i++) { // Only 4 slots — every epoch has exactly 4 units
-      const btn = this.add.rectangle(200 + i * 90, unitButtonY, 80, 50, 0x444444);
+      const btnX = (width / 2) - 135 + (i * 90);
+
+      const btn = this.add.rectangle(btnX, unitButtonY, 80, 50, 0x444444);
       btn.setInteractive({ useHandCursor: true });
       btn.setDepth(UI_DEPTH + 1);
       
-      const nameText = this.add.text(200 + i * 90, unitButtonY - 12, '---', { 
+      const nameText = this.add.text(btnX, unitButtonY - 12, '---', { 
         fontSize: '11px', 
         color: '#aaaaaa',
         fontStyle: 'bold'
       }).setOrigin(0.5);
       nameText.setDepth(UI_DEPTH + 2);
       
-      const costText = this.add.text(200 + i * 90, unitButtonY + 10, '', { 
+      const costText = this.add.text(btnX, unitButtonY + 10, '', { 
         fontSize: '14px', 
         color: '#ffd700',
         fontStyle: 'bold'
