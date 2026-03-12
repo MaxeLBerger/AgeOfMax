@@ -85,7 +85,7 @@ export class UIScene extends Phaser.Scene {
     const baseHpPanel = this.add.rectangle(0, 400, 280, 80, 0x000000, 0.7).setOrigin(0, 0);
     baseHpPanel.setDepth(UI_DEPTH);
     
-    this.baseHpText = this.add.text(20, 415, 'Base HP: 1500/1500', { 
+    this.baseHpText = this.add.text(20, 415, 'Base HP: ---/---', { 
       fontSize: '24px', 
       color: '#00ff00',
       fontStyle: 'bold',
@@ -458,7 +458,7 @@ export class UIScene extends Phaser.Scene {
     
     // Notify BattleScene
     const battleScene = this.scene.get('BattleScene');
-    battleScene.events.emit('spawnUnit', buttonData.unitIndex);
+    battleScene.events.emit('spawnUnit', unitData.id);
   }
   
   private updateAvailableUnits(): void {

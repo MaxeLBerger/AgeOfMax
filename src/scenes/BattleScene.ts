@@ -116,7 +116,7 @@ export class BattleScene extends Phaser.Scene {
   // Difficulty settings
   private difficulty: 'easy' | 'medium' | 'hard' = 'medium';
   private difficultyMultipliers = {
-    easy: { enemySpawnRate: 6000, enemyStats: 0.7, startingGold: 300 },
+    easy: { enemySpawnRate: 6000, enemyStats: 0.7, startingGold: 400 },
     medium: { enemySpawnRate: 4000, enemyStats: 1.0, startingGold: 200 },
     hard: { enemySpawnRate: 3000, enemyStats: 1.3, startingGold: 100 }
   };
@@ -145,8 +145,7 @@ export class BattleScene extends Phaser.Scene {
   // Internal UID counter to deduplicate projectile hits across frames
   private unitUidCounter = 1;
 
-  // Turret button references for dynamic updates
-  private turretBtnRefs: Array<{ btn: Phaser.GameObjects.Rectangle, nameText: Phaser.GameObjects.Text, costText: Phaser.GameObjects.Text, turretIndex: number }> = [];
+  // Turret references
 
   constructor() {
     super({ key: 'BattleScene' });
@@ -183,7 +182,6 @@ export class BattleScene extends Phaser.Scene {
     this.createTurretGrid();
     this.setupPools();
     this.setupColliders();
-    this.createTestUI();   // Test UI direkt hier
     this.listenToUIEvents();
     this.syncInitialStateToUI();
     this.setupDebugControls();
@@ -279,6 +277,7 @@ export class BattleScene extends Phaser.Scene {
     uiScene.events.emit('updateGold', this.gold);
     uiScene.events.emit('updateXP', this.xp, this.getCurrentEpoch().xpToNext);
     uiScene.events.emit('updateEpoch', this.getCurrentEpoch());
+    uiScene.events.emit('updateBaseHP', this.playerBase.hp, this.playerBase.maxHp, 'player');
     
     // Create kill streak UI element (top-center)
     this.add.text(640, 30, '', {
@@ -522,196 +521,6 @@ export class BattleScene extends Phaser.Scene {
     }
   }
 
-  private goldText!: Phaser.GameObjects.Text;
-  private xpText!: Phaser.GameObjects.Text;
-  private epochText!: Phaser.GameObjects.Text;
-  private unitButtons: Array<{btn: Phaser.GameObjects.Rectangle, nameText: Phaser.GameObjects.Text, costText: Phaser.GameObjects.Text, unitData: UnitType | null}> = [];
-
-  private createTestUI(): void {
-    // Test UI direkt in der BattleScene erstellen
-    this.goldText = this.add.text(20, 20, `Gold: ${this.gold}`, { 
-      fontSize: '24px', 
-      fontFamily: 'monospace',
-      color: '#ffd700',
-      backgroundColor: '#000000aa',
-      padding: { x: 10, y: 5 }
-    });
-    this.goldText.setDepth(2000);
-    
-    this.xpText = this.add.text(20, 55, `XP: ${this.xp}/${this.getCurrentEpoch().xpToNext}`, { 
-      fontSize: '20px', 
-      fontFamily: 'monospace',
-      color: '#00ff00',
-      backgroundColor: '#000000aa',
-      padding: { x: 10, y: 5 }
-    });
-    this.xpText.setDepth(2000);
-    
-    this.epochText = this.add.text(20, 88, `Epoch: ${this.getCurrentEpoch().name}`, { 
-      fontSize: '20px', 
-      fontFamily: 'monospace',
-      color: '#ffffff',
-      backgroundColor: '#000000aa',
-      padding: { x: 10, y: 5 }
-    });
-    this.epochText.setDepth(2000);
-    
-    // Unit spawn buttons (U1-U4) - dynamisch basierend auf Epoche
-    const buttonY = 660;
-    for (let i = 0; i < 4; i++) {
-      const btn = this.add.rectangle(200 + i * 80, buttonY, 70, 50, 0x444444).setInteractive();
-      btn.setDepth(2000);
-      
-      const nameText = this.add.text(200 + i * 80, buttonY - 10, '', { 
-        fontSize: '11px', 
-        color: '#ffffff' 
-      }).setOrigin(0.5);
-      nameText.setDepth(2000);
-      
-      const costText = this.add.text(200 + i * 80, buttonY + 10, '', { 
-        fontSize: '12px', 
-        color: '#ffd700' 
-      }).setOrigin(0.5);
-      costText.setDepth(2000);
-      
-      this.unitButtons.push({btn, nameText, costText, unitData: null});
-      
-      btn.on('pointerdown', () => {
-        const buttonData = this.unitButtons[i];
-        if (buttonData.unitData !== null) {
-          // Use queue system for formations
-          this.queueUnitSpawn('player', buttonData.unitData);
-        }
-      });
-    }
-    
-    // Initial update für verfügbare Units
-    this.updateAvailableUnits();
-    
-    // Turret placement buttons (T1-T5) - dynamisch basierend auf Epoche
-    const turretButtonY = 600;
-    this.turretBtnRefs = [];
-    for (let i = 0; i < 5; i++) {
-      const btn = this.add.rectangle(200 + i * 80, turretButtonY, 70, 50, 0x663300).setInteractive();
-      btn.setDepth(2000);
-      const nameText = this.add.text(200 + i * 80, turretButtonY - 10, '', { 
-        fontSize: '11px', 
-        color: '#ffffff' 
-      }).setOrigin(0.5);
-      nameText.setDepth(2000);
-      const costText = this.add.text(200 + i * 80, turretButtonY + 10, '', { 
-        fontSize: '12px', 
-        color: '#ffd700' 
-      }).setOrigin(0.5);
-      costText.setDepth(2000);
-      
-      this.turretBtnRefs.push({ btn, nameText, costText, turretIndex: -1 });
-      
-      btn.on('pointerdown', () => {
-        const ref = this.turretBtnRefs[i];
-        if (ref.turretIndex >= 0) {
-          this.selectedTurretIndex = ref.turretIndex;
-          console.log(`Selected turret: ${this.turretsDatabase[ref.turretIndex]?.name}`);
-          this.showTurretGrid();
-        }
-      });
-    }
-    this.updateAvailableTurrets();
-    
-    // Special ability buttons (Meteor + Artillery)
-    const specialY = 20;
-    const specialX = 920;
-    
-    const meteorBtn = this.add.rectangle(specialX, specialY + 20, 100, 40, 0x8B4513).setInteractive({ useHandCursor: true });
-    meteorBtn.setDepth(2000);
-    this.add.text(specialX, specialY + 12, '🪨 Meteor', { fontSize: '13px', color: '#ffffff', fontStyle: 'bold' })
-      .setOrigin(0.5).setDepth(2001);
-    this.add.text(specialX, specialY + 28, 'Ready', { fontSize: '11px', color: '#00ff00' })
-      .setOrigin(0.5).setDepth(2001);
-    meteorBtn.on('pointerdown', () => this.useRainingRocks());
-    
-    const artilleryBtn = this.add.rectangle(specialX + 120, specialY + 20, 100, 40, 0xFF4500).setInteractive({ useHandCursor: true });
-    artilleryBtn.setDepth(2000);
-    this.add.text(specialX + 120, specialY + 12, '💥 Artillery', { fontSize: '13px', color: '#ffffff', fontStyle: 'bold' })
-      .setOrigin(0.5).setDepth(2001);
-    this.add.text(specialX + 120, specialY + 28, 'Ready', { fontSize: '11px', color: '#00ff00' })
-      .setOrigin(0.5).setDepth(2001);
-    artilleryBtn.on('pointerdown', () => this.useArtilleryStrike());
-    
-    console.log('Test UI with buttons created with depth 2000');
-  }
-
-  private updateAvailableUnits(): void {
-    // Hole die Units für die aktuelle Epoche
-    const currentEpoch = this.getCurrentEpoch();
-    const epochId = currentEpoch.id;
-    
-    // Filtere Units nach Epoche (alle Units dieser Epoche, maximal 5 für UI)
-    const availableUnits = this.unitsDatabase.filter(unit => unit.epoch === epochId).slice(0, 4); // Every epoch has 4 units
-    
-    // Aktualisiere die Button-Anzeigen
-    for (let i = 0; i < this.unitButtons.length; i++) {
-      const buttonData = this.unitButtons[i];
-      
-      if (i < availableUnits.length) {
-        const unit = availableUnits[i];
-        
-        // Store the actual unit data reference (not the index!)
-        buttonData.unitData = unit;
-        buttonData.nameText.setText(unit.name.substring(0, 10));
-        buttonData.costText.setText(`${unit.goldCost}g`);
-        buttonData.btn.setFillStyle(0x444444);
-        buttonData.btn.setInteractive();
-        buttonData.nameText.setVisible(true);
-        buttonData.costText.setVisible(true);
-      } else {
-        // Button deaktivieren (nicht genug Units in dieser Epoche)
-        buttonData.unitData = null;
-        buttonData.nameText.setText('');
-        buttonData.costText.setText('');
-        buttonData.btn.setFillStyle(0x222222);
-        buttonData.btn.disableInteractive();
-        buttonData.nameText.setVisible(true);
-        buttonData.costText.setVisible(false);
-      }
-    }
-    
-    console.log(`📋 ${currentEpoch.name} - Available units: ${availableUnits.map(u => u.name).join(', ')}`);
-  }
-
-  /**
-   * Update turret buttons based on current epoch
-   */
-  private updateAvailableTurrets(): void {
-    const currentEpoch = this.getCurrentEpoch();
-    const epochOrder = ['stone', 'castle', 'renaissance', 'modern', 'future'];
-    const currentEpochIdx = epochOrder.indexOf(currentEpoch.id);
-    
-    // Filter turrets for current epoch and below
-    const availableTurrets = this.turretsDatabase.filter(t => {
-      const turretEpochIdx = epochOrder.indexOf(t.epoch);
-      return turretEpochIdx <= currentEpochIdx;
-    });
-    // Show last 5 available turrets (prioritize current epoch)
-    const displayTurrets = availableTurrets.slice(-5);
-    
-    for (let i = 0; i < this.turretBtnRefs.length; i++) {
-      const ref = this.turretBtnRefs[i];
-      if (i < displayTurrets.length) {
-        const turretData = displayTurrets[i];
-        ref.turretIndex = this.turretsDatabase.indexOf(turretData);
-        ref.nameText.setText(turretData.name.substring(0, 10));
-        ref.costText.setText(`${turretData.goldCost}g`);
-        ref.btn.setFillStyle(0x663300);
-      } else {
-        ref.turretIndex = -1;
-        ref.nameText.setText('');
-        ref.costText.setText('');
-        ref.btn.setFillStyle(0x332200);
-      }
-    }
-  }
-
   private updateAllHealthBars(): void {
     // Update healthbars for all active player units
     this.playerUnits.children.entries.forEach((unit) => {
@@ -850,8 +659,11 @@ export class BattleScene extends Phaser.Scene {
 
   private listenToUIEvents(): void {
     const uiScene = this.scene.get('UIScene');
-    uiScene.events.on('spawnUnit', (index: number) => {
-      this.spawnUnit('player', index);
+    uiScene.events.on('spawnUnit', (unitId: string) => {
+      const unitData = this.unitsDatabase.find(u => u.id === unitId);
+      if (unitData) {
+        this.spawnUnitByData('player', unitData);
+      }
     });
     uiScene.events.on('selectTurret', (index: number) => {
       this.selectTurretType(index);
@@ -1188,13 +1000,7 @@ export class BattleScene extends Phaser.Scene {
     }
   }
 
-  private spawnUnit(side: 'player' | 'enemy', unitIndex: number): void {
-    // Get unit data from database
-    const unitData = this.unitsDatabase[Math.min(unitIndex, this.unitsDatabase.length - 1)];
-    
-    // Delegate to spawnUnitByData for consistency
-    this.spawnUnitByData(side, unitData);
-  }
+
 
   /**
    * Queue-based spawn system with formation support
@@ -1270,10 +1076,18 @@ export class BattleScene extends Phaser.Scene {
     const type2 = unit2.getData('type');
     
     if (type1 === 'ranged' || type2 === 'ranged') {
-      // Ranged units don't engage in melee - push them apart
-      const pushDistance = 15;
+      // Ranged units don't engage in melee - push them apart heavily to break the loop
+      const pushDistance = 25;
       unit1.x -= side1 === 'player' ? pushDistance : -pushDistance;
       unit2.x -= side2 === 'player' ? pushDistance : -pushDistance;
+      
+      // Temporarily set inCombat so overlap doesn't fire every frame
+      unit1.setData('inCombat', true);
+      unit2.setData('inCombat', true);
+      this.time.delayedCall(500, () => {
+        if (unit1.active) unit1.setData('inCombat', false);
+        if (unit2.active) unit2.setData('inCombat', false);
+      });
       
       // Ensure they keep moving
       const speed1 = unit1.getData('speed');
@@ -1609,23 +1423,12 @@ export class BattleScene extends Phaser.Scene {
         // Update background for new epoch
         this.updateBackground();
         
-        // Update available units for new epoch
-        this.updateAvailableUnits();
-        this.updateAvailableTurrets();
-        
-        // Update TestUI
-        if (this.xpText) this.xpText.setText(`XP: ${this.xp}/${newEpoch.xpToNext}`);
-        if (this.epochText) this.epochText.setText(`Epoch: ${newEpoch.name}`);
-        
         // Notify UI (include epoch ID for filtering)
         const uiScene = this.scene.get('UIScene');
         uiScene.events.emit('updateEpoch', newEpoch);
         uiScene.events.emit('updateXP', this.xp, newEpoch.xpToNext);
       }
     } else {
-      // Update TestUI
-      if (this.xpText) this.xpText.setText(`XP: ${this.xp}/${currentEpoch.xpToNext}`);
-      
       // Update UI with XP progress
       const uiScene = this.scene.get('UIScene');
       uiScene.events.emit('updateXP', this.xp, currentEpoch.xpToNext);
@@ -1639,9 +1442,6 @@ export class BattleScene extends Phaser.Scene {
     if (amount > 0) {
       this.soundEffects.playGoldCollect();
     }
-    
-    // Update TestUI
-    if (this.goldText) this.goldText.setText(`Gold: ${this.gold}`);
     
     const uiScene = this.scene.get('UIScene');
     uiScene.events.emit('updateGold', this.gold);
@@ -2015,7 +1815,6 @@ export class BattleScene extends Phaser.Scene {
     if (!projectile) return;
     
     projectile.setActive(true).setVisible(true);
-    projectile.setActive(true).setVisible(true);
     // Ensure texture and appropriate size for pooled sprite
     projectile.setTexture(projectileTexture);
     projectile.setScale(this.getUnitProjectileScale(projectileTexture));
@@ -2309,7 +2108,9 @@ export class BattleScene extends Phaser.Scene {
       
       projectile.setVelocity(velocityX, velocityY);
       
-      console.log(`Turret fired: ${slot.turretData.name} → Target at (${Math.round(target.x)}, ${Math.round(target.y)})`);
+      if (this.developerMode) {
+        console.log(`Turret fired: ${slot.turretData.name} → Target at (${Math.round(target.x)}, ${Math.round(target.y)})`);
+      }
     }
   }
 
@@ -2648,15 +2449,24 @@ export class BattleScene extends Phaser.Scene {
     const spawnRate = this.difficultyMultipliers[this.difficulty].enemySpawnRate;
     console.log(`⏱️ Enemy spawn rate: ${spawnRate}ms (${this.difficulty})`);
     
-    this.time.addEvent({
-      delay: spawnRate,
-      callback: () => {
-        const enemyUnitIndex = this.getSmartEnemyUnit();
-        const unitData = this.unitsDatabase[enemyUnitIndex];
-        // Use formation queue system
-        this.queueUnitSpawn('enemy', unitData);
-      },
-      loop: true
+    // Add initial delay so player has time to prepare
+    const initialDelay = spawnRate * 2;
+    
+    this.time.delayedCall(initialDelay, () => {
+      this.time.addEvent({
+        delay: spawnRate,
+        callback: () => {
+          const enemyUnitIndex = this.getSmartEnemyUnit();
+          const unitData = this.unitsDatabase[enemyUnitIndex];
+          // Use formation queue system
+          this.queueUnitSpawn('enemy', unitData);
+        },
+        loop: true
+      });
+      // Spawn first unit immediately after delay
+      const enemyUnitIndex = this.getSmartEnemyUnit();
+      const unitData = this.unitsDatabase[enemyUnitIndex];
+      this.queueUnitSpawn('enemy', unitData);
     });
   }
 

@@ -111,7 +111,7 @@ export class BootScene extends Phaser.Scene {
   }
 
   private createFallbackTextures(failedKeys: Set<string>): void {
-    const graphics = this.add.graphics();
+    const graphics = this.make.graphics({ x: -9999, y: -9999 });
     
     for (const key of failedKeys) {
       // Choose color based on asset type
@@ -157,7 +157,7 @@ export class BootScene extends Phaser.Scene {
   }
 
   private createPlaceholderAssets(): void {
-    const graphics = this.add.graphics();
+    const graphics = this.make.graphics({ x: -9999, y: -9999 });
     graphics.fillStyle(0x4444ff);
     graphics.fillRect(0, 0, 32, 32);
     graphics.generateTexture('unit-player', 32, 32);
