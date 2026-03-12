@@ -68,3 +68,9 @@ generated-assets/
 *.backup
 *.bak
 *~
+
+# Debug & Build Logs
+build_debug.js
+build_log.txt
+build_log2.txt
+vite_error.txt
