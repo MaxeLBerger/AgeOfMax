@@ -1080,23 +1080,29 @@ export class BattleScene extends Phaser.Scene {
     
     if (type1 === 'ranged' || type2 === 'ranged') {
       // Ranged units don't engage in melee - push them apart heavily to break the loop
-      const pushDistance = 25;
+      // and ensure they are far enough to trigger range checks again.
+      const pushDistance = 35; // Increased from 25 to ensure reliable separation
       unit1.x -= side1 === 'player' ? pushDistance : -pushDistance;
       unit2.x -= side2 === 'player' ? pushDistance : -pushDistance;
       
+      // CRITICAL: Immediately stop velocity to prevent sliding past while being pushed
+      unit1.setVelocityX(0);
+      unit2.setVelocityX(0);
+
       // Temporarily set inCombat so overlap doesn't fire every frame
       unit1.setData('inCombat', true);
       unit2.setData('inCombat', true);
+      
       this.time.delayedCall(500, () => {
-        if (unit1.active) unit1.setData('inCombat', false);
-        if (unit2.active) unit2.setData('inCombat', false);
+        if (unit1.active) {
+          unit1.setData('inCombat', false);
+          // Re-evaluate movement in next update
+        }
+        if (unit2.active) {
+          unit2.setData('inCombat', false);
+        }
       });
       
-      // Ensure they keep moving
-      const speed1 = unit1.getData('speed');
-      const speed2 = unit2.getData('speed');
-      unit1.setVelocityX(side1 === 'player' ? speed1 : -speed1);
-      unit2.setVelocityX(side2 === 'player' ? speed2 : -speed2);
       return; // No melee combat
     }
     
@@ -1729,7 +1735,7 @@ export class BattleScene extends Phaser.Scene {
       if (sprite.getData('inCombat')) return; // Skip if in melee combat
       if (sprite.getData('type') !== 'ranged') return; // Only ranged units
       
-      const range = sprite.getData('range') || 150;
+      const range = (sprite.getData('range') || 150) - 10; // Use a small safety margin
       const target = this.findEnemyInRange(sprite.x, sprite.y, range, 'enemy');
       
       if (target) {
@@ -1739,7 +1745,8 @@ export class BattleScene extends Phaser.Scene {
       } else if (sprite.x < ENEMY_BASE_X - BASE_ATTACK_RANGE) {
         // No target, resume marching
         const speed = sprite.getData('speed');
-        if (Math.abs(sprite.body?.velocity.x || 0) < 5) {
+        // Only set velocity if not already moving correctly
+        if (sprite.body && Math.abs(sprite.body.velocity.x) < 5) {
           sprite.setVelocityX(speed);
         }
       }
@@ -1752,7 +1759,7 @@ export class BattleScene extends Phaser.Scene {
       if (sprite.getData('inCombat')) return;
       if (sprite.getData('type') !== 'ranged') return;
       
-      const range = sprite.getData('range') || 150;
+      const range = (sprite.getData('range') || 150) - 10; // Use a small safety margin
       const target = this.findEnemyInRange(sprite.x, sprite.y, range, 'player');
       
       if (target) {
@@ -1760,7 +1767,7 @@ export class BattleScene extends Phaser.Scene {
         this.handleRangedAttack(sprite, target);
       } else if (sprite.x > PLAYER_BASE_X + BASE_ATTACK_RANGE) {
         const speed = sprite.getData('speed');
-        if (Math.abs(sprite.body?.velocity.x || 0) < 5) {
+        if (sprite.body && Math.abs(sprite.body.velocity.x) < 5) {
           sprite.setVelocityX(-speed);
         }
       }
