@@ -8,7 +8,8 @@ import {
   calculateXPFromDamage, 
   calculateKillBonusXP, 
   canAdvanceEpoch,
-  getEpochSafe
+  getEpochSafe,
+  calculateKillGoldBounty
 } from '../utils/gameHelpers';
 import { gameLogger } from '../utils/logger';
 import { XPFeedbackSystem } from '../utils/XPFeedbackSystem';
@@ -29,7 +30,7 @@ const PLAYER_BASE_X = 100;
 const ENEMY_BASE_X = 1180;
 const BASE_ATTACK_RANGE = 100; // Units start attacking base from this distance
 const UNIT_CLEANUP_MARGIN = 50;
-const KNOCKBACK_DISTANCE = 5;
+const KNOCKBACK_DISTANCE = 3;
 const COMBAT_COOLDOWN_MS = 800; // Reduced from 1000ms to 800ms for more dynamic fights
 // Ranged balance knobs
 const RANGED_DAMAGE_MULTIPLIER = 0.75; // Reduce ranged damage slightly
@@ -60,6 +61,8 @@ interface TurretSlot {
   turretData?: TurretType;
   lastFireTime: number;
   gridVisual?: Phaser.GameObjects.Rectangle;
+  level?: number;
+  levelText?: Phaser.GameObjects.Text;
 }
 
 interface UnitHealthBar {
@@ -77,6 +80,7 @@ interface GameUnit extends Phaser.Physics.Arcade.Sprite {
 }
 
 export class BattleScene extends Phaser.Scene {
+  private gameOver: boolean = false;
   private playerBase!: Base;
   private enemyBase!: Base;
   private playerBaseHealthBar?: { background: Phaser.GameObjects.Rectangle; fill: Phaser.GameObjects.Rectangle; text: Phaser.GameObjects.Text };
@@ -92,8 +96,8 @@ export class BattleScene extends Phaser.Scene {
   // Economy & Progression
   private gold = 100;
   private xp = 0;
-  private goldPerSecond = 15; // Rebalanced: 15g/s lets player afford ~1 Clubman every 3.3s
-  private goldAccumulator = 0;
+  private simulationSpeed = 1;
+
   private epochs: Epoch[] = epochsData as Epoch[];
   private currentEpochIndex = 0;
 
@@ -116,9 +120,9 @@ export class BattleScene extends Phaser.Scene {
   // Difficulty settings
   private difficulty: 'easy' | 'medium' | 'hard' = 'medium';
   private difficultyMultipliers = {
-    easy: { enemySpawnRate: 6000, enemyStats: 0.7, startingGold: 400 },
-    medium: { enemySpawnRate: 4000, enemyStats: 1.0, startingGold: 200 },
-    hard: { enemySpawnRate: 3000, enemyStats: 1.3, startingGold: 100 }
+    easy: { enemySpawnRate: 4000, enemyStats: 0.7, startingGold: 400 },
+    medium: { enemySpawnRate: 2500, enemyStats: 1.0, startingGold: 200 },
+    hard: { enemySpawnRate: 1500, enemyStats: 1.3, startingGold: 100 }
   };
 
   // Special abilities
@@ -146,6 +150,10 @@ export class BattleScene extends Phaser.Scene {
   private unitUidCounter = 1;
 
   // Turret references
+  private turretMenuContainer?: Phaser.GameObjects.Container;
+  private turretRangeGraphics?: Phaser.GameObjects.Graphics;
+  private turretDragPreview?: Phaser.GameObjects.Sprite;
+  private draggedTurretData?: TurretType;
 
   constructor() {
     super({ key: 'BattleScene' });
@@ -153,6 +161,21 @@ export class BattleScene extends Phaser.Scene {
 
   create(): void {
     console.log('BattleScene: Initializing battlefield...');
+    
+    // Reset state properties to ensure clean restarts
+    this.gameOver = false;
+    this.xp = 0;
+    this.simulationSpeed = 1;
+    this.currentEpochIndex = 0;
+    this.enemyEpochIndex = 0;
+    this.enemyEpochTimer = 0;
+    this.rainingRocksLastUsed = -RAINING_ROCKS_COOLDOWN;
+    this.artilleryStrikeLastUsed = -ARTILLERY_STRIKE_COOLDOWN;
+    this.debugEnabled = false;
+    this.spawnQueue = [];
+    this.lastSpawnTime = { player: 0, enemy: 0 };
+    this.unitUidCounter = 1;
+    this.unitDebugTexts.clear();
     
     // Load difficulty from registry
     this.difficulty = this.registry.get('difficulty') || 'medium';
@@ -169,17 +192,19 @@ export class BattleScene extends Phaser.Scene {
     this.soundEffects = new SoundEffectsManager(this);
     this.music = new MusicManager(this);
     
-  // Initialize unit selection system (no persistent reference needed)
-  new UnitSelectionSystem(this);
+    // Initialize unit selection system (no persistent reference needed)
+    new UnitSelectionSystem(this);
     
-  // Initialize formation and kill streak systems (formation currently not fully integrated)
-  new FormationManager(this);
+    // Initialize formation and kill streak systems (formation currently not fully integrated)
+    new FormationManager(this);
     this.killStreakManager = new KillStreakManager(this);
     
     this.createBackground(); // Hintergrund zuerst erstellen
     this.createLane();     // Zuerst den Weg erstellen
     this.createBases();    // Dann die Basen darüber
     this.createTurretGrid();
+    this.turretRangeGraphics = this.add.graphics();
+    this.turretRangeGraphics.setDepth(1450);
     this.setupPools();
     this.setupColliders();
     this.listenToUIEvents();
@@ -205,6 +230,11 @@ export class BattleScene extends Phaser.Scene {
       if (!this.debugEnabled) this.debugGfx.clear();
     });
     
+    // Keyboard controls for simulation speed
+    this.input.keyboard!.on('keydown-ONE', () => this.setSimulationSpeed(1));
+    this.input.keyboard!.on('keydown-TWO', () => this.setSimulationSpeed(2));
+    this.input.keyboard!.on('keydown-THREE', () => this.setSimulationSpeed(4));
+
     // F3 toggles Developer Mode
     this.input.keyboard!.on('keydown-F3', () => {
       this.developerMode = !this.developerMode;
@@ -281,6 +311,7 @@ export class BattleScene extends Phaser.Scene {
     uiScene.events.emit('updateXP', this.xp, this.getCurrentEpoch().xpToNext);
     uiScene.events.emit('updateEpoch', this.getCurrentEpoch());
     uiScene.events.emit('updateBaseHP', this.playerBase.hp, this.playerBase.maxHp, 'player');
+    uiScene.events.emit('updateSimulationSpeed', this.simulationSpeed);
     
     // Create kill streak UI element (top-center)
     this.add.text(640, 30, '', {
@@ -566,6 +597,14 @@ export class BattleScene extends Phaser.Scene {
           this.onTurretSlotClick(row, col);
         });
         
+        zone.on('pointerover', () => {
+          this.onTurretSlotHover(row, col);
+        });
+        
+        zone.on('pointerout', () => {
+          this.onTurretSlotHoverOut(row, col);
+        });
+        
         // Initialize slot data
         this.turretGrid[row][col] = {
           x,
@@ -579,18 +618,12 @@ export class BattleScene extends Phaser.Scene {
   }
 
   private showTurretGrid(): void {
+    this.updateGridVisuals(-1, -1);
     for (let row = 0; row < TURRET_GRID_ROWS; row++) {
       for (let col = 0; col < TURRET_GRID_COLS; col++) {
         const slot = this.turretGrid[row][col];
         if (slot.gridVisual) {
           slot.gridVisual.setVisible(true);
-          if (slot.occupied) {
-            slot.gridVisual.setStrokeStyle(2, 0xff0000, 0.8);
-            slot.gridVisual.setFillStyle(0xff0000, 0.15);
-          } else {
-            slot.gridVisual.setStrokeStyle(2, 0x00ff00, 0.8);
-            slot.gridVisual.setFillStyle(0x00ff00, 0.15);
-          }
         }
       }
     }
@@ -663,107 +696,482 @@ export class BattleScene extends Phaser.Scene {
   private listenToUIEvents(): void {
     const uiScene = this.scene.get('UIScene');
     uiScene.events.on('spawnUnit', (unitId: string) => {
+      if (this.gameOver) return;
       const unitData = this.unitsDatabase.find(u => u.id === unitId);
       if (unitData) {
         this.spawnUnitByData('player', unitData);
       }
     });
     uiScene.events.on('selectTurret', (index: number) => {
+      if (this.gameOver) return;
       this.selectTurretType(index);
     });
     uiScene.events.on('useRainingRocks', () => {
+      if (this.gameOver) return;
       this.useRainingRocks();
     });
     uiScene.events.on('useArtilleryStrike', () => {
+      if (this.gameOver) return;
       this.useArtilleryStrike();
+    });
+    uiScene.events.on('startTurretDrag', (index: number) => {
+      if (this.gameOver) return;
+      this.onStartTurretDrag(index);
+    });
+    uiScene.events.on('dragTurretMove', (x: number, y: number) => {
+      if (this.gameOver) return;
+      this.onDragTurretMove(x, y);
+    });
+    uiScene.events.on('endTurretDrag', (x: number, y: number) => {
+      if (this.gameOver) return;
+      this.onEndTurretDrag(x, y);
     });
   }
 
   private selectedTurretIndex: number = -1;
 
   private selectTurretType(index: number): void {
+    this.closeTurretMenu();
     this.selectedTurretIndex = index;
-    console.log(`Selected turret type: ${this.turretsDatabase[index]?.name || 'Unknown'}`);
+    if (index >= 0) {
+      console.log(`Selected turret type: ${this.turretsDatabase[index]?.name || 'Unknown'}`);
+      this.showTurretGrid();
+    } else {
+      this.hideTurretGrid();
+    }
+  }
+
+  private onStartTurretDrag(index: number): void {
+    this.closeTurretMenu();
+
+    this.draggedTurretData = this.turretsDatabase[index];
+    if (!this.draggedTurretData) return;
+
+    const texture = this.getTurretTexture(this.draggedTurretData);
+    this.turretDragPreview = this.add.sprite(0, 0, texture);
+    this.turretDragPreview.setScale(0.15);
+    this.turretDragPreview.setAlpha(0.6);
+    this.turretDragPreview.setDepth(2100);
+
     this.showTurretGrid();
   }
 
-  private onTurretSlotClick(row: number, col: number): void {
-    if (this.selectedTurretIndex < 0) {
-      console.log('No turret selected');
-      return;
+  private onDragTurretMove(x: number, y: number): void {
+    if (!this.draggedTurretData) return;
+
+    if (this.turretDragPreview) {
+      this.turretDragPreview.setPosition(x, y);
     }
 
+    const slotInfo = this.getSlotAtPosition(x, y);
+    const isValid = slotInfo !== null && !slotInfo.occupied;
+
+    if (this.turretRangeGraphics) {
+      this.turretRangeGraphics.clear();
+      const color = isValid ? 0x00ff00 : 0xff0000;
+      this.turretRangeGraphics.lineStyle(2, color, 0.8);
+      this.turretRangeGraphics.fillStyle(color, 0.15);
+      this.turretRangeGraphics.strokeCircle(x, y, this.draggedTurretData.range);
+      this.turretRangeGraphics.fillCircle(x, y, this.draggedTurretData.range);
+    }
+
+    if (slotInfo) {
+      this.updateGridVisuals(slotInfo.row, slotInfo.col);
+    } else {
+      this.updateGridVisuals(-1, -1);
+    }
+  }
+
+  private onEndTurretDrag(x: number, y: number): void {
+    if (!this.draggedTurretData) return;
+
+    const slotInfo = this.getSlotAtPosition(x, y);
+    if (slotInfo && !slotInfo.occupied) {
+      if (this.gold >= this.draggedTurretData.goldCost) {
+        this.placeTurret(slotInfo.row, slotInfo.col, this.draggedTurretData);
+        this.addGold(-this.draggedTurretData.goldCost);
+      } else {
+        const uiScene = this.scene.get('UIScene');
+        uiScene.events.emit('turretPlacementFailed', 'Not enough gold!');
+      }
+    }
+
+    if (this.turretDragPreview) {
+      this.turretDragPreview.destroy();
+      this.turretDragPreview = undefined;
+    }
+    if (this.turretRangeGraphics) {
+      this.turretRangeGraphics.clear();
+    }
+    this.draggedTurretData = undefined;
+    this.hideTurretGrid();
+  }
+
+  private getSlotAtPosition(x: number, y: number): { row: number; col: number; occupied: boolean } | null {
+    for (let row = 0; row < TURRET_GRID_ROWS; row++) {
+      for (let col = 0; col < TURRET_GRID_COLS; col++) {
+        const slot = this.turretGrid[row][col];
+        const dist = Phaser.Math.Distance.Between(x, y, slot.x, slot.y);
+        if (dist <= TURRET_CELL_SIZE / 2) {
+          return { row, col, occupied: slot.occupied };
+        }
+      }
+    }
+    return null;
+  }
+
+  private updateGridVisuals(hoverRow: number = -1, hoverCol: number = -1): void {
+    for (let row = 0; row < TURRET_GRID_ROWS; row++) {
+      for (let col = 0; col < TURRET_GRID_COLS; col++) {
+        const slot = this.turretGrid[row][col];
+        if (slot.gridVisual) {
+          if (row === hoverRow && col === hoverCol) {
+            if (slot.occupied) {
+              slot.gridVisual.setStrokeStyle(4, 0xff0000, 1.0);
+              slot.gridVisual.setFillStyle(0xff0000, 0.3);
+            } else {
+              slot.gridVisual.setStrokeStyle(4, 0x00ffff, 1.0);
+              slot.gridVisual.setFillStyle(0x00ffff, 0.3);
+            }
+          } else {
+            if (slot.occupied) {
+              slot.gridVisual.setStrokeStyle(2, 0xff0000, 0.8);
+              slot.gridVisual.setFillStyle(0xff0000, 0.15);
+            } else {
+              slot.gridVisual.setStrokeStyle(2, 0x00ff00, 0.8);
+              slot.gridVisual.setFillStyle(0x00ff00, 0.15);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  private onTurretSlotHover(row: number, col: number): void {
+    if (this.gameOver) return;
     const slot = this.turretGrid[row][col];
-    
-    if (slot.occupied) {
-      console.log('Slot already occupied');
-      return;
+    this.updateGridVisuals(row, col);
+
+    let range = 0;
+    let color = 0x00ff00;
+
+    if (this.selectedTurretIndex >= 0) {
+      const selectedTurret = this.turretsDatabase[this.selectedTurretIndex];
+      if (selectedTurret) {
+        range = selectedTurret.range;
+        color = slot.occupied ? 0xff0000 : 0x00ff00;
+      }
+    } else if (slot.occupied && slot.turretData) {
+      range = this.getTurretRange(slot);
+      color = 0xffff00;
     }
 
-    const turretData = this.turretsDatabase[this.selectedTurretIndex];
-    if (!turretData) {
-      console.log('Invalid turret data');
-      return;
+    if (range > 0 && this.turretRangeGraphics) {
+      this.turretRangeGraphics.clear();
+      this.turretRangeGraphics.lineStyle(2, color, 0.8);
+      this.turretRangeGraphics.fillStyle(color, 0.15);
+      this.turretRangeGraphics.strokeCircle(slot.x, slot.y, range);
+      this.turretRangeGraphics.fillCircle(slot.x, slot.y, range);
     }
+  }
 
-    // Check cost
-    if (this.gold < turretData.goldCost) {
-      console.log(`Not enough gold! Need ${turretData.goldCost}, have ${this.gold}`);
+  private onTurretSlotHoverOut(_row: number, _col: number): void {
+    if (this.gameOver) return;
+    this.updateGridVisuals(-1, -1);
+    if (this.turretRangeGraphics) {
+      this.turretRangeGraphics.clear();
+    }
+  }
+
+  private onTurretSlotClick(row: number, col: number): void {
+    if (this.gameOver) return;
+    const slot = this.turretGrid[row][col];
+
+    if (this.selectedTurretIndex >= 0) {
+      this.closeTurretMenu();
+      if (slot.occupied) {
+        console.log('Slot already occupied');
+        return;
+      }
+
+      const turretData = this.turretsDatabase[this.selectedTurretIndex];
+      if (!turretData) return;
+
+      if (this.gold < turretData.goldCost) {
+        const uiScene = this.scene.get('UIScene');
+        uiScene.events.emit('turretPlacementFailed', 'Not enough gold!');
+        return;
+      }
+
+      this.placeTurret(row, col, turretData);
+      this.addGold(-turretData.goldCost);
+      this.selectedTurretIndex = -1;
+
       const uiScene = this.scene.get('UIScene');
-      uiScene.events.emit('turretPlacementFailed', 'Not enough gold!');
-      return;
+      uiScene.events.emit('selectTurret', -1);
+      this.hideTurretGrid();
+    } else {
+      if (slot.occupied) {
+        this.showTurretMenu(slot, row, col);
+      } else {
+        this.closeTurretMenu();
+      }
     }
-
-    // Place turret
-    this.placeTurret(row, col, turretData);
-    this.addGold(-turretData.goldCost);
-    this.selectedTurretIndex = -1; // Reset selection
-    this.hideTurretGrid(); // Hide grid after placement
   }
 
   private placeTurret(row: number, col: number, turretData: TurretType): void {
     const slot = this.turretGrid[row][col];
-    
-    // Get appropriate turret texture based on type and epoch
     const turretTexture = this.getTurretTexture(turretData);
-    
-    // Create turret sprite with proper scaling
     const turret = this.add.sprite(slot.x, slot.y, turretTexture);
-    turret.setScale(0.15); // Minimal size für perfekte Grid-Passung
+    turret.setScale(0.15);
+    turret.setDepth(1400);
     
-    // Update slot
     slot.occupied = true;
     slot.turret = turret;
     slot.turretData = turretData;
     slot.lastFireTime = this.time.now;
+    slot.level = 1;
     
-    console.log(`Placed ${turretData.name} at (${row}, ${col}) - Range: ${turretData.range}, DPS: ${turretData.damage / turretData.attackSpeed}`);
+    if (slot.levelText) {
+      slot.levelText.destroy();
+      slot.levelText = undefined;
+    }
+    
+    console.log(`Placed ${turretData.name} at (${row}, ${col}) - Range: ${turretData.range}`);
+  }
+
+  private showTurretMenu(slot: TurretSlot, row: number, col: number): void {
+    this.closeTurretMenu();
+
+    if (!slot.turretData) return;
+
+    const turretData = slot.turretData;
+    const lvl = slot.level || 1;
+
+    const upgradeLvl2Cost = Math.round(turretData.goldCost * 0.6);
+    const upgradeLvl3Cost = Math.round(turretData.goldCost * 0.8);
+    let totalInvested = turretData.goldCost;
+    if (lvl >= 2) totalInvested += upgradeLvl2Cost;
+    if (lvl >= 3) totalInvested += upgradeLvl3Cost;
+    const sellRefund = Math.round(totalInvested * 0.7);
+
+    const upgradeCost = lvl === 1 ? upgradeLvl2Cost : (lvl === 2 ? upgradeLvl3Cost : 0);
+
+    const menuWidth = 240;
+    const menuHeight = 135;
+    const menuX = slot.x;
+    const menuY = Math.max(menuHeight / 2 + 10, slot.y - 75);
+
+    this.turretMenuContainer = this.add.container(menuX, menuY);
+    this.turretMenuContainer.setDepth(3000);
+
+    const bg = this.add.rectangle(0, 0, menuWidth, menuHeight, 0x111111, 0.95);
+    bg.setStrokeStyle(2, 0xff8800, 1.0);
+    this.turretMenuContainer.add(bg);
+
+    const title = this.add.text(0, -menuHeight / 2 + 20, `${turretData.name} (Lvl ${lvl})`, {
+      fontSize: '14px',
+      color: '#ffd700',
+      fontStyle: 'bold'
+    }).setOrigin(0.5);
+    this.turretMenuContainer.add(title);
+
+    const currentDmg = this.getTurretDamage(slot);
+    const currentRange = this.getTurretRange(slot);
+    const currentSpeed = this.getTurretAttackSpeed(slot);
+    
+    let statsStr = `Dmg: ${currentDmg} | Rng: ${currentRange} | Rate: ${currentSpeed.toFixed(1)}s`;
+    if (lvl < 3) {
+      const nextLvlSlot = { ...slot, level: lvl + 1 };
+      const nextDmg = this.getTurretDamage(nextLvlSlot);
+      const nextRange = this.getTurretRange(nextLvlSlot);
+      const nextSpeed = this.getTurretAttackSpeed(nextLvlSlot);
+      statsStr += `\nNext: Dmg +${nextDmg - currentDmg} | Rng +${nextRange - currentRange} | Rate -${(currentSpeed - nextSpeed).toFixed(1)}s`;
+    } else {
+      statsStr += `\n[MAX LEVEL]`;
+    }
+
+    const statsText = this.add.text(0, -10, statsStr, {
+      fontSize: '11px',
+      color: '#ffffff',
+      align: 'center',
+      lineSpacing: 4
+    }).setOrigin(0.5);
+    this.turretMenuContainer.add(statsText);
+
+    const btnY = menuHeight / 2 - 25;
+    
+    const upgradeBtn = this.add.rectangle(-60, btnY, 100, 26, 0x222222);
+    upgradeBtn.setStrokeStyle(1.5, 0x2ecc71, 0.8);
+    const upgradeText = this.add.text(-60, btnY, lvl < 3 ? `Upgrade (${upgradeCost}g)` : 'Max Lvl', {
+      fontSize: '11px',
+      color: lvl < 3 ? '#2ecc71' : '#888888',
+      fontStyle: 'bold'
+    }).setOrigin(0.5);
+
+    if (lvl < 3 && this.gold >= upgradeCost) {
+      upgradeBtn.setFillStyle(0x27ae60, 0.4);
+      upgradeBtn.setInteractive({ useHandCursor: true });
+      upgradeBtn.on('pointerover', () => { upgradeBtn.setFillStyle(0x2ecc71, 0.6); });
+      upgradeBtn.on('pointerout', () => { upgradeBtn.setFillStyle(0x27ae60, 0.4); });
+      upgradeBtn.on('pointerdown', () => {
+        this.upgradeTurret(slot, row, col, upgradeCost);
+      });
+    } else {
+      upgradeBtn.setStrokeStyle(1.5, 0x555555, 0.5);
+      upgradeText.setColor('#666666');
+    }
+    this.turretMenuContainer.add([upgradeBtn, upgradeText]);
+
+    const sellBtn = this.add.rectangle(60, btnY, 100, 26, 0x222222);
+    sellBtn.setStrokeStyle(1.5, 0xe74c3c, 0.8);
+    sellBtn.setFillStyle(0xc0392b, 0.4);
+    sellBtn.setInteractive({ useHandCursor: true });
+    sellBtn.on('pointerover', () => { sellBtn.setFillStyle(0xe74c3c, 0.6); });
+    sellBtn.on('pointerout', () => { sellBtn.setFillStyle(0xc0392b, 0.4); });
+    sellBtn.on('pointerdown', () => {
+      this.sellTurret(slot, row, col, sellRefund);
+    });
+
+    const sellText = this.add.text(60, btnY, `Sell (+${sellRefund}g)`, {
+      fontSize: '11px',
+      color: '#e74c3c',
+      fontStyle: 'bold'
+    }).setOrigin(0.5);
+    this.turretMenuContainer.add([sellBtn, sellText]);
+
+    const closeBtn = this.add.text(menuWidth / 2 - 15, -menuHeight / 2 + 15, '✕', {
+      fontSize: '14px',
+      color: '#aaaaaa',
+      fontStyle: 'bold'
+    }).setOrigin(0.5).setInteractive({ useHandCursor: true });
+    closeBtn.on('pointerover', () => closeBtn.setColor('#ffffff'));
+    closeBtn.on('pointerout', () => closeBtn.setColor('#aaaaaa'));
+    closeBtn.on('pointerdown', () => this.closeTurretMenu());
+    this.turretMenuContainer.add(closeBtn);
+
+    if (this.turretRangeGraphics) {
+      this.turretRangeGraphics.clear();
+      this.turretRangeGraphics.lineStyle(2, 0xffff00, 0.8);
+      this.turretRangeGraphics.fillStyle(0xffff00, 0.12);
+      this.turretRangeGraphics.strokeCircle(slot.x, slot.y, currentRange);
+      this.turretRangeGraphics.fillCircle(slot.x, slot.y, currentRange);
+    }
+    this.updateGridVisuals(row, col);
+  }
+
+  private upgradeTurret(slot: TurretSlot, _row: number, _col: number, cost: number): void {
+    if (this.gameOver) return;
+    if (!slot.occupied || !slot.turretData) return;
+
+    this.addGold(-cost);
+    slot.level = (slot.level || 1) + 1;
+
+    if (!slot.levelText) {
+      slot.levelText = this.add.text(slot.x, slot.y - 25, `Lvl ${slot.level}`, {
+        fontSize: '12px',
+        color: '#ffd700',
+        fontStyle: 'bold',
+        stroke: '#000000',
+        strokeThickness: 2
+      }).setOrigin(0.5);
+      slot.levelText.setDepth(1600);
+    } else {
+      slot.levelText.setText(`Lvl ${slot.level}`);
+    }
+
+    this.soundEffects.playXPGain();
+    this.showFloatingFeedback(slot.x, slot.y - 40, 'LEVEL UP!', '#2ecc71');
+    this.closeTurretMenu();
+  }
+
+  private sellTurret(slot: TurretSlot, _row: number, _col: number, refund: number): void {
+    if (this.gameOver) return;
+    if (!slot.occupied) return;
+
+    this.addGold(refund);
+
+    if (slot.turret) {
+      slot.turret.destroy();
+      slot.turret = undefined;
+    }
+    if (slot.levelText) {
+      slot.levelText.destroy();
+      slot.levelText = undefined;
+    }
+
+    this.showFloatingFeedback(slot.x, slot.y - 20, `+${refund}g`, '#ffd700');
+    this.soundEffects.playGoldCollect();
+
+    slot.occupied = false;
+    slot.turretData = undefined;
+    slot.level = undefined;
+
+    this.closeTurretMenu();
+  }
+
+  private closeTurretMenu(): void {
+    if (this.turretMenuContainer) {
+      this.turretMenuContainer.destroy();
+      this.turretMenuContainer = undefined;
+    }
+    if (this.turretRangeGraphics) {
+      this.turretRangeGraphics.clear();
+    }
+    this.updateGridVisuals(-1, -1);
+  }
+
+  private showFloatingFeedback(x: number, y: number, text: string, color: string = '#ffd700'): void {
+    const fbText = this.add.text(x, y, text, {
+      fontSize: '16px',
+      fontStyle: 'bold',
+      color: color,
+      stroke: '#000000',
+      strokeThickness: 3
+    }).setOrigin(0.5).setDepth(3000);
+    
+    this.tweens.add({
+      targets: fbText,
+      y: y - 30,
+      alpha: 0,
+      duration: 800,
+      ease: 'Power2',
+      onComplete: () => fbText.destroy()
+    });
+  }
+
+  private getTurretDamage(slot: TurretSlot): number {
+    if (!slot.turretData) return 0;
+    const lvl = slot.level || 1;
+    return Math.round(slot.turretData.damage * (1 + (lvl - 1) * 0.4));
+  }
+
+  private getTurretRange(slot: TurretSlot): number {
+    if (!slot.turretData) return 0;
+    const lvl = slot.level || 1;
+    return Math.round(slot.turretData.range * (1 + (lvl - 1) * 0.15));
+  }
+
+  private getTurretAttackSpeed(slot: TurretSlot): number {
+    if (!slot.turretData) return 0;
+    const lvl = slot.level || 1;
+    return slot.turretData.attackSpeed * Math.pow(0.85, lvl - 1);
   }
 
   private getTurretTexture(turretData: TurretType): string {
-    // Map turret IDs to texture keys
     const turretTextures: Record<string, string> = {
-      // Stone Age turrets
       'rock-thrower': 'stone-tower-1',
       'wooden-spike': 'stone-tower-2', 
       'basic-tower': 'stone-tower-3',
-      
-      // Castle Age turrets
       'arrow-tower': 'castle-tower-1',
       'ballista': 'castle-tower-2',
       'trebuchet': 'castle-tower-3',
-      
-      // Renaissance turrets
       'cannon': 'renaissance-tower-1',
       'musket-tower': 'renaissance-tower-2',
       'fortress': 'renaissance-tower-3',
-      
-      // Modern turrets
       'machine-gun': 'modern-tower-1',
       'anti-tank': 'modern-tower-2',
       'artillery': 'modern-tower-3',
-      
-      // Future turrets
       'laser-turret': 'future-tower-1',
       'rail-gun': 'future-tower-2',
       'ion-cannon': 'future-tower-3'
@@ -1040,7 +1448,7 @@ export class BattleScene extends Phaser.Scene {
     const toSpawn: Array<{ side: 'player' | 'enemy', unitData: UnitType }> = [];
     
     this.spawnQueue = this.spawnQueue.filter(item => {
-      item.delay -= this.game.loop.delta;
+      item.delay -= this.game.loop.delta * this.simulationSpeed;
       if (item.delay <= 0) {
         toSpawn.push({ side: item.side, unitData: item.unitData });
         return false; // Remove from queue
@@ -1204,10 +1612,8 @@ export class BattleScene extends Phaser.Scene {
           this.addXP(bonusXP, unit1.x, unit1.y);
           unit1.setData('xpAwarded', true);
           // Kill streak gold bonus + bounty based on enemy unit cost
-          const goldReward = this.addKillToStreak();
           const unitCost = unit1.getData('cost') || 50;
-          const bountyGold = Math.ceil(unitCost * 0.25); // 25% of unit cost as bounty
-          const totalGold = goldReward + bountyGold;
+          const totalGold = this.addKillToStreak(unitCost);
           this.addGold(totalGold, unit1.x, unit1.y);
           this.showGoldParticles(unit1.x, unit1.y, totalGold);
         }
@@ -1227,10 +1633,8 @@ export class BattleScene extends Phaser.Scene {
           this.addXP(bonusXP, unit2.x, unit2.y);
           unit2.setData('xpAwarded', true);
           // Kill streak gold bonus + bounty based on enemy unit cost
-          const goldReward = this.addKillToStreak();
           const unitCost = unit2.getData('cost') || 50;
-          const bountyGold = Math.ceil(unitCost * 0.25); // 25% of unit cost as bounty
-          const totalGold = goldReward + bountyGold;
+          const totalGold = this.addKillToStreak(unitCost);
           this.addGold(totalGold, unit2.x, unit2.y);
           this.showGoldParticles(unit2.x, unit2.y, totalGold);
         }
@@ -1259,8 +1663,8 @@ export class BattleScene extends Phaser.Scene {
         unit2.setVelocityX(side2 === 'player' ? speed2 : -speed2);
         
         // Apply small separation to prevent instant re-collision
-        unit1.x += side1 === 'player' ? 2 : -2;
-        unit2.x += side2 === 'player' ? 2 : -2;
+        unit1.x += side1 === 'player' ? 1 : -1;
+        unit2.x += side2 === 'player' ? 1 : -1;
       }
     });
   }
@@ -1343,10 +1747,8 @@ export class BattleScene extends Phaser.Scene {
         this.addXP(bonusXP, target.x, target.y);
         target.setData('xpAwarded', true);
         // Kill streak gold bonus + bounty based on enemy unit cost (same as melee)
-        const goldReward = this.addKillToStreak();
         const unitCost = target.getData('cost') || 50;
-        const bountyGold = Math.ceil(unitCost * 0.25); // 25% of unit cost as bounty
-        const totalGold = goldReward + bountyGold;
+        const totalGold = this.addKillToStreak(unitCost);
         this.addGold(totalGold, target.x, target.y);
         this.showGoldParticles(target.x, target.y, totalGold);
       }
@@ -1526,30 +1928,47 @@ export class BattleScene extends Phaser.Scene {
   }
 
   /**
-   * Kill Streak System - returns gold reward based on streak
+   * Kill Streak System - returns gold reward based on streak and unit cost
    */
-  private addKillToStreak(): number {
+  private addKillToStreak(unitCost: number): number {
     // Use the KillStreakManager for consistent streak handling
-    const baseGold = 15; // Increased base kill reward from 10 to 15
-    const bonusGold = this.killStreakManager.registerKill(baseGold);
-    return baseGold + bonusGold;
+    const baseBounty = calculateKillGoldBounty(unitCost);
+    const bonusGold = this.killStreakManager.registerKill(baseBounty);
+    return baseBounty + bonusGold;
+  }
+
+  private awardEnemyKill(unit: Phaser.Physics.Arcade.Sprite): void {
+    const unitCost = unit.getData('cost') || 50;
+    const totalGold = this.addKillToStreak(unitCost);
+    this.addGold(totalGold, unit.x, unit.y);
+    this.showGoldParticles(unit.x, unit.y, totalGold);
+  }
+
+  private setSimulationSpeed(speed: number): void {
+    if (this.gameOver) return;
+    this.simulationSpeed = speed;
+    this.time.timeScale = speed;
+    this.tweens.timeScale = speed;
+    // Arcade Physics defines values below 1 as faster (0.5 = 2x speed),
+    // unlike Scene clocks and tweens which use a direct multiplier.
+    this.physics.world.timeScale = 1 / speed;
+
+    const uiScene = this.scene.get('UIScene');
+    if (uiScene) {
+      uiScene.events.emit('updateSimulationSpeed', speed);
+    }
+    console.log(`Simulation speed set to ${speed}x`);
   }
 
   update(_time: number, delta: number): void {
+    if (this.gameOver) return;
     // Process spawn queue
     this.processSpawnQueue(_time);
     
-    // Gold accumulator tick (8 gold per second)
-    this.goldAccumulator += delta;
-    const goldTickInterval = 1000 / this.goldPerSecond; // ~125ms per gold
-    
-    while (this.goldAccumulator >= goldTickInterval) {
-      this.goldAccumulator -= goldTickInterval;
-      this.addGold(1);
-    }
+
     
     // Enemy epoch progression timer (independent of player)
-    this.enemyEpochTimer += delta;
+    this.enemyEpochTimer += delta * this.simulationSpeed;
     const enemyAdvanceTime = this.ENEMY_EPOCH_ADVANCE_TIME * (this.difficulty === 'easy' ? 1.3 : this.difficulty === 'hard' ? 0.7 : 1.0);
     if (this.enemyEpochTimer >= enemyAdvanceTime && this.enemyEpochIndex < this.epochs.length - 1) {
       this.enemyEpochIndex++;
@@ -1709,12 +2128,13 @@ export class BattleScene extends Phaser.Scene {
         
         if (!slot.occupied || !slot.turretData) continue;
         
-        // Check fire rate cooldown
-        const cooldown = slot.turretData.attackSpeed * 1000; // Convert to ms
+        // Check fire rate cooldown using dynamic level-scaled stat helper
+        const cooldown = this.getTurretAttackSpeed(slot) * 1000; // Convert to ms
         if (now - slot.lastFireTime < cooldown) continue;
         
-        // Find target in range
-        const target = this.findTargetInRange(slot.x, slot.y, slot.turretData.range);
+        // Find target in range using dynamic level-scaled range helper
+        const range = this.getTurretRange(slot);
+        const target = this.findTargetInRange(slot.x, slot.y, range);
         
         if (target) {
           this.fireTurretProjectile(slot, target);
@@ -1977,10 +2397,8 @@ export class BattleScene extends Phaser.Scene {
           this.addXP(bonusXP, target.x, target.y);
           target.setData('xpAwarded', true);
           // Kill streak gold bonus + bounty based on enemy unit cost (same as melee)
-          const goldReward = this.addKillToStreak();
           const unitCost = target.getData('cost') || 50;
-          const bountyGold = Math.ceil(unitCost * 0.25); // 25% of unit cost as bounty
-          const totalGold = goldReward + bountyGold;
+          const totalGold = this.addKillToStreak(unitCost);
           this.addGold(totalGold, target.x, target.y);
           this.showGoldParticles(target.x, target.y, totalGold);
         }
@@ -2105,8 +2523,13 @@ export class BattleScene extends Phaser.Scene {
       projectile.setScale(scale);
       
       projectile.setData('owner', 'player');
-      projectile.setData('damage', slot.turretData.damage);
+      projectile.setData('damage', this.getTurretDamage(slot)); // dynamic damage scaling
       projectile.setData('consumed', false);
+      projectile.setData('hitUids', new Set<number>()); // track hit UIDs to prevent multiple hits
+      projectile.setData('prevX', projectile.x);
+      projectile.setData('prevY', projectile.y);
+      projectile.setData('hitRadius', this.getProjectileHitRadius(projectileTexture));
+      projectile.setData('pierce', 0); // no pierce for turrets by default
       if (projectile.body) {
         (projectile.body as Phaser.Physics.Arcade.Body).enable = true;
       }
@@ -2117,9 +2540,18 @@ export class BattleScene extends Phaser.Scene {
       const velocityY = Math.sin(angle) * slot.turretData.projectileSpeed;
       
       projectile.setVelocity(velocityX, velocityY);
+
+      if (projectileTexture === 'arrow' || projectileTexture === 'rock') {
+        projectile.setRotation(angle);
+      } else {
+        projectile.rotation = 0;
+      }
+
+      // Play turret fire sound effect
+      this.soundEffects.play('turret_fire', 0.25);
       
       if (this.developerMode) {
-        console.log(`Turret fired: ${slot.turretData.name} → Target at (${Math.round(target.x)}, ${Math.round(target.y)})`);
+        console.log(`Turret fired: ${slot.turretData.name} (Lvl ${slot.level}) → Target at (${Math.round(target.x)}, ${Math.round(target.y)})`);
       }
     }
   }
@@ -2186,6 +2618,16 @@ export class BattleScene extends Phaser.Scene {
   }
 
   private handleGameOver(loserSide: 'player' | 'enemy'): void {
+    this.gameOver = true;
+    
+    // Notify UI that the game is over
+    const uiScene = this.scene.get('UIScene');
+    if (uiScene) {
+      uiScene.events.emit('gameOver');
+    }
+    
+    this.closeTurretMenu();
+
     // Stop the game
     this.scene.pause();
     
@@ -2306,6 +2748,7 @@ export class BattleScene extends Phaser.Scene {
             const bonusXP = calculateKillBonusXP(sprite.getData('cost') || 50);
             this.addXP(bonusXP);
             sprite.setData('xpAwarded', true);
+            this.awardEnemyKill(sprite);
           }
           this.recycleUnit(sprite);
         }
@@ -2425,6 +2868,7 @@ export class BattleScene extends Phaser.Scene {
             const bonusXP = calculateKillBonusXP(sprite.getData('cost') || 50);
             this.addXP(bonusXP);
             sprite.setData('xpAwarded', true);
+            this.awardEnemyKill(sprite);
           }
           this.recycleUnit(sprite);
         }
@@ -2439,19 +2883,7 @@ export class BattleScene extends Phaser.Scene {
    * Uses the cheapest unit from the current epoch.
    */
   private spawnFreeStartingUnit(): void {
-    const currentEpoch = this.getCurrentEpoch();
-    const startingUnits = this.unitsDatabase.filter(u => u.epoch === currentEpoch.id);
-    if (startingUnits.length > 0) {
-      // Sort by cost to pick cheapest units
-      const sorted = [...startingUnits].sort((a, b) => a.goldCost - b.goldCost);
-      
-      // Spawn 2 free starting units so the player has a small squad
-      const freeCount = Math.min(2, sorted.length);
-      for (let i = 0; i < freeCount; i++) {
-        this.queueUnitSpawn('player', sorted[i]);
-        console.log(`🎁 Free starting unit ${i + 1}: ${sorted[i].name}`);
-      }
-    }
+    // Disabled starting unit auto-spawns at user request
   }
 
   private startEnemySpawner(): void {

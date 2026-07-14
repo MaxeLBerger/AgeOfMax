@@ -1,4 +1,4 @@
-﻿import type { Epoch } from '../game/types';
+import type { Epoch } from '../game/types';
 
 /**
  * Calculate XP reward for dealing damage
@@ -30,14 +30,14 @@ export function canAdvanceEpoch(currentXP: number, currentEpoch: Epoch): boolean
 }
 
 /**
- * Calculate gold accumulation over time
- * @param deltaMs - Time delta in milliseconds
- * @param goldPerSecond - Gold generation rate
- * @returns Amount of gold to add
+ * Calculate gold bounty for killing an enemy unit
+ * @param unitCost - Gold cost of the killed unit
+ * @returns Base gold bounty (20 base + 80% of unit cost)
  */
-export function calculateGoldTick(deltaMs: number, goldPerSecond: number): number {
-  return (deltaMs / 1000) * goldPerSecond;
+export function calculateKillGoldBounty(unitCost: number = 50): number {
+  return 20 + Math.floor(unitCost * 0.8);
 }
+
 
 /**
  * Get epoch by index with bounds checking
@@ -59,3 +59,19 @@ export function getEpochSafe(epochs: Epoch[], index: number): Epoch {
 export function calculateSpawnCost(baseCost: number, epochMultiplier: number = 1.0): number {
   return Math.ceil(baseCost * epochMultiplier);
 }
+
+/** Data files express attack speed as seconds between attacks. */
+export function attackIntervalMs(attackSpeedSeconds: number): number {
+  return Math.max(100, attackSpeedSeconds * 1000);
+}
+
+/** Preserve earned progress when one reward crosses an epoch threshold. */
+export function calculateOverflowXP(currentXP: number, threshold: number): number {
+  return threshold > 0 ? Math.max(0, currentXP - threshold) : currentXP;
+}
+
+export function calculateProgress(xp: number, threshold: number): number {
+  if (threshold <= 0) return 1;
+  return Math.max(0, Math.min(1, xp / threshold));
+}
+

@@ -23,6 +23,7 @@ export class UIScene extends Phaser.Scene {
   private unitButtons: Array<{btn: Phaser.GameObjects.Rectangle, nameText: Phaser.GameObjects.Text, costText: Phaser.GameObjects.Text, unitIndex: number}> = [];
   private turretButtons: Array<{btn: Phaser.GameObjects.Rectangle, nameText: Phaser.GameObjects.Text, costText: Phaser.GameObjects.Text, turretIndex: number}> = [];
   private selectedTurretIndex: number = -1;
+  private gameOver: boolean = false;
 
   constructor() {
     super({ key: 'UIScene' });
@@ -30,6 +31,16 @@ export class UIScene extends Phaser.Scene {
 
   create(): void {
     console.log('UIScene: Initializing HUD...');
+    
+    // Reset state properties to ensure clean restarts
+    this.gameOver = false;
+    this.selectedTurretIndex = -1;
+    this.currentEpochId = 'stone';
+    this.unitButtons = [];
+    this.turretButtons = [];
+    this.economy = { gold: 100, xp: 0, goldPerTick: 10, tickInterval: 3000 };
+    this.currentEpoch = { id: 'stone', name: 'Stone Age', xpToNext: 100, unlocks: { units: [], turrets: [] } };
+
     this.createHUD();
     this.listenToBattleEvents();
   }
@@ -178,6 +189,11 @@ export class UIScene extends Phaser.Scene {
     this.events.on('updateArtilleryStrikeCooldown', (remaining: number, total: number) => {
       this.updateArtilleryStrikeCooldown(remaining, total);
     });
+
+    this.events.on('gameOver', () => {
+      this.gameOver = true;
+      this.disableUIInput();
+    });
   }
 
   private showFeedback(message: string): void {
@@ -236,6 +252,7 @@ export class UIScene extends Phaser.Scene {
       }
     });
     this.rainingRocksButton.on('pointerdown', () => {
+      if (this.gameOver) return;
       this.events.emit('useRainingRocks');
     });
     
@@ -269,6 +286,7 @@ export class UIScene extends Phaser.Scene {
       }
     });
     this.artilleryStrikeButton.on('pointerdown', () => {
+      if (this.gameOver) return;
       this.events.emit('useArtilleryStrike');
     });
   }
@@ -427,7 +445,23 @@ export class UIScene extends Phaser.Scene {
     this.updateAvailableUnits();
   }
 
+  private disableUIInput(): void {
+    if (this.rainingRocksButton) this.rainingRocksButton.disableInteractive();
+    if (this.artilleryStrikeButton) this.artilleryStrikeButton.disableInteractive();
+    for (const buttonData of this.unitButtons) {
+      if (buttonData.btn) buttonData.btn.disableInteractive();
+    }
+    for (const buttonData of this.turretButtons) {
+      if (buttonData.btn) buttonData.btn.disableInteractive();
+    }
+    
+    // Reset selected turret to prevent placing queued turret selection
+    this.selectedTurretIndex = -1;
+    this.events.emit('selectTurret', -1);
+  }
+
   private onTurretButtonClick(index: number): void {
+    if (this.gameOver) return;
     const turretData = this.turretsDatabase[index];
     if (!turretData) return;
 
@@ -449,14 +483,14 @@ export class UIScene extends Phaser.Scene {
     console.log(`Selected turret: ${turretData.name} (${turretData.goldCost} gold)`);
     
     // Notify BattleScene
-    const battleScene = this.scene.get('BattleScene');
-    battleScene.events.emit('selectTurret', index);
+    this.events.emit('selectTurret', index);
     
     // Visual feedback
     this.showFeedback(`Click grid to place ${turretData.name}`);
   }
 
   private onUnitButtonClick(index: number): void {
+    if (this.gameOver) return;
     const buttonData = this.unitButtons[index];
     if (buttonData.unitIndex < 0) return;
     
@@ -470,8 +504,7 @@ export class UIScene extends Phaser.Scene {
     console.log(`Spawning unit: ${unitData.name}`);
     
     // Notify BattleScene
-    const battleScene = this.scene.get('BattleScene');
-    battleScene.events.emit('spawnUnit', unitData.id);
+    this.events.emit('spawnUnit', unitData.id);
   }
   
   private updateAvailableUnits(): void {

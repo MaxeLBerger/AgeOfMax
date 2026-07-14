@@ -1,15 +1,35 @@
-﻿import { describe, it, expect } from '@jest/globals';
+import { describe, it, expect } from '@jest/globals';
 import {
   calculateXPFromDamage,
   calculateKillBonusXP,
   canAdvanceEpoch,
-  calculateGoldTick,
+  calculateKillGoldBounty,
   getEpochSafe,
-  calculateSpawnCost
+  calculateSpawnCost,
+  attackIntervalMs,
+  calculateOverflowXP,
+  calculateProgress
 } from '../utils/gameHelpers';
 import type { Epoch } from '../game/types';
 
 describe('Game Helpers', () => {
+  describe('timing and progression invariants', () => {
+    it('converts data attack intervals from seconds to milliseconds', () => {
+      expect(attackIntervalMs(1.5)).toBe(1500);
+      expect(attackIntervalMs(0)).toBe(100);
+    });
+
+    it('preserves overflow XP between epochs', () => {
+      expect(calculateOverflowXP(235, 200)).toBe(35);
+    });
+
+    it('renders final epoch progress without division by zero', () => {
+      expect(calculateProgress(0, 0)).toBe(1);
+      expect(calculateProgress(100, 200)).toBe(0.5);
+    });
+
+
+  });
   describe('calculateXPFromDamage', () => {
     it('should return damage when target HP is higher', () => {
       expect(calculateXPFromDamage(50, 100)).toBe(50);
@@ -58,18 +78,16 @@ describe('Game Helpers', () => {
     });
   });
 
-  describe('calculateGoldTick', () => {
-    it('should calculate gold for 1 second at 6/s', () => {
-      expect(calculateGoldTick(1000, 6)).toBe(6);
+  describe('calculateKillGoldBounty', () => {
+    it('should return correct bounty for a default cost (50)', () => {
+      expect(calculateKillGoldBounty()).toBe(60); // 20 + 40
     });
 
-    it('should calculate gold for partial seconds', () => {
-      expect(calculateGoldTick(500, 6)).toBe(3);
-      expect(calculateGoldTick(166.67, 6)).toBeCloseTo(1, 1);
-    });
-
-    it('should handle zero delta', () => {
-      expect(calculateGoldTick(0, 6)).toBe(0);
+    it('should scale correctly with unit cost', () => {
+      expect(calculateKillGoldBounty(100)).toBe(100); // 20 + 80
+      expect(calculateKillGoldBounty(150)).toBe(140); // 20 + 120
+      expect(calculateKillGoldBounty(400)).toBe(340); // 20 + 320
+      expect(calculateKillGoldBounty(600)).toBe(500); // 20 + 480
     });
   });
 

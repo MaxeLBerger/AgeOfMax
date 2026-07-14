@@ -1,4 +1,4 @@
-﻿import fs from 'fs';
+import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -94,12 +94,12 @@ function run() {
   }
   console.log(`Applied: ${rangedChanges} ranged units nerfed\n`);
 
-  // Rule 3: XP Thresholds per epoch: 200/400/800/1500/0
+  // Rule 3: XP Thresholds per epoch: 2000/4000/8000/15000/0
   const xpMap: Record<string, number> = {
-    stone: 200,
-    castle: 400,
-    renaissance: 800,
-    modern: 1500,
+    stone: 2000,
+    castle: 4000,
+    renaissance: 8000,
+    modern: 15000,
     future: 0,
   };
   

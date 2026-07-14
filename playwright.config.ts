@@ -2,10 +2,12 @@
 
 export default defineConfig({
   testDir: './e2e',
-  fullyParallel: true,
+  // Phaser/WebGL boot is resource-heavy and canvas-coordinate tests interfere
+  // with each other when five browser instances initialize concurrently.
+  fullyParallel: false,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : undefined,
+  workers: 1,
   reporter: 'list',
   use: {
     baseURL: 'http://localhost:5173',

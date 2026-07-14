@@ -40,8 +40,14 @@ test.describe('Developer Mode - Unit Texture Verification', () => {
       }
     });
     
-    await page.goto('http://localhost:5175');
-    await page.waitForTimeout(3000);
+    await page.goto('/');
+    await page.waitForTimeout(2000);
+
+    const canvas = page.locator('canvas');
+    await canvas.click({ position: { x: 640, y: 300 } });
+    await page.waitForTimeout(300);
+    await canvas.click({ position: { x: 640, y: 360 } });
+    await page.waitForTimeout(1000);
     
     console.log('Enabling Developer Mode (F3)...');
     await page.keyboard.press('F3');
@@ -49,11 +55,11 @@ test.describe('Developer Mode - Unit Texture Verification', () => {
     
     console.log('Spawning units...');
     for (let i = 0; i < 10; i++) {
-      await page.keyboard.press('u');
-      await page.waitForTimeout(800);
+      await canvas.click({ position: { x: 505, y: 690 } });
+      await page.waitForTimeout(300);
     }
     
-    await page.waitForTimeout(10000);
+    await page.waitForTimeout(3000);
     
     console.log('TEXTURE VERIFICATION REPORT');
     console.log('Texture Selection Logs:', textureSelectionLogs.length);

@@ -2,7 +2,7 @@
   {
     "id": "stone",
     "name": "Stone Age",
-    "xpToNext": 200,
+    "xpToNext": 2000,
     "unlocks": {
       "units": [
         "clubman",
@@ -20,7 +20,7 @@
   {
     "id": "castle",
     "name": "Castle Age",
-    "xpToNext": 400,
+    "xpToNext": 4000,
     "unlocks": {
       "units": [
         "swordsman",
@@ -38,7 +38,7 @@
   {
     "id": "renaissance",
     "name": "Renaissance",
-    "xpToNext": 800,
+    "xpToNext": 8000,
     "unlocks": {
       "units": [
         "musketeer",
@@ -56,7 +56,7 @@
   {
     "id": "modern",
     "name": "Modern Age",
-    "xpToNext": 1500,
+    "xpToNext": 15000,
     "unlocks": {
       "units": [
         "rifleman",

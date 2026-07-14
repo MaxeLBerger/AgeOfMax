@@ -6,7 +6,7 @@ test.describe("Start game via menu and difficulty selection", () => {
     page.on("console", (msg) => logs.push(msg.text()));
 
     await page.goto("http://localhost:5173");
-    await page.waitForTimeout(1000);
+    await page.waitForTimeout(2000);
 
     // Click START GAME button roughly centered at y=300 from MenuScene
     const canvas = page.locator("canvas");

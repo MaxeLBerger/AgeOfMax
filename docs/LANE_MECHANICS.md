@@ -1,4 +1,4 @@
-﻿# Lane Mechanics Documentation
+# Lane Mechanics Documentation
 
 ## Lane Constants (BattleScene.ts)
 
@@ -10,7 +10,7 @@
 - PLAYER_BASE_X: 100 - Player base position
 - ENEMY_BASE_X: 1180 - Enemy base position
 - UNIT_CLEANUP_MARGIN: 50 - Offscreen distance before recycling
-- KNOCKBACK_DISTANCE: 5 - Collision pushback pixels
+- KNOCKBACK_DISTANCE: 3 - Collision pushback pixels
 - COMBAT_COOLDOWN_MS: 1000 - Time between attacks
 
 ## Unit Movement
@@ -24,7 +24,7 @@
 
 ### Unit vs Unit
 - Collision stops both units
-- 5px knockback applied
+- 3px knockback applied
 - After 1s cooldown: mutual damage exchange
 - XP awarded for damage dealt
 - Dead units recycled to pool
