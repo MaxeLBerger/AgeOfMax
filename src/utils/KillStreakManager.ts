@@ -11,8 +11,7 @@ export class KillStreakManager {
     this.scene = scene;
   }
   
-  registerKill(gold: number): number {
-    const now = Date.now();
+  registerKill(gold: number, now: number = this.scene.time.now): number {
     
     // Reset streak if timeout expired
     if (now - this.lastKillTime > this.STREAK_TIMEOUT) {
@@ -48,17 +47,18 @@ export class KillStreakManager {
     }
     
     const multiplier = this.getMultiplier();
-    const streakMsg = `🔥 ${this.currentStreak}x STREAK! +${Math.floor((multiplier - 1) * 100)}% Gold`;
+    const streakMsg = `${this.currentStreak}er-Serie  ·  +${Math.floor((multiplier - 1) * 100)} % Gold`;
     
     this.streakText = this.scene.add.text(
       this.scene.cameras.main.centerX,
-      100,
+      205,
       streakMsg,
       {
-        fontSize: '24px',
-        color: '#FF6600',
-        stroke: '#000000',
-        strokeThickness: 4,
+        fontFamily: 'Segoe UI, sans-serif',
+        fontSize: '15px',
+        color: '#e2c183',
+        stroke: '#15242c',
+        strokeThickness: 2,
         fontStyle: 'bold'
       }
     ).setOrigin(0.5);
@@ -66,17 +66,17 @@ export class KillStreakManager {
     // Pulse animation
     this.scene.tweens.add({
       targets: this.streakText,
-      scale: 1.2,
+      scale: this.scene.registry.get('settings')?.reducedMotion ? 1 : 1.08,
       duration: 200,
       yoyo: true,
       repeat: 2
     });
     
     // Auto-hide after 3 seconds
+    const text = this.streakText;
     this.scene.time.delayedCall(3000, () => {
-      if (this.streakText) {
-        this.streakText.destroy();
-      }
+      if (text.active) text.destroy();
+      if (this.streakText === text) this.streakText = undefined;
     });
   }
   
@@ -88,4 +88,3 @@ export class KillStreakManager {
     }
   }
 }
-

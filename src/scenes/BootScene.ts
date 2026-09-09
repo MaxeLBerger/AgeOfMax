@@ -1,266 +1,140 @@
 import Phaser from 'phaser';
+import unitsData from '../../data/units.json';
+
+const EPOCHS = ['stone', 'castle', 'renaissance', 'modern', 'future'];
+const BACKGROUNDS = ['stone-age-bg', 'castle-age-bg', 'renaissance-bg', 'modern-bg', 'future-bg'];
 
 export class BootScene extends Phaser.Scene {
-  constructor() {
-    super({ key: 'BootScene' });
-  }
+  private failed = new Set<string>();
+  constructor() { super({ key: 'BootScene' }); }
 
   preload(): void {
-    // Load unit assets - with variants (_2) where available
-    // Stone Age
-    this.load.image('clubman', 'assets/units/stone_age/clubman.png');
-    this.load.image('clubman_2', 'assets/units/stone_age/clubman_2.png');
-    this.load.image('spearman', 'assets/units/stone_age/spearman.png');
-    this.load.image('slinger', 'assets/units/stone_age/slinger.png');
-    this.load.image('dino-rider', 'assets/units/stone_age/dino-rider.png');
-    
-    // Castle Age
-    this.load.image('swordsman', 'assets/units/castle_age/swordsman.png');
-    this.load.image('archer', 'assets/units/castle_age/archer.png'); // MOVED from Renaissance
-    this.load.image('archer_2', 'assets/units/castle_age/archer_2.png'); // MOVED from Renaissance
-    this.load.image('knight', 'assets/units/castle_age/knight.png');
-    this.load.image('ballista', 'assets/units/castle_age/ballista.png'); // MOVED from Renaissance
-    
-    // Renaissance Age
-    this.load.image('musketeer', 'assets/units/renaissance_age/musketeer.png');
-    this.load.image('cavalry', 'assets/units/renaissance_age/cavalry.png'); // MOVED from Castle
-    this.load.image('cannon', 'assets/units/renaissance_age/cannon.png'); // MOVED from Castle
-    this.load.image('duelist', 'assets/units/renaissance_age/duelist.png');
-    
-    // Modern Age
-    this.load.image('rifleman', 'assets/units/modern_age/rifleman.png');
-    this.load.image('rifleman_2', 'assets/units/modern_age/rifleman_2.png');
-    this.load.image('grenadier', 'assets/units/modern_age/grenadier.png'); // MOVED from Renaissance
-    this.load.image('sniper', 'assets/units/modern_age/sniper.png');
-    this.load.image('tank', 'assets/units/modern_age/tank.png');
+    this.failed.clear();
+    this.cameras.main.setBackgroundColor('#09141d');
+    this.add.text(640, 272, 'AGE OF MAX', { fontFamily: 'Georgia, serif', fontSize: '46px', color: '#eee7d6' }).setOrigin(0.5);
+    this.add.text(640, 324, 'FÜNF ZEITALTER. EIN SCHLACHTFELD.', { fontFamily: 'Segoe UI, sans-serif', fontSize: '12px', color: '#d8b574' })
+      .setOrigin(0.5).setLetterSpacing(3);
+    this.add.rectangle(430, 392, 420, 3, 0x2a3b44).setOrigin(0);
+    const progress = this.add.rectangle(430, 392, 1, 3, 0xd8b574).setOrigin(0);
+    const status = this.add.text(640, 422, 'Dein Reich erwacht …', { fontSize: '14px', color: '#99abae', fontFamily: 'Segoe UI, sans-serif' }).setOrigin(0.5);
+    this.load.on('progress', (value: number) => { progress.width = 420 * value; status.setText(`Schlachtfeld vorbereiten · ${Math.round(value * 100)} %`); });
+    this.load.on('loaderror', (file: Phaser.Loader.File) => this.failed.add(file.key));
 
-    // Future Age
-    // NOTE: Skip loading non-existent future unit assets in production to avoid 404s and slow startup.
-    // Placeholders will be generated for these keys in createPlaceholderAssets().
-    // this.load.image('laser-soldier', 'assets/units/future_age/laser-soldier.png');
-    // this.load.image('mech', 'assets/units/future_age/mech.png');
-    // this.load.image('plasma-trooper', 'assets/units/future_age/plasma-trooper.png');
-    // this.load.image('super-heavy', 'assets/units/future_age/super-heavy.png');
-
-    // Load turret assets
-    this.load.image('stone-tower-1', 'assets/turrets/stone_age_tower_1.png');
-    this.load.image('stone-tower-2', 'assets/turrets/stone_age_tower_2.png');
-    this.load.image('stone-tower-3', 'assets/turrets/stone_age_tower_3.png');
-    this.load.image('castle-tower-1', 'assets/turrets/castle_age_tower_1.png');
-    this.load.image('castle-tower-2', 'assets/turrets/castle_age_tower_2.png');
-    this.load.image('castle-tower-3', 'assets/turrets/castle_age_tower_3.png');
-    this.load.image('renaissance-tower-1', 'assets/turrets/renaissance_age_tower_1.png');
-    this.load.image('renaissance-tower-2', 'assets/turrets/renaissance_age_tower_2.png');
-    this.load.image('renaissance-tower-3', 'assets/turrets/renaissance_age_tower_3.png');
-    // Modern/Future turret PNGs are not present yet – generate placeholders instead to prevent 404s.
-    // this.load.image('modern-tower-1', 'assets/turrets/modern_age_tower_1.png');
-    // this.load.image('modern-tower-2', 'assets/turrets/modern_age_tower_2.png');
-    // this.load.image('modern-tower-3', 'assets/turrets/modern_age_tower_3.png');
-    // this.load.image('future-tower-1', 'assets/turrets/future_age_tower_1.png');
-    // this.load.image('future-tower-2', 'assets/turrets/future_age_tower_2.png');
-    // this.load.image('future-tower-3', 'assets/turrets/future_age_tower_3.png');
-
-    // Load building assets
-    this.load.image('player-base', 'assets/buildings/player_base.png');
-    this.load.image('enemy-base', 'assets/buildings/enemy_base.png');
-
-    // Load background assets
-    this.load.image('stone-age-bg', 'assets/backgrounds/stone_age_background.png');
-    this.load.image('castle-age-bg', 'assets/backgrounds/castle_age_background.png');
-    this.load.image('renaissance-bg', 'assets/backgrounds/renaissance_background.png');
-    this.load.image('modern-bg', 'assets/backgrounds/modern_background.png');
-    // Future background PNG is not present yet – generate a placeholder texture for 'future-bg'.
-    // this.load.image('future-bg', 'assets/backgrounds/future_background.png');
-
-    // Load UI icons
-    this.load.image('gold-coin', 'assets/ui/gold_coin_icon.png');
-    this.load.image('xp-star', 'assets/ui/xp_star_icon.png');
-    this.load.image('raining-rocks-icon', 'assets/ui/raining_rocks_icon.png');
-    this.load.image('artillery-strike-icon', 'assets/ui/artillery_strike_icon.png');
-    this.load.image('turret-placeholder', 'assets/ui/turret_placeholder.png');
-
-    // Load projectile assets
-    this.load.image('arrow', 'assets/projectiles/arrow.png');
-    this.load.image('bullet', 'assets/projectiles/bullet.png');
-    this.load.image('cannonball', 'assets/projectiles/cannonball.png');
-    this.load.image('rock', 'assets/projectiles/rock.png');
-
-    // Track failed loads to create fallbacks
-    const failedKeys = new Set<string>();
-    this.load.on('loaderror', (file: Phaser.Loader.File) => {
-      failedKeys.add(file.key);
-    });
-
-    this.load.on('complete', () => {
-      console.log('Assets loaded');
-      // Create placeholder fallback textures for any failed loads
-      if (failedKeys.size > 0) {
-        const failedList = [...failedKeys];
-        console.warn(`⚠️ Creating fallbacks for ${failedKeys.size} missing assets:`, failedList);
-        this.createFallbackTextures(failedKeys);
-        this.showAssetDiagnostics(failedList);
-      }
+    for (const unit of unitsData) {
+      this.load.spritesheet(unit.id, `assets/reborn/units/${unit.id}.png`, { frameWidth: 256, frameHeight: 256 });
+      this.load.spritesheet(`${unit.id}-enemy`, `assets/reborn/units-enemy/${unit.id}.png`, { frameWidth: 256, frameHeight: 256 });
+    }
+    this.load.json('weapon-sockets', 'assets/reborn/weapon-sockets.json');
+    EPOCHS.forEach((epoch, index) => {
+      this.load.image(BACKGROUNDS[index], `assets/reborn/backgrounds/${epoch}.png`);
+      this.load.image(`base-${epoch}`, `assets/reborn/bases/${epoch}.png`);
+      this.load.image(`base-${epoch}-enemy`, `assets/reborn/bases-enemy/${epoch}.png`);
+      for (let tower = 1; tower <= 3; tower++) this.load.image(`${epoch}-tower-${tower}`, `assets/reborn/towers/${epoch}-${tower}.png`);
     });
   }
 
   create(): void {
-    console.log('BootScene: Starting game...');
-    this.createPlaceholderAssets();
-    this.scene.start('MenuScene'); // Start with menu instead of directly launching battle
-    this.scene.stop();
-  }
-
-  private createFallbackTextures(failedKeys: Set<string>): void {
-    const graphics = this.make.graphics({ x: -9999, y: -9999 });
-    
-    for (const key of failedKeys) {
-      // Choose color based on asset type
-      let color = 0x888888;
-      let width = 64;
-      let height = 64;
-      
-      if (key.includes('bg') || key.includes('background')) {
-        color = 0x2a2a4a;
-        width = 1280;
-        height = 720;
-      } else if (key.includes('tower')) {
-        color = 0x666699;
-        width = 128;
-        height = 128;
-      } else if (key.includes('soldier') || key.includes('trooper') || key.includes('mech') || key.includes('heavy')) {
-        // Future age units - use distinct futuristic colors
-        const unitColors: Record<string, number> = {
-          'laser-soldier': 0x00ccff,
-          'mech': 0x7777ff,
-          'plasma-trooper': 0xff00ff,
-          'super-heavy': 0xcc0000
-        };
-        color = unitColors[key] || 0x888888;
-        width = 512;
-        height = 512;
-      }
-      
-      graphics.clear();
-      graphics.fillStyle(color, 1);
-      graphics.fillRect(0, 0, width, height);
-      // Add a border so it's visually distinct as a placeholder
-      graphics.lineStyle(3, 0xffffff, 0.5);
-      graphics.strokeRect(2, 2, width - 4, height - 4);
-      // Add an X marker
-      graphics.lineStyle(2, 0xffffff, 0.3);
-      graphics.lineBetween(0, 0, width, height);
-      graphics.lineBetween(width, 0, 0, height);
-      graphics.generateTexture(key, width, height);
+    this.validateLoadedAssets();
+    if (this.failed.size) {
+      this.children.removeAll(true);
+      this.add.text(640, 250, 'Das Schlachtfeld konnte nicht geladen werden.', { fontFamily: 'Georgia, serif', fontSize: '28px', color: '#eee7d6' }).setOrigin(0.5);
+      this.add.text(640, 307, 'Prüfe die Verbindung und lade das Spiel erneut.', { fontSize: '16px', color: '#99abae' }).setOrigin(0.5);
+      this.add.text(640, 354, `Fehlende oder beschädigte Spieldaten: ${[...this.failed].slice(0, 6).join(', ')}${this.failed.size > 6 ? ' …' : ''}`, {
+        fontSize: '13px', color: '#d8b574', wordWrap: { width: 900 }, align: 'center'
+      }).setOrigin(0.5);
+      this.add.rectangle(640, 436, 260, 48, 0x20343d).setStrokeStyle(1, 0xd8b574).setInteractive({ useHandCursor: true })
+        .on('pointerdown', () => window.location.reload());
+      this.add.text(640, 436, 'Erneut laden', { fontSize: '17px', color: '#eee7d6' }).setOrigin(0.5);
+      return;
     }
-    
-    graphics.destroy();
+    this.createRuntimeTextures();
+    this.createPortraitFrames();
+    this.scene.start('MenuScene');
   }
 
-  private createPlaceholderAssets(): void {
-    const graphics = this.make.graphics({ x: -9999, y: -9999 });
-    graphics.fillStyle(0x4444ff);
-    graphics.fillRect(0, 0, 32, 32);
-    graphics.generateTexture('unit-player', 32, 32);
-    graphics.clear();
-    graphics.fillStyle(0xff4444);
-    graphics.fillRect(0, 0, 32, 32);
-    graphics.generateTexture('unit-enemy', 32, 32);
-    graphics.clear();
-    graphics.fillStyle(0x888888);
-    graphics.fillRect(0, 0, 64, 128);
-    graphics.generateTexture('base', 64, 128);
-    graphics.clear();
-    graphics.fillStyle(0xffff44);
-    graphics.fillCircle(8, 8, 8);
-    graphics.generateTexture('projectile', 16, 16);
-    graphics.clear();
-    graphics.fillStyle(0x8B4513);
-    graphics.fillRect(0, 0, 40, 40);
-    graphics.fillStyle(0x333333);
-    graphics.fillRect(10, 5, 20, 30);
-    graphics.generateTexture('turret', 40, 40);
-    graphics.clear();
-
-    // Generate explicit turret placeholders to match keys used across epochs
-    // Stone/Castle/Renaissance are loaded from files; Modern/Future use generated placeholders.
-    const makeTurretVariant = (key: string, tint: number) => {
-      graphics.fillStyle(0x8B4513);
-      graphics.fillRect(0, 0, 40, 40);
-      graphics.fillStyle(tint);
-      graphics.fillRect(10, 5, 20, 30);
-      graphics.generateTexture(key, 40, 40);
-      graphics.clear();
+  private validateLoadedAssets(): void {
+    const imageSize = (key: string, width: number, height: number) => {
+      if (!this.textures.exists(key)) { this.failed.add(key); return; }
+      const source = this.textures.get(key).getSourceImage() as HTMLImageElement;
+      if (source.width !== width || source.height !== height) this.failed.add(key);
     };
-    makeTurretVariant('modern-tower-1', 0x555555);
-    makeTurretVariant('modern-tower-2', 0x666666);
-    makeTurretVariant('modern-tower-3', 0x777777);
-    makeTurretVariant('future-tower-1', 0x00FFCC);
-    makeTurretVariant('future-tower-2', 0x33CCFF);
-    makeTurretVariant('future-tower-3', 0xFF33CC);
-    
-    // Create particle textures with proper transparency
-    // Golden circle particle for XP - small sparkle
-    graphics.fillStyle(0xFFD700, 1);
-    graphics.fillCircle(8, 8, 6);
-    graphics.fillStyle(0xFFFFFF, 0.8);
-    graphics.fillCircle(8, 8, 3);
-    graphics.generateTexture('particle-star', 16, 16);
-    graphics.clear();
-    
-    // Golden circle particle for Gold
-    graphics.fillStyle(0xFFD700, 1);
-    graphics.fillCircle(6, 6, 5);
-    graphics.fillStyle(0xFFAA00, 1);
-    graphics.fillCircle(6, 6, 3);
-    graphics.generateTexture('particle-gold', 12, 12);
-    graphics.clear();
-
-    // Simple muzzle flash (used for ranged attack feedback)
-    graphics.fillStyle(0xFFFF66, 1);
-    graphics.fillCircle(8, 8, 6);
-    graphics.fillStyle(0xFFCC33, 0.9);
-    graphics.fillCircle(8, 8, 4);
-    graphics.fillStyle(0xFFFFFF, 0.8);
-    graphics.fillCircle(8, 8, 2);
-    graphics.generateTexture('muzzle-flash', 16, 16);
-    graphics.clear();
-    
-    // Background placeholders for future (and safety fallbacks)
-    const makeBackground = (key: string, top: number, bottom: number) => {
-      const w = 1024;
-      const h = 512;
-      // simple two-tone background
-      graphics.fillStyle(top);
-      graphics.fillRect(0, 0, w, h / 2);
-      graphics.fillStyle(bottom);
-      graphics.fillRect(0, h / 2, w, h / 2);
-      graphics.generateTexture(key, w, h);
-      graphics.clear();
-    };
-    makeBackground('future-bg', 0x0a0f1f, 0x111133);
-
-    // Minimal placeholders for future units (keys only, not used until that epoch)
-    const unitSquare = (key: string, color: number) => {
-      graphics.fillStyle(color);
-      graphics.fillRect(0, 0, 32, 32);
-      graphics.generateTexture(key, 32, 32);
-      graphics.clear();
-    };
-    unitSquare('laser-soldier', 0x99FFEE);
-    unitSquare('mech', 0x88AAFF);
-    unitSquare('plasma-trooper', 0xFF88EE);
-    unitSquare('super-heavy', 0xCCCCCC);
-
-    graphics.destroy();
+    const sockets = this.cache.json.get('weapon-sockets') as Record<string, unknown> | undefined;
+    for (const unit of unitsData) {
+      for (const key of [unit.id, `${unit.id}-enemy`]) {
+        imageSize(key, 2048, 256);
+        for (let frame = 0; frame < 8; frame++) if (!this.textures.get(key).has(String(frame))) this.failed.add(key);
+      }
+      const points = sockets?.[unit.id];
+      if (!Array.isArray(points) || points.length !== 8 || !points.every(point =>
+        Array.isArray(point) && point.length === 2 && point.every(value => typeof value === 'number' && Number.isFinite(value)))) {
+        this.failed.add(`weapon-sockets:${unit.id}`);
+      }
+    }
+    EPOCHS.forEach((epoch, index) => {
+      imageSize(BACKGROUNDS[index], 1600, 900);
+      imageSize(`base-${epoch}`, 512, 512);
+      imageSize(`base-${epoch}-enemy`, 512, 512);
+      for (let tower = 1; tower <= 3; tower++) imageSize(`${epoch}-tower-${tower}`, 256, 256);
+    });
   }
 
-  private showAssetDiagnostics(failed: string[]): void {
-    // Simple in-canvas overlay so users understand incomplete visuals
-    const bg = this.add.rectangle(640, 360, 800, 400, 0x000000, 0.85).setOrigin(0.5).setDepth(9999);
-    const title = this.add.text(640, 200, 'Asset Ladefehler', { fontSize: '42px', color: '#ff4444', fontStyle: 'bold' }).setOrigin(0.5).setDepth(10000);
-    const info = this.add.text(640, 260, 'Einige Grafiken konnten nicht geladen werden. Platzhalter werden angezeigt.', { fontSize: '20px', color: '#ffffff', align: 'center', wordWrap: { width: 700 } }).setOrigin(0.5).setDepth(10000);
-    const list = failed.slice(0, 15).map(a => `• ${a}`).join('\n');
-    this.add.text(640, 330, list, { fontSize: '16px', color: '#ffcc00', wordWrap: { width: 760 } }).setOrigin(0.5).setDepth(10000);
-    this.time.delayedCall(8000, () => { bg.destroy(); title.destroy(); info.destroy(); });
+  private createPortraitFrames(): void {
+    const canvas = document.createElement('canvas'); canvas.width = 256; canvas.height = 256;
+    const context = canvas.getContext('2d', { willReadFrequently: true }); if (!context) return;
+    for (const unit of unitsData) for (const key of [unit.id, `${unit.id}-enemy`]) {
+      const texture = this.textures.get(key);
+      context.clearRect(0, 0, 256, 256);
+      context.drawImage(texture.getSourceImage() as HTMLImageElement, 0, 0, 256, 256, 0, 0, 256, 256);
+      const pixels = context.getImageData(0, 0, 256, 256).data;
+      let left = 256, right = 0, top = 256, bottom = 0;
+      for (let y = 0; y < 256; y++) for (let x = 0; x < 256; x++) if (pixels[(y * 256 + x) * 4 + 3] > 40) {
+        left = Math.min(left, x); right = Math.max(right, x); top = Math.min(top, y); bottom = Math.max(bottom, y);
+      }
+      if (right <= left || bottom <= top) continue;
+      const width = right - left + 1, height = bottom - top + 1;
+      const infantry = !['dino-rider', 'knight', 'cavalry', 'ballista', 'cannon', 'tank', 'mech', 'super-heavy'].includes(unit.id);
+      // Infantry portraits share a head-and-shoulder crop: a long spear or rifle
+      // must not shrink its owner's face compared with the adjacent recruit.
+      if (infantry) texture.add('portrait', 0, 82, top, 104, Math.min(height, 96));
+      else texture.add('portrait', 0, left, top, width, height);
+    }
+  }
+
+  private createRuntimeTextures(): void {
+    const graphics = this.make.graphics({ x: 0, y: 0 });
+    const disk = (key: string, size: number, color: number) => {
+      graphics.clear().fillStyle(color).fillCircle(size / 2, size / 2, size * 0.34)
+        .fillStyle(0xffffff, 0.7).fillCircle(size / 2, size / 2, size * 0.12);
+      graphics.generateTexture(key, size, size);
+    };
+    disk('particle-star', 16, 0xdcc593); disk('particle-gold', 12, 0xe2b66a); disk('muzzle-flash', 32, 0xffd191);
+    disk('projectile', 64, 0xe1be7b);
+    for (const key of ['rock', 'cannonball']) {
+      graphics.clear().fillStyle(key === 'rock' ? 0x686655 : 0x303c43).fillCircle(128, 64, key === 'rock' ? 48 : 40)
+        .fillStyle(0xd4c5a0, 0.35).fillCircle(113, 49, 17);
+      graphics.generateTexture(key, 256, 128);
+    }
+    graphics.clear().lineStyle(9, 0xbb9158).lineBetween(38, 64, 191, 64).fillStyle(0xdad7c5).fillTriangle(191, 46, 222, 64, 191, 82)
+      .lineStyle(6, 0xa8beb5).lineBetween(40, 45, 62, 64).lineBetween(40, 83, 62, 64);
+    graphics.generateTexture('arrow', 256, 128);
+    graphics.clear().fillStyle(0xffdb87).fillRoundedRect(72, 46, 116, 36, 16).fillStyle(0xffffff).fillRoundedRect(155, 49, 25, 30, 12);
+    graphics.generateTexture('bullet', 256, 128);
+    graphics.clear().fillStyle(0x53674f).fillRoundedRect(18, 15, 28, 36, 9)
+      .fillStyle(0xaaa48a).fillRect(27, 8, 10, 12);
+    graphics.generateTexture('grenade', 64, 64);
+    graphics.clear().fillStyle(0xffffff, 0.25).fillRoundedRect(2, 2, 92, 20, 10)
+      .fillStyle(0xffffff).fillRoundedRect(8, 9, 78, 6, 3);
+    graphics.generateTexture('laser', 96, 24);
+    graphics.clear().fillStyle(0xffffff, 0.18).fillCircle(32, 32, 29)
+      .fillStyle(0xffffff, 0.6).fillCircle(32, 32, 17).fillStyle(0xffffff).fillCircle(32, 32, 8);
+    graphics.generateTexture('plasma', 64, 64);
+    graphics.destroy();
+    const texture = this.textures.createCanvas('battle-vignette', 1280, 720);
+    if (texture) {
+      const context = texture.context;
+      const gradient = context.createRadialGradient(640, 350, 160, 640, 350, 735);
+      gradient.addColorStop(0, 'rgba(3,14,22,0)'); gradient.addColorStop(1, 'rgba(3,14,22,0.4)');
+      context.fillStyle = gradient; context.fillRect(0, 0, 1280, 720); texture.refresh();
+    }
   }
 }

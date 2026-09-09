@@ -1,46 +1,16 @@
-﻿
-// XP Visual Feedback System
+import Phaser from 'phaser';
+
 export class XPFeedbackSystem {
-  private scene: Phaser.Scene;
-  
-  constructor(scene: Phaser.Scene) {
-    this.scene = scene;
-  }
-  
-  showXPGain(x: number, y: number, amount: number) {
-    const text = this.scene.add.text(x, y, `+${amount} XP`, {
-      fontSize: '20px',
-      color: '#FFD700',
-      stroke: '#000000',
-      strokeThickness: 4,
-      fontStyle: 'bold'
-    });
-    
-    // Floating animation
-    this.scene.tweens.add({
-      targets: text,
-      y: y - 50,
-      alpha: 0,
-      duration: 1500,
-      ease: 'Power2',
-      onComplete: () => text.destroy()
-    });
-    
-    // Particle effect (only if sparkle texture exists)
-    if (this.scene.textures.exists('sparkle')) {
-      const particles = this.scene.add.particles(x, y, 'sparkle', {
-        speed: { min: 50, max: 100 },
-        scale: { start: 0.5, end: 0 },
-        lifespan: 1000,
-        quantity: 5,
-        tint: 0xFFD700
-      });
-      
-      this.scene.time.delayedCall(1000, () => particles.destroy());
-    }
+  private lastShown = -Infinity;
+  constructor(private scene: Phaser.Scene) {}
+  showXPGain(x: number, y: number, amount: number): void {
+    // The HUD reports every point; only meaningful awards float over the battle.
+    if (amount < 25 || this.scene.time.now - this.lastShown < 180) return;
+    this.lastShown = this.scene.time.now;
+    const text = this.scene.add.text(x, y - 78, `+${Math.round(amount)} EP`, {
+      fontFamily: 'Segoe UI, sans-serif', fontSize: '11px', color: '#a5c9c1', stroke: '#14252b', strokeThickness: 2
+    }).setOrigin(0.5).setDepth(1600);
+    this.scene.tweens.add({ targets: text, y: y - (this.scene.registry.get('settings')?.reducedMotion ? 78 : 96), alpha: 0,
+      duration: 1100, onComplete: () => text.destroy() });
   }
 }
-
-// Usage in BattleScene when unit dies:
-// this.xpFeedback.showXPGain(unit.x, unit.y, xpAmount);
-

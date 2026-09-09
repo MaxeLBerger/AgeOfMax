@@ -74,3 +74,14 @@ build_debug.js
 build_log.txt
 build_log2.txt
 vite_error.txt
+
+# Local Blender GPU cache
+optix7cache.db*
+
+# QA release packages are byte copies of the ignored dist/ build output
+art/qa/releases/*/package/
+art/qa/releases/*/previous-dist/
+
+# Compiled Python bytecode from the Blender tooling
+__pycache__/
+*.pyc

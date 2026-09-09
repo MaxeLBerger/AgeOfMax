@@ -1,585 +1,437 @@
 import Phaser from 'phaser';
-import type { Economy, Epoch, TurretType, UnitType } from '../game/types';
-import turretsData from '../../data/turrets.json';
+import { consumeKeyboardEvent } from '../ui/keyboard';
+import type { EnemyWavePlan } from '../game/enemyWaves';
+import type { Epoch, TurretType, UnitType } from '../game/types';
+import epochsData from '../../data/epochs.json';
 import unitsData from '../../data/units.json';
+import turretsData from '../../data/turrets.json';
+import { epochNames, unitNames, unitRoles, turretNames, turretTexture } from '../ui/catalog';
+
+const C = { ink: 0x09141d, panel: 0x101f2a, card: 0x172b36, hover: 0x25414b, border: 0x354a53,
+  gold: 0xd8b574, teal: 0x78b9af, red: 0xdb8d80, text: '#eee7d6', muted: '#99abae' };
+type Card = { bg: Phaser.GameObjects.Rectangle; image: Phaser.GameObjects.Image; name: Phaser.GameObjects.Text;
+  price: Phaser.GameObjects.Text; id: string; index: number };
+type Wave = { number: number; phase: 'prepare' | 'assault' | 'respite'; remainingMs: number;
+  enemyEpoch: string; incomePerSecond: number; elapsedMs: number; army: number; armyLimit: number;
+  plan?: EnemyWavePlan; attempted?: number; arrived?: number };
+type Result = { winner: 'player' | 'enemy'; elapsedMs: number; kills: number; epoch: string };
 
 export class UIScene extends Phaser.Scene {
+  private gold = 0;
+  private xp = 0;
+  private currentEpoch: Epoch = epochsData[0];
+  private paused = false;
+  private gameOver = false;
+  private epochReady = false;
+  private selectedTurretIndex = -1;
+  private units = unitsData as UnitType[];
+  private turrets = turretsData as TurretType[];
+  private unitCards: Card[] = [];
+  private turretCards: Card[] = [];
   private goldText!: Phaser.GameObjects.Text;
+  private incomeText!: Phaser.GameObjects.Text;
   private xpText!: Phaser.GameObjects.Text;
-  private xpProgressBar!: Phaser.GameObjects.Rectangle;
+  private xpFill!: Phaser.GameObjects.Rectangle;
   private epochText!: Phaser.GameObjects.Text;
-  private baseHpText!: Phaser.GameObjects.Text;
-  private baseHpBar!: Phaser.GameObjects.Rectangle;
+  private enemyEpochText!: Phaser.GameObjects.Text;
+  private waveText!: Phaser.GameObjects.Text;
+  private waveDetail!: Phaser.GameObjects.Text;
+  private scout!: Phaser.GameObjects.Container;
+  private scoutStatus!: Phaser.GameObjects.Text;
+  private scoutWave?: Wave;
+  private scoutPinned = false;
+  private scoutHover = false;
+  private scoutRevision = '';
+  private timerText!: Phaser.GameObjects.Text;
+  private armyText!: Phaser.GameObjects.Text;
+  private evolveButton!: Phaser.GameObjects.Rectangle;
+  private evolveText!: Phaser.GameObjects.Text;
+  private abilityButtons: Phaser.GameObjects.Rectangle[] = [];
+  private abilityTexts: Phaser.GameObjects.Text[] = [];
+  private cooldowns = [0, 0];
+  private speed = 1;
+  private speedButtons: Phaser.GameObjects.Rectangle[] = [];
+  private feedback!: Phaser.GameObjects.Container;
   private feedbackText!: Phaser.GameObjects.Text;
-  private rainingRocksButton!: Phaser.GameObjects.Rectangle;
-  private rainingRocksCooldownText!: Phaser.GameObjects.Text;
-  private artilleryStrikeButton!: Phaser.GameObjects.Rectangle;
-  private artilleryStrikeCooldownText!: Phaser.GameObjects.Text;
-  private economy: Economy = { gold: 100, xp: 0, goldPerTick: 10, tickInterval: 3000 };
-  private currentEpoch: Epoch = { id: 'stone', name: 'Stone Age', xpToNext: 100, unlocks: { units: [], turrets: [] } };
-  private currentEpochId: string = 'stone'; // Track epoch ID for filtering
-  private turretsDatabase: TurretType[] = turretsData as TurretType[];
-  private unitsDatabase: UnitType[] = unitsData as UnitType[];
-  private unitButtons: Array<{btn: Phaser.GameObjects.Rectangle, nameText: Phaser.GameObjects.Text, costText: Phaser.GameObjects.Text, unitIndex: number}> = [];
-  private turretButtons: Array<{btn: Phaser.GameObjects.Rectangle, nameText: Phaser.GameObjects.Text, costText: Phaser.GameObjects.Text, turretIndex: number}> = [];
-  private selectedTurretIndex: number = -1;
-  private gameOver: boolean = false;
+  private feedbackTimer?: Phaser.Time.TimerEvent;
+  private tooltip!: Phaser.GameObjects.Container;
+  private tooltipTitle!: Phaser.GameObjects.Text;
+  private tooltipRole!: Phaser.GameObjects.Text;
+  private tooltipStats!: Phaser.GameObjects.Text;
+  private overlay?: Phaser.GameObjects.Container;
+  private overlayButtons: Array<{ bg: Phaser.GameObjects.Rectangle; activate: () => void }> = [];
+  private overlayFocus = 0;
+  private hp: Record<string, { fill: Phaser.GameObjects.Rectangle; text: Phaser.GameObjects.Text }> = {};
 
-  constructor() {
-    super({ key: 'UIScene' });
-  }
+  constructor() { super({ key: 'UIScene' }); }
 
   create(): void {
-    console.log('UIScene: Initializing HUD...');
-    
-    // Reset state properties to ensure clean restarts
-    this.gameOver = false;
-    this.selectedTurretIndex = -1;
-    this.currentEpochId = 'stone';
-    this.unitButtons = [];
-    this.turretButtons = [];
-    this.economy = { gold: 100, xp: 0, goldPerTick: 10, tickInterval: 3000 };
-    this.currentEpoch = { id: 'stone', name: 'Stone Age', xpToNext: 100, unlocks: { units: [], turrets: [] } };
-
-    this.createHUD();
-    this.listenToBattleEvents();
+    this.gold = 0; this.xp = 0; this.currentEpoch = epochsData[0]; this.paused = false; this.gameOver = false;
+    this.epochReady = false; this.selectedTurretIndex = -1; this.unitCards = []; this.turretCards = [];
+    this.abilityButtons = []; this.abilityTexts = []; this.speedButtons = []; this.cooldowns = [0, 0];
+    this.hp = {}; this.overlay = undefined; this.overlayButtons = []; this.overlayFocus = 0; this.speed = 1;
+    this.scoutWave = undefined; this.scoutPinned = false; this.scoutHover = false; this.scoutRevision = '';
+    this.buildHUD(); this.listenToBattle(); this.refreshEpoch();
+    const keyboard = (event: KeyboardEvent) => this.onKey(event);
+    this.input.keyboard?.on('keydown', keyboard);
+    this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => { this.input.keyboard?.off('keydown', keyboard); this.feedbackTimer?.remove(); });
   }
 
-  private createHUD(): void {
-    const UI_DEPTH = 2000;
-    const { width, height } = this.scale;
-    
-    // Top-left resources panel - semi-transparent background
-    const resourcePanel = this.add.rectangle(0, 0, 300, 150, 0x000000, 0.7).setOrigin(0, 0);
-    resourcePanel.setDepth(UI_DEPTH);
-    
-    // Gold display with icon
-    const goldIcon = this.add.image(20, 25, 'gold-coin').setDisplaySize(32, 32);
-    goldIcon.setDepth(UI_DEPTH + 1);
-    this.goldText = this.add.text(50, 15, `Gold: ${this.economy.gold}`, { 
-      fontSize: '24px', 
-      color: '#ffd700',
-      fontStyle: 'bold',
-      stroke: '#000000',
-      strokeThickness: 2
-    });
-    this.goldText.setDepth(UI_DEPTH + 1);
-    
-    // XP display with progress bar
-    const xpIcon = this.add.image(20, 70, 'xp-star').setDisplaySize(32, 32);
-    xpIcon.setDepth(UI_DEPTH + 1);
-    this.xpText = this.add.text(50, 60, `XP: ${this.economy.xp}/${this.currentEpoch.xpToNext}`, { 
-      fontSize: '20px', 
-      color: '#00ff00',
-      fontStyle: 'bold',
-      stroke: '#000000',
-      strokeThickness: 2
-    });
-    this.xpText.setDepth(UI_DEPTH + 1);
-    
-    // XP Progress Bar
-    const xpBarBg = this.add.rectangle(50, 90, 200, 15, 0x333333).setOrigin(0, 0);
-    xpBarBg.setDepth(UI_DEPTH + 1);
-    this.xpProgressBar = this.add.rectangle(50, 90, 0, 15, 0x00ff00).setOrigin(0, 0);
-    this.xpProgressBar.setDepth(UI_DEPTH + 2);
-    
-    // Epoch display
-    this.epochText = this.add.text(20, 115, `Epoch: ${this.currentEpoch.name}`, { 
-      fontSize: '20px', 
-      color: '#ffffff',
-      fontStyle: 'bold',
-      stroke: '#000000',
-      strokeThickness: 2
-    });
-    this.epochText.setDepth(UI_DEPTH + 1);
-    
-    // Base HP panel (left side, middle)
-    const baseHpPanelY = height / 2 + 50;
-    const baseHpPanel = this.add.rectangle(0, baseHpPanelY, 280, 80, 0x000000, 0.7).setOrigin(0, 0);
-    baseHpPanel.setDepth(UI_DEPTH);
-    
-    this.baseHpText = this.add.text(20, baseHpPanelY + 15, 'Base HP: ---/---', { 
-      fontSize: '24px', 
-      color: '#00ff00',
-      fontStyle: 'bold',
-      stroke: '#000000',
-      strokeThickness: 2
-    });
-    this.baseHpText.setDepth(UI_DEPTH + 1);
-    
-    // Base HP Progress Bar
-    const baseHpBarBg = this.add.rectangle(20, baseHpPanelY + 50, 240, 20, 0x660000).setOrigin(0, 0);
-    baseHpBarBg.setDepth(UI_DEPTH + 1);
-    this.baseHpBar = this.add.rectangle(20, baseHpPanelY + 50, 240, 20, 0x00ff00).setOrigin(0, 0);
-    this.baseHpBar.setDepth(UI_DEPTH + 2);
-    
-    // Feedback text (center screen)
-    this.feedbackText = this.add.text(width / 2, height / 2 - 60, '', { 
-      fontSize: '28px', 
-      color: '#ff0000',
-      fontStyle: 'bold',
-      stroke: '#000000',
-      strokeThickness: 4,
-      backgroundColor: '#000000',
-      padding: { x: 20, y: 10 }
-    }).setOrigin(0.5);
-    this.feedbackText.setDepth(UI_DEPTH + 10);
-    this.feedbackText.setVisible(false);
-    
-    this.createSpecialButtons();
-    this.createToolbar();
+  private text(x: number, y: number, value: string, size = 16, color = C.text): Phaser.GameObjects.Text {
+    return this.add.text(x, y, value, { fontFamily: 'Segoe UI, Arial, sans-serif', fontSize: `${size}px`, color });
+  }
+  private rect(x: number, y: number, width: number, height: number, color: number, alpha = 1): Phaser.GameObjects.Rectangle {
+    return this.add.rectangle(x, y, width, height, color, alpha).setOrigin(0);
+  }
+  private button(x: number, y: number, w: number, h: number, action: () => void): Phaser.GameObjects.Rectangle {
+    const button = this.rect(x, y, w, h, C.card).setStrokeStyle(1, C.border).setInteractive({ useHandCursor: true });
+    button.on('pointerover', () => { if (!this.gameOver && !this.paused) button.setFillStyle(C.hover); });
+    button.on('pointerout', () => this.refreshStates()); button.on('pointerdown', action);
+    return button;
   }
 
-  private listenToBattleEvents(): void {
-    this.events.on('updateGold', (gold: number) => {
-      this.economy.gold = gold;
-      this.goldText.setText(`Gold: ${gold}`);
-      this.updateButtonStates();
+  private buildHUD(): void {
+    this.rect(0, 0, 1280, 82, C.ink, 0.97); this.rect(0, 81, 1280, 1, C.gold, 0.35);
+    this.add.graphics().lineStyle(1.5, C.gold).strokeTriangle(24, 49, 40, 20, 56, 49).lineBetween(31, 39, 49, 39);
+    this.text(68, 18, 'AGE OF MAX', 15, '#d8b574').setLetterSpacing(2);
+    this.epochText = this.text(68, 43, 'Steinzeit', 18);
+    this.rect(226, 20, 1, 43, C.border);
+    this.text(247, 14, 'GOLD', 11, C.muted).setLetterSpacing(2);
+    this.goldText = this.text(246, 31, '0', 25, '#e6c58b').setFontStyle('bold');
+    this.incomeText = this.text(335, 42, '+0 / s', 12, C.muted);
+    this.text(414, 14, 'FORTSCHRITT', 11, C.muted).setLetterSpacing(2);
+    this.xpText = this.text(414, 32, '0 EP', 15);
+    this.rect(414, 59, 174, 3, C.border); this.xpFill = this.rect(414, 59, 1, 3, C.gold);
+    this.rect(619, 20, 1, 43, C.border);
+    this.waveText = this.text(647, 16, 'VORBEREITUNG', 13, '#d8b574').setLetterSpacing(1);
+    this.waveDetail = this.text(647, 42, 'Front und Fernkampf kombinieren.', 13, C.muted);
+    this.scout = this.add.container(630, 89).setDepth(180).setVisible(false).setName('wave-intel-panel');
+    const scoutTarget = this.rect(640, 9, 306, 59, C.ink, 0).setInteractive({ useHandCursor: true }).setName('wave-intel-toggle');
+    scoutTarget.on('pointerover', () => { this.scoutHover = true; this.refreshScoutVisibility(); });
+    scoutTarget.on('pointerout', () => { this.scoutHover = false; this.refreshScoutVisibility(); });
+    scoutTarget.on('pointerdown', () => this.setScoutPinned(!this.scoutPinned));
+    this.rect(918, 17, 18, 18, C.card).setStrokeStyle(1, C.border);
+    this.text(927, 26, 'I', 11, '#d8b574').setOrigin(0.5);
+    this.timerText = this.text(1001, 32, '00:00', 16, C.muted).setOrigin(1, 0);
+    [1, 2, 4].forEach((speed, index) => {
+      const x = 1025 + index * 49;
+      this.speedButtons.push(this.button(x, 23, 43, 34, () => { if (!this.paused && !this.gameOver) this.events.emit('setSimulationSpeed', speed); }));
+      this.text(x + 21.5, 29, `${speed}×`, 15).setOrigin(0.5, 0);
     });
-
-    this.events.on('updateXP', (xp: number, xpToNext: number) => {
-      this.economy.xp = xp;
-      this.currentEpoch.xpToNext = xpToNext;
-      this.xpText.setText(`XP: ${xp}/${xpToNext}`);
-      
-      // Update XP progress bar
-      const progress = Math.min(xp / xpToNext, 1);
-      this.xpProgressBar.setDisplaySize(200 * progress, 15);
-    });
-
-    this.events.on('updateEpoch', (epoch: Epoch) => {
-      this.currentEpoch = epoch;
-      this.currentEpochId = epoch.id;
-      this.epochText.setText(`Epoch: ${epoch.name}`);
-      this.updateAvailableUnits();
-      this.updateAvailableTurrets();
-    });
-
-    this.events.on('updateBaseHP', (hp: number, maxHp: number, side: string) => {
-      // For now, only show player base HP
-      if (side === 'player') {
-        this.baseHpText.setText(`Base HP: ${hp}/${maxHp}`);
-        
-        // Update HP bar
-        const hpPercent = hp / maxHp;
-        this.baseHpBar.setDisplaySize(240 * hpPercent, 20);
-        
-        // Change color based on HP percentage
-        if (hpPercent > 0.6) {
-          this.baseHpText.setColor('#00ff00');
-          this.baseHpBar.setFillStyle(0x00ff00);
-        } else if (hpPercent > 0.3) {
-          this.baseHpText.setColor('#ffaa00');
-          this.baseHpBar.setFillStyle(0xffaa00);
-        } else {
-          this.baseHpText.setColor('#ff4444');
-          this.baseHpBar.setFillStyle(0xff4444);
-        }
-      }
-    });
-
-    this.events.on('turretPlacementFailed', (message: string) => {
-      this.showFeedback(message);
-    });
-
-    this.events.on('updateRainingRocksCooldown', (remaining: number, total: number) => {
-      this.updateRainingRocksCooldown(remaining, total);
-    });
-
-    this.events.on('updateArtilleryStrikeCooldown', (remaining: number, total: number) => {
-      this.updateArtilleryStrikeCooldown(remaining, total);
-    });
-
-    this.events.on('gameOver', () => {
-      this.gameOver = true;
-      this.disableUIInput();
-    });
-  }
-
-  private showFeedback(message: string): void {
-    this.feedbackText.setText(message);
-    this.feedbackText.setVisible(true);
-    this.time.delayedCall(2000, () => {
-      this.feedbackText.setText('');
-      this.feedbackText.setVisible(false);
-    });
-  }
-
-  private createSpecialButtons(): void {
-    const UI_DEPTH = 2000;
-    const { width } = this.scale;
-    const specialButtonsX = width - 230;
-    const specialButtonsY = 30;
-    
-    // Panel background
-    const specialPanel = this.add.rectangle(specialButtonsX - 65, specialButtonsY - 15, 270, 90, 0x000000, 0.7).setOrigin(0, 0);
-    specialPanel.setDepth(UI_DEPTH);
-    
-    const titleText = this.add.text(specialButtonsX, specialButtonsY, '⚡ SPECIAL ABILITIES', { 
-      fontSize: '16px', 
-      color: '#ffff00',
-      fontStyle: 'bold'
-    }).setOrigin(0.5);
-    titleText.setDepth(UI_DEPTH + 1);
-    
-    // Raining Rocks button (Meteor Strike)
-    this.rainingRocksButton = this.add.rectangle(specialButtonsX - 55, specialButtonsY + 35, 100, 50, 0x8B4513);
-    this.rainingRocksButton.setInteractive({ useHandCursor: true });
-    this.rainingRocksButton.setDepth(UI_DEPTH + 1);
-    
-    const rocksText = this.add.text(specialButtonsX - 55, specialButtonsY + 25, '🪨 Meteor', { 
-      fontSize: '14px', 
-      color: '#ffffff',
-      fontStyle: 'bold'
-    }).setOrigin(0.5);
-    rocksText.setDepth(UI_DEPTH + 2);
-    
-    this.rainingRocksCooldownText = this.add.text(specialButtonsX - 55, specialButtonsY + 45, 'Ready', { 
-      fontSize: '12px', 
-      color: '#00ff00',
-      fontStyle: 'bold'
-    }).setOrigin(0.5);
-    this.rainingRocksCooldownText.setDepth(UI_DEPTH + 2);
-    
-    this.rainingRocksButton.on('pointerover', () => {
-      if (this.rainingRocksCooldownText.text === 'Ready') {
-        this.rainingRocksButton.setFillStyle(0xa85a1a);
-      }
-    });
-    this.rainingRocksButton.on('pointerout', () => {
-      if (this.rainingRocksCooldownText.text === 'Ready') {
-        this.rainingRocksButton.setFillStyle(0x8B4513);
-      }
-    });
-    this.rainingRocksButton.on('pointerdown', () => {
-      if (this.gameOver) return;
-      this.events.emit('useRainingRocks');
-    });
-    
-    // Artillery Strike button
-    this.artilleryStrikeButton = this.add.rectangle(specialButtonsX + 55, specialButtonsY + 35, 100, 50, 0xFF4500);
-    this.artilleryStrikeButton.setInteractive({ useHandCursor: true });
-    this.artilleryStrikeButton.setDepth(UI_DEPTH + 1);
-    
-    const artilleryText = this.add.text(specialButtonsX + 55, specialButtonsY + 25, '💥 Artillery', { 
-      fontSize: '14px', 
-      color: '#ffffff',
-      fontStyle: 'bold'
-    }).setOrigin(0.5);
-    artilleryText.setDepth(UI_DEPTH + 2);
-    
-    this.artilleryStrikeCooldownText = this.add.text(specialButtonsX + 55, specialButtonsY + 45, 'Ready', { 
-      fontSize: '12px', 
-      color: '#00ff00',
-      fontStyle: 'bold'
-    }).setOrigin(0.5);
-    this.artilleryStrikeCooldownText.setDepth(UI_DEPTH + 2);
-    
-    this.artilleryStrikeButton.on('pointerover', () => {
-      if (this.artilleryStrikeCooldownText.text === 'Ready') {
-        this.artilleryStrikeButton.setFillStyle(0xff6a20);
-      }
-    });
-    this.artilleryStrikeButton.on('pointerout', () => {
-      if (this.artilleryStrikeCooldownText.text === 'Ready') {
-        this.artilleryStrikeButton.setFillStyle(0xFF4500);
-      }
-    });
-    this.artilleryStrikeButton.on('pointerdown', () => {
-      if (this.gameOver) return;
-      this.events.emit('useArtilleryStrike');
-    });
-  }
-
-  private updateRainingRocksCooldown(remaining: number, _total: number): void {
-    if (remaining > 0) {
-      const seconds = Math.ceil(remaining / 1000);
-      this.rainingRocksCooldownText.setText(`${seconds}s`);
-      this.rainingRocksCooldownText.setColor('#ff0000');
-      this.rainingRocksButton.setFillStyle(0x444444);
-    } else {
-      this.rainingRocksCooldownText.setText('Ready');
-      this.rainingRocksCooldownText.setColor('#00ff00');
-      this.rainingRocksButton.setFillStyle(0x8B4513);
+    this.button(1190, 23, 65, 34, () => this.requestPause()).setName('pause-button');
+    this.text(1222, 29, 'Pause', 13).setOrigin(0.5, 0);
+    for (const [side, x] of [['player', 24], ['enemy', 1086]] as const) {
+      this.rect(x, 100, 170, 44, C.ink, 0.72);
+      const heading = this.text(x + 10, 105, side === 'player' ? 'DEINE FESTUNG' : 'GEGNER · STEINZEIT', 10, C.muted).setLetterSpacing(0.6);
+      if (side === 'enemy') this.enemyEpochText = heading;
+      const value = this.text(x + 160, 121, '-', 11).setOrigin(1, 0);
+      this.rect(x + 10, 137, 150, 3, C.border);
+      const fill = this.rect(x + 10, 137, 150, 3, side === 'player' ? C.teal : C.red);
+      this.hp[side] = { fill, text: value };
     }
-  }
-
-  private updateArtilleryStrikeCooldown(remaining: number, _total: number): void {
-    if (remaining > 0) {
-      const seconds = Math.ceil(remaining / 1000);
-      this.artilleryStrikeCooldownText.setText(`${seconds}s`);
-      this.artilleryStrikeCooldownText.setColor('#ff0000');
-      this.artilleryStrikeButton.setFillStyle(0x444444);
-    } else {
-      this.artilleryStrikeCooldownText.setText('Ready');
-      this.artilleryStrikeCooldownText.setColor('#00ff00');
-      this.artilleryStrikeButton.setFillStyle(0xFF4500);
-    }
-  }
-
-  private createToolbar(): void {
-    const UI_DEPTH = 2000;
-    const { width, height } = this.scale;
-    const toolbarHeight = 170;
-    const toolbarY = height - toolbarHeight;
-    
-    // Bottom toolbar panel
-    const toolbarBg = this.add.rectangle(0, toolbarY, width, toolbarHeight, 0x1a1a1a, 0.9).setOrigin(0, 0);
-    toolbarBg.setDepth(UI_DEPTH);
-    
-    // Turrets section
-    const turretTitle = this.add.text(width / 2, toolbarY + 15, '🏰 TURRETS - Click to Select, then Click Grid to Place', { 
-      fontSize: '18px', 
-      color: '#ff8800',
-      fontStyle: 'bold',
-      stroke: '#000000',
-      strokeThickness: 3
-    }).setOrigin(0.5);
-    turretTitle.setDepth(UI_DEPTH + 1);
-    
-    const turretButtonY = toolbarY + 60;
-    const epochOrder = ['stone', 'castle', 'renaissance', 'modern', 'future'];
-    const currentEpochIdx = epochOrder.indexOf(this.currentEpochId);
-    // Filter turrets for current epoch and below
-    const availableTurrets = this.turretsDatabase.filter(t => {
-      const turretEpochIdx = epochOrder.indexOf(t.epoch);
-      return turretEpochIdx <= currentEpochIdx;
+    this.rect(0, 552, 1280, 168, C.ink, 0.98); this.rect(0, 552, 1280, 1, C.gold, 0.45);
+    this.text(24, 565, 'ARMEE REKRUTIEREN', 11, C.muted).setLetterSpacing(2);
+    this.armyText = this.text(586, 565, '0 / 24', 11, C.muted).setOrigin(1, 0);
+    this.text(625, 565, 'VERTEIDIGUNG', 11, C.muted).setLetterSpacing(2);
+    this.text(939, 565, 'KOMMANDO', 11, C.muted).setLetterSpacing(2);
+    this.rect(606, 576, 1, 125, C.border); this.rect(919, 576, 1, 125, C.border);
+    for (let i = 0; i < 4; i++) this.unitCards.push(this.makeCard(24 + i * 143, 590, 132, ['Q', 'W', 'E', 'R'][i], false, i));
+    for (let i = 0; i < 3; i++) this.turretCards.push(this.makeCard(625 + i * 96, 590, 86, ['A', 'S', 'D'][i], true, i));
+    this.evolveButton = this.button(939, 590, 316, 41, () => this.advanceEpoch());
+    this.evolveText = this.text(1097, 600, 'Weiterentwickeln  ·  U', 14, '#d8b574').setOrigin(0.5, 0);
+    ['Meteorregen  ·  F', 'Artillerie  ·  G'].forEach((name, i) => {
+      const x = 939 + i * 163;
+      this.abilityButtons.push(this.button(x, 641, 153, 61, () => this.useAbility(i)));
+      this.text(x + 76.5, 649, name, 13).setOrigin(0.5, 0);
+      this.abilityTexts.push(this.text(x + 76.5, 677, 'BEREIT', 11, '#92c9b7').setOrigin(0.5, 0));
     });
-    // Show up to 5 turrets from available ones (prioritize current epoch)
-    const displayTurrets = availableTurrets.slice(-5); // Last 5 = current + recent epoch turrets
-    for (let i = 0; i < 5; i++) {
-      const turretData = displayTurrets[i];
-      if (!turretData) continue;
-      const turretIndex = this.turretsDatabase.indexOf(turretData);
-
-      const btnX = (width / 2) - 180 + (i * 90);
-
-      const btn = this.add.rectangle(btnX, turretButtonY, 80, 50, 0x663300);
-      btn.setInteractive({ useHandCursor: true });
-      btn.setDepth(UI_DEPTH + 1);
-      
-      const nameText = this.add.text(btnX, turretButtonY - 12, turretData.name.substring(0, 8), { 
-        fontSize: '11px', 
-        color: '#ffffff',
-        fontStyle: 'bold'
-      }).setOrigin(0.5);
-      nameText.setDepth(UI_DEPTH + 2);
-      
-      const costText = this.add.text(btnX, turretButtonY + 10, `${turretData.goldCost}g`, { 
-        fontSize: '14px', 
-        color: '#ffd700',
-        fontStyle: 'bold'
-      }).setOrigin(0.5);
-      costText.setDepth(UI_DEPTH + 2);
-      
-      this.turretButtons.push({ btn, nameText, costText, turretIndex });
-
-      btn.on('pointerover', () => {
-        if (this.economy.gold >= turretData.goldCost) {
-          btn.setFillStyle(0x885522);
-        }
-      });
-      btn.on('pointerout', () => {
-        if (this.selectedTurretIndex !== i) {
-          btn.setFillStyle(0x663300);
-        }
-      });
-      btn.on('pointerdown', () => this.onTurretButtonClick(i));
-    }
-    
-    // Units section
-    const unitTitle = this.add.text(width / 2, toolbarY + 105, '⚔️ UNITS - Click to Spawn', { 
-      fontSize: '18px', 
-      color: '#00ff00',
-      fontStyle: 'bold',
-      stroke: '#000000',
-      strokeThickness: 3
-    }).setOrigin(0.5);
-    unitTitle.setDepth(UI_DEPTH + 1);
-    
-    const unitButtonY = toolbarY + 140;
-    for (let i = 0; i < 4; i++) { // Only 4 slots — every epoch has exactly 4 units
-      const btnX = (width / 2) - 135 + (i * 90);
-
-      const btn = this.add.rectangle(btnX, unitButtonY, 80, 50, 0x444444);
-      btn.setInteractive({ useHandCursor: true });
-      btn.setDepth(UI_DEPTH + 1);
-      
-      const nameText = this.add.text(btnX, unitButtonY - 12, '---', { 
-        fontSize: '11px', 
-        color: '#aaaaaa',
-        fontStyle: 'bold'
-      }).setOrigin(0.5);
-      nameText.setDepth(UI_DEPTH + 2);
-      
-      const costText = this.add.text(btnX, unitButtonY + 10, '', { 
-        fontSize: '14px', 
-        color: '#ffd700',
-        fontStyle: 'bold'
-      }).setOrigin(0.5);
-      costText.setDepth(UI_DEPTH + 2);
-      
-      this.unitButtons.push({ btn, nameText, costText, unitIndex: -1 });
-      
-      btn.on('pointerover', () => {
-        const buttonData = this.unitButtons[i];
-        if (buttonData.unitIndex >= 0) {
-          const unitData = this.unitsDatabase[buttonData.unitIndex];
-          if (this.economy.gold >= unitData.goldCost) {
-            btn.setFillStyle(0x666666);
-          }
-        }
-      });
-      btn.on('pointerout', () => {
-        const buttonData = this.unitButtons[i];
-        if (buttonData.unitIndex >= 0) {
-          btn.setFillStyle(0x444444);
-        } else {
-          btn.setFillStyle(0x222222);
-        }
-      });
-      btn.on('pointerdown', () => this.onUnitButtonClick(i));
-    }
-    
-    // Initialize available units
-    this.updateAvailableUnits();
+    this.feedbackText = this.text(0, 0, '', 14).setOrigin(0.5);
+    const feedbackBG = this.add.rectangle(0, 0, 620, 39, C.ink, 0.93).setStrokeStyle(1, C.gold, 0.5);
+    this.feedback = this.add.container(640, 167, [feedbackBG, this.feedbackText]).setDepth(50).setVisible(false);
+    const tooltipBG = this.rect(0, 0, 406, 92, C.ink, 0.98).setStrokeStyle(1, C.gold, 0.65);
+    this.tooltipTitle = this.text(16, 10, '', 17, '#e6c58b'); this.tooltipRole = this.text(16, 36, '', 12);
+    this.tooltipStats = this.text(16, 63, '', 12, C.muted);
+    this.tooltip = this.add.container(24, 452, [tooltipBG, this.tooltipTitle, this.tooltipRole, this.tooltipStats]).setDepth(100).setVisible(false);
+    this.updateSpeed(1);
   }
 
-  private disableUIInput(): void {
-    if (this.rainingRocksButton) this.rainingRocksButton.disableInteractive();
-    if (this.artilleryStrikeButton) this.artilleryStrikeButton.disableInteractive();
-    for (const buttonData of this.unitButtons) {
-      if (buttonData.btn) buttonData.btn.disableInteractive();
-    }
-    for (const buttonData of this.turretButtons) {
-      if (buttonData.btn) buttonData.btn.disableInteractive();
-    }
-    
-    // Reset selected turret to prevent placing queued turret selection
-    this.selectedTurretIndex = -1;
-    this.events.emit('selectTurret', -1);
+  private makeCard(x: number, y: number, width: number, key: string, tower: boolean, slot: number): Card {
+    const bg = this.button(x, y, width, 112, () => tower ? this.selectTower(slot) : this.recruit(slot));
+    const image = this.add.image(x + width / 2, y + 55, tower ? 'stone-tower-1' : 'clubman', 0).setDisplaySize(78, 78);
+    this.text(x + 8, y + 6, key, 11, C.muted);
+    const price = this.text(x + width - 8, y + 6, '', 12, '#e6c58b').setOrigin(1, 0);
+    const name = this.text(x + width / 2, y + 91, '', tower ? 11 : 13).setOrigin(0.5, 0);
+    const card = { bg, image, name, price, id: '', index: -1 };
+    bg.on('pointerover', () => this.showTooltip(card, tower)); bg.on('pointerout', () => this.tooltip.setVisible(false));
+    return card;
   }
 
-  private onTurretButtonClick(index: number): void {
-    if (this.gameOver) return;
-    const turretData = this.turretsDatabase[index];
-    if (!turretData) return;
+  private listenToBattle(): void {
+    const listeners: Array<[string, (...args: any[]) => void]> = [];
+    const on = (event: string, fn: (...args: any[]) => void) => { this.events.on(event, fn); listeners.push([event, fn]); };
+    on('updateGold', (gold: number) => { this.gold = gold; this.goldText.setText(Math.floor(gold).toLocaleString('de-DE')); this.refreshStates(); });
+    on('updateXP', (xp: number, threshold: number) => { this.xp = xp; this.currentEpoch = { ...this.currentEpoch, xpToNext: threshold }; this.updateXP(); });
+    on('updateEpoch', (epoch: Epoch) => { this.currentEpoch = { ...epoch }; this.selectedTurretIndex = -1; this.tooltip.setVisible(false); this.refreshEpoch(); });
+    on('updateEpochReady', (ready: boolean) => { this.epochReady = ready; this.refreshStates(); });
+    on('updateBaseHP', (hp: number, max: number, side: string) => {
+      const bar = this.hp[side]; if (!bar) return;
+      bar.text.setText(`${Math.max(0, Math.ceil(hp))} / ${max}`); bar.fill.width = 150 * Phaser.Math.Clamp(hp / max, 0, 1);
+    });
+    on('updateWave', (wave: Wave) => this.updateWave(wave));
+    on('updateSimulationSpeed', (speed: number) => this.updateSpeed(speed));
+    on('updatePaused', (paused: boolean) => this.setPaused(paused));
+    on('updateRainingRocksCooldown', (remaining: number) => this.updateCooldown(0, remaining));
+    on('updateArtilleryStrikeCooldown', (remaining: number) => this.updateCooldown(1, remaining));
+    on('turretPlacementFailed', (message: string) => this.showFeedback(message));
+    on('feedback', (message: string) => this.showFeedback(message));
+    on('commandFailed', (message: string) => this.showFeedback(message));
+    on('selectTurret', (index: number) => { this.selectedTurretIndex = index; this.refreshStates(); });
+    on('gameOver', (result: Result) => this.showResult(result));
+    this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => listeners.forEach(([event, fn]) => this.events.off(event, fn)));
+  }
 
-    // Check if player has enough gold
-    if (this.economy.gold < turretData.goldCost) {
-      this.showFeedback(`Not enough gold! Need ${turretData.goldCost}g`);
-      return;
+  private refreshEpoch(): void {
+    this.epochText.setText(epochNames[this.currentEpoch.id] || this.currentEpoch.name);
+    const available = this.units.filter(unit => unit.epoch === this.currentEpoch.id);
+    this.unitCards.forEach((card, index) => {
+      const unit = available[index]; if (!unit) return;
+      card.id = unit.id; card.index = this.units.indexOf(unit);
+      card.image.setTexture(unit.id, this.textures.get(unit.id).has('portrait') ? 'portrait' : 0);
+      card.image.setScale(Math.min(108 / card.image.width, 70 / card.image.height)).setY(card.bg.y + 54);
+      card.name.setFontSize(13).setText(unitNames[unit.id] || unit.name); if (card.name.width > 123) card.name.setFontSize(11);
+      card.price.setText(`${unit.goldCost}`);
+    });
+    const towers = this.turrets.filter(tower => tower.epoch === this.currentEpoch.id);
+    this.turretCards.forEach((card, index) => {
+      const tower = towers[index]; if (!tower) return;
+      card.id = tower.id; card.index = this.turrets.indexOf(tower);
+      card.image.setTexture(turretTexture(tower.epoch, index)).setDisplaySize(74, 74);
+      card.name.setFontSize(11).setText(turretNames[tower.id] || tower.name); if (card.name.width > 78) card.name.setFontSize(9);
+      card.price.setText(`${tower.goldCost}`);
+    });
+    this.epochReady = this.currentEpoch.xpToNext > 0 && this.xp >= this.currentEpoch.xpToNext;
+    this.updateXP(); this.refreshStates(); this.updateCooldown(1, this.cooldowns[1]);
+  }
+
+  private updateXP(): void {
+    const threshold = this.currentEpoch.xpToNext;
+    this.xpText.setText(threshold > 0 ? `${Math.floor(this.xp)} / ${threshold} EP` : 'Höchste Epoche erreicht');
+    this.xpFill.width = threshold > 0 ? 174 * Phaser.Math.Clamp(this.xp / threshold, 0, 1) : 174;
+  }
+
+  private refreshStates(): void {
+    for (const [cards, database] of [[this.unitCards, this.units], [this.turretCards, this.turrets]] as const) cards.forEach(card => {
+      const item = database[card.index]; if (!item) return;
+      const affordable = this.gold >= item.goldCost, selected = cards === this.turretCards && card.index === this.selectedTurretIndex;
+      card.bg.setFillStyle(selected ? 0x34453e : affordable ? C.card : 0x101d27).setStrokeStyle(selected ? 2 : 1, selected ? C.gold : C.border);
+      card.image.setAlpha(affordable ? 1 : 0.42); card.price.setColor(affordable ? '#e6c58b' : '#9e8178');
+    });
+    if (this.evolveButton) {
+      this.evolveButton.setFillStyle(this.epochReady ? 0x4b4532 : C.card).setStrokeStyle(1, this.epochReady ? C.gold : C.border);
+      this.evolveText.setText(this.currentEpoch.xpToNext <= 0 ? 'Höchste Epoche erreicht' : this.epochReady ? 'Neue Epoche freischalten  ·  U' : 'Weiterentwickeln  ·  U');
+      this.evolveText.setColor(this.epochReady ? '#f0d8a9' : '#9baaa9');
     }
-    
-    // Deselect previous turret
-    if (this.selectedTurretIndex >= 0) {
-      this.turretButtons[this.selectedTurretIndex].btn.setFillStyle(0x663300);
-    }
-    
-    // Select new turret
-    this.selectedTurretIndex = index;
-    this.turretButtons[index].btn.setFillStyle(0xaa7733);
-    
-    console.log(`Selected turret: ${turretData.name} (${turretData.goldCost} gold)`);
-    
-    // Notify BattleScene
+    this.abilityButtons.forEach((button, i) => button.setFillStyle(this.cooldowns[i] <= 0 ? C.card : 0x101d27));
+    this.updateSpeed(this.speed);
+  }
+
+  private recruit(slot: number): void {
+    if (this.paused || this.gameOver) return;
+    const unit = this.units[this.unitCards[slot]?.index]; if (!unit) return;
+    if (this.gold < unit.goldCost) { this.showFeedback(`Noch ${Math.ceil(unit.goldCost - this.gold)} Gold für ${unitNames[unit.id]} nötig.`); return; }
+    this.events.emit('spawnUnit', unit.id);
+  }
+  private selectTower(slot: number): void {
+    if (this.paused || this.gameOver) return;
+    const card = this.turretCards[slot], tower = this.turrets[card?.index]; if (!tower) return;
+    if (this.gold < tower.goldCost) { this.showFeedback(`Für ${turretNames[tower.id]} fehlen ${Math.ceil(tower.goldCost - this.gold)} Gold.`); return; }
+    const index = card.index === this.selectedTurretIndex ? -1 : card.index;
     this.events.emit('selectTurret', index);
-    
-    // Visual feedback
-    this.showFeedback(`Click grid to place ${turretData.name}`);
+    this.showFeedback(index >= 0 ? `${turretNames[tower.id]}: Wähle einen markierten Bauplatz. Escape bricht ab.` : 'Bauauswahl aufgehoben.');
+  }
+  private advanceEpoch(): void {
+    if (this.paused || this.gameOver || this.currentEpoch.xpToNext <= 0) return;
+    if (!this.epochReady) { this.showFeedback(`Noch ${Math.max(0, this.currentEpoch.xpToNext - Math.floor(this.xp))} Erfahrung bis zur nächsten Epoche.`); return; }
+    this.events.emit('advanceEpoch');
+  }
+  private useAbility(index: number): void {
+    if (this.paused || this.gameOver) return;
+    if (index === 1 && ['stone', 'castle'].includes(this.currentEpoch.id)) { this.showFeedback('Artillerie wird ab der Renaissance verfügbar.'); return; }
+    if (this.cooldowns[index] > 0) { this.showFeedback(`In ${Math.ceil(this.cooldowns[index] / 1000)} Sekunden wieder bereit.`); return; }
+    this.events.emit(index === 0 ? 'useRainingRocks' : 'useArtilleryStrike');
+  }
+  private updateCooldown(index: number, remaining: number): void {
+    this.cooldowns[index] = remaining;
+    const locked = index === 1 && ['stone', 'castle'].includes(this.currentEpoch.id);
+    this.abilityTexts[index].setText(locked ? 'AB RENAISSANCE' : remaining > 0 ? `${Math.ceil(remaining / 1000)} s` : 'BEREIT')
+      .setColor(locked || remaining > 0 ? C.muted : '#92c9b7');
+    this.abilityButtons[index].setFillStyle(locked || remaining > 0 ? 0x101d27 : C.card);
+  }
+  private setScoutPinned(pinned: boolean): void {
+    if (this.paused || this.gameOver) return;
+    this.scoutPinned = pinned;
+    if (!pinned) this.scoutHover = false;
+    this.refreshScoutVisibility();
+  }
+  private refreshScoutVisibility(): void {
+    this.scout?.setVisible(!this.paused && !this.gameOver && !!this.scoutWave?.plan && (this.scoutPinned || this.scoutHover));
+  }
+  private rebuildScout(plan: EnemyWavePlan): void {
+    this.scout.removeAll(true);
+    const background = this.rect(0, 0, 344, 240, C.ink, 0.98).setStrokeStyle(1, C.gold, 0.7).setInteractive();
+    const title = this.text(16, 12, plan.title, 18, '#e6c58b');
+    const subtitle = this.text(16, 38, `Welle ${plan.number} · ${epochNames[plan.epoch]} · ${plan.unitIds.length} Einheiten`, 11, C.muted);
+    const close = this.rect(310, 10, 24, 24, C.card).setInteractive({ useHandCursor: true });
+    close.on('pointerdown', () => this.setScoutPinned(false));
+    this.scout.add([background, title, subtitle, close, this.text(322, 22, '×', 18, C.muted).setOrigin(0.5)]);
+    const startX = (344 - plan.roster.length * 72 - (plan.roster.length - 1) * 7) / 2;
+    plan.roster.forEach((entry, index) => {
+      const x = startX + index * 79;
+      const card = this.rect(x, 62, 72, 82, C.card).setStrokeStyle(1, C.border);
+      const key = `${entry.id}-enemy`;
+      const texture = this.textures.get(key);
+      const portrait = this.add.image(x + 36, 92, key, texture.has('portrait') ? 'portrait' : 0);
+      portrait.setScale(Math.min(57 / portrait.width, 57 / portrait.height));
+      const count = this.text(x + 65, 65, `${entry.count}×`, 12, '#e6c58b').setOrigin(1, 0);
+      const name = this.text(x + 36, 127, unitNames[entry.id] || entry.id, 11).setOrigin(0.5, 0);
+      if (name.width > 68) name.setFontSize(9);
+      this.scout.add([card, portrait, count, name]);
+    });
+    const advice = this.text(16, 158, plan.advice, 12, C.text).setWordWrapWidth(310);
+    this.scoutStatus = this.text(16, 216, '', 11, C.muted);
+    this.scout.add([this.rect(16, 150, 312, 1, C.border), advice, this.scoutStatus]);
   }
 
-  private onUnitButtonClick(index: number): void {
+  private updateWave(wave: Wave): void {
+    const seconds = Math.max(0, Math.ceil(wave.remainingMs / 1000));
+    this.scoutWave = wave;
+    const plan = wave.plan;
+    this.waveText.setText(plan ? `${wave.phase === 'assault' ? 'ANGRIFF' : 'WELLE'} ${plan.number} · ${plan.title}` : `WELLE ${wave.number}`)
+      .setFontSize(12).setLetterSpacing(0.3).setColor(wave.phase === 'assault' ? '#e0afa1' : '#d8b574');
+    if (this.waveText.width > 266) this.waveText.setFontSize(11);
+    this.waveDetail.setText(wave.phase === 'assault' ? `Noch ${seconds} s · Aufklärung mit I` : `Angriff in ${seconds} s · Aufklärung mit I`);
+    if (plan) {
+      const revision = `${plan.number}:${plan.epoch}:${plan.tactic}`;
+      if (revision !== this.scoutRevision) { this.scoutRevision = revision; this.rebuildScout(plan); }
+      this.scoutStatus.setText(wave.phase === 'assault'
+        ? `Geplant: ${plan.unitIds.length} · Eingetroffen: ${wave.arrived ?? 0} · Aufklärung: I`
+        : `Geplante Aufstellung · Angriff in ${seconds} s`);
+    }
+    this.refreshScoutVisibility();
+    this.enemyEpochText.setText(`GEGNER · ${(epochNames[wave.enemyEpoch] || wave.enemyEpoch).toUpperCase()}`);
+    this.incomeText.setText(`+${wave.incomePerSecond.toLocaleString('de-DE', { maximumFractionDigits: 1 })} / s`);
+    this.timerText.setText(this.formatTime(wave.elapsedMs)); this.armyText.setText(`${wave.army} / ${wave.armyLimit}`);
+  }
+  private updateSpeed(speed: number): void {
+    this.speed = speed;
+    this.speedButtons.forEach((button, index) => button.setFillStyle([1, 2, 4][index] === speed ? 0x3f4436 : C.card)
+      .setStrokeStyle(1, [1, 2, 4][index] === speed ? C.gold : C.border));
+  }
+  private showTooltip(card: Card, tower: boolean): void {
+    if (this.gameOver || this.paused || card.index < 0) return;
+    const item = tower ? this.turrets[card.index] : this.units[card.index];
+    this.tooltip.setPosition(Phaser.Math.Clamp(card.bg.x, 24, 850), 452).setVisible(true);
+    this.tooltipTitle.setText((tower ? turretNames : unitNames)[item.id] || item.name);
+    this.tooltipRole.setText(tower ? 'Bauplatz wählen. Gebaute Türme: verbessern oder verkaufen.' : unitRoles[item.id]);
+    this.tooltipStats.setText(`${item.hp} LP   ·   ${item.damage} Schaden   ·   ${item.range} Reichweite   ·   ${item.attackSpeed} s`);
+  }
+  private showFeedback(message: string): void {
     if (this.gameOver) return;
-    const buttonData = this.unitButtons[index];
-    if (buttonData.unitIndex < 0) return;
-    
-    const unitData = this.unitsDatabase[buttonData.unitIndex];
-    
-    if (this.economy.gold < unitData.goldCost) {
-      this.showFeedback(`Not enough gold! Need ${unitData.goldCost}g`);
+    const translated = message.replace('Not enough gold!', 'Nicht genug Gold.');
+    this.feedbackText.setText(translated).setFontSize(translated.length > 84 ? 12 : 14); this.feedback.setVisible(true);
+    this.feedbackTimer?.remove(); this.feedbackTimer = this.time.delayedCall(3600, () => this.feedback.setVisible(false));
+  }
+
+  private requestPause(): void { if (!this.gameOver) this.events.emit('togglePause'); }
+  private setPaused(paused: boolean): void {
+    if (this.gameOver) return;
+    this.paused = paused; this.tooltip.setVisible(false); this.overlay?.destroy(); this.overlay = undefined;
+    if (paused) { this.scoutPinned = false; this.scoutHover = false; }
+    this.refreshScoutVisibility();
+    this.overlayButtons = []; this.overlayFocus = 0;
+    if (!paused) return;
+    this.overlay = this.makeOverlay('Eine Pause für deinen Plan.', 'PAUSIERT', 'Die Schlacht wartet auf dich.');
+    this.overlayButton(514, 392, 252, 'Weiterspielen', () => this.requestPause());
+    this.overlayButton(514, 448, 252, 'Zum Hauptmenü', () => this.returnToMenu());
+    this.overlay.add(this.text(640, 538, 'Leertaste oder Escape zum Fortsetzen', 12, C.muted).setOrigin(0.5));
+  }
+  private makeOverlay(title: string, eyebrow: string, description: string): Phaser.GameObjects.Container {
+    this.overlayButtons = []; this.overlayFocus = 0;
+    const blocker = this.rect(0, 0, 1280, 720, 0x03090f, 0.82).setInteractive();
+    const panel = this.rect(354, 173, 572, 394, C.panel).setStrokeStyle(1, C.gold, 0.6);
+    const line = this.rect(608, 205, 64, 2, C.gold);
+    const top = this.text(640, 229, eyebrow, 12, '#d8b574').setLetterSpacing(3).setOrigin(0.5);
+    const heading = this.text(640, 277, title, 27).setOrigin(0.5);
+    const sub = this.text(640, 326, description, 14, C.muted).setOrigin(0.5);
+    const controls = this.text(640, 511, '↑ / ↓ oder Tab: wählen  ·  Enter: bestätigen', 12, C.muted).setOrigin(0.5);
+    return this.add.container(0, 0, [blocker, panel, line, top, heading, sub, controls]).setDepth(500);
+  }
+  private focusOverlay(index: number): void {
+    if (!this.overlay?.active || !this.overlayButtons.length) return;
+    this.overlayFocus = Phaser.Math.Wrap(index, 0, this.overlayButtons.length);
+    this.overlayButtons.forEach(({ bg }, position) => {
+      const focused = position === this.overlayFocus;
+      bg.setFillStyle(focused ? C.hover : C.card).setStrokeStyle(focused ? 2 : 1, C.gold, focused ? 1 : 0.6);
+    });
+  }
+  private overlayButton(x: number, y: number, width: number, title: string, action: () => void): void {
+    const bg = this.rect(x, y, width, 43, C.card).setInteractive({ useHandCursor: true });
+    const index = this.overlayButtons.length;
+    const activate = () => {
+      if (!this.overlay?.active || !bg.active || !bg.input?.enabled) return;
+      this.focusOverlay(index);
+      // Scene transitions are queued; reject a second activation until that transition runs.
+      this.overlayButtons.forEach(button => button.bg.disableInteractive());
+      action();
+    };
+    bg.on('pointerover', () => this.focusOverlay(index)).on('pointerdown', activate);
+    this.overlayButtons.push({ bg, activate });
+    this.overlay?.add([bg, this.text(x + width / 2, y + 21.5, title, 15).setOrigin(0.5)]);
+    this.focusOverlay(this.overlayFocus);
+  }
+  private showResult(result: Result): void {
+    this.gameOver = true; this.paused = false; this.tooltip.setVisible(false); this.feedback.setVisible(false); this.overlay?.destroy();
+    this.scoutPinned = false; this.scoutHover = false; this.refreshScoutVisibility();
+    const won = result?.winner === 'player';
+    this.overlay = this.makeOverlay(won ? 'Dein Reich besteht.' : 'Ein Reich fällt. Ein neues wartet.', won ? 'SIEG' : 'NIEDERLAGE',
+      `${this.formatTime(result?.elapsedMs || 0)} gespielt  ·  ${result?.kills || 0} Gegner besiegt  ·  ${epochNames[this.currentEpoch.id]}`);
+    this.overlayButton(514, 392, 252, 'Noch eine Schlacht', () => this.restart());
+    this.overlayButton(514, 448, 252, 'Zum Hauptmenü', () => this.returnToMenu());
+    this.overlay.add(this.text(640, 538, won ? 'Andere Taktik. Neue Herausforderung.' : 'Tipp: Halte Fernkämpfer hinter einer starken Front.', 12, C.muted).setOrigin(0.5));
+  }
+  private restart(): void { this.scene.stop('BattleScene'); this.scene.restart(); this.scene.launch('BattleScene'); }
+  private returnToMenu(): void { this.scene.stop('BattleScene'); this.scene.start('MenuScene'); }
+  private onKey(event: KeyboardEvent): void {
+    const key = event.key.toLowerCase();
+    const pauseKey = event.code === 'Space' || event.code === 'Escape';
+    const overlayOpen = !!this.overlay?.active && (this.paused || this.gameOver);
+    const overlayKey = overlayOpen && ['arrowup', 'arrowdown', 'tab', 'enter'].includes(key);
+    if (!pauseKey && !overlayKey && !['q', 'w', 'e', 'r', 'a', 's', 'd', 'f', 'g', 'u', 'i', '1', '2', '3'].includes(key)) return;
+    if (!consumeKeyboardEvent(event) || event.repeat) return;
+    if (overlayOpen) {
+      if (overlayKey) {
+        event.preventDefault();
+        if (key === 'enter') this.overlayButtons[this.overlayFocus]?.activate();
+        else this.focusOverlay(this.overlayFocus + (key === 'arrowup' || (key === 'tab' && event.shiftKey) ? -1 : 1));
+      } else if (pauseKey) {
+        event.preventDefault();
+        if (this.paused) this.requestPause();
+      }
       return;
     }
-    
-    console.log(`Spawning unit: ${unitData.name}`);
-    
-    // Notify BattleScene
-    this.events.emit('spawnUnit', unitData.id);
+    if (this.gameOver) return;
+    if (event.code === 'Escape' && this.selectedTurretIndex >= 0 && !this.paused) { this.events.emit('selectTurret', -1); this.showFeedback('Bauauswahl aufgehoben.'); return; }
+    if (event.code === 'Escape' && this.scoutPinned) { event.preventDefault(); this.setScoutPinned(false); return; }
+    if (pauseKey) { event.preventDefault(); this.requestPause(); return; }
+    if (this.paused) return;
+    if (key === 'i') { event.preventDefault(); this.setScoutPinned(!this.scoutPinned); return; }
+    const unit = ['q', 'w', 'e', 'r'].indexOf(key), tower = ['a', 's', 'd'].indexOf(key);
+    if (unit >= 0) { this.recruit(unit); return; } if (tower >= 0) { this.selectTower(tower); return; }
+    if (key === 'f') this.useAbility(0); if (key === 'g') this.useAbility(1); if (key === 'u') this.advanceEpoch();
+    if (['1', '2', '3'].includes(key)) this.events.emit('setSimulationSpeed', [1, 2, 4][Number(key) - 1]);
   }
-  
-  private updateAvailableUnits(): void {
-    // Get units for current epoch
-    const availableUnits = this.unitsDatabase
-      .filter(unit => unit.epoch === this.currentEpochId)
-      .slice(0, 4); // Max 4 units per epoch
-    
-    // Update button displays
-    for (let i = 0; i < this.unitButtons.length; i++) {
-      const buttonData = this.unitButtons[i];
-      
-      if (i < availableUnits.length) {
-        const unit = availableUnits[i];
-        const unitIndex = this.unitsDatabase.indexOf(unit);
-        
-        buttonData.unitIndex = unitIndex;
-        buttonData.nameText.setText(unit.name.substring(0, 8));
-        buttonData.nameText.setColor('#ffffff');
-        buttonData.costText.setText(`${unit.goldCost}g`);
-        buttonData.btn.setFillStyle(0x444444);
-        buttonData.btn.setInteractive();
-      } else {
-        buttonData.unitIndex = -1;
-        buttonData.nameText.setText('---');
-        buttonData.nameText.setColor('#666666');
-        buttonData.costText.setText('');
-        buttonData.btn.setFillStyle(0x222222);
-        buttonData.btn.disableInteractive();
-      }
-    }
-    
-    this.updateButtonStates();
-  }
-  
-  private updateAvailableTurrets(): void {
-    // Turrets are always available, just update button states
-    this.updateButtonStates();
-  }
-  
-  private updateButtonStates(): void {
-    // Update unit buttons based on gold
-    for (const buttonData of this.unitButtons) {
-      if (buttonData.unitIndex >= 0) {
-        const unitData = this.unitsDatabase[buttonData.unitIndex];
-        if (this.economy.gold < unitData.goldCost) {
-          buttonData.btn.setFillStyle(0x333333);
-          buttonData.costText.setColor('#ff6666');
-        } else {
-          buttonData.btn.setFillStyle(0x444444);
-          buttonData.costText.setColor('#ffd700');
-        }
-      }
-    }
-    
-    // Update turret buttons based on gold
-    for (const buttonData of this.turretButtons) {
-      const turretData = this.turretsDatabase[buttonData.turretIndex];
-      if (turretData) {
-        if (this.economy.gold < turretData.goldCost) {
-          if (this.selectedTurretIndex !== buttonData.turretIndex) {
-            buttonData.btn.setFillStyle(0x553322);
-          }
-          buttonData.costText.setColor('#ff6666');
-        } else {
-          if (this.selectedTurretIndex !== buttonData.turretIndex) {
-            buttonData.btn.setFillStyle(0x663300);
-          }
-          buttonData.costText.setColor('#ffd700');
-        }
-      }
-    }
-  }
-
-  public updateBaseHP(hp: number, maxHp: number): void {
-    this.baseHpText.setText(`Base HP: ${hp}/${maxHp}`);
+  private formatTime(milliseconds: number): string {
+    const seconds = Math.floor(milliseconds / 1000);
+    return `${Math.floor(seconds / 60).toString().padStart(2, '0')}:${(seconds % 60).toString().padStart(2, '0')}`;
   }
 }

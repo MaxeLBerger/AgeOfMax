@@ -1,163 +1,95 @@
 import Phaser from 'phaser';
 import type { DifficultyLevel } from './MenuScene';
+import { UI, displayText, menuBackdrop, menuButton, menuHeader, menuKeyboard, uiText, type MenuButton } from '../ui/theme';
 
 export class DifficultyScene extends Phaser.Scene {
-  constructor() {
-    super({ key: 'DifficultyScene' });
-  }
+  private selected: DifficultyLevel = 'medium';
+  private starting = false;
+  private choices: Array<{ level: DifficultyLevel; area: Phaser.GameObjects.Rectangle; marker: Phaser.GameObjects.Text }> = [];
+
+  constructor() { super({ key: 'DifficultyScene' }); }
 
   create(): void {
-    const { width, height } = this.cameras.main;
-    const centerX = width / 2;
-
-    // Background
-    this.add.rectangle(0, 0, width, height, 0x1a1a2e).setOrigin(0);
-
-    // Title
-    this.add.text(centerX, 100, 'SELECT DIFFICULTY', {
-      fontSize: '48px',
-      color: '#ffd700',
-      fontStyle: 'bold',
-      stroke: '#000000',
-      strokeThickness: 4
-    }).setOrigin(0.5);
-
-    // Easy Button
-    const easyBtn = this.createDifficultyButton(centerX, 220, 'EASY', 0x4caf50, [
-      'Slower enemy spawns',
-      'Lower enemy stats',
-      'More starting gold'
-    ]);
-    easyBtn.on('pointerdown', () => this.startGame('easy'));
-
-    // Medium Button
-    const mediumBtn = this.createDifficultyButton(centerX, 360, 'MEDIUM', 0xff9800, [
-      'Balanced gameplay',
-      'Standard enemy stats',
-      'Normal gold generation'
-    ]);
-    mediumBtn.on('pointerdown', () => this.startGame('medium'));
-
-    // Hard Button
-    const hardBtn = this.createDifficultyButton(centerX, 500, 'HARD', 0xf44336, [
-      'Faster enemy spawns',
-      'Higher enemy stats',
-      'Less starting gold'
-    ]);
-    hardBtn.on('pointerdown', () => this.startGame('hard'));
-
-    // Back button
-    const backBtn = this.add.text(50, height - 50, ' BACK', {
-      fontSize: '24px',
-      color: '#888888'
-    }).setInteractive({ useHandCursor: true });
-    
-    backBtn.on('pointerover', () => backBtn.setColor('#ffffff'));
-    backBtn.on('pointerout', () => backBtn.setColor('#888888'));
-    backBtn.on('pointerdown', () => this.scene.start('MenuScene'));
-  }
-
-  private createDifficultyButton(x: number, y: number, text: string, color: number, features: string[]): Phaser.GameObjects.Rectangle {
-    const width = 500;
-    const height = 120;
-
-    const bg = this.add.rectangle(x, y, width, height, color)
-      .setInteractive({ useHandCursor: true });
-    
-    const label = this.add.text(x, y - 30, text, {
-      fontSize: '36px',
-      color: '#ffffff',
-      fontStyle: 'bold'
-    }).setOrigin(0.5);
-
-    const desc = this.add.text(x, y + 10, features.join('  '), {
-      fontSize: '14px',
-      color: '#ffffff',
-      wordWrap: { width: width - 40 }
-    }).setOrigin(0.5);
-
-    // Hover effects
-    bg.on('pointerover', () => {
-      bg.setFillStyle(color, 0.8);
-      this.tweens.add({
-        targets: [bg, label, desc],
-        scaleX: 1.05,
-        scaleY: 1.05,
-        duration: 150,
-        ease: 'Power2'
+    this.starting = false;
+    this.choices = [];
+    const previous = this.registry.get('difficulty');
+    this.selected = ['easy', 'medium', 'hard'].includes(previous) ? previous : 'medium';
+    menuBackdrop(this);
+    menuHeader(this, 'NEUE SCHLACHT', 'Wähle deine Herausforderung', 'Jede Schlacht beginnt in der Steinzeit. Wie weit führst du dein Volk?');
+    const definitions: Array<{ level: DifficultyLevel; rank: string; title: string; subtitle: string; description: string; traits: string[] }> = [
+      { level: 'easy', rank: 'I', title: 'Entdecker', subtitle: 'LEICHT', description: 'Lerne deine Armee kennen und\nfinde deinen eigenen Rhythmus.', traits: ['Großzügiger Startvorrat', 'Mehr Zeit für deinen Aufbau', 'Ein nachsichtiger Gegner'] },
+      { level: 'medium', rank: 'II', title: 'Feldherr', subtitle: 'NORMAL', description: 'Plane deine Angriffe und halte\nOffensive und Verteidigung im Gleichgewicht.', traits: ['Ausgewogene Ressourcen', 'Ein entschlossener Gegner', 'Eine echte Herausforderung'] },
+      { level: 'hard', rank: 'III', title: 'Eroberer', subtitle: 'SCHWER', description: 'Jede Entscheidung zählt.\nErgreife die Initiative.', traits: ['Begrenzter Startvorrat', 'Früher Druck auf deine Front', 'Für erfahrene Strategen'] }
+    ];
+    const nav: MenuButton[] = [];
+    definitions.forEach((definition, i) => {
+      const x = 80 + i * 380;
+      const area = this.add.rectangle(x, 210, 360, 350, UI.panel, 0.94).setOrigin(0).setInteractive({ useHandCursor: true });
+      displayText(this, x + 28, 232, definition.rank, 43).setColor(UI.goldText);
+      uiText(this, x + 330, 249, definition.subtitle, 12, UI.muted).setOrigin(1, 0).setLetterSpacing(2);
+      displayText(this, x + 28, 294, definition.title, 33);
+      uiText(this, x + 28, 348, definition.description, 16, UI.muted, 302);
+      this.add.graphics().lineStyle(1, UI.line, 0.65).lineBetween(x + 28, 419, x + 332, 419);
+      definition.traits.forEach((trait, row) => {
+        this.add.rectangle(x + 31, 447 + row * 29, 4, 4, UI.gold);
+        uiText(this, x + 45, 436 + row * 29, trait, 14, UI.text);
       });
+      const marker = uiText(this, x + 330, 528, 'AUSGEWÄHLT', 10, UI.goldText).setOrigin(1, 0).setLetterSpacing(1.5);
+      const select = () => {
+        if (this.starting) return;
+        this.selected = definition.level;
+        this.updateSelection();
+      };
+      const focus = (active: boolean) => {
+        if (this.starting) return;
+        area.setFillStyle(active ? UI.panelHover : UI.panel, 0.96);
+        area.setStrokeStyle(active || this.selected === definition.level ? 2 : 1,
+          active || this.selected === definition.level ? UI.gold : UI.line, active || this.selected === definition.level ? 0.95 : 0.6);
+      };
+      area.on('pointerover', () => focus(true)).on('pointerout', () => focus(false)).on('pointerdown', select);
+      this.choices.push({ level: definition.level, area, marker });
+      nav.push({ area, label: marker, activate: select, focus });
     });
-
-    bg.on('pointerout', () => {
-      bg.setFillStyle(color, 1);
-      this.tweens.add({
-        targets: [bg, label, desc],
-        scaleX: 1,
-        scaleY: 1,
-        duration: 150,
-        ease: 'Power2'
-      });
-    });
-
-    return bg;
+    this.updateSelection();
+    const back = menuButton(this, 80, 587, 210, 48, 'Zurück', () => { if (!this.starting) this.scene.start('MenuScene'); });
+    const start = menuButton(this, 900, 581, 300, 58, 'Schlacht beginnen', () => void this.startGame(), true);
+    uiText(this, 328, 602, 'Wähle einen Modus und beginne deine Schlacht.', 15, UI.muted);
+    nav.push(start, back);
+    menuKeyboard(this, () => this.starting ? [] : nav, () => { if (!this.starting) this.scene.start('MenuScene'); });
   }
 
-  private async startGame(difficulty: DifficultyLevel): Promise<void> {
-    console.log(`Starting game with difficulty: ${difficulty}`);
-
-    // Show a lightweight loading indicator while dynamic chunks load
-    const loadingText = this.add.text(this.cameras.main.width / 2, this.cameras.main.height - 80, 'Lade Spielszenen...', {
-      fontSize: '20px',
-      color: '#ffffff'
-    }).setOrigin(0.5);
-
-    // Pass difficulty to game registry immediately
-    this.registry.set('difficulty', difficulty);
-
-
-    // Dynamically import heavy scenes if not already added
-    await this.ensureGameplayScenesLoaded();
-
-    // Clean up loading text before scene transition
-    loadingText.destroy();
-    
-    // Start the game scenes.
-    // Ensure any old UIScene instance is stopped before we launch a new one
-    // to prevent text stacking/shadowing from previous game runs.
-    this.scene.stop('UIScene');
-    // Launch UI first to ensure it's available when BattleScene emits events.
-    this.scene.launch('UIScene');
-    // Give Phaser a tick to initialize the UI scene before starting BattleScene
-    await new Promise<void>((resolve) => setTimeout(() => resolve(), 16));
-    // Start BattleScene and stop DifficultyScene
-    this.scene.start('BattleScene');
-    this.scene.stop();
+  private updateSelection(): void {
+    this.choices.forEach(choice => {
+      const active = choice.level === this.selected;
+      choice.area.setStrokeStyle(active ? 2 : 1, active ? UI.gold : UI.line, active ? 0.95 : 0.6);
+      choice.marker.setVisible(active);
+    });
   }
 
-  private async ensureGameplayScenesLoaded(): Promise<void> {
-    // Always attempt to register scenes. If already present, ignore duplicate add.
-    const sceneKeys = (this.scene as unknown as { manager?: { keys?: Record<string, unknown> } }).manager?.keys ?? {};
-
-    // BattleScene
-    if (!sceneKeys['BattleScene']) {
-      try {
+  private async startGame(): Promise<void> {
+    if (this.starting) return;
+    this.starting = true;
+    this.registry.set('difficulty', this.selected);
+    const loading = uiText(this, 640, 182, 'Die Schlacht wird vorbereitet …', 16, UI.goldText).setOrigin(0.5);
+    try {
+      const keys = this.scene.manager.keys;
+      if (!keys.BattleScene) {
         const { BattleScene } = await import('./BattleScene');
         this.scene.add('BattleScene', BattleScene, false);
-      } catch (e) {
-        console.error('[DifficultyScene] Failed to load BattleScene chunk', e);
-        throw e;
       }
-    }
-
-    // UIScene
-    if (!sceneKeys['UIScene']) {
-      try {
+      if (!keys.UIScene) {
         const { UIScene } = await import('./UIScene');
         this.scene.add('UIScene', UIScene, false);
-      } catch (e) {
-        console.error('[DifficultyScene] Failed to load UIScene chunk', e);
-        throw e;
       }
+      if (!this.scene.isActive()) return;
+      // Queued operations run in order: UI subscribes before battle emits its initial state.
+      this.scene.stop('UIScene');
+      this.scene.launch('UIScene');
+      this.scene.start('BattleScene');
+    } catch (error) {
+      this.starting = false;
+      loading.setText('Die Schlacht konnte nicht laden. Bitte erneut versuchen.').setColor('#eab2a3');
+      console.error('Spiel konnte nicht gestartet werden:', error);
     }
   }
 }

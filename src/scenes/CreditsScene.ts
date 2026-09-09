@@ -1,126 +1,26 @@
 import Phaser from 'phaser';
+import { UI, displayText, menuBackdrop, menuButton, menuHeader, menuKeyboard, uiText } from '../ui/theme';
 
 export class CreditsScene extends Phaser.Scene {
-  constructor() {
-    super({ key: 'CreditsScene' });
-  }
+  constructor() { super({ key: 'CreditsScene' }); }
 
   create(): void {
-    const { width, height } = this.cameras.main;
-    const centerX = width / 2;
-
-    // Background
-    this.add.rectangle(0, 0, width, height, 0x1a1a2e).setOrigin(0);
-
-    // Title
-    this.add.text(centerX, 80, 'CREDITS', {
-      fontSize: '48px',
-      color: '#ffd700',
-      fontStyle: 'bold',
-      stroke: '#000000',
-      strokeThickness: 4
-    }).setOrigin(0.5);
-
-    // Game info
-    this.add.text(centerX, 170, 'AGE OF MAX', {
-      fontSize: '32px',
-      color: '#ffffff',
-      fontStyle: 'bold'
-    }).setOrigin(0.5);
-
-    this.add.text(centerX, 210, 'A tribute to the classic Age of War series', {
-      fontSize: '18px',
-      color: '#aaaaaa',
-      fontStyle: 'italic'
-    }).setOrigin(0.5);
-
-    // Developer
-    this.add.text(centerX, 280, 'DEVELOPED BY', {
-      fontSize: '20px',
-      color: '#888888'
-    }).setOrigin(0.5);
-
-    const githubText = this.add.text(centerX, 320, 'Maximilian Haak', {
-      fontSize: '28px',
-      color: '#4a90e2',
-      fontStyle: 'bold'
-    }).setOrigin(0.5).setInteractive({ useHandCursor: true });
-
-    githubText.on('pointerover', () => githubText.setColor('#6ab0f2'));
-    githubText.on('pointerout', () => githubText.setColor('#4a90e2'));
-    githubText.on('pointerdown', () => {
-      window.open('https://github.com/MaxelBerger', '_blank');
+    menuBackdrop(this);
+    menuHeader(this, 'DAS PROJEKT', 'Mitwirkende', 'Für alle, die noch eine Schlacht spielen wollen.');
+    this.add.rectangle(80, 219, 1120, 335, UI.panel, 0.88).setOrigin(0).setStrokeStyle(1, UI.line, 0.6);
+    uiText(this, 112, 252, 'KONZEPT & ENTWICKLUNG', 12, UI.goldText).setLetterSpacing(2);
+    displayText(this, 110, 291, 'Maximilian Haak', 37);
+    uiText(this, 112, 357, 'Age of Max ist eine Hommage an die klassischen\nAge-of-War-Spiele: eine Front, fünf Zeitalter\nund immer eine neue taktische Entscheidung.', 18, UI.muted, 530);
+    uiText(this, 112, 478, 'Danke fürs Spielen.', 22, UI.text);
+    this.add.graphics().lineStyle(1, UI.line, 0.6).lineBetween(704, 255, 704, 515);
+    uiText(this, 742, 252, 'IN DER WERKSTATT', 12, UI.goldText).setLetterSpacing(2);
+    displayText(this, 740, 291, 'Von Hand gedacht.\nIn Blender geformt.', 28);
+    uiText(this, 742, 386, 'Modelle und Landschaften aus Blender.\nSpiel und Interaktion mit Phaser.\nGebaut mit TypeScript und Vite.', 17, UI.muted, 410);
+    const back = menuButton(this, 80, 585, 210, 50, 'Zurück', () => this.scene.start('MenuScene'));
+    const project = menuButton(this, 900, 585, 300, 50, 'Projekt auf GitHub', () => {
+      window.open('https://github.com/MaxelBerger/AgeOfMax', '_blank', 'noopener,noreferrer');
     });
-
-    this.add.text(centerX, 355, 'github.com/MaxelBerger', {
-      fontSize: '16px',
-      color: '#666666'
-    }).setOrigin(0.5);
-
-    // Technology
-    this.add.text(centerX, 420, 'BUILT WITH', {
-      fontSize: '20px',
-      color: '#888888'
-    }).setOrigin(0.5);
-
-    this.add.text(centerX, 460, 'Phaser 3  TypeScript  Vite', {
-      fontSize: '18px',
-      color: '#ffffff'
-    }).setOrigin(0.5);
-
-    // Support
-    const supportBtn = this.createButton(centerX, 540, 'SUPPORT THE PROJECT', 0x26a69a);
-    supportBtn.on('pointerdown', () => {
-      // You can replace this with your actual donation link
-      window.open('https://github.com/sponsors/MaxelBerger', '_blank');
-    });
-
-    // Back button
-    const backBtn = this.add.text(50, height - 50, ' BACK', {
-      fontSize: '24px',
-      color: '#888888'
-    }).setInteractive({ useHandCursor: true });
-    
-    backBtn.on('pointerover', () => backBtn.setColor('#ffffff'));
-    backBtn.on('pointerout', () => backBtn.setColor('#888888'));
-    backBtn.on('pointerdown', () => this.scene.start('MenuScene'));
-  }
-
-  private createButton(x: number, y: number, text: string, color: number): Phaser.GameObjects.Rectangle {
-    const width = 320;
-    const height = 50;
-
-    const bg = this.add.rectangle(x, y, width, height, color)
-      .setInteractive({ useHandCursor: true });
-    
-    const label = this.add.text(x, y, text, {
-      fontSize: '20px',
-      color: '#ffffff',
-      fontStyle: 'bold'
-    }).setOrigin(0.5);
-
-    bg.on('pointerover', () => {
-      bg.setFillStyle(color, 0.8);
-      this.tweens.add({
-        targets: [bg, label],
-        scaleX: 1.05,
-        scaleY: 1.05,
-        duration: 150,
-        ease: 'Power2'
-      });
-    });
-
-    bg.on('pointerout', () => {
-      bg.setFillStyle(color, 1);
-      this.tweens.add({
-        targets: [bg, label],
-        scaleX: 1,
-        scaleY: 1,
-        duration: 150,
-        ease: 'Power2'
-      });
-    });
-
-    return bg;
+    uiText(this, 329, 602, 'Quellcode, Entwicklung und Feedback auf GitHub.', 15, UI.muted);
+    menuKeyboard(this, () => [back, project], () => this.scene.start('MenuScene'));
   }
 }

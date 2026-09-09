@@ -72,4 +72,9 @@ const config: Phaser.Types.Core.GameConfig = {
   scene: [BootScene, MenuScene, DifficultyScene, CreditsScene, SettingsScene, UIScene, BattleScene]
 };
 
-new Phaser.Game(config);
+const game = new Phaser.Game(config);
+
+// Local QA inspects the real running scenes; production has no debug bridge.
+if ((import.meta as ImportMeta & { env: { DEV: boolean } }).env.DEV) {
+  Object.assign(window, { __AGE_OF_MAX__: game });
+}
