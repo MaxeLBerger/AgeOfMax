@@ -1,0 +1,7680 @@
+{
+  "runId": "20260909T024425688Z-30ee5238",
+  "createdAt": "2026-09-09T02:44:35.774Z",
+  "options": {
+    "difficulty": "medium",
+    "mode": "line",
+    "speed": 1,
+    "abilities": true,
+    "seed": "303"
+  },
+  "sourceFingerprint": "4fd160e90090dbb4580e18f79c18fc4e88ae81712ce1a41fc09ed058a7333c78",
+  "sourceHashes": {
+    "src/scenes/BattleScene.ts": "076ee302eb9f97af2d2acf6d6c747f8b0c785f85c221fd7e09142fd2c5b998af",
+    "src/game/combatRules.ts": "75a9ce13f41fa3b3e42b2125077cf1d0267e1cd69f6c6f088d2e05dd58bf0b31",
+    "src/game/enemyWaves.ts": "d4fc45c05b92969c0a32521c1a889800cbf11318793ce0893b7f6fc82de57fda",
+    "src/game/BattleEffects.ts": "06769e65c0c6e2163109bd54b19bf10244c94f362c94207b0cde8ad9b98f5839",
+    "src/utils/KillStreakManager.ts": "8b35f42ca7c26b38dd6f1ec87814f6cf7910561fe458690e327378ca6f2f02d9",
+    "data/units.json": "d0a35b91c5e2838785c7fe4dabae50f71a7686cd72b387cc1272fc07638b50c3",
+    "data/turrets.json": "88521fa5cfdd89e700f8e6fde0aa1d32c6a2aa07c5c17ad0ca8ebcec4c84f162",
+    "data/epochs.json": "a87321643ff35724fd92864653ea5fb0b62e9b335ecc171b10779c3f70b90151",
+    "public/assets/reborn/weapon-sockets.json": "40f9fe76b2dd2d54b9a4161df792571ce9d83a900e5c6ee36a699743a29444a4",
+    "tools/combat-playthrough.mjs": "a78f6dac83a8cfd498a04098f5ce4a83a6d64e44635d719570d791757d26acd4"
+  },
+  "initial": {
+    "simulationTime": 0,
+    "gold": 240,
+    "xp": 0,
+    "kills": 0,
+    "epoch": 0,
+    "enemyEpoch": 0,
+    "wave": 0,
+    "phase": "prepare",
+    "phaseEndsAt": 12000,
+    "speed": 1,
+    "playerBase": {
+      "hp": 4200,
+      "maxHp": 4200,
+      "x": 100,
+      "y": 500,
+      "side": "player"
+    },
+    "enemyBase": {
+      "hp": 4200,
+      "maxHp": 4200,
+      "x": 1180,
+      "y": 500,
+      "side": "enemy"
+    },
+    "playerArmy": 0,
+    "enemyArmy": 0,
+    "incomeAccumulator": 0,
+    "wavePlan": {
+      "number": 1,
+      "epoch": "stone",
+      "tactic": "mixed",
+      "title": "Mischformation",
+      "advice": "Kombiniere eine starke Front mit Fernkampf. Halte Gold für Verstärkung zurück.",
+      "unitIds": [
+        "clubman",
+        "slinger",
+        "dino-rider",
+        "spearman",
+        "slinger",
+        "slinger",
+        "clubman",
+        "spearman"
+      ],
+      "roster": [
+        {
+          "id": "clubman",
+          "count": 2
+        },
+        {
+          "id": "dino-rider",
+          "count": 1
+        },
+        {
+          "id": "slinger",
+          "count": 3
+        },
+        {
+          "id": "spearman",
+          "count": 2
+        }
+      ],
+      "cost": 550,
+      "referenceCost": 535
+    },
+    "rng": {
+      "mathState": 2268638689,
+      "mathCalls": 2170,
+      "phaserState": "!rnd,1,0.4807954910211265,0.24471375602297485,0.2298838144633919"
+    }
+  },
+  "virtualWallClock": true,
+  "frameTimestampOrigin": 0,
+  "startSimulationTimeMs": 0,
+  "simulationStepMs": 16.666666666666668,
+  "frameCount": 45508,
+  "relativeSeconds": 758.4666666663655,
+  "seconds": 758.4666666663655,
+  "gameOver": true,
+  "winner": "enemy",
+  "endedBy": "base-destroyed",
+  "playerHP": 0,
+  "enemyHP": 13248,
+  "kills": 179,
+  "recruits": 141,
+  "goldSpentOnUnits": 36330,
+  "recruitsById": {
+    "clubman": 30,
+    "swordsman": 30,
+    "duelist": 24,
+    "tank": 19,
+    "mech": 38
+  },
+  "purchases": [
+    {
+      "t": 0,
+      "id": "clubman",
+      "epoch": 0,
+      "paid": 50,
+      "goldBefore": 240,
+      "goldAfter": 190
+    },
+    {
+      "t": 1500.0000000000011,
+      "id": "clubman",
+      "epoch": 0,
+      "paid": 50,
+      "goldBefore": 198,
+      "goldAfter": 148
+    },
+    {
+      "t": 3016.6666666666615,
+      "id": "clubman",
+      "epoch": 0,
+      "paid": 50,
+      "goldBefore": 164,
+      "goldAfter": 114
+    },
+    {
+      "t": 4533.333333333327,
+      "id": "clubman",
+      "epoch": 0,
+      "paid": 50,
+      "goldBefore": 122,
+      "goldAfter": 72
+    },
+    {
+      "t": 6033.333333333354,
+      "id": "clubman",
+      "epoch": 0,
+      "paid": 50,
+      "goldBefore": 88,
+      "goldAfter": 38
+    },
+    {
+      "t": 9050.00000000003,
+      "id": "clubman",
+      "epoch": 0,
+      "paid": 50,
+      "goldBefore": 62,
+      "goldAfter": 12
+    },
+    {
+      "t": 15116.666666666475,
+      "id": "clubman",
+      "epoch": 0,
+      "paid": 50,
+      "goldBefore": 60,
+      "goldAfter": 10
+    },
+    {
+      "t": 21133.33333333344,
+      "id": "clubman",
+      "epoch": 0,
+      "paid": 50,
+      "goldBefore": 58,
+      "goldAfter": 8
+    },
+    {
+      "t": 24133.33333333366,
+      "id": "clubman",
+      "epoch": 0,
+      "paid": 50,
+      "goldBefore": 53,
+      "goldAfter": 3
+    },
+    {
+      "t": 30133.333333334096,
+      "id": "clubman",
+      "epoch": 0,
+      "paid": 50,
+      "goldBefore": 90,
+      "goldAfter": 40
+    },
+    {
+      "t": 33133.33333333424,
+      "id": "clubman",
+      "epoch": 0,
+      "paid": 50,
+      "goldBefore": 64,
+      "goldAfter": 14
+    },
+    {
+      "t": 36166.66666666713,
+      "id": "clubman",
+      "epoch": 0,
+      "paid": 50,
+      "goldBefore": 65,
+      "goldAfter": 15
+    },
+    {
+      "t": 42233.333333332914,
+      "id": "clubman",
+      "epoch": 0,
+      "paid": 50,
+      "goldBefore": 88,
+      "goldAfter": 38
+    },
+    {
+      "t": 45266.666666665806,
+      "id": "clubman",
+      "epoch": 0,
+      "paid": 50,
+      "goldBefore": 62,
+      "goldAfter": 12
+    },
+    {
+      "t": 51333.33333333159,
+      "id": "clubman",
+      "epoch": 0,
+      "paid": 50,
+      "goldBefore": 60,
+      "goldAfter": 10
+    },
+    {
+      "t": 54366.66666666448,
+      "id": "clubman",
+      "epoch": 0,
+      "paid": 50,
+      "goldBefore": 55,
+      "goldAfter": 5
+    },
+    {
+      "t": 60433.333333330265,
+      "id": "clubman",
+      "epoch": 0,
+      "paid": 50,
+      "goldBefore": 53,
+      "goldAfter": 3
+    },
+    {
+      "t": 66483.33333332979,
+      "id": "clubman",
+      "epoch": 0,
+      "paid": 50,
+      "goldBefore": 51,
+      "goldAfter": 1
+    },
+    {
+      "t": 73983.33333333198,
+      "id": "clubman",
+      "epoch": 0,
+      "paid": 50,
+      "goldBefore": 161,
+      "goldAfter": 111
+    },
+    {
+      "t": 75483.33333333241,
+      "id": "clubman",
+      "epoch": 0,
+      "paid": 50,
+      "goldBefore": 152,
+      "goldAfter": 102
+    },
+    {
+      "t": 76983.33333333285,
+      "id": "clubman",
+      "epoch": 0,
+      "paid": 50,
+      "goldBefore": 156,
+      "goldAfter": 106
+    },
+    {
+      "t": 78483.33333333328,
+      "id": "clubman",
+      "epoch": 0,
+      "paid": 50,
+      "goldBefore": 122,
+      "goldAfter": 72
+    },
+    {
+      "t": 79983.33333333372,
+      "id": "clubman",
+      "epoch": 0,
+      "paid": 50,
+      "goldBefore": 80,
+      "goldAfter": 30
+    },
+    {
+      "t": 82983.3333333346,
+      "id": "clubman",
+      "epoch": 0,
+      "paid": 50,
+      "goldBefore": 54,
+      "goldAfter": 4
+    },
+    {
+      "t": 88983.33333333634,
+      "id": "clubman",
+      "epoch": 0,
+      "paid": 50,
+      "goldBefore": 91,
+      "goldAfter": 41
+    },
+    {
+      "t": 90483.33333333678,
+      "id": "clubman",
+      "epoch": 0,
+      "paid": 50,
+      "goldBefore": 78,
+      "goldAfter": 28
+    },
+    {
+      "t": 93483.33333333765,
+      "id": "clubman",
+      "epoch": 0,
+      "paid": 50,
+      "goldBefore": 74,
+      "goldAfter": 24
+    },
+    {
+      "t": 97983.33333333896,
+      "id": "clubman",
+      "epoch": 0,
+      "paid": 50,
+      "goldBefore": 56,
+      "goldAfter": 6
+    },
+    {
+      "t": 99483.3333333394,
+      "id": "clubman",
+      "epoch": 0,
+      "paid": 50,
+      "goldBefore": 61,
+      "goldAfter": 11
+    },
+    {
+      "t": 103983.3333333407,
+      "id": "clubman",
+      "epoch": 0,
+      "paid": 50,
+      "goldBefore": 70,
+      "goldAfter": 20
+    },
+    {
+      "t": 109983.33333334245,
+      "id": "swordsman",
+      "epoch": 1,
+      "paid": 95,
+      "goldBefore": 99,
+      "goldAfter": 4
+    },
+    {
+      "t": 115983.3333333442,
+      "id": "swordsman",
+      "epoch": 1,
+      "paid": 95,
+      "goldBefore": 104,
+      "goldAfter": 9
+    },
+    {
+      "t": 120483.33333334551,
+      "id": "swordsman",
+      "epoch": 1,
+      "paid": 95,
+      "goldBefore": 113,
+      "goldAfter": 18
+    },
+    {
+      "t": 124983.33333334682,
+      "id": "swordsman",
+      "epoch": 1,
+      "paid": 95,
+      "goldBefore": 97,
+      "goldAfter": 2
+    },
+    {
+      "t": 130983.33333334856,
+      "id": "swordsman",
+      "epoch": 1,
+      "paid": 95,
+      "goldBefore": 105,
+      "goldAfter": 10
+    },
+    {
+      "t": 135533.333333346,
+      "id": "swordsman",
+      "epoch": 1,
+      "paid": 95,
+      "goldBefore": 101,
+      "goldAfter": 6
+    },
+    {
+      "t": 140083.33333334335,
+      "id": "swordsman",
+      "epoch": 1,
+      "paid": 95,
+      "goldBefore": 97,
+      "goldAfter": 2
+    },
+    {
+      "t": 146150.0000000065,
+      "id": "swordsman",
+      "epoch": 1,
+      "paid": 95,
+      "goldBefore": 119,
+      "goldAfter": 24
+    },
+    {
+      "t": 152216.66666666963,
+      "id": "swordsman",
+      "epoch": 1,
+      "paid": 95,
+      "goldBefore": 102,
+      "goldAfter": 7
+    },
+    {
+      "t": 159799.99999999854,
+      "id": "swordsman",
+      "epoch": 1,
+      "paid": 95,
+      "goldBefore": 98,
+      "goldAfter": 3
+    },
+    {
+      "t": 164349.9999999959,
+      "id": "swordsman",
+      "epoch": 1,
+      "paid": 95,
+      "goldBefore": 238,
+      "goldAfter": 143
+    },
+    {
+      "t": 165866.66666666168,
+      "id": "swordsman",
+      "epoch": 1,
+      "paid": 95,
+      "goldBefore": 263,
+      "goldAfter": 168
+    },
+    {
+      "t": 167383.33333332746,
+      "id": "swordsman",
+      "epoch": 1,
+      "paid": 95,
+      "goldBefore": 194,
+      "goldAfter": 99
+    },
+    {
+      "t": 168899.99999999325,
+      "id": "swordsman",
+      "epoch": 1,
+      "paid": 95,
+      "goldBefore": 112,
+      "goldAfter": 17
+    },
+    {
+      "t": 174966.66666665638,
+      "id": "swordsman",
+      "epoch": 1,
+      "paid": 95,
+      "goldBefore": 95,
+      "goldAfter": 0
+    },
+    {
+      "t": 179516.66666665373,
+      "id": "swordsman",
+      "epoch": 1,
+      "paid": 95,
+      "goldBefore": 99,
+      "goldAfter": 4
+    },
+    {
+      "t": 187099.99999998265,
+      "id": "swordsman",
+      "epoch": 1,
+      "paid": 95,
+      "goldBefore": 108,
+      "goldAfter": 13
+    },
+    {
+      "t": 194683.33333331157,
+      "id": "swordsman",
+      "epoch": 1,
+      "paid": 95,
+      "goldBefore": 104,
+      "goldAfter": 9
+    },
+    {
+      "t": 202266.6666666405,
+      "id": "swordsman",
+      "epoch": 1,
+      "paid": 95,
+      "goldBefore": 113,
+      "goldAfter": 18
+    },
+    {
+      "t": 205299.99999997206,
+      "id": "swordsman",
+      "epoch": 1,
+      "paid": 95,
+      "goldBefore": 114,
+      "goldAfter": 19
+    },
+    {
+      "t": 209849.9999999694,
+      "id": "swordsman",
+      "epoch": 1,
+      "paid": 95,
+      "goldBefore": 327,
+      "goldAfter": 232
+    },
+    {
+      "t": 211366.6666666352,
+      "id": "swordsman",
+      "epoch": 1,
+      "paid": 95,
+      "goldBefore": 258,
+      "goldAfter": 163
+    },
+    {
+      "t": 212883.33333330098,
+      "id": "swordsman",
+      "epoch": 1,
+      "paid": 95,
+      "goldBefore": 216,
+      "goldAfter": 121
+    },
+    {
+      "t": 214399.99999996676,
+      "id": "swordsman",
+      "epoch": 1,
+      "paid": 95,
+      "goldBefore": 147,
+      "goldAfter": 52
+    },
+    {
+      "t": 218949.99999996411,
+      "id": "swordsman",
+      "epoch": 1,
+      "paid": 95,
+      "goldBefore": 138,
+      "goldAfter": 43
+    },
+    {
+      "t": 223499.99999996147,
+      "id": "swordsman",
+      "epoch": 1,
+      "paid": 95,
+      "goldBefore": 142,
+      "goldAfter": 47
+    },
+    {
+      "t": 228049.99999995882,
+      "id": "swordsman",
+      "epoch": 1,
+      "paid": 95,
+      "goldBefore": 112,
+      "goldAfter": 17
+    },
+    {
+      "t": 234116.66666662195,
+      "id": "swordsman",
+      "epoch": 1,
+      "paid": 95,
+      "goldBefore": 95,
+      "goldAfter": 0
+    },
+    {
+      "t": 243216.66666661666,
+      "id": "swordsman",
+      "epoch": 1,
+      "paid": 95,
+      "goldBefore": 117,
+      "goldAfter": 22
+    },
+    {
+      "t": 249283.3333332798,
+      "id": "swordsman",
+      "epoch": 1,
+      "paid": 95,
+      "goldBefore": 100,
+      "goldAfter": 5
+    },
+    {
+      "t": 255349.99999994293,
+      "id": "duelist",
+      "epoch": 2,
+      "paid": 145,
+      "goldBefore": 258,
+      "goldAfter": 113
+    },
+    {
+      "t": 256866.6666666087,
+      "id": "duelist",
+      "epoch": 2,
+      "paid": 145,
+      "goldBefore": 428,
+      "goldAfter": 283
+    },
+    {
+      "t": 258383.3333332745,
+      "id": "duelist",
+      "epoch": 2,
+      "paid": 145,
+      "goldBefore": 323,
+      "goldAfter": 178
+    },
+    {
+      "t": 259899.99999994028,
+      "id": "duelist",
+      "epoch": 2,
+      "paid": 145,
+      "goldBefore": 275,
+      "goldAfter": 130
+    },
+    {
+      "t": 261416.66666660606,
+      "id": "duelist",
+      "epoch": 2,
+      "paid": 145,
+      "goldBefore": 247,
+      "goldAfter": 102
+    },
+    {
+      "t": 264416.6666666083,
+      "id": "duelist",
+      "epoch": 2,
+      "paid": 145,
+      "goldBefore": 162,
+      "goldAfter": 17
+    },
+    {
+      "t": 267416.6666666118,
+      "id": "duelist",
+      "epoch": 2,
+      "paid": 145,
+      "goldBefore": 243,
+      "goldAfter": 98
+    },
+    {
+      "t": 268916.66666661354,
+      "id": "duelist",
+      "epoch": 2,
+      "paid": 145,
+      "goldBefore": 195,
+      "goldAfter": 50
+    },
+    {
+      "t": 270416.6666666153,
+      "id": "duelist",
+      "epoch": 2,
+      "paid": 145,
+      "goldBefore": 179,
+      "goldAfter": 34
+    },
+    {
+      "t": 274916.6666666205,
+      "id": "duelist",
+      "epoch": 2,
+      "paid": 145,
+      "goldBefore": 160,
+      "goldAfter": 15
+    },
+    {
+      "t": 282416.66666662926,
+      "id": "duelist",
+      "epoch": 2,
+      "paid": 145,
+      "goldBefore": 175,
+      "goldAfter": 30
+    },
+    {
+      "t": 286916.6666666345,
+      "id": "duelist",
+      "epoch": 2,
+      "paid": 145,
+      "goldBefore": 158,
+      "goldAfter": 13
+    },
+    {
+      "t": 291416.66666663974,
+      "id": "duelist",
+      "epoch": 2,
+      "paid": 145,
+      "goldBefore": 190,
+      "goldAfter": 45
+    },
+    {
+      "t": 297416.6666666467,
+      "id": "duelist",
+      "epoch": 2,
+      "paid": 145,
+      "goldBefore": 165,
+      "goldAfter": 20
+    },
+    {
+      "t": 304916.66666665545,
+      "id": "duelist",
+      "epoch": 2,
+      "paid": 145,
+      "goldBefore": 160,
+      "goldAfter": 15
+    },
+    {
+      "t": 310916.66666666244,
+      "id": "duelist",
+      "epoch": 2,
+      "paid": 145,
+      "goldBefore": 489,
+      "goldAfter": 344
+    },
+    {
+      "t": 312416.6666666642,
+      "id": "duelist",
+      "epoch": 2,
+      "paid": 145,
+      "goldBefore": 588,
+      "goldAfter": 443
+    },
+    {
+      "t": 313916.66666666593,
+      "id": "duelist",
+      "epoch": 2,
+      "paid": 145,
+      "goldBefore": 463,
+      "goldAfter": 318
+    },
+    {
+      "t": 315416.6666666677,
+      "id": "duelist",
+      "epoch": 2,
+      "paid": 145,
+      "goldBefore": 358,
+      "goldAfter": 213
+    },
+    {
+      "t": 316916.6666666694,
+      "id": "duelist",
+      "epoch": 2,
+      "paid": 145,
+      "goldBefore": 310,
+      "goldAfter": 165
+    },
+    {
+      "t": 318416.66666667117,
+      "id": "duelist",
+      "epoch": 2,
+      "paid": 145,
+      "goldBefore": 205,
+      "goldAfter": 60
+    },
+    {
+      "t": 324416.66666667815,
+      "id": "duelist",
+      "epoch": 2,
+      "paid": 145,
+      "goldBefore": 180,
+      "goldAfter": 35
+    },
+    {
+      "t": 330416.66666668514,
+      "id": "duelist",
+      "epoch": 2,
+      "paid": 145,
+      "goldBefore": 155,
+      "goldAfter": 10
+    },
+    {
+      "t": 333416.66666668863,
+      "id": "duelist",
+      "epoch": 2,
+      "paid": 145,
+      "goldBefore": 195,
+      "goldAfter": 50
+    },
+    {
+      "t": 339416.6666666956,
+      "id": "tank",
+      "epoch": 3,
+      "paid": 420,
+      "goldBefore": 562,
+      "goldAfter": 142
+    },
+    {
+      "t": 348416.6666667061,
+      "id": "tank",
+      "epoch": 3,
+      "paid": 420,
+      "goldBefore": 451,
+      "goldAfter": 31
+    },
+    {
+      "t": 358916.6666667183,
+      "id": "tank",
+      "epoch": 3,
+      "paid": 420,
+      "goldBefore": 446,
+      "goldAfter": 26
+    },
+    {
+      "t": 369416.66666673054,
+      "id": "tank",
+      "epoch": 3,
+      "paid": 420,
+      "goldBefore": 438,
+      "goldAfter": 18
+    },
+    {
+      "t": 379916.66666674276,
+      "id": "tank",
+      "epoch": 3,
+      "paid": 420,
+      "goldBefore": 443,
+      "goldAfter": 23
+    },
+    {
+      "t": 384416.666666748,
+      "id": "tank",
+      "epoch": 3,
+      "paid": 420,
+      "goldBefore": 571,
+      "goldAfter": 151
+    },
+    {
+      "t": 387416.6666667515,
+      "id": "tank",
+      "epoch": 3,
+      "paid": 420,
+      "goldBefore": 474,
+      "goldAfter": 54
+    },
+    {
+      "t": 399416.66666676546,
+      "id": "tank",
+      "epoch": 3,
+      "paid": 420,
+      "goldBefore": 545,
+      "goldAfter": 125
+    },
+    {
+      "t": 411416.66666677943,
+      "id": "tank",
+      "epoch": 3,
+      "paid": 420,
+      "goldBefore": 473,
+      "goldAfter": 53
+    },
+    {
+      "t": 420416.6666667899,
+      "id": "tank",
+      "epoch": 3,
+      "paid": 420,
+      "goldBefore": 564,
+      "goldAfter": 144
+    },
+    {
+      "t": 429416.6666668004,
+      "id": "tank",
+      "epoch": 3,
+      "paid": 420,
+      "goldBefore": 530,
+      "goldAfter": 110
+    },
+    {
+      "t": 438416.66666681087,
+      "id": "tank",
+      "epoch": 3,
+      "paid": 420,
+      "goldBefore": 458,
+      "goldAfter": 38
+    },
+    {
+      "t": 447416.66666682134,
+      "id": "tank",
+      "epoch": 3,
+      "paid": 420,
+      "goldBefore": 495,
+      "goldAfter": 75
+    },
+    {
+      "t": 457916.66666683357,
+      "id": "tank",
+      "epoch": 3,
+      "paid": 420,
+      "goldBefore": 436,
+      "goldAfter": 16
+    },
+    {
+      "t": 468416.6666668458,
+      "id": "tank",
+      "epoch": 3,
+      "paid": 420,
+      "goldBefore": 539,
+      "goldAfter": 119
+    },
+    {
+      "t": 477416.66666685627,
+      "id": "tank",
+      "epoch": 3,
+      "paid": 420,
+      "goldBefore": 467,
+      "goldAfter": 47
+    },
+    {
+      "t": 490916.666666872,
+      "id": "tank",
+      "epoch": 3,
+      "paid": 420,
+      "goldBefore": 424,
+      "goldAfter": 4
+    },
+    {
+      "t": 492416.66666687373,
+      "id": "tank",
+      "epoch": 3,
+      "paid": 420,
+      "goldBefore": 567,
+      "goldAfter": 147
+    },
+    {
+      "t": 502916.66666688595,
+      "id": "tank",
+      "epoch": 3,
+      "paid": 420,
+      "goldBefore": 437,
+      "goldAfter": 17
+    },
+    {
+      "t": 508916.66666689294,
+      "id": "mech",
+      "epoch": 4,
+      "paid": 540,
+      "goldBefore": 686,
+      "goldAfter": 146
+    },
+    {
+      "t": 519416.66666690516,
+      "id": "mech",
+      "epoch": 4,
+      "paid": 540,
+      "goldBefore": 711,
+      "goldAfter": 171
+    },
+    {
+      "t": 525433.3333335748,
+      "id": "mech",
+      "epoch": 4,
+      "paid": 540,
+      "goldBefore": 574,
+      "goldAfter": 34
+    },
+    {
+      "t": 536050.0000002168,
+      "id": "mech",
+      "epoch": 4,
+      "paid": 540,
+      "goldBefore": 545,
+      "goldAfter": 5
+    },
+    {
+      "t": 542116.6666668693,
+      "id": "mech",
+      "epoch": 4,
+      "paid": 540,
+      "goldBefore": 669,
+      "goldAfter": 129
+    },
+    {
+      "t": 551216.6666668481,
+      "id": "mech",
+      "epoch": 4,
+      "paid": 540,
+      "goldBefore": 591,
+      "goldAfter": 51
+    },
+    {
+      "t": 564866.6666668163,
+      "id": "mech",
+      "epoch": 4,
+      "paid": 540,
+      "goldBefore": 571,
+      "goldAfter": 31
+    },
+    {
+      "t": 569416.6666668057,
+      "id": "mech",
+      "epoch": 4,
+      "paid": 540,
+      "goldBefore": 645,
+      "goldAfter": 105
+    },
+    {
+      "t": 575483.3333334583,
+      "id": "mech",
+      "epoch": 4,
+      "paid": 540,
+      "goldBefore": 562,
+      "goldAfter": 22
+    },
+    {
+      "t": 584583.3333334371,
+      "id": "mech",
+      "epoch": 4,
+      "paid": 540,
+      "goldBefore": 540,
+      "goldAfter": 0
+    },
+    {
+      "t": 587616.6666667634,
+      "id": "mech",
+      "epoch": 4,
+      "paid": 540,
+      "goldBefore": 1005,
+      "goldAfter": 465
+    },
+    {
+      "t": 589133.3333334265,
+      "id": "mech",
+      "epoch": 4,
+      "paid": 540,
+      "goldBefore": 545,
+      "goldAfter": 5
+    },
+    {
+      "t": 596716.6666667422,
+      "id": "mech",
+      "epoch": 4,
+      "paid": 540,
+      "goldBefore": 660,
+      "goldAfter": 120
+    },
+    {
+      "t": 604300.0000000579,
+      "id": "mech",
+      "epoch": 4,
+      "paid": 540,
+      "goldBefore": 609,
+      "goldAfter": 69
+    },
+    {
+      "t": 613400.0000000367,
+      "id": "mech",
+      "epoch": 4,
+      "paid": 540,
+      "goldBefore": 587,
+      "goldAfter": 47
+    },
+    {
+      "t": 620983.3333333523,
+      "id": "mech",
+      "epoch": 4,
+      "paid": 540,
+      "goldBefore": 544,
+      "goldAfter": 4
+    },
+    {
+      "t": 633116.6666666574,
+      "id": "mech",
+      "epoch": 4,
+      "paid": 540,
+      "goldBefore": 1537,
+      "goldAfter": 997
+    },
+    {
+      "t": 634633.3333333206,
+      "id": "mech",
+      "epoch": 4,
+      "paid": 540,
+      "goldBefore": 1037,
+      "goldAfter": 497
+    },
+    {
+      "t": 636149.9999999837,
+      "id": "mech",
+      "epoch": 4,
+      "paid": 540,
+      "goldBefore": 577,
+      "goldAfter": 37
+    },
+    {
+      "t": 649799.9999999519,
+      "id": "mech",
+      "epoch": 4,
+      "paid": 540,
+      "goldBefore": 1455,
+      "goldAfter": 915
+    },
+    {
+      "t": 651316.666666615,
+      "id": "mech",
+      "epoch": 4,
+      "paid": 540,
+      "goldBefore": 1181,
+      "goldAfter": 641
+    },
+    {
+      "t": 652833.3333332782,
+      "id": "mech",
+      "epoch": 4,
+      "paid": 540,
+      "goldBefore": 801,
+      "goldAfter": 261
+    },
+    {
+      "t": 660416.6666665939,
+      "id": "mech",
+      "epoch": 4,
+      "paid": 540,
+      "goldBefore": 581,
+      "goldAfter": 41
+    },
+    {
+      "t": 669516.6666665727,
+      "id": "mech",
+      "epoch": 4,
+      "paid": 540,
+      "goldBefore": 618,
+      "goldAfter": 78
+    },
+    {
+      "t": 677099.9999998884,
+      "id": "mech",
+      "epoch": 4,
+      "paid": 540,
+      "goldBefore": 556,
+      "goldAfter": 16
+    },
+    {
+      "t": 678616.6666665515,
+      "id": "mech",
+      "epoch": 4,
+      "paid": 540,
+      "goldBefore": 887,
+      "goldAfter": 347
+    },
+    {
+      "t": 683166.6666665409,
+      "id": "mech",
+      "epoch": 4,
+      "paid": 540,
+      "goldBefore": 547,
+      "goldAfter": 7
+    },
+    {
+      "t": 690749.9999998566,
+      "id": "mech",
+      "epoch": 4,
+      "paid": 540,
+      "goldBefore": 1139,
+      "goldAfter": 599
+    },
+    {
+      "t": 692266.6666665197,
+      "id": "mech",
+      "epoch": 4,
+      "paid": 540,
+      "goldBefore": 934,
+      "goldAfter": 394
+    },
+    {
+      "t": 696816.6666665091,
+      "id": "mech",
+      "epoch": 4,
+      "paid": 540,
+      "goldBefore": 740,
+      "goldAfter": 200
+    },
+    {
+      "t": 701366.6666664985,
+      "id": "mech",
+      "epoch": 4,
+      "paid": 540,
+      "goldBefore": 655,
+      "goldAfter": 115
+    },
+    {
+      "t": 708949.9999998142,
+      "id": "mech",
+      "epoch": 4,
+      "paid": 540,
+      "goldBefore": 553,
+      "goldAfter": 13
+    },
+    {
+      "t": 719566.6666664561,
+      "id": "mech",
+      "epoch": 4,
+      "paid": 540,
+      "goldBefore": 555,
+      "goldAfter": 15
+    },
+    {
+      "t": 724116.6666664456,
+      "id": "mech",
+      "epoch": 4,
+      "paid": 540,
+      "goldBefore": 952,
+      "goldAfter": 412
+    },
+    {
+      "t": 728666.666666435,
+      "id": "mech",
+      "epoch": 4,
+      "paid": 540,
+      "goldBefore": 572,
+      "goldAfter": 32
+    },
+    {
+      "t": 734733.3333330875,
+      "id": "mech",
+      "epoch": 4,
+      "paid": 540,
+      "goldBefore": 685,
+      "goldAfter": 145
+    },
+    {
+      "t": 745349.9999997295,
+      "id": "mech",
+      "epoch": 4,
+      "paid": 540,
+      "goldBefore": 585,
+      "goldAfter": 45
+    },
+    {
+      "t": 752933.3333330451,
+      "id": "mech",
+      "epoch": 4,
+      "paid": 540,
+      "goldBefore": 571,
+      "goldAfter": 31
+    }
+  ],
+  "blockedOrders": 3,
+  "unaffordableDecisions": 359,
+  "meteorCasts": 12,
+  "artilleryCasts": 7,
+  "abilityUses": [
+    {
+      "t": 72483.33333333154,
+      "type": "meteor",
+      "enemies": 9
+    },
+    {
+      "t": 162833.3333333301,
+      "type": "meteor",
+      "enemies": 10
+    },
+    {
+      "t": 208333.33333330363,
+      "type": "meteor",
+      "enemies": 12
+    },
+    {
+      "t": 253833.33333327714,
+      "type": "meteor",
+      "enemies": 15
+    },
+    {
+      "t": 255349.99999994293,
+      "type": "artillery",
+      "enemies": 13
+    },
+    {
+      "t": 309416.6666666607,
+      "type": "meteor",
+      "enemies": 9
+    },
+    {
+      "t": 337916.66666669387,
+      "type": "artillery",
+      "enemies": 7
+    },
+    {
+      "t": 382916.66666674626,
+      "type": "meteor",
+      "enemies": 8
+    },
+    {
+      "t": 490916.666666872,
+      "type": "meteor",
+      "enemies": 5
+    },
+    {
+      "t": 507416.6666668912,
+      "type": "artillery",
+      "enemies": 7
+    },
+    {
+      "t": 540600.0000002062,
+      "type": "meteor",
+      "enemies": 6
+    },
+    {
+      "t": 567900.0000001426,
+      "type": "artillery",
+      "enemies": 14
+    },
+    {
+      "t": 586100.0000001002,
+      "type": "meteor",
+      "enemies": 10
+    },
+    {
+      "t": 628566.666666668,
+      "type": "artillery",
+      "enemies": 13
+    },
+    {
+      "t": 631599.9999999943,
+      "type": "meteor",
+      "enemies": 14
+    },
+    {
+      "t": 677099.9999998884,
+      "type": "meteor",
+      "enemies": 13
+    },
+    {
+      "t": 689233.3333331934,
+      "type": "artillery",
+      "enemies": 12
+    },
+    {
+      "t": 722599.9999997824,
+      "type": "meteor",
+      "enemies": 11
+    },
+    {
+      "t": 749899.9999997189,
+      "type": "artillery",
+      "enemies": 14
+    }
+  ],
+  "towerAttempts": [
+    {
+      "t": 209849.9999999694,
+      "built": false,
+      "id": null,
+      "paid": 0
+    }
+  ],
+  "epochTransitions": [
+    {
+      "t": 0,
+      "side": "player",
+      "index": 0,
+      "id": "stone"
+    },
+    {
+      "t": 0,
+      "side": "enemy",
+      "index": 0,
+      "id": "stone"
+    },
+    {
+      "t": 108483.33333334202,
+      "side": "player",
+      "index": 1,
+      "id": "castle"
+    },
+    {
+      "t": 144066.66666667437,
+      "side": "enemy",
+      "index": 1,
+      "id": "castle"
+    },
+    {
+      "t": 255349.99999994293,
+      "side": "player",
+      "index": 2,
+      "id": "renaissance"
+    },
+    {
+      "t": 276149.9999999553,
+      "side": "enemy",
+      "index": 2,
+      "id": "renaissance"
+    },
+    {
+      "t": 339416.6666666956,
+      "side": "player",
+      "index": 3,
+      "id": "modern"
+    },
+    {
+      "t": 408150.00000010896,
+      "side": "enemy",
+      "index": 3,
+      "id": "modern"
+    },
+    {
+      "t": 508916.66666689294,
+      "side": "player",
+      "index": 4,
+      "id": "future"
+    },
+    {
+      "t": 540166.6666668738,
+      "side": "enemy",
+      "index": 4,
+      "id": "future"
+    }
+  ],
+  "minimumBase": {
+    "player": {
+      "fraction": 0,
+      "hp": 0,
+      "maxHp": 14000,
+      "t": 758466.6666663656,
+      "epoch": 4
+    },
+    "enemy": {
+      "fraction": 0.9462857142857143,
+      "hp": 13248,
+      "maxHp": 14000,
+      "t": 540166.6666668738,
+      "epoch": 4
+    }
+  },
+  "minimumBaseByEpoch": {
+    "player": {
+      "0": {
+        "fraction": 1,
+        "hp": 4200,
+        "maxHp": 4200,
+        "t": 0,
+        "epoch": 0
+      },
+      "1": {
+        "fraction": 0.40785714285714286,
+        "hp": 2284,
+        "maxHp": 5600,
+        "t": 254799.99999994325,
+        "epoch": 1
+      },
+      "2": {
+        "fraction": 0.5046052631578948,
+        "hp": 3835,
+        "maxHp": 7600,
+        "t": 256016.6666666092,
+        "epoch": 2
+      },
+      "3": {
+        "fraction": 0.6046,
+        "hp": 6046,
+        "maxHp": 10000,
+        "t": 339416.6666666956,
+        "epoch": 3
+      },
+      "4": {
+        "fraction": 0,
+        "hp": 0,
+        "maxHp": 14000,
+        "t": 758466.6666663656,
+        "epoch": 4
+      }
+    },
+    "enemy": {
+      "0": {
+        "fraction": 1,
+        "hp": 4200,
+        "maxHp": 4200,
+        "t": 0,
+        "epoch": 0
+      },
+      "1": {
+        "fraction": 1,
+        "hp": 5600,
+        "maxHp": 5600,
+        "t": 144066.66666667437,
+        "epoch": 1
+      },
+      "2": {
+        "fraction": 0.9463157894736842,
+        "hp": 7192,
+        "maxHp": 7600,
+        "t": 407266.6666667746,
+        "epoch": 2
+      },
+      "3": {
+        "fraction": 0.9463,
+        "hp": 9463,
+        "maxHp": 10000,
+        "t": 408150.00000010896,
+        "epoch": 3
+      },
+      "4": {
+        "fraction": 0.9462857142857143,
+        "hp": 13248,
+        "maxHp": 14000,
+        "t": 540166.6666668738,
+        "epoch": 4
+      }
+    }
+  },
+  "samples": [
+    {
+      "t": 0,
+      "absoluteTimeMs": 0,
+      "gold": 240,
+      "xp": 0,
+      "kills": 0,
+      "epoch": 0,
+      "enemyEpoch": 0,
+      "wave": 0,
+      "phase": "prepare",
+      "plannedWave": 1,
+      "tactic": "mixed",
+      "attempted": 0,
+      "arrived": 0,
+      "player": 4200,
+      "enemy": 4200,
+      "pArmy": 0,
+      "eArmy": 0,
+      "shots": 0,
+      "pFront": 0,
+      "objects": 26
+    },
+    {
+      "t": 30,
+      "absoluteTimeMs": 30000.000000000753,
+      "gold": 82,
+      "xp": 342,
+      "kills": 2,
+      "epoch": 0,
+      "enemyEpoch": 0,
+      "wave": 1,
+      "phase": "assault",
+      "plannedWave": 1,
+      "tactic": "mixed",
+      "attempted": 6,
+      "arrived": 6,
+      "player": 4200,
+      "enemy": 4200,
+      "pArmy": 6,
+      "eArmy": 4,
+      "shots": 1,
+      "pFront": 893,
+      "objects": 61
+    },
+    {
+      "t": 60,
+      "absoluteTimeMs": 60016.66666666366,
+      "gold": 53,
+      "xp": 733,
+      "kills": 5,
+      "epoch": 0,
+      "enemyEpoch": 0,
+      "wave": 2,
+      "phase": "assault",
+      "plannedWave": 2,
+      "tactic": "charge",
+      "attempted": 2,
+      "arrived": 2,
+      "player": 4200,
+      "enemy": 4200,
+      "pArmy": 4,
+      "eArmy": 5,
+      "shots": 0,
+      "pFront": 841,
+      "objects": 47
+    },
+    {
+      "t": 90,
+      "absoluteTimeMs": 90016.66666666997,
+      "gold": 78,
+      "xp": 1739,
+      "kills": 13,
+      "epoch": 0,
+      "enemyEpoch": 0,
+      "wave": 2,
+      "phase": "respite",
+      "plannedWave": 3,
+      "tactic": "volley",
+      "attempted": 9,
+      "arrived": 9,
+      "player": 4200,
+      "enemy": 4200,
+      "pArmy": 6,
+      "eArmy": 4,
+      "shots": 0,
+      "pFront": 513,
+      "objects": 74
+    },
+    {
+      "t": 120,
+      "absoluteTimeMs": 120016.6666666787,
+      "gold": 113,
+      "xp": 377,
+      "kills": 19,
+      "epoch": 1,
+      "enemyEpoch": 0,
+      "wave": 3,
+      "phase": "assault",
+      "plannedWave": 3,
+      "tactic": "volley",
+      "attempted": 8,
+      "arrived": 8,
+      "player": 5600,
+      "enemy": 4200,
+      "pArmy": 6,
+      "eArmy": 6,
+      "shots": 0,
+      "pFront": 745,
+      "objects": 51
+    },
+    {
+      "t": 150,
+      "absoluteTimeMs": 150033.33333333756,
+      "gold": 76,
+      "xp": 1023,
+      "kills": 24,
+      "epoch": 1,
+      "enemyEpoch": 1,
+      "wave": 4,
+      "phase": "assault",
+      "plannedWave": 4,
+      "tactic": "mixed",
+      "attempted": 3,
+      "arrived": 3,
+      "player": 5600,
+      "enemy": 5600,
+      "pArmy": 4,
+      "eArmy": 5,
+      "shots": 0,
+      "pFront": 905,
+      "objects": 62
+    },
+    {
+      "t": 180,
+      "absoluteTimeMs": 180049.99999998676,
+      "gold": 17,
+      "xp": 2436,
+      "kills": 32,
+      "epoch": 1,
+      "enemyEpoch": 1,
+      "wave": 4,
+      "phase": "respite",
+      "plannedWave": 5,
+      "tactic": "siege",
+      "attempted": 10,
+      "arrived": 10,
+      "player": 5600,
+      "enemy": 5600,
+      "pArmy": 2,
+      "eArmy": 4,
+      "shots": 0,
+      "pFront": 349,
+      "objects": 49
+    },
+    {
+      "t": 210,
+      "absoluteTimeMs": 210066.66666663595,
+      "gold": 245,
+      "xp": 3876,
+      "kills": 38,
+      "epoch": 1,
+      "enemyEpoch": 1,
+      "wave": 5,
+      "phase": "assault",
+      "plannedWave": 5,
+      "tactic": "siege",
+      "attempted": 9,
+      "arrived": 9,
+      "player": 4582,
+      "enemy": 5600,
+      "pArmy": 1,
+      "eArmy": 7,
+      "shots": 0,
+      "pFront": 159,
+      "objects": 147
+    },
+    {
+      "t": 240,
+      "absoluteTimeMs": 240083.33333328515,
+      "gold": 78,
+      "xp": 4199,
+      "kills": 41,
+      "epoch": 1,
+      "enemyEpoch": 1,
+      "wave": 6,
+      "phase": "assault",
+      "plannedWave": 6,
+      "tactic": "charge",
+      "attempted": 4,
+      "arrived": 4,
+      "player": 3879,
+      "enemy": 5600,
+      "pArmy": 0,
+      "eArmy": 9,
+      "shots": 1,
+      "pFront": 0,
+      "objects": 52
+    },
+    {
+      "t": 270,
+      "absoluteTimeMs": 270099.99999994825,
+      "gold": 179,
+      "xp": 3424,
+      "kills": 56,
+      "epoch": 2,
+      "enemyEpoch": 1,
+      "wave": 6,
+      "phase": "respite",
+      "plannedWave": 7,
+      "tactic": "volley",
+      "attempted": 11,
+      "arrived": 11,
+      "player": 3835,
+      "enemy": 5600,
+      "pArmy": 4,
+      "eArmy": 1,
+      "shots": 0,
+      "pFront": 349,
+      "objects": 55
+    },
+    {
+      "t": 300,
+      "absoluteTimeMs": 300099.9999999832,
+      "gold": 80,
+      "xp": 4217,
+      "kills": 59,
+      "epoch": 2,
+      "enemyEpoch": 2,
+      "wave": 7,
+      "phase": "assault",
+      "plannedWave": 7,
+      "tactic": "volley",
+      "attempted": 11,
+      "arrived": 11,
+      "player": 3835,
+      "enemy": 7600,
+      "pArmy": 2,
+      "eArmy": 9,
+      "shots": 1,
+      "pFront": 548,
+      "objects": 52
+    },
+    {
+      "t": 330,
+      "absoluteTimeMs": 330100.0000000181,
+      "gold": 155,
+      "xp": 6722,
+      "kills": 68,
+      "epoch": 2,
+      "enemyEpoch": 2,
+      "wave": 8,
+      "phase": "assault",
+      "plannedWave": 8,
+      "tactic": "siege",
+      "attempted": 5,
+      "arrived": 5,
+      "player": 3835,
+      "enemy": 7600,
+      "pArmy": 6,
+      "eArmy": 5,
+      "shots": 0,
+      "pFront": 795,
+      "objects": 66
+    },
+    {
+      "t": 360,
+      "absoluteTimeMs": 360100.000000053,
+      "gold": 84,
+      "xp": 1679,
+      "kills": 78,
+      "epoch": 3,
+      "enemyEpoch": 2,
+      "wave": 8,
+      "phase": "respite",
+      "plannedWave": 9,
+      "tactic": "mixed",
+      "attempted": 12,
+      "arrived": 12,
+      "player": 6046,
+      "enemy": 7600,
+      "pArmy": 3,
+      "eArmy": 2,
+      "shots": 0,
+      "pFront": 533,
+      "objects": 55
+    },
+    {
+      "t": 390,
+      "absoluteTimeMs": 390100.00000008795,
+      "gold": 141,
+      "xp": 5168,
+      "kills": 90,
+      "epoch": 3,
+      "enemyEpoch": 2,
+      "wave": 9,
+      "phase": "assault",
+      "plannedWave": 9,
+      "tactic": "mixed",
+      "attempted": 12,
+      "arrived": 12,
+      "player": 6046,
+      "enemy": 7600,
+      "pArmy": 5,
+      "eArmy": 2,
+      "shots": 0,
+      "pFront": 738,
+      "objects": 66
+    },
+    {
+      "t": 420,
+      "absoluteTimeMs": 420100.0000001229,
+      "gold": 439,
+      "xp": 7169,
+      "kills": 93,
+      "epoch": 3,
+      "enemyEpoch": 3,
+      "wave": 10,
+      "phase": "assault",
+      "plannedWave": 10,
+      "tactic": "charge",
+      "attempted": 7,
+      "arrived": 4,
+      "player": 6046,
+      "enemy": 9463,
+      "pArmy": 5,
+      "eArmy": 3,
+      "shots": 1,
+      "pFront": 1025,
+      "objects": 55
+    },
+    {
+      "t": 450,
+      "absoluteTimeMs": 450100.0000001578,
+      "gold": 162,
+      "xp": 9764,
+      "kills": 98,
+      "epoch": 3,
+      "enemyEpoch": 3,
+      "wave": 10,
+      "phase": "respite",
+      "plannedWave": 11,
+      "tactic": "volley",
+      "attempted": 13,
+      "arrived": 7,
+      "player": 6046,
+      "enemy": 9463,
+      "pArmy": 4,
+      "eArmy": 1,
+      "shots": 0,
+      "pFront": 961,
+      "objects": 57
+    },
+    {
+      "t": 480,
+      "absoluteTimeMs": 480100.0000001927,
+      "gold": 134,
+      "xp": 10741,
+      "kills": 102,
+      "epoch": 3,
+      "enemyEpoch": 3,
+      "wave": 11,
+      "phase": "assault",
+      "plannedWave": 11,
+      "tactic": "volley",
+      "attempted": 13,
+      "arrived": 8,
+      "player": 6046,
+      "enemy": 9463,
+      "pArmy": 2,
+      "eArmy": 5,
+      "shots": 0,
+      "pFront": 502,
+      "objects": 52
+    },
+    {
+      "t": 510,
+      "absoluteTimeMs": 510100.00000022765,
+      "gold": 226,
+      "xp": 1143,
+      "kills": 112,
+      "epoch": 4,
+      "enemyEpoch": 3,
+      "wave": 12,
+      "phase": "assault",
+      "plannedWave": 12,
+      "tactic": "mixed",
+      "attempted": 8,
+      "arrived": 8,
+      "player": 9864,
+      "enemy": 9463,
+      "pArmy": 4,
+      "eArmy": 3,
+      "shots": 1,
+      "pFront": 663,
+      "objects": 59
+    },
+    {
+      "t": 540,
+      "absoluteTimeMs": 540116.666666874,
+      "gold": 165,
+      "xp": 1143,
+      "kills": 116,
+      "epoch": 4,
+      "enemyEpoch": 3,
+      "wave": 12,
+      "phase": "respite",
+      "plannedWave": 13,
+      "tactic": "siege",
+      "attempted": 14,
+      "arrived": 14,
+      "player": 9864,
+      "enemy": 9463,
+      "pArmy": 1,
+      "eArmy": 5,
+      "shots": 0,
+      "pFront": 288,
+      "objects": 63
+    },
+    {
+      "t": 570,
+      "absoluteTimeMs": 570133.3333334707,
+      "gold": 145,
+      "xp": 1143,
+      "kills": 124,
+      "epoch": 4,
+      "enemyEpoch": 4,
+      "wave": 13,
+      "phase": "respite",
+      "plannedWave": 14,
+      "tactic": "charge",
+      "attempted": 14,
+      "arrived": 14,
+      "player": 9864,
+      "enemy": 13248,
+      "pArmy": 2,
+      "eArmy": 11,
+      "shots": 0,
+      "pFront": 215,
+      "objects": 72
+    },
+    {
+      "t": 600,
+      "absoluteTimeMs": 600150.0000000675,
+      "gold": 449,
+      "xp": 1143,
+      "kills": 135,
+      "epoch": 4,
+      "enemyEpoch": 4,
+      "wave": 14,
+      "phase": "assault",
+      "plannedWave": 14,
+      "tactic": "charge",
+      "attempted": 9,
+      "arrived": 9,
+      "player": 8808,
+      "enemy": 13248,
+      "pArmy": 2,
+      "eArmy": 9,
+      "shots": 0,
+      "pFront": 258,
+      "objects": 59
+    },
+    {
+      "t": 630,
+      "absoluteTimeMs": 630166.6666666643,
+      "gold": 404,
+      "xp": 1143,
+      "kills": 137,
+      "epoch": 4,
+      "enemyEpoch": 4,
+      "wave": 15,
+      "phase": "assault",
+      "plannedWave": 15,
+      "tactic": "volley",
+      "attempted": 2,
+      "arrived": 2,
+      "player": 7348,
+      "enemy": 13248,
+      "pArmy": 0,
+      "eArmy": 14,
+      "shots": 0,
+      "pFront": 0,
+      "objects": 97
+    },
+    {
+      "t": 660,
+      "absoluteTimeMs": 660183.3333332611,
+      "gold": 581,
+      "xp": 1143,
+      "kills": 151,
+      "epoch": 4,
+      "enemyEpoch": 4,
+      "wave": 15,
+      "phase": "respite",
+      "plannedWave": 16,
+      "tactic": "siege",
+      "attempted": 14,
+      "arrived": 14,
+      "player": 3238,
+      "enemy": 13248,
+      "pArmy": 2,
+      "eArmy": 12,
+      "shots": 1,
+      "pFront": 254,
+      "objects": 78
+    },
+    {
+      "t": 690,
+      "absoluteTimeMs": 690199.9999998579,
+      "gold": 1139,
+      "xp": 1143,
+      "kills": 165,
+      "epoch": 4,
+      "enemyEpoch": 4,
+      "wave": 16,
+      "phase": "assault",
+      "plannedWave": 16,
+      "tactic": "siege",
+      "attempted": 11,
+      "arrived": 11,
+      "player": 3148,
+      "enemy": 13248,
+      "pArmy": 2,
+      "eArmy": 9,
+      "shots": 0,
+      "pFront": 180,
+      "objects": 150
+    },
+    {
+      "t": 720,
+      "absoluteTimeMs": 720216.6666664546,
+      "gold": 55,
+      "xp": 1143,
+      "kills": 170,
+      "epoch": 4,
+      "enemyEpoch": 4,
+      "wave": 17,
+      "phase": "assault",
+      "plannedWave": 17,
+      "tactic": "mixed",
+      "attempted": 3,
+      "arrived": 3,
+      "player": 3148,
+      "enemy": 13248,
+      "pArmy": 1,
+      "eArmy": 10,
+      "shots": 0,
+      "pFront": 151,
+      "objects": 94
+    },
+    {
+      "t": 750,
+      "absoluteTimeMs": 750233.3333330514,
+      "gold": 491,
+      "xp": 1143,
+      "kills": 179,
+      "epoch": 4,
+      "enemyEpoch": 4,
+      "wave": 17,
+      "phase": "respite",
+      "plannedWave": 18,
+      "tactic": "charge",
+      "attempted": 14,
+      "arrived": 14,
+      "player": 1868,
+      "enemy": 13248,
+      "pArmy": 0,
+      "eArmy": 12,
+      "shots": 0,
+      "pFront": 0,
+      "objects": 168
+    },
+    {
+      "t": 758,
+      "absoluteTimeMs": 758466.6666663656,
+      "gold": 271,
+      "xp": 1143,
+      "kills": 179,
+      "epoch": 4,
+      "enemyEpoch": 4,
+      "wave": 17,
+      "phase": "respite",
+      "plannedWave": 18,
+      "tactic": "charge",
+      "attempted": 14,
+      "arrived": 14,
+      "player": 0,
+      "enemy": 13248,
+      "pArmy": 0,
+      "eArmy": 12,
+      "shots": 3,
+      "pFront": 0,
+      "objects": 81
+    }
+  ],
+  "wavePlans": [
+    {
+      "announcedAt": 0,
+      "phase": "prepare",
+      "attackAt": 12000,
+      "number": 1,
+      "epoch": "stone",
+      "tactic": "mixed",
+      "title": "Mischformation",
+      "advice": "Kombiniere eine starke Front mit Fernkampf. Halte Gold für Verstärkung zurück.",
+      "unitIds": [
+        "clubman",
+        "slinger",
+        "dino-rider",
+        "spearman",
+        "slinger",
+        "slinger",
+        "clubman",
+        "spearman"
+      ],
+      "roster": [
+        {
+          "id": "clubman",
+          "count": 2
+        },
+        {
+          "id": "dino-rider",
+          "count": 1
+        },
+        {
+          "id": "slinger",
+          "count": 3
+        },
+        {
+          "id": "spearman",
+          "count": 2
+        }
+      ],
+      "cost": 550,
+      "referenceCost": 535
+    },
+    {
+      "announcedAt": 40033.333333333234,
+      "phase": "respite",
+      "attackAt": 56033.333333333234,
+      "number": 2,
+      "epoch": "stone",
+      "tactic": "charge",
+      "title": "Durchbruch",
+      "advice": "Speerwächter sind stark gegen Reiter. Lass deine Schleuderer hinter ihnen kämpfen.",
+      "unitIds": [
+        "clubman",
+        "dino-rider",
+        "slinger",
+        "dino-rider",
+        "clubman",
+        "spearman",
+        "clubman",
+        "dino-rider",
+        "slinger"
+      ],
+      "roster": [
+        {
+          "id": "clubman",
+          "count": 3
+        },
+        {
+          "id": "dino-rider",
+          "count": 3
+        },
+        {
+          "id": "slinger",
+          "count": 2
+        },
+        {
+          "id": "spearman",
+          "count": 1
+        }
+      ],
+      "cost": 695,
+      "referenceCost": 650
+    },
+    {
+      "announcedAt": 84050.00000000157,
+      "phase": "respite",
+      "attackAt": 100050.00000000157,
+      "number": 3,
+      "epoch": "stone",
+      "tactic": "volley",
+      "title": "Schützenformation",
+      "advice": "Schütze deine schnellen Angreifer mit einer stabilen Front und erreiche die gegnerischen Schützen.",
+      "unitIds": [
+        "clubman",
+        "slinger",
+        "dino-rider",
+        "slinger",
+        "spearman",
+        "slinger",
+        "slinger",
+        "slinger",
+        "dino-rider"
+      ],
+      "roster": [
+        {
+          "id": "clubman",
+          "count": 1
+        },
+        {
+          "id": "dino-rider",
+          "count": 2
+        },
+        {
+          "id": "slinger",
+          "count": 5
+        },
+        {
+          "id": "spearman",
+          "count": 1
+        }
+      ],
+      "cost": 675,
+      "referenceCost": 665
+    },
+    {
+      "announcedAt": 128050.00000001438,
+      "phase": "respite",
+      "attackAt": 144050.00000001438,
+      "number": 4,
+      "epoch": "castle",
+      "tactic": "mixed",
+      "title": "Mischformation",
+      "advice": "Kombiniere eine starke Front mit Fernkampf. Halte Gold für Verstärkung zurück.",
+      "unitIds": [
+        "swordsman",
+        "archer",
+        "knight",
+        "swordsman",
+        "ballista",
+        "archer",
+        "swordsman",
+        "ballista",
+        "knight",
+        "swordsman"
+      ],
+      "roster": [
+        {
+          "id": "archer",
+          "count": 2
+        },
+        {
+          "id": "ballista",
+          "count": 2
+        },
+        {
+          "id": "knight",
+          "count": 2
+        },
+        {
+          "id": "swordsman",
+          "count": 4
+        }
+      ],
+      "cost": 1380,
+      "referenceCost": 1395
+    },
+    {
+      "announcedAt": 172083.33333332473,
+      "phase": "respite",
+      "attackAt": 188083.33333332473,
+      "number": 5,
+      "epoch": "castle",
+      "tactic": "siege",
+      "title": "Belagerung",
+      "advice": "Fange die Angreifer früh ab: Ihre Belagerungswaffen bedrohen deine Festung.",
+      "unitIds": [
+        "swordsman",
+        "ballista",
+        "ballista",
+        "swordsman",
+        "archer",
+        "archer",
+        "swordsman",
+        "ballista",
+        "ballista",
+        "swordsman"
+      ],
+      "roster": [
+        {
+          "id": "archer",
+          "count": 2
+        },
+        {
+          "id": "ballista",
+          "count": 4
+        },
+        {
+          "id": "swordsman",
+          "count": 4
+        }
+      ],
+      "cost": 1440,
+      "referenceCost": 1395
+    },
+    {
+      "announcedAt": 216116.66666663243,
+      "phase": "respite",
+      "attackAt": 232116.66666663243,
+      "number": 6,
+      "epoch": "castle",
+      "tactic": "charge",
+      "title": "Durchbruch",
+      "advice": "Schwere Angreifer suchen den Nahkampf. Halte deine Schützen hinter einer belastbaren Front.",
+      "unitIds": [
+        "swordsman",
+        "knight",
+        "archer",
+        "knight",
+        "swordsman",
+        "knight",
+        "knight",
+        "knight",
+        "archer",
+        "knight",
+        "swordsman"
+      ],
+      "roster": [
+        {
+          "id": "archer",
+          "count": 2
+        },
+        {
+          "id": "knight",
+          "count": 6
+        },
+        {
+          "id": "swordsman",
+          "count": 3
+        }
+      ],
+      "cost": 1585,
+      "referenceCost": 1560
+    },
+    {
+      "announcedAt": 260149.99999994013,
+      "phase": "respite",
+      "attackAt": 276149.99999994016,
+      "number": 7,
+      "epoch": "renaissance",
+      "tactic": "volley",
+      "title": "Schützenformation",
+      "advice": "Schütze deine schnellen Angreifer mit einer stabilen Front und erreiche die gegnerischen Schützen.",
+      "unitIds": [
+        "duelist",
+        "musketeer",
+        "cavalry",
+        "musketeer",
+        "cannon",
+        "cannon",
+        "musketeer",
+        "musketeer",
+        "cavalry",
+        "musketeer",
+        "duelist"
+      ],
+      "roster": [
+        {
+          "id": "cannon",
+          "count": 2
+        },
+        {
+          "id": "cavalry",
+          "count": 2
+        },
+        {
+          "id": "duelist",
+          "count": 2
+        },
+        {
+          "id": "musketeer",
+          "count": 5
+        }
+      ],
+      "cost": 2235,
+      "referenceCost": 2420
+    },
+    {
+      "announcedAt": 304149.9999999879,
+      "phase": "respite",
+      "attackAt": 320149.9999999879,
+      "number": 8,
+      "epoch": "renaissance",
+      "tactic": "siege",
+      "title": "Belagerung",
+      "advice": "Fange die Angreifer früh ab: Ihre Belagerungswaffen bedrohen deine Festung.",
+      "unitIds": [
+        "duelist",
+        "cavalry",
+        "cannon",
+        "duelist",
+        "cannon",
+        "musketeer",
+        "duelist",
+        "cannon",
+        "cannon",
+        "duelist",
+        "cannon",
+        "cavalry"
+      ],
+      "roster": [
+        {
+          "id": "cannon",
+          "count": 5
+        },
+        {
+          "id": "cavalry",
+          "count": 2
+        },
+        {
+          "id": "duelist",
+          "count": 4
+        },
+        {
+          "id": "musketeer",
+          "count": 1
+        }
+      ],
+      "cost": 2680,
+      "referenceCost": 2595
+    },
+    {
+      "announcedAt": 348150.0000000391,
+      "phase": "respite",
+      "attackAt": 364150.0000000391,
+      "number": 9,
+      "epoch": "renaissance",
+      "tactic": "mixed",
+      "title": "Mischformation",
+      "advice": "Kombiniere eine starke Front mit Fernkampf. Halte Gold für Verstärkung zurück.",
+      "unitIds": [
+        "duelist",
+        "musketeer",
+        "cavalry",
+        "duelist",
+        "cannon",
+        "musketeer",
+        "duelist",
+        "cavalry",
+        "cavalry",
+        "duelist",
+        "cannon",
+        "musketeer"
+      ],
+      "roster": [
+        {
+          "id": "cannon",
+          "count": 2
+        },
+        {
+          "id": "cavalry",
+          "count": 3
+        },
+        {
+          "id": "duelist",
+          "count": 4
+        },
+        {
+          "id": "musketeer",
+          "count": 3
+        }
+      ],
+      "cost": 2425,
+      "referenceCost": 2595
+    },
+    {
+      "announcedAt": 392150.00000009034,
+      "phase": "respite",
+      "attackAt": 408150.00000009034,
+      "number": 10,
+      "epoch": "modern",
+      "tactic": "charge",
+      "title": "Panzerkeil",
+      "advice": "Verstärke deine Front. Panzerabwehr und konzentriertes Feuer helfen gegen schwere Fahrzeuge.",
+      "unitIds": [
+        "tank",
+        "rifleman",
+        "grenadier",
+        "tank",
+        "rifleman",
+        "tank",
+        "rifleman",
+        "tank",
+        "rifleman",
+        "tank",
+        "rifleman",
+        "grenadier",
+        "tank"
+      ],
+      "roster": [
+        {
+          "id": "grenadier",
+          "count": 2
+        },
+        {
+          "id": "rifleman",
+          "count": 5
+        },
+        {
+          "id": "tank",
+          "count": 6
+        }
+      ],
+      "cost": 4240,
+      "referenceCost": 3945
+    },
+    {
+      "announcedAt": 436150.00000014156,
+      "phase": "respite",
+      "attackAt": 452150.00000014156,
+      "number": 11,
+      "epoch": "modern",
+      "tactic": "volley",
+      "title": "Schützenformation",
+      "advice": "Panzer nach vorn, Scharfschützen dahinter. Nutze Artillerie gegen dichte Gruppen.",
+      "unitIds": [
+        "rifleman",
+        "sniper",
+        "sniper",
+        "sniper",
+        "tank",
+        "sniper",
+        "rifleman",
+        "sniper",
+        "sniper",
+        "sniper",
+        "tank",
+        "rifleman",
+        "sniper"
+      ],
+      "roster": [
+        {
+          "id": "rifleman",
+          "count": 3
+        },
+        {
+          "id": "sniper",
+          "count": 8
+        },
+        {
+          "id": "tank",
+          "count": 2
+        }
+      ],
+      "cost": 4250,
+      "referenceCost": 3945
+    },
+    {
+      "announcedAt": 480150.0000001928,
+      "phase": "respite",
+      "attackAt": 496150.0000001928,
+      "number": 12,
+      "epoch": "modern",
+      "tactic": "mixed",
+      "title": "Mischformation",
+      "advice": "Kombiniere eine starke Front mit Fernkampf. Halte Gold für Verstärkung zurück.",
+      "unitIds": [
+        "rifleman",
+        "sniper",
+        "grenadier",
+        "tank",
+        "grenadier",
+        "sniper",
+        "rifleman",
+        "sniper",
+        "tank",
+        "rifleman",
+        "grenadier",
+        "sniper",
+        "tank",
+        "rifleman"
+      ],
+      "roster": [
+        {
+          "id": "grenadier",
+          "count": 3
+        },
+        {
+          "id": "rifleman",
+          "count": 4
+        },
+        {
+          "id": "sniper",
+          "count": 4
+        },
+        {
+          "id": "tank",
+          "count": 3
+        }
+      ],
+      "cost": 4395,
+      "referenceCost": 4365
+    },
+    {
+      "announcedAt": 524150.000000244,
+      "phase": "respite",
+      "attackAt": 540150.000000244,
+      "number": 13,
+      "epoch": "future",
+      "tactic": "siege",
+      "title": "Belagerung",
+      "advice": "Fange die Angreifer früh ab: Ihre Belagerungswaffen bedrohen deine Festung.",
+      "unitIds": [
+        "mech",
+        "super-heavy",
+        "plasma-trooper",
+        "mech",
+        "plasma-trooper",
+        "laser-soldier",
+        "plasma-trooper",
+        "super-heavy",
+        "plasma-trooper",
+        "mech",
+        "plasma-trooper",
+        "laser-soldier",
+        "mech",
+        "plasma-trooper"
+      ],
+      "roster": [
+        {
+          "id": "laser-soldier",
+          "count": 2
+        },
+        {
+          "id": "mech",
+          "count": 4
+        },
+        {
+          "id": "plasma-trooper",
+          "count": 6
+        },
+        {
+          "id": "super-heavy",
+          "count": 2
+        }
+      ],
+      "cost": 7280,
+      "referenceCost": 6830
+    },
+    {
+      "announcedAt": 568183.3333334753,
+      "phase": "respite",
+      "attackAt": 584183.3333334753,
+      "number": 14,
+      "epoch": "future",
+      "tactic": "charge",
+      "title": "Titanenvorstoß",
+      "advice": "Schwere Angreifer suchen den Nahkampf. Halte deine Schützen hinter einer belastbaren Front.",
+      "unitIds": [
+        "mech",
+        "super-heavy",
+        "laser-soldier",
+        "super-heavy",
+        "laser-soldier",
+        "plasma-trooper",
+        "laser-soldier",
+        "super-heavy",
+        "laser-soldier",
+        "super-heavy",
+        "mech",
+        "laser-soldier",
+        "super-heavy",
+        "laser-soldier"
+      ],
+      "roster": [
+        {
+          "id": "laser-soldier",
+          "count": 6
+        },
+        {
+          "id": "mech",
+          "count": 2
+        },
+        {
+          "id": "plasma-trooper",
+          "count": 1
+        },
+        {
+          "id": "super-heavy",
+          "count": 5
+        }
+      ],
+      "cost": 7360,
+      "referenceCost": 6830
+    },
+    {
+      "announcedAt": 612216.6666667061,
+      "phase": "respite",
+      "attackAt": 628216.6666667061,
+      "number": 15,
+      "epoch": "future",
+      "tactic": "volley",
+      "title": "Schützenformation",
+      "advice": "Schütze deine schnellen Angreifer mit einer stabilen Front und erreiche die gegnerischen Schützen.",
+      "unitIds": [
+        "mech",
+        "laser-soldier",
+        "super-heavy",
+        "laser-soldier",
+        "mech",
+        "plasma-trooper",
+        "laser-soldier",
+        "laser-soldier",
+        "super-heavy",
+        "laser-soldier",
+        "mech",
+        "laser-soldier",
+        "super-heavy",
+        "laser-soldier"
+      ],
+      "roster": [
+        {
+          "id": "laser-soldier",
+          "count": 7
+        },
+        {
+          "id": "mech",
+          "count": 3
+        },
+        {
+          "id": "plasma-trooper",
+          "count": 1
+        },
+        {
+          "id": "super-heavy",
+          "count": 3
+        }
+      ],
+      "cost": 6740,
+      "referenceCost": 6780
+    },
+    {
+      "announcedAt": 656249.9999999369,
+      "phase": "respite",
+      "attackAt": 672249.9999999369,
+      "number": 16,
+      "epoch": "future",
+      "tactic": "siege",
+      "title": "Belagerung",
+      "advice": "Fange die Angreifer früh ab: Ihre Belagerungswaffen bedrohen deine Festung.",
+      "unitIds": [
+        "mech",
+        "super-heavy",
+        "plasma-trooper",
+        "mech",
+        "plasma-trooper",
+        "laser-soldier",
+        "plasma-trooper",
+        "super-heavy",
+        "plasma-trooper",
+        "mech",
+        "plasma-trooper",
+        "laser-soldier",
+        "mech",
+        "plasma-trooper"
+      ],
+      "roster": [
+        {
+          "id": "laser-soldier",
+          "count": 2
+        },
+        {
+          "id": "mech",
+          "count": 4
+        },
+        {
+          "id": "plasma-trooper",
+          "count": 6
+        },
+        {
+          "id": "super-heavy",
+          "count": 2
+        }
+      ],
+      "cost": 7280,
+      "referenceCost": 6830
+    },
+    {
+      "announcedAt": 700283.3333331677,
+      "phase": "respite",
+      "attackAt": 716283.3333331677,
+      "number": 17,
+      "epoch": "future",
+      "tactic": "mixed",
+      "title": "Mischformation",
+      "advice": "Kombiniere eine starke Front mit Fernkampf. Halte Gold für Verstärkung zurück.",
+      "unitIds": [
+        "mech",
+        "laser-soldier",
+        "super-heavy",
+        "mech",
+        "plasma-trooper",
+        "laser-soldier",
+        "mech",
+        "laser-soldier",
+        "super-heavy",
+        "mech",
+        "plasma-trooper",
+        "laser-soldier",
+        "mech",
+        "super-heavy"
+      ],
+      "roster": [
+        {
+          "id": "laser-soldier",
+          "count": 4
+        },
+        {
+          "id": "mech",
+          "count": 5
+        },
+        {
+          "id": "plasma-trooper",
+          "count": 2
+        },
+        {
+          "id": "super-heavy",
+          "count": 3
+        }
+      ],
+      "cost": 7290,
+      "referenceCost": 6830
+    },
+    {
+      "announcedAt": 744316.6666663985,
+      "phase": "respite",
+      "attackAt": 760316.6666663985,
+      "number": 18,
+      "epoch": "future",
+      "tactic": "charge",
+      "title": "Titanenvorstoß",
+      "advice": "Schwere Angreifer suchen den Nahkampf. Halte deine Schützen hinter einer belastbaren Front.",
+      "unitIds": [
+        "mech",
+        "super-heavy",
+        "laser-soldier",
+        "super-heavy",
+        "laser-soldier",
+        "plasma-trooper",
+        "laser-soldier",
+        "super-heavy",
+        "laser-soldier",
+        "super-heavy",
+        "laser-soldier",
+        "plasma-trooper",
+        "super-heavy",
+        "laser-soldier"
+      ],
+      "roster": [
+        {
+          "id": "laser-soldier",
+          "count": 6
+        },
+        {
+          "id": "mech",
+          "count": 1
+        },
+        {
+          "id": "plasma-trooper",
+          "count": 2
+        },
+        {
+          "id": "super-heavy",
+          "count": 5
+        }
+      ],
+      "cost": 7310,
+      "referenceCost": 6780
+    }
+  ],
+  "waveAttempts": [
+    {
+      "t": 12016.666666666588,
+      "wave": 1,
+      "epoch": "stone",
+      "firstIndex": 0,
+      "plannedIds": [
+        "clubman"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 1,
+      "arrived": 1
+    },
+    {
+      "t": 15149.999999999807,
+      "wave": 1,
+      "epoch": "stone",
+      "firstIndex": 1,
+      "plannedIds": [
+        "slinger"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 2,
+      "arrived": 2
+    },
+    {
+      "t": 18283.333333333234,
+      "wave": 1,
+      "epoch": "stone",
+      "firstIndex": 2,
+      "plannedIds": [
+        "dino-rider"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 3,
+      "arrived": 3
+    },
+    {
+      "t": 21400.000000000127,
+      "wave": 1,
+      "epoch": "stone",
+      "firstIndex": 3,
+      "plannedIds": [
+        "spearman"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 4,
+      "arrived": 4
+    },
+    {
+      "t": 24516.66666666702,
+      "wave": 1,
+      "epoch": "stone",
+      "firstIndex": 4,
+      "plannedIds": [
+        "slinger"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 5,
+      "arrived": 5
+    },
+    {
+      "t": 27650.000000000582,
+      "wave": 1,
+      "epoch": "stone",
+      "firstIndex": 5,
+      "plannedIds": [
+        "slinger"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 6,
+      "arrived": 6
+    },
+    {
+      "t": 30766.666666667476,
+      "wave": 1,
+      "epoch": "stone",
+      "firstIndex": 6,
+      "plannedIds": [
+        "clubman"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 7,
+      "arrived": 7
+    },
+    {
+      "t": 33900.00000000079,
+      "wave": 1,
+      "epoch": "stone",
+      "firstIndex": 7,
+      "plannedIds": [
+        "spearman"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 8,
+      "arrived": 8
+    },
+    {
+      "t": 56049.99999999757,
+      "wave": 2,
+      "epoch": "stone",
+      "firstIndex": 0,
+      "plannedIds": [
+        "clubman"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 1,
+      "arrived": 1
+    },
+    {
+      "t": 58833.3333333305,
+      "wave": 2,
+      "epoch": "stone",
+      "firstIndex": 1,
+      "plannedIds": [
+        "dino-rider"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 2,
+      "arrived": 2
+    },
+    {
+      "t": 61616.66666666343,
+      "wave": 2,
+      "epoch": "stone",
+      "firstIndex": 2,
+      "plannedIds": [
+        "slinger"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 3,
+      "arrived": 3
+    },
+    {
+      "t": 64399.999999996355,
+      "wave": 2,
+      "epoch": "stone",
+      "firstIndex": 3,
+      "plannedIds": [
+        "dino-rider"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 4,
+      "arrived": 4
+    },
+    {
+      "t": 67166.66666666332,
+      "wave": 2,
+      "epoch": "stone",
+      "firstIndex": 4,
+      "plannedIds": [
+        "clubman"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 5,
+      "arrived": 5
+    },
+    {
+      "t": 69949.99999999747,
+      "wave": 2,
+      "epoch": "stone",
+      "firstIndex": 5,
+      "plannedIds": [
+        "spearman"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 6,
+      "arrived": 6
+    },
+    {
+      "t": 72716.66666666494,
+      "wave": 2,
+      "epoch": "stone",
+      "firstIndex": 6,
+      "plannedIds": [
+        "clubman"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 7,
+      "arrived": 7
+    },
+    {
+      "t": 75499.99999999908,
+      "wave": 2,
+      "epoch": "stone",
+      "firstIndex": 7,
+      "plannedIds": [
+        "dino-rider"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 8,
+      "arrived": 8
+    },
+    {
+      "t": 78283.33333333323,
+      "wave": 2,
+      "epoch": "stone",
+      "firstIndex": 8,
+      "plannedIds": [
+        "slinger"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 9,
+      "arrived": 9
+    },
+    {
+      "t": 100050.00000000623,
+      "wave": 3,
+      "epoch": "stone",
+      "firstIndex": 0,
+      "plannedIds": [
+        "clubman"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 1,
+      "arrived": 1
+    },
+    {
+      "t": 102833.33333334037,
+      "wave": 3,
+      "epoch": "stone",
+      "firstIndex": 1,
+      "plannedIds": [
+        "slinger"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 2,
+      "arrived": 2
+    },
+    {
+      "t": 105616.66666667451,
+      "wave": 3,
+      "epoch": "stone",
+      "firstIndex": 2,
+      "plannedIds": [
+        "dino-rider"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 3,
+      "arrived": 3
+    },
+    {
+      "t": 108383.33333334199,
+      "wave": 3,
+      "epoch": "stone",
+      "firstIndex": 3,
+      "plannedIds": [
+        "slinger"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 4,
+      "arrived": 4
+    },
+    {
+      "t": 111166.66666667613,
+      "wave": 3,
+      "epoch": "stone",
+      "firstIndex": 4,
+      "plannedIds": [
+        "spearman"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 5,
+      "arrived": 5
+    },
+    {
+      "t": 113950.00000001027,
+      "wave": 3,
+      "epoch": "stone",
+      "firstIndex": 5,
+      "plannedIds": [
+        "slinger"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 6,
+      "arrived": 6
+    },
+    {
+      "t": 116716.66666667775,
+      "wave": 3,
+      "epoch": "stone",
+      "firstIndex": 6,
+      "plannedIds": [
+        "slinger"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 7,
+      "arrived": 7
+    },
+    {
+      "t": 119500.00000001189,
+      "wave": 3,
+      "epoch": "stone",
+      "firstIndex": 7,
+      "plannedIds": [
+        "slinger"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 8,
+      "arrived": 8
+    },
+    {
+      "t": 122283.33333334603,
+      "wave": 3,
+      "epoch": "stone",
+      "firstIndex": 8,
+      "plannedIds": [
+        "dino-rider"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 9,
+      "arrived": 9
+    },
+    {
+      "t": 144066.66666667437,
+      "wave": 4,
+      "epoch": "castle",
+      "firstIndex": 0,
+      "plannedIds": [
+        "swordsman"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 1,
+      "arrived": 1
+    },
+    {
+      "t": 146583.33333333957,
+      "wave": 4,
+      "epoch": "castle",
+      "firstIndex": 1,
+      "plannedIds": [
+        "archer"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 2,
+      "arrived": 2
+    },
+    {
+      "t": 149083.33333333812,
+      "wave": 4,
+      "epoch": "castle",
+      "firstIndex": 2,
+      "plannedIds": [
+        "knight"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 3,
+      "arrived": 3
+    },
+    {
+      "t": 151583.33333333666,
+      "wave": 4,
+      "epoch": "castle",
+      "firstIndex": 3,
+      "plannedIds": [
+        "swordsman"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 4,
+      "arrived": 4
+    },
+    {
+      "t": 154083.3333333352,
+      "wave": 4,
+      "epoch": "castle",
+      "firstIndex": 4,
+      "plannedIds": [
+        "ballista"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 5,
+      "arrived": 5
+    },
+    {
+      "t": 156583.33333333375,
+      "wave": 4,
+      "epoch": "castle",
+      "firstIndex": 5,
+      "plannedIds": [
+        "archer"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 6,
+      "arrived": 6
+    },
+    {
+      "t": 159083.3333333323,
+      "wave": 4,
+      "epoch": "castle",
+      "firstIndex": 6,
+      "plannedIds": [
+        "swordsman"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 7,
+      "arrived": 7
+    },
+    {
+      "t": 161583.33333333084,
+      "wave": 4,
+      "epoch": "castle",
+      "firstIndex": 7,
+      "plannedIds": [
+        "ballista"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 8,
+      "arrived": 8
+    },
+    {
+      "t": 164083.33333332938,
+      "wave": 4,
+      "epoch": "castle",
+      "firstIndex": 8,
+      "plannedIds": [
+        "knight"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 9,
+      "arrived": 9
+    },
+    {
+      "t": 166583.33333332793,
+      "wave": 4,
+      "epoch": "castle",
+      "firstIndex": 9,
+      "plannedIds": [
+        "swordsman"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 10,
+      "arrived": 10
+    },
+    {
+      "t": 188099.99999998207,
+      "wave": 5,
+      "epoch": "castle",
+      "firstIndex": 0,
+      "plannedIds": [
+        "swordsman"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 1,
+      "arrived": 1
+    },
+    {
+      "t": 190616.66666664727,
+      "wave": 5,
+      "epoch": "castle",
+      "firstIndex": 1,
+      "plannedIds": [
+        "ballista"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 2,
+      "arrived": 2
+    },
+    {
+      "t": 193116.66666664582,
+      "wave": 5,
+      "epoch": "castle",
+      "firstIndex": 2,
+      "plannedIds": [
+        "ballista"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 3,
+      "arrived": 3
+    },
+    {
+      "t": 195616.66666664436,
+      "wave": 5,
+      "epoch": "castle",
+      "firstIndex": 3,
+      "plannedIds": [
+        "swordsman"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 4,
+      "arrived": 4
+    },
+    {
+      "t": 198116.6666666429,
+      "wave": 5,
+      "epoch": "castle",
+      "firstIndex": 4,
+      "plannedIds": [
+        "archer"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 5,
+      "arrived": 5
+    },
+    {
+      "t": 200616.66666664145,
+      "wave": 5,
+      "epoch": "castle",
+      "firstIndex": 5,
+      "plannedIds": [
+        "archer"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 6,
+      "arrived": 6
+    },
+    {
+      "t": 203116.66666664,
+      "wave": 5,
+      "epoch": "castle",
+      "firstIndex": 6,
+      "plannedIds": [
+        "swordsman"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 7,
+      "arrived": 7
+    },
+    {
+      "t": 205616.66666663854,
+      "wave": 5,
+      "epoch": "castle",
+      "firstIndex": 7,
+      "plannedIds": [
+        "ballista"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 8,
+      "arrived": 8
+    },
+    {
+      "t": 208116.6666666371,
+      "wave": 5,
+      "epoch": "castle",
+      "firstIndex": 8,
+      "plannedIds": [
+        "ballista"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 9,
+      "arrived": 9
+    },
+    {
+      "t": 210616.66666663563,
+      "wave": 5,
+      "epoch": "castle",
+      "firstIndex": 9,
+      "plannedIds": [
+        "swordsman"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 10,
+      "arrived": 10
+    },
+    {
+      "t": 232133.33333328977,
+      "wave": 6,
+      "epoch": "castle",
+      "firstIndex": 0,
+      "plannedIds": [
+        "swordsman"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 1,
+      "arrived": 1
+    },
+    {
+      "t": 234416.66666662178,
+      "wave": 6,
+      "epoch": "castle",
+      "firstIndex": 1,
+      "plannedIds": [
+        "knight"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 2,
+      "arrived": 2
+    },
+    {
+      "t": 236683.33333328713,
+      "wave": 6,
+      "epoch": "castle",
+      "firstIndex": 2,
+      "plannedIds": [
+        "archer"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 3,
+      "arrived": 3
+    },
+    {
+      "t": 238966.66666661913,
+      "wave": 6,
+      "epoch": "castle",
+      "firstIndex": 3,
+      "plannedIds": [
+        "knight"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 4,
+      "arrived": 4
+    },
+    {
+      "t": 241233.33333328448,
+      "wave": 6,
+      "epoch": "castle",
+      "firstIndex": 4,
+      "plannedIds": [
+        "swordsman"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 5,
+      "arrived": 5
+    },
+    {
+      "t": 243499.99999994982,
+      "wave": 6,
+      "epoch": "castle",
+      "firstIndex": 5,
+      "plannedIds": [
+        "knight"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 6,
+      "arrived": 6
+    },
+    {
+      "t": 245783.33333328183,
+      "wave": 6,
+      "epoch": "castle",
+      "firstIndex": 6,
+      "plannedIds": [
+        "knight"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 7,
+      "arrived": 7
+    },
+    {
+      "t": 248049.99999994718,
+      "wave": 6,
+      "epoch": "castle",
+      "firstIndex": 7,
+      "plannedIds": [
+        "knight"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 8,
+      "arrived": 8
+    },
+    {
+      "t": 250316.66666661252,
+      "wave": 6,
+      "epoch": "castle",
+      "firstIndex": 8,
+      "plannedIds": [
+        "archer"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 9,
+      "arrived": 9
+    },
+    {
+      "t": 252599.99999994453,
+      "wave": 6,
+      "epoch": "castle",
+      "firstIndex": 9,
+      "plannedIds": [
+        "knight"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 10,
+      "arrived": 10
+    },
+    {
+      "t": 254866.66666660988,
+      "wave": 6,
+      "epoch": "castle",
+      "firstIndex": 10,
+      "plannedIds": [
+        "swordsman"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 11,
+      "arrived": 11
+    },
+    {
+      "t": 276149.9999999553,
+      "wave": 7,
+      "epoch": "renaissance",
+      "firstIndex": 0,
+      "plannedIds": [
+        "duelist"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 1,
+      "arrived": 1
+    },
+    {
+      "t": 278433.3333332913,
+      "wave": 7,
+      "epoch": "renaissance",
+      "firstIndex": 1,
+      "plannedIds": [
+        "musketeer"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 2,
+      "arrived": 2
+    },
+    {
+      "t": 280699.9999999606,
+      "wave": 7,
+      "epoch": "renaissance",
+      "firstIndex": 2,
+      "plannedIds": [
+        "cavalry"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 3,
+      "arrived": 3
+    },
+    {
+      "t": 282983.3333332966,
+      "wave": 7,
+      "epoch": "renaissance",
+      "firstIndex": 3,
+      "plannedIds": [
+        "musketeer"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 4,
+      "arrived": 4
+    },
+    {
+      "t": 285249.9999999659,
+      "wave": 7,
+      "epoch": "renaissance",
+      "firstIndex": 4,
+      "plannedIds": [
+        "cannon"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 5,
+      "arrived": 5
+    },
+    {
+      "t": 287516.6666666352,
+      "wave": 7,
+      "epoch": "renaissance",
+      "firstIndex": 5,
+      "plannedIds": [
+        "cannon"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 6,
+      "arrived": 6
+    },
+    {
+      "t": 289799.9999999712,
+      "wave": 7,
+      "epoch": "renaissance",
+      "firstIndex": 6,
+      "plannedIds": [
+        "musketeer"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 7,
+      "arrived": 7
+    },
+    {
+      "t": 292066.6666666405,
+      "wave": 7,
+      "epoch": "renaissance",
+      "firstIndex": 7,
+      "plannedIds": [
+        "musketeer"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 8,
+      "arrived": 8
+    },
+    {
+      "t": 294333.3333333098,
+      "wave": 7,
+      "epoch": "renaissance",
+      "firstIndex": 8,
+      "plannedIds": [
+        "cavalry"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 9,
+      "arrived": 9
+    },
+    {
+      "t": 296616.6666666458,
+      "wave": 7,
+      "epoch": "renaissance",
+      "firstIndex": 9,
+      "plannedIds": [
+        "musketeer"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 10,
+      "arrived": 10
+    },
+    {
+      "t": 298883.3333333151,
+      "wave": 7,
+      "epoch": "renaissance",
+      "firstIndex": 10,
+      "plannedIds": [
+        "duelist"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 11,
+      "arrived": 11
+    },
+    {
+      "t": 320150.0000000065,
+      "wave": 8,
+      "epoch": "renaissance",
+      "firstIndex": 0,
+      "plannedIds": [
+        "duelist"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 1,
+      "arrived": 1
+    },
+    {
+      "t": 322233.3333333423,
+      "wave": 8,
+      "epoch": "renaissance",
+      "firstIndex": 1,
+      "plannedIds": [
+        "cavalry"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 2,
+      "arrived": 2
+    },
+    {
+      "t": 324316.66666667804,
+      "wave": 8,
+      "epoch": "renaissance",
+      "firstIndex": 2,
+      "plannedIds": [
+        "cannon"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 3,
+      "arrived": 3
+    },
+    {
+      "t": 326400.0000000138,
+      "wave": 8,
+      "epoch": "renaissance",
+      "firstIndex": 3,
+      "plannedIds": [
+        "duelist"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 4,
+      "arrived": 4
+    },
+    {
+      "t": 328483.33333334955,
+      "wave": 8,
+      "epoch": "renaissance",
+      "firstIndex": 4,
+      "plannedIds": [
+        "cannon"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 5,
+      "arrived": 5
+    },
+    {
+      "t": 330566.6666666853,
+      "wave": 8,
+      "epoch": "renaissance",
+      "firstIndex": 5,
+      "plannedIds": [
+        "musketeer"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 6,
+      "arrived": 6
+    },
+    {
+      "t": 332650.0000000211,
+      "wave": 8,
+      "epoch": "renaissance",
+      "firstIndex": 6,
+      "plannedIds": [
+        "duelist"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 7,
+      "arrived": 7
+    },
+    {
+      "t": 334733.33333335683,
+      "wave": 8,
+      "epoch": "renaissance",
+      "firstIndex": 7,
+      "plannedIds": [
+        "cannon"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 8,
+      "arrived": 8
+    },
+    {
+      "t": 336816.6666666926,
+      "wave": 8,
+      "epoch": "renaissance",
+      "firstIndex": 8,
+      "plannedIds": [
+        "cannon"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 9,
+      "arrived": 9
+    },
+    {
+      "t": 338900.00000002835,
+      "wave": 8,
+      "epoch": "renaissance",
+      "firstIndex": 9,
+      "plannedIds": [
+        "duelist"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 10,
+      "arrived": 10
+    },
+    {
+      "t": 340983.3333333641,
+      "wave": 8,
+      "epoch": "renaissance",
+      "firstIndex": 10,
+      "plannedIds": [
+        "cannon"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 11,
+      "arrived": 11
+    },
+    {
+      "t": 343066.66666669986,
+      "wave": 8,
+      "epoch": "renaissance",
+      "firstIndex": 11,
+      "plannedIds": [
+        "cavalry"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 12,
+      "arrived": 12
+    },
+    {
+      "t": 364150.00000005774,
+      "wave": 9,
+      "epoch": "renaissance",
+      "firstIndex": 0,
+      "plannedIds": [
+        "duelist"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 1,
+      "arrived": 1
+    },
+    {
+      "t": 366233.3333333935,
+      "wave": 9,
+      "epoch": "renaissance",
+      "firstIndex": 1,
+      "plannedIds": [
+        "musketeer"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 2,
+      "arrived": 2
+    },
+    {
+      "t": 368316.66666672926,
+      "wave": 9,
+      "epoch": "renaissance",
+      "firstIndex": 2,
+      "plannedIds": [
+        "cavalry"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 3,
+      "arrived": 3
+    },
+    {
+      "t": 370400.000000065,
+      "wave": 9,
+      "epoch": "renaissance",
+      "firstIndex": 3,
+      "plannedIds": [
+        "duelist"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 4,
+      "arrived": 4
+    },
+    {
+      "t": 372483.3333334008,
+      "wave": 9,
+      "epoch": "renaissance",
+      "firstIndex": 4,
+      "plannedIds": [
+        "cannon"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 5,
+      "arrived": 5
+    },
+    {
+      "t": 374566.66666673654,
+      "wave": 9,
+      "epoch": "renaissance",
+      "firstIndex": 5,
+      "plannedIds": [
+        "musketeer"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 6,
+      "arrived": 6
+    },
+    {
+      "t": 376650.0000000723,
+      "wave": 9,
+      "epoch": "renaissance",
+      "firstIndex": 6,
+      "plannedIds": [
+        "duelist"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 7,
+      "arrived": 7
+    },
+    {
+      "t": 378733.33333340805,
+      "wave": 9,
+      "epoch": "renaissance",
+      "firstIndex": 7,
+      "plannedIds": [
+        "cavalry"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 8,
+      "arrived": 8
+    },
+    {
+      "t": 380816.6666667438,
+      "wave": 9,
+      "epoch": "renaissance",
+      "firstIndex": 8,
+      "plannedIds": [
+        "cavalry"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 9,
+      "arrived": 9
+    },
+    {
+      "t": 382900.00000007957,
+      "wave": 9,
+      "epoch": "renaissance",
+      "firstIndex": 9,
+      "plannedIds": [
+        "duelist"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 10,
+      "arrived": 10
+    },
+    {
+      "t": 384983.3333334153,
+      "wave": 9,
+      "epoch": "renaissance",
+      "firstIndex": 10,
+      "plannedIds": [
+        "cannon"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 11,
+      "arrived": 11
+    },
+    {
+      "t": 387066.6666667511,
+      "wave": 9,
+      "epoch": "renaissance",
+      "firstIndex": 11,
+      "plannedIds": [
+        "musketeer"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 12,
+      "arrived": 12
+    },
+    {
+      "t": 408150.00000010896,
+      "wave": 10,
+      "epoch": "modern",
+      "firstIndex": 0,
+      "plannedIds": [
+        "tank"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 1,
+      "arrived": 1
+    },
+    {
+      "t": 410083.33333344455,
+      "wave": 10,
+      "epoch": "modern",
+      "firstIndex": 1,
+      "plannedIds": [
+        "rifleman"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 2,
+      "arrived": 2
+    },
+    {
+      "t": 412000.00000011345,
+      "wave": 10,
+      "epoch": "modern",
+      "firstIndex": 2,
+      "plannedIds": [
+        "grenadier"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 3,
+      "arrived": 3
+    },
+    {
+      "t": 413933.33333344903,
+      "wave": 10,
+      "epoch": "modern",
+      "firstIndex": 3,
+      "plannedIds": [
+        "tank"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 4,
+      "arrived": 4
+    },
+    {
+      "t": 415850.0000001179,
+      "wave": 10,
+      "epoch": "modern",
+      "firstIndex": 4,
+      "plannedIds": [
+        "rifleman"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 0,
+      "attempted": 5,
+      "arrived": 4
+    },
+    {
+      "t": 417766.6666667868,
+      "wave": 10,
+      "epoch": "modern",
+      "firstIndex": 5,
+      "plannedIds": [
+        "tank"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 0,
+      "attempted": 6,
+      "arrived": 4
+    },
+    {
+      "t": 419700.0000001224,
+      "wave": 10,
+      "epoch": "modern",
+      "firstIndex": 6,
+      "plannedIds": [
+        "rifleman"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 0,
+      "attempted": 7,
+      "arrived": 4
+    },
+    {
+      "t": 421616.6666667913,
+      "wave": 10,
+      "epoch": "modern",
+      "firstIndex": 7,
+      "plannedIds": [
+        "tank"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 8,
+      "arrived": 5
+    },
+    {
+      "t": 423550.0000001269,
+      "wave": 10,
+      "epoch": "modern",
+      "firstIndex": 8,
+      "plannedIds": [
+        "rifleman"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 0,
+      "attempted": 9,
+      "arrived": 5
+    },
+    {
+      "t": 425466.6666667958,
+      "wave": 10,
+      "epoch": "modern",
+      "firstIndex": 9,
+      "plannedIds": [
+        "tank"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 0,
+      "attempted": 10,
+      "arrived": 5
+    },
+    {
+      "t": 427383.3333334647,
+      "wave": 10,
+      "epoch": "modern",
+      "firstIndex": 10,
+      "plannedIds": [
+        "rifleman"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 0,
+      "attempted": 11,
+      "arrived": 5
+    },
+    {
+      "t": 429316.6666668003,
+      "wave": 10,
+      "epoch": "modern",
+      "firstIndex": 11,
+      "plannedIds": [
+        "grenadier"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 12,
+      "arrived": 6
+    },
+    {
+      "t": 431233.33333346917,
+      "wave": 10,
+      "epoch": "modern",
+      "firstIndex": 12,
+      "plannedIds": [
+        "tank"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 13,
+      "arrived": 7
+    },
+    {
+      "t": 452150.0000001602,
+      "wave": 11,
+      "epoch": "modern",
+      "firstIndex": 0,
+      "plannedIds": [
+        "rifleman"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 1,
+      "arrived": 1
+    },
+    {
+      "t": 454083.3333334958,
+      "wave": 11,
+      "epoch": "modern",
+      "firstIndex": 1,
+      "plannedIds": [
+        "sniper"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 2,
+      "arrived": 2
+    },
+    {
+      "t": 456000.00000016467,
+      "wave": 11,
+      "epoch": "modern",
+      "firstIndex": 2,
+      "plannedIds": [
+        "sniper"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 0,
+      "attempted": 3,
+      "arrived": 2
+    },
+    {
+      "t": 457933.33333350025,
+      "wave": 11,
+      "epoch": "modern",
+      "firstIndex": 3,
+      "plannedIds": [
+        "sniper"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 4,
+      "arrived": 3
+    },
+    {
+      "t": 459850.00000016915,
+      "wave": 11,
+      "epoch": "modern",
+      "firstIndex": 4,
+      "plannedIds": [
+        "tank"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 0,
+      "attempted": 5,
+      "arrived": 3
+    },
+    {
+      "t": 461766.66666683805,
+      "wave": 11,
+      "epoch": "modern",
+      "firstIndex": 5,
+      "plannedIds": [
+        "sniper"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 6,
+      "arrived": 4
+    },
+    {
+      "t": 463700.00000017363,
+      "wave": 11,
+      "epoch": "modern",
+      "firstIndex": 6,
+      "plannedIds": [
+        "rifleman"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 0,
+      "attempted": 7,
+      "arrived": 4
+    },
+    {
+      "t": 465616.66666684253,
+      "wave": 11,
+      "epoch": "modern",
+      "firstIndex": 7,
+      "plannedIds": [
+        "sniper"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 0,
+      "attempted": 8,
+      "arrived": 4
+    },
+    {
+      "t": 467550.0000001781,
+      "wave": 11,
+      "epoch": "modern",
+      "firstIndex": 8,
+      "plannedIds": [
+        "sniper"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 9,
+      "arrived": 5
+    },
+    {
+      "t": 469466.666666847,
+      "wave": 11,
+      "epoch": "modern",
+      "firstIndex": 9,
+      "plannedIds": [
+        "sniper"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 10,
+      "arrived": 6
+    },
+    {
+      "t": 471383.3333335159,
+      "wave": 11,
+      "epoch": "modern",
+      "firstIndex": 10,
+      "plannedIds": [
+        "tank"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 0,
+      "attempted": 11,
+      "arrived": 6
+    },
+    {
+      "t": 473316.6666668515,
+      "wave": 11,
+      "epoch": "modern",
+      "firstIndex": 11,
+      "plannedIds": [
+        "rifleman"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 12,
+      "arrived": 7
+    },
+    {
+      "t": 475233.3333335204,
+      "wave": 11,
+      "epoch": "modern",
+      "firstIndex": 12,
+      "plannedIds": [
+        "sniper"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 13,
+      "arrived": 8
+    },
+    {
+      "t": 496150.0000002114,
+      "wave": 12,
+      "epoch": "modern",
+      "firstIndex": 0,
+      "plannedIds": [
+        "rifleman"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 1,
+      "arrived": 1
+    },
+    {
+      "t": 497950.0000002135,
+      "wave": 12,
+      "epoch": "modern",
+      "firstIndex": 1,
+      "plannedIds": [
+        "sniper"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 2,
+      "arrived": 2
+    },
+    {
+      "t": 499733.3333335489,
+      "wave": 12,
+      "epoch": "modern",
+      "firstIndex": 2,
+      "plannedIds": [
+        "grenadier"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 3,
+      "arrived": 3
+    },
+    {
+      "t": 501516.6666668843,
+      "wave": 12,
+      "epoch": "modern",
+      "firstIndex": 3,
+      "plannedIds": [
+        "tank"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 4,
+      "arrived": 4
+    },
+    {
+      "t": 503300.00000021973,
+      "wave": 12,
+      "epoch": "modern",
+      "firstIndex": 4,
+      "plannedIds": [
+        "grenadier"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 5,
+      "arrived": 5
+    },
+    {
+      "t": 505083.33333355514,
+      "wave": 12,
+      "epoch": "modern",
+      "firstIndex": 5,
+      "plannedIds": [
+        "sniper"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 6,
+      "arrived": 6
+    },
+    {
+      "t": 506866.66666689055,
+      "wave": 12,
+      "epoch": "modern",
+      "firstIndex": 6,
+      "plannedIds": [
+        "rifleman"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 7,
+      "arrived": 7
+    },
+    {
+      "t": 508650.00000022596,
+      "wave": 12,
+      "epoch": "modern",
+      "firstIndex": 7,
+      "plannedIds": [
+        "sniper"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 8,
+      "arrived": 8
+    },
+    {
+      "t": 510450.00000022806,
+      "wave": 12,
+      "epoch": "modern",
+      "firstIndex": 8,
+      "plannedIds": [
+        "tank"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 9,
+      "arrived": 9
+    },
+    {
+      "t": 512233.33333356347,
+      "wave": 12,
+      "epoch": "modern",
+      "firstIndex": 9,
+      "plannedIds": [
+        "rifleman"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 10,
+      "arrived": 10
+    },
+    {
+      "t": 514016.6666668989,
+      "wave": 12,
+      "epoch": "modern",
+      "firstIndex": 10,
+      "plannedIds": [
+        "grenadier"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 11,
+      "arrived": 11
+    },
+    {
+      "t": 515800.0000002343,
+      "wave": 12,
+      "epoch": "modern",
+      "firstIndex": 11,
+      "plannedIds": [
+        "sniper"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 12,
+      "arrived": 12
+    },
+    {
+      "t": 517583.3333335697,
+      "wave": 12,
+      "epoch": "modern",
+      "firstIndex": 12,
+      "plannedIds": [
+        "tank"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 13,
+      "arrived": 13
+    },
+    {
+      "t": 519366.6666669051,
+      "wave": 12,
+      "epoch": "modern",
+      "firstIndex": 13,
+      "plannedIds": [
+        "rifleman"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 14,
+      "arrived": 14
+    },
+    {
+      "t": 540166.6666668738,
+      "wave": 13,
+      "epoch": "future",
+      "firstIndex": 0,
+      "plannedIds": [
+        "mech"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 1,
+      "arrived": 1
+    },
+    {
+      "t": 541966.6666668697,
+      "wave": 13,
+      "epoch": "future",
+      "firstIndex": 1,
+      "plannedIds": [
+        "super-heavy"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 2,
+      "arrived": 2
+    },
+    {
+      "t": 543750.0000001988,
+      "wave": 13,
+      "epoch": "future",
+      "firstIndex": 2,
+      "plannedIds": [
+        "plasma-trooper"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 3,
+      "arrived": 3
+    },
+    {
+      "t": 545533.333333528,
+      "wave": 13,
+      "epoch": "future",
+      "firstIndex": 3,
+      "plannedIds": [
+        "mech"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 4,
+      "arrived": 4
+    },
+    {
+      "t": 547316.6666668572,
+      "wave": 13,
+      "epoch": "future",
+      "firstIndex": 4,
+      "plannedIds": [
+        "plasma-trooper"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 5,
+      "arrived": 5
+    },
+    {
+      "t": 549100.0000001864,
+      "wave": 13,
+      "epoch": "future",
+      "firstIndex": 5,
+      "plannedIds": [
+        "laser-soldier"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 6,
+      "arrived": 6
+    },
+    {
+      "t": 550883.3333335156,
+      "wave": 13,
+      "epoch": "future",
+      "firstIndex": 6,
+      "plannedIds": [
+        "plasma-trooper"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 7,
+      "arrived": 7
+    },
+    {
+      "t": 552683.3333335114,
+      "wave": 13,
+      "epoch": "future",
+      "firstIndex": 7,
+      "plannedIds": [
+        "super-heavy"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 8,
+      "arrived": 8
+    },
+    {
+      "t": 554466.6666668406,
+      "wave": 13,
+      "epoch": "future",
+      "firstIndex": 8,
+      "plannedIds": [
+        "plasma-trooper"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 9,
+      "arrived": 9
+    },
+    {
+      "t": 556250.0000001697,
+      "wave": 13,
+      "epoch": "future",
+      "firstIndex": 9,
+      "plannedIds": [
+        "mech"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 10,
+      "arrived": 10
+    },
+    {
+      "t": 558033.3333334989,
+      "wave": 13,
+      "epoch": "future",
+      "firstIndex": 10,
+      "plannedIds": [
+        "plasma-trooper"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 11,
+      "arrived": 11
+    },
+    {
+      "t": 559816.6666668281,
+      "wave": 13,
+      "epoch": "future",
+      "firstIndex": 11,
+      "plannedIds": [
+        "laser-soldier"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 12,
+      "arrived": 12
+    },
+    {
+      "t": 561600.0000001573,
+      "wave": 13,
+      "epoch": "future",
+      "firstIndex": 12,
+      "plannedIds": [
+        "mech"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 13,
+      "arrived": 13
+    },
+    {
+      "t": 563383.3333334865,
+      "wave": 13,
+      "epoch": "future",
+      "firstIndex": 13,
+      "plannedIds": [
+        "plasma-trooper"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 14,
+      "arrived": 14
+    },
+    {
+      "t": 584200.0000001047,
+      "wave": 14,
+      "epoch": "future",
+      "firstIndex": 0,
+      "plannedIds": [
+        "mech"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 1,
+      "arrived": 1
+    },
+    {
+      "t": 586000.0000001005,
+      "wave": 14,
+      "epoch": "future",
+      "firstIndex": 1,
+      "plannedIds": [
+        "super-heavy"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 2,
+      "arrived": 2
+    },
+    {
+      "t": 587783.3333334296,
+      "wave": 14,
+      "epoch": "future",
+      "firstIndex": 2,
+      "plannedIds": [
+        "laser-soldier"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 3,
+      "arrived": 3
+    },
+    {
+      "t": 589566.6666667588,
+      "wave": 14,
+      "epoch": "future",
+      "firstIndex": 3,
+      "plannedIds": [
+        "super-heavy"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 4,
+      "arrived": 4
+    },
+    {
+      "t": 591350.000000088,
+      "wave": 14,
+      "epoch": "future",
+      "firstIndex": 4,
+      "plannedIds": [
+        "laser-soldier"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 5,
+      "arrived": 5
+    },
+    {
+      "t": 593133.3333334172,
+      "wave": 14,
+      "epoch": "future",
+      "firstIndex": 5,
+      "plannedIds": [
+        "plasma-trooper"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 6,
+      "arrived": 6
+    },
+    {
+      "t": 594916.6666667464,
+      "wave": 14,
+      "epoch": "future",
+      "firstIndex": 6,
+      "plannedIds": [
+        "laser-soldier"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 7,
+      "arrived": 7
+    },
+    {
+      "t": 596716.6666667422,
+      "wave": 14,
+      "epoch": "future",
+      "firstIndex": 7,
+      "plannedIds": [
+        "super-heavy"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 8,
+      "arrived": 8
+    },
+    {
+      "t": 598500.0000000714,
+      "wave": 14,
+      "epoch": "future",
+      "firstIndex": 8,
+      "plannedIds": [
+        "laser-soldier"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 9,
+      "arrived": 9
+    },
+    {
+      "t": 600283.3333334005,
+      "wave": 14,
+      "epoch": "future",
+      "firstIndex": 9,
+      "plannedIds": [
+        "super-heavy"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 10,
+      "arrived": 10
+    },
+    {
+      "t": 602066.6666667297,
+      "wave": 14,
+      "epoch": "future",
+      "firstIndex": 10,
+      "plannedIds": [
+        "mech"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 11,
+      "arrived": 11
+    },
+    {
+      "t": 603850.0000000589,
+      "wave": 14,
+      "epoch": "future",
+      "firstIndex": 11,
+      "plannedIds": [
+        "laser-soldier"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 12,
+      "arrived": 12
+    },
+    {
+      "t": 605633.3333333881,
+      "wave": 14,
+      "epoch": "future",
+      "firstIndex": 12,
+      "plannedIds": [
+        "super-heavy"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 13,
+      "arrived": 13
+    },
+    {
+      "t": 607416.6666667173,
+      "wave": 14,
+      "epoch": "future",
+      "firstIndex": 13,
+      "plannedIds": [
+        "laser-soldier"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 14,
+      "arrived": 14
+    },
+    {
+      "t": 628233.3333333355,
+      "wave": 15,
+      "epoch": "future",
+      "firstIndex": 0,
+      "plannedIds": [
+        "mech"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 1,
+      "arrived": 1
+    },
+    {
+      "t": 630033.3333333313,
+      "wave": 15,
+      "epoch": "future",
+      "firstIndex": 1,
+      "plannedIds": [
+        "laser-soldier"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 2,
+      "arrived": 2
+    },
+    {
+      "t": 631816.6666666605,
+      "wave": 15,
+      "epoch": "future",
+      "firstIndex": 2,
+      "plannedIds": [
+        "super-heavy"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 3,
+      "arrived": 3
+    },
+    {
+      "t": 633599.9999999896,
+      "wave": 15,
+      "epoch": "future",
+      "firstIndex": 3,
+      "plannedIds": [
+        "laser-soldier"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 4,
+      "arrived": 4
+    },
+    {
+      "t": 635383.3333333188,
+      "wave": 15,
+      "epoch": "future",
+      "firstIndex": 4,
+      "plannedIds": [
+        "mech"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 5,
+      "arrived": 5
+    },
+    {
+      "t": 637166.666666648,
+      "wave": 15,
+      "epoch": "future",
+      "firstIndex": 5,
+      "plannedIds": [
+        "plasma-trooper"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 6,
+      "arrived": 6
+    },
+    {
+      "t": 638949.9999999772,
+      "wave": 15,
+      "epoch": "future",
+      "firstIndex": 6,
+      "plannedIds": [
+        "laser-soldier"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 7,
+      "arrived": 7
+    },
+    {
+      "t": 640749.999999973,
+      "wave": 15,
+      "epoch": "future",
+      "firstIndex": 7,
+      "plannedIds": [
+        "laser-soldier"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 8,
+      "arrived": 8
+    },
+    {
+      "t": 642533.3333333022,
+      "wave": 15,
+      "epoch": "future",
+      "firstIndex": 8,
+      "plannedIds": [
+        "super-heavy"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 9,
+      "arrived": 9
+    },
+    {
+      "t": 644316.6666666314,
+      "wave": 15,
+      "epoch": "future",
+      "firstIndex": 9,
+      "plannedIds": [
+        "laser-soldier"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 10,
+      "arrived": 10
+    },
+    {
+      "t": 646099.9999999605,
+      "wave": 15,
+      "epoch": "future",
+      "firstIndex": 10,
+      "plannedIds": [
+        "mech"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 11,
+      "arrived": 11
+    },
+    {
+      "t": 647883.3333332897,
+      "wave": 15,
+      "epoch": "future",
+      "firstIndex": 11,
+      "plannedIds": [
+        "laser-soldier"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 12,
+      "arrived": 12
+    },
+    {
+      "t": 649666.6666666189,
+      "wave": 15,
+      "epoch": "future",
+      "firstIndex": 12,
+      "plannedIds": [
+        "super-heavy"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 13,
+      "arrived": 13
+    },
+    {
+      "t": 651449.9999999481,
+      "wave": 15,
+      "epoch": "future",
+      "firstIndex": 13,
+      "plannedIds": [
+        "laser-soldier"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 14,
+      "arrived": 14
+    },
+    {
+      "t": 672266.6666665663,
+      "wave": 16,
+      "epoch": "future",
+      "firstIndex": 0,
+      "plannedIds": [
+        "mech"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 1,
+      "arrived": 1
+    },
+    {
+      "t": 674066.6666665621,
+      "wave": 16,
+      "epoch": "future",
+      "firstIndex": 1,
+      "plannedIds": [
+        "super-heavy"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 2,
+      "arrived": 2
+    },
+    {
+      "t": 675849.9999998913,
+      "wave": 16,
+      "epoch": "future",
+      "firstIndex": 2,
+      "plannedIds": [
+        "plasma-trooper"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 3,
+      "arrived": 3
+    },
+    {
+      "t": 677633.3333332204,
+      "wave": 16,
+      "epoch": "future",
+      "firstIndex": 3,
+      "plannedIds": [
+        "mech"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 4,
+      "arrived": 4
+    },
+    {
+      "t": 679416.6666665496,
+      "wave": 16,
+      "epoch": "future",
+      "firstIndex": 4,
+      "plannedIds": [
+        "plasma-trooper"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 5,
+      "arrived": 5
+    },
+    {
+      "t": 681199.9999998788,
+      "wave": 16,
+      "epoch": "future",
+      "firstIndex": 5,
+      "plannedIds": [
+        "laser-soldier"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 6,
+      "arrived": 6
+    },
+    {
+      "t": 682983.333333208,
+      "wave": 16,
+      "epoch": "future",
+      "firstIndex": 6,
+      "plannedIds": [
+        "plasma-trooper"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 7,
+      "arrived": 7
+    },
+    {
+      "t": 684783.3333332038,
+      "wave": 16,
+      "epoch": "future",
+      "firstIndex": 7,
+      "plannedIds": [
+        "super-heavy"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 8,
+      "arrived": 8
+    },
+    {
+      "t": 686566.666666533,
+      "wave": 16,
+      "epoch": "future",
+      "firstIndex": 8,
+      "plannedIds": [
+        "plasma-trooper"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 9,
+      "arrived": 9
+    },
+    {
+      "t": 688349.9999998622,
+      "wave": 16,
+      "epoch": "future",
+      "firstIndex": 9,
+      "plannedIds": [
+        "mech"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 10,
+      "arrived": 10
+    },
+    {
+      "t": 690133.3333331913,
+      "wave": 16,
+      "epoch": "future",
+      "firstIndex": 10,
+      "plannedIds": [
+        "plasma-trooper"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 11,
+      "arrived": 11
+    },
+    {
+      "t": 691916.6666665205,
+      "wave": 16,
+      "epoch": "future",
+      "firstIndex": 11,
+      "plannedIds": [
+        "laser-soldier"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 12,
+      "arrived": 12
+    },
+    {
+      "t": 693699.9999998497,
+      "wave": 16,
+      "epoch": "future",
+      "firstIndex": 12,
+      "plannedIds": [
+        "mech"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 13,
+      "arrived": 13
+    },
+    {
+      "t": 695483.3333331789,
+      "wave": 16,
+      "epoch": "future",
+      "firstIndex": 13,
+      "plannedIds": [
+        "plasma-trooper"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 14,
+      "arrived": 14
+    },
+    {
+      "t": 716299.9999997971,
+      "wave": 17,
+      "epoch": "future",
+      "firstIndex": 0,
+      "plannedIds": [
+        "mech"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 1,
+      "arrived": 1
+    },
+    {
+      "t": 718099.9999997929,
+      "wave": 17,
+      "epoch": "future",
+      "firstIndex": 1,
+      "plannedIds": [
+        "laser-soldier"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 2,
+      "arrived": 2
+    },
+    {
+      "t": 719883.3333331221,
+      "wave": 17,
+      "epoch": "future",
+      "firstIndex": 2,
+      "plannedIds": [
+        "super-heavy"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 3,
+      "arrived": 3
+    },
+    {
+      "t": 721666.6666664513,
+      "wave": 17,
+      "epoch": "future",
+      "firstIndex": 3,
+      "plannedIds": [
+        "mech"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 4,
+      "arrived": 4
+    },
+    {
+      "t": 723449.9999997804,
+      "wave": 17,
+      "epoch": "future",
+      "firstIndex": 4,
+      "plannedIds": [
+        "plasma-trooper"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 5,
+      "arrived": 5
+    },
+    {
+      "t": 725233.3333331096,
+      "wave": 17,
+      "epoch": "future",
+      "firstIndex": 5,
+      "plannedIds": [
+        "laser-soldier"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 6,
+      "arrived": 6
+    },
+    {
+      "t": 727016.6666664388,
+      "wave": 17,
+      "epoch": "future",
+      "firstIndex": 6,
+      "plannedIds": [
+        "mech"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 7,
+      "arrived": 7
+    },
+    {
+      "t": 728816.6666664346,
+      "wave": 17,
+      "epoch": "future",
+      "firstIndex": 7,
+      "plannedIds": [
+        "laser-soldier"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 8,
+      "arrived": 8
+    },
+    {
+      "t": 730599.9999997638,
+      "wave": 17,
+      "epoch": "future",
+      "firstIndex": 8,
+      "plannedIds": [
+        "super-heavy"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 9,
+      "arrived": 9
+    },
+    {
+      "t": 732383.333333093,
+      "wave": 17,
+      "epoch": "future",
+      "firstIndex": 9,
+      "plannedIds": [
+        "mech"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 10,
+      "arrived": 10
+    },
+    {
+      "t": 734166.6666664222,
+      "wave": 17,
+      "epoch": "future",
+      "firstIndex": 10,
+      "plannedIds": [
+        "plasma-trooper"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 11,
+      "arrived": 11
+    },
+    {
+      "t": 735949.9999997513,
+      "wave": 17,
+      "epoch": "future",
+      "firstIndex": 11,
+      "plannedIds": [
+        "laser-soldier"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 12,
+      "arrived": 12
+    },
+    {
+      "t": 737733.3333330805,
+      "wave": 17,
+      "epoch": "future",
+      "firstIndex": 12,
+      "plannedIds": [
+        "mech"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 13,
+      "arrived": 13
+    },
+    {
+      "t": 739516.6666664097,
+      "wave": 17,
+      "epoch": "future",
+      "firstIndex": 13,
+      "plannedIds": [
+        "super-heavy"
+      ],
+      "attemptedDelta": 1,
+      "arrivedDelta": 1,
+      "attempted": 14,
+      "arrived": 14
+    }
+  ],
+  "observedEnemySpawns": [
+    {
+      "t": 12016.666666666588,
+      "wave": 1,
+      "uid": 7,
+      "id": "clubman",
+      "epoch": "stone",
+      "spawnedAt": 12016.666666666588,
+      "goldCost": 50,
+      "maxHp": 96,
+      "damage": 12
+    },
+    {
+      "t": 15149.999999999807,
+      "wave": 1,
+      "uid": 9,
+      "id": "slinger",
+      "epoch": "stone",
+      "spawnedAt": 15149.999999999807,
+      "goldCost": 65,
+      "maxHp": 50,
+      "damage": 18
+    },
+    {
+      "t": 18283.333333333234,
+      "wave": 1,
+      "uid": 10,
+      "id": "dino-rider",
+      "epoch": "stone",
+      "spawnedAt": 18283.333333333234,
+      "goldCost": 115,
+      "maxHp": 210,
+      "damage": 20
+    },
+    {
+      "t": 21400.000000000127,
+      "wave": 1,
+      "uid": 12,
+      "id": "spearman",
+      "epoch": "stone",
+      "spawnedAt": 21400.000000000127,
+      "goldCost": 70,
+      "maxHp": 125,
+      "damage": 15
+    },
+    {
+      "t": 24516.66666666702,
+      "wave": 1,
+      "uid": 14,
+      "id": "slinger",
+      "epoch": "stone",
+      "spawnedAt": 24516.66666666702,
+      "goldCost": 65,
+      "maxHp": 50,
+      "damage": 18
+    },
+    {
+      "t": 27650.000000000582,
+      "wave": 1,
+      "uid": 15,
+      "id": "slinger",
+      "epoch": "stone",
+      "spawnedAt": 27650.000000000582,
+      "goldCost": 65,
+      "maxHp": 50,
+      "damage": 18
+    },
+    {
+      "t": 30766.666666667476,
+      "wave": 1,
+      "uid": 17,
+      "id": "clubman",
+      "epoch": "stone",
+      "spawnedAt": 30766.666666667476,
+      "goldCost": 50,
+      "maxHp": 96,
+      "damage": 12
+    },
+    {
+      "t": 33900.00000000079,
+      "wave": 1,
+      "uid": 19,
+      "id": "spearman",
+      "epoch": "stone",
+      "spawnedAt": 33900.00000000079,
+      "goldCost": 70,
+      "maxHp": 125,
+      "damage": 15
+    },
+    {
+      "t": 56049.99999999757,
+      "wave": 2,
+      "uid": 25,
+      "id": "clubman",
+      "epoch": "stone",
+      "spawnedAt": 56049.99999999757,
+      "goldCost": 50,
+      "maxHp": 96,
+      "damage": 12
+    },
+    {
+      "t": 58833.3333333305,
+      "wave": 2,
+      "uid": 26,
+      "id": "dino-rider",
+      "epoch": "stone",
+      "spawnedAt": 58833.3333333305,
+      "goldCost": 115,
+      "maxHp": 210,
+      "damage": 20
+    },
+    {
+      "t": 61616.66666666343,
+      "wave": 2,
+      "uid": 28,
+      "id": "slinger",
+      "epoch": "stone",
+      "spawnedAt": 61616.66666666343,
+      "goldCost": 65,
+      "maxHp": 50,
+      "damage": 18
+    },
+    {
+      "t": 64399.999999996355,
+      "wave": 2,
+      "uid": 29,
+      "id": "dino-rider",
+      "epoch": "stone",
+      "spawnedAt": 64399.999999996355,
+      "goldCost": 115,
+      "maxHp": 210,
+      "damage": 20
+    },
+    {
+      "t": 67166.66666666332,
+      "wave": 2,
+      "uid": 31,
+      "id": "clubman",
+      "epoch": "stone",
+      "spawnedAt": 67166.66666666332,
+      "goldCost": 50,
+      "maxHp": 96,
+      "damage": 12
+    },
+    {
+      "t": 69949.99999999747,
+      "wave": 2,
+      "uid": 32,
+      "id": "spearman",
+      "epoch": "stone",
+      "spawnedAt": 69949.99999999747,
+      "goldCost": 70,
+      "maxHp": 125,
+      "damage": 15
+    },
+    {
+      "t": 72716.66666666494,
+      "wave": 2,
+      "uid": 33,
+      "id": "clubman",
+      "epoch": "stone",
+      "spawnedAt": 72716.66666666494,
+      "goldCost": 50,
+      "maxHp": 96,
+      "damage": 12
+    },
+    {
+      "t": 75499.99999999908,
+      "wave": 2,
+      "uid": 36,
+      "id": "dino-rider",
+      "epoch": "stone",
+      "spawnedAt": 75499.99999999908,
+      "goldCost": 115,
+      "maxHp": 210,
+      "damage": 20
+    },
+    {
+      "t": 78283.33333333323,
+      "wave": 2,
+      "uid": 38,
+      "id": "slinger",
+      "epoch": "stone",
+      "spawnedAt": 78283.33333333323,
+      "goldCost": 65,
+      "maxHp": 50,
+      "damage": 18
+    },
+    {
+      "t": 100050.00000000623,
+      "wave": 3,
+      "uid": 47,
+      "id": "clubman",
+      "epoch": "stone",
+      "spawnedAt": 100050.00000000623,
+      "goldCost": 50,
+      "maxHp": 96,
+      "damage": 12
+    },
+    {
+      "t": 102833.33333334037,
+      "wave": 3,
+      "uid": 48,
+      "id": "slinger",
+      "epoch": "stone",
+      "spawnedAt": 102833.33333334037,
+      "goldCost": 65,
+      "maxHp": 50,
+      "damage": 18
+    },
+    {
+      "t": 105616.66666667451,
+      "wave": 3,
+      "uid": 50,
+      "id": "dino-rider",
+      "epoch": "stone",
+      "spawnedAt": 105616.66666667451,
+      "goldCost": 115,
+      "maxHp": 210,
+      "damage": 20
+    },
+    {
+      "t": 108383.33333334199,
+      "wave": 3,
+      "uid": 51,
+      "id": "slinger",
+      "epoch": "stone",
+      "spawnedAt": 108383.33333334199,
+      "goldCost": 65,
+      "maxHp": 50,
+      "damage": 18
+    },
+    {
+      "t": 111166.66666667613,
+      "wave": 3,
+      "uid": 53,
+      "id": "spearman",
+      "epoch": "stone",
+      "spawnedAt": 111166.66666667613,
+      "goldCost": 70,
+      "maxHp": 125,
+      "damage": 15
+    },
+    {
+      "t": 113950.00000001027,
+      "wave": 3,
+      "uid": 54,
+      "id": "slinger",
+      "epoch": "stone",
+      "spawnedAt": 113950.00000001027,
+      "goldCost": 65,
+      "maxHp": 50,
+      "damage": 18
+    },
+    {
+      "t": 116716.66666667775,
+      "wave": 3,
+      "uid": 56,
+      "id": "slinger",
+      "epoch": "stone",
+      "spawnedAt": 116716.66666667775,
+      "goldCost": 65,
+      "maxHp": 50,
+      "damage": 18
+    },
+    {
+      "t": 119500.00000001189,
+      "wave": 3,
+      "uid": 57,
+      "id": "slinger",
+      "epoch": "stone",
+      "spawnedAt": 119500.00000001189,
+      "goldCost": 65,
+      "maxHp": 50,
+      "damage": 18
+    },
+    {
+      "t": 122283.33333334603,
+      "wave": 3,
+      "uid": 59,
+      "id": "dino-rider",
+      "epoch": "stone",
+      "spawnedAt": 122283.33333334603,
+      "goldCost": 115,
+      "maxHp": 210,
+      "damage": 20
+    },
+    {
+      "t": 144066.66666667437,
+      "wave": 4,
+      "uid": 64,
+      "id": "swordsman",
+      "epoch": "castle",
+      "spawnedAt": 144066.66666667437,
+      "goldCost": 95,
+      "maxHp": 180,
+      "damage": 25
+    },
+    {
+      "t": 146583.33333333957,
+      "wave": 4,
+      "uid": 66,
+      "id": "archer",
+      "epoch": "castle",
+      "spawnedAt": 146583.33333333957,
+      "goldCost": 110,
+      "maxHp": 88,
+      "damage": 32
+    },
+    {
+      "t": 149083.33333333812,
+      "wave": 4,
+      "uid": 67,
+      "id": "knight",
+      "epoch": "castle",
+      "spawnedAt": 149083.33333333812,
+      "goldCost": 180,
+      "maxHp": 330,
+      "damage": 38
+    },
+    {
+      "t": 151583.33333333666,
+      "wave": 4,
+      "uid": 68,
+      "id": "swordsman",
+      "epoch": "castle",
+      "spawnedAt": 151583.33333333666,
+      "goldCost": 95,
+      "maxHp": 180,
+      "damage": 25
+    },
+    {
+      "t": 154083.3333333352,
+      "wave": 4,
+      "uid": 70,
+      "id": "ballista",
+      "epoch": "castle",
+      "spawnedAt": 154083.3333333352,
+      "goldCost": 210,
+      "maxHp": 150,
+      "damage": 60
+    },
+    {
+      "t": 156583.33333333375,
+      "wave": 4,
+      "uid": 71,
+      "id": "archer",
+      "epoch": "castle",
+      "spawnedAt": 156583.33333333375,
+      "goldCost": 110,
+      "maxHp": 88,
+      "damage": 32
+    },
+    {
+      "t": 159083.3333333323,
+      "wave": 4,
+      "uid": 72,
+      "id": "swordsman",
+      "epoch": "castle",
+      "spawnedAt": 159083.3333333323,
+      "goldCost": 95,
+      "maxHp": 180,
+      "damage": 25
+    },
+    {
+      "t": 161583.33333333084,
+      "wave": 4,
+      "uid": 74,
+      "id": "ballista",
+      "epoch": "castle",
+      "spawnedAt": 161583.33333333084,
+      "goldCost": 210,
+      "maxHp": 150,
+      "damage": 60
+    },
+    {
+      "t": 164083.33333332938,
+      "wave": 4,
+      "uid": 75,
+      "id": "knight",
+      "epoch": "castle",
+      "spawnedAt": 164083.33333332938,
+      "goldCost": 180,
+      "maxHp": 330,
+      "damage": 38
+    },
+    {
+      "t": 166583.33333332793,
+      "wave": 4,
+      "uid": 78,
+      "id": "swordsman",
+      "epoch": "castle",
+      "spawnedAt": 166583.33333332793,
+      "goldCost": 95,
+      "maxHp": 180,
+      "damage": 25
+    },
+    {
+      "t": 188099.99999998207,
+      "wave": 5,
+      "uid": 84,
+      "id": "swordsman",
+      "epoch": "castle",
+      "spawnedAt": 188099.99999998207,
+      "goldCost": 95,
+      "maxHp": 180,
+      "damage": 25
+    },
+    {
+      "t": 190616.66666664727,
+      "wave": 5,
+      "uid": 85,
+      "id": "ballista",
+      "epoch": "castle",
+      "spawnedAt": 190616.66666664727,
+      "goldCost": 210,
+      "maxHp": 150,
+      "damage": 60
+    },
+    {
+      "t": 193116.66666664582,
+      "wave": 5,
+      "uid": 86,
+      "id": "ballista",
+      "epoch": "castle",
+      "spawnedAt": 193116.66666664582,
+      "goldCost": 210,
+      "maxHp": 150,
+      "damage": 60
+    },
+    {
+      "t": 195616.66666664436,
+      "wave": 5,
+      "uid": 88,
+      "id": "swordsman",
+      "epoch": "castle",
+      "spawnedAt": 195616.66666664436,
+      "goldCost": 95,
+      "maxHp": 180,
+      "damage": 25
+    },
+    {
+      "t": 198116.6666666429,
+      "wave": 5,
+      "uid": 89,
+      "id": "archer",
+      "epoch": "castle",
+      "spawnedAt": 198116.6666666429,
+      "goldCost": 110,
+      "maxHp": 88,
+      "damage": 32
+    },
+    {
+      "t": 200616.66666664145,
+      "wave": 5,
+      "uid": 90,
+      "id": "archer",
+      "epoch": "castle",
+      "spawnedAt": 200616.66666664145,
+      "goldCost": 110,
+      "maxHp": 88,
+      "damage": 32
+    },
+    {
+      "t": 203116.66666664,
+      "wave": 5,
+      "uid": 92,
+      "id": "swordsman",
+      "epoch": "castle",
+      "spawnedAt": 203116.66666664,
+      "goldCost": 95,
+      "maxHp": 180,
+      "damage": 25
+    },
+    {
+      "t": 205616.66666663854,
+      "wave": 5,
+      "uid": 94,
+      "id": "ballista",
+      "epoch": "castle",
+      "spawnedAt": 205616.66666663854,
+      "goldCost": 210,
+      "maxHp": 150,
+      "damage": 60
+    },
+    {
+      "t": 208116.6666666371,
+      "wave": 5,
+      "uid": 95,
+      "id": "ballista",
+      "epoch": "castle",
+      "spawnedAt": 208116.6666666371,
+      "goldCost": 210,
+      "maxHp": 150,
+      "damage": 60
+    },
+    {
+      "t": 210616.66666663563,
+      "wave": 5,
+      "uid": 97,
+      "id": "swordsman",
+      "epoch": "castle",
+      "spawnedAt": 210616.66666663563,
+      "goldCost": 95,
+      "maxHp": 180,
+      "damage": 25
+    },
+    {
+      "t": 232133.33333328977,
+      "wave": 6,
+      "uid": 104,
+      "id": "swordsman",
+      "epoch": "castle",
+      "spawnedAt": 232133.33333328977,
+      "goldCost": 95,
+      "maxHp": 180,
+      "damage": 25
+    },
+    {
+      "t": 234416.66666662178,
+      "wave": 6,
+      "uid": 106,
+      "id": "knight",
+      "epoch": "castle",
+      "spawnedAt": 234416.66666662178,
+      "goldCost": 180,
+      "maxHp": 330,
+      "damage": 38
+    },
+    {
+      "t": 236683.33333328713,
+      "wave": 6,
+      "uid": 107,
+      "id": "archer",
+      "epoch": "castle",
+      "spawnedAt": 236683.33333328713,
+      "goldCost": 110,
+      "maxHp": 88,
+      "damage": 32
+    },
+    {
+      "t": 238966.66666661913,
+      "wave": 6,
+      "uid": 108,
+      "id": "knight",
+      "epoch": "castle",
+      "spawnedAt": 238966.66666661913,
+      "goldCost": 180,
+      "maxHp": 330,
+      "damage": 38
+    },
+    {
+      "t": 241233.33333328448,
+      "wave": 6,
+      "uid": 109,
+      "id": "swordsman",
+      "epoch": "castle",
+      "spawnedAt": 241233.33333328448,
+      "goldCost": 95,
+      "maxHp": 180,
+      "damage": 25
+    },
+    {
+      "t": 243499.99999994982,
+      "wave": 6,
+      "uid": 111,
+      "id": "knight",
+      "epoch": "castle",
+      "spawnedAt": 243499.99999994982,
+      "goldCost": 180,
+      "maxHp": 330,
+      "damage": 38
+    },
+    {
+      "t": 245783.33333328183,
+      "wave": 6,
+      "uid": 112,
+      "id": "knight",
+      "epoch": "castle",
+      "spawnedAt": 245783.33333328183,
+      "goldCost": 180,
+      "maxHp": 330,
+      "damage": 38
+    },
+    {
+      "t": 248049.99999994718,
+      "wave": 6,
+      "uid": 113,
+      "id": "knight",
+      "epoch": "castle",
+      "spawnedAt": 248049.99999994718,
+      "goldCost": 180,
+      "maxHp": 330,
+      "damage": 38
+    },
+    {
+      "t": 250316.66666661252,
+      "wave": 6,
+      "uid": 115,
+      "id": "archer",
+      "epoch": "castle",
+      "spawnedAt": 250316.66666661252,
+      "goldCost": 110,
+      "maxHp": 88,
+      "damage": 32
+    },
+    {
+      "t": 252599.99999994453,
+      "wave": 6,
+      "uid": 116,
+      "id": "knight",
+      "epoch": "castle",
+      "spawnedAt": 252599.99999994453,
+      "goldCost": 180,
+      "maxHp": 330,
+      "damage": 38
+    },
+    {
+      "t": 254866.66666660988,
+      "wave": 6,
+      "uid": 117,
+      "id": "swordsman",
+      "epoch": "castle",
+      "spawnedAt": 254866.66666660988,
+      "goldCost": 95,
+      "maxHp": 180,
+      "damage": 25
+    },
+    {
+      "t": 276149.9999999553,
+      "wave": 7,
+      "uid": 128,
+      "id": "duelist",
+      "epoch": "renaissance",
+      "spawnedAt": 276149.9999999553,
+      "goldCost": 145,
+      "maxHp": 245,
+      "damage": 39
+    },
+    {
+      "t": 278433.3333332913,
+      "wave": 7,
+      "uid": 129,
+      "id": "musketeer",
+      "epoch": "renaissance",
+      "spawnedAt": 278433.3333332913,
+      "goldCost": 175,
+      "maxHp": 140,
+      "damage": 60
+    },
+    {
+      "t": 280699.9999999606,
+      "wave": 7,
+      "uid": 130,
+      "id": "cavalry",
+      "epoch": "renaissance",
+      "spawnedAt": 280699.9999999606,
+      "goldCost": 250,
+      "maxHp": 440,
+      "damage": 60
+    },
+    {
+      "t": 282983.3333332966,
+      "wave": 7,
+      "uid": 132,
+      "id": "musketeer",
+      "epoch": "renaissance",
+      "spawnedAt": 282983.3333332966,
+      "goldCost": 175,
+      "maxHp": 140,
+      "damage": 60
+    },
+    {
+      "t": 285249.9999999659,
+      "wave": 7,
+      "uid": 133,
+      "id": "cannon",
+      "epoch": "renaissance",
+      "spawnedAt": 285249.9999999659,
+      "goldCost": 285,
+      "maxHp": 230,
+      "damage": 95
+    },
+    {
+      "t": 287516.6666666352,
+      "wave": 7,
+      "uid": 135,
+      "id": "cannon",
+      "epoch": "renaissance",
+      "spawnedAt": 287516.6666666352,
+      "goldCost": 285,
+      "maxHp": 230,
+      "damage": 95
+    },
+    {
+      "t": 289799.9999999712,
+      "wave": 7,
+      "uid": 136,
+      "id": "musketeer",
+      "epoch": "renaissance",
+      "spawnedAt": 289799.9999999712,
+      "goldCost": 175,
+      "maxHp": 140,
+      "damage": 60
+    },
+    {
+      "t": 292066.6666666405,
+      "wave": 7,
+      "uid": 138,
+      "id": "musketeer",
+      "epoch": "renaissance",
+      "spawnedAt": 292066.6666666405,
+      "goldCost": 175,
+      "maxHp": 140,
+      "damage": 60
+    },
+    {
+      "t": 294333.3333333098,
+      "wave": 7,
+      "uid": 139,
+      "id": "cavalry",
+      "epoch": "renaissance",
+      "spawnedAt": 294333.3333333098,
+      "goldCost": 250,
+      "maxHp": 440,
+      "damage": 60
+    },
+    {
+      "t": 296616.6666666458,
+      "wave": 7,
+      "uid": 140,
+      "id": "musketeer",
+      "epoch": "renaissance",
+      "spawnedAt": 296616.6666666458,
+      "goldCost": 175,
+      "maxHp": 140,
+      "damage": 60
+    },
+    {
+      "t": 298883.3333333151,
+      "wave": 7,
+      "uid": 142,
+      "id": "duelist",
+      "epoch": "renaissance",
+      "spawnedAt": 298883.3333333151,
+      "goldCost": 145,
+      "maxHp": 245,
+      "damage": 39
+    },
+    {
+      "t": 320150.0000000065,
+      "wave": 8,
+      "uid": 150,
+      "id": "duelist",
+      "epoch": "renaissance",
+      "spawnedAt": 320150.0000000065,
+      "goldCost": 145,
+      "maxHp": 245,
+      "damage": 39
+    },
+    {
+      "t": 322233.3333333423,
+      "wave": 8,
+      "uid": 151,
+      "id": "cavalry",
+      "epoch": "renaissance",
+      "spawnedAt": 322233.3333333423,
+      "goldCost": 250,
+      "maxHp": 440,
+      "damage": 60
+    },
+    {
+      "t": 324316.66666667804,
+      "wave": 8,
+      "uid": 152,
+      "id": "cannon",
+      "epoch": "renaissance",
+      "spawnedAt": 324316.66666667804,
+      "goldCost": 285,
+      "maxHp": 230,
+      "damage": 95
+    },
+    {
+      "t": 326400.0000000138,
+      "wave": 8,
+      "uid": 154,
+      "id": "duelist",
+      "epoch": "renaissance",
+      "spawnedAt": 326400.0000000138,
+      "goldCost": 145,
+      "maxHp": 245,
+      "damage": 39
+    },
+    {
+      "t": 328483.33333334955,
+      "wave": 8,
+      "uid": 155,
+      "id": "cannon",
+      "epoch": "renaissance",
+      "spawnedAt": 328483.33333334955,
+      "goldCost": 285,
+      "maxHp": 230,
+      "damage": 95
+    },
+    {
+      "t": 330566.6666666853,
+      "wave": 8,
+      "uid": 157,
+      "id": "musketeer",
+      "epoch": "renaissance",
+      "spawnedAt": 330566.6666666853,
+      "goldCost": 175,
+      "maxHp": 140,
+      "damage": 60
+    },
+    {
+      "t": 332650.0000000211,
+      "wave": 8,
+      "uid": 158,
+      "id": "duelist",
+      "epoch": "renaissance",
+      "spawnedAt": 332650.0000000211,
+      "goldCost": 145,
+      "maxHp": 245,
+      "damage": 39
+    },
+    {
+      "t": 334733.33333335683,
+      "wave": 8,
+      "uid": 160,
+      "id": "cannon",
+      "epoch": "renaissance",
+      "spawnedAt": 334733.33333335683,
+      "goldCost": 285,
+      "maxHp": 230,
+      "damage": 95
+    },
+    {
+      "t": 336816.6666666926,
+      "wave": 8,
+      "uid": 161,
+      "id": "cannon",
+      "epoch": "renaissance",
+      "spawnedAt": 336816.6666666926,
+      "goldCost": 285,
+      "maxHp": 230,
+      "damage": 95
+    },
+    {
+      "t": 338900.00000002835,
+      "wave": 8,
+      "uid": 162,
+      "id": "duelist",
+      "epoch": "renaissance",
+      "spawnedAt": 338900.00000002835,
+      "goldCost": 145,
+      "maxHp": 245,
+      "damage": 39
+    },
+    {
+      "t": 340983.3333333641,
+      "wave": 8,
+      "uid": 164,
+      "id": "cannon",
+      "epoch": "renaissance",
+      "spawnedAt": 340983.3333333641,
+      "goldCost": 285,
+      "maxHp": 230,
+      "damage": 95
+    },
+    {
+      "t": 343066.66666669986,
+      "wave": 8,
+      "uid": 165,
+      "id": "cavalry",
+      "epoch": "renaissance",
+      "spawnedAt": 343066.66666669986,
+      "goldCost": 250,
+      "maxHp": 440,
+      "damage": 60
+    },
+    {
+      "t": 364150.00000005774,
+      "wave": 9,
+      "uid": 168,
+      "id": "duelist",
+      "epoch": "renaissance",
+      "spawnedAt": 364150.00000005774,
+      "goldCost": 145,
+      "maxHp": 245,
+      "damage": 39
+    },
+    {
+      "t": 366233.3333333935,
+      "wave": 9,
+      "uid": 169,
+      "id": "musketeer",
+      "epoch": "renaissance",
+      "spawnedAt": 366233.3333333935,
+      "goldCost": 175,
+      "maxHp": 140,
+      "damage": 60
+    },
+    {
+      "t": 368316.66666672926,
+      "wave": 9,
+      "uid": 170,
+      "id": "cavalry",
+      "epoch": "renaissance",
+      "spawnedAt": 368316.66666672926,
+      "goldCost": 250,
+      "maxHp": 440,
+      "damage": 60
+    },
+    {
+      "t": 370400.000000065,
+      "wave": 9,
+      "uid": 172,
+      "id": "duelist",
+      "epoch": "renaissance",
+      "spawnedAt": 370400.000000065,
+      "goldCost": 145,
+      "maxHp": 245,
+      "damage": 39
+    },
+    {
+      "t": 372483.3333334008,
+      "wave": 9,
+      "uid": 173,
+      "id": "cannon",
+      "epoch": "renaissance",
+      "spawnedAt": 372483.3333334008,
+      "goldCost": 285,
+      "maxHp": 230,
+      "damage": 95
+    },
+    {
+      "t": 374566.66666673654,
+      "wave": 9,
+      "uid": 174,
+      "id": "musketeer",
+      "epoch": "renaissance",
+      "spawnedAt": 374566.66666673654,
+      "goldCost": 175,
+      "maxHp": 140,
+      "damage": 60
+    },
+    {
+      "t": 376650.0000000723,
+      "wave": 9,
+      "uid": 175,
+      "id": "duelist",
+      "epoch": "renaissance",
+      "spawnedAt": 376650.0000000723,
+      "goldCost": 145,
+      "maxHp": 245,
+      "damage": 39
+    },
+    {
+      "t": 378733.33333340805,
+      "wave": 9,
+      "uid": 176,
+      "id": "cavalry",
+      "epoch": "renaissance",
+      "spawnedAt": 378733.33333340805,
+      "goldCost": 250,
+      "maxHp": 440,
+      "damage": 60
+    },
+    {
+      "t": 380816.6666667438,
+      "wave": 9,
+      "uid": 178,
+      "id": "cavalry",
+      "epoch": "renaissance",
+      "spawnedAt": 380816.6666667438,
+      "goldCost": 250,
+      "maxHp": 440,
+      "damage": 60
+    },
+    {
+      "t": 382900.00000007957,
+      "wave": 9,
+      "uid": 179,
+      "id": "duelist",
+      "epoch": "renaissance",
+      "spawnedAt": 382900.00000007957,
+      "goldCost": 145,
+      "maxHp": 245,
+      "damage": 39
+    },
+    {
+      "t": 384983.3333334153,
+      "wave": 9,
+      "uid": 181,
+      "id": "cannon",
+      "epoch": "renaissance",
+      "spawnedAt": 384983.3333334153,
+      "goldCost": 285,
+      "maxHp": 230,
+      "damage": 95
+    },
+    {
+      "t": 387066.6666667511,
+      "wave": 9,
+      "uid": 182,
+      "id": "musketeer",
+      "epoch": "renaissance",
+      "spawnedAt": 387066.6666667511,
+      "goldCost": 175,
+      "maxHp": 140,
+      "damage": 60
+    },
+    {
+      "t": 408150.00000010896,
+      "wave": 10,
+      "uid": 185,
+      "id": "tank",
+      "epoch": "modern",
+      "spawnedAt": 408150.00000010896,
+      "goldCost": 420,
+      "maxHp": 800,
+      "damage": 102
+    },
+    {
+      "t": 410083.33333344455,
+      "wave": 10,
+      "uid": 186,
+      "id": "rifleman",
+      "epoch": "modern",
+      "spawnedAt": 410083.33333344455,
+      "goldCost": 230,
+      "maxHp": 320,
+      "damage": 61
+    },
+    {
+      "t": 412000.00000011345,
+      "wave": 10,
+      "uid": 188,
+      "id": "grenadier",
+      "epoch": "modern",
+      "spawnedAt": 412000.00000011345,
+      "goldCost": 285,
+      "maxHp": 260,
+      "damage": 95
+    },
+    {
+      "t": 413933.33333344903,
+      "wave": 10,
+      "uid": 189,
+      "id": "tank",
+      "epoch": "modern",
+      "spawnedAt": 413933.33333344903,
+      "goldCost": 420,
+      "maxHp": 800,
+      "damage": 102
+    },
+    {
+      "t": 421616.6666667913,
+      "wave": 10,
+      "uid": 191,
+      "id": "tank",
+      "epoch": "modern",
+      "spawnedAt": 421616.6666667913,
+      "goldCost": 420,
+      "maxHp": 800,
+      "damage": 102
+    },
+    {
+      "t": 429316.6666668003,
+      "wave": 10,
+      "uid": 192,
+      "id": "grenadier",
+      "epoch": "modern",
+      "spawnedAt": 429316.6666668003,
+      "goldCost": 285,
+      "maxHp": 260,
+      "damage": 95
+    },
+    {
+      "t": 431233.33333346917,
+      "wave": 10,
+      "uid": 194,
+      "id": "tank",
+      "epoch": "modern",
+      "spawnedAt": 431233.33333346917,
+      "goldCost": 420,
+      "maxHp": 800,
+      "damage": 102
+    },
+    {
+      "t": 452150.0000001602,
+      "wave": 11,
+      "uid": 197,
+      "id": "rifleman",
+      "epoch": "modern",
+      "spawnedAt": 452150.0000001602,
+      "goldCost": 230,
+      "maxHp": 320,
+      "damage": 61
+    },
+    {
+      "t": 454083.3333334958,
+      "wave": 11,
+      "uid": 198,
+      "id": "sniper",
+      "epoch": "modern",
+      "spawnedAt": 454083.3333334958,
+      "goldCost": 340,
+      "maxHp": 170,
+      "damage": 150
+    },
+    {
+      "t": 457933.33333350025,
+      "wave": 11,
+      "uid": 200,
+      "id": "sniper",
+      "epoch": "modern",
+      "spawnedAt": 457933.33333350025,
+      "goldCost": 340,
+      "maxHp": 170,
+      "damage": 150
+    },
+    {
+      "t": 461766.66666683805,
+      "wave": 11,
+      "uid": 201,
+      "id": "sniper",
+      "epoch": "modern",
+      "spawnedAt": 461766.66666683805,
+      "goldCost": 340,
+      "maxHp": 170,
+      "damage": 150
+    },
+    {
+      "t": 467550.0000001781,
+      "wave": 11,
+      "uid": 202,
+      "id": "sniper",
+      "epoch": "modern",
+      "spawnedAt": 467550.0000001781,
+      "goldCost": 340,
+      "maxHp": 170,
+      "damage": 150
+    },
+    {
+      "t": 469466.666666847,
+      "wave": 11,
+      "uid": 204,
+      "id": "sniper",
+      "epoch": "modern",
+      "spawnedAt": 469466.666666847,
+      "goldCost": 340,
+      "maxHp": 170,
+      "damage": 150
+    },
+    {
+      "t": 473316.6666668515,
+      "wave": 11,
+      "uid": 205,
+      "id": "rifleman",
+      "epoch": "modern",
+      "spawnedAt": 473316.6666668515,
+      "goldCost": 230,
+      "maxHp": 320,
+      "damage": 61
+    },
+    {
+      "t": 475233.3333335204,
+      "wave": 11,
+      "uid": 206,
+      "id": "sniper",
+      "epoch": "modern",
+      "spawnedAt": 475233.3333335204,
+      "goldCost": 340,
+      "maxHp": 170,
+      "damage": 150
+    },
+    {
+      "t": 496150.0000002114,
+      "wave": 12,
+      "uid": 210,
+      "id": "rifleman",
+      "epoch": "modern",
+      "spawnedAt": 496150.0000002114,
+      "goldCost": 230,
+      "maxHp": 320,
+      "damage": 61
+    },
+    {
+      "t": 497950.0000002135,
+      "wave": 12,
+      "uid": 211,
+      "id": "sniper",
+      "epoch": "modern",
+      "spawnedAt": 497950.0000002135,
+      "goldCost": 340,
+      "maxHp": 170,
+      "damage": 150
+    },
+    {
+      "t": 499733.3333335489,
+      "wave": 12,
+      "uid": 212,
+      "id": "grenadier",
+      "epoch": "modern",
+      "spawnedAt": 499733.3333335489,
+      "goldCost": 285,
+      "maxHp": 260,
+      "damage": 95
+    },
+    {
+      "t": 501516.6666668843,
+      "wave": 12,
+      "uid": 213,
+      "id": "tank",
+      "epoch": "modern",
+      "spawnedAt": 501516.6666668843,
+      "goldCost": 420,
+      "maxHp": 800,
+      "damage": 102
+    },
+    {
+      "t": 503300.00000021973,
+      "wave": 12,
+      "uid": 215,
+      "id": "grenadier",
+      "epoch": "modern",
+      "spawnedAt": 503300.00000021973,
+      "goldCost": 285,
+      "maxHp": 260,
+      "damage": 95
+    },
+    {
+      "t": 505083.33333355514,
+      "wave": 12,
+      "uid": 216,
+      "id": "sniper",
+      "epoch": "modern",
+      "spawnedAt": 505083.33333355514,
+      "goldCost": 340,
+      "maxHp": 170,
+      "damage": 150
+    },
+    {
+      "t": 506866.66666689055,
+      "wave": 12,
+      "uid": 217,
+      "id": "rifleman",
+      "epoch": "modern",
+      "spawnedAt": 506866.66666689055,
+      "goldCost": 230,
+      "maxHp": 320,
+      "damage": 61
+    },
+    {
+      "t": 508650.00000022596,
+      "wave": 12,
+      "uid": 218,
+      "id": "sniper",
+      "epoch": "modern",
+      "spawnedAt": 508650.00000022596,
+      "goldCost": 340,
+      "maxHp": 170,
+      "damage": 150
+    },
+    {
+      "t": 510450.00000022806,
+      "wave": 12,
+      "uid": 220,
+      "id": "tank",
+      "epoch": "modern",
+      "spawnedAt": 510450.00000022806,
+      "goldCost": 420,
+      "maxHp": 800,
+      "damage": 102
+    },
+    {
+      "t": 512233.33333356347,
+      "wave": 12,
+      "uid": 221,
+      "id": "rifleman",
+      "epoch": "modern",
+      "spawnedAt": 512233.33333356347,
+      "goldCost": 230,
+      "maxHp": 320,
+      "damage": 61
+    },
+    {
+      "t": 514016.6666668989,
+      "wave": 12,
+      "uid": 222,
+      "id": "grenadier",
+      "epoch": "modern",
+      "spawnedAt": 514016.6666668989,
+      "goldCost": 285,
+      "maxHp": 260,
+      "damage": 95
+    },
+    {
+      "t": 515800.0000002343,
+      "wave": 12,
+      "uid": 223,
+      "id": "sniper",
+      "epoch": "modern",
+      "spawnedAt": 515800.0000002343,
+      "goldCost": 340,
+      "maxHp": 170,
+      "damage": 150
+    },
+    {
+      "t": 517583.3333335697,
+      "wave": 12,
+      "uid": 224,
+      "id": "tank",
+      "epoch": "modern",
+      "spawnedAt": 517583.3333335697,
+      "goldCost": 420,
+      "maxHp": 800,
+      "damage": 102
+    },
+    {
+      "t": 519366.6666669051,
+      "wave": 12,
+      "uid": 225,
+      "id": "rifleman",
+      "epoch": "modern",
+      "spawnedAt": 519366.6666669051,
+      "goldCost": 230,
+      "maxHp": 320,
+      "damage": 61
+    },
+    {
+      "t": 540166.6666668738,
+      "wave": 13,
+      "uid": 229,
+      "id": "mech",
+      "epoch": "future",
+      "spawnedAt": 540166.6666668738,
+      "goldCost": 540,
+      "maxHp": 1200,
+      "damage": 150
+    },
+    {
+      "t": 541966.6666668697,
+      "wave": 13,
+      "uid": 230,
+      "id": "super-heavy",
+      "epoch": "future",
+      "spawnedAt": 541966.6666668697,
+      "goldCost": 750,
+      "maxHp": 2000,
+      "damage": 170
+    },
+    {
+      "t": 543750.0000001988,
+      "wave": 13,
+      "uid": 232,
+      "id": "plasma-trooper",
+      "epoch": "future",
+      "spawnedAt": 543750.0000001988,
+      "goldCost": 490,
+      "maxHp": 400,
+      "damage": 160
+    },
+    {
+      "t": 545533.333333528,
+      "wave": 13,
+      "uid": 233,
+      "id": "mech",
+      "epoch": "future",
+      "spawnedAt": 545533.333333528,
+      "goldCost": 540,
+      "maxHp": 1200,
+      "damage": 150
+    },
+    {
+      "t": 547316.6666668572,
+      "wave": 13,
+      "uid": 234,
+      "id": "plasma-trooper",
+      "epoch": "future",
+      "spawnedAt": 547316.6666668572,
+      "goldCost": 490,
+      "maxHp": 400,
+      "damage": 160
+    },
+    {
+      "t": 549100.0000001864,
+      "wave": 13,
+      "uid": 235,
+      "id": "laser-soldier",
+      "epoch": "future",
+      "spawnedAt": 549100.0000001864,
+      "goldCost": 340,
+      "maxHp": 480,
+      "damage": 90
+    },
+    {
+      "t": 550883.3333335156,
+      "wave": 13,
+      "uid": 236,
+      "id": "plasma-trooper",
+      "epoch": "future",
+      "spawnedAt": 550883.3333335156,
+      "goldCost": 490,
+      "maxHp": 400,
+      "damage": 160
+    },
+    {
+      "t": 552683.3333335114,
+      "wave": 13,
+      "uid": 238,
+      "id": "super-heavy",
+      "epoch": "future",
+      "spawnedAt": 552683.3333335114,
+      "goldCost": 750,
+      "maxHp": 2000,
+      "damage": 170
+    },
+    {
+      "t": 554466.6666668406,
+      "wave": 13,
+      "uid": 239,
+      "id": "plasma-trooper",
+      "epoch": "future",
+      "spawnedAt": 554466.6666668406,
+      "goldCost": 490,
+      "maxHp": 400,
+      "damage": 160
+    },
+    {
+      "t": 556250.0000001697,
+      "wave": 13,
+      "uid": 240,
+      "id": "mech",
+      "epoch": "future",
+      "spawnedAt": 556250.0000001697,
+      "goldCost": 540,
+      "maxHp": 1200,
+      "damage": 150
+    },
+    {
+      "t": 558033.3333334989,
+      "wave": 13,
+      "uid": 241,
+      "id": "plasma-trooper",
+      "epoch": "future",
+      "spawnedAt": 558033.3333334989,
+      "goldCost": 490,
+      "maxHp": 400,
+      "damage": 160
+    },
+    {
+      "t": 559816.6666668281,
+      "wave": 13,
+      "uid": 242,
+      "id": "laser-soldier",
+      "epoch": "future",
+      "spawnedAt": 559816.6666668281,
+      "goldCost": 340,
+      "maxHp": 480,
+      "damage": 90
+    },
+    {
+      "t": 561600.0000001573,
+      "wave": 13,
+      "uid": 243,
+      "id": "mech",
+      "epoch": "future",
+      "spawnedAt": 561600.0000001573,
+      "goldCost": 540,
+      "maxHp": 1200,
+      "damage": 150
+    },
+    {
+      "t": 563383.3333334865,
+      "wave": 13,
+      "uid": 244,
+      "id": "plasma-trooper",
+      "epoch": "future",
+      "spawnedAt": 563383.3333334865,
+      "goldCost": 490,
+      "maxHp": 400,
+      "damage": 160
+    },
+    {
+      "t": 584200.0000001047,
+      "wave": 14,
+      "uid": 248,
+      "id": "mech",
+      "epoch": "future",
+      "spawnedAt": 584200.0000001047,
+      "goldCost": 540,
+      "maxHp": 1200,
+      "damage": 150
+    },
+    {
+      "t": 586000.0000001005,
+      "wave": 14,
+      "uid": 250,
+      "id": "super-heavy",
+      "epoch": "future",
+      "spawnedAt": 586000.0000001005,
+      "goldCost": 750,
+      "maxHp": 2000,
+      "damage": 170
+    },
+    {
+      "t": 587783.3333334296,
+      "wave": 14,
+      "uid": 252,
+      "id": "laser-soldier",
+      "epoch": "future",
+      "spawnedAt": 587783.3333334296,
+      "goldCost": 340,
+      "maxHp": 480,
+      "damage": 90
+    },
+    {
+      "t": 589566.6666667588,
+      "wave": 14,
+      "uid": 254,
+      "id": "super-heavy",
+      "epoch": "future",
+      "spawnedAt": 589566.6666667588,
+      "goldCost": 750,
+      "maxHp": 2000,
+      "damage": 170
+    },
+    {
+      "t": 591350.000000088,
+      "wave": 14,
+      "uid": 255,
+      "id": "laser-soldier",
+      "epoch": "future",
+      "spawnedAt": 591350.000000088,
+      "goldCost": 340,
+      "maxHp": 480,
+      "damage": 90
+    },
+    {
+      "t": 593133.3333334172,
+      "wave": 14,
+      "uid": 256,
+      "id": "plasma-trooper",
+      "epoch": "future",
+      "spawnedAt": 593133.3333334172,
+      "goldCost": 490,
+      "maxHp": 400,
+      "damage": 160
+    },
+    {
+      "t": 594916.6666667464,
+      "wave": 14,
+      "uid": 257,
+      "id": "laser-soldier",
+      "epoch": "future",
+      "spawnedAt": 594916.6666667464,
+      "goldCost": 340,
+      "maxHp": 480,
+      "damage": 90
+    },
+    {
+      "t": 596716.6666667422,
+      "wave": 14,
+      "uid": 258,
+      "id": "super-heavy",
+      "epoch": "future",
+      "spawnedAt": 596716.6666667422,
+      "goldCost": 750,
+      "maxHp": 2000,
+      "damage": 170
+    },
+    {
+      "t": 598500.0000000714,
+      "wave": 14,
+      "uid": 260,
+      "id": "laser-soldier",
+      "epoch": "future",
+      "spawnedAt": 598500.0000000714,
+      "goldCost": 340,
+      "maxHp": 480,
+      "damage": 90
+    },
+    {
+      "t": 600283.3333334005,
+      "wave": 14,
+      "uid": 261,
+      "id": "super-heavy",
+      "epoch": "future",
+      "spawnedAt": 600283.3333334005,
+      "goldCost": 750,
+      "maxHp": 2000,
+      "damage": 170
+    },
+    {
+      "t": 602066.6666667297,
+      "wave": 14,
+      "uid": 262,
+      "id": "mech",
+      "epoch": "future",
+      "spawnedAt": 602066.6666667297,
+      "goldCost": 540,
+      "maxHp": 1200,
+      "damage": 150
+    },
+    {
+      "t": 603850.0000000589,
+      "wave": 14,
+      "uid": 263,
+      "id": "laser-soldier",
+      "epoch": "future",
+      "spawnedAt": 603850.0000000589,
+      "goldCost": 340,
+      "maxHp": 480,
+      "damage": 90
+    },
+    {
+      "t": 605633.3333333881,
+      "wave": 14,
+      "uid": 265,
+      "id": "super-heavy",
+      "epoch": "future",
+      "spawnedAt": 605633.3333333881,
+      "goldCost": 750,
+      "maxHp": 2000,
+      "damage": 170
+    },
+    {
+      "t": 607416.6666667173,
+      "wave": 14,
+      "uid": 266,
+      "id": "laser-soldier",
+      "epoch": "future",
+      "spawnedAt": 607416.6666667173,
+      "goldCost": 340,
+      "maxHp": 480,
+      "damage": 90
+    },
+    {
+      "t": 628233.3333333355,
+      "wave": 15,
+      "uid": 269,
+      "id": "mech",
+      "epoch": "future",
+      "spawnedAt": 628233.3333333355,
+      "goldCost": 540,
+      "maxHp": 1200,
+      "damage": 150
+    },
+    {
+      "t": 630033.3333333313,
+      "wave": 15,
+      "uid": 270,
+      "id": "laser-soldier",
+      "epoch": "future",
+      "spawnedAt": 630033.3333333313,
+      "goldCost": 340,
+      "maxHp": 480,
+      "damage": 90
+    },
+    {
+      "t": 631816.6666666605,
+      "wave": 15,
+      "uid": 271,
+      "id": "super-heavy",
+      "epoch": "future",
+      "spawnedAt": 631816.6666666605,
+      "goldCost": 750,
+      "maxHp": 2000,
+      "damage": 170
+    },
+    {
+      "t": 633599.9999999896,
+      "wave": 15,
+      "uid": 273,
+      "id": "laser-soldier",
+      "epoch": "future",
+      "spawnedAt": 633599.9999999896,
+      "goldCost": 340,
+      "maxHp": 480,
+      "damage": 90
+    },
+    {
+      "t": 635383.3333333188,
+      "wave": 15,
+      "uid": 275,
+      "id": "mech",
+      "epoch": "future",
+      "spawnedAt": 635383.3333333188,
+      "goldCost": 540,
+      "maxHp": 1200,
+      "damage": 150
+    },
+    {
+      "t": 637166.666666648,
+      "wave": 15,
+      "uid": 277,
+      "id": "plasma-trooper",
+      "epoch": "future",
+      "spawnedAt": 637166.666666648,
+      "goldCost": 490,
+      "maxHp": 400,
+      "damage": 160
+    },
+    {
+      "t": 638949.9999999772,
+      "wave": 15,
+      "uid": 278,
+      "id": "laser-soldier",
+      "epoch": "future",
+      "spawnedAt": 638949.9999999772,
+      "goldCost": 340,
+      "maxHp": 480,
+      "damage": 90
+    },
+    {
+      "t": 640749.999999973,
+      "wave": 15,
+      "uid": 279,
+      "id": "laser-soldier",
+      "epoch": "future",
+      "spawnedAt": 640749.999999973,
+      "goldCost": 340,
+      "maxHp": 480,
+      "damage": 90
+    },
+    {
+      "t": 642533.3333333022,
+      "wave": 15,
+      "uid": 280,
+      "id": "super-heavy",
+      "epoch": "future",
+      "spawnedAt": 642533.3333333022,
+      "goldCost": 750,
+      "maxHp": 2000,
+      "damage": 170
+    },
+    {
+      "t": 644316.6666666314,
+      "wave": 15,
+      "uid": 281,
+      "id": "laser-soldier",
+      "epoch": "future",
+      "spawnedAt": 644316.6666666314,
+      "goldCost": 340,
+      "maxHp": 480,
+      "damage": 90
+    },
+    {
+      "t": 646099.9999999605,
+      "wave": 15,
+      "uid": 282,
+      "id": "mech",
+      "epoch": "future",
+      "spawnedAt": 646099.9999999605,
+      "goldCost": 540,
+      "maxHp": 1200,
+      "damage": 150
+    },
+    {
+      "t": 647883.3333332897,
+      "wave": 15,
+      "uid": 283,
+      "id": "laser-soldier",
+      "epoch": "future",
+      "spawnedAt": 647883.3333332897,
+      "goldCost": 340,
+      "maxHp": 480,
+      "damage": 90
+    },
+    {
+      "t": 649666.6666666189,
+      "wave": 15,
+      "uid": 284,
+      "id": "super-heavy",
+      "epoch": "future",
+      "spawnedAt": 649666.6666666189,
+      "goldCost": 750,
+      "maxHp": 2000,
+      "damage": 170
+    },
+    {
+      "t": 651449.9999999481,
+      "wave": 15,
+      "uid": 287,
+      "id": "laser-soldier",
+      "epoch": "future",
+      "spawnedAt": 651449.9999999481,
+      "goldCost": 340,
+      "maxHp": 480,
+      "damage": 90
+    },
+    {
+      "t": 672266.6666665663,
+      "wave": 16,
+      "uid": 291,
+      "id": "mech",
+      "epoch": "future",
+      "spawnedAt": 672266.6666665663,
+      "goldCost": 540,
+      "maxHp": 1200,
+      "damage": 150
+    },
+    {
+      "t": 674066.6666665621,
+      "wave": 16,
+      "uid": 292,
+      "id": "super-heavy",
+      "epoch": "future",
+      "spawnedAt": 674066.6666665621,
+      "goldCost": 750,
+      "maxHp": 2000,
+      "damage": 170
+    },
+    {
+      "t": 675849.9999998913,
+      "wave": 16,
+      "uid": 293,
+      "id": "plasma-trooper",
+      "epoch": "future",
+      "spawnedAt": 675849.9999998913,
+      "goldCost": 490,
+      "maxHp": 400,
+      "damage": 160
+    },
+    {
+      "t": 677633.3333332204,
+      "wave": 16,
+      "uid": 295,
+      "id": "mech",
+      "epoch": "future",
+      "spawnedAt": 677633.3333332204,
+      "goldCost": 540,
+      "maxHp": 1200,
+      "damage": 150
+    },
+    {
+      "t": 679416.6666665496,
+      "wave": 16,
+      "uid": 297,
+      "id": "plasma-trooper",
+      "epoch": "future",
+      "spawnedAt": 679416.6666665496,
+      "goldCost": 490,
+      "maxHp": 400,
+      "damage": 160
+    },
+    {
+      "t": 681199.9999998788,
+      "wave": 16,
+      "uid": 298,
+      "id": "laser-soldier",
+      "epoch": "future",
+      "spawnedAt": 681199.9999998788,
+      "goldCost": 340,
+      "maxHp": 480,
+      "damage": 90
+    },
+    {
+      "t": 682983.333333208,
+      "wave": 16,
+      "uid": 299,
+      "id": "plasma-trooper",
+      "epoch": "future",
+      "spawnedAt": 682983.333333208,
+      "goldCost": 490,
+      "maxHp": 400,
+      "damage": 160
+    },
+    {
+      "t": 684783.3333332038,
+      "wave": 16,
+      "uid": 301,
+      "id": "super-heavy",
+      "epoch": "future",
+      "spawnedAt": 684783.3333332038,
+      "goldCost": 750,
+      "maxHp": 2000,
+      "damage": 170
+    },
+    {
+      "t": 686566.666666533,
+      "wave": 16,
+      "uid": 302,
+      "id": "plasma-trooper",
+      "epoch": "future",
+      "spawnedAt": 686566.666666533,
+      "goldCost": 490,
+      "maxHp": 400,
+      "damage": 160
+    },
+    {
+      "t": 688349.9999998622,
+      "wave": 16,
+      "uid": 303,
+      "id": "mech",
+      "epoch": "future",
+      "spawnedAt": 688349.9999998622,
+      "goldCost": 540,
+      "maxHp": 1200,
+      "damage": 150
+    },
+    {
+      "t": 690133.3333331913,
+      "wave": 16,
+      "uid": 304,
+      "id": "plasma-trooper",
+      "epoch": "future",
+      "spawnedAt": 690133.3333331913,
+      "goldCost": 490,
+      "maxHp": 400,
+      "damage": 160
+    },
+    {
+      "t": 691916.6666665205,
+      "wave": 16,
+      "uid": 306,
+      "id": "laser-soldier",
+      "epoch": "future",
+      "spawnedAt": 691916.6666665205,
+      "goldCost": 340,
+      "maxHp": 480,
+      "damage": 90
+    },
+    {
+      "t": 693699.9999998497,
+      "wave": 16,
+      "uid": 308,
+      "id": "mech",
+      "epoch": "future",
+      "spawnedAt": 693699.9999998497,
+      "goldCost": 540,
+      "maxHp": 1200,
+      "damage": 150
+    },
+    {
+      "t": 695483.3333331789,
+      "wave": 16,
+      "uid": 309,
+      "id": "plasma-trooper",
+      "epoch": "future",
+      "spawnedAt": 695483.3333331789,
+      "goldCost": 490,
+      "maxHp": 400,
+      "damage": 160
+    },
+    {
+      "t": 716299.9999997971,
+      "wave": 17,
+      "uid": 313,
+      "id": "mech",
+      "epoch": "future",
+      "spawnedAt": 716299.9999997971,
+      "goldCost": 540,
+      "maxHp": 1200,
+      "damage": 150
+    },
+    {
+      "t": 718099.9999997929,
+      "wave": 17,
+      "uid": 314,
+      "id": "laser-soldier",
+      "epoch": "future",
+      "spawnedAt": 718099.9999997929,
+      "goldCost": 340,
+      "maxHp": 480,
+      "damage": 90
+    },
+    {
+      "t": 719883.3333331221,
+      "wave": 17,
+      "uid": 316,
+      "id": "super-heavy",
+      "epoch": "future",
+      "spawnedAt": 719883.3333331221,
+      "goldCost": 750,
+      "maxHp": 2000,
+      "damage": 170
+    },
+    {
+      "t": 721666.6666664513,
+      "wave": 17,
+      "uid": 317,
+      "id": "mech",
+      "epoch": "future",
+      "spawnedAt": 721666.6666664513,
+      "goldCost": 540,
+      "maxHp": 1200,
+      "damage": 150
+    },
+    {
+      "t": 723449.9999997804,
+      "wave": 17,
+      "uid": 318,
+      "id": "plasma-trooper",
+      "epoch": "future",
+      "spawnedAt": 723449.9999997804,
+      "goldCost": 490,
+      "maxHp": 400,
+      "damage": 160
+    },
+    {
+      "t": 725233.3333331096,
+      "wave": 17,
+      "uid": 320,
+      "id": "laser-soldier",
+      "epoch": "future",
+      "spawnedAt": 725233.3333331096,
+      "goldCost": 340,
+      "maxHp": 480,
+      "damage": 90
+    },
+    {
+      "t": 727016.6666664388,
+      "wave": 17,
+      "uid": 321,
+      "id": "mech",
+      "epoch": "future",
+      "spawnedAt": 727016.6666664388,
+      "goldCost": 540,
+      "maxHp": 1200,
+      "damage": 150
+    },
+    {
+      "t": 728816.6666664346,
+      "wave": 17,
+      "uid": 323,
+      "id": "laser-soldier",
+      "epoch": "future",
+      "spawnedAt": 728816.6666664346,
+      "goldCost": 340,
+      "maxHp": 480,
+      "damage": 90
+    },
+    {
+      "t": 730599.9999997638,
+      "wave": 17,
+      "uid": 324,
+      "id": "super-heavy",
+      "epoch": "future",
+      "spawnedAt": 730599.9999997638,
+      "goldCost": 750,
+      "maxHp": 2000,
+      "damage": 170
+    },
+    {
+      "t": 732383.333333093,
+      "wave": 17,
+      "uid": 325,
+      "id": "mech",
+      "epoch": "future",
+      "spawnedAt": 732383.333333093,
+      "goldCost": 540,
+      "maxHp": 1200,
+      "damage": 150
+    },
+    {
+      "t": 734166.6666664222,
+      "wave": 17,
+      "uid": 326,
+      "id": "plasma-trooper",
+      "epoch": "future",
+      "spawnedAt": 734166.6666664222,
+      "goldCost": 490,
+      "maxHp": 400,
+      "damage": 160
+    },
+    {
+      "t": 735949.9999997513,
+      "wave": 17,
+      "uid": 328,
+      "id": "laser-soldier",
+      "epoch": "future",
+      "spawnedAt": 735949.9999997513,
+      "goldCost": 340,
+      "maxHp": 480,
+      "damage": 90
+    },
+    {
+      "t": 737733.3333330805,
+      "wave": 17,
+      "uid": 329,
+      "id": "mech",
+      "epoch": "future",
+      "spawnedAt": 737733.3333330805,
+      "goldCost": 540,
+      "maxHp": 1200,
+      "damage": 150
+    },
+    {
+      "t": 739516.6666664097,
+      "wave": 17,
+      "uid": 330,
+      "id": "super-heavy",
+      "epoch": "future",
+      "spawnedAt": 739516.6666664097,
+      "goldCost": 750,
+      "maxHp": 2000,
+      "damage": 170
+    }
+  ],
+  "waveReporting": "Read-only observations before/after each original frame; attempt counters include every attempt, active-sprite observations may omit a same-frame death.",
+  "rng": {
+    "seeded": true,
+    "algorithm": "FNV-1a seed hash; 32-bit LCG for Math.random; Phaser RND.sow",
+    "beforeCreate": {
+      "mathState": 1146089375,
+      "mathCalls": 0,
+      "phaserState": "!rnd,1,0.4807954910211265,0.24471375602297485,0.2298838144633919"
+    },
+    "final": {
+      "mathState": 68639059,
+      "mathCalls": 144148,
+      "phaserState": "!rnd,1,0.4807954910211265,0.24471375602297485,0.2298838144633919"
+    }
+  },
+  "policy": {
+    "decisionEveryMs": 1500,
+    "automaticEvolution": true,
+    "rosters": [
+      [
+        "clubman",
+        "slinger",
+        "spearman",
+        "slinger",
+        "dino-rider"
+      ],
+      [
+        "swordsman",
+        "archer",
+        "knight",
+        "archer",
+        "ballista"
+      ],
+      [
+        "duelist",
+        "musketeer",
+        "cavalry",
+        "duelist",
+        "cannon"
+      ],
+      [
+        "tank",
+        "rifleman",
+        "grenadier",
+        "rifleman",
+        "sniper"
+      ],
+      [
+        "mech",
+        "laser-soldier",
+        "plasma-trooper",
+        "mech",
+        "super-heavy"
+      ]
+    ],
+    "line": "first roster entry of each epoch",
+    "meteor": "at least five enemies and one left of x=650",
+    "artillery": "at least seven enemies from Renaissance",
+    "defense": "one attempt to build stone tower 1 when gold reaches 200 after recruitment"
+  },
+  "errors": [],
+  "artifacts": {
+    "json": "art\\qa\\wave-tactics-matrix-20260909T024324538Z\\combat-medium-line-1x-seed-303-20260909T024425688Z-30ee5238.json",
+    "screenshot": "art\\qa\\wave-tactics-matrix-20260909T024324538Z\\combat-medium-line-1x-seed-303-20260909T024425688Z-30ee5238.png"
+  }
+}

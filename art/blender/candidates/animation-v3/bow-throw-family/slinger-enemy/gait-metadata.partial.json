@@ -1,0 +1,14 @@
+{
+  "slinger": {
+    "nominalSpeedPxPerSecond": 36,
+    "referenceDisplayScale": 0.43,
+    "cycleDistancePixels": 18.72,
+    "nominalCycleDurationMs": 520,
+    "motionKind": "biped",
+    "stanceFraction": 0.6,
+    "doubleSupportFrames": [
+      0,
+      4
+    ]
+  }
+}

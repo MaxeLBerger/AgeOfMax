@@ -1,0 +1,38 @@
+{
+  "musketeer": {
+    "nominalSpeedPxPerSecond": 40,
+    "referenceDisplayScale": 0.43,
+    "cycleDistancePixels": 20.8,
+    "nominalCycleDurationMs": 520,
+    "motionKind": "biped",
+    "stanceFraction": 0.6,
+    "doubleSupportFrames": [
+      0,
+      4
+    ]
+  },
+  "laser-soldier": {
+    "nominalSpeedPxPerSecond": 48,
+    "referenceDisplayScale": 0.43,
+    "cycleDistancePixels": 24.96,
+    "nominalCycleDurationMs": 520,
+    "motionKind": "biped",
+    "stanceFraction": 0.6,
+    "doubleSupportFrames": [
+      0,
+      4
+    ]
+  },
+  "plasma-trooper": {
+    "nominalSpeedPxPerSecond": 42,
+    "referenceDisplayScale": 0.43,
+    "cycleDistancePixels": 21.84,
+    "nominalCycleDurationMs": 520,
+    "motionKind": "biped",
+    "stanceFraction": 0.6,
+    "doubleSupportFrames": [
+      0,
+      4
+    ]
+  }
+}

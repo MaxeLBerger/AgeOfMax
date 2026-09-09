@@ -1,0 +1,516 @@
+{
+  "status": "passed",
+  "openedSources": 85,
+  "sources": [
+    {
+      "file": "background-castle.blend",
+      "objects": 532,
+      "camera": "Battle valley / fixed horizon",
+      "bones": 0
+    },
+    {
+      "file": "background-future.blend",
+      "objects": 494,
+      "camera": "Battle valley / fixed horizon",
+      "bones": 0
+    },
+    {
+      "file": "background-modern.blend",
+      "objects": 585,
+      "camera": "Battle valley / fixed horizon",
+      "bones": 0
+    },
+    {
+      "file": "background-renaissance.blend",
+      "objects": 526,
+      "camera": "Battle valley / fixed horizon",
+      "bones": 0
+    },
+    {
+      "file": "background-stone.blend",
+      "objects": 475,
+      "camera": "Battle valley / fixed horizon",
+      "bones": 0
+    },
+    {
+      "file": "base-castle-enemy.blend",
+      "objects": 114,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "base-castle.blend",
+      "objects": 114,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "base-future-enemy.blend",
+      "objects": 21,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "base-future.blend",
+      "objects": 21,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "base-modern-enemy.blend",
+      "objects": 49,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "base-modern.blend",
+      "objects": 49,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "base-renaissance-enemy.blend",
+      "objects": 94,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "base-renaissance.blend",
+      "objects": 94,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "base-stone-enemy.blend",
+      "objects": 71,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "base-stone.blend",
+      "objects": 71,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "tower-castle-1-enemy.blend",
+      "objects": 30,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "tower-castle-1.blend",
+      "objects": 30,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "tower-castle-2-enemy.blend",
+      "objects": 10,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "tower-castle-2.blend",
+      "objects": 10,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "tower-castle-3-enemy.blend",
+      "objects": 13,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "tower-castle-3.blend",
+      "objects": 13,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "tower-future-1-enemy.blend",
+      "objects": 12,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "tower-future-1.blend",
+      "objects": 12,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "tower-future-2-enemy.blend",
+      "objects": 12,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "tower-future-2.blend",
+      "objects": 12,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "tower-future-3-enemy.blend",
+      "objects": 13,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "tower-future-3.blend",
+      "objects": 13,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "tower-modern-1-enemy.blend",
+      "objects": 15,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "tower-modern-1.blend",
+      "objects": 15,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "tower-modern-2-enemy.blend",
+      "objects": 14,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "tower-modern-2.blend",
+      "objects": 14,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "tower-modern-3-enemy.blend",
+      "objects": 16,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "tower-modern-3.blend",
+      "objects": 16,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "tower-renaissance-1-enemy.blend",
+      "objects": 27,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "tower-renaissance-1.blend",
+      "objects": 27,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "tower-renaissance-2-enemy.blend",
+      "objects": 28,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "tower-renaissance-2.blend",
+      "objects": 28,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "tower-renaissance-3-enemy.blend",
+      "objects": 29,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "tower-renaissance-3.blend",
+      "objects": 29,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "tower-stone-1-enemy.blend",
+      "objects": 13,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "tower-stone-1.blend",
+      "objects": 13,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "tower-stone-2-enemy.blend",
+      "objects": 15,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "tower-stone-2.blend",
+      "objects": 15,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "tower-stone-3-enemy.blend",
+      "objects": 18,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "tower-stone-3.blend",
+      "objects": 18,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "unit-archer-enemy.blend",
+      "objects": 64,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 11
+    },
+    {
+      "file": "unit-archer.blend",
+      "objects": 64,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 11
+    },
+    {
+      "file": "unit-ballista-enemy.blend",
+      "objects": 24,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "unit-ballista.blend",
+      "objects": 24,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "unit-cannon-enemy.blend",
+      "objects": 32,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "unit-cannon.blend",
+      "objects": 32,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "unit-cavalry-enemy.blend",
+      "objects": 105,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 11
+    },
+    {
+      "file": "unit-cavalry.blend",
+      "objects": 105,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 11
+    },
+    {
+      "file": "unit-clubman-enemy.blend",
+      "objects": 90,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 12
+    },
+    {
+      "file": "unit-clubman.blend",
+      "objects": 90,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 12
+    },
+    {
+      "file": "unit-dino-rider-enemy.blend",
+      "objects": 177,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 12
+    },
+    {
+      "file": "unit-dino-rider.blend",
+      "objects": 177,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 12
+    },
+    {
+      "file": "unit-duelist-enemy.blend",
+      "objects": 67,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 11
+    },
+    {
+      "file": "unit-duelist.blend",
+      "objects": 67,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 11
+    },
+    {
+      "file": "unit-grenadier-enemy.blend",
+      "objects": 71,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 11
+    },
+    {
+      "file": "unit-grenadier.blend",
+      "objects": 71,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 11
+    },
+    {
+      "file": "unit-knight-enemy.blend",
+      "objects": 129,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 11
+    },
+    {
+      "file": "unit-knight.blend",
+      "objects": 129,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 11
+    },
+    {
+      "file": "unit-laser-soldier-enemy.blend",
+      "objects": 83,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 11
+    },
+    {
+      "file": "unit-laser-soldier.blend",
+      "objects": 83,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 11
+    },
+    {
+      "file": "unit-mech-enemy.blend",
+      "objects": 52,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "unit-mech.blend",
+      "objects": 52,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "unit-musketeer-enemy.blend",
+      "objects": 67,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 11
+    },
+    {
+      "file": "unit-musketeer.blend",
+      "objects": 67,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 11
+    },
+    {
+      "file": "unit-plasma-trooper-enemy.blend",
+      "objects": 91,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 11
+    },
+    {
+      "file": "unit-plasma-trooper.blend",
+      "objects": 91,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 11
+    },
+    {
+      "file": "unit-rifleman-enemy.blend",
+      "objects": 71,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 11
+    },
+    {
+      "file": "unit-rifleman.blend",
+      "objects": 71,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 11
+    },
+    {
+      "file": "unit-slinger-enemy.blend",
+      "objects": 88,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 11
+    },
+    {
+      "file": "unit-slinger.blend",
+      "objects": 88,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 11
+    },
+    {
+      "file": "unit-sniper-enemy.blend",
+      "objects": 102,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 16
+    },
+    {
+      "file": "unit-sniper.blend",
+      "objects": 102,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 16
+    },
+    {
+      "file": "unit-spearman-enemy.blend",
+      "objects": 100,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 11
+    },
+    {
+      "file": "unit-spearman.blend",
+      "objects": 100,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 11
+    },
+    {
+      "file": "unit-super-heavy-enemy.blend",
+      "objects": 119,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 16
+    },
+    {
+      "file": "unit-super-heavy.blend",
+      "objects": 119,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 16
+    },
+    {
+      "file": "unit-swordsman-enemy.blend",
+      "objects": 91,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 11
+    },
+    {
+      "file": "unit-swordsman.blend",
+      "objects": 91,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 11
+    },
+    {
+      "file": "unit-tank-enemy.blend",
+      "objects": 137,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    },
+    {
+      "file": "unit-tank.blend",
+      "objects": 137,
+      "camera": "Sprite camera / ground anchor 0.5 0.92",
+      "bones": 0
+    }
+  ]
+}

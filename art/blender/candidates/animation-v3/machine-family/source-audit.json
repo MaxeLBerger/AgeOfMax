@@ -1,0 +1,438 @@
+{
+  "passed": true,
+  "issues": [],
+  "units": {
+    "cannon": {
+      "passed": true,
+      "source_sha256": "bdc148711deab2d2547db348b16351c941e81c313f5a02f9b2a75edc82c7aa91",
+      "production_unchanged": true,
+      "mesh_count": 26,
+      "mesh_material_binding_contracts_preserved": true,
+      "samples_per_clip": 257,
+      "fixed_chassis_max_translation_world": 0,
+      "marker_geometry_max_error_raw_pixels": 3.0517578125e-05,
+      "anonymous_mechanism_loop_gap_world": 3.4305048757232726e-07,
+      "attack_support_gap_world": 0.0,
+      "attack_recovery_gap_world": 1.0745380052412656e-07,
+      "track_stance_forward_corrected_drift_world": 0,
+      "measured_wheel_turn_degrees": 179.9999978503734,
+      "wheel_angular_phase_error_radians": 5.31162178241118e-07,
+      "support_bounds_z_world": [
+        0.039999958127737045,
+        0.04200001060962677
+      ],
+      "adjacent_walk_material_point_displacement_world": [
+        0.13656325523649923,
+        0.1365633524174165,
+        0.13656315123579532,
+        0.13656330894174973,
+        0.1365633097942171,
+        0.1365633524174165,
+        0.13656318746556098,
+        0.13656326546607564
+      ],
+      "max_muzzle_recoil_world_x": 0.14161467552185059,
+      "gait": {
+        "nominalSpeedPxPerSecond": 25,
+        "referenceDisplayScale": 0.51,
+        "cycleDistancePixels": 36.82678420799417,
+        "nominalCycleDurationMs": 1473.0713683197669,
+        "motionKind": "wheel-or-track",
+        "stanceFraction": 0,
+        "doubleSupportFrames": []
+      },
+      "sockets": [
+        [
+          208.021,
+          189.906
+        ],
+        [
+          208.021,
+          189.906
+        ],
+        [
+          208.021,
+          189.906
+        ],
+        [
+          208.021,
+          189.906
+        ],
+        [
+          208.021,
+          189.906
+        ],
+        [
+          208.021,
+          189.906
+        ],
+        [
+          208.021,
+          189.906
+        ],
+        [
+          208.021,
+          189.906
+        ],
+        [
+          208.021,
+          189.906
+        ],
+        [
+          207.977,
+          189.084
+        ],
+        [
+          207.897,
+          187.85
+        ],
+        [
+          207.847,
+          187.192
+        ],
+        [
+          205.759,
+          187.127
+        ],
+        [
+          198.721,
+          187.093
+        ],
+        [
+          203.722,
+          188.865
+        ],
+        [
+          206.871,
+          190.517
+        ]
+      ],
+      "team_socket_max_error_raw_pixels": 0,
+      "note": "Closure allows permutation of identical spokes/shoes; source mesh topology and material bindings are unchanged. Pixel texture seam is a separate render check."
+    },
+    "cannon-enemy": {
+      "passed": true,
+      "source_sha256": "eafb27323803e63efdfca0778d29ea34ff04745ca4db135d5a3ad25fcefaac71",
+      "production_unchanged": true,
+      "mesh_count": 26,
+      "mesh_material_binding_contracts_preserved": true,
+      "samples_per_clip": 257,
+      "fixed_chassis_max_translation_world": 0,
+      "marker_geometry_max_error_raw_pixels": 3.0517578125e-05,
+      "anonymous_mechanism_loop_gap_world": 3.4305048757232726e-07,
+      "attack_support_gap_world": 0.0,
+      "attack_recovery_gap_world": 1.0745380052412656e-07,
+      "track_stance_forward_corrected_drift_world": 0,
+      "measured_wheel_turn_degrees": 179.9999978503734,
+      "wheel_angular_phase_error_radians": 5.31162178241118e-07,
+      "support_bounds_z_world": [
+        0.039999958127737045,
+        0.04200001060962677
+      ],
+      "adjacent_walk_material_point_displacement_world": [
+        0.13656325523649923,
+        0.1365633524174165,
+        0.13656315123579532,
+        0.13656330894174973,
+        0.1365633097942171,
+        0.1365633524174165,
+        0.13656318746556098,
+        0.13656326546607564
+      ],
+      "max_muzzle_recoil_world_x": 0.14161467552185059,
+      "gait": {
+        "nominalSpeedPxPerSecond": 25,
+        "referenceDisplayScale": 0.51,
+        "cycleDistancePixels": 36.82678420799417,
+        "nominalCycleDurationMs": 1473.0713683197669,
+        "motionKind": "wheel-or-track",
+        "stanceFraction": 0,
+        "doubleSupportFrames": []
+      },
+      "sockets": [
+        [
+          208.021,
+          189.906
+        ],
+        [
+          208.021,
+          189.906
+        ],
+        [
+          208.021,
+          189.906
+        ],
+        [
+          208.021,
+          189.906
+        ],
+        [
+          208.021,
+          189.906
+        ],
+        [
+          208.021,
+          189.906
+        ],
+        [
+          208.021,
+          189.906
+        ],
+        [
+          208.021,
+          189.906
+        ],
+        [
+          208.021,
+          189.906
+        ],
+        [
+          207.977,
+          189.084
+        ],
+        [
+          207.897,
+          187.85
+        ],
+        [
+          207.847,
+          187.192
+        ],
+        [
+          205.759,
+          187.127
+        ],
+        [
+          198.721,
+          187.093
+        ],
+        [
+          203.722,
+          188.865
+        ],
+        [
+          206.871,
+          190.517
+        ]
+      ],
+      "team_socket_max_error_raw_pixels": 0.0,
+      "note": "Closure allows permutation of identical spokes/shoes; source mesh topology and material bindings are unchanged. Pixel texture seam is a separate render check."
+    },
+    "tank": {
+      "passed": true,
+      "source_sha256": "6fe658934ba6d7ffbb66a20fd699741f57d4043b2dca174919309facc5a0ad46",
+      "production_unchanged": true,
+      "mesh_count": 131,
+      "mesh_material_binding_contracts_preserved": true,
+      "samples_per_clip": 257,
+      "fixed_chassis_max_translation_world": 0,
+      "marker_geometry_max_error_raw_pixels": 3.0517578125e-05,
+      "anonymous_mechanism_loop_gap_world": 1.4600097131278744e-07,
+      "attack_support_gap_world": 0.0,
+      "attack_recovery_gap_world": 1.9082797564351495e-07,
+      "track_stance_forward_corrected_drift_world": 6.006709840633562e-08,
+      "measured_wheel_turn_degrees": 90.000000987848,
+      "wheel_angular_phase_error_radians": 5.291604554535922e-07,
+      "support_bounds_z_world": [
+        0.03727291151881218,
+        0.04080251231789589
+      ],
+      "adjacent_walk_material_point_displacement_world": [
+        0.04916417311857701,
+        0.04916419424400715,
+        0.04916420018280484,
+        0.049164313841299594,
+        0.04916422800548149,
+        0.04916420669449653,
+        0.049164203475649045,
+        0.049164258492013356
+      ],
+      "max_muzzle_recoil_world_x": 0.1711510419845581,
+      "gait": {
+        "nominalSpeedPxPerSecond": 31,
+        "referenceDisplayScale": 0.51,
+        "cycleDistancePixels": 10.047837817067121,
+        "nominalCycleDurationMs": 324.1238005505523,
+        "motionKind": "wheel-or-track",
+        "stanceFraction": 0,
+        "doubleSupportFrames": []
+      },
+      "sockets": [
+        [
+          224.103,
+          161.717
+        ],
+        [
+          224.103,
+          161.717
+        ],
+        [
+          224.103,
+          161.717
+        ],
+        [
+          224.103,
+          161.717
+        ],
+        [
+          224.103,
+          161.717
+        ],
+        [
+          224.103,
+          161.717
+        ],
+        [
+          224.103,
+          161.717
+        ],
+        [
+          224.103,
+          161.717
+        ],
+        [
+          224.103,
+          161.717
+        ],
+        [
+          224.057,
+          160.691
+        ],
+        [
+          223.999,
+          159.665
+        ],
+        [
+          223.965,
+          159.151
+        ],
+        [
+          221.485,
+          159.305
+        ],
+        [
+          214.563,
+          159.314
+        ],
+        [
+          219.566,
+          160.711
+        ],
+        [
+          223.068,
+          162.285
+        ]
+      ],
+      "team_socket_max_error_raw_pixels": 0,
+      "note": "Closure allows permutation of identical spokes/shoes; source mesh topology and material bindings are unchanged. Pixel texture seam is a separate render check."
+    },
+    "tank-enemy": {
+      "passed": true,
+      "source_sha256": "1c40ff8529fecf4057035a9455a1786381847b3cb731f6c06b5b8380f301d8e9",
+      "production_unchanged": true,
+      "mesh_count": 131,
+      "mesh_material_binding_contracts_preserved": true,
+      "samples_per_clip": 257,
+      "fixed_chassis_max_translation_world": 0,
+      "marker_geometry_max_error_raw_pixels": 3.0517578125e-05,
+      "anonymous_mechanism_loop_gap_world": 1.4600097131278744e-07,
+      "attack_support_gap_world": 0.0,
+      "attack_recovery_gap_world": 1.9082797564351495e-07,
+      "track_stance_forward_corrected_drift_world": 6.006709840633562e-08,
+      "measured_wheel_turn_degrees": 90.000000987848,
+      "wheel_angular_phase_error_radians": 5.291604554535922e-07,
+      "support_bounds_z_world": [
+        0.03727291151881218,
+        0.04080251231789589
+      ],
+      "adjacent_walk_material_point_displacement_world": [
+        0.04916417311857701,
+        0.04916419424400715,
+        0.04916420018280484,
+        0.049164313841299594,
+        0.04916422800548149,
+        0.04916420669449653,
+        0.049164203475649045,
+        0.049164258492013356
+      ],
+      "max_muzzle_recoil_world_x": 0.1711510419845581,
+      "gait": {
+        "nominalSpeedPxPerSecond": 31,
+        "referenceDisplayScale": 0.51,
+        "cycleDistancePixels": 10.047837817067121,
+        "nominalCycleDurationMs": 324.1238005505523,
+        "motionKind": "wheel-or-track",
+        "stanceFraction": 0,
+        "doubleSupportFrames": []
+      },
+      "sockets": [
+        [
+          224.103,
+          161.717
+        ],
+        [
+          224.103,
+          161.717
+        ],
+        [
+          224.103,
+          161.717
+        ],
+        [
+          224.103,
+          161.717
+        ],
+        [
+          224.103,
+          161.717
+        ],
+        [
+          224.103,
+          161.717
+        ],
+        [
+          224.103,
+          161.717
+        ],
+        [
+          224.103,
+          161.717
+        ],
+        [
+          224.103,
+          161.717
+        ],
+        [
+          224.057,
+          160.691
+        ],
+        [
+          223.999,
+          159.665
+        ],
+        [
+          223.965,
+          159.151
+        ],
+        [
+          221.485,
+          159.305
+        ],
+        [
+          214.563,
+          159.314
+        ],
+        [
+          219.566,
+          160.711
+        ],
+        [
+          223.068,
+          162.285
+        ]
+      ],
+      "team_socket_max_error_raw_pixels": 0.0,
+      "note": "Closure allows permutation of identical spokes/shoes; source mesh topology and material bindings are unchanged. Pixel texture seam is a separate render check."
+    }
+  }
+}

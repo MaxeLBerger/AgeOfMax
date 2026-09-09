@@ -1,0 +1,26 @@
+{
+  "rifleman": {
+    "nominalSpeedPxPerSecond": 44,
+    "referenceDisplayScale": 0.43,
+    "cycleDistancePixels": 22.88,
+    "nominalCycleDurationMs": 520,
+    "motionKind": "biped",
+    "stanceFraction": 0.6,
+    "doubleSupportFrames": [
+      0,
+      4
+    ]
+  },
+  "sniper": {
+    "nominalSpeedPxPerSecond": 36,
+    "referenceDisplayScale": 0.43,
+    "cycleDistancePixels": 18.72,
+    "nominalCycleDurationMs": 520,
+    "motionKind": "biped",
+    "stanceFraction": 0.6,
+    "doubleSupportFrames": [
+      0,
+      4
+    ]
+  }
+}

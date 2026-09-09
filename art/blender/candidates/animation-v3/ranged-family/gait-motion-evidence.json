@@ -1,0 +1,90 @@
+{
+  "rifleman": {
+    "passed": true,
+    "nominal_speed_pixels_per_second": 44,
+    "cycle_distance_pixels": 22.880000000000003,
+    "reference_display_scale": 0.43,
+    "samples_per_scenario": 257,
+    "measurements": [
+      {
+        "phase_model": "distance-driven",
+        "actual_speed_fraction": 1,
+        "max_stance_world_screen_drift_pixels": 0.00023605346679289596
+      },
+      {
+        "phase_model": "distance-driven",
+        "actual_speed_fraction": 0.5,
+        "max_stance_world_screen_drift_pixels": 0.00023605346679289596
+      },
+      {
+        "phase_model": "distance-driven",
+        "actual_speed_fraction": 0,
+        "max_stance_world_screen_drift_pixels": 0
+      },
+      {
+        "phase_model": "fixed-clock-counterexample",
+        "actual_speed_fraction": 1,
+        "max_stance_world_screen_drift_pixels": 0.00023605346679289596
+      },
+      {
+        "phase_model": "fixed-clock-counterexample",
+        "actual_speed_fraction": 0.5,
+        "max_stance_world_screen_drift_pixels": 6.837207489013679
+      },
+      {
+        "phase_model": "fixed-clock-counterexample",
+        "actual_speed_fraction": 0,
+        "max_stance_world_screen_drift_pixels": 13.674394989013678
+      }
+    ],
+    "nominal_frame_hold_quantization_bound_pixels": 2.8600000000000003,
+    "limits": "Continuous Blender samples prove stance geometry. Eight discrete images still quantize motion. Abrupt stop/idle transition requires runtime review.",
+    "source_sha256": "bf83c0ff1dfaa3d6159c04eab49e6ef6ffab346812d27c1649fc65fbf1536b5b",
+    "source_sha256_before_gait_metadata": "38e11ea347fb6aa81645fe10c41c43f3ded79107bc50fe2f0282ba632adc1e8a",
+    "metadata_only_update_preserved_scene_signature": "e366f03666049d38651bb3d17f4a383b6f669e19ae35b8ebd7353f3b63fa820e"
+  },
+  "sniper": {
+    "passed": true,
+    "nominal_speed_pixels_per_second": 36,
+    "cycle_distance_pixels": 18.72,
+    "reference_display_scale": 0.43,
+    "samples_per_scenario": 257,
+    "measurements": [
+      {
+        "phase_model": "distance-driven",
+        "actual_speed_fraction": 1,
+        "max_stance_world_screen_drift_pixels": 0.00033020019532159495
+      },
+      {
+        "phase_model": "distance-driven",
+        "actual_speed_fraction": 0.5,
+        "max_stance_world_screen_drift_pixels": 0.0001946258544904822
+      },
+      {
+        "phase_model": "distance-driven",
+        "actual_speed_fraction": 0,
+        "max_stance_world_screen_drift_pixels": 0
+      },
+      {
+        "phase_model": "fixed-clock-counterexample",
+        "actual_speed_fraction": 1,
+        "max_stance_world_screen_drift_pixels": 0.00033020019532159495
+      },
+      {
+        "phase_model": "fixed-clock-counterexample",
+        "actual_speed_fraction": 0.5,
+        "max_stance_world_screen_drift_pixels": 5.594060363769529
+      },
+      {
+        "phase_model": "fixed-clock-counterexample",
+        "actual_speed_fraction": 0,
+        "max_stance_world_screen_drift_pixels": 11.188122863769529
+      }
+    ],
+    "nominal_frame_hold_quantization_bound_pixels": 2.34,
+    "limits": "Continuous Blender samples prove stance geometry. Eight discrete images still quantize motion. Abrupt stop/idle transition requires runtime review.",
+    "source_sha256": "04514b38ba362fb618ca2431e7c3c185cfc40f9f7c98923d4dd7079ac347a904",
+    "source_sha256_before_gait_metadata": "e2a4c9585de9189aff3d68d424a77fca1888b2f1af044b6fd8a5b06aff93df3d",
+    "metadata_only_update_preserved_scene_signature": "1e66a345778c7b18c4d7b2b408fc5dd1cf9de39edab5c3bf6dc6035724aac29f"
+  }
+}

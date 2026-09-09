@@ -1,0 +1,257 @@
+{
+  "status": "promoted",
+  "units": [
+    "super-heavy",
+    "sniper"
+  ],
+  "spriteSheets": 4,
+  "portraits": 4,
+  "blenderSources": 4,
+  "intermediateFrames": 32,
+  "updatedSocketIds": [
+    "super-heavy",
+    "sniper"
+  ],
+  "unchangedSocketIds": [
+    "archer",
+    "ballista",
+    "cannon",
+    "cavalry",
+    "clubman",
+    "dino-rider",
+    "duelist",
+    "grenadier",
+    "knight",
+    "laser-soldier",
+    "mech",
+    "musketeer",
+    "plasma-trooper",
+    "rifleman",
+    "slinger",
+    "spearman",
+    "swordsman",
+    "tank"
+  ],
+  "files": [
+    {
+      "source": "art\\blender\\candidates\\heavy-sniper-v1\\unit-super-heavy.blend",
+      "destination": "art\\blender\\unit-super-heavy.blend",
+      "sha256": "d0cd3fec6a47789a025d618a067bac2f1ec5c41142d5f42831cc6a32b09deeda"
+    },
+    {
+      "source": "art\\blender\\candidates\\heavy-sniper-v1\\exports\\units\\super-heavy.png",
+      "destination": "public\\assets\\reborn\\units\\super-heavy.png",
+      "sha256": "59c8543809333e8f2e446aeabb81c808e1c680f5180a481d8189cced6cb3e90e"
+    },
+    {
+      "source": "art\\blender\\candidates\\heavy-sniper-v1\\exports\\portraits\\super-heavy.png",
+      "destination": "public\\assets\\reborn\\portraits\\super-heavy.png",
+      "sha256": "9c9a0241e3b004f96a59b0dfa8046b3de50db9d426ac3cea49d6dfa4cc8a6298"
+    },
+    {
+      "source": "art\\blender\\candidates\\heavy-sniper-v1\\frames\\player\\super-heavy\\0.png",
+      "destination": "art\\blender\\frames\\player\\super-heavy\\0.png",
+      "sha256": "bd8c9c8cd64f8b265688fc34a7d0f658b8fb6821ec31e342310a9f1fc56189d9"
+    },
+    {
+      "source": "art\\blender\\candidates\\heavy-sniper-v1\\frames\\player\\super-heavy\\1.png",
+      "destination": "art\\blender\\frames\\player\\super-heavy\\1.png",
+      "sha256": "1029722930135ba3edeb2666a54f86efa9590de7373e59d33c4aae2570422580"
+    },
+    {
+      "source": "art\\blender\\candidates\\heavy-sniper-v1\\frames\\player\\super-heavy\\2.png",
+      "destination": "art\\blender\\frames\\player\\super-heavy\\2.png",
+      "sha256": "b4047647424811e0283147bb493d6c7033b0356422291647e5dbf7c79d21a328"
+    },
+    {
+      "source": "art\\blender\\candidates\\heavy-sniper-v1\\frames\\player\\super-heavy\\3.png",
+      "destination": "art\\blender\\frames\\player\\super-heavy\\3.png",
+      "sha256": "bde536f6b8ca46a547d018e00d2358c3b62be0b566696d37f415f243b93ab76d"
+    },
+    {
+      "source": "art\\blender\\candidates\\heavy-sniper-v1\\frames\\player\\super-heavy\\4.png",
+      "destination": "art\\blender\\frames\\player\\super-heavy\\4.png",
+      "sha256": "087e2df10c5c7da48ed5bdf0ff5cc38f667e98abf650e88d8fe54757195663bc"
+    },
+    {
+      "source": "art\\blender\\candidates\\heavy-sniper-v1\\frames\\player\\super-heavy\\5.png",
+      "destination": "art\\blender\\frames\\player\\super-heavy\\5.png",
+      "sha256": "cbd0ec52c79dae2ad3a50b4affed913afbc51c6ff22e1ab259917b3c32b14bf0"
+    },
+    {
+      "source": "art\\blender\\candidates\\heavy-sniper-v1\\frames\\player\\super-heavy\\6.png",
+      "destination": "art\\blender\\frames\\player\\super-heavy\\6.png",
+      "sha256": "207e1df8beacd8aaedfe646ed04ec333c553e186d4580566b3e6ba0c952547b7"
+    },
+    {
+      "source": "art\\blender\\candidates\\heavy-sniper-v1\\frames\\player\\super-heavy\\7.png",
+      "destination": "art\\blender\\frames\\player\\super-heavy\\7.png",
+      "sha256": "30d7ce3ca07da822d53b20fb21c13f8d54cbbea6d8dc570c837e9c583149f684"
+    },
+    {
+      "source": "art\\blender\\candidates\\heavy-sniper-v1\\unit-super-heavy-enemy.blend",
+      "destination": "art\\blender\\unit-super-heavy-enemy.blend",
+      "sha256": "b7c2b3ab07747aca3e1ad9a61f790fb0eb55b273719e6504b6715704af8b2ff3"
+    },
+    {
+      "source": "art\\blender\\candidates\\heavy-sniper-v1\\exports\\units-enemy\\super-heavy.png",
+      "destination": "public\\assets\\reborn\\units-enemy\\super-heavy.png",
+      "sha256": "31cf0cdf839a111774b296d373caca0f76e44f5bdb63b602ef7476ee7a4f5778"
+    },
+    {
+      "source": "art\\blender\\candidates\\heavy-sniper-v1\\exports\\portraits-enemy\\super-heavy.png",
+      "destination": "public\\assets\\reborn\\portraits-enemy\\super-heavy.png",
+      "sha256": "957d580657c8eace0229277f86c98214f00d8f16d01e55367cf7670ed822618a"
+    },
+    {
+      "source": "art\\blender\\candidates\\heavy-sniper-v1\\frames\\enemy\\super-heavy\\0.png",
+      "destination": "art\\blender\\frames\\enemy\\super-heavy\\0.png",
+      "sha256": "ba08bd470d54bae5c846fc68b1575781a445a936ca83dbf0a7919c0e3cfe1db6"
+    },
+    {
+      "source": "art\\blender\\candidates\\heavy-sniper-v1\\frames\\enemy\\super-heavy\\1.png",
+      "destination": "art\\blender\\frames\\enemy\\super-heavy\\1.png",
+      "sha256": "59468a13f71bc77ce798f66b6cc0d62c595da61368099de71463ce25934826ed"
+    },
+    {
+      "source": "art\\blender\\candidates\\heavy-sniper-v1\\frames\\enemy\\super-heavy\\2.png",
+      "destination": "art\\blender\\frames\\enemy\\super-heavy\\2.png",
+      "sha256": "64125ab251f39947ef47339ee8e0cf89a7ec1da73faf6d2561eafad87f5a27cb"
+    },
+    {
+      "source": "art\\blender\\candidates\\heavy-sniper-v1\\frames\\enemy\\super-heavy\\3.png",
+      "destination": "art\\blender\\frames\\enemy\\super-heavy\\3.png",
+      "sha256": "bd9790446b1ac76deb8ee3cf8c0e5f2ecc02c71e4d9eba1d150e828c07bd25f2"
+    },
+    {
+      "source": "art\\blender\\candidates\\heavy-sniper-v1\\frames\\enemy\\super-heavy\\4.png",
+      "destination": "art\\blender\\frames\\enemy\\super-heavy\\4.png",
+      "sha256": "5d80be82ebafb269ba423ed15dc45c25e826ef89945ab05830e71880dd282bc7"
+    },
+    {
+      "source": "art\\blender\\candidates\\heavy-sniper-v1\\frames\\enemy\\super-heavy\\5.png",
+      "destination": "art\\blender\\frames\\enemy\\super-heavy\\5.png",
+      "sha256": "9a52204ada6ae5c828df861393b797899fba75a4235073e5ec6c6d498c9921e5"
+    },
+    {
+      "source": "art\\blender\\candidates\\heavy-sniper-v1\\frames\\enemy\\super-heavy\\6.png",
+      "destination": "art\\blender\\frames\\enemy\\super-heavy\\6.png",
+      "sha256": "ef246baeb519752d223fd3dc67047202292bb8912f92ee7ed7f424355cdd7db5"
+    },
+    {
+      "source": "art\\blender\\candidates\\heavy-sniper-v1\\frames\\enemy\\super-heavy\\7.png",
+      "destination": "art\\blender\\frames\\enemy\\super-heavy\\7.png",
+      "sha256": "657a6aac25c0807643dc578add67a57c334a4de6188ccd6f6ee6e3fc123b8c99"
+    },
+    {
+      "source": "art\\blender\\candidates\\heavy-sniper-v1\\unit-sniper.blend",
+      "destination": "art\\blender\\unit-sniper.blend",
+      "sha256": "be3ea20ad37d1cb5e68f9efd9d74fc5328100328e3c279ae1a4fc6ecbc1a2fde"
+    },
+    {
+      "source": "art\\blender\\candidates\\heavy-sniper-v1\\exports\\units\\sniper.png",
+      "destination": "public\\assets\\reborn\\units\\sniper.png",
+      "sha256": "3e31f79cf2dc292c89582a31c98940e1408009ba5d501c198f6abb8867aeebf5"
+    },
+    {
+      "source": "art\\blender\\candidates\\heavy-sniper-v1\\exports\\portraits\\sniper.png",
+      "destination": "public\\assets\\reborn\\portraits\\sniper.png",
+      "sha256": "a63032db8ac844e1e82536e44411cb902c28d16799e845a10de390c9f1c79786"
+    },
+    {
+      "source": "art\\blender\\candidates\\heavy-sniper-v1\\frames\\player\\sniper\\0.png",
+      "destination": "art\\blender\\frames\\player\\sniper\\0.png",
+      "sha256": "679888539d741ffaa5014b25866898dc07a3eb0c51f1809c8b42b415d8210925"
+    },
+    {
+      "source": "art\\blender\\candidates\\heavy-sniper-v1\\frames\\player\\sniper\\1.png",
+      "destination": "art\\blender\\frames\\player\\sniper\\1.png",
+      "sha256": "1fd5804c46d24a4c641d7d23c445ce71f3b7782d8165d2b804d98ec9d991795a"
+    },
+    {
+      "source": "art\\blender\\candidates\\heavy-sniper-v1\\frames\\player\\sniper\\2.png",
+      "destination": "art\\blender\\frames\\player\\sniper\\2.png",
+      "sha256": "512cd3791c5a1dea3b615cfc30200696e3911bd9eb5d8a1da321a5f8bdd44070"
+    },
+    {
+      "source": "art\\blender\\candidates\\heavy-sniper-v1\\frames\\player\\sniper\\3.png",
+      "destination": "art\\blender\\frames\\player\\sniper\\3.png",
+      "sha256": "0863787c557bd4509d70cae4b1956837d270d72b01880f411710dc4c9523040a"
+    },
+    {
+      "source": "art\\blender\\candidates\\heavy-sniper-v1\\frames\\player\\sniper\\4.png",
+      "destination": "art\\blender\\frames\\player\\sniper\\4.png",
+      "sha256": "92127098ff8f69ac90e6bfc2db79658cb2e12302f77e00a7bc4b1dfb5bc0516e"
+    },
+    {
+      "source": "art\\blender\\candidates\\heavy-sniper-v1\\frames\\player\\sniper\\5.png",
+      "destination": "art\\blender\\frames\\player\\sniper\\5.png",
+      "sha256": "3079889c7dfe3a7f32f196af8700e200ab06d3df7f30c6644f845441286fdad7"
+    },
+    {
+      "source": "art\\blender\\candidates\\heavy-sniper-v1\\frames\\player\\sniper\\6.png",
+      "destination": "art\\blender\\frames\\player\\sniper\\6.png",
+      "sha256": "d4dc26ad6f9a0860d4f581a91be19235cd3c91193a00026e65189be622450401"
+    },
+    {
+      "source": "art\\blender\\candidates\\heavy-sniper-v1\\frames\\player\\sniper\\7.png",
+      "destination": "art\\blender\\frames\\player\\sniper\\7.png",
+      "sha256": "4f70c97ec434ec171901002047db0eb9e49346b697065732a63af288e7102529"
+    },
+    {
+      "source": "art\\blender\\candidates\\heavy-sniper-v1\\unit-sniper-enemy.blend",
+      "destination": "art\\blender\\unit-sniper-enemy.blend",
+      "sha256": "6201b6804afd2d916fb4f9bc885d17c1c5eb2832b3c4a9e344fc3ba0f78d63f3"
+    },
+    {
+      "source": "art\\blender\\candidates\\heavy-sniper-v1\\exports\\units-enemy\\sniper.png",
+      "destination": "public\\assets\\reborn\\units-enemy\\sniper.png",
+      "sha256": "9d03b9f4dce1a0ea797176ea6c6ebe1c8439720a122f736544cc1af69d78888d"
+    },
+    {
+      "source": "art\\blender\\candidates\\heavy-sniper-v1\\exports\\portraits-enemy\\sniper.png",
+      "destination": "public\\assets\\reborn\\portraits-enemy\\sniper.png",
+      "sha256": "e37b85c2b271a9fa6ed368c714af9f51a51871bc229ea1afc312b9545799e3b9"
+    },
+    {
+      "source": "art\\blender\\candidates\\heavy-sniper-v1\\frames\\enemy\\sniper\\0.png",
+      "destination": "art\\blender\\frames\\enemy\\sniper\\0.png",
+      "sha256": "e1292df387b131a79adf260c90538be33f9261bb715577303dc3ebc874239c81"
+    },
+    {
+      "source": "art\\blender\\candidates\\heavy-sniper-v1\\frames\\enemy\\sniper\\1.png",
+      "destination": "art\\blender\\frames\\enemy\\sniper\\1.png",
+      "sha256": "99afbd09255516be597fbb0e28acc9873270c7ad3ef00209a4d11b50b3664a8b"
+    },
+    {
+      "source": "art\\blender\\candidates\\heavy-sniper-v1\\frames\\enemy\\sniper\\2.png",
+      "destination": "art\\blender\\frames\\enemy\\sniper\\2.png",
+      "sha256": "6efd0b22fac97f8141a491fcc3205bd87cc8b1a16f3df6a04daedb073c5ca46d"
+    },
+    {
+      "source": "art\\blender\\candidates\\heavy-sniper-v1\\frames\\enemy\\sniper\\3.png",
+      "destination": "art\\blender\\frames\\enemy\\sniper\\3.png",
+      "sha256": "dcdc5faa494e1e964cfd2618680825e031df4c11becc91a594cc256d870e592a"
+    },
+    {
+      "source": "art\\blender\\candidates\\heavy-sniper-v1\\frames\\enemy\\sniper\\4.png",
+      "destination": "art\\blender\\frames\\enemy\\sniper\\4.png",
+      "sha256": "bc613198eb7309af0ff0c5993481854376ee8b0faad98e9c29412f5c7faf8b7e"
+    },
+    {
+      "source": "art\\blender\\candidates\\heavy-sniper-v1\\frames\\enemy\\sniper\\5.png",
+      "destination": "art\\blender\\frames\\enemy\\sniper\\5.png",
+      "sha256": "6224c43231e406f7993354498e1b255df401d3f67428c874f4a33def2e91fd50"
+    },
+    {
+      "source": "art\\blender\\candidates\\heavy-sniper-v1\\frames\\enemy\\sniper\\6.png",
+      "destination": "art\\blender\\frames\\enemy\\sniper\\6.png",
+      "sha256": "a4296abe5ef385c1979d342fbaca24c4495ed47c9a9ebaa047b439a99485c6c0"
+    },
+    {
+      "source": "art\\blender\\candidates\\heavy-sniper-v1\\frames\\enemy\\sniper\\7.png",
+      "destination": "art\\blender\\frames\\enemy\\sniper\\7.png",
+      "sha256": "3462385256ea1a248684c0089e4ffa9696aec433abef9bc2d1e031442cab00ef"
+    }
+  ]
+}

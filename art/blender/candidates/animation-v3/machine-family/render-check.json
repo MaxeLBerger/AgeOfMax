@@ -1,0 +1,714 @@
+{
+  "passed": true,
+  "units": {
+    "cannon": {
+      "source_sha256": "bdc148711deab2d2547db348b16351c941e81c313f5a02f9b2a75edc82c7aa91",
+      "sheet_sha256": "5b6b75ffcf988e7d543ef0709c8d6837d2c6bd6208113f03447bbe32adce5f71",
+      "frame_count": 16,
+      "unique_walk_frames": 8,
+      "unique_attack_frames": 8,
+      "frame_size": [
+        256,
+        256
+      ],
+      "sheet_size": [
+        4096,
+        256
+      ],
+      "bounds": [
+        [
+          65,
+          127,
+          211,
+          241
+        ],
+        [
+          65,
+          127,
+          211,
+          241
+        ],
+        [
+          65,
+          127,
+          211,
+          241
+        ],
+        [
+          65,
+          127,
+          211,
+          241
+        ],
+        [
+          65,
+          127,
+          211,
+          241
+        ],
+        [
+          65,
+          127,
+          211,
+          241
+        ],
+        [
+          65,
+          127,
+          211,
+          241
+        ],
+        [
+          65,
+          127,
+          211,
+          241
+        ],
+        [
+          65,
+          127,
+          211,
+          241
+        ],
+        [
+          65,
+          127,
+          211,
+          241
+        ],
+        [
+          65,
+          127,
+          211,
+          241
+        ],
+        [
+          65,
+          127,
+          211,
+          241
+        ],
+        [
+          65,
+          127,
+          209,
+          241
+        ],
+        [
+          65,
+          127,
+          202,
+          241
+        ],
+        [
+          65,
+          127,
+          207,
+          241
+        ],
+        [
+          65,
+          127,
+          210,
+          241
+        ]
+      ],
+      "gait": {
+        "nominalSpeedPxPerSecond": 25,
+        "referenceDisplayScale": 0.51,
+        "cycleDistancePixels": 36.82678420799417,
+        "nominalCycleDurationMs": 1473.0713683197669,
+        "motionKind": "wheel-or-track",
+        "stanceFraction": 0,
+        "doubleSupportFrames": []
+      },
+      "closure_render_difference": {
+        "walk": {
+          "mean_absolute_rgb_on_alpha": 0.8642521113189368,
+          "pixels_delta_over_12": 69,
+          "alpha_byte_equal": true
+        },
+        "attack": {
+          "mean_absolute_rgb_on_alpha": 0.0009068752479737006,
+          "pixels_delta_over_12": 0,
+          "alpha_byte_equal": true
+        }
+      },
+      "adjacent_walk_image_deltas": [
+        {
+          "mean_absolute_rgb_on_alpha": 4.970649895178197,
+          "pixels_delta_over_12": 815,
+          "alpha_byte_equal": false
+        },
+        {
+          "mean_absolute_rgb_on_alpha": 4.437039555706676,
+          "pixels_delta_over_12": 825,
+          "alpha_byte_equal": false
+        },
+        {
+          "mean_absolute_rgb_on_alpha": 5.184996317071789,
+          "pixels_delta_over_12": 813,
+          "alpha_byte_equal": false
+        },
+        {
+          "mean_absolute_rgb_on_alpha": 4.670972859652105,
+          "pixels_delta_over_12": 804,
+          "alpha_byte_equal": false
+        },
+        {
+          "mean_absolute_rgb_on_alpha": 4.727236670632897,
+          "pixels_delta_over_12": 813,
+          "alpha_byte_equal": false
+        },
+        {
+          "mean_absolute_rgb_on_alpha": 5.019381162869771,
+          "pixels_delta_over_12": 820,
+          "alpha_byte_equal": false
+        },
+        {
+          "mean_absolute_rgb_on_alpha": 4.322284548699643,
+          "pixels_delta_over_12": 816,
+          "alpha_byte_equal": false
+        },
+        {
+          "mean_absolute_rgb_on_alpha": 4.99263414357754,
+          "pixels_delta_over_12": 807,
+          "alpha_byte_equal": false
+        }
+      ],
+      "production_unchanged": true
+    },
+    "cannon-enemy": {
+      "source_sha256": "eafb27323803e63efdfca0778d29ea34ff04745ca4db135d5a3ad25fcefaac71",
+      "sheet_sha256": "190d4e6934108399f22e7e61f5e9e2cf7e7a020bcf42e4fef1ee876ebc891c30",
+      "frame_count": 16,
+      "unique_walk_frames": 8,
+      "unique_attack_frames": 8,
+      "frame_size": [
+        256,
+        256
+      ],
+      "sheet_size": [
+        4096,
+        256
+      ],
+      "bounds": [
+        [
+          65,
+          127,
+          211,
+          241
+        ],
+        [
+          65,
+          127,
+          211,
+          241
+        ],
+        [
+          65,
+          127,
+          211,
+          241
+        ],
+        [
+          65,
+          127,
+          211,
+          241
+        ],
+        [
+          65,
+          127,
+          211,
+          241
+        ],
+        [
+          65,
+          127,
+          211,
+          241
+        ],
+        [
+          65,
+          127,
+          211,
+          241
+        ],
+        [
+          65,
+          127,
+          211,
+          241
+        ],
+        [
+          65,
+          127,
+          211,
+          241
+        ],
+        [
+          65,
+          127,
+          211,
+          241
+        ],
+        [
+          65,
+          127,
+          211,
+          241
+        ],
+        [
+          65,
+          127,
+          211,
+          241
+        ],
+        [
+          65,
+          127,
+          209,
+          241
+        ],
+        [
+          65,
+          127,
+          202,
+          241
+        ],
+        [
+          65,
+          127,
+          207,
+          241
+        ],
+        [
+          65,
+          127,
+          210,
+          241
+        ]
+      ],
+      "gait": {
+        "nominalSpeedPxPerSecond": 25,
+        "referenceDisplayScale": 0.51,
+        "cycleDistancePixels": 36.82678420799417,
+        "nominalCycleDurationMs": 1473.0713683197669,
+        "motionKind": "wheel-or-track",
+        "stanceFraction": 0,
+        "doubleSupportFrames": []
+      },
+      "closure_render_difference": {
+        "walk": {
+          "mean_absolute_rgb_on_alpha": 0.8683330499348183,
+          "pixels_delta_over_12": 68,
+          "alpha_byte_equal": true
+        },
+        "attack": {
+          "mean_absolute_rgb_on_alpha": 0.0009068752479737006,
+          "pixels_delta_over_12": 0,
+          "alpha_byte_equal": true
+        }
+      },
+      "adjacent_walk_image_deltas": [
+        {
+          "mean_absolute_rgb_on_alpha": 4.9670236274009865,
+          "pixels_delta_over_12": 815,
+          "alpha_byte_equal": false
+        },
+        {
+          "mean_absolute_rgb_on_alpha": 4.437209565907287,
+          "pixels_delta_over_12": 825,
+          "alpha_byte_equal": false
+        },
+        {
+          "mean_absolute_rgb_on_alpha": 5.181936653634767,
+          "pixels_delta_over_12": 813,
+          "alpha_byte_equal": false
+        },
+        {
+          "mean_absolute_rgb_on_alpha": 4.66700662927078,
+          "pixels_delta_over_12": 804,
+          "alpha_byte_equal": false
+        },
+        {
+          "mean_absolute_rgb_on_alpha": 4.726726726726727,
+          "pixels_delta_over_12": 812,
+          "alpha_byte_equal": false
+        },
+        {
+          "mean_absolute_rgb_on_alpha": 5.019324492802901,
+          "pixels_delta_over_12": 819,
+          "alpha_byte_equal": false
+        },
+        {
+          "mean_absolute_rgb_on_alpha": 4.327100685591252,
+          "pixels_delta_over_12": 816,
+          "alpha_byte_equal": false
+        },
+        {
+          "mean_absolute_rgb_on_alpha": 4.9960904300526945,
+          "pixels_delta_over_12": 807,
+          "alpha_byte_equal": false
+        }
+      ],
+      "production_unchanged": true
+    },
+    "tank": {
+      "source_sha256": "6fe658934ba6d7ffbb66a20fd699741f57d4043b2dca174919309facc5a0ad46",
+      "sheet_sha256": "ccbc658a26c0a9e87cfa97e9b988e9b9a549b5a5ec0465cf4bef529211f14a4a",
+      "frame_count": 16,
+      "unique_walk_frames": 8,
+      "unique_attack_frames": 8,
+      "frame_size": [
+        256,
+        256
+      ],
+      "sheet_size": [
+        4096,
+        256
+      ],
+      "bounds": [
+        [
+          41,
+          101,
+          226,
+          251
+        ],
+        [
+          41,
+          101,
+          226,
+          251
+        ],
+        [
+          41,
+          101,
+          226,
+          251
+        ],
+        [
+          41,
+          101,
+          226,
+          251
+        ],
+        [
+          41,
+          101,
+          226,
+          251
+        ],
+        [
+          41,
+          101,
+          226,
+          251
+        ],
+        [
+          41,
+          101,
+          226,
+          251
+        ],
+        [
+          41,
+          101,
+          226,
+          251
+        ],
+        [
+          41,
+          101,
+          226,
+          251
+        ],
+        [
+          41,
+          101,
+          226,
+          251
+        ],
+        [
+          41,
+          101,
+          226,
+          251
+        ],
+        [
+          41,
+          101,
+          226,
+          251
+        ],
+        [
+          41,
+          101,
+          223,
+          251
+        ],
+        [
+          41,
+          101,
+          216,
+          251
+        ],
+        [
+          41,
+          101,
+          221,
+          251
+        ],
+        [
+          41,
+          101,
+          225,
+          251
+        ]
+      ],
+      "gait": {
+        "nominalSpeedPxPerSecond": 31,
+        "referenceDisplayScale": 0.51,
+        "cycleDistancePixels": 10.047837817067121,
+        "nominalCycleDurationMs": 324.1238005505523,
+        "motionKind": "wheel-or-track",
+        "stanceFraction": 0,
+        "doubleSupportFrames": []
+      },
+      "closure_render_difference": {
+        "walk": {
+          "mean_absolute_rgb_on_alpha": 0.29374147740631024,
+          "pixels_delta_over_12": 45,
+          "alpha_byte_equal": true
+        },
+        "attack": {
+          "mean_absolute_rgb_on_alpha": 0.0001410636196924813,
+          "pixels_delta_over_12": 0,
+          "alpha_byte_equal": true
+        }
+      },
+      "adjacent_walk_image_deltas": [
+        {
+          "mean_absolute_rgb_on_alpha": 1.6532929065011988,
+          "pixels_delta_over_12": 492,
+          "alpha_byte_equal": false
+        },
+        {
+          "mean_absolute_rgb_on_alpha": 1.6790750141003947,
+          "pixels_delta_over_12": 532,
+          "alpha_byte_equal": false
+        },
+        {
+          "mean_absolute_rgb_on_alpha": 1.5701729648430156,
+          "pixels_delta_over_12": 487,
+          "alpha_byte_equal": false
+        },
+        {
+          "mean_absolute_rgb_on_alpha": 1.5340666055606478,
+          "pixels_delta_over_12": 486,
+          "alpha_byte_equal": false
+        },
+        {
+          "mean_absolute_rgb_on_alpha": 1.5698841335871583,
+          "pixels_delta_over_12": 484,
+          "alpha_byte_equal": false
+        },
+        {
+          "mean_absolute_rgb_on_alpha": 1.542330653880506,
+          "pixels_delta_over_12": 479,
+          "alpha_byte_equal": false
+        },
+        {
+          "mean_absolute_rgb_on_alpha": 1.5262539369153387,
+          "pixels_delta_over_12": 464,
+          "alpha_byte_equal": false
+        },
+        {
+          "mean_absolute_rgb_on_alpha": 1.6712737700679312,
+          "pixels_delta_over_12": 499,
+          "alpha_byte_equal": false
+        }
+      ],
+      "production_unchanged": true
+    },
+    "tank-enemy": {
+      "source_sha256": "1c40ff8529fecf4057035a9455a1786381847b3cb731f6c06b5b8380f301d8e9",
+      "sheet_sha256": "f8e2264ebb7fd78471ba28f2ef80230c0c8769e9ac175da3122f05fdc1af375b",
+      "frame_count": 16,
+      "unique_walk_frames": 8,
+      "unique_attack_frames": 8,
+      "frame_size": [
+        256,
+        256
+      ],
+      "sheet_size": [
+        4096,
+        256
+      ],
+      "bounds": [
+        [
+          41,
+          101,
+          226,
+          251
+        ],
+        [
+          41,
+          101,
+          226,
+          251
+        ],
+        [
+          41,
+          101,
+          226,
+          251
+        ],
+        [
+          41,
+          101,
+          226,
+          251
+        ],
+        [
+          41,
+          101,
+          226,
+          251
+        ],
+        [
+          41,
+          101,
+          226,
+          251
+        ],
+        [
+          41,
+          101,
+          226,
+          251
+        ],
+        [
+          41,
+          101,
+          226,
+          251
+        ],
+        [
+          41,
+          101,
+          226,
+          251
+        ],
+        [
+          41,
+          101,
+          226,
+          251
+        ],
+        [
+          41,
+          101,
+          226,
+          251
+        ],
+        [
+          41,
+          101,
+          226,
+          251
+        ],
+        [
+          41,
+          101,
+          223,
+          251
+        ],
+        [
+          41,
+          101,
+          216,
+          251
+        ],
+        [
+          41,
+          101,
+          221,
+          251
+        ],
+        [
+          41,
+          101,
+          225,
+          251
+        ]
+      ],
+      "gait": {
+        "nominalSpeedPxPerSecond": 31,
+        "referenceDisplayScale": 0.51,
+        "cycleDistancePixels": 10.047837817067121,
+        "nominalCycleDurationMs": 324.1238005505523,
+        "motionKind": "wheel-or-track",
+        "stanceFraction": 0,
+        "doubleSupportFrames": []
+      },
+      "closure_render_difference": {
+        "walk": {
+          "mean_absolute_rgb_on_alpha": 0.290144355104152,
+          "pixels_delta_over_12": 39,
+          "alpha_byte_equal": true
+        },
+        "attack": {
+          "mean_absolute_rgb_on_alpha": 7.053180984624065e-05,
+          "pixels_delta_over_12": 0,
+          "alpha_byte_equal": true
+        }
+      },
+      "adjacent_walk_image_deltas": [
+        {
+          "mean_absolute_rgb_on_alpha": 1.6557373196070138,
+          "pixels_delta_over_12": 501,
+          "alpha_byte_equal": false
+        },
+        {
+          "mean_absolute_rgb_on_alpha": 1.6918828727204362,
+          "pixels_delta_over_12": 534,
+          "alpha_byte_equal": false
+        },
+        {
+          "mean_absolute_rgb_on_alpha": 1.5894200037601054,
+          "pixels_delta_over_12": 488,
+          "alpha_byte_equal": false
+        },
+        {
+          "mean_absolute_rgb_on_alpha": 1.5411173000540555,
+          "pixels_delta_over_12": 486,
+          "alpha_byte_equal": false
+        },
+        {
+          "mean_absolute_rgb_on_alpha": 1.5728454252743898,
+          "pixels_delta_over_12": 484,
+          "alpha_byte_equal": false
+        },
+        {
+          "mean_absolute_rgb_on_alpha": 1.5439054200159827,
+          "pixels_delta_over_12": 491,
+          "alpha_byte_equal": false
+        },
+        {
+          "mean_absolute_rgb_on_alpha": 1.5278757109951584,
+          "pixels_delta_over_12": 468,
+          "alpha_byte_equal": false
+        },
+        {
+          "mean_absolute_rgb_on_alpha": 1.6691112521448888,
+          "pixels_delta_over_12": 503,
+          "alpha_byte_equal": false
+        }
+      ],
+      "production_unchanged": true
+    }
+  },
+  "claims": "Isolated Blender animation study; not a production promotion or full game playthrough."
+}

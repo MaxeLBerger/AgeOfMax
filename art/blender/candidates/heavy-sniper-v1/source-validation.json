@@ -1,0 +1,64 @@
+{
+  "status": "passed",
+  "openedSources": 4,
+  "repeatExportPasses": 4,
+  "issues": [],
+  "records": [
+    {
+      "source": "unit-super-heavy.blend",
+      "meshCount": 112,
+      "attackSoleDrift": 3.469923443256324e-07,
+      "gripEvidence": {}
+    },
+    {
+      "source": "unit-super-heavy-enemy.blend",
+      "meshCount": 112,
+      "attackSoleDrift": 3.469923443256324e-07,
+      "gripEvidence": {}
+    },
+    {
+      "source": "unit-sniper.blend",
+      "meshCount": 96,
+      "attackSoleDrift": 5.5755039852469285e-08,
+      "gripEvidence": {
+        "eye": [
+          0.2789854109287262,
+          -0.22999975085258484,
+          1.870168685913086
+        ],
+        "ocular": [
+          0.3727943003177643,
+          -0.24999983608722687,
+          1.8674416542053223
+        ],
+        "ocularMinusEye": [
+          0.09380888938903809,
+          -0.02000008523464203,
+          -0.002727031707763672
+        ]
+      }
+    },
+    {
+      "source": "unit-sniper-enemy.blend",
+      "meshCount": 96,
+      "attackSoleDrift": 5.5755039852469285e-08,
+      "gripEvidence": {
+        "eye": [
+          0.2789854109287262,
+          -0.22999975085258484,
+          1.870168685913086
+        ],
+        "ocular": [
+          0.3727943003177643,
+          -0.24999983608722687,
+          1.8674416542053223
+        ],
+        "ocularMinusEye": [
+          0.09380888938903809,
+          -0.02000008523464203,
+          -0.002727031707763672
+        ]
+      }
+    }
+  ]
+}

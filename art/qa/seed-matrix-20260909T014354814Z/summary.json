@@ -1,0 +1,1218 @@
+{
+  "createdAt": "2026-09-09T01:45:19.419Z",
+  "group": "seed-matrix-20260909T014354814Z",
+  "seeds": [
+    "101",
+    "202",
+    "303"
+  ],
+  "profiles": [
+    {
+      "difficulty": "medium",
+      "mode": "mixed"
+    },
+    {
+      "difficulty": "hard",
+      "mode": "mixed"
+    },
+    {
+      "difficulty": "medium",
+      "mode": "line"
+    }
+  ],
+  "sourceFingerprints": [
+    "2d7ce3f34dc814a6c6d044a620296057c5b3e100f61384ccb414a2f55add1a5e"
+  ],
+  "sameSourceVersion": true,
+  "replay": {
+    "source": "art\\qa\\seed-matrix-20260909T014354814Z\\combat-medium-mixed-1x-seed-101-20260909T014355672Z-32e6634c.json",
+    "repeated": "art\\qa\\seed-matrix-20260909T014354814Z\\combat-medium-mixed-1x-seed-101-20260909T014515030Z-dd8a7cae.json",
+    "exactStateMatch": true
+  },
+  "runs": [
+    {
+      "options": {
+        "difficulty": "medium",
+        "mode": "mixed",
+        "speed": 1,
+        "abilities": true,
+        "seed": "101"
+      },
+      "seconds": 183.38333333331815,
+      "winner": "player",
+      "endedBy": "base-destroyed",
+      "recruits": 34,
+      "recruitsById": {
+        "clubman": 4,
+        "slinger": 8,
+        "spearman": 4,
+        "dino-rider": 4,
+        "swordsman": 3,
+        "archer": 6,
+        "knight": 3,
+        "ballista": 2
+      },
+      "unitGold": 3365,
+      "kills": 36,
+      "finalEpoch": 1,
+      "finalEnemyEpoch": 1,
+      "minimumBase": {
+        "fraction": 1,
+        "hp": 4200,
+        "maxHp": 4200,
+        "t": 0,
+        "epoch": 0
+      },
+      "meteorCasts": 0,
+      "artilleryCasts": 0,
+      "epochTransitions": [
+        {
+          "t": 0,
+          "side": "player",
+          "index": 0,
+          "id": "stone"
+        },
+        {
+          "t": 0,
+          "side": "enemy",
+          "index": 0,
+          "id": "stone"
+        },
+        {
+          "t": 100983.33333333983,
+          "side": "player",
+          "index": 1,
+          "id": "castle"
+        },
+        {
+          "t": 144066.66666667437,
+          "side": "enemy",
+          "index": 1,
+          "id": "castle"
+        }
+      ],
+      "blockedOrders": 0,
+      "towerAttempts": [
+        {
+          "t": 161316.66666666433,
+          "built": false,
+          "id": null,
+          "paid": 0
+        }
+      ],
+      "start": {
+        "simulationTime": 0,
+        "gold": 240,
+        "xp": 0,
+        "kills": 0,
+        "epoch": 0,
+        "enemyEpoch": 0,
+        "wave": 0,
+        "phase": "prepare",
+        "phaseEndsAt": 12000,
+        "speed": 1,
+        "playerBase": {
+          "hp": 4200,
+          "maxHp": 4200,
+          "x": 100,
+          "y": 500,
+          "side": "player"
+        },
+        "enemyBase": {
+          "hp": 4200,
+          "maxHp": 4200,
+          "x": 1180,
+          "y": 500,
+          "side": "enemy"
+        },
+        "playerArmy": 0,
+        "enemyArmy": 0,
+        "incomeAccumulator": 0,
+        "rng": {
+          "mathState": 811463287,
+          "mathCalls": 1736,
+          "phaserState": "!rnd,1,0.41742285736836493,0.725287250475958,0.7940097081009299"
+        }
+      },
+      "errors": [],
+      "artifact": "art\\qa\\seed-matrix-20260909T014354814Z\\combat-medium-mixed-1x-seed-101-20260909T014355672Z-32e6634c.json"
+    },
+    {
+      "options": {
+        "difficulty": "medium",
+        "mode": "mixed",
+        "speed": 1,
+        "abilities": true,
+        "seed": "202"
+      },
+      "seconds": 183.38333333331815,
+      "winner": "player",
+      "endedBy": "base-destroyed",
+      "recruits": 34,
+      "recruitsById": {
+        "clubman": 4,
+        "slinger": 8,
+        "spearman": 4,
+        "dino-rider": 4,
+        "swordsman": 3,
+        "archer": 6,
+        "knight": 3,
+        "ballista": 2
+      },
+      "unitGold": 3365,
+      "kills": 36,
+      "finalEpoch": 1,
+      "finalEnemyEpoch": 1,
+      "minimumBase": {
+        "fraction": 1,
+        "hp": 4200,
+        "maxHp": 4200,
+        "t": 0,
+        "epoch": 0
+      },
+      "meteorCasts": 0,
+      "artilleryCasts": 0,
+      "epochTransitions": [
+        {
+          "t": 0,
+          "side": "player",
+          "index": 0,
+          "id": "stone"
+        },
+        {
+          "t": 0,
+          "side": "enemy",
+          "index": 0,
+          "id": "stone"
+        },
+        {
+          "t": 100983.33333333983,
+          "side": "player",
+          "index": 1,
+          "id": "castle"
+        },
+        {
+          "t": 144066.66666667437,
+          "side": "enemy",
+          "index": 1,
+          "id": "castle"
+        }
+      ],
+      "blockedOrders": 0,
+      "towerAttempts": [
+        {
+          "t": 161316.66666666433,
+          "built": false,
+          "id": null,
+          "paid": 0
+        }
+      ],
+      "start": {
+        "simulationTime": 0,
+        "gold": 240,
+        "xp": 0,
+        "kills": 0,
+        "epoch": 0,
+        "enemyEpoch": 0,
+        "wave": 0,
+        "phase": "prepare",
+        "phaseEndsAt": 12000,
+        "speed": 1,
+        "playerBase": {
+          "hp": 4200,
+          "maxHp": 4200,
+          "x": 100,
+          "y": 500,
+          "side": "player"
+        },
+        "enemyBase": {
+          "hp": 4200,
+          "maxHp": 4200,
+          "x": 1180,
+          "y": 500,
+          "side": "enemy"
+        },
+        "playerArmy": 0,
+        "enemyArmy": 0,
+        "incomeAccumulator": 0,
+        "rng": {
+          "mathState": 2438302079,
+          "mathCalls": 1736,
+          "phaserState": "!rnd,1,0.07490166975185275,0.13431967003270984,0.7353376387618482"
+        }
+      },
+      "errors": [],
+      "artifact": "art\\qa\\seed-matrix-20260909T014354814Z\\combat-medium-mixed-1x-seed-202-20260909T014400902Z-ee8f8771.json"
+    },
+    {
+      "options": {
+        "difficulty": "medium",
+        "mode": "mixed",
+        "speed": 1,
+        "abilities": true,
+        "seed": "303"
+      },
+      "seconds": 183.38333333331815,
+      "winner": "player",
+      "endedBy": "base-destroyed",
+      "recruits": 34,
+      "recruitsById": {
+        "clubman": 4,
+        "slinger": 8,
+        "spearman": 4,
+        "dino-rider": 4,
+        "swordsman": 3,
+        "archer": 6,
+        "knight": 3,
+        "ballista": 2
+      },
+      "unitGold": 3365,
+      "kills": 36,
+      "finalEpoch": 1,
+      "finalEnemyEpoch": 1,
+      "minimumBase": {
+        "fraction": 1,
+        "hp": 4200,
+        "maxHp": 4200,
+        "t": 0,
+        "epoch": 0
+      },
+      "meteorCasts": 0,
+      "artilleryCasts": 0,
+      "epochTransitions": [
+        {
+          "t": 0,
+          "side": "player",
+          "index": 0,
+          "id": "stone"
+        },
+        {
+          "t": 0,
+          "side": "enemy",
+          "index": 0,
+          "id": "stone"
+        },
+        {
+          "t": 100983.33333333983,
+          "side": "player",
+          "index": 1,
+          "id": "castle"
+        },
+        {
+          "t": 144066.66666667437,
+          "side": "enemy",
+          "index": 1,
+          "id": "castle"
+        }
+      ],
+      "blockedOrders": 0,
+      "towerAttempts": [
+        {
+          "t": 161316.66666666433,
+          "built": false,
+          "id": null,
+          "paid": 0
+        }
+      ],
+      "start": {
+        "simulationTime": 0,
+        "gold": 240,
+        "xp": 0,
+        "kills": 0,
+        "epoch": 0,
+        "enemyEpoch": 0,
+        "wave": 0,
+        "phase": "prepare",
+        "phaseEndsAt": 12000,
+        "speed": 1,
+        "playerBase": {
+          "hp": 4200,
+          "maxHp": 4200,
+          "x": 100,
+          "y": 500,
+          "side": "player"
+        },
+        "enemyBase": {
+          "hp": 4200,
+          "maxHp": 4200,
+          "x": 1180,
+          "y": 500,
+          "side": "enemy"
+        },
+        "playerArmy": 0,
+        "enemyArmy": 0,
+        "incomeAccumulator": 0,
+        "rng": {
+          "mathState": 2233534951,
+          "mathCalls": 1736,
+          "phaserState": "!rnd,1,0.4807954910211265,0.24471375602297485,0.2298838144633919"
+        }
+      },
+      "errors": [],
+      "artifact": "art\\qa\\seed-matrix-20260909T014354814Z\\combat-medium-mixed-1x-seed-303-20260909T014406398Z-20ffac7c.json"
+    },
+    {
+      "options": {
+        "difficulty": "hard",
+        "mode": "mixed",
+        "speed": 1,
+        "abilities": true,
+        "seed": "101"
+      },
+      "seconds": 835.8999999995186,
+      "winner": "enemy",
+      "endedBy": "base-destroyed",
+      "recruits": 138,
+      "recruitsById": {
+        "clubman": 4,
+        "slinger": 7,
+        "spearman": 3,
+        "dino-rider": 3,
+        "knight": 3,
+        "archer": 5,
+        "ballista": 3,
+        "swordsman": 3,
+        "musketeer": 5,
+        "cavalry": 4,
+        "duelist": 8,
+        "cannon": 4,
+        "grenadier": 4,
+        "rifleman": 8,
+        "sniper": 4,
+        "tank": 4,
+        "plasma-trooper": 14,
+        "mech": 25,
+        "super-heavy": 14,
+        "laser-soldier": 13
+      },
+      "unitGold": 48690,
+      "kills": 238,
+      "finalEpoch": 4,
+      "finalEnemyEpoch": 4,
+      "minimumBase": {
+        "fraction": 0,
+        "hp": 0,
+        "maxHp": 14000,
+        "t": 835899.9999995186,
+        "epoch": 4
+      },
+      "meteorCasts": 14,
+      "artilleryCasts": 9,
+      "epochTransitions": [
+        {
+          "t": 0,
+          "side": "player",
+          "index": 0,
+          "id": "stone"
+        },
+        {
+          "t": 0,
+          "side": "enemy",
+          "index": 0,
+          "id": "stone"
+        },
+        {
+          "t": 87483.3333333359,
+          "side": "player",
+          "index": 1,
+          "id": "castle"
+        },
+        {
+          "t": 144066.66666667437,
+          "side": "enemy",
+          "index": 1,
+          "id": "castle"
+        },
+        {
+          "t": 177999.99999998795,
+          "side": "player",
+          "index": 2,
+          "id": "renaissance"
+        },
+        {
+          "t": 276149.9999999553,
+          "side": "enemy",
+          "index": 2,
+          "id": "renaissance"
+        },
+        {
+          "t": 301916.66666665196,
+          "side": "player",
+          "index": 3,
+          "id": "modern"
+        },
+        {
+          "t": 364150.00000005774,
+          "side": "enemy",
+          "index": 3,
+          "id": "modern"
+        },
+        {
+          "t": 418916.66666678817,
+          "side": "player",
+          "index": 4,
+          "id": "future"
+        },
+        {
+          "t": 496150.0000002114,
+          "side": "enemy",
+          "index": 4,
+          "id": "future"
+        }
+      ],
+      "blockedOrders": 2,
+      "towerAttempts": [
+        {
+          "t": 181033.33333331952,
+          "built": false,
+          "id": null,
+          "paid": 0
+        }
+      ],
+      "start": {
+        "simulationTime": 0,
+        "gold": 200,
+        "xp": 0,
+        "kills": 0,
+        "epoch": 0,
+        "enemyEpoch": 0,
+        "wave": 0,
+        "phase": "prepare",
+        "phaseEndsAt": 12000,
+        "speed": 1,
+        "playerBase": {
+          "hp": 4200,
+          "maxHp": 4200,
+          "x": 100,
+          "y": 500,
+          "side": "player"
+        },
+        "enemyBase": {
+          "hp": 4200,
+          "maxHp": 4200,
+          "x": 1180,
+          "y": 500,
+          "side": "enemy"
+        },
+        "playerArmy": 0,
+        "enemyArmy": 0,
+        "incomeAccumulator": 0,
+        "rng": {
+          "mathState": 811463287,
+          "mathCalls": 1736,
+          "phaserState": "!rnd,1,0.41742285736836493,0.725287250475958,0.7940097081009299"
+        }
+      },
+      "errors": [],
+      "artifact": "art\\qa\\seed-matrix-20260909T014354814Z\\combat-hard-mixed-1x-seed-101-20260909T014411294Z-fc2c701b.json"
+    },
+    {
+      "options": {
+        "difficulty": "hard",
+        "mode": "mixed",
+        "speed": 1,
+        "abilities": true,
+        "seed": "202"
+      },
+      "seconds": 933.1666666659588,
+      "winner": "enemy",
+      "endedBy": "base-destroyed",
+      "recruits": 155,
+      "recruitsById": {
+        "clubman": 4,
+        "slinger": 7,
+        "spearman": 3,
+        "dino-rider": 3,
+        "knight": 3,
+        "archer": 5,
+        "ballista": 3,
+        "swordsman": 3,
+        "musketeer": 4,
+        "cavalry": 4,
+        "duelist": 7,
+        "cannon": 3,
+        "sniper": 5,
+        "tank": 5,
+        "rifleman": 9,
+        "grenadier": 4,
+        "plasma-trooper": 16,
+        "mech": 33,
+        "super-heavy": 17,
+        "laser-soldier": 17
+      },
+      "unitGold": 57985,
+      "kills": 269,
+      "finalEpoch": 4,
+      "finalEnemyEpoch": 4,
+      "minimumBase": {
+        "fraction": 0,
+        "hp": 0,
+        "maxHp": 14000,
+        "t": 933166.6666659588,
+        "epoch": 4
+      },
+      "meteorCasts": 15,
+      "artilleryCasts": 11,
+      "epochTransitions": [
+        {
+          "t": 0,
+          "side": "player",
+          "index": 0,
+          "id": "stone"
+        },
+        {
+          "t": 0,
+          "side": "enemy",
+          "index": 0,
+          "id": "stone"
+        },
+        {
+          "t": 87483.3333333359,
+          "side": "player",
+          "index": 1,
+          "id": "castle"
+        },
+        {
+          "t": 144066.66666667437,
+          "side": "enemy",
+          "index": 1,
+          "id": "castle"
+        },
+        {
+          "t": 177999.99999998795,
+          "side": "player",
+          "index": 2,
+          "id": "renaissance"
+        },
+        {
+          "t": 276149.9999999553,
+          "side": "enemy",
+          "index": 2,
+          "id": "renaissance"
+        },
+        {
+          "t": 288416.66666663624,
+          "side": "player",
+          "index": 3,
+          "id": "modern"
+        },
+        {
+          "t": 364150.00000005774,
+          "side": "enemy",
+          "index": 3,
+          "id": "modern"
+        },
+        {
+          "t": 415916.6666667847,
+          "side": "player",
+          "index": 4,
+          "id": "future"
+        },
+        {
+          "t": 496150.0000002114,
+          "side": "enemy",
+          "index": 4,
+          "id": "future"
+        }
+      ],
+      "blockedOrders": 2,
+      "towerAttempts": [
+        {
+          "t": 168899.99999999325,
+          "built": false,
+          "id": null,
+          "paid": 0
+        }
+      ],
+      "start": {
+        "simulationTime": 0,
+        "gold": 200,
+        "xp": 0,
+        "kills": 0,
+        "epoch": 0,
+        "enemyEpoch": 0,
+        "wave": 0,
+        "phase": "prepare",
+        "phaseEndsAt": 12000,
+        "speed": 1,
+        "playerBase": {
+          "hp": 4200,
+          "maxHp": 4200,
+          "x": 100,
+          "y": 500,
+          "side": "player"
+        },
+        "enemyBase": {
+          "hp": 4200,
+          "maxHp": 4200,
+          "x": 1180,
+          "y": 500,
+          "side": "enemy"
+        },
+        "playerArmy": 0,
+        "enemyArmy": 0,
+        "incomeAccumulator": 0,
+        "rng": {
+          "mathState": 2438302079,
+          "mathCalls": 1736,
+          "phaserState": "!rnd,1,0.07490166975185275,0.13431967003270984,0.7353376387618482"
+        }
+      },
+      "errors": [],
+      "artifact": "art\\qa\\seed-matrix-20260909T014354814Z\\combat-hard-mixed-1x-seed-202-20260909T014422235Z-e0ed3a3f.json"
+    },
+    {
+      "options": {
+        "difficulty": "hard",
+        "mode": "mixed",
+        "speed": 1,
+        "abilities": true,
+        "seed": "303"
+      },
+      "seconds": 361.1166666667209,
+      "winner": "player",
+      "endedBy": "base-destroyed",
+      "recruits": 64,
+      "recruitsById": {
+        "clubman": 4,
+        "slinger": 7,
+        "spearman": 4,
+        "dino-rider": 3,
+        "archer": 6,
+        "ballista": 3,
+        "swordsman": 3,
+        "knight": 2,
+        "cavalry": 4,
+        "duelist": 8,
+        "cannon": 4,
+        "musketeer": 3,
+        "rifleman": 6,
+        "grenadier": 3,
+        "sniper": 2,
+        "tank": 2
+      },
+      "unitGold": 10795,
+      "kills": 94,
+      "finalEpoch": 3,
+      "finalEnemyEpoch": 2,
+      "minimumBase": {
+        "fraction": 1,
+        "hp": 4200,
+        "maxHp": 4200,
+        "t": 0,
+        "epoch": 0
+      },
+      "meteorCasts": 4,
+      "artilleryCasts": 1,
+      "epochTransitions": [
+        {
+          "t": 0,
+          "side": "player",
+          "index": 0,
+          "id": "stone"
+        },
+        {
+          "t": 0,
+          "side": "enemy",
+          "index": 0,
+          "id": "stone"
+        },
+        {
+          "t": 88983.33333333634,
+          "side": "player",
+          "index": 1,
+          "id": "castle"
+        },
+        {
+          "t": 144066.66666667437,
+          "side": "enemy",
+          "index": 1,
+          "id": "castle"
+        },
+        {
+          "t": 168899.99999999325,
+          "side": "player",
+          "index": 2,
+          "id": "renaissance"
+        },
+        {
+          "t": 276149.9999999553,
+          "side": "enemy",
+          "index": 2,
+          "id": "renaissance"
+        },
+        {
+          "t": 288416.66666663624,
+          "side": "player",
+          "index": 3,
+          "id": "modern"
+        }
+      ],
+      "blockedOrders": 0,
+      "towerAttempts": [
+        {
+          "t": 94983.33333333809,
+          "built": false,
+          "id": null,
+          "paid": 0
+        }
+      ],
+      "start": {
+        "simulationTime": 0,
+        "gold": 200,
+        "xp": 0,
+        "kills": 0,
+        "epoch": 0,
+        "enemyEpoch": 0,
+        "wave": 0,
+        "phase": "prepare",
+        "phaseEndsAt": 12000,
+        "speed": 1,
+        "playerBase": {
+          "hp": 4200,
+          "maxHp": 4200,
+          "x": 100,
+          "y": 500,
+          "side": "player"
+        },
+        "enemyBase": {
+          "hp": 4200,
+          "maxHp": 4200,
+          "x": 1180,
+          "y": 500,
+          "side": "enemy"
+        },
+        "playerArmy": 0,
+        "enemyArmy": 0,
+        "incomeAccumulator": 0,
+        "rng": {
+          "mathState": 2233534951,
+          "mathCalls": 1736,
+          "phaserState": "!rnd,1,0.4807954910211265,0.24471375602297485,0.2298838144633919"
+        }
+      },
+      "errors": [],
+      "artifact": "art\\qa\\seed-matrix-20260909T014354814Z\\combat-hard-mixed-1x-seed-303-20260909T014433320Z-36c4ad2f.json"
+    },
+    {
+      "options": {
+        "difficulty": "medium",
+        "mode": "line",
+        "speed": 1,
+        "abilities": true,
+        "seed": "101"
+      },
+      "seconds": 959.9999999992297,
+      "winner": null,
+      "endedBy": "simulation-limit",
+      "recruits": 180,
+      "recruitsById": {
+        "clubman": 31,
+        "swordsman": 25,
+        "duelist": 33,
+        "tank": 15,
+        "mech": 76
+      },
+      "unitGold": 56050,
+      "kills": 253,
+      "finalEpoch": 4,
+      "finalEnemyEpoch": 4,
+      "minimumBase": {
+        "fraction": 0.7383928571428572,
+        "hp": 4135,
+        "maxHp": 5600,
+        "t": 233316.66666662242,
+        "epoch": 1
+      },
+      "meteorCasts": 17,
+      "artilleryCasts": 11,
+      "epochTransitions": [
+        {
+          "t": 0,
+          "side": "player",
+          "index": 0,
+          "id": "stone"
+        },
+        {
+          "t": 0,
+          "side": "enemy",
+          "index": 0,
+          "id": "stone"
+        },
+        {
+          "t": 108483.33333334202,
+          "side": "player",
+          "index": 1,
+          "id": "castle"
+        },
+        {
+          "t": 144066.66666667437,
+          "side": "enemy",
+          "index": 1,
+          "id": "castle"
+        },
+        {
+          "t": 234116.66666662195,
+          "side": "player",
+          "index": 2,
+          "id": "renaissance"
+        },
+        {
+          "t": 276149.9999999553,
+          "side": "enemy",
+          "index": 2,
+          "id": "renaissance"
+        },
+        {
+          "t": 373916.6666667358,
+          "side": "player",
+          "index": 3,
+          "id": "modern"
+        },
+        {
+          "t": 408150.00000010896,
+          "side": "enemy",
+          "index": 3,
+          "id": "modern"
+        },
+        {
+          "t": 490916.666666872,
+          "side": "player",
+          "index": 4,
+          "id": "future"
+        },
+        {
+          "t": 540166.6666668738,
+          "side": "enemy",
+          "index": 4,
+          "id": "future"
+        }
+      ],
+      "blockedOrders": 1,
+      "towerAttempts": [
+        {
+          "t": 188616.66666664844,
+          "built": false,
+          "id": null,
+          "paid": 0
+        }
+      ],
+      "start": {
+        "simulationTime": 0,
+        "gold": 240,
+        "xp": 0,
+        "kills": 0,
+        "epoch": 0,
+        "enemyEpoch": 0,
+        "wave": 0,
+        "phase": "prepare",
+        "phaseEndsAt": 12000,
+        "speed": 1,
+        "playerBase": {
+          "hp": 4200,
+          "maxHp": 4200,
+          "x": 100,
+          "y": 500,
+          "side": "player"
+        },
+        "enemyBase": {
+          "hp": 4200,
+          "maxHp": 4200,
+          "x": 1180,
+          "y": 500,
+          "side": "enemy"
+        },
+        "playerArmy": 0,
+        "enemyArmy": 0,
+        "incomeAccumulator": 0,
+        "rng": {
+          "mathState": 811463287,
+          "mathCalls": 1736,
+          "phaserState": "!rnd,1,0.41742285736836493,0.725287250475958,0.7940097081009299"
+        }
+      },
+      "errors": [],
+      "artifact": "art\\qa\\seed-matrix-20260909T014354814Z\\combat-medium-line-1x-seed-101-20260909T014439602Z-f59bb446.json"
+    },
+    {
+      "options": {
+        "difficulty": "medium",
+        "mode": "line",
+        "speed": 1,
+        "abilities": true,
+        "seed": "202"
+      },
+      "seconds": 894.5999999993819,
+      "winner": "enemy",
+      "endedBy": "base-destroyed",
+      "recruits": 167,
+      "recruitsById": {
+        "clubman": 31,
+        "swordsman": 25,
+        "duelist": 33,
+        "tank": 15,
+        "mech": 63
+      },
+      "unitGold": 49030,
+      "kills": 227,
+      "finalEpoch": 4,
+      "finalEnemyEpoch": 4,
+      "minimumBase": {
+        "fraction": 0,
+        "hp": 0,
+        "maxHp": 14000,
+        "t": 894599.999999382,
+        "epoch": 4
+      },
+      "meteorCasts": 15,
+      "artilleryCasts": 11,
+      "epochTransitions": [
+        {
+          "t": 0,
+          "side": "player",
+          "index": 0,
+          "id": "stone"
+        },
+        {
+          "t": 0,
+          "side": "enemy",
+          "index": 0,
+          "id": "stone"
+        },
+        {
+          "t": 108483.33333334202,
+          "side": "player",
+          "index": 1,
+          "id": "castle"
+        },
+        {
+          "t": 144066.66666667437,
+          "side": "enemy",
+          "index": 1,
+          "id": "castle"
+        },
+        {
+          "t": 234116.66666662195,
+          "side": "player",
+          "index": 2,
+          "id": "renaissance"
+        },
+        {
+          "t": 276149.9999999553,
+          "side": "enemy",
+          "index": 2,
+          "id": "renaissance"
+        },
+        {
+          "t": 373916.6666667358,
+          "side": "player",
+          "index": 3,
+          "id": "modern"
+        },
+        {
+          "t": 408150.00000010896,
+          "side": "enemy",
+          "index": 3,
+          "id": "modern"
+        },
+        {
+          "t": 487916.6666668685,
+          "side": "player",
+          "index": 4,
+          "id": "future"
+        },
+        {
+          "t": 540166.6666668738,
+          "side": "enemy",
+          "index": 4,
+          "id": "future"
+        }
+      ],
+      "blockedOrders": 8,
+      "towerAttempts": [
+        {
+          "t": 246249.99999994822,
+          "built": false,
+          "id": null,
+          "paid": 0
+        }
+      ],
+      "start": {
+        "simulationTime": 0,
+        "gold": 240,
+        "xp": 0,
+        "kills": 0,
+        "epoch": 0,
+        "enemyEpoch": 0,
+        "wave": 0,
+        "phase": "prepare",
+        "phaseEndsAt": 12000,
+        "speed": 1,
+        "playerBase": {
+          "hp": 4200,
+          "maxHp": 4200,
+          "x": 100,
+          "y": 500,
+          "side": "player"
+        },
+        "enemyBase": {
+          "hp": 4200,
+          "maxHp": 4200,
+          "x": 1180,
+          "y": 500,
+          "side": "enemy"
+        },
+        "playerArmy": 0,
+        "enemyArmy": 0,
+        "incomeAccumulator": 0,
+        "rng": {
+          "mathState": 2438302079,
+          "mathCalls": 1736,
+          "phaserState": "!rnd,1,0.07490166975185275,0.13431967003270984,0.7353376387618482"
+        }
+      },
+      "errors": [],
+      "artifact": "art\\qa\\seed-matrix-20260909T014354814Z\\combat-medium-line-1x-seed-202-20260909T014451838Z-c786982f.json"
+    },
+    {
+      "options": {
+        "difficulty": "medium",
+        "mode": "line",
+        "speed": 1,
+        "abilities": true,
+        "seed": "303"
+      },
+      "seconds": 959.9999999992297,
+      "winner": null,
+      "endedBy": "simulation-limit",
+      "recruits": 173,
+      "recruitsById": {
+        "clubman": 31,
+        "swordsman": 25,
+        "duelist": 26,
+        "tank": 18,
+        "mech": 73
+      },
+      "unitGold": 54675,
+      "kills": 247,
+      "finalEpoch": 4,
+      "finalEnemyEpoch": 4,
+      "minimumBase": {
+        "fraction": 0.7194642857142857,
+        "hp": 4029,
+        "maxHp": 5600,
+        "t": 233516.6666666223,
+        "epoch": 1
+      },
+      "meteorCasts": 17,
+      "artilleryCasts": 10,
+      "epochTransitions": [
+        {
+          "t": 0,
+          "side": "player",
+          "index": 0,
+          "id": "stone"
+        },
+        {
+          "t": 0,
+          "side": "enemy",
+          "index": 0,
+          "id": "stone"
+        },
+        {
+          "t": 108483.33333334202,
+          "side": "player",
+          "index": 1,
+          "id": "castle"
+        },
+        {
+          "t": 144066.66666667437,
+          "side": "enemy",
+          "index": 1,
+          "id": "castle"
+        },
+        {
+          "t": 234116.66666662195,
+          "side": "player",
+          "index": 2,
+          "id": "renaissance"
+        },
+        {
+          "t": 276149.9999999553,
+          "side": "enemy",
+          "index": 2,
+          "id": "renaissance"
+        },
+        {
+          "t": 337916.66666669387,
+          "side": "player",
+          "index": 3,
+          "id": "modern"
+        },
+        {
+          "t": 408150.00000010896,
+          "side": "enemy",
+          "index": 3,
+          "id": "modern"
+        },
+        {
+          "t": 489416.66666687024,
+          "side": "player",
+          "index": 4,
+          "id": "future"
+        },
+        {
+          "t": 540166.6666668738,
+          "side": "enemy",
+          "index": 4,
+          "id": "future"
+        }
+      ],
+      "blockedOrders": 3,
+      "towerAttempts": [
+        {
+          "t": 243216.66666661666,
+          "built": false,
+          "id": null,
+          "paid": 0
+        }
+      ],
+      "start": {
+        "simulationTime": 0,
+        "gold": 240,
+        "xp": 0,
+        "kills": 0,
+        "epoch": 0,
+        "enemyEpoch": 0,
+        "wave": 0,
+        "phase": "prepare",
+        "phaseEndsAt": 12000,
+        "speed": 1,
+        "playerBase": {
+          "hp": 4200,
+          "maxHp": 4200,
+          "x": 100,
+          "y": 500,
+          "side": "player"
+        },
+        "enemyBase": {
+          "hp": 4200,
+          "maxHp": 4200,
+          "x": 1180,
+          "y": 500,
+          "side": "enemy"
+        },
+        "playerArmy": 0,
+        "enemyArmy": 0,
+        "incomeAccumulator": 0,
+        "rng": {
+          "mathState": 2233534951,
+          "mathCalls": 1736,
+          "phaserState": "!rnd,1,0.4807954910211265,0.24471375602297485,0.2298838144633919"
+        }
+      },
+      "errors": [],
+      "artifact": "art\\qa\\seed-matrix-20260909T014354814Z\\combat-medium-line-1x-seed-303-20260909T014503467Z-23def52f.json"
+    }
+  ]
+}

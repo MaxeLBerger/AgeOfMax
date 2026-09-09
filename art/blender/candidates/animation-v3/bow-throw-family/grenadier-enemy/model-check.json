@@ -1,0 +1,188 @@
+{
+  "passed": true,
+  "unit": "grenadier",
+  "faction": "enemy",
+  "source_hashes": {
+    "source": "efb6116f83db9f0eb93a186162f591f0ed2c86a9d8c275bc4a827cb14738e67f",
+    "sheet": "d790458b685f3f11d269d6432346c69c7c04554d0d48ea8a0a848c927221e85b",
+    "sockets": "40f9fe76b2dd2d54b9a4161df792571ce9d83a900e5c6ee36a699743a29444a4"
+  },
+  "production_unchanged": true,
+  "preserved_body_accessory_meshes": 65,
+  "body_mesh_contracts": {
+    "Boot sole": "8040ae650f0438678fd1267ff43c5d3401e5dda1762e6ead68feb2755ae28fc6",
+    "Boot sole.001": "3afe24ef6310727f268bcb23560d0a5c3824021a28d4a84c915e2a2e156a536d",
+    "Broad leather girdle": "995ecee665d248d1ac8e2eb0e38d9c49a0ce2a73d4166b135c680ee2e7497a09",
+    "Bronze belt buckle": "156503d754993830e765ba94f5872cabcde25b879e3aaf345511e6bb9047ef64",
+    "Calf": "53b51e9a385afa90df6e168c9f2bf4c1af46dd2712197b46404489ec7bab817c",
+    "Calf.001": "84d2a50c9ebfdf414e7ca8d8c11e105d96c3390d8980be8a13e624d29b73c6a0",
+    "Deltoid": "92fe33304f66350616b5190ca9f6c28788f9ce43491d990fba82c2b304bfd59e",
+    "Deltoid.001": "6c2fbd199903a78033b414a64553f61603a146b8e0eec71513c6640da16e19c3",
+    "Ear": "36aef03c35205db01796b2cbd4d38c2ea69ca273a6dfec8899442e7668a7e98f",
+    "Elbow": "e1c73118977fa5ee7740be44c64d8aeed0e6628d764e99b67fbc397edafda4aa",
+    "Elbow.001": "b2a6897db4a2b73c6029853b40648b4b30dadeab6a1ad8bcb331061fbc080b04",
+    "Eye glint": "3c4dd8ee8cf94b0cc583bb44b5f9acd244d99acc86bbdf9edbe46218779d8212",
+    "Eye glint.001": "7f962af18a4a1199424b49260ef529f341abc9bd9a29f611825ff04481fa63ed",
+    "Eye socket": "77be60c07d9c770f79a9dae25a97f8e6a03039348e3728bf233754dcec50f289",
+    "Eye socket.001": "bc7631d7008cae87bea02f9a60c9127bc9e183b2b83668ffb242911e1168a321",
+    "Field helmet": "f79fac4581bc1deca367914033b70ee457ab8a5b2d00eea0ac4dd7172c3106e2",
+    "Field pack": "c161e701316c8473f7fbcb668ec0a5570f3049914a358804c094897abdc4d70c",
+    "Fingers": "05052c475b7a286ee828b72c61da81775bd615dff7da2471ac92d7d5399b4bf6",
+    "Fingers.001": "08a72e14f708c8ba1816b4a6d5cbbf5698b64643d57b89bc03252ef99e12acf2",
+    "Fingers.002": "30ed09fbad6453ce8d974a7c35bb013db7de77454db85db93c721ba7c7fc9dbd",
+    "Fingers.003": "47002c8ea1fa51bad91fa6914505e5d0e68a630f7c1bd243494e3503eb0d19df",
+    "Fingers.004": "b1e04d9d34fef5f1dbbed77efc564b004f65139f305269210e8bcb1966dfa30b",
+    "Fingers.005": "ea1f66c13775d2acaca753e74bda86ab050649b3672f12c6fdc8ba74b7bed593",
+    "Forearm": "ef427faabe85d80008d2168d141bb5fc956d4a3fe9fe943fc672739a7b20b36a",
+    "Forearm.001": "ee19af34f17b0527db19d02ad7f0411bb2e9770bdb4bbc992d4268b93e631b16",
+    "Grenade lever": "8de893757079d37011ca2182e94fe020ab04fa6d391ed9fc4e952426e972a506",
+    "Grenade pin": "e27b1c44f43801d286499363e6e3c767480e9399286f6898316c55d0755e482c",
+    "Hand": "ff958bb551668021b43463b8b64f2971c00f6c8606540fe0ee1875ea134ae593",
+    "Hand.001": "a3a619e4c1ab78fab915fb76423e39f20af460ee8589b3f4e0a2c6ed7d32a33a",
+    "Helmet chin strap": "f3d9c8f62d6c09d31fe7617b003a5d85c16333734569e8bf2a2243bd703e955f",
+    "Helmet rim": "c2b6dc793b90471caafb1eedf7ee7cc210c17c3f9dc5c8c5f5183b1f13d019ff",
+    "Jaw": "6643ea5fdc365677306725ef254d6dc6efbe934eb85b30c28bbf28303d44d070",
+    "Knee": "16362a8f5284071a31344ac5b8ad205dff31e9bce67ecb68bebcc265686624ee",
+    "Knee.001": "1ceb5c8cb446d0c3aee146e3c13d81ca48bcdb0ac191657793d170e5e614a342",
+    "Leather boot": "f1aabb0bb94a436ad163c6072297f9139e59147364b6eaa2a3c815d38109c077",
+    "Leather boot.001": "f08d8e3ca7492af0ea2e38f6bce504166b19f27847b2476b861e7cacb2c4ebca",
+    "Leather vambrace": "7cfd7cc83e11624136b2c61adff541235fdcf5a78f92a3918cb4c8e38caa3c0f",
+    "Leather vambrace.001": "5384c87a802775936e1c59699bd140ba693c4b654ea3d8ae6e7f13552f37f1b4",
+    "Leg binding": "878d35e433d739c2876a420b646d529666df3e3e1fd27b52f3e4f4036a6cc96d",
+    "Leg binding.001": "8f76cfa1a0ec2bfc57a2c5a001e621f177dc95e907f33330c9a39ed6a570b203",
+    "Leg binding.002": "ea8d2895393a5af06caa6f55c5eded8d8b87da38f95c003fa734192dad3b0620",
+    "Leg binding.003": "c632250faa1b336d9eae842b74afd4ada01379304d239c1727474a4a9126216c",
+    "Load bearing ammunition pouch": "8192ea89d6d2145aecc26defb7e285d07695371a53ff5d33b672f63c92884fa9",
+    "Load bearing ammunition pouch.001": "61783bad0fafa649a837409909e9bad0beaf835bfc131a7a46a4579ddc8b380e",
+    "Load bearing ammunition pouch.002": "4184d6ee33d2cd3808f89abe279c697675ad1fdcee2f58d0a7164b297a77d66d",
+    "Load bearing ammunition pouch.003": "af60f9be8263fd51b7f1600caddcf0cfcb23bdfc9c32166d2f49aa8ac92d77ec",
+    "Mouth": "496f90e6afe9d4830f97a01f0a543cba73ca6a9bf634988f89500a0f1fa7560d",
+    "Neck": "b50c08d35459ba12a8208f2bd2d87f398c69517a3f4427d6414e5fc7e21d9492",
+    "Nose": "4213735e6758f57b8c43ae8e77cc8b62cdca49d1c4d7d7b491d8ff5e01468b90",
+    "Radio ear cup": "6ebc87d9705fadd43bb926fd682a53f3037f51efeebea2d7498a11425dfdf5f1",
+    "Sculpted brow": "939b8a5c9a690002963f5cbd8d33118148418598874039bf69b4732f2f5b8eeb",
+    "Sculpted brow.001": "87a7f2da184711790acd3ead5a3b70ef5ed03349602fcc08463e260e2438aaa0",
+    "Sculpted chest waist and shoulders": "f8d949119d8566750d19a8458fd79d7529b9c96d31d3d2e5f3ea576aaf0d8982",
+    "Sculpted skull": "9d1882be3915622a50e5931a093ae2181e87d0762d21d697f65acfbdb5f2e585",
+    "Segmented grenade": "e2b3ebf033357e41b2e4a57623d54e4854edb56778fc80720ca7ff13088c0891",
+    "Shaped pelvis": "762f15b911ea9660a2ce11950912d0d62696307dfba7f1a19ecefc619ef654f0",
+    "Shaped thigh": "f16396a21aa8c1953e0f1775997f302356163ec48be95775c3cf9560a6c3b7b1",
+    "Shaped thigh.001": "c4ae5f69f874fa92891f30c0bbc360974877c8baa8dd752610a6406167159da4",
+    "Shoulder harness": "13ca321c2912a7f216b066a922393fceb76918b9486eab1489bb145b23f29a63",
+    "Shoulder harness.001": "43178994c88704f6df1b2040ca9d733a6cd6355b5d4e954552278c2b63812609",
+    "Upper arm": "b17e366c352571dedc2ace92304f45513740cdfe226efe2d822214e46f11a00a",
+    "Upper arm.001": "81bba4f8b8dbdfb2abf4b8bf946520249cafe9f4cfd317ad7f2569c1e0679b9e",
+    "Visible belt grenade": "1b81b8649ae226ac12fff84629eeda76f07cc12fe77d4f927e6cb16280ce4928",
+    "Visible belt grenade.001": "2b38bceaf8e86dcf406a2a68f4666b6a5bdad996cce9e55f96b1455d7a7346a9",
+    "Visible belt grenade.002": "dd54b269fda772f4eedeb37732f0176dbb38cc581f77f0e53ecc466227382459"
+  },
+  "mechanism": {
+    "kind": "pin pull, overhead throw, empty-hand follow-through",
+    "replaced_geometry": [],
+    "adjusted_geometry": [],
+    "release_index": 12,
+    "mechanism_release_starts_ms": 160,
+    "release_visibility": "grenade and lever hide_render; held pin stays in other hand"
+  },
+  "actions": {
+    "walk": {
+      "grenadier animation rig": "Study grenadier-enemy / walk / grenadier animation rig",
+      "Weapon muzzle / runtime socket": "Study grenadier-enemy / walk / Weapon muzzle / runtime socket",
+      "Segmented grenade": "Study grenadier-enemy / walk / Segmented grenade",
+      "Grenade lever": "Study grenadier-enemy / walk / Grenade lever"
+    },
+    "attack": {
+      "grenadier animation rig": "Study grenadier-enemy / attack / grenadier animation rig",
+      "Weapon muzzle / runtime socket": "Study grenadier-enemy / attack / Weapon muzzle / runtime socket",
+      "Segmented grenade": "Study grenadier-enemy / attack / Segmented grenade",
+      "Grenade lever": "Study grenadier-enemy / attack / Grenade lever"
+    }
+  },
+  "gait": {
+    "nominalSpeedPxPerSecond": 39,
+    "referenceDisplayScale": 0.43,
+    "cycleDistancePixels": 20.28,
+    "nominalCycleDurationMs": 520,
+    "motionKind": "biped",
+    "stanceFraction": 0.6,
+    "doubleSupportFrames": [
+      0,
+      4
+    ]
+  },
+  "sockets": [
+    [
+      148.276,
+      163.506
+    ],
+    [
+      148.276,
+      162.936
+    ],
+    [
+      148.276,
+      162.7
+    ],
+    [
+      148.276,
+      162.936
+    ],
+    [
+      148.276,
+      163.506
+    ],
+    [
+      148.276,
+      164.075
+    ],
+    [
+      148.276,
+      164.311
+    ],
+    [
+      148.276,
+      164.075
+    ],
+    [
+      148.276,
+      163.506
+    ],
+    [
+      143.022,
+      138.776
+    ],
+    [
+      111.09,
+      111.319
+    ],
+    [
+      122.664,
+      94.013
+    ],
+    [
+      158.866,
+      115.428
+    ],
+    [
+      161.493,
+      145.238
+    ],
+    [
+      156.813,
+      163.767
+    ],
+    [
+      150.903,
+      165.134
+    ]
+  ],
+  "frames": 16,
+  "release_index": 12,
+  "release_ms": 160,
+  "bone_count": 17,
+  "cycle_distance_world": 0.6724381586074423,
+  "visible_projectiles": [
+    "Segmented grenade",
+    "Grenade lever"
+  ]
+}

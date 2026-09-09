@@ -1,0 +1,72 @@
+{
+  "status": "ready_for_root_two_file_promotion",
+  "publication": "not performed",
+  "review": "Root personally reviewed the final HUD image and approved this focal art iteration.",
+  "files": [
+    {
+      "candidate": "G:\\Repositories\\AgeOfMax\\art\\blender\\candidates\\stone-v2\\candidate.blend",
+      "target": "G:\\Repositories\\AgeOfMax\\art\\blender\\background-stone.blend",
+      "original_backup": "G:\\Repositories\\AgeOfMax\\art\\blender\\candidates\\stone-v2\\original-background-stone.blend",
+      "candidate_sha256": "bb4d3c94184c1c9b9ed4a767e6f13dc8647380e011911ef1ddb78522cd9c6071",
+      "target_current_sha256": "e822edb14e69fc17180891dc2efd2685dff8e973c3a12ef92618c652273c21ef",
+      "backup_sha256": "e822edb14e69fc17180891dc2efd2685dff8e973c3a12ef92618c652273c21ef",
+      "target_matches_original_backup": true,
+      "candidate_bytes": 4812439
+    },
+    {
+      "candidate": "G:\\Repositories\\AgeOfMax\\art\\blender\\candidates\\stone-v2\\candidate.png",
+      "target": "G:\\Repositories\\AgeOfMax\\public\\assets\\reborn\\backgrounds\\stone.png",
+      "original_backup": "G:\\Repositories\\AgeOfMax\\art\\blender\\candidates\\stone-v2\\original-background-stone.png",
+      "candidate_sha256": "4f6a38d257a0c1076f01b5ea5ebe7f19f9fed97d00c7bb0b053bf98453435fe4",
+      "target_current_sha256": "81eb79b9204a718fd33df699e466c7d78cc6255771fd23119fdbd20d80a269e4",
+      "backup_sha256": "81eb79b9204a718fd33df699e466c7d78cc6255771fd23119fdbd20d80a269e4",
+      "target_matches_original_backup": true,
+      "candidate_bytes": 1839104
+    }
+  ],
+  "geometry_report": "G:\\Repositories\\AgeOfMax\\art\\blender\\candidates\\stone-v2\\geometry-validation.json",
+  "export_report": "G:\\Repositories\\AgeOfMax\\art\\blender\\candidates\\stone-v2\\export-validation\\source-validation.json",
+  "pixel_report": "G:\\Repositories\\AgeOfMax\\art\\blender\\candidates\\stone-v2\\export-validation\\pixel-validation.json",
+  "gameplay_review": "G:\\Repositories\\AgeOfMax\\art\\qa\\visual-stone-candidate.jpg",
+  "gameplay_review_sha256": "f97aeee3652a1b5acce62380a582c6896db892a02d603c47dbc298f511c6ee88",
+  "contact_points": 27,
+  "all_contact_gaps_zero": true,
+  "clear_entrance_rays": 6,
+  "camera_unchanged": true,
+  "terrain_unchanged": true,
+  "new_geometry_vertical_screen_bounds": [
+    104.45,
+    408.23
+  ],
+  "normal_export_checks": {
+    "architecture_geometry_unchanged": true,
+    "camera_unchanged": true,
+    "terrain_unchanged": true,
+    "input_file_unchanged": true,
+    "copied_source_unchanged_by_exporter": true,
+    "public_png_unchanged": true,
+    "archive_hidden": true,
+    "metadata_preserved": true
+  },
+  "pixel_comparison": {
+    "status": "validated_with_minimal_rgb_rounding_difference",
+    "candidate_size": [
+      1600,
+      900
+    ],
+    "export_size": [
+      1600,
+      900
+    ],
+    "rgba_pixels_identical": false,
+    "candidate_sha256": "4f6a38d257a0c1076f01b5ea5ebe7f19f9fed97d00c7bb0b053bf98453435fe4",
+    "reexport_sha256": "1e1ba4b33b4e481232f9918a8dd2e378901ec0e2d05f056c02a72675d51965d3",
+    "comparison": "Every RGBA byte and all three RGB channels, independently of alpha difference.",
+    "maximum_rgb_channel_difference_8bit": 1,
+    "mean_rgb_channel_difference_8bit": 5.277777777777778e-05,
+    "different_rgb_pixels": 228,
+    "total_pixels": 1440000,
+    "fraction_different": 0.00015833333333333332
+  },
+  "root_next_step": "Independently recheck listed hashes and narrowly promote only the two files if still matching. No runtime source or dist writes are part of this handoff."
+}

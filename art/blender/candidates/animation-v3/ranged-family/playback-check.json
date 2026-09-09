@@ -1,0 +1,56 @@
+{
+  "passed": true,
+  "errors": [],
+  "videos": [
+    {
+      "file": "rifleman/motion-comparison.webm",
+      "presented": 154,
+      "wraps": 1,
+      "previous": 0.540949,
+      "width": 640,
+      "height": 336,
+      "duration": 2.52,
+      "currentTime": 0.698557,
+      "paused": false,
+      "error": null
+    },
+    {
+      "file": "rifleman-enemy/motion-comparison.webm",
+      "presented": 167,
+      "wraps": 1,
+      "previous": 0.527206,
+      "width": 640,
+      "height": 336,
+      "duration": 2.52,
+      "currentTime": 0.68411,
+      "paused": false,
+      "error": null
+    },
+    {
+      "file": "sniper/motion-comparison.webm",
+      "presented": 111,
+      "wraps": 1,
+      "previous": 0.541531,
+      "width": 640,
+      "height": 336,
+      "duration": 2.52,
+      "currentTime": 0.699809,
+      "paused": false,
+      "error": null
+    },
+    {
+      "file": "sniper-enemy/motion-comparison.webm",
+      "presented": 173,
+      "wraps": 1,
+      "previous": 0.536125,
+      "width": 640,
+      "height": 336,
+      "duration": 2.52,
+      "currentTime": 0.693242,
+      "paused": false,
+      "error": null
+    }
+  ],
+  "inspectedContactTimeSeconds": 1.72,
+  "productionChanged": false
+}

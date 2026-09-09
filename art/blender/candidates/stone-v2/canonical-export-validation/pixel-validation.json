@@ -1,0 +1,19 @@
+{
+  "status": "validated_with_minimal_rgb_rounding_difference",
+  "published": "G:\\Repositories\\AgeOfMax\\public\\assets\\reborn\\backgrounds\\stone.png",
+  "isolated_canonical_reexport": "G:\\Repositories\\AgeOfMax\\art\\blender\\candidates\\stone-v2\\canonical-export-validation\\exports\\backgrounds\\stone.png",
+  "published_sha256": "4f6a38d257a0c1076f01b5ea5ebe7f19f9fed97d00c7bb0b053bf98453435fe4",
+  "reexport_sha256": "b7bc4666625019619ae9035e6525dc8ceed1a4930df95ab38260e39c1726cff3",
+  "dimensions": [
+    1600,
+    900
+  ],
+  "rgba_pixels_identical": false,
+  "alpha_identical": true,
+  "maximum_rgb_channel_difference_8bit": 1,
+  "different_rgb_pixels": 228,
+  "total_pixels": 1440000,
+  "fraction_different": 0.00015833333333333332,
+  "mean_rgb_channel_difference_8bit": 5.277777777777778e-05,
+  "comparison": "Every RGBA byte and all three RGB channels, independently of alpha difference."
+}

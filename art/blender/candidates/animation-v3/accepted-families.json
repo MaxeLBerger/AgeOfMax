@@ -1,0 +1,70 @@
+{
+  "status": "partial_acceptance_not_promoted",
+  "approvedUnits": 7,
+  "requiredUnits": 20,
+  "requiredSheets": 40,
+  "families": [
+    {
+      "name": "ranged-family",
+      "units": [
+        "rifleman",
+        "sniper"
+      ],
+      "images": [
+        "art/qa/visual-modern-animations.jpg"
+      ],
+      "notes": "Original full-HUD review followed by combined machine review; both teams, true 8+8 poses and exact regular-export sockets.",
+      "approvedAt": "2026-09-09T03:41:12.450Z",
+      "evidence": "art/blender/candidates/animation-v3/exporter-audits/ranged-family/validation.json",
+      "sources": {
+        "art/blender/candidates/animation-v3/ranged-family/rifleman/unit-rifleman.blend": "bf83c0ff1dfaa3d6159c04eab49e6ef6ffab346812d27c1649fc65fbf1536b5b",
+        "art/blender/candidates/animation-v3/ranged-family/rifleman-enemy/unit-rifleman-enemy.blend": "0a45b7fee29450efe8cbca105d73555e9a27b37bab92a5a5e4119f4c8cc2b14f",
+        "art/blender/candidates/animation-v3/ranged-family/sniper/unit-sniper.blend": "04514b38ba362fb618ca2431e7c3c185cfc40f9f7c98923d4dd7079ac347a904",
+        "art/blender/candidates/animation-v3/ranged-family/sniper-enemy/unit-sniper-enemy.blend": "cba30ed5045cae1ed70547951f9626f3daf37e44d1b8eb74ce2e803df5e20ae2"
+      }
+    },
+    {
+      "name": "ranged-family-2",
+      "units": [
+        "musketeer",
+        "laser-soldier",
+        "plasma-trooper"
+      ],
+      "images": [
+        "art/qa/visual-future-animations.jpg",
+        "art/blender/candidates/animation-v3/machine-family/hud-renaissance.jpg"
+      ],
+      "notes": "Saved gait metadata attached with geometry/action preservation evidence; exact source-derived markers.",
+      "approvedAt": "2026-09-09T03:41:12.455Z",
+      "evidence": "art/blender/candidates/animation-v3/exporter-audits/ranged-family-2/validation.json",
+      "sources": {
+        "art/blender/candidates/animation-v3/ranged-family-2/musketeer/unit-musketeer.blend": "325158c973967714e6361e52765f15118cd448d87ca939ad0d1a636d0063f7d6",
+        "art/blender/candidates/animation-v3/ranged-family-2/musketeer-enemy/unit-musketeer-enemy.blend": "7a1dd4f2446f504ba705665dd9d504ca0fd4e8790da4731be2880a26731487b5",
+        "art/blender/candidates/animation-v3/ranged-family-2/laser-soldier/unit-laser-soldier.blend": "30a5509e260c27bd4b7e38846cca96223c9b0457420ce8fc0c528415d8c4e8a7",
+        "art/blender/candidates/animation-v3/ranged-family-2/laser-soldier-enemy/unit-laser-soldier-enemy.blend": "667b00515f31d1525ab173d8e1add2f886a000f0f47f4ebb3ea43115174bff79",
+        "art/blender/candidates/animation-v3/ranged-family-2/plasma-trooper/unit-plasma-trooper.blend": "9e55ba35fa62b4d3cdafad3c3ae409955d4fe2796d3dba12bdfb83345ae1cb6b",
+        "art/blender/candidates/animation-v3/ranged-family-2/plasma-trooper-enemy/unit-plasma-trooper-enemy.blend": "94c15fee903cea064c3eb62c941b465521875eb6efb5abc5e98e6157eb73fe6e"
+      }
+    },
+    {
+      "name": "machine-family",
+      "units": [
+        "cannon",
+        "tank"
+      ],
+      "images": [
+        "art/blender/candidates/animation-v3/machine-family/hud-renaissance.jpg",
+        "art/blender/candidates/animation-v3/machine-family/hud-modern.jpg"
+      ],
+      "notes": "Measured wheel/track period, corrected recoil and fixed real bevel-front socket; small texture variation on symmetric wheel part permutation documented.",
+      "approvedAt": "2026-09-09T03:41:12.464Z",
+      "evidence": "art/blender/candidates/animation-v3/exporter-audits/machine-family/validation.json",
+      "sources": {
+        "art/blender/candidates/animation-v3/machine-family/cannon/unit-cannon.blend": "bdc148711deab2d2547db348b16351c941e81c313f5a02f9b2a75edc82c7aa91",
+        "art/blender/candidates/animation-v3/machine-family/cannon-enemy/unit-cannon-enemy.blend": "eafb27323803e63efdfca0778d29ea34ff04745ca4db135d5a3ad25fcefaac71",
+        "art/blender/candidates/animation-v3/machine-family/tank/unit-tank.blend": "6fe658934ba6d7ffbb66a20fd699741f57d4043b2dca174919309facc5a0ad46",
+        "art/blender/candidates/animation-v3/machine-family/tank-enemy/unit-tank-enemy.blend": "1c40ff8529fecf4057035a9455a1786381847b3cb731f6c06b5b8380f301d8e9"
+      }
+    }
+  ]
+}

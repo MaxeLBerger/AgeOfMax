@@ -1,0 +1,37 @@
+{
+  "status": "promoted",
+  "scope": "two local modern project assets; no network or external publishing",
+  "review": "actual game HUD reviewed by parent after concrete foundation/service-court correction",
+  "originals_match_archives": true,
+  "unchanged_other_backgrounds": {
+    "art\\blender\\background-stone.blend": "e822edb14e69fc17180891dc2efd2685dff8e973c3a12ef92618c652273c21ef",
+    "art\\blender\\background-castle.blend": "bed90f869bfd8286fd04952af3b1ad978a5d5fe5de213d576e7ba3413b56bcbd",
+    "art\\blender\\background-renaissance.blend": "291a2383b2d4d1258bf7692fa9d6a79a97ffc2d05d639bca39eb6df75c78975b",
+    "art\\blender\\background-future.blend": "6f0165df7c62e07c4f820c816619c2ef86bc8a857e70abfaf6e0a024e616975d",
+    "public\\assets\\reborn\\backgrounds\\stone.png": "81eb79b9204a718fd33df699e466c7d78cc6255771fd23119fdbd20d80a269e4",
+    "public\\assets\\reborn\\backgrounds\\castle.png": "193b4e66ede6b45e65d5fcade412028c3a6555ed3119c6d5d7db92ce0faf4de5",
+    "public\\assets\\reborn\\backgrounds\\renaissance.png": "f425856159a807538728c2f0869f237f60539081ca94c8cbf27731d21c46ab09",
+    "public\\assets\\reborn\\backgrounds\\future.png": "a996b5c56821a60b48b33e25746bbabf769dd8d7af25d824b7ecf206752cfa39"
+  },
+  "files": [
+    {
+      "destination": "art\\blender\\background-modern.blend",
+      "sha256": "a147ddb71bc747a1505550225eef31c8bc0d6a9a0cd2b43b25b5bafa588feb7d",
+      "bytes": 3184810
+    },
+    {
+      "destination": "public\\assets\\reborn\\backgrounds\\modern.png",
+      "sha256": "c9c3a4d85f95ea39ac716c9669c10ee717d8785370dd41747e8462314441e8f8",
+      "bytes": 1861801
+    }
+  ],
+  "source_archive": "art/blender/candidates/modern-v2/original-background-modern.blend",
+  "png_archive": "art/blender/candidates/modern-v2/original-background-modern.png",
+  "scene_metadata": {
+    "authored_environment_revision": 2,
+    "environment_id": "modern",
+    "runtime_background": "backgrounds/modern.png",
+    "authoring_source": "tools/blender/refine_modern.py",
+    "runtime_layout": "1280x720; combat_y=500; HUD_top=82; HUD_bottom=552"
+  }
+}

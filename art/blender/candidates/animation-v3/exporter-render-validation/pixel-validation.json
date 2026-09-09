@@ -1,0 +1,43 @@
+{
+  "passed": true,
+  "results": {
+    "rifleman": {
+      "expected": "art\\blender\\candidates\\animation-v3\\ranged-family\\rifleman\\rifleman-16.png",
+      "actual": "art\\blender\\candidates\\animation-v3\\exporter-render-validation\\exports\\units\\rifleman.png",
+      "dimensions": [
+        4096,
+        256
+      ],
+      "pixel_identical": false,
+      "max_channel_difference": 1,
+      "mean_channel_difference": [
+        7.62939453125e-06,
+        1.049041748046875e-05,
+        9.5367431640625e-06,
+        0.0
+      ],
+      "changed_pixels": 29,
+      "total_pixels": 1048576,
+      "alpha_identical": true
+    },
+    "rifleman-enemy": {
+      "expected": "art\\blender\\candidates\\animation-v3\\ranged-family\\rifleman-enemy\\rifleman-enemy-16.png",
+      "actual": "art\\blender\\candidates\\animation-v3\\exporter-render-validation\\exports\\units-enemy\\rifleman.png",
+      "dimensions": [
+        4096,
+        256
+      ],
+      "pixel_identical": false,
+      "max_channel_difference": 1,
+      "mean_channel_difference": [
+        7.62939453125e-06,
+        5.7220458984375e-06,
+        5.7220458984375e-06,
+        0.0
+      ],
+      "changed_pixels": 20,
+      "total_pixels": 1048576,
+      "alpha_identical": true
+    }
+  }
+}

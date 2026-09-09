@@ -1,0 +1,1205 @@
+{
+  "status": "passed",
+  "animationFrames": 8,
+  "checkedImages": 85,
+  "expectedImages": 85,
+  "checkedSources": 85,
+  "expectedSources": 85,
+  "socketUnits": 20,
+  "issues": [],
+  "files": [
+    {
+      "file": "public\\assets\\reborn\\backgrounds\\stone.png",
+      "size": [
+        1600,
+        900
+      ],
+      "bytes": 1779857,
+      "sha256": "81eb79b9204a718fd33df699e466c7d78cc6255771fd23119fdbd20d80a269e4"
+    },
+    {
+      "file": "public\\assets\\reborn\\bases\\stone.png",
+      "size": [
+        512,
+        512
+      ],
+      "bytes": 273545,
+      "sha256": "424e64aa4220a74d5a22fd8552ed9bad55d0bb675d537624d8e3f437813c21f4"
+    },
+    {
+      "file": "public\\assets\\reborn\\towers\\stone-1.png",
+      "size": [
+        256,
+        256
+      ],
+      "bytes": 46869,
+      "sha256": "954c508549d1e111b356c41be85d763f03097665ca2c22cd0762e741dd4f5bc4"
+    },
+    {
+      "file": "public\\assets\\reborn\\towers\\stone-2.png",
+      "size": [
+        256,
+        256
+      ],
+      "bytes": 48269,
+      "sha256": "0fa10c747070148926fc9474ceff9c6eed24da55dc1291400e8ce8b10e5ee602"
+    },
+    {
+      "file": "public\\assets\\reborn\\towers\\stone-3.png",
+      "size": [
+        256,
+        256
+      ],
+      "bytes": 65336,
+      "sha256": "201c6750a5f5fae14f0826c222f10f0a66dd0081c4de8bb03758d69ac1e588c1"
+    },
+    {
+      "file": "public\\assets\\reborn\\bases-enemy\\stone.png",
+      "size": [
+        512,
+        512
+      ],
+      "bytes": 273288,
+      "sha256": "5e789a0263643d4f662543e513c8ec319c10416d68e089b7c9da4596c62f7205"
+    },
+    {
+      "file": "public\\assets\\reborn\\towers-enemy\\stone-1.png",
+      "size": [
+        256,
+        256
+      ],
+      "bytes": 46875,
+      "sha256": "64961d77220929f8975b427135c43138ff5094e2727dbfd2720f4eece390da81"
+    },
+    {
+      "file": "public\\assets\\reborn\\towers-enemy\\stone-2.png",
+      "size": [
+        256,
+        256
+      ],
+      "bytes": 48276,
+      "sha256": "d1bd49a301eabd4a836905f09060d0b742d338947dd82a8aa01f014fc7dc8df8"
+    },
+    {
+      "file": "public\\assets\\reborn\\towers-enemy\\stone-3.png",
+      "size": [
+        256,
+        256
+      ],
+      "bytes": 65267,
+      "sha256": "1df4c74740c25edffaa22652298794f29dbe0b92fdbcd76cfb68acfcf774f973"
+    },
+    {
+      "file": "public\\assets\\reborn\\backgrounds\\castle.png",
+      "size": [
+        1600,
+        900
+      ],
+      "bytes": 1840608,
+      "sha256": "885f431c77ecd44f0493f908c186f339dd86abb267d7b36145f22957f7908efe"
+    },
+    {
+      "file": "public\\assets\\reborn\\bases\\castle.png",
+      "size": [
+        512,
+        512
+      ],
+      "bytes": 299072,
+      "sha256": "35468a334b49c100c8a30d07f87935d3f1c9be7892000b54ca46882a3a963ca6"
+    },
+    {
+      "file": "public\\assets\\reborn\\towers\\castle-1.png",
+      "size": [
+        256,
+        256
+      ],
+      "bytes": 71162,
+      "sha256": "04f1fe0041d5094634c1a986f5968397f020f5be12e1efc701e599335b5fa25b"
+    },
+    {
+      "file": "public\\assets\\reborn\\towers\\castle-2.png",
+      "size": [
+        256,
+        256
+      ],
+      "bytes": 42881,
+      "sha256": "035f4d1e973a6be02d4dee399658af795bbfe00ee1c8d7638f61234422ccdd74"
+    },
+    {
+      "file": "public\\assets\\reborn\\towers\\castle-3.png",
+      "size": [
+        256,
+        256
+      ],
+      "bytes": 55748,
+      "sha256": "20850b94fccd60997ae0a13ec45962770329715cc57f6e4ede907ab9d743bf7e"
+    },
+    {
+      "file": "public\\assets\\reborn\\bases-enemy\\castle.png",
+      "size": [
+        512,
+        512
+      ],
+      "bytes": 300262,
+      "sha256": "76c1e8b12b216b33142a4c87a4dac90cf6f8fdad9c382518df644b674f610951"
+    },
+    {
+      "file": "public\\assets\\reborn\\towers-enemy\\castle-1.png",
+      "size": [
+        256,
+        256
+      ],
+      "bytes": 71203,
+      "sha256": "8099091d45a4b85ac7ff173c118ee7cc765e0a340f74c24c25a89ed00d90d3f9"
+    },
+    {
+      "file": "public\\assets\\reborn\\towers-enemy\\castle-2.png",
+      "size": [
+        256,
+        256
+      ],
+      "bytes": 42883,
+      "sha256": "b95a9687e272811018697b355e0fbb1972d3f8949f81658d3b8d92eb7e0c1aa4"
+    },
+    {
+      "file": "public\\assets\\reborn\\towers-enemy\\castle-3.png",
+      "size": [
+        256,
+        256
+      ],
+      "bytes": 55754,
+      "sha256": "00381bc4795e33313a1c65e9f3562d56e526be83ed8b3a5afa65ce3d174f830c"
+    },
+    {
+      "file": "public\\assets\\reborn\\backgrounds\\renaissance.png",
+      "size": [
+        1600,
+        900
+      ],
+      "bytes": 1863622,
+      "sha256": "f425856159a807538728c2f0869f237f60539081ca94c8cbf27731d21c46ab09"
+    },
+    {
+      "file": "public\\assets\\reborn\\bases\\renaissance.png",
+      "size": [
+        512,
+        512
+      ],
+      "bytes": 290477,
+      "sha256": "cea185ea4edbfaf1d9877a982100f950771f7ca16f59309260f874c070537313"
+    },
+    {
+      "file": "public\\assets\\reborn\\towers\\renaissance-1.png",
+      "size": [
+        256,
+        256
+      ],
+      "bytes": 40545,
+      "sha256": "25c97ddc13272f1696b06dec2f3301a07dd14ff99f3f96c37d56588aa8498f4b"
+    },
+    {
+      "file": "public\\assets\\reborn\\towers\\renaissance-2.png",
+      "size": [
+        256,
+        256
+      ],
+      "bytes": 74325,
+      "sha256": "6697ff88ab44658e0e56a6f469d71ca357dc750be0128cc578c9e5626bab2ee1"
+    },
+    {
+      "file": "public\\assets\\reborn\\towers\\renaissance-3.png",
+      "size": [
+        256,
+        256
+      ],
+      "bytes": 64655,
+      "sha256": "3236a2c203d01cfb9b698df0c4ab2d88d88fa428d467efb9ea73431567d59c13"
+    },
+    {
+      "file": "public\\assets\\reborn\\bases-enemy\\renaissance.png",
+      "size": [
+        512,
+        512
+      ],
+      "bytes": 293346,
+      "sha256": "38a3dbf134dcc0ff42e428a7790489c471fb6ee0ffd5f278d09dbce69bf35403"
+    },
+    {
+      "file": "public\\assets\\reborn\\towers-enemy\\renaissance-1.png",
+      "size": [
+        256,
+        256
+      ],
+      "bytes": 40545,
+      "sha256": "319a1258219d8c321e1e596ce45ae37c3e1b8c8d2c84e8edd304e044652f31d0"
+    },
+    {
+      "file": "public\\assets\\reborn\\towers-enemy\\renaissance-2.png",
+      "size": [
+        256,
+        256
+      ],
+      "bytes": 75542,
+      "sha256": "fb9451186a23405e8751706be924478fea87104c8fbd3064d3c35c57502469fc"
+    },
+    {
+      "file": "public\\assets\\reborn\\towers-enemy\\renaissance-3.png",
+      "size": [
+        256,
+        256
+      ],
+      "bytes": 64666,
+      "sha256": "631606a802d5fac7e5a8dd96549027b728804c57085e9fa34619f047c4914a80"
+    },
+    {
+      "file": "public\\assets\\reborn\\backgrounds\\modern.png",
+      "size": [
+        1600,
+        900
+      ],
+      "bytes": 1861801,
+      "sha256": "c9c3a4d85f95ea39ac716c9669c10ee717d8785370dd41747e8462314441e8f8"
+    },
+    {
+      "file": "public\\assets\\reborn\\bases\\modern.png",
+      "size": [
+        512,
+        512
+      ],
+      "bytes": 272030,
+      "sha256": "92431e33bd6b7ff77c27ae8fe3289a8c43956e78fb4d102aa3e094786d14ddd4"
+    },
+    {
+      "file": "public\\assets\\reborn\\towers\\modern-1.png",
+      "size": [
+        256,
+        256
+      ],
+      "bytes": 43814,
+      "sha256": "d1d4d47525f677c5a2b7a03e389a85e41b18e93d91552a7a53325f847f58d89a"
+    },
+    {
+      "file": "public\\assets\\reborn\\towers\\modern-2.png",
+      "size": [
+        256,
+        256
+      ],
+      "bytes": 44065,
+      "sha256": "a130eaa430fbf64fcd5a29c882abe35515778facedd8e6762f2203bfd0cf998c"
+    },
+    {
+      "file": "public\\assets\\reborn\\towers\\modern-3.png",
+      "size": [
+        256,
+        256
+      ],
+      "bytes": 46201,
+      "sha256": "615750767bdf931728ee7182f94ab5e99d500405a1b08af0f04c8b0cbf84bab0"
+    },
+    {
+      "file": "public\\assets\\reborn\\bases-enemy\\modern.png",
+      "size": [
+        512,
+        512
+      ],
+      "bytes": 272416,
+      "sha256": "f492da37a9a49ed21e67b44fae0c5b8bfa6183ab0b833f1c6df13b04ace16ac9"
+    },
+    {
+      "file": "public\\assets\\reborn\\towers-enemy\\modern-1.png",
+      "size": [
+        256,
+        256
+      ],
+      "bytes": 44076,
+      "sha256": "1b71ed7bdd0a54d0a937522e30946e5cd5aa87924655060ad87707e867969ea5"
+    },
+    {
+      "file": "public\\assets\\reborn\\towers-enemy\\modern-2.png",
+      "size": [
+        256,
+        256
+      ],
+      "bytes": 44319,
+      "sha256": "d4423c6a2fb7d0f01f87ab08a86d3e0c3681e601eff2220ddf6abad8941b0da8"
+    },
+    {
+      "file": "public\\assets\\reborn\\towers-enemy\\modern-3.png",
+      "size": [
+        256,
+        256
+      ],
+      "bytes": 46517,
+      "sha256": "6fb1d8c12e3cd4bb3bbc57bfc807ffaf8bec7899581f1d47edc5acfc60ae0365"
+    },
+    {
+      "file": "public\\assets\\reborn\\backgrounds\\future.png",
+      "size": [
+        1600,
+        900
+      ],
+      "bytes": 1860461,
+      "sha256": "a996b5c56821a60b48b33e25746bbabf769dd8d7af25d824b7ecf206752cfa39"
+    },
+    {
+      "file": "public\\assets\\reborn\\bases\\future.png",
+      "size": [
+        512,
+        512
+      ],
+      "bytes": 248586,
+      "sha256": "f510f4f712d6330a7444f82abd89681d072eaa706fabe908a60be4d9ea545955"
+    },
+    {
+      "file": "public\\assets\\reborn\\towers\\future-1.png",
+      "size": [
+        256,
+        256
+      ],
+      "bytes": 42760,
+      "sha256": "38686b322f085358a6ed3d536fb3043976689ce93f1de446257f0e1e09287962"
+    },
+    {
+      "file": "public\\assets\\reborn\\towers\\future-2.png",
+      "size": [
+        256,
+        256
+      ],
+      "bytes": 43582,
+      "sha256": "8d794eebb4d6490958d252f4b5ef0a93a504177bd2c6d0d352fa3224ddf84a39"
+    },
+    {
+      "file": "public\\assets\\reborn\\towers\\future-3.png",
+      "size": [
+        256,
+        256
+      ],
+      "bytes": 48031,
+      "sha256": "fc84f51009091ac6b431d67b829040dee902e154fe7c0d0d397139a3bf88be43"
+    },
+    {
+      "file": "public\\assets\\reborn\\bases-enemy\\future.png",
+      "size": [
+        512,
+        512
+      ],
+      "bytes": 251610,
+      "sha256": "3bea07602c9d3b3199afd3c4577c398be17d19809cff0a081899f71e8b3f0aa4"
+    },
+    {
+      "file": "public\\assets\\reborn\\towers-enemy\\future-1.png",
+      "size": [
+        256,
+        256
+      ],
+      "bytes": 43250,
+      "sha256": "bfc24d6112c76c3a7987fd9a31a1a4582c27279a273afcfc8f43e12faf45c726"
+    },
+    {
+      "file": "public\\assets\\reborn\\towers-enemy\\future-2.png",
+      "size": [
+        256,
+        256
+      ],
+      "bytes": 44137,
+      "sha256": "e4dedc8d465778656d6d0167e76c1ed9d009d2c207551272b2e48fbc2d1ce7c6"
+    },
+    {
+      "file": "public\\assets\\reborn\\towers-enemy\\future-3.png",
+      "size": [
+        256,
+        256
+      ],
+      "bytes": 48552,
+      "sha256": "d70286b4be27379ffb2393e9f8aceda0eed68ae6704f83e431a7ff7a51f08477"
+    },
+    {
+      "file": "public\\assets\\reborn\\units\\clubman.png",
+      "size": [
+        2048,
+        256
+      ],
+      "bytes": 151939,
+      "sha256": "39810c58c6d86ea03898a398069fab2e7ac8ada02b00f7792c3ccba9d858ca4f"
+    },
+    {
+      "file": "public\\assets\\reborn\\units-enemy\\clubman.png",
+      "size": [
+        2048,
+        256
+      ],
+      "bytes": 151304,
+      "sha256": "afd00e3452e3801ea3570788c3d5b7ee7b858df97ecf876a2843b19f70a1ee4e"
+    },
+    {
+      "file": "public\\assets\\reborn\\units\\spearman.png",
+      "size": [
+        2048,
+        256
+      ],
+      "bytes": 160429,
+      "sha256": "a88ae8331096d3095e6c132a063be80850a78d5ecbf284884b3f69cf8323fb55"
+    },
+    {
+      "file": "public\\assets\\reborn\\units-enemy\\spearman.png",
+      "size": [
+        2048,
+        256
+      ],
+      "bytes": 158726,
+      "sha256": "dde2870461e387fae859a4604b900789f94e29e728e75ac6c98f30a90548ea5d"
+    },
+    {
+      "file": "public\\assets\\reborn\\units\\slinger.png",
+      "size": [
+        2048,
+        256
+      ],
+      "bytes": 145876,
+      "sha256": "28089aaf23bab1da9f4e548d57167a70d711e20780468601a773ed72a5f6db17"
+    },
+    {
+      "file": "public\\assets\\reborn\\units-enemy\\slinger.png",
+      "size": [
+        2048,
+        256
+      ],
+      "bytes": 145252,
+      "sha256": "9ae931afb7ce6653cf5fbb200eb686432cc9dd54e69de7ba98a42e13402ac6e1"
+    },
+    {
+      "file": "public\\assets\\reborn\\units\\dino-rider.png",
+      "size": [
+        2048,
+        256
+      ],
+      "bytes": 167074,
+      "sha256": "5d5b6cc2cce4d583cfb1143b84a45d8d68a3f1832d3610f3af369246b1d212fa"
+    },
+    {
+      "file": "public\\assets\\reborn\\units-enemy\\dino-rider.png",
+      "size": [
+        2048,
+        256
+      ],
+      "bytes": 166714,
+      "sha256": "ecda3a4b329fad27f67622f3a0bd5b3c92569b83b005797036e858038277a27d"
+    },
+    {
+      "file": "public\\assets\\reborn\\units\\swordsman.png",
+      "size": [
+        2048,
+        256
+      ],
+      "bytes": 164437,
+      "sha256": "98a8ffdd3c4b3db7f80f6f07d5e91475fc8fe8cc790173a9b0fcb14acd68d14e"
+    },
+    {
+      "file": "public\\assets\\reborn\\units-enemy\\swordsman.png",
+      "size": [
+        2048,
+        256
+      ],
+      "bytes": 162458,
+      "sha256": "9ccf13b1322634ee3e713c229c1c860401e96cb257ff5505b7531cdc5fa19b01"
+    },
+    {
+      "file": "public\\assets\\reborn\\units\\archer.png",
+      "size": [
+        2048,
+        256
+      ],
+      "bytes": 172318,
+      "sha256": "155eb0c3a3717b2a4d9d5a3484b0db279f0a4115283ab923fa7afbe37dfeda12"
+    },
+    {
+      "file": "public\\assets\\reborn\\units-enemy\\archer.png",
+      "size": [
+        2048,
+        256
+      ],
+      "bytes": 170822,
+      "sha256": "bcc4782d044f9fdc9e96c3512a01b81d4ec7ea90c3d93ad10bee12795f3963b0"
+    },
+    {
+      "file": "public\\assets\\reborn\\units\\knight.png",
+      "size": [
+        2048,
+        256
+      ],
+      "bytes": 162774,
+      "sha256": "74b162013da6493692bdd0e34ec7aa776a39f692787b3d5b6744ea6780b1b31e"
+    },
+    {
+      "file": "public\\assets\\reborn\\units-enemy\\knight.png",
+      "size": [
+        2048,
+        256
+      ],
+      "bytes": 161458,
+      "sha256": "f73a455ef776b6510cf9a15c042d5db4027e032da46cbfb8193d93a5f5c6f143"
+    },
+    {
+      "file": "public\\assets\\reborn\\units\\ballista.png",
+      "size": [
+        2048,
+        256
+      ],
+      "bytes": 149905,
+      "sha256": "7d3e19eb249665b7cbc9a7a1430837498822e5c5d514536c4b5a4226af3c58bc"
+    },
+    {
+      "file": "public\\assets\\reborn\\units-enemy\\ballista.png",
+      "size": [
+        2048,
+        256
+      ],
+      "bytes": 149691,
+      "sha256": "3d4ad53e2f4e3d291f462309dca68917fc1747c50129378fdf975a34d5263ac4"
+    },
+    {
+      "file": "public\\assets\\reborn\\units\\musketeer.png",
+      "size": [
+        2048,
+        256
+      ],
+      "bytes": 167607,
+      "sha256": "6f205df497a3906e456d89455c5dca43c7d165e67589d57b5c497d104265d47b"
+    },
+    {
+      "file": "public\\assets\\reborn\\units-enemy\\musketeer.png",
+      "size": [
+        2048,
+        256
+      ],
+      "bytes": 165959,
+      "sha256": "9e44aabe333f5f537d89536aabfc6e2af57336f1b5cf01394f8ae3b336f509e8"
+    },
+    {
+      "file": "public\\assets\\reborn\\units\\cavalry.png",
+      "size": [
+        2048,
+        256
+      ],
+      "bytes": 170152,
+      "sha256": "47dcac7f3aeee0b5bf8e7382c56b53dd68487bd7ad9d26e9306e11c14830422f"
+    },
+    {
+      "file": "public\\assets\\reborn\\units-enemy\\cavalry.png",
+      "size": [
+        2048,
+        256
+      ],
+      "bytes": 169285,
+      "sha256": "595f5b16d7ca10a7019d30f58f21150abbd7c9c428a78e23ddc9dcc936b35e5f"
+    },
+    {
+      "file": "public\\assets\\reborn\\units\\cannon.png",
+      "size": [
+        2048,
+        256
+      ],
+      "bytes": 104194,
+      "sha256": "286beaac149f9cd89692554a698263d80ea57398ac873f28707dcf3914650de0"
+    },
+    {
+      "file": "public\\assets\\reborn\\units-enemy\\cannon.png",
+      "size": [
+        2048,
+        256
+      ],
+      "bytes": 103164,
+      "sha256": "30746141ff8d239ae8014741ca710fadd3db72af4e7863f2759f3f23d8cf1cce"
+    },
+    {
+      "file": "public\\assets\\reborn\\units\\duelist.png",
+      "size": [
+        2048,
+        256
+      ],
+      "bytes": 162950,
+      "sha256": "4ad13a1220fa3f4a94425849b4fe3b77a784eeb071cd1482ed391f13591311a1"
+    },
+    {
+      "file": "public\\assets\\reborn\\units-enemy\\duelist.png",
+      "size": [
+        2048,
+        256
+      ],
+      "bytes": 160875,
+      "sha256": "d50a7123845590d72b486853dc8ef1bea93a396a1b40208dda4a35d44768da4e"
+    },
+    {
+      "file": "public\\assets\\reborn\\units\\rifleman.png",
+      "size": [
+        2048,
+        256
+      ],
+      "bytes": 154082,
+      "sha256": "780297694f9ccb3301019cb82444545c75d29ad30f8b2310966636d7c07288b8"
+    },
+    {
+      "file": "public\\assets\\reborn\\units-enemy\\rifleman.png",
+      "size": [
+        2048,
+        256
+      ],
+      "bytes": 152036,
+      "sha256": "00bd69cefb73a158092cfbab80b202b206d4ce7f44dc1af79906d412221c0ca8"
+    },
+    {
+      "file": "public\\assets\\reborn\\units\\grenadier.png",
+      "size": [
+        2048,
+        256
+      ],
+      "bytes": 139697,
+      "sha256": "73b4d02f26ead9dd1d3cb4fec70296cdf22f81366a093f03c42614f449bb5b95"
+    },
+    {
+      "file": "public\\assets\\reborn\\units-enemy\\grenadier.png",
+      "size": [
+        2048,
+        256
+      ],
+      "bytes": 138380,
+      "sha256": "d790458b685f3f11d269d6432346c69c7c04554d0d48ea8a0a848c927221e85b"
+    },
+    {
+      "file": "public\\assets\\reborn\\units\\tank.png",
+      "size": [
+        2048,
+        256
+      ],
+      "bytes": 217932,
+      "sha256": "02790966f3c4e52fabf9ce6b412d4e058eba707ac8a3a2962ee7b05645f9b556"
+    },
+    {
+      "file": "public\\assets\\reborn\\units-enemy\\tank.png",
+      "size": [
+        2048,
+        256
+      ],
+      "bytes": 216059,
+      "sha256": "a9406dece1aa700cc03aa1177bababdee0dbc13d8008fc67fbdeb4fc2671038e"
+    },
+    {
+      "file": "public\\assets\\reborn\\units\\sniper.png",
+      "size": [
+        2048,
+        256
+      ],
+      "bytes": 171554,
+      "sha256": "3e31f79cf2dc292c89582a31c98940e1408009ba5d501c198f6abb8867aeebf5"
+    },
+    {
+      "file": "public\\assets\\reborn\\units-enemy\\sniper.png",
+      "size": [
+        2048,
+        256
+      ],
+      "bytes": 171240,
+      "sha256": "9d03b9f4dce1a0ea797176ea6c6ebe1c8439720a122f736544cc1af69d78888d"
+    },
+    {
+      "file": "public\\assets\\reborn\\units\\laser-soldier.png",
+      "size": [
+        2048,
+        256
+      ],
+      "bytes": 162144,
+      "sha256": "ff9d2eb40126b50f4b1786e56c04eaebc498c73ce3e31845ba212744ff02eac1"
+    },
+    {
+      "file": "public\\assets\\reborn\\units-enemy\\laser-soldier.png",
+      "size": [
+        2048,
+        256
+      ],
+      "bytes": 161924,
+      "sha256": "590124313c9a4f8864eed4ca4398bbbf3ccd95d5ee4db9ea676aad88100509de"
+    },
+    {
+      "file": "public\\assets\\reborn\\units\\mech.png",
+      "size": [
+        2048,
+        256
+      ],
+      "bytes": 166047,
+      "sha256": "d0c2bbbe8036934fb50ef1896a0c2666a8e92f8ab7f0c2f1232dbfa722d03690"
+    },
+    {
+      "file": "public\\assets\\reborn\\units-enemy\\mech.png",
+      "size": [
+        2048,
+        256
+      ],
+      "bytes": 166343,
+      "sha256": "fb15cdad6ac670a59e85b116a6c2068016d99508cc99933718cb28e3864b9719"
+    },
+    {
+      "file": "public\\assets\\reborn\\units\\plasma-trooper.png",
+      "size": [
+        2048,
+        256
+      ],
+      "bytes": 174740,
+      "sha256": "82d2763a4ce2b5d572b9adf9610e24d13d4a85e755b3580a33fb9844dca0f7d9"
+    },
+    {
+      "file": "public\\assets\\reborn\\units-enemy\\plasma-trooper.png",
+      "size": [
+        2048,
+        256
+      ],
+      "bytes": 174809,
+      "sha256": "e86a9ebd152bffecfe9cf2a2815a6f7be09b4ac5dd0bb4ef3f22299fa69c399f"
+    },
+    {
+      "file": "public\\assets\\reborn\\units\\super-heavy.png",
+      "size": [
+        2048,
+        256
+      ],
+      "bytes": 222749,
+      "sha256": "59c8543809333e8f2e446aeabb81c808e1c680f5180a481d8189cced6cb3e90e"
+    },
+    {
+      "file": "public\\assets\\reborn\\units-enemy\\super-heavy.png",
+      "size": [
+        2048,
+        256
+      ],
+      "bytes": 222882,
+      "sha256": "31cf0cdf839a111774b296d373caca0f76e44f5bdb63b602ef7476ee7a4f5778"
+    }
+  ],
+  "sources": [
+    {
+      "file": "art\\blender\\background-stone.blend",
+      "bytes": 3095445,
+      "sha256": "e822edb14e69fc17180891dc2efd2685dff8e973c3a12ef92618c652273c21ef"
+    },
+    {
+      "file": "art\\blender\\base-stone.blend",
+      "bytes": 154262,
+      "sha256": "3261d1ef401bb8638c32b0cf8ab7c38fb0fa40f66a96250cd470319c444a34cf"
+    },
+    {
+      "file": "art\\blender\\tower-stone-1.blend",
+      "bytes": 111778,
+      "sha256": "1b189befa74e8b32884bae062f96ad2fccf821700bb8ff1ef685ae28dbaa04c4"
+    },
+    {
+      "file": "art\\blender\\tower-stone-2.blend",
+      "bytes": 111679,
+      "sha256": "8a08c29043638c7eb285ae73751ebd957b1bd0e686d9fe3ab3d99443558b527b"
+    },
+    {
+      "file": "art\\blender\\tower-stone-3.blend",
+      "bytes": 108081,
+      "sha256": "6cc07270d7c4ea2531cddff1ad8b38d38a4b2288f176fb581fcea764f6f2804b"
+    },
+    {
+      "file": "art\\blender\\base-stone-enemy.blend",
+      "bytes": 149862,
+      "sha256": "a2d414e36a2940739f2fd64e4c1497dc66e470a6fddcd64720d2ff2e33f7717f"
+    },
+    {
+      "file": "art\\blender\\tower-stone-1-enemy.blend",
+      "bytes": 111359,
+      "sha256": "9336171ea341db12bcf8f6615afd837b4324b074727bc784020c813b911d06a2"
+    },
+    {
+      "file": "art\\blender\\tower-stone-2-enemy.blend",
+      "bytes": 111682,
+      "sha256": "976ccef9455bd44590a288dc9e83364adaa481206cb2c90def9911cdb93df266"
+    },
+    {
+      "file": "art\\blender\\tower-stone-3-enemy.blend",
+      "bytes": 107579,
+      "sha256": "a039c9d20b9c9cfa9b6a9185708f0c2820325fd0673a300d2ef0fb6dfc9528eb"
+    },
+    {
+      "file": "art\\blender\\background-castle.blend",
+      "bytes": 3244548,
+      "sha256": "b6cf17dcaa6ec9f30ee669731630dbe32c2417bf9a22526b2be388aad875747a"
+    },
+    {
+      "file": "art\\blender\\base-castle.blend",
+      "bytes": 168447,
+      "sha256": "ba74a50d3c43be278889e10a8313437cff3131b463beca9f41549a1aa75e7773"
+    },
+    {
+      "file": "art\\blender\\tower-castle-1.blend",
+      "bytes": 111722,
+      "sha256": "bf088718d5ed05d13781eac1fc877ba3b5c1066fb795a8cf42ab51e142652c0f"
+    },
+    {
+      "file": "art\\blender\\tower-castle-2.blend",
+      "bytes": 99543,
+      "sha256": "a0aeaf3d4d4d1cf47ae95f6cc1e84e38acdf0e1d9437f1e6c85fc72495476778"
+    },
+    {
+      "file": "art\\blender\\tower-castle-3.blend",
+      "bytes": 111742,
+      "sha256": "25df9d47358a4bba53b777d41feeb32bc74188e0f901430bad3703a876f3e277"
+    },
+    {
+      "file": "art\\blender\\base-castle-enemy.blend",
+      "bytes": 166717,
+      "sha256": "27ac90479af287dca574c41d802dfae629eb1c59f8bf4d642b838e6aa0c26d98"
+    },
+    {
+      "file": "art\\blender\\tower-castle-1-enemy.blend",
+      "bytes": 111327,
+      "sha256": "41f088b048208eee76edc574c889c36f7b1704f4bcc941b09fd22c1683a58c69"
+    },
+    {
+      "file": "art\\blender\\tower-castle-2-enemy.blend",
+      "bytes": 99247,
+      "sha256": "d72d3d4bcb0c783f5038435443b0fb03e561a82cc890e26c999659fd5aa9e74b"
+    },
+    {
+      "file": "art\\blender\\tower-castle-3-enemy.blend",
+      "bytes": 111400,
+      "sha256": "813589bb45adb7d68fcabcde4a74fccebb658c7f9e880aed41544c305fe8eff5"
+    },
+    {
+      "file": "art\\blender\\background-renaissance.blend",
+      "bytes": 3375943,
+      "sha256": "291a2383b2d4d1258bf7692fa9d6a79a97ffc2d05d639bca39eb6df75c78975b"
+    },
+    {
+      "file": "art\\blender\\base-renaissance.blend",
+      "bytes": 157674,
+      "sha256": "aa780f51237efa6159716a9f5bd01ccad71fb21d397c0c1c0c0805c2cf5cb383"
+    },
+    {
+      "file": "art\\blender\\tower-renaissance-1.blend",
+      "bytes": 115125,
+      "sha256": "4d8f62c505e37bd30978067ff7521e965ae72b47a5d060b51835b094291eaf39"
+    },
+    {
+      "file": "art\\blender\\tower-renaissance-2.blend",
+      "bytes": 104751,
+      "sha256": "502f94965d5896decfc18748e6490fa2d97445dc99c61fcbd628925d68adc9ca"
+    },
+    {
+      "file": "art\\blender\\tower-renaissance-3.blend",
+      "bytes": 102718,
+      "sha256": "24671a9b8551f2cf1102b7771f4a56139c1130fac06e5150f8f7ba3fab5ebcbf"
+    },
+    {
+      "file": "art\\blender\\base-renaissance-enemy.blend",
+      "bytes": 157086,
+      "sha256": "bad418e9111cef0d441844a2dd2e5286815137ca8a1868b6e2431b3ef645a10f"
+    },
+    {
+      "file": "art\\blender\\tower-renaissance-1-enemy.blend",
+      "bytes": 114607,
+      "sha256": "d2337183e2c4b73f6800be51cf65f25e7ad7ef52dc3c11545ac445a8f9582fdb"
+    },
+    {
+      "file": "art\\blender\\tower-renaissance-2-enemy.blend",
+      "bytes": 104249,
+      "sha256": "e8132d753897c0895352f8a6c42a4b6b11b332161c9bf439d2afe8f6a88e1f35"
+    },
+    {
+      "file": "art\\blender\\tower-renaissance-3-enemy.blend",
+      "bytes": 102493,
+      "sha256": "0844d0807f255d16ab3b7ce3a4611a69491eae4060432d6ee0b5c76e66a3a691"
+    },
+    {
+      "file": "art\\blender\\background-modern.blend",
+      "bytes": 3184810,
+      "sha256": "a147ddb71bc747a1505550225eef31c8bc0d6a9a0cd2b43b25b5bafa588feb7d"
+    },
+    {
+      "file": "art\\blender\\base-modern.blend",
+      "bytes": 143822,
+      "sha256": "723b9113ed13e0d697053ff136abb01bdb24b693bdfaa058161a9c80c3defd3e"
+    },
+    {
+      "file": "art\\blender\\tower-modern-1.blend",
+      "bytes": 116115,
+      "sha256": "23143a1ac452ec8ad013cbeca70ac1622086f37a941399830652f66d83e26598"
+    },
+    {
+      "file": "art\\blender\\tower-modern-2.blend",
+      "bytes": 113749,
+      "sha256": "cad91250fd768e0a713392ce8d5efce5e05273c63f9cc262b8be9231afdef594"
+    },
+    {
+      "file": "art\\blender\\tower-modern-3.blend",
+      "bytes": 116317,
+      "sha256": "3249b3aa7d9b153a81cb579c0f757d132dc4f9be599dbc4cb954ad07e04d35dc"
+    },
+    {
+      "file": "art\\blender\\base-modern-enemy.blend",
+      "bytes": 144675,
+      "sha256": "10f21a44599d1e0bb0b07d8a96a0ed2419079174be79d0b316315d9de30f62a1"
+    },
+    {
+      "file": "art\\blender\\tower-modern-1-enemy.blend",
+      "bytes": 114144,
+      "sha256": "b03182e3a15cf340a757866e13be6cf7409664795595f91da312f382ac0b84db"
+    },
+    {
+      "file": "art\\blender\\tower-modern-2-enemy.blend",
+      "bytes": 115750,
+      "sha256": "dc767db6e78d4204aa81fe46b68e67181408bfad564f8f04764eec74196ad42b"
+    },
+    {
+      "file": "art\\blender\\tower-modern-3-enemy.blend",
+      "bytes": 114655,
+      "sha256": "72decf3531b738641253b43e5d4982f000ccbb504904aafd26e73c3273f970ad"
+    },
+    {
+      "file": "art\\blender\\background-future.blend",
+      "bytes": 3140470,
+      "sha256": "6f0165df7c62e07c4f820c816619c2ef86bc8a857e70abfaf6e0a024e616975d"
+    },
+    {
+      "file": "art\\blender\\base-future.blend",
+      "bytes": 125159,
+      "sha256": "26bbefcfe767a5eff353e6ac588bcb069415d14726d0768d5efdc002bbacaecb"
+    },
+    {
+      "file": "art\\blender\\tower-future-1.blend",
+      "bytes": 116601,
+      "sha256": "957c92e74433e2287a2750dd346ee36761c6b9df762ef988c582c7920f7847a8"
+    },
+    {
+      "file": "art\\blender\\tower-future-2.blend",
+      "bytes": 106322,
+      "sha256": "32db574fd9367cac84a12a3e4047f0cd426065e2a820150a266b6d2810e0a885"
+    },
+    {
+      "file": "art\\blender\\tower-future-3.blend",
+      "bytes": 117879,
+      "sha256": "9ff75dbb201c5d19798374146afcb4f19f84d8f3f0493d6a13406422636de5f3"
+    },
+    {
+      "file": "art\\blender\\base-future-enemy.blend",
+      "bytes": 125445,
+      "sha256": "456585153235f9abbf05519cc422b8a4c648c1770bbf890fcfcaf50f7974bedf"
+    },
+    {
+      "file": "art\\blender\\tower-future-1-enemy.blend",
+      "bytes": 116767,
+      "sha256": "99aa09ec8a1b3878f412dc6be0208e3c8c1d789f5752544ee35674ea6b36f328"
+    },
+    {
+      "file": "art\\blender\\tower-future-2-enemy.blend",
+      "bytes": 106060,
+      "sha256": "5d09b2181b61e5d03a716ca595a4c7dfada7e169a9391e632d9f6b7b7d65b7dd"
+    },
+    {
+      "file": "art\\blender\\tower-future-3-enemy.blend",
+      "bytes": 117390,
+      "sha256": "9e21ea9205614b3e4c9f5760bc292fd3b41aadc7800d64199facf813ccab5b08"
+    },
+    {
+      "file": "art\\blender\\unit-clubman.blend",
+      "bytes": 291647,
+      "sha256": "93356a5d993d6eb73aa16572b6a71f7af421d5d8c62c98f5b4fcc3872713d05c"
+    },
+    {
+      "file": "art\\blender\\unit-clubman-enemy.blend",
+      "bytes": 292009,
+      "sha256": "a99162d1227334691e07ae41290c847df9d97802df83d0683b5c358aeb059f79"
+    },
+    {
+      "file": "art\\blender\\unit-spearman.blend",
+      "bytes": 311886,
+      "sha256": "62d3e4a110eae1d290c9362311b53795e9a9fd8ce37ae451de1ae870452eee1c"
+    },
+    {
+      "file": "art\\blender\\unit-spearman-enemy.blend",
+      "bytes": 314530,
+      "sha256": "1d96c41e15902b4c135b45d008f2c2ac38d3a9ca444841e8fd1122c3164d77e8"
+    },
+    {
+      "file": "art\\blender\\unit-slinger.blend",
+      "bytes": 293070,
+      "sha256": "975cfad1c75e29ecb4e6d1c8e33040acf01e654f47186744216f2dd519d58d95"
+    },
+    {
+      "file": "art\\blender\\unit-slinger-enemy.blend",
+      "bytes": 294011,
+      "sha256": "2f6638cfa67a983a67e87838bf96f9dfc4b752fd74718b0ba5f4750ff0bddce4"
+    },
+    {
+      "file": "art\\blender\\unit-dino-rider.blend",
+      "bytes": 340885,
+      "sha256": "1401fbd6dd02308851ed3e99fc3e1032b3387a767ecf8b0795f80c3986a67a47"
+    },
+    {
+      "file": "art\\blender\\unit-dino-rider-enemy.blend",
+      "bytes": 341929,
+      "sha256": "5b29676b4c60760397260c96acb5655d95a8ba1c76c8ea3be69d950ea35b58ca"
+    },
+    {
+      "file": "art\\blender\\unit-swordsman.blend",
+      "bytes": 266058,
+      "sha256": "d3b01798a7afd3064f78ddf5338b18d87d4dabbdc3af9ad1813c489be528e212"
+    },
+    {
+      "file": "art\\blender\\unit-swordsman-enemy.blend",
+      "bytes": 270979,
+      "sha256": "211f75d179f78c1a062683c0b4f3b80d83b4159c1456491d8058a58ef665747d"
+    },
+    {
+      "file": "art\\blender\\unit-archer.blend",
+      "bytes": 213927,
+      "sha256": "6232d51fca187c5bd2ab1df785ba0cfe21c62bebc8b467646597ec85773826fd"
+    },
+    {
+      "file": "art\\blender\\unit-archer-enemy.blend",
+      "bytes": 217974,
+      "sha256": "4e3eb254caf03a072d3e536fe46c6b5f581541bfb48cf0ced2600465f6ace1dc"
+    },
+    {
+      "file": "art\\blender\\unit-knight.blend",
+      "bytes": 294064,
+      "sha256": "9443eaaee5ed04bb8963d230ba00a2b55b70197cd9c887b78e422144293fe321"
+    },
+    {
+      "file": "art\\blender\\unit-knight-enemy.blend",
+      "bytes": 299791,
+      "sha256": "f0f4a58c6723e3e4a52cf099a48baae6d1264e77c39beeb160921348d75b618f"
+    },
+    {
+      "file": "art\\blender\\unit-ballista.blend",
+      "bytes": 111044,
+      "sha256": "55e5b748754e60def32eac19046993fe28093dd5259e182eeb890b1896c8d44e"
+    },
+    {
+      "file": "art\\blender\\unit-ballista-enemy.blend",
+      "bytes": 109996,
+      "sha256": "21ab7cd915176f4965b6583aa48d9c2589be342c2ea9a6620fc21237c288a0f3"
+    },
+    {
+      "file": "art\\blender\\unit-musketeer.blend",
+      "bytes": 218935,
+      "sha256": "fae21e63719fd4282b80416dab2cc674238d78aea75e76459d471d2dc00911ac"
+    },
+    {
+      "file": "art\\blender\\unit-musketeer-enemy.blend",
+      "bytes": 222027,
+      "sha256": "5ee74fa70dbcd4e43a54a4afaa123a20abc5b3fd38ed6bde6c65e93e35ccf61b"
+    },
+    {
+      "file": "art\\blender\\unit-cavalry.blend",
+      "bytes": 248459,
+      "sha256": "5ece0a73b4c319ee1b1242d42b9ee8e34f9616191ab15561dc8e2079d8f79a99"
+    },
+    {
+      "file": "art\\blender\\unit-cavalry-enemy.blend",
+      "bytes": 250270,
+      "sha256": "46541e9488faaaf07ed7a2c1b478a16c234a1a446b6488348d76ae2458a78134"
+    },
+    {
+      "file": "art\\blender\\unit-cannon.blend",
+      "bytes": 115640,
+      "sha256": "3c301ffeddd622604f2ba467a218b9780576a5f00bcc072ab3d82bfdb3da3085"
+    },
+    {
+      "file": "art\\blender\\unit-cannon-enemy.blend",
+      "bytes": 116058,
+      "sha256": "17da2973564a2533d87ba4b2b260095a99cc5e51e072fcf0d1045fac98770cb6"
+    },
+    {
+      "file": "art\\blender\\unit-duelist.blend",
+      "bytes": 224746,
+      "sha256": "8966c375175e33e212776afc5aad57441cdf987191adf357a31c923326ff02c7"
+    },
+    {
+      "file": "art\\blender\\unit-duelist-enemy.blend",
+      "bytes": 230378,
+      "sha256": "0cd7850ee2276a4f3811fc893b223e8f6a5d258c00c924f31091b3469631ed66"
+    },
+    {
+      "file": "art\\blender\\unit-rifleman.blend",
+      "bytes": 218114,
+      "sha256": "b5053569c71766197e7d75a6174c62f7307e93553da17f8262b1031b20ae4336"
+    },
+    {
+      "file": "art\\blender\\unit-rifleman-enemy.blend",
+      "bytes": 222164,
+      "sha256": "c82488082e8103f2f75185c368b227fe556542ab44c969c88a96a057d5fce831"
+    },
+    {
+      "file": "art\\blender\\unit-grenadier.blend",
+      "bytes": 225974,
+      "sha256": "dde91073262e6a8bd9b418107b7ca63d7fe8e2e3d6def0d84028a5a5323622a8"
+    },
+    {
+      "file": "art\\blender\\unit-grenadier-enemy.blend",
+      "bytes": 227073,
+      "sha256": "efb6116f83db9f0eb93a186162f591f0ed2c86a9d8c275bc4a827cb14738e67f"
+    },
+    {
+      "file": "art\\blender\\unit-tank.blend",
+      "bytes": 179768,
+      "sha256": "b5d28ced845dfcee6ee4556b2b7009373b6f167f34afd648ac9f5955f249e540"
+    },
+    {
+      "file": "art\\blender\\unit-tank-enemy.blend",
+      "bytes": 179394,
+      "sha256": "dd3107a5e7155992e46e82589c638e4914910868473df8ba82cb2bbbe94a7a4b"
+    },
+    {
+      "file": "art\\blender\\unit-sniper.blend",
+      "bytes": 259846,
+      "sha256": "be3ea20ad37d1cb5e68f9efd9d74fc5328100328e3c279ae1a4fc6ecbc1a2fde"
+    },
+    {
+      "file": "art\\blender\\unit-sniper-enemy.blend",
+      "bytes": 260285,
+      "sha256": "6201b6804afd2d916fb4f9bc885d17c1c5eb2832b3c4a9e344fc3ba0f78d63f3"
+    },
+    {
+      "file": "art\\blender\\unit-laser-soldier.blend",
+      "bytes": 236468,
+      "sha256": "4255bef88ad41eeecf0c7324fcd727e1a224d3d5375174434e625c655b642ae0"
+    },
+    {
+      "file": "art\\blender\\unit-laser-soldier-enemy.blend",
+      "bytes": 237943,
+      "sha256": "354868874e298c98c0d6f4bf091643e1b789cdfb9e1e19e6096ba17e75405205"
+    },
+    {
+      "file": "art\\blender\\unit-mech.blend",
+      "bytes": 137703,
+      "sha256": "ec4a11c28e58d2c028374c4794e9248b739d06ed2ce1bc7a5422152aa27cc534"
+    },
+    {
+      "file": "art\\blender\\unit-mech-enemy.blend",
+      "bytes": 138171,
+      "sha256": "92aad9fca83846ba0bf830b24e337949fb4e0693b52c8b6f65b686463d854447"
+    },
+    {
+      "file": "art\\blender\\unit-plasma-trooper.blend",
+      "bytes": 244934,
+      "sha256": "73154ac8d8f7737f329fb6a0cd65eceac31b03beb63e776232a7e601e48c2ff8"
+    },
+    {
+      "file": "art\\blender\\unit-plasma-trooper-enemy.blend",
+      "bytes": 244990,
+      "sha256": "59ef30c413f36b2d061d0ac4270b111e00b2675b26f88575324ae18569d1c366"
+    },
+    {
+      "file": "art\\blender\\unit-super-heavy.blend",
+      "bytes": 222010,
+      "sha256": "d0cd3fec6a47789a025d618a067bac2f1ec5c41142d5f42831cc6a32b09deeda"
+    },
+    {
+      "file": "art\\blender\\unit-super-heavy-enemy.blend",
+      "bytes": 221981,
+      "sha256": "b7c2b3ab07747aca3e1ad9a61f790fb0eb55b273719e6504b6715704af8b2ff3"
+    }
+  ],
+  "scope": "Pixels, dimensions, alpha, clipping, pose distinctness, faction difference, finite socket coordinates and saved source integrity. This does not certify AAA quality or replace gameplay/visual review."
+}

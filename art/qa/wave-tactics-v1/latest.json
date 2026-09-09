@@ -1,0 +1,10 @@
+{
+  "artifact": "art\\qa\\wave-tactics-v1\\plan-audit-20260909T023346860Z.json",
+  "checkedPlans": 480,
+  "issues": [],
+  "sources": {
+    "src/game/enemyWaves.ts": "d4fc45c05b92969c0a32521c1a889800cbf11318793ce0893b7f6fc82de57fda",
+    "src/game/combatRules.ts": "75a9ce13f41fa3b3e42b2125077cf1d0267e1cd69f6c6f088d2e05dd58bf0b31",
+    "data/units.json": "d0a35b91c5e2838785c7fe4dabae50f71a7686cd72b387cc1272fc07638b50c3"
+  }
+}

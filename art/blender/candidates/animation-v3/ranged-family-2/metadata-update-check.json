@@ -1,0 +1,50 @@
+{
+  "musketeer": {
+    "passed": true,
+    "old_source_sha256": "423c91892eb4127838b3b82c707f8453b29d7356c2e05093ba3680286f0f86aa",
+    "source_sha256": "325158c973967714e6361e52765f15118cd448d87ca939ad0d1a636d0063f7d6",
+    "geometry_binding_action_material_camera_signature": "f2a3ab3c24032c1f1f028069342bb2be71aa86658570736551f163672c19c12f",
+    "scene_preserved_except_gait_metadata": true,
+    "render_sheet_unchanged": true
+  },
+  "musketeer-enemy": {
+    "passed": true,
+    "old_source_sha256": "fcdb09e6f48654db4f830ecb050752fc45152a95403df19f7b26e9a166030593",
+    "source_sha256": "7a1dd4f2446f504ba705665dd9d504ca0fd4e8790da4731be2880a26731487b5",
+    "geometry_binding_action_material_camera_signature": "36a4abfbd7cacbb6267e4f497024f6c1f79da343a1eb184969d7316d24db6523",
+    "scene_preserved_except_gait_metadata": true,
+    "render_sheet_unchanged": true
+  },
+  "laser-soldier": {
+    "passed": true,
+    "old_source_sha256": "0f1febe06e3ce625d6c6e4467daf4dcece807abd6b7117cc7b3d745a9c481eb2",
+    "source_sha256": "30a5509e260c27bd4b7e38846cca96223c9b0457420ce8fc0c528415d8c4e8a7",
+    "geometry_binding_action_material_camera_signature": "72911b6f14839a1b88986dd4f693bd7bcf798635a8a00e5b22720d72781b8ef4",
+    "scene_preserved_except_gait_metadata": true,
+    "render_sheet_unchanged": true
+  },
+  "laser-soldier-enemy": {
+    "passed": true,
+    "old_source_sha256": "e15851c1daf51c6ceba64214c358a6989003ce3e52841ee24d306e3991cda11f",
+    "source_sha256": "667b00515f31d1525ab173d8e1add2f886a000f0f47f4ebb3ea43115174bff79",
+    "geometry_binding_action_material_camera_signature": "d902e2b5c7f57e60b2808f89269d6b478a9417e8194d348489a807641ae41f1d",
+    "scene_preserved_except_gait_metadata": true,
+    "render_sheet_unchanged": true
+  },
+  "plasma-trooper": {
+    "passed": true,
+    "old_source_sha256": "ec266038d0d02a7348bc9d2e99f9d313e362b40e778e495ecf65c0a2944599be",
+    "source_sha256": "9e55ba35fa62b4d3cdafad3c3ae409955d4fe2796d3dba12bdfb83345ae1cb6b",
+    "geometry_binding_action_material_camera_signature": "133a871738b8e1509d52f0d2d8466147d80b71ace2b3be14db8ce2105cfae841",
+    "scene_preserved_except_gait_metadata": true,
+    "render_sheet_unchanged": true
+  },
+  "plasma-trooper-enemy": {
+    "passed": true,
+    "old_source_sha256": "7132cf0d895cc8f4789e25b76b2022d0f8298e8ac91a94778f54fae8f0111eb4",
+    "source_sha256": "94c15fee903cea064c3eb62c941b465521875eb6efb5abc5e98e6157eb73fe6e",
+    "geometry_binding_action_material_camera_signature": "ac5b30d8729b763c064298bc38df041f4d51df9e4efcb0d4680d0fbd9d1d8664",
+    "scene_preserved_except_gait_metadata": true,
+    "render_sheet_unchanged": true
+  }
+}

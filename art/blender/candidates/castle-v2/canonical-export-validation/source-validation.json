@@ -1,0 +1,33 @@
+{
+  "status": "passed",
+  "input": "G:\\Repositories\\AgeOfMax\\art\\blender\\background-castle.blend",
+  "input_sha256": "b6cf17dcaa6ec9f30ee669731630dbe32c2417bf9a22526b2be388aad875747a",
+  "input_is_canonical": true,
+  "isolated_source": "G:\\Repositories\\AgeOfMax\\art\\blender\\candidates\\castle-v2\\canonical-export-validation\\source\\background-castle.blend",
+  "exporter": "tools/blender/export_scenes.py::export_static",
+  "output": "G:\\Repositories\\AgeOfMax\\art\\blender\\candidates\\castle-v2\\canonical-export-validation\\exports\\backgrounds\\castle.png",
+  "samples": 32,
+  "resolution": [
+    1600,
+    900
+  ],
+  "new_geometry_sha256": "324c2a2bfcb077611317f7c251ad533cabd94d75a62120113bce83dfa46cd76c",
+  "checks": {
+    "architecture_geometry_unchanged": true,
+    "camera_unchanged": true,
+    "terrain_unchanged": true,
+    "input_file_unchanged": true,
+    "copied_source_unchanged_by_exporter": true,
+    "public_png_unchanged": true,
+    "archive_hidden": true,
+    "metadata_preserved": true
+  },
+  "opened_objects": 2528,
+  "scene_metadata": {
+    "authored_environment_revision": 2,
+    "environment_id": "castle",
+    "runtime_background": "backgrounds/castle.png",
+    "authoring_source": "tools/blender/refine_castle.py",
+    "runtime_layout": "1280x720; combat_y=500; quiet_lane=410..525; HUD_top=82; HUD_bottom=552"
+  }
+}

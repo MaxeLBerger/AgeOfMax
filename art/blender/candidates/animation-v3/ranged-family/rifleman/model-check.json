@@ -1,0 +1,336 @@
+{
+  "passed": true,
+  "unit": "rifleman",
+  "faction": "player",
+  "source_hashes": {
+    "source": "b5053569c71766197e7d75a6174c62f7307e93553da17f8262b1031b20ae4336",
+    "sheet": "780297694f9ccb3301019cb82444545c75d29ad30f8b2310966636d7c07288b8",
+    "sockets": "40f9fe76b2dd2d54b9a4161df792571ce9d83a900e5c6ee36a699743a29444a4"
+  },
+  "production_unchanged": true,
+  "mesh_count": 65,
+  "mesh_contracts": {
+    "Boot sole": "8040ae650f0438678fd1267ff43c5d3401e5dda1762e6ead68feb2755ae28fc6",
+    "Boot sole.001": "3afe24ef6310727f268bcb23560d0a5c3824021a28d4a84c915e2a2e156a536d",
+    "Broad leather girdle": "995ecee665d248d1ac8e2eb0e38d9c49a0ce2a73d4166b135c680ee2e7497a09",
+    "Bronze belt buckle": "156503d754993830e765ba94f5872cabcde25b879e3aaf345511e6bb9047ef64",
+    "Calf": "53b51e9a385afa90df6e168c9f2bf4c1af46dd2712197b46404489ec7bab817c",
+    "Calf.001": "84d2a50c9ebfdf414e7ca8d8c11e105d96c3390d8980be8a13e624d29b73c6a0",
+    "Deltoid": "f33e85be91be4d8a3177d111975a2c452d6140c3600ebf8e7dadfae821b0813b",
+    "Deltoid.001": "e5a42675f3347e2716a830b32d440bf4b2c15df045cab4812cf2235328a4f83a",
+    "Ear": "38046dfc4988100b4814689e8644f74d9ac233b13b93ffc86e4dbcb3812b229c",
+    "Elbow": "3372d2cf8fc19a7f61b200189d9851efa19cbb51689d8f43e6387e57b9b0ed1c",
+    "Elbow.001": "5e649116c7a6958f9850d0116406070d02f18a07065ee7dd29631bc7d8663562",
+    "Eye glint": "fc6626d21dfe185c52b16a46475067b475318b1bb350ddf3496d1e7cab084e0e",
+    "Eye glint.001": "3cb42e447e7491685e971d6e49cdba473f1080653eedf3884e07a2fc53cbf46a",
+    "Eye socket": "96bd9255da5ec23fc42830ce0a5b5166cd301c45cf2d21d96234289d4052c59f",
+    "Eye socket.001": "67e55b52012a3cafa37437c772446123bd97e3f983a3f7306d2f7f8b5897fb4f",
+    "Field helmet": "b1a4dc789fcbfa72b1cab9af7895aa201f2cc8ccd71bca87316d3b27a7616b3b",
+    "Field pack": "c161e701316c8473f7fbcb668ec0a5570f3049914a358804c094897abdc4d70c",
+    "Fingers": "05052c475b7a286ee828b72c61da81775bd615dff7da2471ac92d7d5399b4bf6",
+    "Fingers.001": "08a72e14f708c8ba1816b4a6d5cbbf5698b64643d57b89bc03252ef99e12acf2",
+    "Fingers.002": "30ed09fbad6453ce8d974a7c35bb013db7de77454db85db93c721ba7c7fc9dbd",
+    "Fingers.003": "47002c8ea1fa51bad91fa6914505e5d0e68a630f7c1bd243494e3503eb0d19df",
+    "Fingers.004": "b1e04d9d34fef5f1dbbed77efc564b004f65139f305269210e8bcb1966dfa30b",
+    "Fingers.005": "ea1f66c13775d2acaca753e74bda86ab050649b3672f12c6fdc8ba74b7bed593",
+    "Forearm": "ef427faabe85d80008d2168d141bb5fc956d4a3fe9fe943fc672739a7b20b36a",
+    "Forearm.001": "ee19af34f17b0527db19d02ad7f0411bb2e9770bdb4bbc992d4268b93e631b16",
+    "Hand": "437b6ddc791839bc3bdce1baccc304460117ce043e786fc6224445d0f5f3263c",
+    "Hand.001": "955a93ab128ea73ed6b886650aa1b68dc1aa2cd938794b89b8d7a6fe09e2a40d",
+    "Helmet chin strap": "f3d9c8f62d6c09d31fe7617b003a5d85c16333734569e8bf2a2243bd703e955f",
+    "Helmet rim": "c2b6dc793b90471caafb1eedf7ee7cc210c17c3f9dc5c8c5f5183b1f13d019ff",
+    "Jaw": "e3d742d8e9b093c67fcd52a1586eb9d3e3cbf242281139eecf56145c3273b64d",
+    "Knee": "22b3f43467bec16e6756a96bce6695ef70e7ab22cecda2456f751d007b4e07a8",
+    "Knee.001": "5da75fad0c01b1390223162d041b9ca6ed8468724dae71e1430ee5be05e4be76",
+    "Leather boot": "a42081a530a09fc930db56d18496a156f5c783915fb0ae72c8a65bdefa5daa80",
+    "Leather boot.001": "dc2db0d9160feb2dd9690099801604111df656a8ad3d6c1da19c1c0d44548d63",
+    "Leather vambrace": "7cfd7cc83e11624136b2c61adff541235fdcf5a78f92a3918cb4c8e38caa3c0f",
+    "Leather vambrace.001": "5384c87a802775936e1c59699bd140ba693c4b654ea3d8ae6e7f13552f37f1b4",
+    "Leg binding": "878d35e433d739c2876a420b646d529666df3e3e1fd27b52f3e4f4036a6cc96d",
+    "Leg binding.001": "8f76cfa1a0ec2bfc57a2c5a001e621f177dc95e907f33330c9a39ed6a570b203",
+    "Leg binding.002": "ea8d2895393a5af06caa6f55c5eded8d8b87da38f95c003fa734192dad3b0620",
+    "Leg binding.003": "c632250faa1b336d9eae842b74afd4ada01379304d239c1727474a4a9126216c",
+    "Load bearing ammunition pouch": "8192ea89d6d2145aecc26defb7e285d07695371a53ff5d33b672f63c92884fa9",
+    "Load bearing ammunition pouch.001": "61783bad0fafa649a837409909e9bad0beaf835bfc131a7a46a4579ddc8b380e",
+    "Load bearing ammunition pouch.002": "4184d6ee33d2cd3808f89abe279c697675ad1fdcee2f58d0a7164b297a77d66d",
+    "Load bearing ammunition pouch.003": "af60f9be8263fd51b7f1600caddcf0cfcb23bdfc9c32166d2f49aa8ac92d77ec",
+    "Magazine": "efcb7bcfac8131055f719acc7b036ae63d45b88bf1d02b9b07170f829cb37bc0",
+    "Mouth": "496f90e6afe9d4830f97a01f0a543cba73ca6a9bf634988f89500a0f1fa7560d",
+    "Neck": "86b74d4c4bf2023233e536c04bc155ab8707ea5ec4b755307afbd813731edc93",
+    "Nose": "1ebfc8073a5932d259cf3100538138dcd7e1e40c8128bdb115045dff9bc80b57",
+    "Optical sight": "9f3f0a5d4287e5f40fd0ed0efb0f3962c932e27f4708e33e1c5a59aa5eea00bb",
+    "Radio ear cup": "6ebc87d9705fadd43bb926fd682a53f3037f51efeebea2d7498a11425dfdf5f1",
+    "Receiver": "c0f9be067f8a85f1611bc744fabbac28ac86fb1c5c115a9222374f6216353459",
+    "Rifle barrel": "6f8d84c22964fac3e1a9b3666d3cb860e24307d1b044f5352e4e6d0351bad723",
+    "Sculpted brow": "939b8a5c9a690002963f5cbd8d33118148418598874039bf69b4732f2f5b8eeb",
+    "Sculpted brow.001": "87a7f2da184711790acd3ead5a3b70ef5ed03349602fcc08463e260e2438aaa0",
+    "Sculpted chest waist and shoulders": "f8d949119d8566750d19a8458fd79d7529b9c96d31d3d2e5f3ea576aaf0d8982",
+    "Sculpted skull": "35759a9c57872739aca5f800939153bc84971e7ede967b3cb88ed3373a2cb689",
+    "Shaped pelvis": "9507bbc303df8ff9a074673221149d3dbe83e26a83ada09541f6c66549d14298",
+    "Shaped rifle stock": "7045a91a8a37c41a37556fc7695c7446e2f62412c561bbaf160543d542e7a935",
+    "Shaped thigh": "f16396a21aa8c1953e0f1775997f302356163ec48be95775c3cf9560a6c3b7b1",
+    "Shaped thigh.001": "c4ae5f69f874fa92891f30c0bbc360974877c8baa8dd752610a6406167159da4",
+    "Shoulder harness": "13ca321c2912a7f216b066a922393fceb76918b9486eab1489bb145b23f29a63",
+    "Shoulder harness.001": "43178994c88704f6df1b2040ca9d733a6cd6355b5d4e954552278c2b63812609",
+    "Trigger grip": "c230dca6c7a9fdd735a1cca6da3d12b1c45bec711393a6cc6943f98ae13ef6a6",
+    "Upper arm": "b17e366c352571dedc2ace92304f45513740cdfe226efe2d822214e46f11a00a",
+    "Upper arm.001": "81bba4f8b8dbdfb2abf4b8bf946520249cafe9f4cfd317ad7f2569c1e0679b9e"
+  },
+  "rest_geometry_and_materials_preserved": true,
+  "sniper_v2_bindings_preserved": false,
+  "bone_count": 16,
+  "original_bones": {
+    "root": [
+      [
+        0.0,
+        0.0,
+        0.11999999731779099
+      ],
+      [
+        0.0,
+        0.0,
+        1.0299999713897705
+      ],
+      null
+    ],
+    "spine": [
+      [
+        0.0,
+        0.0,
+        1.0299999713897705
+      ],
+      [
+        0.0,
+        0.0,
+        1.840000033378601
+      ],
+      "root"
+    ],
+    "head": [
+      [
+        0.0,
+        0.0,
+        1.840000033378601
+      ],
+      [
+        0.0,
+        0.0,
+        2.3399999141693115
+      ],
+      "spine"
+    ],
+    "arm.near": [
+      [
+        0.0,
+        -0.32199999690055847,
+        1.7799999713897705
+      ],
+      [
+        0.03500000014901161,
+        -0.3564999997615814,
+        1.3700000047683716
+      ],
+      "spine"
+    ],
+    "forearm.near": [
+      [
+        0.03500000014901161,
+        -0.3564999997615814,
+        1.3700000047683716
+      ],
+      [
+        0.33000001311302185,
+        -0.3449999988079071,
+        1.149999976158142
+      ],
+      "arm.near"
+    ],
+    "arm.far": [
+      [
+        0.0,
+        0.32199999690055847,
+        1.7799999713897705
+      ],
+      [
+        0.03500000014901161,
+        0.3564999997615814,
+        1.3700000047683716
+      ],
+      "spine"
+    ],
+    "forearm.far": [
+      [
+        0.03500000014901161,
+        0.3564999997615814,
+        1.3700000047683716
+      ],
+      [
+        0.33000001311302185,
+        0.3449999988079071,
+        1.149999976158142
+      ],
+      "arm.far"
+    ],
+    "thigh.near": [
+      [
+        0.0,
+        -0.23000000417232513,
+        1.0299999713897705
+      ],
+      [
+        0.0,
+        -0.23000000417232513,
+        0.5699999928474426
+      ],
+      "root"
+    ],
+    "shin.near": [
+      [
+        0.0,
+        -0.23000000417232513,
+        0.5699999928474426
+      ],
+      [
+        0.03999999910593033,
+        -0.23000000417232513,
+        0.14000000059604645
+      ],
+      "thigh.near"
+    ],
+    "thigh.far": [
+      [
+        0.0,
+        0.23000000417232513,
+        1.0299999713897705
+      ],
+      [
+        0.0,
+        0.23000000417232513,
+        0.5699999928474426
+      ],
+      "root"
+    ],
+    "shin.far": [
+      [
+        0.0,
+        0.23000000417232513,
+        0.5699999928474426
+      ],
+      [
+        0.03999999910593033,
+        0.23000000417232513,
+        0.14000000059604645
+      ],
+      "thigh.far"
+    ]
+  },
+  "actions": {
+    "walk": {
+      "rifleman animation rig": "Study rifleman / walk / rifleman animation rig",
+      "Weapon muzzle / runtime socket": "Study rifleman / walk / Weapon muzzle / runtime socket"
+    },
+    "attack": {
+      "rifleman animation rig": "Study rifleman / attack / rifleman animation rig",
+      "Weapon muzzle / runtime socket": "Study rifleman / attack / Weapon muzzle / runtime socket"
+    }
+  },
+  "frames": 16,
+  "contact_index": 12,
+  "contact_ms": 160,
+  "walk_ms": 520,
+  "attack_ms": 320,
+  "cycle_distance_world": 0.7586481789417298,
+  "runtime_speed": 44,
+  "runtime_scale": 0.43,
+  "grips_in_weapon_rest": [
+    [
+      0.45,
+      -0.35,
+      1.15
+    ],
+    [
+      0.56,
+      -0.35,
+      1.23
+    ]
+  ],
+  "sockets": [
+    [
+      198.591,
+      138.72
+    ],
+    [
+      199.318,
+      138.608
+    ],
+    [
+      199.615,
+      139.034
+    ],
+    [
+      199.318,
+      138.608
+    ],
+    [
+      198.591,
+      138.72
+    ],
+    [
+      197.874,
+      140.364
+    ],
+    [
+      197.611,
+      141.398
+    ],
+    [
+      197.874,
+      140.364
+    ],
+    [
+      200.012,
+      128.185
+    ],
+    [
+      200.699,
+      125.542
+    ],
+    [
+      202.045,
+      123.24
+    ],
+    [
+      203.341,
+      123.855
+    ],
+    [
+      202.036,
+      123.248
+    ],
+    [
+      199.906,
+      121.653
+    ],
+    [
+      200.4,
+      122.23
+    ],
+    [
+      200.029,
+      129.2
+    ]
+  ],
+  "stance_note": "Firing feet use walk-phase0 targets; Sniper keeps authored v2 torso/head/crouch with narrower foot spacing for a continuous recovery seam.",
+  "gait": {
+    "nominalSpeedPxPerSecond": 44,
+    "referenceDisplayScale": 0.43,
+    "cycleDistancePixels": 22.88,
+    "nominalCycleDurationMs": 520,
+    "motionKind": "biped",
+    "stanceFraction": 0.6,
+    "doubleSupportFrames": [
+      0,
+      4
+    ]
+  }
+}

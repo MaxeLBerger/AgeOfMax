@@ -1,0 +1,2540 @@
+{
+  "kind": "Actual manual browser play through regular keyboard and pointer input",
+  "difficulty": "normal",
+  "winner": "player",
+  "seconds": 506.361,
+  "kills": 122,
+  "finalPlayerEpoch": "future",
+  "finalEnemyEpoch": "modern",
+  "finalPlayerHp": 13055,
+  "finalPlayerMaxHp": 14000,
+  "lowestObservedCastleHp": 3542,
+  "castleMaxHp": 5600,
+  "observedAllFivePlayerEpochs": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "commandsFile": "art/qa/manual-playthrough.jsonl",
+  "firstRecordLine": 36,
+  "lastRecordLine": 48,
+  "firstObservedAt": "2026-09-09T02:33:29.174Z",
+  "finishedAt": "2026-09-09T02:48:18.396Z",
+  "actions": "QWER paid recruits, earned U evolutions, meteor F, artillery G, arrow tower built using A and placement click, I scouting, Space pause and 4x speed",
+  "limitations": [
+    "Existing browser page retained the eight-frame assets and pre-promotion Castle image loaded at the start. The canonical new Castle background was separately visually and export checked.",
+    "Source hashes were collected after the playthrough, when gameplay source remained frozen. Menu help text changed meanwhile in files but was not reloaded into this party.",
+    "Lowest HP here is the lowest observed paused snapshot, not a per-frame minimum."
+  ],
+  "sourceHashes": {
+    "src/scenes/BattleScene.ts": "076ee302eb9f97af2d2acf6d6c747f8b0c785f85c221fd7e09142fd2c5b998af",
+    "src/scenes/UIScene.ts": "ea73f3b8f7cd2cc59abf19e0448d3a868f9dbc213de76ba74f1c636a22a35cb8",
+    "src/scenes/BootScene.ts": "089a4ca26ec8974e56bbfcc4dc1f9ff0017a44aa48cc0b779ece19a3c53fdeba",
+    "src/game/enemyWaves.ts": "d4fc45c05b92969c0a32521c1a889800cbf11318793ce0893b7f6fc82de57fda",
+    "data/units.json": "d0a35b91c5e2838785c7fe4dabae50f71a7686cd72b387cc1272fc07638b50c3",
+    "data/epochs.json": "a87321643ff35724fd92864653ea5fb0b62e9b335ecc171b10779c3f70b90151",
+    "data/turrets.json": "88521fa5cfdd89e700f8e6fde0aa1d32c6a2aa07c5c17ad0ca8ebcec4c84f162",
+    "tools/manual-command.mjs": "e73abd647f1837e9c908e4fbbbb184b49044c7fe90d5a51f8c360de9ad036b87"
+  },
+  "records": [
+    {
+      "at": "2026-09-09T02:33:29.174Z",
+      "commands": [
+        {
+          "reload": true
+        },
+        {
+          "click": [
+            250,
+            370
+          ]
+        },
+        {
+          "click": [
+            640,
+            370
+          ]
+        },
+        {
+          "click": [
+            1050,
+            610
+          ]
+        },
+        {
+          "wait": 1000
+        },
+        {
+          "key": "q"
+        },
+        {
+          "key": "w"
+        },
+        {
+          "key": "e"
+        },
+        {
+          "key": "i"
+        },
+        {
+          "capture": "tactics-first-scout.jpg"
+        },
+        {
+          "key": "Space"
+        }
+      ],
+      "state": {
+        "scenes": [
+          "BattleScene",
+          "UIScene"
+        ],
+        "time": 2008,
+        "gold": 71,
+        "xp": 0,
+        "epoch": 0,
+        "enemyEpoch": 0,
+        "wave": 0,
+        "phase": "prepare",
+        "hp": 4200,
+        "enemyHp": 4200,
+        "paused": true,
+        "over": false,
+        "kills": 0,
+        "speed": 1,
+        "player": [
+          {
+            "uid": 1,
+            "id": "clubman",
+            "hp": 96,
+            "x": 185,
+            "y": 493,
+            "texture": "clubman"
+          },
+          {
+            "uid": 2,
+            "id": "spearman",
+            "hp": 125,
+            "x": 166,
+            "y": 500,
+            "texture": "spearman"
+          },
+          {
+            "uid": 3,
+            "id": "slinger",
+            "hp": 50,
+            "x": 148,
+            "y": 507,
+            "texture": "slinger"
+          }
+        ],
+        "enemy": [],
+        "wavePlan": {
+          "number": 1,
+          "epoch": "stone",
+          "tactic": "mixed",
+          "title": "Mischformation",
+          "advice": "Kombiniere eine starke Front mit Fernkampf. Halte Gold für Verstärkung zurück.",
+          "unitIds": [
+            "clubman",
+            "slinger",
+            "dino-rider",
+            "spearman",
+            "slinger",
+            "slinger",
+            "clubman",
+            "spearman"
+          ],
+          "roster": [
+            {
+              "id": "clubman",
+              "count": 2
+            },
+            {
+              "id": "dino-rider",
+              "count": 1
+            },
+            {
+              "id": "slinger",
+              "count": 3
+            },
+            {
+              "id": "spearman",
+              "count": 2
+            }
+          ],
+          "cost": 550,
+          "referenceCost": 535
+        },
+        "attempted": 0,
+        "arrived": 0,
+        "scoutVisible": false,
+        "towers": [
+          {
+            "x": 55,
+            "y": 521
+          },
+          {
+            "x": 145,
+            "y": 521
+          },
+          {
+            "x": 235,
+            "y": 521
+          }
+        ],
+        "framesPerSecond": 84
+      }
+    },
+    {
+      "at": "2026-09-09T02:35:16.113Z",
+      "commands": [
+        {
+          "key": "Space"
+        },
+        {
+          "key": "3"
+        },
+        {
+          "key": "w"
+        },
+        {
+          "wait": 2500
+        },
+        {
+          "key": "e"
+        },
+        {
+          "wait": 2000
+        },
+        {
+          "key": "q"
+        },
+        {
+          "wait": 1600
+        },
+        {
+          "key": "e"
+        },
+        {
+          "wait": 1800
+        },
+        {
+          "key": "w"
+        },
+        {
+          "wait": 1500
+        },
+        {
+          "key": "i"
+        },
+        {
+          "capture": "tactics-second-wave-scout.jpg"
+        },
+        {
+          "key": "Space"
+        }
+      ],
+      "state": {
+        "scenes": [
+          "BattleScene",
+          "UIScene"
+        ],
+        "time": 45418,
+        "gold": 228,
+        "xp": 661,
+        "epoch": 0,
+        "enemyEpoch": 0,
+        "wave": 1,
+        "phase": "respite",
+        "hp": 4200,
+        "enemyHp": 4200,
+        "paused": true,
+        "over": false,
+        "kills": 5,
+        "speed": 4,
+        "player": [
+          {
+            "uid": 16,
+            "id": "spearman",
+            "hp": 125,
+            "x": 425,
+            "y": 507,
+            "texture": "spearman"
+          },
+          {
+            "uid": 13,
+            "id": "slinger",
+            "hp": 14,
+            "x": 613,
+            "y": 493,
+            "texture": "slinger"
+          }
+        ],
+        "enemy": [
+          {
+            "uid": 15,
+            "id": "spearman",
+            "hp": 125,
+            "x": 706,
+            "y": 493,
+            "texture": "spearman-enemy"
+          },
+          {
+            "uid": 12,
+            "id": "slinger",
+            "hp": 50,
+            "x": 839,
+            "y": 507,
+            "texture": "slinger-enemy"
+          },
+          {
+            "uid": 11,
+            "id": "slinger",
+            "hp": 50,
+            "x": 837,
+            "y": 493,
+            "texture": "slinger-enemy"
+          }
+        ],
+        "wavePlan": {
+          "number": 2,
+          "epoch": "stone",
+          "tactic": "charge",
+          "title": "Durchbruch",
+          "advice": "Speerwächter sind stark gegen Reiter. Lass deine Schleuderer hinter ihnen kämpfen.",
+          "unitIds": [
+            "clubman",
+            "dino-rider",
+            "slinger",
+            "dino-rider",
+            "clubman",
+            "spearman",
+            "clubman",
+            "dino-rider",
+            "slinger"
+          ],
+          "roster": [
+            {
+              "id": "clubman",
+              "count": 3
+            },
+            {
+              "id": "dino-rider",
+              "count": 3
+            },
+            {
+              "id": "slinger",
+              "count": 2
+            },
+            {
+              "id": "spearman",
+              "count": 1
+            }
+          ],
+          "cost": 695,
+          "referenceCost": 650
+        },
+        "attempted": 8,
+        "arrived": 8,
+        "scoutVisible": false,
+        "towers": [
+          {
+            "x": 55,
+            "y": 521
+          },
+          {
+            "x": 145,
+            "y": 521
+          },
+          {
+            "x": 235,
+            "y": 521
+          }
+        ],
+        "framesPerSecond": 120
+      }
+    },
+    {
+      "at": "2026-09-09T02:39:31.638Z",
+      "commands": [
+        {
+          "key": "Space"
+        },
+        {
+          "key": "w"
+        },
+        {
+          "key": "w"
+        },
+        {
+          "key": "e"
+        },
+        {
+          "wait": 1600
+        },
+        {
+          "key": "w"
+        },
+        {
+          "wait": 2200
+        },
+        {
+          "key": "e"
+        },
+        {
+          "wait": 2000
+        },
+        {
+          "key": "w"
+        },
+        {
+          "wait": 1800
+        },
+        {
+          "key": "Space"
+        },
+        {
+          "capture": "tactics-wave-two-defense.jpg"
+        }
+      ],
+      "state": {
+        "scenes": [
+          "BattleScene",
+          "UIScene"
+        ],
+        "time": 81085,
+        "gold": 223,
+        "xp": 1315,
+        "epoch": 0,
+        "enemyEpoch": 0,
+        "wave": 2,
+        "phase": "assault",
+        "hp": 4200,
+        "enemyHp": 4200,
+        "paused": true,
+        "over": false,
+        "kills": 9,
+        "speed": 4,
+        "player": [
+          {
+            "uid": 29,
+            "id": "spearman",
+            "hp": 93,
+            "x": 412,
+            "y": 493,
+            "texture": "spearman"
+          }
+        ],
+        "enemy": [
+          {
+            "uid": 28,
+            "id": "clubman",
+            "hp": 96,
+            "x": 794,
+            "y": 493,
+            "texture": "clubman-enemy"
+          },
+          {
+            "uid": 21,
+            "id": "clubman",
+            "hp": 45,
+            "x": 443,
+            "y": 500,
+            "texture": "clubman-enemy"
+          },
+          {
+            "uid": 23,
+            "id": "slinger",
+            "hp": 50,
+            "x": 590,
+            "y": 507,
+            "texture": "slinger-enemy"
+          },
+          {
+            "uid": 24,
+            "id": "dino-rider",
+            "hp": 112,
+            "x": 440,
+            "y": 507,
+            "texture": "dino-rider-enemy"
+          },
+          {
+            "uid": 26,
+            "id": "clubman",
+            "hp": 96,
+            "x": 581,
+            "y": 500,
+            "texture": "clubman-enemy"
+          },
+          {
+            "uid": 27,
+            "id": "spearman",
+            "hp": 125,
+            "x": 726,
+            "y": 507,
+            "texture": "spearman-enemy"
+          },
+          {
+            "uid": 30,
+            "id": "dino-rider",
+            "hp": 210,
+            "x": 805,
+            "y": 500,
+            "texture": "dino-rider-enemy"
+          },
+          {
+            "uid": 31,
+            "id": "slinger",
+            "hp": 50,
+            "x": 1028,
+            "y": 493,
+            "texture": "slinger-enemy"
+          }
+        ],
+        "wavePlan": {
+          "number": 2,
+          "epoch": "stone",
+          "tactic": "charge",
+          "title": "Durchbruch",
+          "advice": "Speerwächter sind stark gegen Reiter. Lass deine Schleuderer hinter ihnen kämpfen.",
+          "unitIds": [
+            "clubman",
+            "dino-rider",
+            "slinger",
+            "dino-rider",
+            "clubman",
+            "spearman",
+            "clubman",
+            "dino-rider",
+            "slinger"
+          ],
+          "roster": [
+            {
+              "id": "clubman",
+              "count": 3
+            },
+            {
+              "id": "dino-rider",
+              "count": 3
+            },
+            {
+              "id": "slinger",
+              "count": 2
+            },
+            {
+              "id": "spearman",
+              "count": 1
+            }
+          ],
+          "cost": 695,
+          "referenceCost": 650
+        },
+        "attempted": 9,
+        "arrived": 9,
+        "scoutVisible": false,
+        "towers": [
+          {
+            "x": 55,
+            "y": 521
+          },
+          {
+            "x": 145,
+            "y": 521
+          },
+          {
+            "x": 235,
+            "y": 521
+          }
+        ],
+        "framesPerSecond": 120
+      }
+    },
+    {
+      "at": "2026-09-09T02:40:09.379Z",
+      "commands": [
+        {
+          "key": "Space"
+        },
+        {
+          "key": "w"
+        },
+        {
+          "key": "e"
+        },
+        {
+          "key": "e"
+        },
+        {
+          "key": "f"
+        },
+        {
+          "wait": 2500
+        },
+        {
+          "key": "w"
+        },
+        {
+          "wait": 2000
+        },
+        {
+          "key": "e"
+        },
+        {
+          "wait": 2500
+        },
+        {
+          "key": "w"
+        },
+        {
+          "wait": 2000
+        },
+        {
+          "key": "Space"
+        },
+        {
+          "capture": "tactics-wave-two-end.jpg"
+        }
+      ],
+      "state": {
+        "scenes": [
+          "BattleScene",
+          "UIScene"
+        ],
+        "time": 123353,
+        "gold": 454,
+        "xp": 2631,
+        "epoch": 0,
+        "enemyEpoch": 0,
+        "wave": 3,
+        "phase": "assault",
+        "hp": 4200,
+        "enemyHp": 4200,
+        "paused": true,
+        "over": false,
+        "kills": 19,
+        "speed": 4,
+        "player": [
+          {
+            "uid": 43,
+            "id": "spearman",
+            "hp": 125,
+            "x": 482,
+            "y": 493,
+            "texture": "spearman"
+          }
+        ],
+        "enemy": [
+          {
+            "uid": 41,
+            "id": "spearman",
+            "hp": 71,
+            "x": 673,
+            "y": 507,
+            "texture": "spearman-enemy"
+          },
+          {
+            "uid": 37,
+            "id": "slinger",
+            "hp": 50,
+            "x": 800,
+            "y": 500,
+            "texture": "slinger-enemy"
+          },
+          {
+            "uid": 45,
+            "id": "slinger",
+            "hp": 50,
+            "x": 1011,
+            "y": 507,
+            "texture": "slinger-enemy"
+          },
+          {
+            "uid": 40,
+            "id": "slinger",
+            "hp": 50,
+            "x": 800,
+            "y": 493,
+            "texture": "slinger-enemy"
+          },
+          {
+            "uid": 42,
+            "id": "slinger",
+            "hp": 50,
+            "x": 800,
+            "y": 507,
+            "texture": "slinger-enemy"
+          },
+          {
+            "uid": 44,
+            "id": "slinger",
+            "hp": 50,
+            "x": 890,
+            "y": 493,
+            "texture": "slinger-enemy"
+          },
+          {
+            "uid": 46,
+            "id": "dino-rider",
+            "hp": 210,
+            "x": 1076,
+            "y": 500,
+            "texture": "dino-rider-enemy"
+          }
+        ],
+        "wavePlan": {
+          "number": 3,
+          "epoch": "stone",
+          "tactic": "volley",
+          "title": "Schützenformation",
+          "advice": "Schütze deine schnellen Angreifer mit einer stabilen Front und erreiche die gegnerischen Schützen.",
+          "unitIds": [
+            "clubman",
+            "slinger",
+            "dino-rider",
+            "slinger",
+            "spearman",
+            "slinger",
+            "slinger",
+            "slinger",
+            "dino-rider"
+          ],
+          "roster": [
+            {
+              "id": "clubman",
+              "count": 1
+            },
+            {
+              "id": "dino-rider",
+              "count": 2
+            },
+            {
+              "id": "slinger",
+              "count": 5
+            },
+            {
+              "id": "spearman",
+              "count": 1
+            }
+          ],
+          "cost": 675,
+          "referenceCost": 665
+        },
+        "attempted": 9,
+        "arrived": 9,
+        "scoutVisible": false,
+        "towers": [
+          {
+            "x": 55,
+            "y": 521
+          },
+          {
+            "x": 145,
+            "y": 521
+          },
+          {
+            "x": 235,
+            "y": 521
+          }
+        ],
+        "framesPerSecond": 120
+      }
+    },
+    {
+      "at": "2026-09-09T02:40:42.560Z",
+      "commands": [
+        {
+          "key": "Space"
+        },
+        {
+          "key": "u"
+        },
+        {
+          "key": "e"
+        },
+        {
+          "key": "q"
+        },
+        {
+          "key": "w"
+        },
+        {
+          "wait": 2500
+        },
+        {
+          "key": "q"
+        },
+        {
+          "wait": 2000
+        },
+        {
+          "key": "w"
+        },
+        {
+          "wait": 2500
+        },
+        {
+          "key": "e"
+        },
+        {
+          "wait": 2500
+        },
+        {
+          "key": "Space"
+        },
+        {
+          "capture": "tactics-earned-castle.jpg"
+        }
+      ],
+      "state": {
+        "scenes": [
+          "BattleScene",
+          "UIScene"
+        ],
+        "time": 167254,
+        "gold": 417,
+        "xp": 1052,
+        "epoch": 1,
+        "enemyEpoch": 1,
+        "wave": 4,
+        "phase": "assault",
+        "hp": 5600,
+        "enemyHp": 5600,
+        "paused": true,
+        "over": false,
+        "kills": 25,
+        "speed": 4,
+        "player": [],
+        "enemy": [
+          {
+            "uid": 51,
+            "id": "swordsman",
+            "hp": 142,
+            "x": 238,
+            "y": 493,
+            "texture": "swordsman-enemy"
+          },
+          {
+            "uid": 53,
+            "id": "archer",
+            "hp": 88,
+            "x": 428,
+            "y": 500,
+            "texture": "archer-enemy"
+          },
+          {
+            "uid": 45,
+            "id": "slinger",
+            "hp": 50,
+            "x": 253,
+            "y": 507,
+            "texture": "slinger-enemy"
+          },
+          {
+            "uid": 60,
+            "id": "ballista",
+            "hp": 150,
+            "x": 975,
+            "y": 493,
+            "texture": "ballista-enemy"
+          },
+          {
+            "uid": 56,
+            "id": "ballista",
+            "hp": 150,
+            "x": 793,
+            "y": 507,
+            "texture": "ballista-enemy"
+          },
+          {
+            "uid": 61,
+            "id": "knight",
+            "hp": 330,
+            "x": 952,
+            "y": 507,
+            "texture": "knight-enemy"
+          },
+          {
+            "uid": 54,
+            "id": "knight",
+            "hp": 330,
+            "x": 213,
+            "y": 500,
+            "texture": "knight-enemy"
+          },
+          {
+            "uid": 55,
+            "id": "swordsman",
+            "hp": 180,
+            "x": 463,
+            "y": 493,
+            "texture": "swordsman-enemy"
+          },
+          {
+            "uid": 57,
+            "id": "archer",
+            "hp": 88,
+            "x": 731,
+            "y": 493,
+            "texture": "archer-enemy"
+          },
+          {
+            "uid": 59,
+            "id": "swordsman",
+            "hp": 180,
+            "x": 796,
+            "y": 500,
+            "texture": "swordsman-enemy"
+          },
+          {
+            "uid": 62,
+            "id": "swordsman",
+            "hp": 180,
+            "x": 1098,
+            "y": 493,
+            "texture": "swordsman-enemy"
+          }
+        ],
+        "wavePlan": {
+          "number": 4,
+          "epoch": "castle",
+          "tactic": "mixed",
+          "title": "Mischformation",
+          "advice": "Kombiniere eine starke Front mit Fernkampf. Halte Gold für Verstärkung zurück.",
+          "unitIds": [
+            "swordsman",
+            "archer",
+            "knight",
+            "swordsman",
+            "ballista",
+            "archer",
+            "swordsman",
+            "ballista",
+            "knight",
+            "swordsman"
+          ],
+          "roster": [
+            {
+              "id": "archer",
+              "count": 2
+            },
+            {
+              "id": "ballista",
+              "count": 2
+            },
+            {
+              "id": "knight",
+              "count": 2
+            },
+            {
+              "id": "swordsman",
+              "count": 4
+            }
+          ],
+          "cost": 1380,
+          "referenceCost": 1395
+        },
+        "attempted": 10,
+        "arrived": 10,
+        "scoutVisible": false,
+        "towers": [
+          {
+            "x": 55,
+            "y": 521
+          },
+          {
+            "x": 145,
+            "y": 521
+          },
+          {
+            "x": 235,
+            "y": 521
+          }
+        ],
+        "framesPerSecond": 120
+      }
+    },
+    {
+      "at": "2026-09-09T02:41:25.182Z",
+      "commands": [
+        {
+          "key": "Space"
+        },
+        {
+          "key": "a"
+        },
+        {
+          "click": [
+            235,
+            521
+          ]
+        },
+        {
+          "key": "q"
+        },
+        {
+          "key": "w"
+        },
+        {
+          "key": "f"
+        },
+        {
+          "wait": 1600
+        },
+        {
+          "key": "q"
+        },
+        {
+          "wait": 1600
+        },
+        {
+          "key": "w"
+        },
+        {
+          "wait": 1800
+        },
+        {
+          "key": "q"
+        },
+        {
+          "wait": 1600
+        },
+        {
+          "key": "w"
+        },
+        {
+          "key": "Space"
+        },
+        {
+          "capture": "tactics-castle-recovery.jpg"
+        }
+      ],
+      "state": {
+        "scenes": [
+          "BattleScene",
+          "UIScene"
+        ],
+        "time": 200821,
+        "gold": 383,
+        "xp": 2864,
+        "epoch": 1,
+        "enemyEpoch": 1,
+        "wave": 5,
+        "phase": "assault",
+        "hp": 3595,
+        "enemyHp": 5600,
+        "paused": true,
+        "over": false,
+        "kills": 33,
+        "speed": 4,
+        "player": [
+          {
+            "uid": 73,
+            "id": "archer",
+            "hp": 88,
+            "x": 151,
+            "y": 493,
+            "texture": "archer"
+          }
+        ],
+        "enemy": [
+          {
+            "uid": 67,
+            "id": "swordsman",
+            "hp": 180,
+            "x": 590,
+            "y": 500,
+            "texture": "swordsman-enemy"
+          },
+          {
+            "uid": 72,
+            "id": "archer",
+            "hp": 88,
+            "x": 1031,
+            "y": 500,
+            "texture": "archer-enemy"
+          },
+          {
+            "uid": 68,
+            "id": "ballista",
+            "hp": 150,
+            "x": 862,
+            "y": 500,
+            "texture": "ballista-enemy"
+          },
+          {
+            "uid": 60,
+            "id": "ballista",
+            "hp": 96,
+            "x": 331,
+            "y": 493,
+            "texture": "ballista-enemy"
+          },
+          {
+            "uid": 56,
+            "id": "ballista",
+            "hp": 42,
+            "x": 331,
+            "y": 507,
+            "texture": "ballista-enemy"
+          },
+          {
+            "uid": 61,
+            "id": "knight",
+            "hp": 80,
+            "x": 198,
+            "y": 493,
+            "texture": "knight-enemy"
+          },
+          {
+            "uid": 70,
+            "id": "ballista",
+            "hp": 150,
+            "x": 939,
+            "y": 507,
+            "texture": "ballista-enemy"
+          },
+          {
+            "uid": 71,
+            "id": "swordsman",
+            "hp": 180,
+            "x": 922,
+            "y": 493,
+            "texture": "swordsman-enemy"
+          },
+          {
+            "uid": 74,
+            "id": "archer",
+            "hp": 88,
+            "x": 1138,
+            "y": 507,
+            "texture": "archer-enemy"
+          }
+        ],
+        "wavePlan": {
+          "number": 5,
+          "epoch": "castle",
+          "tactic": "siege",
+          "title": "Belagerung",
+          "advice": "Fange die Angreifer früh ab: Ihre Belagerungswaffen bedrohen deine Festung.",
+          "unitIds": [
+            "swordsman",
+            "ballista",
+            "ballista",
+            "swordsman",
+            "archer",
+            "archer",
+            "swordsman",
+            "ballista",
+            "ballista",
+            "swordsman"
+          ],
+          "roster": [
+            {
+              "id": "archer",
+              "count": 2
+            },
+            {
+              "id": "ballista",
+              "count": 4
+            },
+            {
+              "id": "swordsman",
+              "count": 4
+            }
+          ],
+          "cost": 1440,
+          "referenceCost": 1395
+        },
+        "attempted": 6,
+        "arrived": 6,
+        "scoutVisible": false,
+        "towers": [
+          {
+            "x": 55,
+            "y": 521
+          },
+          {
+            "x": 145,
+            "y": 521
+          },
+          {
+            "id": "arrow-tower",
+            "level": 1,
+            "x": 235,
+            "y": 521
+          }
+        ],
+        "framesPerSecond": 120
+      }
+    },
+    {
+      "at": "2026-09-09T02:42:08.524Z",
+      "commands": [
+        {
+          "key": "Space"
+        },
+        {
+          "key": "e"
+        },
+        {
+          "key": "q"
+        },
+        {
+          "key": "w"
+        },
+        {
+          "wait": 3000
+        },
+        {
+          "key": "f"
+        },
+        {
+          "key": "q"
+        },
+        {
+          "wait": 2000
+        },
+        {
+          "key": "w"
+        },
+        {
+          "wait": 1600
+        },
+        {
+          "key": "e"
+        },
+        {
+          "wait": 1500
+        },
+        {
+          "key": "q"
+        },
+        {
+          "key": "Space"
+        },
+        {
+          "capture": "tactics-castle-siege.jpg"
+        }
+      ],
+      "state": {
+        "scenes": [
+          "BattleScene",
+          "UIScene"
+        ],
+        "time": 240089,
+        "gold": 760,
+        "xp": 4985,
+        "epoch": 1,
+        "enemyEpoch": 1,
+        "wave": 6,
+        "phase": "assault",
+        "hp": 3542,
+        "enemyHp": 5600,
+        "paused": true,
+        "over": false,
+        "kills": 46,
+        "speed": 4,
+        "player": [
+          {
+            "uid": 89,
+            "id": "swordsman",
+            "hp": 180,
+            "x": 182,
+            "y": 493,
+            "texture": "swordsman"
+          },
+          {
+            "uid": 83,
+            "id": "archer",
+            "hp": 88,
+            "x": 712,
+            "y": 500,
+            "texture": "archer"
+          },
+          {
+            "uid": 85,
+            "id": "knight",
+            "hp": 330,
+            "x": 544,
+            "y": 507,
+            "texture": "knight"
+          }
+        ],
+        "enemy": [
+          {
+            "uid": 84,
+            "id": "swordsman",
+            "hp": 105,
+            "x": 935,
+            "y": 493,
+            "texture": "swordsman-enemy"
+          },
+          {
+            "uid": 86,
+            "id": "knight",
+            "hp": 330,
+            "x": 925,
+            "y": 500,
+            "texture": "knight-enemy"
+          },
+          {
+            "uid": 87,
+            "id": "archer",
+            "hp": 88,
+            "x": 1107,
+            "y": 507,
+            "texture": "archer-enemy"
+          },
+          {
+            "uid": 88,
+            "id": "knight",
+            "hp": 330,
+            "x": 1063,
+            "y": 493,
+            "texture": "knight-enemy"
+          }
+        ],
+        "wavePlan": {
+          "number": 6,
+          "epoch": "castle",
+          "tactic": "charge",
+          "title": "Durchbruch",
+          "advice": "Schwere Angreifer suchen den Nahkampf. Halte deine Schützen hinter einer belastbaren Front.",
+          "unitIds": [
+            "swordsman",
+            "knight",
+            "archer",
+            "knight",
+            "swordsman",
+            "knight",
+            "knight",
+            "knight",
+            "archer",
+            "knight",
+            "swordsman"
+          ],
+          "roster": [
+            {
+              "id": "archer",
+              "count": 2
+            },
+            {
+              "id": "knight",
+              "count": 6
+            },
+            {
+              "id": "swordsman",
+              "count": 3
+            }
+          ],
+          "cost": 1585,
+          "referenceCost": 1560
+        },
+        "attempted": 4,
+        "arrived": 4,
+        "scoutVisible": false,
+        "towers": [
+          {
+            "x": 55,
+            "y": 521
+          },
+          {
+            "x": 145,
+            "y": 521
+          },
+          {
+            "id": "arrow-tower",
+            "level": 1,
+            "x": 235,
+            "y": 521
+          }
+        ],
+        "framesPerSecond": 120
+      }
+    },
+    {
+      "at": "2026-09-09T02:43:18.337Z",
+      "commands": [
+        {
+          "key": "Space"
+        },
+        {
+          "key": "u"
+        },
+        {
+          "key": "r"
+        },
+        {
+          "key": "q"
+        },
+        {
+          "key": "w"
+        },
+        {
+          "key": "g"
+        },
+        {
+          "wait": 2300
+        },
+        {
+          "key": "r"
+        },
+        {
+          "wait": 2000
+        },
+        {
+          "key": "q"
+        },
+        {
+          "wait": 2300
+        },
+        {
+          "key": "w"
+        },
+        {
+          "wait": 2200
+        },
+        {
+          "key": "f"
+        },
+        {
+          "key": "r"
+        },
+        {
+          "key": "Space"
+        },
+        {
+          "capture": "tactics-earned-renaissance.jpg"
+        }
+      ],
+      "state": {
+        "scenes": [
+          "BattleScene",
+          "UIScene"
+        ],
+        "time": 283723,
+        "gold": 1144,
+        "xp": 4551,
+        "epoch": 2,
+        "enemyEpoch": 2,
+        "wave": 7,
+        "phase": "assault",
+        "hp": 5567,
+        "enemyHp": 6927,
+        "paused": true,
+        "over": false,
+        "kills": 61,
+        "speed": 4,
+        "player": [
+          {
+            "uid": 101,
+            "id": "musketeer",
+            "hp": 140,
+            "x": 895,
+            "y": 493,
+            "texture": "musketeer"
+          },
+          {
+            "uid": 83,
+            "id": "archer",
+            "hp": 88,
+            "x": 1010,
+            "y": 500,
+            "texture": "archer"
+          },
+          {
+            "uid": 99,
+            "id": "duelist",
+            "hp": 5,
+            "x": 1083,
+            "y": 507,
+            "texture": "duelist"
+          },
+          {
+            "uid": 107,
+            "id": "duelist",
+            "hp": 245,
+            "x": 184,
+            "y": 493,
+            "texture": "duelist"
+          },
+          {
+            "uid": 92,
+            "id": "musketeer",
+            "hp": 140,
+            "x": 983,
+            "y": 507,
+            "texture": "musketeer"
+          },
+          {
+            "uid": 102,
+            "id": "cavalry",
+            "hp": 440,
+            "x": 871,
+            "y": 507,
+            "texture": "cavalry"
+          }
+        ],
+        "enemy": [],
+        "wavePlan": {
+          "number": 7,
+          "epoch": "renaissance",
+          "tactic": "volley",
+          "title": "Schützenformation",
+          "advice": "Schütze deine schnellen Angreifer mit einer stabilen Front und erreiche die gegnerischen Schützen.",
+          "unitIds": [
+            "duelist",
+            "musketeer",
+            "cavalry",
+            "musketeer",
+            "cannon",
+            "cannon",
+            "musketeer",
+            "musketeer",
+            "cavalry",
+            "musketeer",
+            "duelist"
+          ],
+          "roster": [
+            {
+              "id": "cannon",
+              "count": 2
+            },
+            {
+              "id": "cavalry",
+              "count": 2
+            },
+            {
+              "id": "duelist",
+              "count": 2
+            },
+            {
+              "id": "musketeer",
+              "count": 5
+            }
+          ],
+          "cost": 2235,
+          "referenceCost": 2420
+        },
+        "attempted": 4,
+        "arrived": 4,
+        "scoutVisible": false,
+        "towers": [
+          {
+            "x": 55,
+            "y": 521
+          },
+          {
+            "x": 145,
+            "y": 521
+          },
+          {
+            "id": "arrow-tower",
+            "level": 1,
+            "x": 235,
+            "y": 521
+          }
+        ],
+        "framesPerSecond": 120
+      }
+    },
+    {
+      "at": "2026-09-09T02:44:13.533Z",
+      "commands": [
+        {
+          "key": "Space"
+        },
+        {
+          "key": "r"
+        },
+        {
+          "key": "q"
+        },
+        {
+          "key": "w"
+        },
+        {
+          "key": "e"
+        },
+        {
+          "wait": 2000
+        },
+        {
+          "key": "r"
+        },
+        {
+          "wait": 2000
+        },
+        {
+          "key": "q"
+        },
+        {
+          "wait": 2000
+        },
+        {
+          "key": "w"
+        },
+        {
+          "wait": 2000
+        },
+        {
+          "key": "r"
+        },
+        {
+          "wait": 2000
+        },
+        {
+          "key": "Space"
+        },
+        {
+          "capture": "tactics-renaissance-pressure.jpg"
+        }
+      ],
+      "state": {
+        "scenes": [
+          "BattleScene",
+          "UIScene"
+        ],
+        "time": 330691,
+        "gold": 1083,
+        "xp": 6807,
+        "epoch": 2,
+        "enemyEpoch": 2,
+        "wave": 8,
+        "phase": "assault",
+        "hp": 5567,
+        "enemyHp": 6421,
+        "paused": true,
+        "over": false,
+        "kills": 69,
+        "speed": 4,
+        "player": [
+          {
+            "uid": 119,
+            "id": "musketeer",
+            "hp": 140,
+            "x": 823,
+            "y": 500,
+            "texture": "musketeer"
+          },
+          {
+            "uid": 122,
+            "id": "duelist",
+            "hp": 245,
+            "x": 564,
+            "y": 493,
+            "texture": "duelist"
+          },
+          {
+            "uid": 112,
+            "id": "cannon",
+            "hp": 86,
+            "x": 897,
+            "y": 507,
+            "texture": "cannon"
+          }
+        ],
+        "enemy": [
+          {
+            "uid": 124,
+            "id": "cannon",
+            "hp": 230,
+            "x": 1128,
+            "y": 493,
+            "texture": "cannon-enemy"
+          },
+          {
+            "uid": 127,
+            "id": "musketeer",
+            "hp": 140,
+            "x": 1146,
+            "y": 507,
+            "texture": "musketeer-enemy"
+          },
+          {
+            "uid": 125,
+            "id": "duelist",
+            "hp": 245,
+            "x": 945,
+            "y": 507,
+            "texture": "duelist-enemy"
+          },
+          {
+            "uid": 126,
+            "id": "cannon",
+            "hp": 230,
+            "x": 1140,
+            "y": 500,
+            "texture": "cannon-enemy"
+          }
+        ],
+        "wavePlan": {
+          "number": 8,
+          "epoch": "renaissance",
+          "tactic": "siege",
+          "title": "Belagerung",
+          "advice": "Fange die Angreifer früh ab: Ihre Belagerungswaffen bedrohen deine Festung.",
+          "unitIds": [
+            "duelist",
+            "cavalry",
+            "cannon",
+            "duelist",
+            "cannon",
+            "musketeer",
+            "duelist",
+            "cannon",
+            "cannon",
+            "duelist",
+            "cannon",
+            "cavalry"
+          ],
+          "roster": [
+            {
+              "id": "cannon",
+              "count": 5
+            },
+            {
+              "id": "cavalry",
+              "count": 2
+            },
+            {
+              "id": "duelist",
+              "count": 4
+            },
+            {
+              "id": "musketeer",
+              "count": 1
+            }
+          ],
+          "cost": 2680,
+          "referenceCost": 2595
+        },
+        "attempted": 6,
+        "arrived": 6,
+        "scoutVisible": false,
+        "towers": [
+          {
+            "x": 55,
+            "y": 521
+          },
+          {
+            "x": 145,
+            "y": 521
+          },
+          {
+            "id": "arrow-tower",
+            "level": 1,
+            "x": 235,
+            "y": 521
+          }
+        ],
+        "framesPerSecond": 120
+      }
+    },
+    {
+      "at": "2026-09-09T02:45:39.920Z",
+      "commands": [
+        {
+          "key": "Space"
+        },
+        {
+          "key": "w"
+        },
+        {
+          "key": "r"
+        },
+        {
+          "key": "q"
+        },
+        {
+          "key": "e"
+        },
+        {
+          "key": "g"
+        },
+        {
+          "wait": 2000
+        },
+        {
+          "key": "w"
+        },
+        {
+          "wait": 2000
+        },
+        {
+          "key": "r"
+        },
+        {
+          "key": "f"
+        },
+        {
+          "wait": 2000
+        },
+        {
+          "key": "q"
+        },
+        {
+          "wait": 2000
+        },
+        {
+          "key": "u"
+        },
+        {
+          "key": "Space"
+        },
+        {
+          "capture": "tactics-earned-modern.jpg"
+        }
+      ],
+      "state": {
+        "scenes": [
+          "BattleScene",
+          "UIScene"
+        ],
+        "time": 370925,
+        "gold": 1269,
+        "xp": 2104,
+        "epoch": 3,
+        "enemyEpoch": 2,
+        "wave": 9,
+        "phase": "assault",
+        "hp": 8325,
+        "enemyHp": 6421,
+        "paused": true,
+        "over": false,
+        "kills": 80,
+        "speed": 4,
+        "player": [
+          {
+            "uid": 139,
+            "id": "duelist",
+            "hp": 26,
+            "x": 963,
+            "y": 493,
+            "texture": "duelist"
+          },
+          {
+            "uid": 140,
+            "id": "musketeer",
+            "hp": 140,
+            "x": 517,
+            "y": 500,
+            "texture": "musketeer"
+          },
+          {
+            "uid": 132,
+            "id": "cannon",
+            "hp": 230,
+            "x": 830,
+            "y": 507,
+            "texture": "cannon"
+          }
+        ],
+        "enemy": [
+          {
+            "uid": 144,
+            "id": "duelist",
+            "hp": 245,
+            "x": 1102,
+            "y": 493,
+            "texture": "duelist-enemy"
+          },
+          {
+            "uid": 142,
+            "id": "musketeer",
+            "hp": 140,
+            "x": 1103,
+            "y": 500,
+            "texture": "musketeer-enemy"
+          },
+          {
+            "uid": 143,
+            "id": "cavalry",
+            "hp": 401,
+            "x": 994,
+            "y": 507,
+            "texture": "cavalry-enemy"
+          }
+        ],
+        "wavePlan": {
+          "number": 9,
+          "epoch": "renaissance",
+          "tactic": "mixed",
+          "title": "Mischformation",
+          "advice": "Kombiniere eine starke Front mit Fernkampf. Halte Gold für Verstärkung zurück.",
+          "unitIds": [
+            "duelist",
+            "musketeer",
+            "cavalry",
+            "duelist",
+            "cannon",
+            "musketeer",
+            "duelist",
+            "cavalry",
+            "cavalry",
+            "duelist",
+            "cannon",
+            "musketeer"
+          ],
+          "roster": [
+            {
+              "id": "cannon",
+              "count": 2
+            },
+            {
+              "id": "cavalry",
+              "count": 3
+            },
+            {
+              "id": "duelist",
+              "count": 4
+            },
+            {
+              "id": "musketeer",
+              "count": 3
+            }
+          ],
+          "cost": 2425,
+          "referenceCost": 2595
+        },
+        "attempted": 4,
+        "arrived": 4,
+        "scoutVisible": false,
+        "towers": [
+          {
+            "x": 55,
+            "y": 521
+          },
+          {
+            "x": 145,
+            "y": 521
+          },
+          {
+            "id": "arrow-tower",
+            "level": 1,
+            "x": 235,
+            "y": 521
+          }
+        ],
+        "framesPerSecond": 120
+      }
+    },
+    {
+      "at": "2026-09-09T02:46:24.012Z",
+      "commands": [
+        {
+          "key": "Space"
+        },
+        {
+          "key": "e"
+        },
+        {
+          "key": "r"
+        },
+        {
+          "key": "q"
+        },
+        {
+          "key": "w"
+        },
+        {
+          "wait": 2000
+        },
+        {
+          "key": "q"
+        },
+        {
+          "wait": 2000
+        },
+        {
+          "key": "e"
+        },
+        {
+          "wait": 2000
+        },
+        {
+          "key": "r"
+        },
+        {
+          "wait": 2000
+        },
+        {
+          "key": "q"
+        },
+        {
+          "wait": 2000
+        },
+        {
+          "key": "Space"
+        },
+        {
+          "capture": "tactics-modern-push.jpg"
+        }
+      ],
+      "state": {
+        "scenes": [
+          "BattleScene",
+          "UIScene"
+        ],
+        "time": 417692,
+        "gold": 1179,
+        "xp": 6892,
+        "epoch": 3,
+        "enemyEpoch": 3,
+        "wave": 10,
+        "phase": "assault",
+        "hp": 8325,
+        "enemyHp": 8013,
+        "paused": true,
+        "over": false,
+        "kills": 93,
+        "speed": 4,
+        "player": [
+          {
+            "uid": 146,
+            "id": "sniper",
+            "hp": 109,
+            "x": 868,
+            "y": 500,
+            "texture": "sniper"
+          },
+          {
+            "uid": 158,
+            "id": "tank",
+            "hp": 454,
+            "x": 901,
+            "y": 507,
+            "texture": "tank"
+          },
+          {
+            "uid": 159,
+            "id": "sniper",
+            "hp": 170,
+            "x": 724,
+            "y": 493,
+            "texture": "sniper"
+          },
+          {
+            "uid": 161,
+            "id": "rifleman",
+            "hp": 320,
+            "x": 536,
+            "y": 493,
+            "texture": "rifleman"
+          }
+        ],
+        "enemy": [
+          {
+            "uid": 165,
+            "id": "rifleman",
+            "hp": 320,
+            "x": 1127,
+            "y": 493,
+            "texture": "rifleman-enemy"
+          },
+          {
+            "uid": 162,
+            "id": "rifleman",
+            "hp": 224,
+            "x": 1111,
+            "y": 500,
+            "texture": "rifleman-enemy"
+          },
+          {
+            "uid": 164,
+            "id": "tank",
+            "hp": 488,
+            "x": 1087,
+            "y": 507,
+            "texture": "tank-enemy"
+          },
+          {
+            "uid": 166,
+            "id": "tank",
+            "hp": 800,
+            "x": 1150,
+            "y": 507,
+            "texture": "tank-enemy"
+          }
+        ],
+        "wavePlan": {
+          "number": 10,
+          "epoch": "modern",
+          "tactic": "charge",
+          "title": "Panzerkeil",
+          "advice": "Verstärke deine Front. Panzerabwehr und konzentriertes Feuer helfen gegen schwere Fahrzeuge.",
+          "unitIds": [
+            "tank",
+            "rifleman",
+            "grenadier",
+            "tank",
+            "rifleman",
+            "tank",
+            "rifleman",
+            "tank",
+            "rifleman",
+            "tank",
+            "rifleman",
+            "grenadier",
+            "tank"
+          ],
+          "roster": [
+            {
+              "id": "grenadier",
+              "count": 2
+            },
+            {
+              "id": "rifleman",
+              "count": 5
+            },
+            {
+              "id": "tank",
+              "count": 6
+            }
+          ],
+          "cost": 4240,
+          "referenceCost": 3945
+        },
+        "attempted": 6,
+        "arrived": 6,
+        "scoutVisible": false,
+        "towers": [
+          {
+            "x": 55,
+            "y": 521
+          },
+          {
+            "x": 145,
+            "y": 521
+          },
+          {
+            "id": "arrow-tower",
+            "level": 1,
+            "x": 235,
+            "y": 521
+          }
+        ],
+        "framesPerSecond": 120
+      }
+    },
+    {
+      "at": "2026-09-09T02:47:22.011Z",
+      "commands": [
+        {
+          "key": "Space"
+        },
+        {
+          "key": "e"
+        },
+        {
+          "key": "r"
+        },
+        {
+          "key": "q"
+        },
+        {
+          "key": "w"
+        },
+        {
+          "key": "f"
+        },
+        {
+          "wait": 1800
+        },
+        {
+          "key": "r"
+        },
+        {
+          "key": "g"
+        },
+        {
+          "wait": 2000
+        },
+        {
+          "key": "e"
+        },
+        {
+          "wait": 2200
+        },
+        {
+          "key": "r"
+        },
+        {
+          "wait": 2500
+        },
+        {
+          "key": "q"
+        },
+        {
+          "wait": 2000
+        },
+        {
+          "key": "Space"
+        },
+        {
+          "capture": "tactics-tank-wave-defense.jpg"
+        }
+      ],
+      "state": {
+        "scenes": [
+          "BattleScene",
+          "UIScene"
+        ],
+        "time": 467993,
+        "gold": 1884,
+        "xp": 14583,
+        "epoch": 3,
+        "enemyEpoch": 3,
+        "wave": 11,
+        "phase": "assault",
+        "hp": 8325,
+        "enemyHp": 5183,
+        "paused": true,
+        "over": false,
+        "kills": 111,
+        "speed": 4,
+        "player": [
+          {
+            "uid": 168,
+            "id": "sniper",
+            "hp": 170,
+            "x": 886,
+            "y": 507,
+            "texture": "sniper"
+          },
+          {
+            "uid": 176,
+            "id": "sniper",
+            "hp": 170,
+            "x": 885,
+            "y": 500,
+            "texture": "sniper"
+          },
+          {
+            "uid": 178,
+            "id": "tank",
+            "hp": 800,
+            "x": 850,
+            "y": 507,
+            "texture": "tank"
+          },
+          {
+            "uid": 159,
+            "id": "sniper",
+            "hp": 48,
+            "x": 886,
+            "y": 493,
+            "texture": "sniper"
+          },
+          {
+            "uid": 179,
+            "id": "sniper",
+            "hp": 170,
+            "x": 814,
+            "y": 493,
+            "texture": "sniper"
+          },
+          {
+            "uid": 184,
+            "id": "rifleman",
+            "hp": 320,
+            "x": 524,
+            "y": 500,
+            "texture": "rifleman"
+          }
+        ],
+        "enemy": [
+          {
+            "uid": 189,
+            "id": "sniper",
+            "hp": 170,
+            "x": 1130,
+            "y": 493,
+            "texture": "sniper-enemy"
+          }
+        ],
+        "wavePlan": {
+          "number": 11,
+          "epoch": "modern",
+          "tactic": "volley",
+          "title": "Schützenformation",
+          "advice": "Panzer nach vorn, Scharfschützen dahinter. Nutze Artillerie gegen dichte Gruppen.",
+          "unitIds": [
+            "rifleman",
+            "sniper",
+            "sniper",
+            "sniper",
+            "tank",
+            "sniper",
+            "rifleman",
+            "sniper",
+            "sniper",
+            "sniper",
+            "tank",
+            "rifleman",
+            "sniper"
+          ],
+          "roster": [
+            {
+              "id": "rifleman",
+              "count": 3
+            },
+            {
+              "id": "sniper",
+              "count": 8
+            },
+            {
+              "id": "tank",
+              "count": 2
+            }
+          ],
+          "cost": 4250,
+          "referenceCost": 3945
+        },
+        "attempted": 9,
+        "arrived": 9,
+        "scoutVisible": false,
+        "towers": [
+          {
+            "x": 55,
+            "y": 521
+          },
+          {
+            "x": 145,
+            "y": 521
+          },
+          {
+            "id": "arrow-tower",
+            "level": 1,
+            "x": 235,
+            "y": 521
+          }
+        ],
+        "framesPerSecond": 120
+      }
+    },
+    {
+      "at": "2026-09-09T02:48:18.396Z",
+      "commands": [
+        {
+          "key": "Space"
+        },
+        {
+          "key": "u"
+        },
+        {
+          "key": "r"
+        },
+        {
+          "key": "q"
+        },
+        {
+          "key": "w"
+        },
+        {
+          "key": "e"
+        },
+        {
+          "wait": 2000
+        },
+        {
+          "key": "q"
+        },
+        {
+          "wait": 2200
+        },
+        {
+          "key": "w"
+        },
+        {
+          "wait": 2200
+        },
+        {
+          "key": "e"
+        },
+        {
+          "wait": 2000
+        },
+        {
+          "key": "q"
+        },
+        {
+          "wait": 2000
+        },
+        {
+          "key": "Space"
+        },
+        {
+          "capture": "tactics-earned-future.jpg"
+        }
+      ],
+      "state": {
+        "scenes": [
+          "BattleScene",
+          "UIScene"
+        ],
+        "time": 506361,
+        "gold": 1098,
+        "xp": 1583,
+        "epoch": 4,
+        "enemyEpoch": 3,
+        "wave": 12,
+        "phase": "assault",
+        "hp": 13055,
+        "enemyHp": 0,
+        "paused": false,
+        "over": true,
+        "kills": 122,
+        "speed": 4,
+        "player": [
+          {
+            "uid": 191,
+            "id": "super-heavy",
+            "hp": 1904,
+            "x": 1014,
+            "y": 493,
+            "texture": "super-heavy"
+          },
+          {
+            "uid": 198,
+            "id": "laser-soldier",
+            "hp": 480,
+            "x": 950,
+            "y": 507,
+            "texture": "laser-soldier"
+          },
+          {
+            "uid": 199,
+            "id": "mech",
+            "hp": 1200,
+            "x": 690,
+            "y": 500,
+            "texture": "mech"
+          },
+          {
+            "uid": 178,
+            "id": "tank",
+            "hp": 223,
+            "x": 1030,
+            "y": 507,
+            "texture": "tank"
+          },
+          {
+            "uid": 192,
+            "id": "laser-soldier",
+            "hp": 480,
+            "x": 951,
+            "y": 500,
+            "texture": "laser-soldier"
+          },
+          {
+            "uid": 193,
+            "id": "mech",
+            "hp": 488,
+            "x": 1050,
+            "y": 493,
+            "texture": "mech"
+          },
+          {
+            "uid": 179,
+            "id": "sniper",
+            "hp": 170,
+            "x": 886,
+            "y": 493,
+            "texture": "sniper"
+          },
+          {
+            "uid": 195,
+            "id": "plasma-trooper",
+            "hp": 400,
+            "x": 934,
+            "y": 493,
+            "texture": "plasma-trooper"
+          },
+          {
+            "uid": 184,
+            "id": "rifleman",
+            "hp": 320,
+            "x": 986,
+            "y": 500,
+            "texture": "rifleman"
+          },
+          {
+            "uid": 203,
+            "id": "plasma-trooper",
+            "hp": 400,
+            "x": 407,
+            "y": 507,
+            "texture": "plasma-trooper"
+          }
+        ],
+        "enemy": [],
+        "wavePlan": {
+          "number": 12,
+          "epoch": "modern",
+          "tactic": "mixed",
+          "title": "Mischformation",
+          "advice": "Kombiniere eine starke Front mit Fernkampf. Halte Gold für Verstärkung zurück.",
+          "unitIds": [
+            "rifleman",
+            "sniper",
+            "grenadier",
+            "tank",
+            "grenadier",
+            "sniper",
+            "rifleman",
+            "sniper",
+            "tank",
+            "rifleman",
+            "grenadier",
+            "sniper",
+            "tank",
+            "rifleman"
+          ],
+          "roster": [
+            {
+              "id": "grenadier",
+              "count": 3
+            },
+            {
+              "id": "rifleman",
+              "count": 4
+            },
+            {
+              "id": "sniper",
+              "count": 4
+            },
+            {
+              "id": "tank",
+              "count": 3
+            }
+          ],
+          "cost": 4395,
+          "referenceCost": 4365
+        },
+        "attempted": 6,
+        "arrived": 6,
+        "scoutVisible": false,
+        "towers": [
+          {
+            "x": 55,
+            "y": 521
+          },
+          {
+            "x": 145,
+            "y": 521
+          },
+          {
+            "id": "arrow-tower",
+            "level": 1,
+            "x": 235,
+            "y": 521
+          }
+        ],
+        "framesPerSecond": 120
+      }
+    }
+  ]
+}

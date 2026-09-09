@@ -1,0 +1,26 @@
+[
+  {
+    "texture": "tank",
+    "file": "art/blender/candidates/animation-v3/machine-family/tank/tank-16.png"
+  },
+  {
+    "texture": "tank-enemy",
+    "file": "art/blender/candidates/animation-v3/machine-family/tank-enemy/tank-enemy-16.png"
+  },
+  {
+    "texture": "rifleman",
+    "file": "art/blender/candidates/animation-v3/ranged-family/rifleman/rifleman-16.png"
+  },
+  {
+    "texture": "rifleman-enemy",
+    "file": "art/blender/candidates/animation-v3/ranged-family/rifleman-enemy/rifleman-enemy-16.png"
+  },
+  {
+    "texture": "sniper",
+    "file": "art/blender/candidates/animation-v3/ranged-family/sniper/sniper-16.png"
+  },
+  {
+    "texture": "sniper-enemy",
+    "file": "art/blender/candidates/animation-v3/ranged-family/sniper-enemy/sniper-enemy-16.png"
+  }
+]

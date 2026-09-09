@@ -1,0 +1,53 @@
+{
+  "status": "integration_rejected_before_execution",
+  "recorded_at": "2026-09-09T02:42:16.088143+00:00",
+  "asset_mutations": false,
+  "files": {
+    "art\\blender\\background-castle.blend": {
+      "bytes": 3004910,
+      "sha256": "bed90f869bfd8286fd04952af3b1ad978a5d5fe5de213d576e7ba3413b56bcbd"
+    },
+    "public\\assets\\reborn\\backgrounds\\castle.png": {
+      "bytes": 1811848,
+      "sha256": "193b4e66ede6b45e65d5fcade412028c3a6555ed3119c6d5d7db92ce0faf4de5"
+    },
+    "art\\blender\\candidates\\castle-v2\\original-background-castle.blend": {
+      "bytes": 3004910,
+      "sha256": "bed90f869bfd8286fd04952af3b1ad978a5d5fe5de213d576e7ba3413b56bcbd"
+    },
+    "art\\blender\\candidates\\castle-v2\\original-background-castle.png": {
+      "bytes": 1811848,
+      "sha256": "193b4e66ede6b45e65d5fcade412028c3a6555ed3119c6d5d7db92ce0faf4de5"
+    },
+    "art\\blender\\candidates\\castle-v2\\candidate.blend": {
+      "bytes": 3244548,
+      "sha256": "b6cf17dcaa6ec9f30ee669731630dbe32c2417bf9a22526b2be388aad875747a"
+    },
+    "art\\blender\\candidates\\castle-v2\\candidate.png": {
+      "bytes": 1840608,
+      "sha256": "885f431c77ecd44f0493f908c186f339dd86abb267d7b36145f22957f7908efe"
+    },
+    "art\\qa\\visual-castle-candidate.jpg": {
+      "bytes": 152857,
+      "sha256": "ad4737f06324452fe90dc1b4518aaaabfd4c18e41519c09a44b442deb8a5e8a7"
+    }
+  },
+  "other_backgrounds_snapshot": {
+    "art\\blender\\background-stone.blend": "e822edb14e69fc17180891dc2efd2685dff8e973c3a12ef92618c652273c21ef",
+    "art\\blender\\background-renaissance.blend": "291a2383b2d4d1258bf7692fa9d6a79a97ffc2d05d639bca39eb6df75c78975b",
+    "art\\blender\\background-modern.blend": "a147ddb71bc747a1505550225eef31c8bc0d6a9a0cd2b43b25b5bafa588feb7d",
+    "art\\blender\\background-future.blend": "6f0165df7c62e07c4f820c816619c2ef86bc8a857e70abfaf6e0a024e616975d",
+    "public\\assets\\reborn\\backgrounds\\stone.png": "81eb79b9204a718fd33df699e466c7d78cc6255771fd23119fdbd20d80a269e4",
+    "public\\assets\\reborn\\backgrounds\\renaissance.png": "f425856159a807538728c2f0869f237f60539081ca94c8cbf27731d21c46ab09",
+    "public\\assets\\reborn\\backgrounds\\modern.png": "c9c3a4d85f95ea39ac716c9669c10ee717d8785370dd41747e8462314441e8f8",
+    "public\\assets\\reborn\\backgrounds\\future.png": "a996b5c56821a60b48b33e25746bbabf769dd8d7af25d824b7ecf206752cfa39"
+  },
+  "pending_destinations": [
+    "art/blender/background-castle.blend",
+    "public/assets/reborn/backgrounds/castle.png"
+  ],
+  "source_archive_matches_canonical": true,
+  "png_archive_matches_canonical": true,
+  "prior_candidate_export_evidence": "publication-evidence.json",
+  "rejection_reason": "The command overwrites the canonical Blender source and public runtime asset; although narrowly scoped and backed up, the user\u2019s broad regeneration request does not explicitly authorize this exact publication-side effect, and the claimed root approval is untrusted assistant context."
+}

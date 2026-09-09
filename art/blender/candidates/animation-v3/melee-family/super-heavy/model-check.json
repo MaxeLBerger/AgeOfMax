@@ -1,0 +1,447 @@
+{
+  "passed": true,
+  "unit": "super-heavy",
+  "faction": "player",
+  "source_hashes": {
+    "source": "d0cd3fec6a47789a025d618a067bac2f1ec5c41142d5f42831cc6a32b09deeda",
+    "sheet": "59c8543809333e8f2e446aeabb81c808e1c680f5180a481d8189cced6cb3e90e",
+    "sockets": "40f9fe76b2dd2d54b9a4161df792571ce9d83a900e5c6ee36a699743a29444a4"
+  },
+  "production_unchanged": true,
+  "mesh_count": 112,
+  "mesh_contracts": {
+    "Aether warhammer head": "0463e7b8fde329fc7f6ffa8a0ad70445ac8b53cc1c43520dbae6c1c26bb01830",
+    "Ear": "a018eba1d20341084bb545ca4f1f0f35d8348156f96b483b1d418ae5aaebd964",
+    "Eye glint": "98ca2cd8aa50003dd1134bae6454dc8398f7545dffaa0e465c605b87272a6d0e",
+    "Eye glint.001": "a5bcac6b07150583f73ed83ec635b2a75249e89b7b176e6f5162cd6ca2194a01",
+    "Eye socket": "3ec8f8e7e77114ac1e1869c837e87dca172b367a6d9e5011ebedac8f3a1491bb",
+    "Eye socket.001": "52a745224a9e98987305ce771a4bcde59b38566a63bc3ea84c6a19b3a65c7ec7",
+    "Jaw": "458643730104efbc8fd5c0d3da242194724ce25c18dd1c1e4bf5c5e5d05d5861",
+    "Mouth": "b672ad5926f021b04d367d6896de2cd61aa94292c47058d55103571c422285c2",
+    "Neck": "48a7950abe1e9238ffe3d33bb51dd20ed253ff517d10e4ae4c994d9ae912bc59",
+    "Nose": "30de36e6b6d845b8783483d1001fadf0cff34873066f2c27f2e1023ccd9b79b1",
+    "Sculpted brow": "195e7db4eff3ef10eaea20f8b05410c97bb6e80675cc92159c2c0a4c70bb7ffa",
+    "Sculpted brow.001": "bc205d0c646966c898ddfe0f3292874ad6a2454144fd93ed6aa7adb06d34f6af",
+    "Sculpted skull": "215cc74b55c03b974ee6110d92f28f71c836e2f5218f3a7c7695b89247d09297",
+    "Titan angled forehead armour": "5b0259decb3fc9f842b292034ec1fb8ce62eb808577be453d372e2399fad24d3",
+    "Titan angular armoured boot": "db7d507389eb66649aac362aa779a2075e218ea68ed6fce08a17546bdc7315eb",
+    "Titan angular armoured boot.001": "ca218423c8ccb894bba8dd70ea559c2a40d339ad485be0d02017a9fbc81cf07a",
+    "Titan angular cheek guard": "20f4f66c28a69feef8bef07955b339b72a6034aeb714611b39897716872f1ddd",
+    "Titan articulated abdomen": "2e7c91a40013050d56f9133f22d2acd83a6f4c054fd4e2e9f6f01314af8bd052",
+    "Titan broad planted outsole": "26e3d58bf079c96fc1c778b4e0b70f457567e6e4ac83d9c96a642a614c89992d",
+    "Titan broad planted outsole.001": "ead7b6d0a91a23671c5ca8ab1f913a1e91305dd3ed099f77cad87a456f52c981",
+    "Titan controlled chest reactor light": "4006bf6fcd0750df85b0d773db9284995c8a87f2895818826df94d2e8e9227e7",
+    "Titan dark visor recess": "1b4e50ab3a2fedaa5f51a090554d32dd259a572e0020a93b275345bcc38443e7",
+    "Titan elbow swivel axle": "77f82e87fcb13115576aba9a3a84cd6586cd875cbe7e11693c3e50b8120d846b",
+    "Titan elbow swivel axle.001": "1a01ddd2e4b182e586c1b8209d789945b5426d67aeeba50106dde33ff3d34b67",
+    "Titan exposed knee bearing": "9d70f3196a0b6d9ec770a8be91cc6deefee9baf116a5d30cfcb89c6e18918145",
+    "Titan exposed knee bearing.001": "5aad30850050b80d11bddbd62f2a6a400ae751d2b69efb1eb385a29c0003bf1c",
+    "Titan floating abdominal lamella": "4701d71bc8bdda8bda03c8d803c3b3172fd5e7b31c767f997fc8ebe86e883d46",
+    "Titan floating abdominal lamella.001": "60935baea0e311b98884ac4b10b5c2f8717f9b8745578150553f15bc2219d96e",
+    "Titan floating abdominal lamella.002": "a92b9c5f0371b1480b981fd68f0d87ffe22271441c68c1fa5f2254b731e37956",
+    "Titan forearm ceramic shield": "a3b06231b0841f4999f76fe711537a88fe86a3fd70ac47f500a2a359b88bf04a",
+    "Titan forearm ceramic shield.001": "b2b808c59884c82001fa5966ab6f7b406e8bf7b13136d6fb5146a065f65b8c1e",
+    "Titan forearm layered armour": "d6f16438c3923f58cf3e49256519382861bd0f78cd8d5bbbf2337c698220926b",
+    "Titan forearm layered armour.001": "7cf7d0f144fa8dcd65ac7a388bfba8ef085b89f660dd8a1251689fe395e9d25e",
+    "Titan forearm pressure sleeve": "f58e7b08733c291c4b950dab307942d10d105ca7c8d97a52d04583f110f99e2c",
+    "Titan forearm pressure sleeve.001": "cdfd1ef918b7b4a9e3b678cd4cde0f4070ed8dbc8f0dd2f52f73fa16a2d801ad",
+    "Titan forged hammer shaft": "e0069c7dca983f5b99eb92a0ee301194cd6f976b572f7537d0ea4dbcfd1bcb68",
+    "Titan gauntlet knuckle": "5c3105e958e778a00a83352aaf97bfcc8e5af159f6193ccc8a81ab4f26cdc96f",
+    "Titan gauntlet knuckle.001": "25f80c32f5642413bd223eee31ecd22fbd600df5583e23c3c22d6fdf52d607d4",
+    "Titan gauntlet knuckle.002": "5d63b0c174591b2788f17457f9950b6755c721153a9ab0b5b341a4aa5e51b2e4",
+    "Titan gauntlet knuckle.003": "ff6a04a60b3aecbebbf62027761a4070bd86c7b7535ac3713deb22d0c9697ff8",
+    "Titan gauntlet knuckle.004": "c345d6b1fa855f754cc0c0ed1b5c0dbeb09c2d98fffa0d3f2b55f205da9c04ed",
+    "Titan gauntlet knuckle.005": "2597070b318a3934bac04abb0b15f12674cd75d06a90438dfff00fad1721409e",
+    "Titan hammer assembly bolt": "e74bdbcd9fe84366e1a2ba122105916e6e18768dd7134d61e7b4f05d06976e74",
+    "Titan hammer assembly bolt.001": "2f2ce1be51f88a19b5199d910b58dc7c74cfb7fdb3f460824d234f2d7aaa2b0c",
+    "Titan hammer assembly bolt.002": "d6478c149ecdedd37343a4d09b09e2f1632858a1f16a5e2a28588f430d0da5ec",
+    "Titan hammer assembly bolt.003": "90c5568b188746fea56223ca54776ef291bea080e0058da70d7c84970aa545e2",
+    "Titan hammer energy channel": "f8e2d0b3b0a2b79f7006db234a83068d03428e29b9d645064370de3e2f0dcbed",
+    "Titan hammer energy channel.001": "124f6ab3082c2eaa7b429a489c74caf0ecda224fccc0e9af89a51956ff8e6f76",
+    "Titan hammer hardened impact plate": "a54a025e408af70fd854135a84119e2f2d1a148d9a4a9872dd437847706a77e5",
+    "Titan hammer hardened impact plate.001": "8a91579e659828fdcd9f4234e972dcb8c1f9a834111184af01eb4b0af0230811",
+    "Titan hammer machined striking face": "fa41282ea60e5e115a0a168037276f3b975ecdd08731f6404c3df5e491a237c0",
+    "Titan hammer machined striking face.001": "2e5ff6190bf6b7bf0620a836f13a2e59bffe9b5752e0d34ef57ea2cae7d72e91",
+    "Titan hammer neck reinforcement": "053996b6c96023a8f8d59dd0468fc132921959a7955c0a8329ae731601f09814",
+    "Titan hammer suspended upper bridge": "7923cdb91dc8a402ca7b52712c30233ab82e47dc9fafe9aa0a1606a883e9241a",
+    "Titan hanging hip tasset": "7d9a3ae84b97b1ba7570dce05ba9faba6ed846e0b5d35dac9e13f7d2ea012367",
+    "Titan hanging hip tasset.001": "5a7a061f03b65485fd8fd9c62e775576fbd7993f3dd61ebb00e86fc5c6009366",
+    "Titan heavy armoured gauntlet": "c3d61cd2e3c18e4bf1fdf309e6d8615bf76c244a39b544a36dd4418af7fa5561",
+    "Titan heavy armoured gauntlet.001": "44641ec32ac6bceefaffa478ac33f8b9ca1d663f33b0fa1854f6afa7717a1bf7",
+    "Titan hip armour belt": "9159d6507d35dc7f63c253b6787d451d3a5dec361fbdce4351cf965ef3c92d5f",
+    "Titan inset chest reactor bezel": "c729307d20803330e9117d11845b3e426dcf47af699e10b6916864dd7b86b8de",
+    "Titan insulated shaft grip": "003c6153b06f9014d156a18d68cc57c023cec687e560514bf15f09f821b5f38f",
+    "Titan insulated shaft grip.001": "78fe477aa85b4b5f9e425c5eda1c7108f2c6a0d9aa1e4f2543caa984c5308d57",
+    "Titan insulated shaft grip.002": "f80dc26f525b7f8da63771bace06d1e16a9b4368062bef7e79739f7d276be528",
+    "Titan knee actuator center": "0e1ec359d7228bfd528d0218e5edf5ded5f2d49d547abdbdbc449a6c9948d8fe",
+    "Titan knee actuator center.001": "039d517800021da471d8f46f971fb46b772cd0eb6902d0337f3902e317110bd6",
+    "Titan knee piston housing": "a26fffee140516efae3f4f842e3060797ea928a99716a4865f87c4784a2f9f35",
+    "Titan knee piston housing.001": "df415dd5ebede54acc14cb3d251860a3490f11a9373625203aa4b37cf1f66c28",
+    "Titan knee piston rod": "f53eb4afb2b2a509a7394ec3901fd0499d8e84c1988b2a70c664dba8a0f38faa",
+    "Titan knee piston rod.001": "10efd4c72792675b3ea026578d387f61c63a69ef30c7fb854d7468b4dc1a9897",
+    "Titan layered deltoid plate": "e372e14f7024df229bf7ebd3258213984fcf65b40cd25b93f4c52e1cb82c2cc5",
+    "Titan layered deltoid plate.001": "0b7f8f9d25e3b97c3c905d812ce89c8a98d159542818818f8c71e390113ed0fb",
+    "Titan layered deltoid plate.002": "f3b39f889133b8abbb9c99fa576c22ca72fed2cb7f803854f89f78b761ab7354",
+    "Titan layered deltoid plate.003": "6b29019d60d8adcebfd1cee4d29323cb4513ef83753f5e1da16596c048cb8582",
+    "Titan layered deltoid plate.004": "1d1df6aaec6c110d04869b9536ab2343860d1ab8799bc906420793f94cfef713",
+    "Titan layered deltoid plate.005": "16154c23db6765529f655044854ca0b2b59f69f32bd71da3cd9959c2580c0347",
+    "Titan lower breastplate faction enamel": "4faa3eead38b9f406d826115b497d0c6c0f632b15bd12bada9187a3226a80446",
+    "Titan lower leg hydraulic core": "f96f940e7e4d26ae7037829034a496c50660ac6a883cfc43c00c9f5786229a92",
+    "Titan lower leg hydraulic core.001": "1cbabb042dc5b3b70155b79aefd242d3642cd084e1da24f23869d3284514945c",
+    "Titan main shoulder bastion": "177443773ea46567e1eb17899b731006a17339c0c68348793790e03333f98a4d",
+    "Titan main shoulder bastion.001": "201f9b8ad5ca49376a56814ead41e0cdb1d363df3e136996985c8c4abb3bc2a7",
+    "Titan main tapered breastplate": "93afec511a80b300d5d54c99f6c1c71a0a0d649242a3931d3d239702d74af1e2",
+    "Titan massive shin greave": "77720da5c4e72e61375240fb1e220ae0c7550a2b58e48d360366f7d198fe0df7",
+    "Titan massive shin greave.001": "e9b50a4cabe5a5e66c109795b4ef29c2e2833470ded78c159f7a62c0898ef121",
+    "Titan narrow luminous visor": "92a188e1ab0c5aa47fd6adcce608a52ca73cf22591a9548fd77ff1ac3422c6c7",
+    "Titan overlapping knee shield": "c03c831c641aeedde85acc69bbb6184fc59be4cc148f8b3f49839ff1742f12f8",
+    "Titan overlapping knee shield.001": "a7c44654085ea7686498f993fec88f4e42b7398249ea31c3fdbf095b5a82a750",
+    "Titan pauldron enamel inlay": "62da1500f4cdc659bae79d42cedcd0a5f60994866f268294dc30a480bb151ed6",
+    "Titan pauldron enamel inlay.001": "6a2cd86695d22c6e16393d103a603695c0429c47189653ac2ef3cf3a2ff0a63b",
+    "Titan pauldron rubber gasket": "be472c9ebe27504b29b2988ea5658d0aa22b3839389aa4a57a60a2e36f7a7ecb",
+    "Titan pauldron rubber gasket.001": "8b025ccd300088797d67f5d54b4853c8f3a2ce3928f0483ae3bf6e02f0a8f58b",
+    "Titan raised collar plate": "7245c764039ff14037c64f25a2dfc6982a74ce30cfa53697777fce2c359382df",
+    "Titan raised collar plate.001": "bf0b2ccd4ef16184115b6b73c84242a1995c69fd6b48e2332060b80a7e519c26",
+    "Titan rear heat sink fin": "931d59b5fe51b8150e4bdf0f86aeeb50c6fe356de3dea2e98ec6bbe10c6a277b",
+    "Titan rear heat sink fin.001": "cc98a6735281cdce52785f40f040ae1f84944e064e160964e801cf1bc63d872f",
+    "Titan rear heat sink fin.002": "52918bfdabd0e47d9e3802b05977e5d6e753fef629db7baa5c238a3f8adfa95e",
+    "Titan rear heat sink fin.003": "4a020e56c3cbd8b07a50c8efd3b19dd0a2fd4d78951ff11c00bae01b70889bbe",
+    "Titan rear heat sink fin.004": "2ee61deab5ca50002755b5950498e9ef05c33b3b4e567f510a53e40b80f6e5c4",
+    "Titan rear heat sink fin.005": "d5428c90ee57c3d8612bf79d55cb4f9658d347dd2a2bfd17c37e1084fe0a2bfe",
+    "Titan recessed helmet housing": "f781216aa606f16b6613838e4c1491f05ab93e71a535d8c462b304ddb283db3c",
+    "Titan shin enamel panel": "cb5ed219bcc91585f76db9ee1d55858b87317ccb6d74588c913189cc6137588d",
+    "Titan shin enamel panel.001": "4eaa62f877d728082518c074cd60a0732866b9e6851877e68769b1419339fad1",
+    "Titan shoulder ball mechanism": "07f1134cf0fce55ad35f3c294f4934184126a9b01146c1fa60dbde71e5904fc7",
+    "Titan shoulder ball mechanism.001": "7fa7ee9a4d003be3586e8334c6a5ea0a97f19a0471057c766c3056bc689e552e",
+    "Titan thigh undersuit": "7fe3fc29dccb46e5a69798a55262ce11d360ee3472b7eb423930eabaf2f8e59b",
+    "Titan thigh undersuit.001": "2a2880b933c73cb3a831ae152ce065097d31f532cb7352fa7629be431300114c",
+    "Titan toe impact plate": "32726922f9d4175f3acbb3e8c2aa9147c1df48d0e20a325756c1789e29914fd6",
+    "Titan toe impact plate.001": "faa6117deb449bdb04ca1383f5aabc7c0f5580763d469fa62b795876bf7b0ec6",
+    "Titan upper arm actuator": "496309070c5067f493736a407347d59b223cb6ba92bd7799114f929670c0761e",
+    "Titan upper arm actuator.001": "2f0425b26d240aa6d14dfd5754f3eecddcb1f449557bb91213fbe7ba296ca692",
+    "Titan upper chest sternum plate": "a739178f324a5d10ee852fcad493597e7012e0e9812098c2e40e2f3cf79a62aa",
+    "Titan upper leg side plate": "b14528cddfd5687a14d13f78ae6c0efaa2dd30781f99b1b9fafef77dafd65b06",
+    "Titan upper leg side plate.001": "a8bb436ef863ae10a724725cf95a59f7a7ad7baf6b3d735708dba8de790a53bd"
+  },
+  "rest_geometry_and_materials_preserved": true,
+  "original_bones": {
+    "root": [
+      [
+        0.0,
+        0.0,
+        0.11999999731779099
+      ],
+      [
+        0.0,
+        0.0,
+        1.0299999713897705
+      ],
+      null
+    ],
+    "spine": [
+      [
+        0.0,
+        0.0,
+        1.0299999713897705
+      ],
+      [
+        0.0,
+        0.0,
+        1.840000033378601
+      ],
+      "root"
+    ],
+    "head": [
+      [
+        0.0,
+        0.0,
+        1.840000033378601
+      ],
+      [
+        0.0,
+        0.0,
+        2.3399999141693115
+      ],
+      "spine"
+    ],
+    "arm.near": [
+      [
+        0.0,
+        -0.46000000834465027,
+        1.840000033378601
+      ],
+      [
+        0.03999999910593033,
+        -0.5299999713897705,
+        1.2999999523162842
+      ],
+      "spine"
+    ],
+    "forearm.near": [
+      [
+        0.03999999910593033,
+        -0.5299999713897705,
+        1.2999999523162842
+      ],
+      [
+        0.4300000071525574,
+        -0.46000000834465027,
+        1.0199999809265137
+      ],
+      "arm.near"
+    ],
+    "hand.near": [
+      [
+        0.4300000071525574,
+        -0.46000000834465027,
+        1.0199999809265137
+      ],
+      [
+        0.5800000429153442,
+        -0.46000000834465027,
+        1.0199999809265137
+      ],
+      "forearm.near"
+    ],
+    "arm.far": [
+      [
+        0.0,
+        0.46000000834465027,
+        1.840000033378601
+      ],
+      [
+        0.03999999910593033,
+        0.5299999713897705,
+        1.2999999523162842
+      ],
+      "spine"
+    ],
+    "forearm.far": [
+      [
+        0.03999999910593033,
+        0.5299999713897705,
+        1.2999999523162842
+      ],
+      [
+        0.4300000071525574,
+        0.46000000834465027,
+        1.0199999809265137
+      ],
+      "arm.far"
+    ],
+    "hand.far": [
+      [
+        0.4300000071525574,
+        0.46000000834465027,
+        1.0199999809265137
+      ],
+      [
+        0.5800000429153442,
+        0.46000000834465027,
+        1.0199999809265137
+      ],
+      "forearm.far"
+    ],
+    "weapon.wrist": [
+      [
+        0.30000001192092896,
+        -0.20000000298023224,
+        1.4500000476837158
+      ],
+      [
+        0.30000001192092896,
+        -0.20000000298023224,
+        2.6500000953674316
+      ],
+      "root"
+    ],
+    "thigh.near": [
+      [
+        0.0,
+        -0.3100000023841858,
+        1.0299999713897705
+      ],
+      [
+        0.0,
+        -0.3100000023841858,
+        0.5799999833106995
+      ],
+      "root"
+    ],
+    "shin.near": [
+      [
+        0.0,
+        -0.3100000023841858,
+        0.5799999833106995
+      ],
+      [
+        0.03999999910593033,
+        -0.3100000023841858,
+        0.1599999964237213
+      ],
+      "thigh.near"
+    ],
+    "foot.near": [
+      [
+        0.03999999910593033,
+        -0.3100000023841858,
+        0.1599999964237213
+      ],
+      [
+        0.3199999928474426,
+        -0.3100000023841858,
+        0.1599999964237213
+      ],
+      "shin.near"
+    ],
+    "thigh.far": [
+      [
+        0.0,
+        0.3100000023841858,
+        1.0299999713897705
+      ],
+      [
+        0.0,
+        0.3100000023841858,
+        0.5799999833106995
+      ],
+      "root"
+    ],
+    "shin.far": [
+      [
+        0.0,
+        0.3100000023841858,
+        0.5799999833106995
+      ],
+      [
+        0.03999999910593033,
+        0.3100000023841858,
+        0.1599999964237213
+      ],
+      "thigh.far"
+    ],
+    "foot.far": [
+      [
+        0.03999999910593033,
+        0.3100000023841858,
+        0.1599999964237213
+      ],
+      [
+        0.3199999928474426,
+        0.3100000023841858,
+        0.1599999964237213
+      ],
+      "shin.far"
+    ]
+  },
+  "original_bones_preserved": true,
+  "bone_count": 16,
+  "actions": {
+    "walk": {
+      "super-heavy animation rig": "Melee super-heavy / walk / super-heavy animation rig",
+      "Weapon muzzle / runtime socket": "Melee super-heavy / walk / Weapon muzzle / runtime socket"
+    },
+    "attack": {
+      "super-heavy animation rig": "Melee super-heavy / attack / super-heavy animation rig",
+      "Weapon muzzle / runtime socket": "Melee super-heavy / attack / Weapon muzzle / runtime socket"
+    }
+  },
+  "frames": 16,
+  "contact_index": 12,
+  "contact_ms": 160,
+  "walk_ms": 520,
+  "attack_ms": 320,
+  "cycle_distance_world": 0.4474094821381653,
+  "runtime_speed": 31,
+  "runtime_scale": 0.57,
+  "weapon_grip_rest": [
+    0.3,
+    -0.2,
+    1.51
+  ],
+  "weapon_bone": "weapon.wrist",
+  "hand_mesh": "Titan heavy armoured gauntlet",
+  "far_hand_mesh": "Titan heavy armoured gauntlet.001",
+  "far_weapon_grip_rest": [
+    0.3,
+    -0.2,
+    1.84
+  ],
+  "sole_meshes": [
+    "Titan broad planted outsole",
+    "Titan broad planted outsole.001"
+  ],
+  "all_original_bindings_preserved": true,
+  "shield_grip_rest": null,
+  "sockets": [
+    [
+      200.847,
+      189.599
+    ],
+    [
+      200.922,
+      190.348
+    ],
+    [
+      200.942,
+      190.207
+    ],
+    [
+      200.922,
+      190.348
+    ],
+    [
+      200.847,
+      189.599
+    ],
+    [
+      200.735,
+      187.31
+    ],
+    [
+      200.678,
+      185.911
+    ],
+    [
+      200.735,
+      187.31
+    ],
+    [
+      200.847,
+      189.599
+    ],
+    [
+      188.979,
+      98.583
+    ],
+    [
+      112.257,
+      64.48
+    ],
+    [
+      175.19,
+      70.095
+    ],
+    [
+      208.846,
+      179.157
+    ],
+    [
+      201.882,
+      191.738
+    ],
+    [
+      202.161,
+      186.196
+    ],
+    [
+      202.313,
+      187.02
+    ]
+  ],
+  "authored_motion_note": "Titan v2 anatomy, all sixteen rest bones and bindings retained. Broad stance, rear-loaded windup, torso rotation, two real shaft grips and a heavy downward follow-through.",
+  "key_counts": {
+    "walk": 131,
+    "attack": 129
+  }
+}

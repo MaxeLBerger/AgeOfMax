@@ -1,0 +1,219 @@
+{
+  "unit": "cannon",
+  "faction": "player",
+  "passed": true,
+  "production_unchanged": true,
+  "source_hashes": {
+    "art/blender/unit-cannon.blend": "3c301ffeddd622604f2ba467a218b9780576a5f00bcc072ab3d82bfdb3da3085",
+    "public/assets/reborn/units/cannon.png": "286beaac149f9cd89692554a698263d80ea57398ac873f28707dcf3914650de0",
+    "public/assets/reborn/weapon-sockets.json": "40f9fe76b2dd2d54b9a4161df792571ce9d83a900e5c6ee36a699743a29444a4",
+    "data/units.json": "d0a35b91c5e2838785c7fe4dabae50f71a7686cd72b387cc1272fc07638b50c3"
+  },
+  "candidate_sha256": "bdc148711deab2d2547db348b16351c941e81c313f5a02f9b2a75edc82c7aa91",
+  "mesh_count": 26,
+  "mesh_contracts": {
+    "Artillery carriage": "2150a5d6ef87d0146cfdaa07f14be33a22bb16607ece4914759e832951d75225",
+    "Dark muzzle": "3755fd6a5c178c0e108f2351e58d21a0e2a897b28d030f93d20fc6d6c96b17f4",
+    "Gun barrel": "5cd2dc64af8182bce831032cc44a7fb002e53606856aa80843c19c4db005d1f5",
+    "Gun carriage tail": "f66f4d203c653a36a2a8c563624fb71629d01ffc0425a0cea9613f743eb4e06e",
+    "Gun carriage tail.001": "f66f4d203c653a36a2a8c563624fb71629d01ffc0425a0cea9613f743eb4e06e",
+    "Gun carriage wheel": "418a05e36d7b9bd6471e28db3a06052b93a08dd95f1f966f943d678c89f46617",
+    "Gun carriage wheel.001": "418a05e36d7b9bd6471e28db3a06052b93a08dd95f1f966f943d678c89f46617",
+    "Gun reinforcement band": "2239c546deaa0f5083bced2fc5966fc662343ecfff3e185cabe1103f80ccce0b",
+    "Gun reinforcement band.001": "2239c546deaa0f5083bced2fc5966fc662343ecfff3e185cabe1103f80ccce0b",
+    "Gun reinforcement band.002": "2239c546deaa0f5083bced2fc5966fc662343ecfff3e185cabe1103f80ccce0b",
+    "Iron wheel rim": "84b2a9d5e6fe4212e238836c58e83f0ce6a1e2f153c63d4fc9fa0a0e526db1d8",
+    "Iron wheel rim.001": "84b2a9d5e6fe4212e238836c58e83f0ce6a1e2f153c63d4fc9fa0a0e526db1d8",
+    "Siege faction pennant": "2850b68d6849586f97bd4e5470050e8d94d11f184671925adc97521fc9210a70",
+    "Siege pennant brass mast": "6e983c67ac4773402cec71ad1c7df2866e5ff8f4bfb244960e3b47d0a4e74597",
+    "Wooden wheel spoke": "b666d712c79c4d3204b8c1e9dc649b7688cee34bb9469b4678f84f14aee72107",
+    "Wooden wheel spoke.001": "b666d712c79c4d3204b8c1e9dc649b7688cee34bb9469b4678f84f14aee72107",
+    "Wooden wheel spoke.002": "b666d712c79c4d3204b8c1e9dc649b7688cee34bb9469b4678f84f14aee72107",
+    "Wooden wheel spoke.003": "b666d712c79c4d3204b8c1e9dc649b7688cee34bb9469b4678f84f14aee72107",
+    "Wooden wheel spoke.004": "14fa150140339b031acd942b4c2e0a757e253d37713c37f2c5de78399aa35231",
+    "Wooden wheel spoke.005": "14fa150140339b031acd942b4c2e0a757e253d37713c37f2c5de78399aa35231",
+    "Wooden wheel spoke.006": "b666d712c79c4d3204b8c1e9dc649b7688cee34bb9469b4678f84f14aee72107",
+    "Wooden wheel spoke.007": "b666d712c79c4d3204b8c1e9dc649b7688cee34bb9469b4678f84f14aee72107",
+    "Wooden wheel spoke.008": "b666d712c79c4d3204b8c1e9dc649b7688cee34bb9469b4678f84f14aee72107",
+    "Wooden wheel spoke.009": "b666d712c79c4d3204b8c1e9dc649b7688cee34bb9469b4678f84f14aee72107",
+    "Wooden wheel spoke.010": "14fa150140339b031acd942b4c2e0a757e253d37713c37f2c5de78399aa35231",
+    "Wooden wheel spoke.011": "14fa150140339b031acd942b4c2e0a757e253d37713c37f2c5de78399aa35231"
+  },
+  "geometry_material_bindings_preserved": true,
+  "actions": {
+    "walk": {
+      "Mechanical motion rig": "Machine v3 / cannon / walk / Mechanical motion rig",
+      "Gun carriage wheel": "Machine v3 / cannon / walk / Gun carriage wheel",
+      "Gun carriage wheel.001": "Machine v3 / cannon / walk / Gun carriage wheel.001",
+      "Iron wheel rim": "Machine v3 / cannon / walk / Iron wheel rim",
+      "Iron wheel rim.001": "Machine v3 / cannon / walk / Iron wheel rim.001",
+      "Wooden wheel spoke": "Machine v3 / cannon / walk / Wooden wheel spoke",
+      "Wooden wheel spoke.001": "Machine v3 / cannon / walk / Wooden wheel spoke.001",
+      "Wooden wheel spoke.002": "Machine v3 / cannon / walk / Wooden wheel spoke.002",
+      "Wooden wheel spoke.003": "Machine v3 / cannon / walk / Wooden wheel spoke.003",
+      "Wooden wheel spoke.004": "Machine v3 / cannon / walk / Wooden wheel spoke.004",
+      "Wooden wheel spoke.005": "Machine v3 / cannon / walk / Wooden wheel spoke.005",
+      "Wooden wheel spoke.006": "Machine v3 / cannon / walk / Wooden wheel spoke.006",
+      "Wooden wheel spoke.007": "Machine v3 / cannon / walk / Wooden wheel spoke.007",
+      "Wooden wheel spoke.008": "Machine v3 / cannon / walk / Wooden wheel spoke.008",
+      "Wooden wheel spoke.009": "Machine v3 / cannon / walk / Wooden wheel spoke.009",
+      "Wooden wheel spoke.010": "Machine v3 / cannon / walk / Wooden wheel spoke.010",
+      "Wooden wheel spoke.011": "Machine v3 / cannon / walk / Wooden wheel spoke.011",
+      "Dark muzzle": "Machine v3 / cannon / walk / Dark muzzle",
+      "Gun barrel": "Machine v3 / cannon / walk / Gun barrel",
+      "Gun reinforcement band": "Machine v3 / cannon / walk / Gun reinforcement band",
+      "Gun reinforcement band.001": "Machine v3 / cannon / walk / Gun reinforcement band.001",
+      "Gun reinforcement band.002": "Machine v3 / cannon / walk / Gun reinforcement band.002",
+      "Weapon muzzle / runtime socket": "Machine v3 / cannon / walk / Weapon muzzle / runtime socket"
+    },
+    "attack": {
+      "Mechanical motion rig": "Machine v3 / cannon / attack / Mechanical motion rig",
+      "Gun carriage wheel": "Machine v3 / cannon / attack / Gun carriage wheel",
+      "Gun carriage wheel.001": "Machine v3 / cannon / attack / Gun carriage wheel.001",
+      "Iron wheel rim": "Machine v3 / cannon / attack / Iron wheel rim",
+      "Iron wheel rim.001": "Machine v3 / cannon / attack / Iron wheel rim.001",
+      "Wooden wheel spoke": "Machine v3 / cannon / attack / Wooden wheel spoke",
+      "Wooden wheel spoke.001": "Machine v3 / cannon / attack / Wooden wheel spoke.001",
+      "Wooden wheel spoke.002": "Machine v3 / cannon / attack / Wooden wheel spoke.002",
+      "Wooden wheel spoke.003": "Machine v3 / cannon / attack / Wooden wheel spoke.003",
+      "Wooden wheel spoke.004": "Machine v3 / cannon / attack / Wooden wheel spoke.004",
+      "Wooden wheel spoke.005": "Machine v3 / cannon / attack / Wooden wheel spoke.005",
+      "Wooden wheel spoke.006": "Machine v3 / cannon / attack / Wooden wheel spoke.006",
+      "Wooden wheel spoke.007": "Machine v3 / cannon / attack / Wooden wheel spoke.007",
+      "Wooden wheel spoke.008": "Machine v3 / cannon / attack / Wooden wheel spoke.008",
+      "Wooden wheel spoke.009": "Machine v3 / cannon / attack / Wooden wheel spoke.009",
+      "Wooden wheel spoke.010": "Machine v3 / cannon / attack / Wooden wheel spoke.010",
+      "Wooden wheel spoke.011": "Machine v3 / cannon / attack / Wooden wheel spoke.011",
+      "Dark muzzle": "Machine v3 / cannon / attack / Dark muzzle",
+      "Gun barrel": "Machine v3 / cannon / attack / Gun barrel",
+      "Gun reinforcement band": "Machine v3 / cannon / attack / Gun reinforcement band",
+      "Gun reinforcement band.001": "Machine v3 / cannon / attack / Gun reinforcement band.001",
+      "Gun reinforcement band.002": "Machine v3 / cannon / attack / Gun reinforcement band.002",
+      "Weapon muzzle / runtime socket": "Machine v3 / cannon / attack / Weapon muzzle / runtime socket"
+    }
+  },
+  "gait": {
+    "nominalSpeedPxPerSecond": 25,
+    "referenceDisplayScale": 0.51,
+    "cycleDistancePixels": 36.82678420799417,
+    "nominalCycleDurationMs": 1473.0713683197669,
+    "motionKind": "wheel-or-track",
+    "stanceFraction": 0,
+    "doubleSupportFrames": []
+  },
+  "mechanism": {
+    "wheel_radius_world": 0.3500000172855501,
+    "wheel_circumference_world": 2.1991149661211695,
+    "cycle_rotation_degrees": 180,
+    "spokes_per_wheel": 6,
+    "closure": "180-degree common geometric symmetry of discs/rims/six spokes",
+    "wheel_axis_world": [
+      0,
+      1,
+      0
+    ],
+    "projected_world_axis": [
+      1,
+      0,
+      0
+    ],
+    "raw_pixels_per_world_axis_unit": 65.67131042480469,
+    "muzzle_front_vertex_indices": [
+      3,
+      9,
+      15,
+      21,
+      27,
+      33,
+      39,
+      45,
+      51,
+      57,
+      63,
+      69,
+      75,
+      81,
+      87,
+      93,
+      99,
+      105,
+      111,
+      117
+    ],
+    "muzzle_evaluated_vertex_count": 120
+  },
+  "sockets": [
+    [
+      208.021,
+      189.906
+    ],
+    [
+      208.021,
+      189.906
+    ],
+    [
+      208.021,
+      189.906
+    ],
+    [
+      208.021,
+      189.906
+    ],
+    [
+      208.021,
+      189.906
+    ],
+    [
+      208.021,
+      189.906
+    ],
+    [
+      208.021,
+      189.906
+    ],
+    [
+      208.021,
+      189.906
+    ],
+    [
+      208.021,
+      189.906
+    ],
+    [
+      207.977,
+      189.084
+    ],
+    [
+      207.897,
+      187.85
+    ],
+    [
+      207.847,
+      187.192
+    ],
+    [
+      205.759,
+      187.127
+    ],
+    [
+      198.721,
+      187.093
+    ],
+    [
+      203.722,
+      188.865
+    ],
+    [
+      206.871,
+      190.517
+    ]
+  ],
+  "attack_duration_ms": 320,
+  "contact_frame": 12,
+  "contact_delay_ms": 160,
+  "frame_size": [
+    256,
+    256
+  ],
+  "frame_count": 16
+}

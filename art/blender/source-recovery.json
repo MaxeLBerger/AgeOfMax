@@ -1,0 +1,13 @@
+{
+  "detected": "2026-09-09",
+  "file": "tools/blender/rebuild_art.py",
+  "bytes": 70670,
+  "sha256": "DC39E730272401F352312095328827EC91D3E1F195651071A93CA37F775C7A5B",
+  "nonzeroBytes": 0,
+  "recovery": "Original editable .blend geometry preserved; source-based exporter reconstructed in export_scenes.py",
+  "invalidAbandonedStudies": [
+    "pose-study-2/6--0.3-3.3.png",
+    "pose-study-2/7--0.3-4.1.png",
+    "pose-study-2/8--0.3-4.9.png"
+  ]
+}

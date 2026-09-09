@@ -1,0 +1,195 @@
+{
+  "passed": true,
+  "unit": "archer",
+  "faction": "enemy",
+  "source_hashes": {
+    "source": "4e3eb254caf03a072d3e536fe46c6b5f581541bfb48cf0ced2600465f6ace1dc",
+    "sheet": "bcc4782d044f9fdc9e96c3512a01b81d4ec7ea90c3d93ad10bee12795f3963b0",
+    "sockets": "40f9fe76b2dd2d54b9a4161df792571ce9d83a900e5c6ee36a699743a29444a4"
+  },
+  "production_unchanged": true,
+  "preserved_body_accessory_meshes": 55,
+  "body_mesh_contracts": {
+    "Archer hood": "e5514e49c64acd75499937337afc84f35831ecee0d8abc899077a5fd81a20796",
+    "Boot sole": "8040ae650f0438678fd1267ff43c5d3401e5dda1762e6ead68feb2755ae28fc6",
+    "Boot sole.001": "3afe24ef6310727f268bcb23560d0a5c3824021a28d4a84c915e2a2e156a536d",
+    "Broad leather girdle": "995ecee665d248d1ac8e2eb0e38d9c49a0ce2a73d4166b135c680ee2e7497a09",
+    "Bronze belt buckle": "156503d754993830e765ba94f5872cabcde25b879e3aaf345511e6bb9047ef64",
+    "Calf": "53b51e9a385afa90df6e168c9f2bf4c1af46dd2712197b46404489ec7bab817c",
+    "Calf.001": "84d2a50c9ebfdf414e7ca8d8c11e105d96c3390d8980be8a13e624d29b73c6a0",
+    "Deltoid": "92fe33304f66350616b5190ca9f6c28788f9ce43491d990fba82c2b304bfd59e",
+    "Deltoid.001": "234ef00e2b7c9088b0f0bbbe8ed1e23c0922baa044ba37b5a62f5479c3d02f1b",
+    "Ear": "1a63d82f4a16e3f97dabf25e1824803f93ee9ce17651dce6cd98508c7727f0bf",
+    "Elbow": "e1c73118977fa5ee7740be44c64d8aeed0e6628d764e99b67fbc397edafda4aa",
+    "Elbow.001": "b2a6897db4a2b73c6029853b40648b4b30dadeab6a1ad8bcb331061fbc080b04",
+    "Eye glint": "6c967b3eda22e9e0ca2d4aad452977cbbd778c55326e9c4e21003908dec61379",
+    "Eye glint.001": "f34a2b19fae274e57709e0559c5390776281d09def5ca0ef4f38c97c88c8def8",
+    "Eye socket": "2594510dc7d604e15284bc68f8031a4ed908bf92ca0178980310d65eab32d473",
+    "Eye socket.001": "e2374d8b6db67d8703dd8d022c8bfcdd7cb8aec01826de1fbf5cd960d5dcd7cf",
+    "Fingers": "05052c475b7a286ee828b72c61da81775bd615dff7da2471ac92d7d5399b4bf6",
+    "Fingers.001": "08a72e14f708c8ba1816b4a6d5cbbf5698b64643d57b89bc03252ef99e12acf2",
+    "Fingers.002": "30ed09fbad6453ce8d974a7c35bb013db7de77454db85db93c721ba7c7fc9dbd",
+    "Fingers.003": "47002c8ea1fa51bad91fa6914505e5d0e68a630f7c1bd243494e3503eb0d19df",
+    "Fingers.004": "b1e04d9d34fef5f1dbbed77efc564b004f65139f305269210e8bcb1966dfa30b",
+    "Fingers.005": "ea1f66c13775d2acaca753e74bda86ab050649b3672f12c6fdc8ba74b7bed593",
+    "Forearm": "ef427faabe85d80008d2168d141bb5fc956d4a3fe9fe943fc672739a7b20b36a",
+    "Forearm.001": "ee19af34f17b0527db19d02ad7f0411bb2e9770bdb4bbc992d4268b93e631b16",
+    "Gold tabard hem": "2297a0966e99c4d50f06bf2156b3f8e781f8d301a4635a6af57e436f762d62f5",
+    "Hand": "3a1deb625bad6f3693875012daa540a498802507755123a742f55353be4eeb63",
+    "Hand.001": "eec46a8ef65394fc44ac95c1595bb44c5caf4e3c3368b08c23a8abd62e1a31d7",
+    "Hood face opening": "283f55f1497d9f8daa482fa0908d240a76abc55f4f917f517dbedc3a3f92afe7",
+    "Jaw": "0c982acc02b4612a11af0731f5f7e83c95f2a216bade343c164ba8cc4bea7bc7",
+    "Knee": "16362a8f5284071a31344ac5b8ad205dff31e9bce67ecb68bebcc265686624ee",
+    "Knee.001": "12e28e89c59c06184270e5400d7534ec77c5e624da2afbae8e07ef4696e813fe",
+    "Leather boot": "f1aabb0bb94a436ad163c6072297f9139e59147364b6eaa2a3c815d38109c077",
+    "Leather boot.001": "2e3f6ab6cbe65c75d05850a6eae0ed30591d1ce9576982f5891ad55c1f124843",
+    "Leather vambrace": "7cfd7cc83e11624136b2c61adff541235fdcf5a78f92a3918cb4c8e38caa3c0f",
+    "Leather vambrace.001": "5384c87a802775936e1c59699bd140ba693c4b654ea3d8ae6e7f13552f37f1b4",
+    "Leg binding": "878d35e433d739c2876a420b646d529666df3e3e1fd27b52f3e4f4036a6cc96d",
+    "Leg binding.001": "8f76cfa1a0ec2bfc57a2c5a001e621f177dc95e907f33330c9a39ed6a570b203",
+    "Leg binding.002": "ea8d2895393a5af06caa6f55c5eded8d8b87da38f95c003fa734192dad3b0620",
+    "Leg binding.003": "c632250faa1b336d9eae842b74afd4ada01379304d239c1727474a4a9126216c",
+    "Mouth": "496f90e6afe9d4830f97a01f0a543cba73ca6a9bf634988f89500a0f1fa7560d",
+    "Neck": "e4315e919fca83d1964214614e01d6320375078b6aad831151c14e43d8370e29",
+    "Nose": "2965f967086e59a2b4b466292df9b92e53ba027f8ed9ccad98ce0306c8c7550f",
+    "Sculpted brow": "939b8a5c9a690002963f5cbd8d33118148418598874039bf69b4732f2f5b8eeb",
+    "Sculpted brow.001": "87a7f2da184711790acd3ead5a3b70ef5ed03349602fcc08463e260e2438aaa0",
+    "Sculpted chest waist and shoulders": "f8d949119d8566750d19a8458fd79d7529b9c96d31d3d2e5f3ea576aaf0d8982",
+    "Sculpted skull": "e82aeed4ed1e99400e97e8098a51dd58c644abb3c47ee5e11096e4df1915478f",
+    "Shaped pelvis": "4ea5aa1fcbb7fac33586fe50df94df430924ef21ae71a4fde4e1dc731a3e840a",
+    "Shaped thigh": "f16396a21aa8c1953e0f1775997f302356163ec48be95775c3cf9560a6c3b7b1",
+    "Shaped thigh.001": "c4ae5f69f874fa92891f30c0bbc360974877c8baa8dd752610a6406167159da4",
+    "Split tailored tabard": "d47406f9ffd1a7c354234f3e49b35c57b8e6874a9812d98e113a9f3d5e007492",
+    "Split tailored tabard.001": "a22c43c8ac897e9fa2a8a2f1ea0dbea7e726f15309468306339afcc008d05878",
+    "Upper arm": "b17e366c352571dedc2ace92304f45513740cdfe226efe2d822214e46f11a00a",
+    "Upper arm.001": "81bba4f8b8dbdfb2abf4b8bf946520249cafe9f4cfd317ad7f2569c1e0679b9e",
+    "Wind folded cloak": "481b6e973a9803a0e719ef4eeb9a74f2be9e650732251e91827f8e672748f2d2",
+    "Yew longbow": "8e9e032e35b829ba2461156aa13f95383e5c16195fec7bd073ddb050efffe561"
+  },
+  "mechanism": {
+    "kind": "flexing bow with two tensioned string segments",
+    "bow_grip_rest": [
+      0.8299999833106995,
+      -0.3499999940395355,
+      1.2549999952316284
+    ],
+    "nock_rest": [
+      0.5400000214576721,
+      -0.3499999940395355,
+      1.3550000190734863
+    ],
+    "arrow_length_world": 0.86,
+    "draw_distance_world": 0.38,
+    "replaced_geometry": [
+      "Bowstring"
+    ],
+    "adjusted_geometry": [
+      "Nocked arrow",
+      "Arrowhead"
+    ],
+    "release_index": 12,
+    "mechanism_release_starts_ms": 150,
+    "release_visibility": "projectile hide_render, geometry still evaluated"
+  },
+  "actions": {
+    "walk": {
+      "archer animation rig": "Study archer-enemy / walk / archer animation rig",
+      "Weapon muzzle / runtime socket": "Study archer-enemy / walk / Weapon muzzle / runtime socket",
+      "Nocked arrow": "Study archer-enemy / walk / Nocked arrow",
+      "Arrowhead": "Study archer-enemy / walk / Arrowhead"
+    },
+    "attack": {
+      "archer animation rig": "Study archer-enemy / attack / archer animation rig",
+      "Weapon muzzle / runtime socket": "Study archer-enemy / attack / Weapon muzzle / runtime socket",
+      "Nocked arrow": "Study archer-enemy / attack / Nocked arrow",
+      "Arrowhead": "Study archer-enemy / attack / Arrowhead"
+    }
+  },
+  "gait": {
+    "nominalSpeedPxPerSecond": 39,
+    "referenceDisplayScale": 0.43,
+    "cycleDistancePixels": 20.28,
+    "nominalCycleDurationMs": 520,
+    "motionKind": "biped",
+    "stanceFraction": 0.6,
+    "doubleSupportFrames": [
+      0,
+      4
+    ]
+  },
+  "sockets": [
+    [
+      190.208,
+      161.725
+    ],
+    [
+      190.192,
+      161.648
+    ],
+    [
+      190.183,
+      161.615
+    ],
+    [
+      190.192,
+      161.648
+    ],
+    [
+      190.208,
+      161.725
+    ],
+    [
+      190.217,
+      161.801
+    ],
+    [
+      190.219,
+      161.832
+    ],
+    [
+      190.217,
+      161.801
+    ],
+    [
+      190.208,
+      161.725
+    ],
+    [
+      187.194,
+      143.459
+    ],
+    [
+      181.9,
+      124.233
+    ],
+    [
+      172.575,
+      121.873
+    ],
+    [
+      198.843,
+      124.741
+    ],
+    [
+      194.373,
+      129.186
+    ],
+    [
+      192.715,
+      144.311
+    ],
+    [
+      190.874,
+      156.889
+    ]
+  ],
+  "frames": 16,
+  "release_index": 12,
+  "release_ms": 160,
+  "bone_count": 21,
+  "cycle_distance_world": 0.6724381586074423,
+  "visible_projectiles": [
+    "Nocked arrow",
+    "Arrowhead"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "rifleman": {
+    "passed": true,
+    "old_source_sha256": "38e11ea347fb6aa81645fe10c41c43f3ded79107bc50fe2f0282ba632adc1e8a",
+    "source_sha256": "bf83c0ff1dfaa3d6159c04eab49e6ef6ffab346812d27c1649fc65fbf1536b5b",
+    "geometry_binding_action_material_camera_signature": "e366f03666049d38651bb3d17f4a383b6f669e19ae35b8ebd7353f3b63fa820e",
+    "scene_preserved_except_gait_metadata": true,
+    "render_sheet_unchanged": true
+  },
+  "rifleman-enemy": {
+    "passed": true,
+    "old_source_sha256": "e2773236c9e351a0b25e1e640320ea6bab834a061da22f9beafe24ce19f7f59d",
+    "source_sha256": "0a45b7fee29450efe8cbca105d73555e9a27b37bab92a5a5e4119f4c8cc2b14f",
+    "geometry_binding_action_material_camera_signature": "e16dc275718cb7b6ac7ed59ad07ba38e0c2e0abf85559de9615f1c80bd436452",
+    "scene_preserved_except_gait_metadata": true,
+    "render_sheet_unchanged": true
+  },
+  "sniper": {
+    "passed": true,
+    "old_source_sha256": "e2a4c9585de9189aff3d68d424a77fca1888b2f1af044b6fd8a5b06aff93df3d",
+    "source_sha256": "04514b38ba362fb618ca2431e7c3c185cfc40f9f7c98923d4dd7079ac347a904",
+    "geometry_binding_action_material_camera_signature": "1e66a345778c7b18c4d7b2b408fc5dd1cf9de39edab5c3bf6dc6035724aac29f",
+    "scene_preserved_except_gait_metadata": true,
+    "render_sheet_unchanged": true
+  },
+  "sniper-enemy": {
+    "passed": true,
+    "old_source_sha256": "baf7b5ba2d0e0eae5064a2305193eb4e4a11288725f3a0c2fc4ce532d022947a",
+    "source_sha256": "cba30ed5045cae1ed70547951f9626f3daf37e44d1b8eb74ce2e803df5e20ae2",
+    "geometry_binding_action_material_camera_signature": "64a7819998ba788c35c7c02513f3deb0228ca2c2e5b9efc121c0d39c5669baca",
+    "scene_preserved_except_gait_metadata": true,
+    "render_sheet_unchanged": true
+  }
+}

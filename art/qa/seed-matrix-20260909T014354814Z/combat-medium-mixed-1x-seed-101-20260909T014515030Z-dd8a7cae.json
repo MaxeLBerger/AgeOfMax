@@ -1,0 +1,647 @@
+{
+  "runId": "20260909T014515030Z-dd8a7cae",
+  "createdAt": "2026-09-09T01:45:19.026Z",
+  "options": {
+    "difficulty": "medium",
+    "mode": "mixed",
+    "speed": 1,
+    "abilities": true,
+    "seed": "101"
+  },
+  "sourceFingerprint": "2d7ce3f34dc814a6c6d044a620296057c5b3e100f61384ccb414a2f55add1a5e",
+  "sourceHashes": {
+    "src/scenes/BattleScene.ts": "344bf7c310e1d2b67500ddd2290fd3764937e82fb06dbbe5e487cc618e446a67",
+    "src/game/combatRules.ts": "6ccb1f479cffd9124580154e637678bd1940ae06ce03bfa80d841716fb4caae0",
+    "src/game/BattleEffects.ts": "06769e65c0c6e2163109bd54b19bf10244c94f362c94207b0cde8ad9b98f5839",
+    "src/utils/KillStreakManager.ts": "8b35f42ca7c26b38dd6f1ec87814f6cf7910561fe458690e327378ca6f2f02d9",
+    "data/units.json": "d0a35b91c5e2838785c7fe4dabae50f71a7686cd72b387cc1272fc07638b50c3",
+    "data/turrets.json": "88521fa5cfdd89e700f8e6fde0aa1d32c6a2aa07c5c17ad0ca8ebcec4c84f162",
+    "data/epochs.json": "a87321643ff35724fd92864653ea5fb0b62e9b335ecc171b10779c3f70b90151",
+    "public/assets/reborn/weapon-sockets.json": "d1011c9240ea8d30a076d3c126e6ca77b22abefece7ed62a3a65b9b6f19a6865",
+    "tools/combat-playthrough.mjs": "9cdcfcafdf8170bca74cea178e8f7cad29a8aabddc26639c7295d1fd5c8261ab"
+  },
+  "initial": {
+    "simulationTime": 0,
+    "gold": 240,
+    "xp": 0,
+    "kills": 0,
+    "epoch": 0,
+    "enemyEpoch": 0,
+    "wave": 0,
+    "phase": "prepare",
+    "phaseEndsAt": 12000,
+    "speed": 1,
+    "playerBase": {
+      "hp": 4200,
+      "maxHp": 4200,
+      "x": 100,
+      "y": 500,
+      "side": "player"
+    },
+    "enemyBase": {
+      "hp": 4200,
+      "maxHp": 4200,
+      "x": 1180,
+      "y": 500,
+      "side": "enemy"
+    },
+    "playerArmy": 0,
+    "enemyArmy": 0,
+    "incomeAccumulator": 0,
+    "rng": {
+      "mathState": 811463287,
+      "mathCalls": 1736,
+      "phaserState": "!rnd,1,0.41742285736836493,0.725287250475958,0.7940097081009299"
+    }
+  },
+  "virtualWallClock": true,
+  "frameTimestampOrigin": 0,
+  "startSimulationTimeMs": 0,
+  "simulationStepMs": 16.666666666666668,
+  "frameCount": 11004,
+  "relativeSeconds": 183.38333333331815,
+  "seconds": 183.38333333331815,
+  "gameOver": true,
+  "winner": "player",
+  "endedBy": "base-destroyed",
+  "playerHP": 5600,
+  "enemyHP": 0,
+  "kills": 36,
+  "recruits": 34,
+  "goldSpentOnUnits": 3365,
+  "recruitsById": {
+    "clubman": 4,
+    "slinger": 8,
+    "spearman": 4,
+    "dino-rider": 4,
+    "swordsman": 3,
+    "archer": 6,
+    "knight": 3,
+    "ballista": 2
+  },
+  "purchases": [
+    {
+      "t": 0,
+      "id": "clubman",
+      "epoch": 0,
+      "paid": 50,
+      "goldBefore": 240,
+      "goldAfter": 190
+    },
+    {
+      "t": 1500.0000000000011,
+      "id": "slinger",
+      "epoch": 0,
+      "paid": 65,
+      "goldBefore": 198,
+      "goldAfter": 133
+    },
+    {
+      "t": 3016.6666666666615,
+      "id": "spearman",
+      "epoch": 0,
+      "paid": 70,
+      "goldBefore": 149,
+      "goldAfter": 79
+    },
+    {
+      "t": 4533.333333333327,
+      "id": "slinger",
+      "epoch": 0,
+      "paid": 65,
+      "goldBefore": 87,
+      "goldAfter": 22
+    },
+    {
+      "t": 16633.333333333114,
+      "id": "dino-rider",
+      "epoch": 0,
+      "paid": 115,
+      "goldBefore": 118,
+      "goldAfter": 3
+    },
+    {
+      "t": 22633.33333333355,
+      "id": "clubman",
+      "epoch": 0,
+      "paid": 50,
+      "goldBefore": 72,
+      "goldAfter": 22
+    },
+    {
+      "t": 28633.333333333987,
+      "id": "slinger",
+      "epoch": 0,
+      "paid": 65,
+      "goldBefore": 118,
+      "goldAfter": 53
+    },
+    {
+      "t": 31633.333333334205,
+      "id": "spearman",
+      "epoch": 0,
+      "paid": 70,
+      "goldBefore": 77,
+      "goldAfter": 7
+    },
+    {
+      "t": 36166.66666666713,
+      "id": "slinger",
+      "epoch": 0,
+      "paid": 65,
+      "goldBefore": 76,
+      "goldAfter": 11
+    },
+    {
+      "t": 42233.333333332914,
+      "id": "dino-rider",
+      "epoch": 0,
+      "paid": 115,
+      "goldBefore": 119,
+      "goldAfter": 4
+    },
+    {
+      "t": 46783.33333333225,
+      "id": "clubman",
+      "epoch": 0,
+      "paid": 50,
+      "goldBefore": 61,
+      "goldAfter": 11
+    },
+    {
+      "t": 51333.33333333159,
+      "id": "slinger",
+      "epoch": 0,
+      "paid": 65,
+      "goldBefore": 76,
+      "goldAfter": 11
+    },
+    {
+      "t": 60433.333333330265,
+      "id": "spearman",
+      "epoch": 0,
+      "paid": 70,
+      "goldBefore": 104,
+      "goldAfter": 34
+    },
+    {
+      "t": 64983.3333333296,
+      "id": "slinger",
+      "epoch": 0,
+      "paid": 65,
+      "goldBefore": 87,
+      "goldAfter": 22
+    },
+    {
+      "t": 69483.33333333067,
+      "id": "dino-rider",
+      "epoch": 0,
+      "paid": 115,
+      "goldBefore": 117,
+      "goldAfter": 2
+    },
+    {
+      "t": 73983.33333333198,
+      "id": "clubman",
+      "epoch": 0,
+      "paid": 50,
+      "goldBefore": 73,
+      "goldAfter": 23
+    },
+    {
+      "t": 76983.33333333285,
+      "id": "slinger",
+      "epoch": 0,
+      "paid": 65,
+      "goldBefore": 68,
+      "goldAfter": 3
+    },
+    {
+      "t": 81483.33333333416,
+      "id": "spearman",
+      "epoch": 0,
+      "paid": 70,
+      "goldBefore": 72,
+      "goldAfter": 2
+    },
+    {
+      "t": 84483.33333333503,
+      "id": "slinger",
+      "epoch": 0,
+      "paid": 65,
+      "goldBefore": 65,
+      "goldAfter": 0
+    },
+    {
+      "t": 96483.33333333852,
+      "id": "dino-rider",
+      "epoch": 0,
+      "paid": 115,
+      "goldBefore": 121,
+      "goldAfter": 6
+    },
+    {
+      "t": 103983.3333333407,
+      "id": "swordsman",
+      "epoch": 1,
+      "paid": 95,
+      "goldBefore": 123,
+      "goldAfter": 28
+    },
+    {
+      "t": 108483.33333334202,
+      "id": "archer",
+      "epoch": 1,
+      "paid": 110,
+      "goldBefore": 122,
+      "goldAfter": 12
+    },
+    {
+      "t": 114483.33333334376,
+      "id": "knight",
+      "epoch": 1,
+      "paid": 180,
+      "goldBefore": 185,
+      "goldAfter": 5
+    },
+    {
+      "t": 120483.33333334551,
+      "id": "archer",
+      "epoch": 1,
+      "paid": 110,
+      "goldBefore": 129,
+      "goldAfter": 19
+    },
+    {
+      "t": 130983.33333334856,
+      "id": "ballista",
+      "epoch": 1,
+      "paid": 210,
+      "goldBefore": 210,
+      "goldAfter": 0
+    },
+    {
+      "t": 138566.66666667757,
+      "id": "swordsman",
+      "epoch": 1,
+      "paid": 95,
+      "goldBefore": 104,
+      "goldAfter": 9
+    },
+    {
+      "t": 146150.0000000065,
+      "id": "archer",
+      "epoch": 1,
+      "paid": 110,
+      "goldBefore": 147,
+      "goldAfter": 37
+    },
+    {
+      "t": 152216.66666666963,
+      "id": "knight",
+      "epoch": 1,
+      "paid": 180,
+      "goldBefore": 189,
+      "goldAfter": 9
+    },
+    {
+      "t": 156766.66666666698,
+      "id": "archer",
+      "epoch": 1,
+      "paid": 110,
+      "goldBefore": 167,
+      "goldAfter": 57
+    },
+    {
+      "t": 162833.3333333301,
+      "id": "ballista",
+      "epoch": 1,
+      "paid": 210,
+      "goldBefore": 253,
+      "goldAfter": 43
+    },
+    {
+      "t": 167383.33333332746,
+      "id": "swordsman",
+      "epoch": 1,
+      "paid": 95,
+      "goldBefore": 175,
+      "goldAfter": 80
+    },
+    {
+      "t": 168899.99999999325,
+      "id": "archer",
+      "epoch": 1,
+      "paid": 110,
+      "goldBefore": 171,
+      "goldAfter": 61
+    },
+    {
+      "t": 174966.66666665638,
+      "id": "knight",
+      "epoch": 1,
+      "paid": 180,
+      "goldBefore": 190,
+      "goldAfter": 10
+    },
+    {
+      "t": 182549.9999999853,
+      "id": "archer",
+      "epoch": 1,
+      "paid": 110,
+      "goldBefore": 114,
+      "goldAfter": 4
+    }
+  ],
+  "blockedOrders": 0,
+  "unaffordableDecisions": 88,
+  "meteorCasts": 0,
+  "artilleryCasts": 0,
+  "abilityUses": [],
+  "towerAttempts": [
+    {
+      "t": 161316.66666666433,
+      "built": false,
+      "id": null,
+      "paid": 0
+    }
+  ],
+  "epochTransitions": [
+    {
+      "t": 0,
+      "side": "player",
+      "index": 0,
+      "id": "stone"
+    },
+    {
+      "t": 0,
+      "side": "enemy",
+      "index": 0,
+      "id": "stone"
+    },
+    {
+      "t": 100983.33333333983,
+      "side": "player",
+      "index": 1,
+      "id": "castle"
+    },
+    {
+      "t": 144066.66666667437,
+      "side": "enemy",
+      "index": 1,
+      "id": "castle"
+    }
+  ],
+  "minimumBase": {
+    "player": {
+      "fraction": 1,
+      "hp": 4200,
+      "maxHp": 4200,
+      "t": 0,
+      "epoch": 0
+    },
+    "enemy": {
+      "fraction": 0,
+      "hp": 0,
+      "maxHp": 5600,
+      "t": 183383.33333331815,
+      "epoch": 1
+    }
+  },
+  "minimumBaseByEpoch": {
+    "player": {
+      "0": {
+        "fraction": 1,
+        "hp": 4200,
+        "maxHp": 4200,
+        "t": 0,
+        "epoch": 0
+      },
+      "1": {
+        "fraction": 1,
+        "hp": 5600,
+        "maxHp": 5600,
+        "t": 100983.33333333983,
+        "epoch": 1
+      }
+    },
+    "enemy": {
+      "0": {
+        "fraction": 0.48523809523809525,
+        "hp": 2038,
+        "maxHp": 4200,
+        "t": 143416.66666667475,
+        "epoch": 0
+      },
+      "1": {
+        "fraction": 0,
+        "hp": 0,
+        "maxHp": 5600,
+        "t": 183383.33333331815,
+        "epoch": 1
+      }
+    }
+  },
+  "samples": [
+    {
+      "t": 0,
+      "absoluteTimeMs": 0,
+      "gold": 240,
+      "xp": 0,
+      "kills": 0,
+      "epoch": 0,
+      "enemyEpoch": 0,
+      "wave": 0,
+      "player": 4200,
+      "enemy": 4200,
+      "pArmy": 0,
+      "eArmy": 0,
+      "shots": 0,
+      "pFront": 0,
+      "objects": 26
+    },
+    {
+      "t": 30,
+      "absoluteTimeMs": 30000.000000000753,
+      "gold": 61,
+      "xp": 415,
+      "kills": 3,
+      "epoch": 0,
+      "enemyEpoch": 0,
+      "wave": 1,
+      "player": 4200,
+      "enemy": 4200,
+      "pArmy": 6,
+      "eArmy": 3,
+      "shots": 0,
+      "pFront": 915,
+      "objects": 49
+    },
+    {
+      "t": 60,
+      "absoluteTimeMs": 60016.66666666366,
+      "gold": 104,
+      "xp": 1109,
+      "kills": 9,
+      "epoch": 0,
+      "enemyEpoch": 0,
+      "wave": 2,
+      "player": 4200,
+      "enemy": 4128,
+      "pArmy": 7,
+      "eArmy": 1,
+      "shots": 0,
+      "pFront": 1079,
+      "objects": 54
+    },
+    {
+      "t": 90,
+      "absoluteTimeMs": 90016.66666666997,
+      "gold": 73,
+      "xp": 2191,
+      "kills": 17,
+      "epoch": 0,
+      "enemyEpoch": 0,
+      "wave": 2,
+      "player": 4200,
+      "enemy": 3898,
+      "pArmy": 9,
+      "eArmy": 0,
+      "shots": 0,
+      "pFront": 1081,
+      "objects": 45
+    },
+    {
+      "t": 120,
+      "absoluteTimeMs": 120016.6666666787,
+      "gold": 129,
+      "xp": 985,
+      "kills": 24,
+      "epoch": 1,
+      "enemyEpoch": 0,
+      "wave": 3,
+      "player": 5600,
+      "enemy": 2863,
+      "pArmy": 12,
+      "eArmy": 1,
+      "shots": 0,
+      "pFront": 1081,
+      "objects": 63
+    },
+    {
+      "t": 150,
+      "absoluteTimeMs": 150033.33333333756,
+      "gold": 127,
+      "xp": 1519,
+      "kills": 28,
+      "epoch": 1,
+      "enemyEpoch": 1,
+      "wave": 4,
+      "player": 5600,
+      "enemy": 2699,
+      "pArmy": 14,
+      "eArmy": 1,
+      "shots": 2,
+      "pFront": 1037,
+      "objects": 64
+    },
+    {
+      "t": 180,
+      "absoluteTimeMs": 180049.99999998676,
+      "gold": 88,
+      "xp": 3159,
+      "kills": 36,
+      "epoch": 1,
+      "enemyEpoch": 1,
+      "wave": 4,
+      "player": 5600,
+      "enemy": 610,
+      "pArmy": 14,
+      "eArmy": 0,
+      "shots": 1,
+      "pFront": 1081,
+      "objects": 56
+    },
+    {
+      "t": 183,
+      "absoluteTimeMs": 183383.33333331815,
+      "gold": 17,
+      "xp": 3159,
+      "kills": 36,
+      "epoch": 1,
+      "enemyEpoch": 1,
+      "wave": 4,
+      "player": 5600,
+      "enemy": 0,
+      "pArmy": 15,
+      "eArmy": 0,
+      "shots": 0,
+      "pFront": 1081,
+      "objects": 62
+    }
+  ],
+  "rng": {
+    "seeded": true,
+    "algorithm": "FNV-1a seed hash; 32-bit LCG for Math.random; Phaser RND.sow",
+    "beforeCreate": {
+      "mathState": 1748227631,
+      "mathCalls": 0,
+      "phaserState": "!rnd,1,0.41742285736836493,0.725287250475958,0.7940097081009299"
+    },
+    "final": {
+      "mathState": 484298962,
+      "mathCalls": 26449,
+      "phaserState": "!rnd,1,0.41742285736836493,0.725287250475958,0.7940097081009299"
+    }
+  },
+  "policy": {
+    "decisionEveryMs": 1500,
+    "automaticEvolution": true,
+    "rosters": [
+      [
+        "clubman",
+        "slinger",
+        "spearman",
+        "slinger",
+        "dino-rider"
+      ],
+      [
+        "swordsman",
+        "archer",
+        "knight",
+        "archer",
+        "ballista"
+      ],
+      [
+        "duelist",
+        "musketeer",
+        "cavalry",
+        "duelist",
+        "cannon"
+      ],
+      [
+        "tank",
+        "rifleman",
+        "grenadier",
+        "rifleman",
+        "sniper"
+      ],
+      [
+        "mech",
+        "laser-soldier",
+        "plasma-trooper",
+        "mech",
+        "super-heavy"
+      ]
+    ],
+    "line": "first roster entry of each epoch",
+    "meteor": "at least five enemies and one left of x=650",
+    "artillery": "at least seven enemies from Renaissance",
+    "defense": "one attempt to build stone tower 1 when gold reaches 200 after recruitment"
+  },
+  "errors": [],
+  "artifacts": {
+    "json": "art\\qa\\seed-matrix-20260909T014354814Z\\combat-medium-mixed-1x-seed-101-20260909T014515030Z-dd8a7cae.json",
+    "screenshot": "art\\qa\\seed-matrix-20260909T014354814Z\\combat-medium-mixed-1x-seed-101-20260909T014515030Z-dd8a7cae.png"
+  }
+}

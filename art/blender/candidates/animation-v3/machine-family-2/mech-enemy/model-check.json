@@ -1,0 +1,327 @@
+{
+  "passed": true,
+  "unit": "mech",
+  "faction": "enemy",
+  "source_hashes": {
+    "art/blender/unit-mech-enemy.blend": "92aad9fca83846ba0bf830b24e337949fb4e0693b52c8b6f65b686463d854447",
+    "public/assets/reborn/units-enemy/mech.png": "fb15cdad6ac670a59e85b116a6c2068016d99508cc99933718cb28e3864b9719",
+    "public/assets/reborn/weapon-sockets.json": "40f9fe76b2dd2d54b9a4161df792571ce9d83a900e5c6ee36a699743a29444a4",
+    "data/units.json": "d0a35b91c5e2838785c7fe4dabae50f71a7686cd72b387cc1272fc07638b50c3"
+  },
+  "candidate_sha256": "a0f0b1791ae6e5f0d155f1851420eee41013f67a0727ea4461e080e5e59d4668",
+  "mesh_count": 44,
+  "mesh_contracts": {
+    "Arm emitter": "12c583f30ff243a317a0a8bf433d957efc9480f5b111a8dd85f2b114024e9a4c",
+    "Arm emitter.001": "12c583f30ff243a317a0a8bf433d957efc9480f5b111a8dd85f2b114024e9a4c",
+    "Arm emitter.002": "12c583f30ff243a317a0a8bf433d957efc9480f5b111a8dd85f2b114024e9a4c",
+    "Arm emitter.003": "f57ba5744390e751338f2402523870d17251825a1a1e079e128c04aec2a38e78",
+    "Arm emitter.004": "f57ba5744390e751338f2402523870d17251825a1a1e079e128c04aec2a38e78",
+    "Arm emitter.005": "f57ba5744390e751338f2402523870d17251825a1a1e079e128c04aec2a38e78",
+    "Arm mounted plasma barrel": "510df3bfa02c879ecde22f244edb6bb7d6e23b19724eef0c28e516d462a46be8",
+    "Arm mounted plasma barrel.001": "510df3bfa02c879ecde22f244edb6bb7d6e23b19724eef0c28e516d462a46be8",
+    "Arm mounted plasma barrel.002": "510df3bfa02c879ecde22f244edb6bb7d6e23b19724eef0c28e516d462a46be8",
+    "Arm mounted plasma barrel.003": "510df3bfa02c879ecde22f244edb6bb7d6e23b19724eef0c28e516d462a46be8",
+    "Arm mounted plasma barrel.004": "510df3bfa02c879ecde22f244edb6bb7d6e23b19724eef0c28e516d462a46be8",
+    "Arm mounted plasma barrel.005": "510df3bfa02c879ecde22f244edb6bb7d6e23b19724eef0c28e516d462a46be8",
+    "Armoured gauntlet": "9342cdc3435d38bed09183770b2b5f8adcc3b199eb17142cd13ef2f30519baa8",
+    "Armoured gauntlet.001": "9342cdc3435d38bed09183770b2b5f8adcc3b199eb17142cd13ef2f30519baa8",
+    "Armoured stabilizer foot": "fcc2b76c7103567ddd663552f3cb269d1ff1e2e91767157760daa2aa0ad644fd",
+    "Armoured stabilizer foot.001": "8402952068a6cd49476b3dd6468ec0439a567a53ea7809c7bf985abb0c00dda7",
+    "Back heat exchanger": "5bae1e85c8eb3cce909f37ecb5d685a28555d38a651940133a3b75e22d0645cd",
+    "Back heat exchanger.001": "5bae1e85c8eb3cce909f37ecb5d685a28555d38a651940133a3b75e22d0645cd",
+    "Bevelled mech torso": "d68c959ef456b5964f27f2c4025264c38a029b1292502290a4ee00d33cae6697",
+    "Chest reactor": "b98cfc6a9bc71bf2594cfc1dc8faa6ca87391a9f48bd2729e9650cef28b28f0e",
+    "Exposed knee bearing": "6844b956bd138a53194326934482c48a79cefc91b6799a111bcdd66955e4814f",
+    "Exposed knee bearing.001": "5353647703bd3f1a484314e227fcee5d7460ef75cdc5632b92dbb42b2cd34906",
+    "Foot toe edge": "7f66c27e98e8fc9430c7ee24646554cea6bdad99f0ab2c69d1b2a7d225221f0a",
+    "Foot toe edge.001": "3c7808e5e63bfca396b751d0901970f14da5ea97e94711b66c69b05d44e59566",
+    "Heat exchanger collar": "680b306ef6c608f898f129c1dd4fd1dc0845b1bbf85d0f3d941f76cede1d71db",
+    "Heat exchanger collar.001": "680b306ef6c608f898f129c1dd4fd1dc0845b1bbf85d0f3d941f76cede1d71db",
+    "Hip joint": "d01ed06a3f533ef8d00593c55ced75750756676659eb71eb0a9dad6a99a546c9",
+    "Hip joint.001": "89a1d7e21f556815fbe70f25167b33fb6f2156f057efa03ee6a24ce9f1fc421f",
+    "Leg piston": "6b43f2a64633216cfc00f9d68258a3645a2b829311d74f9bff6e06dfab28076a",
+    "Leg piston.001": "37db0a1fb01b6357dcc1c7eb814070a82ecbcc0781303421400b0228da5f6726",
+    "Mech armoured pelvis": "ecb107623cf894da0077e59b2e7f1cefe051d2e42c97048d306fd5a6673b3809",
+    "Mech chest insert": "af3b1b0e69f781ec9d8e7374bdbce327f1183c39037ef2141b999f5e3f143db3",
+    "Mech command head": "43b64577499e5ed32eb791e63968b1a6d825ec3e3b56919230a23e647d5dab0c",
+    "Mech upper arm": "9cfc77aa15c725b6be27bcbd41e145cec1a14c6fe289ae594feffe0d3a600faa",
+    "Mech upper arm.001": "9cfc77aa15c725b6be27bcbd41e145cec1a14c6fe289ae594feffe0d3a600faa",
+    "Mech visor": "60975886462b57fc5039d411f88e8b0a7323800da04593fe5bda5b5cc3f9e62b",
+    "Shin armour": "3f50ef49a47682725c801ad882b284b6467bee703ad31dd9c5197e008bf0637a",
+    "Shin armour.001": "6b9d989bcf203eae8a7dac8ea2af61c50739e92e4d9644d6ef248390da2439c8",
+    "Shoulder armour": "6545c96bcf8f14c2d2a8aa0817b72974148f5efb62d7d7ba695d0940a1718e09",
+    "Shoulder armour.001": "6545c96bcf8f14c2d2a8aa0817b72974148f5efb62d7d7ba695d0940a1718e09",
+    "Shoulder bearing": "a34ac7de482876e84a2659de5821e867982318ed3dc2549e70dd981a93a08b9f",
+    "Shoulder bearing.001": "76c9265f747e56f5685e84563da366a11056154a695a761d0e306328e21512f3",
+    "Upper mechanical leg": "221c2e3ae6995179ac1a6c07680db39963864ff8e063cc19937aeaabdab684d2",
+    "Upper mechanical leg.001": "d50dcac7010ed41d7bd0b760adf9816fdc818c5e6b51b46314672cbd9b950b2f"
+  },
+  "actions": {
+    "walk": {
+      "Arm emitter": "Machine family2 / mech-enemy / walk / Arm emitter",
+      "Arm emitter.001": "Machine family2 / mech-enemy / walk / Arm emitter.001",
+      "Arm emitter.002": "Machine family2 / mech-enemy / walk / Arm emitter.002",
+      "Arm emitter.003": "Machine family2 / mech-enemy / walk / Arm emitter.003",
+      "Arm emitter.004": "Machine family2 / mech-enemy / walk / Arm emitter.004",
+      "Arm emitter.005": "Machine family2 / mech-enemy / walk / Arm emitter.005",
+      "Arm mounted plasma barrel": "Machine family2 / mech-enemy / walk / Arm mounted plasma barrel",
+      "Arm mounted plasma barrel.001": "Machine family2 / mech-enemy / walk / Arm mounted plasma barre",
+      "Arm mounted plasma barrel.002": "Machine family2 / mech-enemy / walk / Arm mounted plasma barr",
+      "Arm mounted plasma barrel.003": "Machine family2 / mech-enemy / walk / Arm mounted plasma bar",
+      "Arm mounted plasma barrel.004": "Machine family2 / mech-enemy / walk / Arm mounted plasma ba",
+      "Arm mounted plasma barrel.005": "Machine family2 / mech-enemy / walk / Arm mounted plasma ba.001",
+      "Armoured gauntlet": "Machine family2 / mech-enemy / walk / Armoured gauntlet",
+      "Armoured gauntlet.001": "Machine family2 / mech-enemy / walk / Armoured gauntlet.001",
+      "Armoured stabilizer foot": "Machine family2 / mech-enemy / walk / Armoured stabilizer foot",
+      "Armoured stabilizer foot.001": "Machine family2 / mech-enemy / walk / Armoured stabilizer foot.",
+      "Articulated mechanical leg -1": "Machine family2 / mech-enemy / walk / Articulated mechanical le",
+      "Articulated mechanical leg 1": "Machine family2 / mech-enemy / walk / Articulated mechanical l",
+      "Back heat exchanger": "Machine family2 / mech-enemy / walk / Back heat exchanger",
+      "Back heat exchanger.001": "Machine family2 / mech-enemy / walk / Back heat exchanger.001",
+      "Bevelled mech torso": "Machine family2 / mech-enemy / walk / Bevelled mech torso",
+      "Chest reactor": "Machine family2 / mech-enemy / walk / Chest reactor",
+      "Exposed knee bearing": "Machine family2 / mech-enemy / walk / Exposed knee bearing",
+      "Exposed knee bearing.001": "Machine family2 / mech-enemy / walk / Exposed knee bearing.001",
+      "Foot toe edge": "Machine family2 / mech-enemy / walk / Foot toe edge",
+      "Foot toe edge.001": "Machine family2 / mech-enemy / walk / Foot toe edge.001",
+      "Heat exchanger collar": "Machine family2 / mech-enemy / walk / Heat exchanger collar",
+      "Heat exchanger collar.001": "Machine family2 / mech-enemy / walk / Heat exchanger collar.001",
+      "Hip joint": "Machine family2 / mech-enemy / walk / Hip joint",
+      "Hip joint.001": "Machine family2 / mech-enemy / walk / Hip joint.001",
+      "Leg piston": "Machine family2 / mech-enemy / walk / Leg piston",
+      "Leg piston.001": "Machine family2 / mech-enemy / walk / Leg piston.001",
+      "Mech armoured pelvis": "Machine family2 / mech-enemy / walk / Mech armoured pelvis",
+      "Mech chest insert": "Machine family2 / mech-enemy / walk / Mech chest insert",
+      "Mech command head": "Machine family2 / mech-enemy / walk / Mech command head",
+      "Mech upper arm": "Machine family2 / mech-enemy / walk / Mech upper arm",
+      "Mech upper arm.001": "Machine family2 / mech-enemy / walk / Mech upper arm.001",
+      "Mech visor": "Machine family2 / mech-enemy / walk / Mech visor",
+      "Mechanical motion rig": "Machine family2 / mech-enemy / walk / Mechanical motion rig",
+      "Shin armour": "Machine family2 / mech-enemy / walk / Shin armour",
+      "Shin armour.001": "Machine family2 / mech-enemy / walk / Shin armour.001",
+      "Shoulder armour": "Machine family2 / mech-enemy / walk / Shoulder armour",
+      "Shoulder armour.001": "Machine family2 / mech-enemy / walk / Shoulder armour.001",
+      "Shoulder bearing": "Machine family2 / mech-enemy / walk / Shoulder bearing",
+      "Shoulder bearing.001": "Machine family2 / mech-enemy / walk / Shoulder bearing.001",
+      "Upper mechanical leg": "Machine family2 / mech-enemy / walk / Upper mechanical leg",
+      "Upper mechanical leg.001": "Machine family2 / mech-enemy / walk / Upper mechanical leg.001",
+      "Weapon muzzle / runtime socket": "Machine family2 / mech-enemy / walk / Weapon muzzle / runtime s"
+    },
+    "attack": {
+      "Arm emitter": "Machine family2 / mech-enemy / attack / Arm emitter",
+      "Arm emitter.001": "Machine family2 / mech-enemy / attack / Arm emitter.001",
+      "Arm emitter.002": "Machine family2 / mech-enemy / attack / Arm emitter.002",
+      "Arm emitter.003": "Machine family2 / mech-enemy / attack / Arm emitter.003",
+      "Arm emitter.004": "Machine family2 / mech-enemy / attack / Arm emitter.004",
+      "Arm emitter.005": "Machine family2 / mech-enemy / attack / Arm emitter.005",
+      "Arm mounted plasma barrel": "Machine family2 / mech-enemy / attack / Arm mounted plasma barr",
+      "Arm mounted plasma barrel.001": "Machine family2 / mech-enemy / attack / Arm mounted plasma bar",
+      "Arm mounted plasma barrel.002": "Machine family2 / mech-enemy / attack / Arm mounted plasma ba",
+      "Arm mounted plasma barrel.003": "Machine family2 / mech-enemy / attack / Arm mounted plasma b",
+      "Arm mounted plasma barrel.004": "Machine family2 / mech-enemy / attack / Arm mounted plasma ",
+      "Arm mounted plasma barrel.005": "Machine family2 / mech-enemy / attack / Arm mounted plasma .001",
+      "Armoured gauntlet": "Machine family2 / mech-enemy / attack / Armoured gauntlet",
+      "Armoured gauntlet.001": "Machine family2 / mech-enemy / attack / Armoured gauntlet.001",
+      "Armoured stabilizer foot": "Machine family2 / mech-enemy / attack / Armoured stabilizer foo",
+      "Armoured stabilizer foot.001": "Machine family2 / mech-enemy / attack / Armoured stabilizer fo",
+      "Articulated mechanical leg -1": "Machine family2 / mech-enemy / attack / Articulated mechanical ",
+      "Articulated mechanical leg 1": "Machine family2 / mech-enemy / attack / Articulated mechanical",
+      "Back heat exchanger": "Machine family2 / mech-enemy / attack / Back heat exchanger",
+      "Back heat exchanger.001": "Machine family2 / mech-enemy / attack / Back heat exchanger.001",
+      "Bevelled mech torso": "Machine family2 / mech-enemy / attack / Bevelled mech torso",
+      "Chest reactor": "Machine family2 / mech-enemy / attack / Chest reactor",
+      "Exposed knee bearing": "Machine family2 / mech-enemy / attack / Exposed knee bearing",
+      "Exposed knee bearing.001": "Machine family2 / mech-enemy / attack / Exposed knee bearing.00",
+      "Foot toe edge": "Machine family2 / mech-enemy / attack / Foot toe edge",
+      "Foot toe edge.001": "Machine family2 / mech-enemy / attack / Foot toe edge.001",
+      "Heat exchanger collar": "Machine family2 / mech-enemy / attack / Heat exchanger collar",
+      "Heat exchanger collar.001": "Machine family2 / mech-enemy / attack / Heat exchanger collar.0",
+      "Hip joint": "Machine family2 / mech-enemy / attack / Hip joint",
+      "Hip joint.001": "Machine family2 / mech-enemy / attack / Hip joint.001",
+      "Leg piston": "Machine family2 / mech-enemy / attack / Leg piston",
+      "Leg piston.001": "Machine family2 / mech-enemy / attack / Leg piston.001",
+      "Mech armoured pelvis": "Machine family2 / mech-enemy / attack / Mech armoured pelvis",
+      "Mech chest insert": "Machine family2 / mech-enemy / attack / Mech chest insert",
+      "Mech command head": "Machine family2 / mech-enemy / attack / Mech command head",
+      "Mech upper arm": "Machine family2 / mech-enemy / attack / Mech upper arm",
+      "Mech upper arm.001": "Machine family2 / mech-enemy / attack / Mech upper arm.001",
+      "Mech visor": "Machine family2 / mech-enemy / attack / Mech visor",
+      "Mechanical motion rig": "Machine family2 / mech-enemy / attack / Mechanical motion rig",
+      "Shin armour": "Machine family2 / mech-enemy / attack / Shin armour",
+      "Shin armour.001": "Machine family2 / mech-enemy / attack / Shin armour.001",
+      "Shoulder armour": "Machine family2 / mech-enemy / attack / Shoulder armour",
+      "Shoulder armour.001": "Machine family2 / mech-enemy / attack / Shoulder armour.001",
+      "Shoulder bearing": "Machine family2 / mech-enemy / attack / Shoulder bearing",
+      "Shoulder bearing.001": "Machine family2 / mech-enemy / attack / Shoulder bearing.001",
+      "Upper mechanical leg": "Machine family2 / mech-enemy / attack / Upper mechanical leg",
+      "Upper mechanical leg.001": "Machine family2 / mech-enemy / attack / Upper mechanical leg.00",
+      "Weapon muzzle / runtime socket": "Machine family2 / mech-enemy / attack / Weapon muzzle / runtime"
+    }
+  },
+  "gait": {
+    "nominalSpeedPxPerSecond": 34,
+    "referenceDisplayScale": 0.57,
+    "cycleDistancePixels": 17.68,
+    "nominalCycleDurationMs": 520,
+    "motionKind": "mechanical-biped",
+    "stanceFraction": 0.6,
+    "doubleSupportFrames": [
+      0,
+      4
+    ]
+  },
+  "mechanism": {
+    "motion": "measured two-segment joints, horizontal soles, separate hydraulic piston and weapon recoil",
+    "stance_fraction": 0.6,
+    "double_support_frames": [
+      0,
+      4
+    ],
+    "leg_measurements": [
+      {
+        "hip": [
+          0.0,
+          -0.3700000047683716,
+          1.1699999570846558
+        ],
+        "knee": [
+          -0.12999999523162842,
+          -0.3700000047683716,
+          0.6499999761581421
+        ],
+        "foot_center": [
+          0.1599999964237213,
+          -0.3700000047683716,
+          0.15000000596046448
+        ],
+        "upper_length": 0.5360037191370051,
+        "lower_length": 0.5780138089244761,
+        "piston_ends": [
+          [
+            0.16999998688697815,
+            -0.3700014054775238,
+            1.0299999713897705
+          ],
+          [
+            0.1599999964237213,
+            -0.36999860405921936,
+            0.3799999952316284
+          ]
+        ]
+      },
+      {
+        "hip": [
+          0.0,
+          0.3700000047683716,
+          1.1699999570846558
+        ],
+        "knee": [
+          -0.12999999523162842,
+          0.3700000047683716,
+          0.6499999761581421
+        ],
+        "foot_center": [
+          0.1599999964237213,
+          0.3700000047683716,
+          0.15000000596046448
+        ],
+        "upper_length": 0.5360037191370051,
+        "lower_length": 0.5780138089244761,
+        "piston_ends": [
+          [
+            0.16999998688697815,
+            0.36999860405921936,
+            1.0299999713897705
+          ],
+          [
+            0.1599999964237213,
+            0.3700014054775238,
+            0.3799999952316284
+          ]
+        ]
+      }
+    ],
+    "muzzle": {
+      "mesh": "Arm emitter",
+      "front_vertex_indices": [
+        57
+      ],
+      "evaluated_vertex_count": 222
+    }
+  },
+  "sockets": [
+    [
+      165.113,
+      173.034
+    ],
+    [
+      164.798,
+      174.11
+    ],
+    [
+      165.043,
+      175.207
+    ],
+    [
+      165.703,
+      174.702
+    ],
+    [
+      166.393,
+      173.847
+    ],
+    [
+      166.709,
+      174.122
+    ],
+    [
+      166.466,
+      174.411
+    ],
+    [
+      165.805,
+      173.565
+    ],
+    [
+      165.113,
+      173.034
+    ],
+    [
+      165.261,
+      171.322
+    ],
+    [
+      165.334,
+      169.993
+    ],
+    [
+      165.349,
+      169.599
+    ],
+    [
+      163.955,
+      169.446
+    ],
+    [
+      160.583,
+      169.704
+    ],
+    [
+      163.063,
+      170.53
+    ],
+    [
+      164.695,
+      172.074
+    ]
+  ],
+  "production_unchanged": true,
+  "frame_size": [
+    256,
+    256
+  ],
+  "frame_count": 16,
+  "contact_frame": 12,
+  "contact_delay_ms": 160,
+  "attack_duration_ms": 320
+}

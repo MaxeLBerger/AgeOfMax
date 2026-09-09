@@ -1,0 +1,418 @@
+{
+  "checkedAt": "2026-09-09T02:17:45.725Z",
+  "localDate": "9. September 2026 um 04:17",
+  "timeZone": "Europe/Berlin",
+  "build": {
+    "successful": true,
+    "fileCount": 73,
+    "totalBytes": 20892182,
+    "files": [
+      {
+        "file": "dist/assets/index-C9tdYA_-.js",
+        "bytes": 1595308
+      },
+      {
+        "file": "dist/assets/reborn/backgrounds/castle.png",
+        "bytes": 1811848
+      },
+      {
+        "file": "dist/assets/reborn/backgrounds/future.png",
+        "bytes": 1860461
+      },
+      {
+        "file": "dist/assets/reborn/backgrounds/modern.png",
+        "bytes": 1861801
+      },
+      {
+        "file": "dist/assets/reborn/backgrounds/renaissance.png",
+        "bytes": 1863622
+      },
+      {
+        "file": "dist/assets/reborn/backgrounds/stone.png",
+        "bytes": 1779857
+      },
+      {
+        "file": "dist/assets/reborn/bases-enemy/castle.png",
+        "bytes": 300262
+      },
+      {
+        "file": "dist/assets/reborn/bases-enemy/future.png",
+        "bytes": 251610
+      },
+      {
+        "file": "dist/assets/reborn/bases-enemy/modern.png",
+        "bytes": 272416
+      },
+      {
+        "file": "dist/assets/reborn/bases-enemy/renaissance.png",
+        "bytes": 293346
+      },
+      {
+        "file": "dist/assets/reborn/bases-enemy/stone.png",
+        "bytes": 273288
+      },
+      {
+        "file": "dist/assets/reborn/bases/castle.png",
+        "bytes": 299072
+      },
+      {
+        "file": "dist/assets/reborn/bases/future.png",
+        "bytes": 248586
+      },
+      {
+        "file": "dist/assets/reborn/bases/modern.png",
+        "bytes": 272030
+      },
+      {
+        "file": "dist/assets/reborn/bases/renaissance.png",
+        "bytes": 290477
+      },
+      {
+        "file": "dist/assets/reborn/bases/stone.png",
+        "bytes": 273545
+      },
+      {
+        "file": "dist/assets/reborn/towers/castle-1.png",
+        "bytes": 71162
+      },
+      {
+        "file": "dist/assets/reborn/towers/castle-2.png",
+        "bytes": 42881
+      },
+      {
+        "file": "dist/assets/reborn/towers/castle-3.png",
+        "bytes": 55748
+      },
+      {
+        "file": "dist/assets/reborn/towers/future-1.png",
+        "bytes": 42760
+      },
+      {
+        "file": "dist/assets/reborn/towers/future-2.png",
+        "bytes": 43582
+      },
+      {
+        "file": "dist/assets/reborn/towers/future-3.png",
+        "bytes": 48031
+      },
+      {
+        "file": "dist/assets/reborn/towers/modern-1.png",
+        "bytes": 43814
+      },
+      {
+        "file": "dist/assets/reborn/towers/modern-2.png",
+        "bytes": 44065
+      },
+      {
+        "file": "dist/assets/reborn/towers/modern-3.png",
+        "bytes": 46201
+      },
+      {
+        "file": "dist/assets/reborn/towers/renaissance-1.png",
+        "bytes": 40545
+      },
+      {
+        "file": "dist/assets/reborn/towers/renaissance-2.png",
+        "bytes": 74325
+      },
+      {
+        "file": "dist/assets/reborn/towers/renaissance-3.png",
+        "bytes": 64655
+      },
+      {
+        "file": "dist/assets/reborn/towers/stone-1.png",
+        "bytes": 46869
+      },
+      {
+        "file": "dist/assets/reborn/towers/stone-2.png",
+        "bytes": 48269
+      },
+      {
+        "file": "dist/assets/reborn/towers/stone-3.png",
+        "bytes": 65336
+      },
+      {
+        "file": "dist/assets/reborn/units-enemy/archer.png",
+        "bytes": 170822
+      },
+      {
+        "file": "dist/assets/reborn/units-enemy/ballista.png",
+        "bytes": 149691
+      },
+      {
+        "file": "dist/assets/reborn/units-enemy/cannon.png",
+        "bytes": 103164
+      },
+      {
+        "file": "dist/assets/reborn/units-enemy/cavalry.png",
+        "bytes": 169285
+      },
+      {
+        "file": "dist/assets/reborn/units-enemy/clubman.png",
+        "bytes": 151304
+      },
+      {
+        "file": "dist/assets/reborn/units-enemy/dino-rider.png",
+        "bytes": 166714
+      },
+      {
+        "file": "dist/assets/reborn/units-enemy/duelist.png",
+        "bytes": 160875
+      },
+      {
+        "file": "dist/assets/reborn/units-enemy/grenadier.png",
+        "bytes": 138380
+      },
+      {
+        "file": "dist/assets/reborn/units-enemy/knight.png",
+        "bytes": 161458
+      },
+      {
+        "file": "dist/assets/reborn/units-enemy/laser-soldier.png",
+        "bytes": 161924
+      },
+      {
+        "file": "dist/assets/reborn/units-enemy/mech.png",
+        "bytes": 166343
+      },
+      {
+        "file": "dist/assets/reborn/units-enemy/musketeer.png",
+        "bytes": 165959
+      },
+      {
+        "file": "dist/assets/reborn/units-enemy/plasma-trooper.png",
+        "bytes": 174809
+      },
+      {
+        "file": "dist/assets/reborn/units-enemy/rifleman.png",
+        "bytes": 152036
+      },
+      {
+        "file": "dist/assets/reborn/units-enemy/slinger.png",
+        "bytes": 145252
+      },
+      {
+        "file": "dist/assets/reborn/units-enemy/sniper.png",
+        "bytes": 171240
+      },
+      {
+        "file": "dist/assets/reborn/units-enemy/spearman.png",
+        "bytes": 158726
+      },
+      {
+        "file": "dist/assets/reborn/units-enemy/super-heavy.png",
+        "bytes": 222882
+      },
+      {
+        "file": "dist/assets/reborn/units-enemy/swordsman.png",
+        "bytes": 162458
+      },
+      {
+        "file": "dist/assets/reborn/units-enemy/tank.png",
+        "bytes": 216059
+      },
+      {
+        "file": "dist/assets/reborn/units/archer.png",
+        "bytes": 172318
+      },
+      {
+        "file": "dist/assets/reborn/units/ballista.png",
+        "bytes": 149905
+      },
+      {
+        "file": "dist/assets/reborn/units/cannon.png",
+        "bytes": 104194
+      },
+      {
+        "file": "dist/assets/reborn/units/cavalry.png",
+        "bytes": 170152
+      },
+      {
+        "file": "dist/assets/reborn/units/clubman.png",
+        "bytes": 151939
+      },
+      {
+        "file": "dist/assets/reborn/units/dino-rider.png",
+        "bytes": 167074
+      },
+      {
+        "file": "dist/assets/reborn/units/duelist.png",
+        "bytes": 162950
+      },
+      {
+        "file": "dist/assets/reborn/units/grenadier.png",
+        "bytes": 139697
+      },
+      {
+        "file": "dist/assets/reborn/units/knight.png",
+        "bytes": 162774
+      },
+      {
+        "file": "dist/assets/reborn/units/laser-soldier.png",
+        "bytes": 162144
+      },
+      {
+        "file": "dist/assets/reborn/units/mech.png",
+        "bytes": 166047
+      },
+      {
+        "file": "dist/assets/reborn/units/musketeer.png",
+        "bytes": 167607
+      },
+      {
+        "file": "dist/assets/reborn/units/plasma-trooper.png",
+        "bytes": 174740
+      },
+      {
+        "file": "dist/assets/reborn/units/rifleman.png",
+        "bytes": 154082
+      },
+      {
+        "file": "dist/assets/reborn/units/slinger.png",
+        "bytes": 145876
+      },
+      {
+        "file": "dist/assets/reborn/units/sniper.png",
+        "bytes": 171554
+      },
+      {
+        "file": "dist/assets/reborn/units/spearman.png",
+        "bytes": 160429
+      },
+      {
+        "file": "dist/assets/reborn/units/super-heavy.png",
+        "bytes": 222749
+      },
+      {
+        "file": "dist/assets/reborn/units/swordsman.png",
+        "bytes": 164437
+      },
+      {
+        "file": "dist/assets/reborn/units/tank.png",
+        "bytes": 217932
+      },
+      {
+        "file": "dist/assets/reborn/weapon-sockets.json",
+        "bytes": 7070
+      },
+      {
+        "file": "dist/index.html",
+        "bytes": 1359
+      }
+    ]
+  },
+  "runtimeFilesMatchApprovedPublic": true,
+  "runtimeHashes": {
+    "backgrounds/castle.png": "193b4e66ede6b45e65d5fcade412028c3a6555ed3119c6d5d7db92ce0faf4de5",
+    "backgrounds/future.png": "a996b5c56821a60b48b33e25746bbabf769dd8d7af25d824b7ecf206752cfa39",
+    "backgrounds/modern.png": "c9c3a4d85f95ea39ac716c9669c10ee717d8785370dd41747e8462314441e8f8",
+    "backgrounds/renaissance.png": "f425856159a807538728c2f0869f237f60539081ca94c8cbf27731d21c46ab09",
+    "backgrounds/stone.png": "81eb79b9204a718fd33df699e466c7d78cc6255771fd23119fdbd20d80a269e4",
+    "bases-enemy/castle.png": "76c1e8b12b216b33142a4c87a4dac90cf6f8fdad9c382518df644b674f610951",
+    "bases-enemy/future.png": "3bea07602c9d3b3199afd3c4577c398be17d19809cff0a081899f71e8b3f0aa4",
+    "bases-enemy/modern.png": "f492da37a9a49ed21e67b44fae0c5b8bfa6183ab0b833f1c6df13b04ace16ac9",
+    "bases-enemy/renaissance.png": "38a3dbf134dcc0ff42e428a7790489c471fb6ee0ffd5f278d09dbce69bf35403",
+    "bases-enemy/stone.png": "5e789a0263643d4f662543e513c8ec319c10416d68e089b7c9da4596c62f7205",
+    "bases/castle.png": "35468a334b49c100c8a30d07f87935d3f1c9be7892000b54ca46882a3a963ca6",
+    "bases/future.png": "f510f4f712d6330a7444f82abd89681d072eaa706fabe908a60be4d9ea545955",
+    "bases/modern.png": "92431e33bd6b7ff77c27ae8fe3289a8c43956e78fb4d102aa3e094786d14ddd4",
+    "bases/renaissance.png": "cea185ea4edbfaf1d9877a982100f950771f7ca16f59309260f874c070537313",
+    "bases/stone.png": "424e64aa4220a74d5a22fd8552ed9bad55d0bb675d537624d8e3f437813c21f4",
+    "towers/castle-1.png": "04f1fe0041d5094634c1a986f5968397f020f5be12e1efc701e599335b5fa25b",
+    "towers/castle-2.png": "035f4d1e973a6be02d4dee399658af795bbfe00ee1c8d7638f61234422ccdd74",
+    "towers/castle-3.png": "20850b94fccd60997ae0a13ec45962770329715cc57f6e4ede907ab9d743bf7e",
+    "towers/future-1.png": "38686b322f085358a6ed3d536fb3043976689ce93f1de446257f0e1e09287962",
+    "towers/future-2.png": "8d794eebb4d6490958d252f4b5ef0a93a504177bd2c6d0d352fa3224ddf84a39",
+    "towers/future-3.png": "fc84f51009091ac6b431d67b829040dee902e154fe7c0d0d397139a3bf88be43",
+    "towers/modern-1.png": "d1d4d47525f677c5a2b7a03e389a85e41b18e93d91552a7a53325f847f58d89a",
+    "towers/modern-2.png": "a130eaa430fbf64fcd5a29c882abe35515778facedd8e6762f2203bfd0cf998c",
+    "towers/modern-3.png": "615750767bdf931728ee7182f94ab5e99d500405a1b08af0f04c8b0cbf84bab0",
+    "towers/renaissance-1.png": "25c97ddc13272f1696b06dec2f3301a07dd14ff99f3f96c37d56588aa8498f4b",
+    "towers/renaissance-2.png": "6697ff88ab44658e0e56a6f469d71ca357dc750be0128cc578c9e5626bab2ee1",
+    "towers/renaissance-3.png": "3236a2c203d01cfb9b698df0c4ab2d88d88fa428d467efb9ea73431567d59c13",
+    "towers/stone-1.png": "954c508549d1e111b356c41be85d763f03097665ca2c22cd0762e741dd4f5bc4",
+    "towers/stone-2.png": "0fa10c747070148926fc9474ceff9c6eed24da55dc1291400e8ce8b10e5ee602",
+    "towers/stone-3.png": "201c6750a5f5fae14f0826c222f10f0a66dd0081c4de8bb03758d69ac1e588c1",
+    "units-enemy/archer.png": "bcc4782d044f9fdc9e96c3512a01b81d4ec7ea90c3d93ad10bee12795f3963b0",
+    "units-enemy/ballista.png": "3d4ad53e2f4e3d291f462309dca68917fc1747c50129378fdf975a34d5263ac4",
+    "units-enemy/cannon.png": "30746141ff8d239ae8014741ca710fadd3db72af4e7863f2759f3f23d8cf1cce",
+    "units-enemy/cavalry.png": "595f5b16d7ca10a7019d30f58f21150abbd7c9c428a78e23ddc9dcc936b35e5f",
+    "units-enemy/clubman.png": "afd00e3452e3801ea3570788c3d5b7ee7b858df97ecf876a2843b19f70a1ee4e",
+    "units-enemy/dino-rider.png": "ecda3a4b329fad27f67622f3a0bd5b3c92569b83b005797036e858038277a27d",
+    "units-enemy/duelist.png": "d50a7123845590d72b486853dc8ef1bea93a396a1b40208dda4a35d44768da4e",
+    "units-enemy/grenadier.png": "d790458b685f3f11d269d6432346c69c7c04554d0d48ea8a0a848c927221e85b",
+    "units-enemy/knight.png": "f73a455ef776b6510cf9a15c042d5db4027e032da46cbfb8193d93a5f5c6f143",
+    "units-enemy/laser-soldier.png": "590124313c9a4f8864eed4ca4398bbbf3ccd95d5ee4db9ea676aad88100509de",
+    "units-enemy/mech.png": "fb15cdad6ac670a59e85b116a6c2068016d99508cc99933718cb28e3864b9719",
+    "units-enemy/musketeer.png": "9e44aabe333f5f537d89536aabfc6e2af57336f1b5cf01394f8ae3b336f509e8",
+    "units-enemy/plasma-trooper.png": "e86a9ebd152bffecfe9cf2a2815a6f7be09b4ac5dd0bb4ef3f22299fa69c399f",
+    "units-enemy/rifleman.png": "00bd69cefb73a158092cfbab80b202b206d4ce7f44dc1af79906d412221c0ca8",
+    "units-enemy/slinger.png": "9ae931afb7ce6653cf5fbb200eb686432cc9dd54e69de7ba98a42e13402ac6e1",
+    "units-enemy/sniper.png": "9d03b9f4dce1a0ea797176ea6c6ebe1c8439720a122f736544cc1af69d78888d",
+    "units-enemy/spearman.png": "dde2870461e387fae859a4604b900789f94e29e728e75ac6c98f30a90548ea5d",
+    "units-enemy/super-heavy.png": "31cf0cdf839a111774b296d373caca0f76e44f5bdb63b602ef7476ee7a4f5778",
+    "units-enemy/swordsman.png": "9ccf13b1322634ee3e713c229c1c860401e96cb257ff5505b7531cdc5fa19b01",
+    "units-enemy/tank.png": "a9406dece1aa700cc03aa1177bababdee0dbc13d8008fc67fbdeb4fc2671038e",
+    "units/archer.png": "155eb0c3a3717b2a4d9d5a3484b0db279f0a4115283ab923fa7afbe37dfeda12",
+    "units/ballista.png": "7d3e19eb249665b7cbc9a7a1430837498822e5c5d514536c4b5a4226af3c58bc",
+    "units/cannon.png": "286beaac149f9cd89692554a698263d80ea57398ac873f28707dcf3914650de0",
+    "units/cavalry.png": "47dcac7f3aeee0b5bf8e7382c56b53dd68487bd7ad9d26e9306e11c14830422f",
+    "units/clubman.png": "39810c58c6d86ea03898a398069fab2e7ac8ada02b00f7792c3ccba9d858ca4f",
+    "units/dino-rider.png": "5d5b6cc2cce4d583cfb1143b84a45d8d68a3f1832d3610f3af369246b1d212fa",
+    "units/duelist.png": "4ad13a1220fa3f4a94425849b4fe3b77a784eeb071cd1482ed391f13591311a1",
+    "units/grenadier.png": "73b4d02f26ead9dd1d3cb4fec70296cdf22f81366a093f03c42614f449bb5b95",
+    "units/knight.png": "74b162013da6493692bdd0e34ec7aa776a39f692787b3d5b6744ea6780b1b31e",
+    "units/laser-soldier.png": "ff9d2eb40126b50f4b1786e56c04eaebc498c73ce3e31845ba212744ff02eac1",
+    "units/mech.png": "d0c2bbbe8036934fb50ef1896a0c2666a8e92f8ab7f0c2f1232dbfa722d03690",
+    "units/musketeer.png": "6f205df497a3906e456d89455c5dca43c7d165e67589d57b5c497d104265d47b",
+    "units/plasma-trooper.png": "82d2763a4ce2b5d572b9adf9610e24d13d4a85e755b3580a33fb9844dca0f7d9",
+    "units/rifleman.png": "780297694f9ccb3301019cb82444545c75d29ad30f8b2310966636d7c07288b8",
+    "units/slinger.png": "28089aaf23bab1da9f4e548d57167a70d711e20780468601a773ed72a5f6db17",
+    "units/sniper.png": "3e31f79cf2dc292c89582a31c98940e1408009ba5d501c198f6abb8867aeebf5",
+    "units/spearman.png": "a88ae8331096d3095e6c132a063be80850a78d5ecbf284884b3f69cf8323fb55",
+    "units/super-heavy.png": "59c8543809333e8f2e446aeabb81c808e1c680f5180a481d8189cced6cb3e90e",
+    "units/swordsman.png": "98a8ffdd3c4b3db7f80f6f07d5e91475fc8fe8cc790173a9b0fcb14acd68d14e",
+    "units/tank.png": "02790966f3c4e52fabf9ce6b412d4e058eba707ac8a3a2962ee7b05645f9b556",
+    "weapon-sockets.json": "40f9fe76b2dd2d54b9a4161df792571ce9d83a900e5c6ee36a699743a29444a4"
+  },
+  "assets": {
+    "checkedAt": "2026-09-09T02:16:08.740Z",
+    "functionFilesCompared": 41,
+    "functionSourcesUnchanged": true,
+    "sourceFingerprint": "22125e733639fa6ed281981fc15bd8e5db0b2f8f618950d8552eb1cd82cf286b",
+    "runtimeContract": {
+      "pngs": 70,
+      "files": 71,
+      "numericFramesPerUnit": 8,
+      "unitMarkerIds": 20,
+      "finitePointsPerMarker": 8,
+      "distinctFactions": true
+    },
+    "backgroundHashes": {
+      "stone": "81eb79b9204a718fd33df699e466c7d78cc6255771fd23119fdbd20d80a269e4",
+      "castle": "193b4e66ede6b45e65d5fcade412028c3a6555ed3119c6d5d7db92ce0faf4de5",
+      "renaissance": "f425856159a807538728c2f0869f237f60539081ca94c8cbf27731d21c46ab09",
+      "modern": "c9c3a4d85f95ea39ac716c9669c10ee717d8785370dd41747e8462314441e8f8",
+      "future": "a996b5c56821a60b48b33e25746bbabf769dd8d7af25d824b7ecf206752cfa39"
+    }
+  },
+  "smoke": {
+    "url": "http://127.0.0.1:5191/AgeOfMax/",
+    "title": "Age of Max — Fünf Zeitalter. Ein Schlachtfeld.",
+    "runtimeFiles": 71,
+    "errors": [],
+    "developmentBridge": false,
+    "interaction": "New battle, normal difficulty, three recruitment keys; screenshots require visual review."
+  },
+  "preview": {
+    "pid": 32256,
+    "startedAt": "2026-09-09T04:16:57.1062423+02:00",
+    "url": "http://127.0.0.1:5191/AgeOfMax/",
+    "command": "node node_modules/vite/bin/vite.js preview --host 127.0.0.1 --port 5191 --strictPort",
+    "workingDirectory": "G:/Repositories/AgeOfMax",
+    "hidden": true,
+    "intentionallyLeftRunning": true
+  },
+  "productionImage": "art/qa/production-battle.jpg",
+  "productionImageVisuallyReviewed": true
+}

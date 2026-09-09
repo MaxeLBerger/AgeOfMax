@@ -1,0 +1,21 @@
+{
+  "status": "validated_with_minimal_rgb_rounding_difference",
+  "candidate_size": [
+    1600,
+    900
+  ],
+  "export_size": [
+    1600,
+    900
+  ],
+  "rgba_pixels_identical": false,
+  "candidate_sha256": "f602c8cbfd0cd06b0a1ae9b36e35795eaa1f1def27862fcedff6b47b888df828",
+  "reexport_sha256": "5cde1a492673c7d741f3b2fd6011bd292c1976ca169a129c3dab93aab82a20d4",
+  "comparison": "exact full RGBA pixel bytes; includes all RGB channels even when difference alpha is zero",
+  "maximum_rgb_channel_difference_8bit": 1,
+  "mean_rgb_channel_difference_8bit": 5.902777777777778e-05,
+  "different_rgb_pixels": 255,
+  "total_pixels": 1440000,
+  "fraction_different": 0.00017708333333333335,
+  "note": "Geometry, camera and terrain exact. Observed residual is a single 8-bit level in 255 pixels; no assertion of byte-identical render."
+}

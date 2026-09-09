@@ -1,0 +1,20 @@
+{
+  "cannon": {
+    "nominalSpeedPxPerSecond": 25,
+    "referenceDisplayScale": 0.51,
+    "cycleDistancePixels": 36.82678420799417,
+    "nominalCycleDurationMs": 1473.0713683197669,
+    "motionKind": "wheel-or-track",
+    "stanceFraction": 0,
+    "doubleSupportFrames": []
+  },
+  "tank": {
+    "nominalSpeedPxPerSecond": 31,
+    "referenceDisplayScale": 0.51,
+    "cycleDistancePixels": 10.047837817067121,
+    "nominalCycleDurationMs": 324.1238005505523,
+    "motionKind": "wheel-or-track",
+    "stanceFraction": 0,
+    "doubleSupportFrames": []
+  }
+}

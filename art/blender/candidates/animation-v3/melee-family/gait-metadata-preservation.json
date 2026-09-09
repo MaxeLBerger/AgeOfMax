@@ -1,0 +1,74 @@
+{
+  "clubman": {
+    "passed": true,
+    "before_sha256": "adacb2d8f6cd2bd533ebe0c7191fb15f21df646f5d6e3e90dc936f3ac2c4cb58",
+    "after_sha256": "1906439f7ecdcf6fa3034927622ddf7a1827e7d4c2949c5115444754334240bf",
+    "geometry_bindings_bones_camera_actions_preserved": true,
+    "gait": {
+      "nominalSpeedPxPerSecond": 40,
+      "referenceDisplayScale": 0.43,
+      "cycleDistancePixels": 20.8,
+      "nominalCycleDurationMs": 520,
+      "motionKind": "biped",
+      "stanceFraction": 0.6,
+      "doubleSupportFrames": [
+        0,
+        4
+      ]
+    }
+  },
+  "clubman-enemy": {
+    "passed": true,
+    "before_sha256": "aff3e8bb1a82abe3d5bd4dbb2558dadfe88c49e1f315e8c03ebe4b4e5502a668",
+    "after_sha256": "df6c0b9eb105bbf5d448e215737eb9ffe7b1724032bca24e4aed1c69f392b23a",
+    "geometry_bindings_bones_camera_actions_preserved": true,
+    "gait": {
+      "nominalSpeedPxPerSecond": 40,
+      "referenceDisplayScale": 0.43,
+      "cycleDistancePixels": 20.8,
+      "nominalCycleDurationMs": 520,
+      "motionKind": "biped",
+      "stanceFraction": 0.6,
+      "doubleSupportFrames": [
+        0,
+        4
+      ]
+    }
+  },
+  "swordsman": {
+    "passed": true,
+    "before_sha256": "8ba91b6b6fc2fd25c2d60eae22031fe2c1848cb1ad2a5afcf04084a14e44228a",
+    "after_sha256": "63704929c0267eee4ab770a794bdc1afc22b67ff83e6eaab873b9f11f055f097",
+    "geometry_bindings_bones_camera_actions_preserved": true,
+    "gait": {
+      "nominalSpeedPxPerSecond": 43,
+      "referenceDisplayScale": 0.43,
+      "cycleDistancePixels": 22.36,
+      "nominalCycleDurationMs": 520,
+      "motionKind": "biped",
+      "stanceFraction": 0.6,
+      "doubleSupportFrames": [
+        0,
+        4
+      ]
+    }
+  },
+  "swordsman-enemy": {
+    "passed": true,
+    "before_sha256": "08de1f29b24d355ffa7375559f6053b0436d7ccf2b5a5c62e434bf9cdf118817",
+    "after_sha256": "f4df3cf70b0d47a8a73abba77c9c76a604b8281ce74a630499ebc275c1bb8d45",
+    "geometry_bindings_bones_camera_actions_preserved": true,
+    "gait": {
+      "nominalSpeedPxPerSecond": 43,
+      "referenceDisplayScale": 0.43,
+      "cycleDistancePixels": 22.36,
+      "nominalCycleDurationMs": 520,
+      "motionKind": "biped",
+      "stanceFraction": 0.6,
+      "doubleSupportFrames": [
+        0,
+        4
+      ]
+    }
+  }
+}

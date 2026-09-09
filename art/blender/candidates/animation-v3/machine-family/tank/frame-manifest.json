@@ -1,0 +1,128 @@
+{
+  "00.png": {
+    "source_sha256": "6fe658934ba6d7ffbb66a20fd699741f57d4043b2dca174919309facc5a0ad46",
+    "png_sha256": "920c113203a734fc76056fb339c8a368320078027d2a23b4841cb08d25a949dc",
+    "clip": "walk",
+    "action_frame": 0,
+    "samples": 48
+  },
+  "01.png": {
+    "source_sha256": "6fe658934ba6d7ffbb66a20fd699741f57d4043b2dca174919309facc5a0ad46",
+    "png_sha256": "494fd06887dae53d7ab585191046fff70223a72419e1cc9ff88a1d41a37d84a7",
+    "clip": "walk",
+    "action_frame": 1,
+    "samples": 48
+  },
+  "02.png": {
+    "source_sha256": "6fe658934ba6d7ffbb66a20fd699741f57d4043b2dca174919309facc5a0ad46",
+    "png_sha256": "aaf3de6d46154ad7e331bcb23ce71f9fda0706556cb24d095d88fd8508aeb83e",
+    "clip": "walk",
+    "action_frame": 2,
+    "samples": 48
+  },
+  "03.png": {
+    "source_sha256": "6fe658934ba6d7ffbb66a20fd699741f57d4043b2dca174919309facc5a0ad46",
+    "png_sha256": "2ef8463afa65c16091071b41e0ca27bbbfd6ef336dbac7d2221daf3d04e6cc17",
+    "clip": "walk",
+    "action_frame": 3,
+    "samples": 48
+  },
+  "04.png": {
+    "source_sha256": "6fe658934ba6d7ffbb66a20fd699741f57d4043b2dca174919309facc5a0ad46",
+    "png_sha256": "0346b6df21fc80fa52157eb7c82a26fa47327febf9ea3645e828671ce3a722da",
+    "clip": "walk",
+    "action_frame": 4,
+    "samples": 48
+  },
+  "05.png": {
+    "source_sha256": "6fe658934ba6d7ffbb66a20fd699741f57d4043b2dca174919309facc5a0ad46",
+    "png_sha256": "179600f7c03c676c0917628efe7d1aebac96bfb6860ab81e8bfd7b39892d5545",
+    "clip": "walk",
+    "action_frame": 5,
+    "samples": 48
+  },
+  "06.png": {
+    "source_sha256": "6fe658934ba6d7ffbb66a20fd699741f57d4043b2dca174919309facc5a0ad46",
+    "png_sha256": "e9b75250bb19cda5bfcb02582b48049588cb6270866d109b12759aab46ff6e20",
+    "clip": "walk",
+    "action_frame": 6,
+    "samples": 48
+  },
+  "07.png": {
+    "source_sha256": "6fe658934ba6d7ffbb66a20fd699741f57d4043b2dca174919309facc5a0ad46",
+    "png_sha256": "187eb7d832de535e22c92ac9293d3a85d01e3a87f76ef5e673a386054048e1b6",
+    "clip": "walk",
+    "action_frame": 7,
+    "samples": 48
+  },
+  "08.png": {
+    "source_sha256": "6fe658934ba6d7ffbb66a20fd699741f57d4043b2dca174919309facc5a0ad46",
+    "png_sha256": "6895c9e0cd33a805b31bb31a53cc5833105ae50ec155ed91f1de1c92123a80ad",
+    "clip": "attack",
+    "action_frame": 0,
+    "samples": 48
+  },
+  "09.png": {
+    "source_sha256": "6fe658934ba6d7ffbb66a20fd699741f57d4043b2dca174919309facc5a0ad46",
+    "png_sha256": "d835f8824313e29c5df1ff8578f21666928c3812510dc094438c841e303b4a9b",
+    "clip": "attack",
+    "action_frame": 1,
+    "samples": 48
+  },
+  "10.png": {
+    "source_sha256": "6fe658934ba6d7ffbb66a20fd699741f57d4043b2dca174919309facc5a0ad46",
+    "png_sha256": "818532ab75e2ebf91db802d8ef6bc3dc82de5591c9d54872a74e0a6dfe0cb2b0",
+    "clip": "attack",
+    "action_frame": 2,
+    "samples": 48
+  },
+  "11.png": {
+    "source_sha256": "6fe658934ba6d7ffbb66a20fd699741f57d4043b2dca174919309facc5a0ad46",
+    "png_sha256": "e3dde61a0bf024e9aeea1a6cc83ae94d055505823a217c4a8611070c280cb57b",
+    "clip": "attack",
+    "action_frame": 3,
+    "samples": 48
+  },
+  "12.png": {
+    "source_sha256": "6fe658934ba6d7ffbb66a20fd699741f57d4043b2dca174919309facc5a0ad46",
+    "png_sha256": "59dba96784487d99b1606a4911975af229ad414448487d38595b5d5ba461ba9c",
+    "clip": "attack",
+    "action_frame": 4,
+    "samples": 48
+  },
+  "13.png": {
+    "source_sha256": "6fe658934ba6d7ffbb66a20fd699741f57d4043b2dca174919309facc5a0ad46",
+    "png_sha256": "4f8a370ac6fe02f282bfad775a4a14bf667e28321082225ebbd79d4c42f6abea",
+    "clip": "attack",
+    "action_frame": 5,
+    "samples": 48
+  },
+  "14.png": {
+    "source_sha256": "6fe658934ba6d7ffbb66a20fd699741f57d4043b2dca174919309facc5a0ad46",
+    "png_sha256": "a62143e21424641439b4a52a9ef723ccfb3a0ce038da1f2123042896a3b54ed3",
+    "clip": "attack",
+    "action_frame": 6,
+    "samples": 48
+  },
+  "15.png": {
+    "source_sha256": "6fe658934ba6d7ffbb66a20fd699741f57d4043b2dca174919309facc5a0ad46",
+    "png_sha256": "afdf584f76060f14adb4ccdd29d5f35c310b183b38512ae17e14a2717f53c877",
+    "clip": "attack",
+    "action_frame": 7,
+    "samples": 48
+  },
+  "walk-closure.png": {
+    "source_sha256": "6fe658934ba6d7ffbb66a20fd699741f57d4043b2dca174919309facc5a0ad46",
+    "png_sha256": "b815e8fc2139c237cee3d147856191137a5c61e7e9b209ffa78e01f418a90cad",
+    "clip": "walk",
+    "action_frame": 8,
+    "samples": 48
+  },
+  "attack-closure.png": {
+    "source_sha256": "6fe658934ba6d7ffbb66a20fd699741f57d4043b2dca174919309facc5a0ad46",
+    "png_sha256": "15c299d7ab46f1c84d6b47e28ca244814012c6ef934bd5457f14de24e5931447",
+    "clip": "attack",
+    "action_frame": 8,
+    "samples": 48
+  }
+}

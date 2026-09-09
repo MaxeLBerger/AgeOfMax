@@ -1,0 +1,779 @@
+{
+  "status": "rendered",
+  "source": "G:\\Repositories\\AgeOfMax\\art\\blender\\candidates\\modern-v2\\original-background-modern.blend",
+  "source_sha256": "135e05c6ba9f85d8b89698e9ff26ed95acdd1a0b5a37bc8be6594f0ae6ec5328",
+  "public_original_sha256": "d80c898c9969add41eeeed589c7ebddc382c930f1d0a6cab1e8c3769b25f26bf",
+  "source_and_public_unchanged": true,
+  "camera_before": {
+    "name": "Battle valley / fixed horizon",
+    "matrix": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.13170000910758972,
+        -0.9912896156311035,
+        -70.0
+      ],
+      [
+        0.0,
+        0.9912896156311035,
+        0.13170000910758972,
+        12.850000381469727
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "type": "ORTHO",
+    "ortho_scale": 32.0,
+    "resolution": [
+      1600,
+      900,
+      100
+    ]
+  },
+  "camera_after": {
+    "name": "Battle valley / fixed horizon",
+    "matrix": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.13170000910758972,
+        -0.9912896156311035,
+        -70.0
+      ],
+      [
+        0.0,
+        0.9912896156311035,
+        0.13170000910758972,
+        12.850000381469727
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "type": "ORTHO",
+    "ortho_scale": 32.0,
+    "resolution": [
+      1600,
+      900,
+      100
+    ]
+  },
+  "camera_unchanged": true,
+  "terrain_sha256_before": "7d2052137bd69cd41df1e32ba09083cd673ffc59e2358989eb9f20073cb74a98",
+  "terrain_sha256_after": "7d2052137bd69cd41df1e32ba09083cd673ffc59e2358989eb9f20073cb74a98",
+  "terrain_unchanged": true,
+  "building_groups": [
+    "MOD_SawtoothWorks",
+    "MOD_ControlOffice",
+    "MOD_LoadingHall"
+  ],
+  "bounds_1280x720": {
+    "MOD_SawtoothWorks": [
+      260.21,
+      133.58,
+      539.79,
+      373.21
+    ],
+    "MOD_ControlOffice": [
+      581.95,
+      135.98,
+      750.05,
+      389.07
+    ],
+    "MOD_LoadingHall": [
+      778.95,
+      165.32,
+      1041.05,
+      417.82
+    ]
+  },
+  "service_yard": {
+    "name": "MOD_SharedIndustrialServiceCourt",
+    "road": {
+      "object": "MOD_GroundedServiceCourt",
+      "centerline": [
+        [
+          -8.0,
+          18.0
+        ],
+        [
+          -6.0,
+          18.0
+        ],
+        [
+          -3.7,
+          17.7
+        ],
+        [
+          -0.8,
+          17.0
+        ],
+        [
+          2.5,
+          16.0
+        ],
+        [
+          4.6,
+          14.5
+        ],
+        [
+          6.8,
+          13.6
+        ],
+        [
+          9.65,
+          15.0
+        ]
+      ],
+      "width": 2.65,
+      "soil_samples": 595,
+      "surface_offset_above_sampled_soil": 0.045
+    },
+    "ramps": [
+      {
+        "object": "MOD_WorksAccess_ContinuousRampSurface",
+        "building": "MOD_SawtoothWorks",
+        "start": [
+          -3.8834850788116455,
+          21.276182174682617,
+          1.6611716747283936
+        ],
+        "end": [
+          -3.700000047683716,
+          17.700000762939453,
+          1.3635032653808594
+        ],
+        "width": 1.55,
+        "length": 3.5808854631356044,
+        "average_grade": 0.08312704006089058,
+        "max_segment_grade": 0.0996859896813201,
+        "soil_samples": 175,
+        "end_offsets_above_soil": [
+          0.050000000000000044,
+          0.050000000000000044,
+          0.050000000000000044,
+          0.050000000000000044,
+          0.050000000000000044,
+          0.050000000000000044,
+          0.050000000000000044
+        ],
+        "continuous_ground_join": true
+      },
+      {
+        "object": "MOD_OfficeAccess_ContinuousRampSurface",
+        "building": "MOD_ControlOffice",
+        "start": [
+          0.7755616307258606,
+          23.90438461303711,
+          1.002159833908081
+        ],
+        "end": [
+          -0.800000011920929,
+          17.0,
+          0.7012336730957032
+        ],
+        "width": 1.48,
+        "length": 7.081872836243859,
+        "average_grade": 0.04249245471795079,
+        "max_segment_grade": 0.04249245471795106,
+        "soil_samples": 210,
+        "end_offsets_above_soil": [
+          0.050000000000000044,
+          0.050000000000000044,
+          0.050000000000000044,
+          0.050000000000000044,
+          0.050000000000000044,
+          0.050000000000000044,
+          0.04999999999999999
+        ],
+        "continuous_ground_join": true
+      },
+      {
+        "object": "MOD_DockAccess_ContinuousRampSurface",
+        "building": "MOD_LoadingHall",
+        "start": [
+          6.565229892730713,
+          20.58806800842285,
+          1.5873401165008545
+        ],
+        "end": [
+          6.800000190734863,
+          13.600000381469727,
+          0.3482940673828125
+        ],
+        "width": 2.25,
+        "length": 6.9920100839579185,
+        "average_grade": 0.17720884756171057,
+        "max_segment_grade": 0.177208847561712,
+        "soil_samples": 203,
+        "end_offsets_above_soil": [
+          0.050000000000000044,
+          0.04999999999999999,
+          0.04999999999999999,
+          0.04999999999999999,
+          0.04999999999999999,
+          0.04999999999999999,
+          0.04999999999999999
+        ],
+        "continuous_ground_join": true
+      }
+    ],
+    "bounds_1280x720": [
+      319.47,
+      322.6,
+      1051.05,
+      440.84
+    ],
+    "connected_buildings": [
+      "MOD_SawtoothWorks",
+      "MOD_ControlOffice",
+      "MOD_LoadingHall"
+    ],
+    "terrain_unchanged": true
+  },
+  "archived_objects": [
+    "Communications dish",
+    "Communications dish.001",
+    "Horizontal glass band",
+    "Horizontal glass band.001",
+    "Horizontal glass band.002",
+    "Horizontal glass band.003",
+    "Horizontal glass band.004",
+    "Horizontal glass band.005",
+    "Horizontal glass band.006",
+    "Horizontal glass band.007",
+    "Horizontal glass band.008",
+    "Horizontal glass band.009",
+    "Horizontal glass band.010",
+    "Horizontal glass band.011",
+    "Horizontal glass band.012",
+    "Horizontal glass band.013",
+    "Horizontal glass band.014",
+    "Horizontal glass band.015",
+    "Horizontal glass band.016",
+    "Horizontal glass band.017",
+    "Horizontal glass band.018",
+    "Horizontal glass band.019",
+    "Horizontal glass band.020",
+    "Horizontal glass band.021",
+    "Horizontal glass band.022",
+    "Horizontal glass band.023",
+    "Horizontal glass band.024",
+    "Horizontal glass band.025",
+    "Horizontal glass band.026",
+    "Horizontal glass band.027",
+    "Horizontal glass band.028",
+    "Horizontal glass band.029",
+    "Horizontal glass band.030",
+    "Horizontal glass band.031",
+    "Horizontal glass band.032",
+    "Horizontal glass band.033",
+    "Horizontal glass band.034",
+    "Horizontal glass band.035",
+    "Horizontal glass band.036",
+    "Horizontal glass band.037",
+    "Horizontal glass band.038",
+    "Horizontal glass band.039",
+    "Horizontal glass band.040",
+    "Horizontal glass band.041",
+    "Horizontal glass band.042",
+    "Horizontal glass band.043",
+    "Horizontal glass band.044",
+    "Horizontal glass band.045",
+    "Horizontal glass band.046",
+    "Horizontal glass band.047",
+    "Horizontal glass band.048",
+    "Horizontal glass band.049",
+    "Horizontal glass band.050",
+    "Horizontal glass band.051",
+    "Horizontal glass band.052",
+    "Horizontal glass band.053",
+    "Horizontal glass band.054",
+    "Horizontal glass band.055",
+    "Horizontal glass band.056",
+    "Horizontal glass band.057",
+    "Horizontal glass band.058",
+    "Horizontal glass band.059",
+    "Horizontal glass band.060",
+    "Horizontal glass band.061",
+    "Horizontal glass band.062",
+    "Horizontal glass band.063",
+    "Horizontal glass band.064",
+    "Horizontal glass band.065",
+    "Horizontal glass band.066",
+    "Horizontal glass band.067",
+    "Horizontal glass band.068",
+    "Horizontal glass band.069",
+    "Horizontal glass band.070",
+    "Horizontal glass band.071",
+    "Horizontal glass band.072",
+    "Horizontal glass band.073",
+    "Horizontal glass band.074",
+    "Horizontal glass band.075",
+    "Horizontal glass band.076",
+    "Horizontal glass band.077",
+    "Horizontal glass band.078",
+    "Horizontal glass band.079",
+    "Horizontal glass band.080",
+    "Horizontal glass band.081",
+    "Horizontal glass band.082",
+    "Horizontal glass band.083",
+    "Horizontal glass band.084",
+    "Horizontal glass band.085",
+    "Horizontal glass band.086",
+    "Horizontal glass band.087",
+    "Horizontal glass band.088",
+    "Horizontal glass band.089",
+    "Horizontal glass band.090",
+    "Modern skyline",
+    "Modern skyline.001",
+    "Modern skyline.002",
+    "Modern skyline.003",
+    "Modern skyline.004",
+    "Modern skyline.005",
+    "Modern skyline.006",
+    "Modern skyline.007",
+    "Modern skyline.008",
+    "Modern skyline.009",
+    "Modern skyline.010",
+    "Modern skyline.011",
+    "Modern skyline.012",
+    "Radio tower lattice",
+    "Radio tower lattice.001",
+    "Radio tower lattice.002",
+    "Radio tower lattice.003",
+    "Radio tower lattice.004",
+    "Radio tower lattice.005",
+    "Radio tower lattice.006",
+    "Radio tower lattice.007",
+    "Radio tower lattice.008",
+    "Radio tower lattice.009",
+    "Radio tower lattice.010",
+    "Radio tower lattice.011",
+    "Radio tower leg",
+    "Radio tower leg.001",
+    "Radio tower leg.002",
+    "Radio tower leg.003"
+  ],
+  "new_object_count": 652,
+  "total_objects": 1237,
+  "terrace_grounding": [
+    {
+      "name": "MOD_SawtoothWorks",
+      "soil_heights": [
+        0.4499092102050781,
+        1.3611717224121094,
+        0.6873817443847656,
+        0.8880691528320312,
+        0.8714370727539062
+      ],
+      "coping_top": 1.6111717224121094,
+      "skirt_corner_penetration": 0.06,
+      "perimeter_soil_samples": 68,
+      "world_center": [
+        -6.0,
+        23.5
+      ],
+      "rotation": -3,
+      "retaining_material": "poured concrete"
+    },
+    {
+      "name": "MOD_ControlOffice",
+      "soil_heights": [
+        0.7021598815917969,
+        -0.3040142059326172,
+        0.04775428771972656,
+        0.3686065673828125,
+        0.18781280517578125
+      ],
+      "coping_top": 0.9521598815917969,
+      "skirt_corner_penetration": 0.06,
+      "perimeter_soil_samples": 48,
+      "world_center": [
+        0.65,
+        25.7
+      ],
+      "rotation": 4,
+      "retaining_material": "poured concrete"
+    },
+    {
+      "name": "MOD_LoadingHall",
+      "soil_heights": [
+        -0.42801475524902344,
+        0.7003154754638672,
+        1.2873401641845703,
+        -0.3447380065917969,
+        0.10256576538085938
+      ],
+      "coping_top": 1.5373401641845703,
+      "skirt_corner_penetration": 0.06,
+      "perimeter_soil_samples": 64,
+      "world_center": [
+        6.75,
+        22.7
+      ],
+      "rotation": -5,
+      "retaining_material": "poured concrete"
+    }
+  ],
+  "relocated_pine_groups": [
+    {
+      "objects": [
+        "Tapered pine trunk.004",
+        "Individually sculpted evergreen boughs.004",
+        "Soft conifer crown.004"
+      ],
+      "delta": [
+        -4.404617786407471,
+        7.809148788452148,
+        0.14180946350097656
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.006",
+        "Individually sculpted evergreen boughs.006",
+        "Soft conifer crown.006"
+      ],
+      "delta": [
+        9.073389053344727,
+        5.092709541320801,
+        1.5695075988769531
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.007",
+        "Individually sculpted evergreen boughs.007",
+        "Soft conifer crown.007"
+      ],
+      "delta": [
+        -2.430180072784424,
+        11.73985481262207,
+        0.8623714447021484
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.011",
+        "Individually sculpted evergreen boughs.011",
+        "Soft conifer crown.011"
+      ],
+      "delta": [
+        -5.919325828552246,
+        5.802998065948486,
+        0.2017803192138672
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.013",
+        "Individually sculpted evergreen boughs.013",
+        "Soft conifer crown.013"
+      ],
+      "delta": [
+        21.012319564819336,
+        8.777618408203125,
+        0.7516288757324219
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.019",
+        "Individually sculpted evergreen boughs.019",
+        "Soft conifer crown.019"
+      ],
+      "delta": [
+        -9.402593612670898,
+        19.704654693603516,
+        0.40792274475097656
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.022",
+        "Individually sculpted evergreen boughs.022",
+        "Soft conifer crown.022"
+      ],
+      "delta": [
+        -21.654102325439453,
+        8.005711555480957,
+        -0.11769485473632812
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.024",
+        "Individually sculpted evergreen boughs.024",
+        "Soft conifer crown.024"
+      ],
+      "delta": [
+        21.14560317993164,
+        12.541236877441406,
+        1.2364788055419922
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.025",
+        "Individually sculpted evergreen boughs.025",
+        "Soft conifer crown.025"
+      ],
+      "delta": [
+        2.6068594455718994,
+        20.363811492919922,
+        -0.9547958374023438
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.029",
+        "Individually sculpted evergreen boughs.029",
+        "Soft conifer crown.029"
+      ],
+      "delta": [
+        -2.1363394260406494,
+        12.182215690612793,
+        1.1267814636230469
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.031",
+        "Individually sculpted evergreen boughs.031",
+        "Soft conifer crown.031"
+      ],
+      "delta": [
+        18.036758422851562,
+        11.252553939819336,
+        0.6167716979980469
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.035",
+        "Individually sculpted evergreen boughs.035",
+        "Soft conifer crown.035"
+      ],
+      "delta": [
+        9.367568969726562,
+        14.773069381713867,
+        0.009305953979492188
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.039",
+        "Individually sculpted evergreen boughs.039",
+        "Soft conifer crown.039"
+      ],
+      "delta": [
+        -17.61568260192871,
+        19.040306091308594,
+        1.0614967346191406
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.047",
+        "Individually sculpted evergreen boughs.047",
+        "Soft conifer crown.047"
+      ],
+      "delta": [
+        17.952608108520508,
+        4.128798484802246,
+        0.08063125610351562
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.051",
+        "Individually sculpted evergreen boughs.051",
+        "Soft conifer crown.051"
+      ],
+      "delta": [
+        -5.872442722320557,
+        21.892749786376953,
+        -0.06069183349609375
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.052",
+        "Individually sculpted evergreen boughs.052",
+        "Soft conifer crown.052"
+      ],
+      "delta": [
+        -22.096282958984375,
+        9.089497566223145,
+        0.8155021667480469
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.055",
+        "Individually sculpted evergreen boughs.055",
+        "Soft conifer crown.055"
+      ],
+      "delta": [
+        17.733505249023438,
+        15.265536308288574,
+        0.36946678161621094
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.061",
+        "Individually sculpted evergreen boughs.061",
+        "Soft conifer crown.061"
+      ],
+      "delta": [
+        -5.138484954833984,
+        20.695587158203125,
+        -0.26367759704589844
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.069",
+        "Individually sculpted evergreen boughs.069",
+        "Soft conifer crown.069"
+      ],
+      "delta": [
+        -14.459481239318848,
+        10.587224960327148,
+        1.305593490600586
+      ]
+    }
+  ],
+  "raycast_window_checks": [
+    {
+      "parent": "MOD_ControlOffice_Superstructure",
+      "origin": [
+        0.1,
+        -2,
+        0.42
+      ],
+      "hit": "MOD_Office_Window01_RecessedGlass",
+      "local_hit": [
+        0.10000032186508179,
+        -1.2539970874786377,
+        0.41999995708465576
+      ]
+    },
+    {
+      "parent": "MOD_SawtoothWorks_Superstructure",
+      "origin": [
+        -2.1,
+        -2.5,
+        1.05
+      ],
+      "hit": "MOD_Factory_Window00_RecessedGlass",
+      "local_hit": [
+        -2.0999999046325684,
+        -1.7289997339248657,
+        1.0499999523162842
+      ]
+    }
+  ],
+  "rendered": true,
+  "publication": "candidate only",
+  "materials": {
+    "stone": {
+      "roughness": 0.8500000238418579,
+      "metallic": 0.0
+    },
+    "retaining": {
+      "roughness": 0.9100000262260437,
+      "metallic": 0.0
+    },
+    "joint": {
+      "roughness": 0.949999988079071,
+      "metallic": 0.0
+    },
+    "paving": {
+      "roughness": 0.9599999785423279,
+      "metallic": 0.0
+    },
+    "ramp": {
+      "roughness": 0.9100000262260437,
+      "metallic": 0.0
+    },
+    "trim": {
+      "roughness": 0.7799999713897705,
+      "metallic": 0.0
+    },
+    "mortar": {
+      "roughness": 0.9100000262260437,
+      "metallic": 0.0
+    },
+    "brick": {
+      "roughness": 0.8799999952316284,
+      "metallic": 0.0
+    },
+    "steel": {
+      "roughness": 0.4000000059604645,
+      "metallic": 0.6700000166893005
+    },
+    "roof": {
+      "roughness": 0.47999998927116394,
+      "metallic": 0.6800000071525574
+    },
+    "edge": {
+      "roughness": 0.36000001430511475,
+      "metallic": 0.7400000095367432
+    },
+    "dark": {
+      "roughness": 0.7300000190734863,
+      "metallic": 0.0
+    },
+    "glass": {
+      "roughness": 0.1899999976158142,
+      "metallic": 0.14000000059604645
+    },
+    "glassWarm": {
+      "roughness": 0.23000000417232513,
+      "metallic": 0.10000000149011612
+    },
+    "copper": {
+      "roughness": 0.49000000953674316,
+      "metallic": 0.6399999856948853
+    },
+    "rubber": {
+      "roughness": 0.8600000143051147,
+      "metallic": 0.0
+    },
+    "wood": {
+      "roughness": 0.5899999737739563,
+      "metallic": 0.44999998807907104
+    },
+    "yellow": {
+      "roughness": 0.6899999976158142,
+      "metallic": 0.10000000149011612
+    }
+  },
+  "render_samples": 32,
+  "render_devices": [
+    "NVIDIA GeForce RTX 4070 Ti SUPER"
+  ],
+  "render_seconds": 5.06,
+  "render_path": "G:\\Repositories\\AgeOfMax\\art\\blender\\candidates\\modern-v2\\candidate.png"
+}

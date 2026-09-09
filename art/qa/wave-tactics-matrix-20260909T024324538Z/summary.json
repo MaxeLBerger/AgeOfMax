@@ -1,0 +1,1534 @@
+{
+  "createdAt": "2026-09-09T02:44:41.810Z",
+  "group": "wave-tactics-matrix-20260909T024324538Z",
+  "seeds": [
+    "101",
+    "202",
+    "303"
+  ],
+  "profiles": [
+    {
+      "difficulty": "medium",
+      "mode": "mixed"
+    },
+    {
+      "difficulty": "hard",
+      "mode": "mixed"
+    },
+    {
+      "difficulty": "medium",
+      "mode": "line"
+    }
+  ],
+  "sourceFingerprints": [
+    "4fd160e90090dbb4580e18f79c18fc4e88ae81712ce1a41fc09ed058a7333c78"
+  ],
+  "sameSourceVersion": true,
+  "replay": {
+    "source": "art\\qa\\wave-tactics-matrix-20260909T024324538Z\\combat-medium-mixed-1x-seed-101-20260909T024325414Z-225aba47.json",
+    "repeated": "art\\qa\\wave-tactics-matrix-20260909T024324538Z\\combat-medium-mixed-1x-seed-101-20260909T024437117Z-cefb36d2.json",
+    "exactStateMatch": true
+  },
+  "runs": [
+    {
+      "options": {
+        "difficulty": "medium",
+        "mode": "mixed",
+        "speed": 1,
+        "abilities": true,
+        "seed": "101"
+      },
+      "seconds": 201.6499999999742,
+      "winner": "player",
+      "endedBy": "base-destroyed",
+      "recruits": 36,
+      "recruitsById": {
+        "clubman": 4,
+        "slinger": 8,
+        "spearman": 4,
+        "dino-rider": 3,
+        "ballista": 4,
+        "swordsman": 4,
+        "archer": 6,
+        "knight": 3
+      },
+      "unitGold": 3765,
+      "kills": 42,
+      "finalEpoch": 1,
+      "finalEnemyEpoch": 1,
+      "minimumBase": {
+        "fraction": 1,
+        "hp": 4200,
+        "maxHp": 4200,
+        "t": 0,
+        "epoch": 0
+      },
+      "meteorCasts": 1,
+      "artilleryCasts": 0,
+      "epochTransitions": [
+        {
+          "t": 0,
+          "side": "player",
+          "index": 0,
+          "id": "stone"
+        },
+        {
+          "t": 0,
+          "side": "enemy",
+          "index": 0,
+          "id": "stone"
+        },
+        {
+          "t": 97983.33333333896,
+          "side": "player",
+          "index": 1,
+          "id": "castle"
+        },
+        {
+          "t": 144066.66666667437,
+          "side": "enemy",
+          "index": 1,
+          "id": "castle"
+        }
+      ],
+      "blockedOrders": 0,
+      "towerAttempts": [],
+      "start": {
+        "simulationTime": 0,
+        "gold": 240,
+        "xp": 0,
+        "kills": 0,
+        "epoch": 0,
+        "enemyEpoch": 0,
+        "wave": 0,
+        "phase": "prepare",
+        "phaseEndsAt": 12000,
+        "speed": 1,
+        "playerBase": {
+          "hp": 4200,
+          "maxHp": 4200,
+          "x": 100,
+          "y": 500,
+          "side": "player"
+        },
+        "enemyBase": {
+          "hp": 4200,
+          "maxHp": 4200,
+          "x": 1180,
+          "y": 500,
+          "side": "enemy"
+        },
+        "playerArmy": 0,
+        "enemyArmy": 0,
+        "incomeAccumulator": 0,
+        "wavePlan": {
+          "number": 1,
+          "epoch": "stone",
+          "tactic": "mixed",
+          "title": "Mischformation",
+          "advice": "Kombiniere eine starke Front mit Fernkampf. Halte Gold für Verstärkung zurück.",
+          "unitIds": [
+            "clubman",
+            "slinger",
+            "dino-rider",
+            "spearman",
+            "slinger",
+            "slinger",
+            "clubman",
+            "spearman"
+          ],
+          "roster": [
+            {
+              "id": "clubman",
+              "count": 2
+            },
+            {
+              "id": "dino-rider",
+              "count": 1
+            },
+            {
+              "id": "slinger",
+              "count": 3
+            },
+            {
+              "id": "spearman",
+              "count": 2
+            }
+          ],
+          "cost": 550,
+          "referenceCost": 535
+        },
+        "rng": {
+          "mathState": 2307612913,
+          "mathCalls": 2170,
+          "phaserState": "!rnd,1,0.41742285736836493,0.725287250475958,0.7940097081009299"
+        }
+      },
+      "errors": [],
+      "artifact": "art\\qa\\wave-tactics-matrix-20260909T024324538Z\\combat-medium-mixed-1x-seed-101-20260909T024325414Z-225aba47.json"
+    },
+    {
+      "options": {
+        "difficulty": "medium",
+        "mode": "mixed",
+        "speed": 1,
+        "abilities": true,
+        "seed": "202"
+      },
+      "seconds": 336.2333333333586,
+      "winner": "player",
+      "endedBy": "base-destroyed",
+      "recruits": 59,
+      "recruitsById": {
+        "clubman": 4,
+        "slinger": 8,
+        "spearman": 4,
+        "dino-rider": 3,
+        "ballista": 4,
+        "swordsman": 4,
+        "archer": 8,
+        "knight": 4,
+        "cannon": 4,
+        "duelist": 7,
+        "musketeer": 4,
+        "cavalry": 4,
+        "rifleman": 1
+      },
+      "unitGold": 8250,
+      "kills": 75,
+      "finalEpoch": 3,
+      "finalEnemyEpoch": 2,
+      "minimumBase": {
+        "fraction": 1,
+        "hp": 4200,
+        "maxHp": 4200,
+        "t": 0,
+        "epoch": 0
+      },
+      "meteorCasts": 2,
+      "artilleryCasts": 1,
+      "epochTransitions": [
+        {
+          "t": 0,
+          "side": "player",
+          "index": 0,
+          "id": "stone"
+        },
+        {
+          "t": 0,
+          "side": "enemy",
+          "index": 0,
+          "id": "stone"
+        },
+        {
+          "t": 93483.33333333765,
+          "side": "player",
+          "index": 1,
+          "id": "castle"
+        },
+        {
+          "t": 144066.66666667437,
+          "side": "enemy",
+          "index": 1,
+          "id": "castle"
+        },
+        {
+          "t": 231083.3333332904,
+          "side": "player",
+          "index": 2,
+          "id": "renaissance"
+        },
+        {
+          "t": 276149.9999999553,
+          "side": "enemy",
+          "index": 2,
+          "id": "renaissance"
+        },
+        {
+          "t": 330416.66666668514,
+          "side": "player",
+          "index": 3,
+          "id": "modern"
+        }
+      ],
+      "blockedOrders": 0,
+      "towerAttempts": [
+        {
+          "t": 100983.33333333983,
+          "built": false,
+          "id": null,
+          "paid": 0
+        }
+      ],
+      "start": {
+        "simulationTime": 0,
+        "gold": 240,
+        "xp": 0,
+        "kills": 0,
+        "epoch": 0,
+        "enemyEpoch": 0,
+        "wave": 0,
+        "phase": "prepare",
+        "phaseEndsAt": 12000,
+        "speed": 1,
+        "playerBase": {
+          "hp": 4200,
+          "maxHp": 4200,
+          "x": 100,
+          "y": 500,
+          "side": "player"
+        },
+        "enemyBase": {
+          "hp": 4200,
+          "maxHp": 4200,
+          "x": 1180,
+          "y": 500,
+          "side": "enemy"
+        },
+        "playerArmy": 0,
+        "enemyArmy": 0,
+        "incomeAccumulator": 0,
+        "wavePlan": {
+          "number": 1,
+          "epoch": "stone",
+          "tactic": "mixed",
+          "title": "Mischformation",
+          "advice": "Kombiniere eine starke Front mit Fernkampf. Halte Gold für Verstärkung zurück.",
+          "unitIds": [
+            "clubman",
+            "slinger",
+            "dino-rider",
+            "spearman",
+            "slinger",
+            "slinger",
+            "clubman",
+            "spearman"
+          ],
+          "roster": [
+            {
+              "id": "clubman",
+              "count": 2
+            },
+            {
+              "id": "dino-rider",
+              "count": 1
+            },
+            {
+              "id": "slinger",
+              "count": 3
+            },
+            {
+              "id": "spearman",
+              "count": 2
+            }
+          ],
+          "cost": 550,
+          "referenceCost": 535
+        },
+        "rng": {
+          "mathState": 1969732409,
+          "mathCalls": 2170,
+          "phaserState": "!rnd,1,0.07490166975185275,0.13431967003270984,0.7353376387618482"
+        }
+      },
+      "errors": [],
+      "artifact": "art\\qa\\wave-tactics-matrix-20260909T024324538Z\\combat-medium-mixed-1x-seed-202-20260909T024331312Z-4cab35b4.json"
+    },
+    {
+      "options": {
+        "difficulty": "medium",
+        "mode": "mixed",
+        "speed": 1,
+        "abilities": true,
+        "seed": "303"
+      },
+      "seconds": 208.4166666666369,
+      "winner": "player",
+      "endedBy": "base-destroyed",
+      "recruits": 38,
+      "recruitsById": {
+        "clubman": 4,
+        "slinger": 8,
+        "spearman": 4,
+        "dino-rider": 3,
+        "ballista": 4,
+        "swordsman": 4,
+        "archer": 7,
+        "knight": 3,
+        "cavalry": 1
+      },
+      "unitGold": 4125,
+      "kills": 44,
+      "finalEpoch": 2,
+      "finalEnemyEpoch": 1,
+      "minimumBase": {
+        "fraction": 1,
+        "hp": 4200,
+        "maxHp": 4200,
+        "t": 0,
+        "epoch": 0
+      },
+      "meteorCasts": 1,
+      "artilleryCasts": 0,
+      "epochTransitions": [
+        {
+          "t": 0,
+          "side": "player",
+          "index": 0,
+          "id": "stone"
+        },
+        {
+          "t": 0,
+          "side": "enemy",
+          "index": 0,
+          "id": "stone"
+        },
+        {
+          "t": 97983.33333333896,
+          "side": "player",
+          "index": 1,
+          "id": "castle"
+        },
+        {
+          "t": 144066.66666667437,
+          "side": "enemy",
+          "index": 1,
+          "id": "castle"
+        },
+        {
+          "t": 206816.66666663784,
+          "side": "player",
+          "index": 2,
+          "id": "renaissance"
+        }
+      ],
+      "blockedOrders": 0,
+      "towerAttempts": [
+        {
+          "t": 135533.333333346,
+          "built": false,
+          "id": null,
+          "paid": 0
+        }
+      ],
+      "start": {
+        "simulationTime": 0,
+        "gold": 240,
+        "xp": 0,
+        "kills": 0,
+        "epoch": 0,
+        "enemyEpoch": 0,
+        "wave": 0,
+        "phase": "prepare",
+        "phaseEndsAt": 12000,
+        "speed": 1,
+        "playerBase": {
+          "hp": 4200,
+          "maxHp": 4200,
+          "x": 100,
+          "y": 500,
+          "side": "player"
+        },
+        "enemyBase": {
+          "hp": 4200,
+          "maxHp": 4200,
+          "x": 1180,
+          "y": 500,
+          "side": "enemy"
+        },
+        "playerArmy": 0,
+        "enemyArmy": 0,
+        "incomeAccumulator": 0,
+        "wavePlan": {
+          "number": 1,
+          "epoch": "stone",
+          "tactic": "mixed",
+          "title": "Mischformation",
+          "advice": "Kombiniere eine starke Front mit Fernkampf. Halte Gold für Verstärkung zurück.",
+          "unitIds": [
+            "clubman",
+            "slinger",
+            "dino-rider",
+            "spearman",
+            "slinger",
+            "slinger",
+            "clubman",
+            "spearman"
+          ],
+          "roster": [
+            {
+              "id": "clubman",
+              "count": 2
+            },
+            {
+              "id": "dino-rider",
+              "count": 1
+            },
+            {
+              "id": "slinger",
+              "count": 3
+            },
+            {
+              "id": "spearman",
+              "count": 2
+            }
+          ],
+          "cost": 550,
+          "referenceCost": 535
+        },
+        "rng": {
+          "mathState": 2268638689,
+          "mathCalls": 2170,
+          "phaserState": "!rnd,1,0.4807954910211265,0.24471375602297485,0.2298838144633919"
+        }
+      },
+      "errors": [],
+      "artifact": "art\\qa\\wave-tactics-matrix-20260909T024324538Z\\combat-medium-mixed-1x-seed-303-20260909T024337721Z-971bc509.json"
+    },
+    {
+      "options": {
+        "difficulty": "hard",
+        "mode": "mixed",
+        "speed": 1,
+        "abilities": true,
+        "seed": "101"
+      },
+      "seconds": 304.6999999999885,
+      "winner": "player",
+      "endedBy": "base-destroyed",
+      "recruits": 55,
+      "recruitsById": {
+        "clubman": 4,
+        "slinger": 7,
+        "spearman": 3,
+        "dino-rider": 3,
+        "knight": 3,
+        "archer": 6,
+        "ballista": 3,
+        "swordsman": 3,
+        "cavalry": 4,
+        "duelist": 8,
+        "cannon": 4,
+        "musketeer": 3,
+        "rifleman": 2,
+        "grenadier": 1,
+        "sniper": 1
+      },
+      "unitGold": 8235,
+      "kills": 81,
+      "finalEpoch": 3,
+      "finalEnemyEpoch": 2,
+      "minimumBase": {
+        "fraction": 1,
+        "hp": 4200,
+        "maxHp": 4200,
+        "t": 0,
+        "epoch": 0
+      },
+      "meteorCasts": 3,
+      "artilleryCasts": 1,
+      "epochTransitions": [
+        {
+          "t": 0,
+          "side": "player",
+          "index": 0,
+          "id": "stone"
+        },
+        {
+          "t": 0,
+          "side": "enemy",
+          "index": 0,
+          "id": "stone"
+        },
+        {
+          "t": 87483.3333333359,
+          "side": "player",
+          "index": 1,
+          "id": "castle"
+        },
+        {
+          "t": 144066.66666667437,
+          "side": "enemy",
+          "index": 1,
+          "id": "castle"
+        },
+        {
+          "t": 181033.33333331952,
+          "side": "player",
+          "index": 2,
+          "id": "renaissance"
+        },
+        {
+          "t": 276149.9999999553,
+          "side": "enemy",
+          "index": 2,
+          "id": "renaissance"
+        },
+        {
+          "t": 286916.6666666345,
+          "side": "player",
+          "index": 3,
+          "id": "modern"
+        }
+      ],
+      "blockedOrders": 0,
+      "towerAttempts": [
+        {
+          "t": 132500.00000001444,
+          "built": false,
+          "id": null,
+          "paid": 0
+        }
+      ],
+      "start": {
+        "simulationTime": 0,
+        "gold": 200,
+        "xp": 0,
+        "kills": 0,
+        "epoch": 0,
+        "enemyEpoch": 0,
+        "wave": 0,
+        "phase": "prepare",
+        "phaseEndsAt": 12000,
+        "speed": 1,
+        "playerBase": {
+          "hp": 4200,
+          "maxHp": 4200,
+          "x": 100,
+          "y": 500,
+          "side": "player"
+        },
+        "enemyBase": {
+          "hp": 4200,
+          "maxHp": 4200,
+          "x": 1180,
+          "y": 500,
+          "side": "enemy"
+        },
+        "playerArmy": 0,
+        "enemyArmy": 0,
+        "incomeAccumulator": 0,
+        "wavePlan": {
+          "number": 1,
+          "epoch": "stone",
+          "tactic": "mixed",
+          "title": "Mischformation",
+          "advice": "Kombiniere eine starke Front mit Fernkampf. Halte Gold für Verstärkung zurück.",
+          "unitIds": [
+            "clubman",
+            "slinger",
+            "dino-rider",
+            "spearman",
+            "clubman",
+            "slinger",
+            "spearman",
+            "slinger",
+            "dino-rider",
+            "clubman"
+          ],
+          "roster": [
+            {
+              "id": "clubman",
+              "count": 3
+            },
+            {
+              "id": "dino-rider",
+              "count": 2
+            },
+            {
+              "id": "slinger",
+              "count": 3
+            },
+            {
+              "id": "spearman",
+              "count": 2
+            }
+          ],
+          "cost": 715,
+          "referenceCost": 720
+        },
+        "rng": {
+          "mathState": 2307612913,
+          "mathCalls": 2170,
+          "phaserState": "!rnd,1,0.41742285736836493,0.725287250475958,0.7940097081009299"
+        }
+      },
+      "errors": [],
+      "artifact": "art\\qa\\wave-tactics-matrix-20260909T024324538Z\\combat-hard-mixed-1x-seed-101-20260909T024343405Z-bc7b27b4.json"
+    },
+    {
+      "options": {
+        "difficulty": "hard",
+        "mode": "mixed",
+        "speed": 1,
+        "abilities": true,
+        "seed": "202"
+      },
+      "seconds": 354.4000000000464,
+      "winner": "player",
+      "endedBy": "base-destroyed",
+      "recruits": 64,
+      "recruitsById": {
+        "clubman": 4,
+        "slinger": 7,
+        "spearman": 4,
+        "dino-rider": 3,
+        "archer": 6,
+        "ballista": 3,
+        "swordsman": 3,
+        "knight": 2,
+        "cavalry": 5,
+        "duelist": 8,
+        "cannon": 4,
+        "musketeer": 4,
+        "rifleman": 5,
+        "sniper": 2,
+        "tank": 2,
+        "grenadier": 2
+      },
+      "unitGold": 10705,
+      "kills": 93,
+      "finalEpoch": 3,
+      "finalEnemyEpoch": 2,
+      "minimumBase": {
+        "fraction": 1,
+        "hp": 4200,
+        "maxHp": 4200,
+        "t": 0,
+        "epoch": 0
+      },
+      "meteorCasts": 2,
+      "artilleryCasts": 1,
+      "epochTransitions": [
+        {
+          "t": 0,
+          "side": "player",
+          "index": 0,
+          "id": "stone"
+        },
+        {
+          "t": 0,
+          "side": "enemy",
+          "index": 0,
+          "id": "stone"
+        },
+        {
+          "t": 90483.33333333678,
+          "side": "player",
+          "index": 1,
+          "id": "castle"
+        },
+        {
+          "t": 144066.66666667437,
+          "side": "enemy",
+          "index": 1,
+          "id": "castle"
+        },
+        {
+          "t": 170416.66666665903,
+          "side": "player",
+          "index": 2,
+          "id": "renaissance"
+        },
+        {
+          "t": 276149.9999999553,
+          "side": "enemy",
+          "index": 2,
+          "id": "renaissance"
+        },
+        {
+          "t": 297416.6666666467,
+          "side": "player",
+          "index": 3,
+          "id": "modern"
+        }
+      ],
+      "blockedOrders": 0,
+      "towerAttempts": [
+        {
+          "t": 124983.33333334682,
+          "built": false,
+          "id": null,
+          "paid": 0
+        }
+      ],
+      "start": {
+        "simulationTime": 0,
+        "gold": 200,
+        "xp": 0,
+        "kills": 0,
+        "epoch": 0,
+        "enemyEpoch": 0,
+        "wave": 0,
+        "phase": "prepare",
+        "phaseEndsAt": 12000,
+        "speed": 1,
+        "playerBase": {
+          "hp": 4200,
+          "maxHp": 4200,
+          "x": 100,
+          "y": 500,
+          "side": "player"
+        },
+        "enemyBase": {
+          "hp": 4200,
+          "maxHp": 4200,
+          "x": 1180,
+          "y": 500,
+          "side": "enemy"
+        },
+        "playerArmy": 0,
+        "enemyArmy": 0,
+        "incomeAccumulator": 0,
+        "wavePlan": {
+          "number": 1,
+          "epoch": "stone",
+          "tactic": "mixed",
+          "title": "Mischformation",
+          "advice": "Kombiniere eine starke Front mit Fernkampf. Halte Gold für Verstärkung zurück.",
+          "unitIds": [
+            "clubman",
+            "slinger",
+            "dino-rider",
+            "spearman",
+            "clubman",
+            "slinger",
+            "spearman",
+            "slinger",
+            "dino-rider",
+            "clubman"
+          ],
+          "roster": [
+            {
+              "id": "clubman",
+              "count": 3
+            },
+            {
+              "id": "dino-rider",
+              "count": 2
+            },
+            {
+              "id": "slinger",
+              "count": 3
+            },
+            {
+              "id": "spearman",
+              "count": 2
+            }
+          ],
+          "cost": 715,
+          "referenceCost": 720
+        },
+        "rng": {
+          "mathState": 1969732409,
+          "mathCalls": 2170,
+          "phaserState": "!rnd,1,0.07490166975185275,0.13431967003270984,0.7353376387618482"
+        }
+      },
+      "errors": [],
+      "artifact": "art\\qa\\wave-tactics-matrix-20260909T024324538Z\\combat-hard-mixed-1x-seed-202-20260909T024349966Z-e25978b5.json"
+    },
+    {
+      "options": {
+        "difficulty": "hard",
+        "mode": "mixed",
+        "speed": 1,
+        "abilities": true,
+        "seed": "303"
+      },
+      "seconds": 304.6999999999885,
+      "winner": "player",
+      "endedBy": "base-destroyed",
+      "recruits": 55,
+      "recruitsById": {
+        "clubman": 4,
+        "slinger": 7,
+        "spearman": 3,
+        "dino-rider": 3,
+        "knight": 3,
+        "archer": 6,
+        "ballista": 3,
+        "swordsman": 3,
+        "cavalry": 4,
+        "duelist": 8,
+        "cannon": 4,
+        "musketeer": 3,
+        "rifleman": 2,
+        "grenadier": 1,
+        "sniper": 1
+      },
+      "unitGold": 8235,
+      "kills": 81,
+      "finalEpoch": 3,
+      "finalEnemyEpoch": 2,
+      "minimumBase": {
+        "fraction": 1,
+        "hp": 4200,
+        "maxHp": 4200,
+        "t": 0,
+        "epoch": 0
+      },
+      "meteorCasts": 3,
+      "artilleryCasts": 1,
+      "epochTransitions": [
+        {
+          "t": 0,
+          "side": "player",
+          "index": 0,
+          "id": "stone"
+        },
+        {
+          "t": 0,
+          "side": "enemy",
+          "index": 0,
+          "id": "stone"
+        },
+        {
+          "t": 87483.3333333359,
+          "side": "player",
+          "index": 1,
+          "id": "castle"
+        },
+        {
+          "t": 144066.66666667437,
+          "side": "enemy",
+          "index": 1,
+          "id": "castle"
+        },
+        {
+          "t": 181033.33333331952,
+          "side": "player",
+          "index": 2,
+          "id": "renaissance"
+        },
+        {
+          "t": 276149.9999999553,
+          "side": "enemy",
+          "index": 2,
+          "id": "renaissance"
+        },
+        {
+          "t": 286916.6666666345,
+          "side": "player",
+          "index": 3,
+          "id": "modern"
+        }
+      ],
+      "blockedOrders": 0,
+      "towerAttempts": [
+        {
+          "t": 132500.00000001444,
+          "built": false,
+          "id": null,
+          "paid": 0
+        }
+      ],
+      "start": {
+        "simulationTime": 0,
+        "gold": 200,
+        "xp": 0,
+        "kills": 0,
+        "epoch": 0,
+        "enemyEpoch": 0,
+        "wave": 0,
+        "phase": "prepare",
+        "phaseEndsAt": 12000,
+        "speed": 1,
+        "playerBase": {
+          "hp": 4200,
+          "maxHp": 4200,
+          "x": 100,
+          "y": 500,
+          "side": "player"
+        },
+        "enemyBase": {
+          "hp": 4200,
+          "maxHp": 4200,
+          "x": 1180,
+          "y": 500,
+          "side": "enemy"
+        },
+        "playerArmy": 0,
+        "enemyArmy": 0,
+        "incomeAccumulator": 0,
+        "wavePlan": {
+          "number": 1,
+          "epoch": "stone",
+          "tactic": "mixed",
+          "title": "Mischformation",
+          "advice": "Kombiniere eine starke Front mit Fernkampf. Halte Gold für Verstärkung zurück.",
+          "unitIds": [
+            "clubman",
+            "slinger",
+            "dino-rider",
+            "spearman",
+            "clubman",
+            "slinger",
+            "spearman",
+            "slinger",
+            "dino-rider",
+            "clubman"
+          ],
+          "roster": [
+            {
+              "id": "clubman",
+              "count": 3
+            },
+            {
+              "id": "dino-rider",
+              "count": 2
+            },
+            {
+              "id": "slinger",
+              "count": 3
+            },
+            {
+              "id": "spearman",
+              "count": 2
+            }
+          ],
+          "cost": 715,
+          "referenceCost": 720
+        },
+        "rng": {
+          "mathState": 2268638689,
+          "mathCalls": 2170,
+          "phaserState": "!rnd,1,0.4807954910211265,0.24471375602297485,0.2298838144633919"
+        }
+      },
+      "errors": [],
+      "artifact": "art\\qa\\wave-tactics-matrix-20260909T024324538Z\\combat-hard-mixed-1x-seed-303-20260909T024356568Z-f1a79c67.json"
+    },
+    {
+      "options": {
+        "difficulty": "medium",
+        "mode": "line",
+        "speed": 1,
+        "abilities": true,
+        "seed": "101"
+      },
+      "seconds": 658.1666666665991,
+      "winner": "enemy",
+      "endedBy": "base-destroyed",
+      "recruits": 128,
+      "recruitsById": {
+        "clubman": 30,
+        "swordsman": 29,
+        "duelist": 31,
+        "tank": 17,
+        "mech": 21
+      },
+      "unitGold": 27230,
+      "kills": 147,
+      "finalEpoch": 4,
+      "finalEnemyEpoch": 4,
+      "minimumBase": {
+        "fraction": 0,
+        "hp": 0,
+        "maxHp": 14000,
+        "t": 658166.6666665991,
+        "epoch": 4
+      },
+      "meteorCasts": 10,
+      "artilleryCasts": 7,
+      "epochTransitions": [
+        {
+          "t": 0,
+          "side": "player",
+          "index": 0,
+          "id": "stone"
+        },
+        {
+          "t": 0,
+          "side": "enemy",
+          "index": 0,
+          "id": "stone"
+        },
+        {
+          "t": 108483.33333334202,
+          "side": "player",
+          "index": 1,
+          "id": "castle"
+        },
+        {
+          "t": 144066.66666667437,
+          "side": "enemy",
+          "index": 1,
+          "id": "castle"
+        },
+        {
+          "t": 255349.99999994293,
+          "side": "player",
+          "index": 2,
+          "id": "renaissance"
+        },
+        {
+          "t": 276149.9999999553,
+          "side": "enemy",
+          "index": 2,
+          "id": "renaissance"
+        },
+        {
+          "t": 379916.66666674276,
+          "side": "player",
+          "index": 3,
+          "id": "modern"
+        },
+        {
+          "t": 408150.00000010896,
+          "side": "enemy",
+          "index": 3,
+          "id": "modern"
+        },
+        {
+          "t": 525433.3333335748,
+          "side": "player",
+          "index": 4,
+          "id": "future"
+        },
+        {
+          "t": 540166.6666668738,
+          "side": "enemy",
+          "index": 4,
+          "id": "future"
+        }
+      ],
+      "blockedOrders": 0,
+      "towerAttempts": [
+        {
+          "t": 255349.99999994293,
+          "built": false,
+          "id": null,
+          "paid": 0
+        }
+      ],
+      "start": {
+        "simulationTime": 0,
+        "gold": 240,
+        "xp": 0,
+        "kills": 0,
+        "epoch": 0,
+        "enemyEpoch": 0,
+        "wave": 0,
+        "phase": "prepare",
+        "phaseEndsAt": 12000,
+        "speed": 1,
+        "playerBase": {
+          "hp": 4200,
+          "maxHp": 4200,
+          "x": 100,
+          "y": 500,
+          "side": "player"
+        },
+        "enemyBase": {
+          "hp": 4200,
+          "maxHp": 4200,
+          "x": 1180,
+          "y": 500,
+          "side": "enemy"
+        },
+        "playerArmy": 0,
+        "enemyArmy": 0,
+        "incomeAccumulator": 0,
+        "wavePlan": {
+          "number": 1,
+          "epoch": "stone",
+          "tactic": "mixed",
+          "title": "Mischformation",
+          "advice": "Kombiniere eine starke Front mit Fernkampf. Halte Gold für Verstärkung zurück.",
+          "unitIds": [
+            "clubman",
+            "slinger",
+            "dino-rider",
+            "spearman",
+            "slinger",
+            "slinger",
+            "clubman",
+            "spearman"
+          ],
+          "roster": [
+            {
+              "id": "clubman",
+              "count": 2
+            },
+            {
+              "id": "dino-rider",
+              "count": 1
+            },
+            {
+              "id": "slinger",
+              "count": 3
+            },
+            {
+              "id": "spearman",
+              "count": 2
+            }
+          ],
+          "cost": 550,
+          "referenceCost": 535
+        },
+        "rng": {
+          "mathState": 2307612913,
+          "mathCalls": 2170,
+          "phaserState": "!rnd,1,0.41742285736836493,0.725287250475958,0.7940097081009299"
+        }
+      },
+      "errors": [],
+      "artifact": "art\\qa\\wave-tactics-matrix-20260909T024324538Z\\combat-medium-line-1x-seed-101-20260909T024403546Z-9837af8a.json"
+    },
+    {
+      "options": {
+        "difficulty": "medium",
+        "mode": "line",
+        "speed": 1,
+        "abilities": true,
+        "seed": "202"
+      },
+      "seconds": 805.8166666662553,
+      "winner": "enemy",
+      "endedBy": "base-destroyed",
+      "recruits": 152,
+      "recruitsById": {
+        "clubman": 30,
+        "swordsman": 28,
+        "duelist": 33,
+        "tank": 17,
+        "mech": 44
+      },
+      "unitGold": 39845,
+      "kills": 186,
+      "finalEpoch": 4,
+      "finalEnemyEpoch": 4,
+      "minimumBase": {
+        "fraction": 0,
+        "hp": 0,
+        "maxHp": 14000,
+        "t": 805816.6666662553,
+        "epoch": 4
+      },
+      "meteorCasts": 13,
+      "artilleryCasts": 9,
+      "epochTransitions": [
+        {
+          "t": 0,
+          "side": "player",
+          "index": 0,
+          "id": "stone"
+        },
+        {
+          "t": 0,
+          "side": "enemy",
+          "index": 0,
+          "id": "stone"
+        },
+        {
+          "t": 106983.33333334158,
+          "side": "player",
+          "index": 1,
+          "id": "castle"
+        },
+        {
+          "t": 144066.66666667437,
+          "side": "enemy",
+          "index": 1,
+          "id": "castle"
+        },
+        {
+          "t": 226533.33333329303,
+          "side": "player",
+          "index": 2,
+          "id": "renaissance"
+        },
+        {
+          "t": 276149.9999999553,
+          "side": "enemy",
+          "index": 2,
+          "id": "renaissance"
+        },
+        {
+          "t": 378416.666666741,
+          "side": "player",
+          "index": 3,
+          "id": "modern"
+        },
+        {
+          "t": 408150.00000010896,
+          "side": "enemy",
+          "index": 3,
+          "id": "modern"
+        },
+        {
+          "t": 520916.6666669069,
+          "side": "player",
+          "index": 4,
+          "id": "future"
+        },
+        {
+          "t": 540166.6666668738,
+          "side": "enemy",
+          "index": 4,
+          "id": "future"
+        }
+      ],
+      "blockedOrders": 2,
+      "towerAttempts": [
+        {
+          "t": 208333.33333330363,
+          "built": false,
+          "id": null,
+          "paid": 0
+        }
+      ],
+      "start": {
+        "simulationTime": 0,
+        "gold": 240,
+        "xp": 0,
+        "kills": 0,
+        "epoch": 0,
+        "enemyEpoch": 0,
+        "wave": 0,
+        "phase": "prepare",
+        "phaseEndsAt": 12000,
+        "speed": 1,
+        "playerBase": {
+          "hp": 4200,
+          "maxHp": 4200,
+          "x": 100,
+          "y": 500,
+          "side": "player"
+        },
+        "enemyBase": {
+          "hp": 4200,
+          "maxHp": 4200,
+          "x": 1180,
+          "y": 500,
+          "side": "enemy"
+        },
+        "playerArmy": 0,
+        "enemyArmy": 0,
+        "incomeAccumulator": 0,
+        "wavePlan": {
+          "number": 1,
+          "epoch": "stone",
+          "tactic": "mixed",
+          "title": "Mischformation",
+          "advice": "Kombiniere eine starke Front mit Fernkampf. Halte Gold für Verstärkung zurück.",
+          "unitIds": [
+            "clubman",
+            "slinger",
+            "dino-rider",
+            "spearman",
+            "slinger",
+            "slinger",
+            "clubman",
+            "spearman"
+          ],
+          "roster": [
+            {
+              "id": "clubman",
+              "count": 2
+            },
+            {
+              "id": "dino-rider",
+              "count": 1
+            },
+            {
+              "id": "slinger",
+              "count": 3
+            },
+            {
+              "id": "spearman",
+              "count": 2
+            }
+          ],
+          "cost": 550,
+          "referenceCost": 535
+        },
+        "rng": {
+          "mathState": 1969732409,
+          "mathCalls": 2170,
+          "phaserState": "!rnd,1,0.07490166975185275,0.13431967003270984,0.7353376387618482"
+        }
+      },
+      "errors": [],
+      "artifact": "art\\qa\\wave-tactics-matrix-20260909T024324538Z\\combat-medium-line-1x-seed-202-20260909T024413830Z-fb5340e4.json"
+    },
+    {
+      "options": {
+        "difficulty": "medium",
+        "mode": "line",
+        "speed": 1,
+        "abilities": true,
+        "seed": "303"
+      },
+      "seconds": 758.4666666663655,
+      "winner": "enemy",
+      "endedBy": "base-destroyed",
+      "recruits": 141,
+      "recruitsById": {
+        "clubman": 30,
+        "swordsman": 30,
+        "duelist": 24,
+        "tank": 19,
+        "mech": 38
+      },
+      "unitGold": 36330,
+      "kills": 179,
+      "finalEpoch": 4,
+      "finalEnemyEpoch": 4,
+      "minimumBase": {
+        "fraction": 0,
+        "hp": 0,
+        "maxHp": 14000,
+        "t": 758466.6666663656,
+        "epoch": 4
+      },
+      "meteorCasts": 12,
+      "artilleryCasts": 7,
+      "epochTransitions": [
+        {
+          "t": 0,
+          "side": "player",
+          "index": 0,
+          "id": "stone"
+        },
+        {
+          "t": 0,
+          "side": "enemy",
+          "index": 0,
+          "id": "stone"
+        },
+        {
+          "t": 108483.33333334202,
+          "side": "player",
+          "index": 1,
+          "id": "castle"
+        },
+        {
+          "t": 144066.66666667437,
+          "side": "enemy",
+          "index": 1,
+          "id": "castle"
+        },
+        {
+          "t": 255349.99999994293,
+          "side": "player",
+          "index": 2,
+          "id": "renaissance"
+        },
+        {
+          "t": 276149.9999999553,
+          "side": "enemy",
+          "index": 2,
+          "id": "renaissance"
+        },
+        {
+          "t": 339416.6666666956,
+          "side": "player",
+          "index": 3,
+          "id": "modern"
+        },
+        {
+          "t": 408150.00000010896,
+          "side": "enemy",
+          "index": 3,
+          "id": "modern"
+        },
+        {
+          "t": 508916.66666689294,
+          "side": "player",
+          "index": 4,
+          "id": "future"
+        },
+        {
+          "t": 540166.6666668738,
+          "side": "enemy",
+          "index": 4,
+          "id": "future"
+        }
+      ],
+      "blockedOrders": 3,
+      "towerAttempts": [
+        {
+          "t": 209849.9999999694,
+          "built": false,
+          "id": null,
+          "paid": 0
+        }
+      ],
+      "start": {
+        "simulationTime": 0,
+        "gold": 240,
+        "xp": 0,
+        "kills": 0,
+        "epoch": 0,
+        "enemyEpoch": 0,
+        "wave": 0,
+        "phase": "prepare",
+        "phaseEndsAt": 12000,
+        "speed": 1,
+        "playerBase": {
+          "hp": 4200,
+          "maxHp": 4200,
+          "x": 100,
+          "y": 500,
+          "side": "player"
+        },
+        "enemyBase": {
+          "hp": 4200,
+          "maxHp": 4200,
+          "x": 1180,
+          "y": 500,
+          "side": "enemy"
+        },
+        "playerArmy": 0,
+        "enemyArmy": 0,
+        "incomeAccumulator": 0,
+        "wavePlan": {
+          "number": 1,
+          "epoch": "stone",
+          "tactic": "mixed",
+          "title": "Mischformation",
+          "advice": "Kombiniere eine starke Front mit Fernkampf. Halte Gold für Verstärkung zurück.",
+          "unitIds": [
+            "clubman",
+            "slinger",
+            "dino-rider",
+            "spearman",
+            "slinger",
+            "slinger",
+            "clubman",
+            "spearman"
+          ],
+          "roster": [
+            {
+              "id": "clubman",
+              "count": 2
+            },
+            {
+              "id": "dino-rider",
+              "count": 1
+            },
+            {
+              "id": "slinger",
+              "count": 3
+            },
+            {
+              "id": "spearman",
+              "count": 2
+            }
+          ],
+          "cost": 550,
+          "referenceCost": 535
+        },
+        "rng": {
+          "mathState": 2268638689,
+          "mathCalls": 2170,
+          "phaserState": "!rnd,1,0.4807954910211265,0.24471375602297485,0.2298838144633919"
+        }
+      },
+      "errors": [],
+      "artifact": "art\\qa\\wave-tactics-matrix-20260909T024324538Z\\combat-medium-line-1x-seed-303-20260909T024425688Z-30ee5238.json"
+    }
+  ]
+}

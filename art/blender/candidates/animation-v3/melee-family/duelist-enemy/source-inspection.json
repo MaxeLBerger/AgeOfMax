@@ -1,0 +1,2579 @@
+{
+  "unit": "duelist",
+  "faction": "enemy",
+  "source_sha256": "0cd7850ee2276a4f3811fc893b223e8f6a5d258c00c924f31091b3469631ed66",
+  "sheet_sha256": "d50a7123845590d72b486853dc8ef1bea93a396a1b40208dda4a35d44768da4e",
+  "socket_file_sha256": "40f9fe76b2dd2d54b9a4161df792571ce9d83a900e5c6ee36a699743a29444a4",
+  "scene_properties": {
+    "cycles": "<bpy id prop: owner=\"SCScene\", name=\"cycles\", address=0x00000184B8EBA160>"
+  },
+  "animated_objects": {
+    "duelist animation rig": "duelist animation rigAction",
+    "Weapon muzzle / runtime socket": "Weapon muzzle / runtime socketAction"
+  },
+  "bones": {
+    "root": {
+      "head": [
+        0.0,
+        0.0,
+        0.12
+      ],
+      "tail": [
+        0.0,
+        0.0,
+        1.03
+      ],
+      "parent": null
+    },
+    "spine": {
+      "head": [
+        0.0,
+        0.0,
+        1.03
+      ],
+      "tail": [
+        0.0,
+        0.0,
+        1.84
+      ],
+      "parent": "root"
+    },
+    "head": {
+      "head": [
+        0.0,
+        0.0,
+        1.84
+      ],
+      "tail": [
+        0.0,
+        0.0,
+        2.3399999
+      ],
+      "parent": "spine"
+    },
+    "arm.near": {
+      "head": [
+        0.0,
+        -0.322,
+        1.78
+      ],
+      "tail": [
+        0.035,
+        -0.3565,
+        1.37
+      ],
+      "parent": "spine"
+    },
+    "forearm.near": {
+      "head": [
+        0.035,
+        -0.3565,
+        1.37
+      ],
+      "tail": [
+        0.33,
+        -0.345,
+        1.15
+      ],
+      "parent": "arm.near"
+    },
+    "arm.far": {
+      "head": [
+        0.0,
+        0.322,
+        1.78
+      ],
+      "tail": [
+        0.035,
+        0.3565,
+        1.37
+      ],
+      "parent": "spine"
+    },
+    "forearm.far": {
+      "head": [
+        0.035,
+        0.3565,
+        1.37
+      ],
+      "tail": [
+        0.33,
+        0.345,
+        1.15
+      ],
+      "parent": "arm.far"
+    },
+    "thigh.near": {
+      "head": [
+        0.0,
+        -0.23,
+        1.03
+      ],
+      "tail": [
+        0.0,
+        -0.23,
+        0.57
+      ],
+      "parent": "root"
+    },
+    "shin.near": {
+      "head": [
+        0.0,
+        -0.23,
+        0.57
+      ],
+      "tail": [
+        0.04,
+        -0.23,
+        0.14
+      ],
+      "parent": "thigh.near"
+    },
+    "thigh.far": {
+      "head": [
+        0.0,
+        0.23,
+        1.03
+      ],
+      "tail": [
+        0.0,
+        0.23,
+        0.57
+      ],
+      "parent": "root"
+    },
+    "shin.far": {
+      "head": [
+        0.0,
+        0.23,
+        0.57
+      ],
+      "tail": [
+        0.04,
+        0.23,
+        0.14
+      ],
+      "parent": "thigh.far"
+    }
+  },
+  "camera": {
+    "matrix": [
+      [
+        0.9363291263580322,
+        -0.1022210344672203,
+        0.33591458201408386,
+        5.843295097351074
+      ],
+      [
+        0.35112354159355164,
+        0.27258938550949097,
+        -0.895771861076355,
+        -15.582120895385742
+      ],
+      [
+        -2.7939030644574814e-08,
+        0.9566848278045654,
+        0.2911255955696106,
+        6.666597366333008
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "scale": 3.6500000953674316,
+    "resolution": [
+      256,
+      256
+    ]
+  },
+  "objects": {
+    "Boot sole": {
+      "groups": [
+        "shin.near"
+      ],
+      "materials": [
+        "Ink / recess"
+      ],
+      "geometry_sha256": "8040ae650f0438678fd1267ff43c5d3401e5dda1762e6ead68feb2755ae28fc6",
+      "bindings_sha256": "c546c95b6622ca9a2d7c9c050ece0f74d7d14abd3cd0aa8666d09857b077af0b",
+      "rest_center": [
+        0.13,
+        -0.23,
+        0.076
+      ],
+      "world_extents": [
+        [
+          -0.04500000178813934,
+          0.3050000071525574
+        ],
+        [
+          -0.32499998807907104,
+          -0.13500000536441803
+        ],
+        [
+          0.05349999666213989,
+          0.09849999845027924
+        ]
+      ],
+      "vertices": 8,
+      "polygons": 6
+    },
+    "Boot sole.001": {
+      "groups": [
+        "shin.far"
+      ],
+      "materials": [
+        "Ink / recess"
+      ],
+      "geometry_sha256": "3afe24ef6310727f268bcb23560d0a5c3824021a28d4a84c915e2a2e156a536d",
+      "bindings_sha256": "a347623c5399c898fd574e62d545402c3ce34ed0095599880ee6a8efa7ac6666",
+      "rest_center": [
+        0.13,
+        0.23,
+        0.076
+      ],
+      "world_extents": [
+        [
+          -0.04500000178813934,
+          0.3050000071525574
+        ],
+        [
+          0.13500000536441803,
+          0.32499998807907104
+        ],
+        [
+          0.05349999666213989,
+          0.09849999845027924
+        ]
+      ],
+      "vertices": 8,
+      "polygons": 6
+    },
+    "Broad leather girdle": {
+      "groups": [
+        "spine"
+      ],
+      "materials": [
+        "Hair leather and fur"
+      ],
+      "geometry_sha256": "995ecee665d248d1ac8e2eb0e38d9c49a0ce2a73d4166b135c680ee2e7497a09",
+      "bindings_sha256": "45c73d5916b63bc87fcb794a964cf84e9e85f01799b022c610e1fe902310cd1c",
+      "rest_center": [
+        -0.0,
+        0.0,
+        1.1499999
+      ],
+      "world_extents": [
+        [
+          -0.26499998569488525,
+          0.26499998569488525
+        ],
+        [
+          -0.26499998569488525,
+          0.26499998569488525
+        ],
+        [
+          1.097499966621399,
+          1.2024999856948853
+        ]
+      ],
+      "vertices": 40,
+      "polygons": 22
+    },
+    "Bronze belt buckle": {
+      "groups": [
+        "spine"
+      ],
+      "materials": [
+        "Antique bronze edges"
+      ],
+      "geometry_sha256": "156503d754993830e765ba94f5872cabcde25b879e3aaf345511e6bb9047ef64",
+      "bindings_sha256": "c7b81dd118f51eb2e819eaecf7c9ed740b24d81068f3581208f9e3764254def8",
+      "rest_center": [
+        0.03,
+        -0.271,
+        1.15
+      ],
+      "world_extents": [
+        [
+          -0.034999996423721313,
+          0.0949999988079071
+        ],
+        [
+          -0.28999999165534973,
+          -0.25200000405311584
+        ],
+        [
+          1.0850000381469727,
+          1.2149999141693115
+        ]
+      ],
+      "vertices": 8,
+      "polygons": 6
+    },
+    "Calf": {
+      "groups": [
+        "shin.near"
+      ],
+      "materials": [
+        "Hair leather and fur"
+      ],
+      "geometry_sha256": "53b51e9a385afa90df6e168c9f2bf4c1af46dd2712197b46404489ec7bab817c",
+      "bindings_sha256": "f2885203be6d6cfcff572ae44d0b8ec4eebcc9b8496b3abb86d55fad630d32f7",
+      "rest_center": [
+        0.02,
+        -0.23,
+        0.365
+      ],
+      "world_extents": [
+        [
+          -0.0905250832438469,
+          0.1136138066649437
+        ],
+        [
+          -0.3210001289844513,
+          -0.13900011777877808
+        ],
+        [
+          0.1624498963356018,
+          0.5692846179008484
+        ]
+      ],
+      "vertices": 24,
+      "polygons": 14
+    },
+    "Calf.001": {
+      "groups": [
+        "shin.far"
+      ],
+      "materials": [
+        "Hair leather and fur"
+      ],
+      "geometry_sha256": "84d2a50c9ebfdf414e7ca8d8c11e105d96c3390d8980be8a13e624d29b73c6a0",
+      "bindings_sha256": "c81a076649a9245aecce17048442d137174276068e75230327c0b01d534a99e2",
+      "rest_center": [
+        0.02,
+        0.23,
+        0.365
+      ],
+      "world_extents": [
+        [
+          -0.0905250832438469,
+          0.1136138066649437
+        ],
+        [
+          0.13899989426136017,
+          0.3209998905658722
+        ],
+        [
+          0.1624498963356018,
+          0.5692846179008484
+        ]
+      ],
+      "vertices": 24,
+      "polygons": 14
+    },
+    "Cocked hat crown": {
+      "groups": [
+        "head"
+      ],
+      "materials": [
+        "Ink / recess"
+      ],
+      "geometry_sha256": "1a332c4e0531024206b4f16bab46493796ed1daf46cf07406bea82c1fb58aa00",
+      "bindings_sha256": "170345821bee2e5974466b50a4e2ddf38d45fd956c8c63718ddfe4ca1fbb68ec",
+      "rest_center": [
+        -0.045,
+        -0.0,
+        2.4099998
+      ],
+      "world_extents": [
+        [
+          -0.23499999940395355,
+          0.14499999582767487
+        ],
+        [
+          -0.1899999976158142,
+          0.1899999976158142
+        ],
+        [
+          2.3000001907348633,
+          2.5199999809265137
+        ]
+      ],
+      "vertices": 32,
+      "polygons": 18
+    },
+    "Deltoid": {
+      "groups": [
+        "arm.near"
+      ],
+      "materials": [
+        "Deep turquoise cloth"
+      ],
+      "geometry_sha256": "92fe33304f66350616b5190ca9f6c28788f9ce43491d990fba82c2b304bfd59e",
+      "bindings_sha256": "6cfc60ffb3b8441926797793c800936f149a3a4cbaf1f588058cbc5a13f5d110",
+      "rest_center": [
+        -0.0,
+        -0.3219999,
+        1.7599999
+      ],
+      "world_extents": [
+        [
+          -0.16000007092952728,
+          0.1600000113248825
+        ],
+        [
+          -0.48200005292892456,
+          -0.16200000047683716
+        ],
+        [
+          1.590000033378601,
+          1.9299999475479126
+        ]
+      ],
+      "vertices": 222,
+      "polygons": 240
+    },
+    "Deltoid.001": {
+      "groups": [
+        "arm.far"
+      ],
+      "materials": [
+        "Deep turquoise cloth"
+      ],
+      "geometry_sha256": "234ef00e2b7c9088b0f0bbbe8ed1e23c0922baa044ba37b5a62f5479c3d02f1b",
+      "bindings_sha256": "b5d5ab11d291a9b66b10ac635fc3e30ed15db569fe1f468683cca92438b60580",
+      "rest_center": [
+        -0.0,
+        0.3219999,
+        1.7599999
+      ],
+      "world_extents": [
+        [
+          -0.16000007092952728,
+          0.1600000113248825
+        ],
+        [
+          0.16199995577335358,
+          0.4819999933242798
+        ],
+        [
+          1.590000033378601,
+          1.9299999475479126
+        ]
+      ],
+      "vertices": 222,
+      "polygons": 240
+    },
+    "Ear": {
+      "groups": [
+        "head"
+      ],
+      "materials": [
+        "Warm skin"
+      ],
+      "geometry_sha256": "c262656d3ea6022672f634b04982a9234aba61b59618d5a968e32f426ae48f82",
+      "bindings_sha256": "18c362f9b1a027ba1efe4f52eada9f4b22f6a9b58be02ae11a81de0c9eb87c0c",
+      "rest_center": [
+        -0.015,
+        -0.178,
+        2.1400011
+      ],
+      "world_extents": [
+        [
+          -0.06700002402067184,
+          0.037000007927417755
+        ],
+        [
+          -0.21300001442432404,
+          -0.14300000667572021
+        ],
+        [
+          2.069000005722046,
+          2.2110002040863037
+        ]
+      ],
+      "vertices": 222,
+      "polygons": 240
+    },
+    "Elbow": {
+      "groups": [
+        "arm.near"
+      ],
+      "materials": [
+        "Hair leather and fur"
+      ],
+      "geometry_sha256": "e1c73118977fa5ee7740be44c64d8aeed0e6628d764e99b67fbc397edafda4aa",
+      "bindings_sha256": "ab9285bd44c250daed3322836926d0c0fffa27b04c0c24fdcb33975eb58f778a",
+      "rest_center": [
+        0.035,
+        -0.3565,
+        1.3699993
+      ],
+      "world_extents": [
+        [
+          -0.05300004407763481,
+          0.12300001084804535
+        ],
+        [
+          -0.4465000331401825,
+          -0.26649999618530273
+        ],
+        [
+          1.284000039100647,
+          1.4559999704360962
+        ]
+      ],
+      "vertices": 222,
+      "polygons": 240
+    },
+    "Elbow.001": {
+      "groups": [
+        "arm.far"
+      ],
+      "materials": [
+        "Hair leather and fur"
+      ],
+      "geometry_sha256": "967fbd62f62a44212dbde191a251f5a6ace1d35fd4d10b286c4eaa6807c557eb",
+      "bindings_sha256": "07b52a07c02f7762cd586a3370fdf1669174db3eb3b1c86e239f68e4d643507d",
+      "rest_center": [
+        0.035,
+        0.3565,
+        1.3699993
+      ],
+      "world_extents": [
+        [
+          -0.05300004407763481,
+          0.12300001084804535
+        ],
+        [
+          0.26649996638298035,
+          0.4465000033378601
+        ],
+        [
+          1.284000039100647,
+          1.4559999704360962
+        ]
+      ],
+      "vertices": 222,
+      "polygons": 240
+    },
+    "Eye glint": {
+      "groups": [
+        "head"
+      ],
+      "materials": [
+        "Warm carved limestone"
+      ],
+      "geometry_sha256": "e6d6223e26f9d16a4b636b4a8e04038dfab80856739b4162d79d6a2b6b26662f",
+      "bindings_sha256": "a250033681f7e7526cd4441d4606b7239439c7c0834d2ad1986617395e7c1657",
+      "rest_center": [
+        0.1900001,
+        -0.1280001,
+        2.1880007
+      ],
+      "world_extents": [
+        [
+          0.17899999022483826,
+          0.20100000500679016
+        ],
+        [
+          -0.14100000262260437,
+          -0.11500000953674316
+        ],
+        [
+          2.177999973297119,
+          2.197999954223633
+        ]
+      ],
+      "vertices": 222,
+      "polygons": 240
+    },
+    "Eye glint.001": {
+      "groups": [
+        "head"
+      ],
+      "materials": [
+        "Warm carved limestone"
+      ],
+      "geometry_sha256": "23e0c8abe1e4334d3ccee00cdb8a3db83a70bce5c45c659bc3157d5fba42dace",
+      "bindings_sha256": "ecc82944514f8fa0dad1f02229997a35d6edbd9be17aa6ddb23724e99703d046",
+      "rest_center": [
+        0.1900001,
+        0.1119999,
+        2.1880007
+      ],
+      "world_extents": [
+        [
+          0.17899999022483826,
+          0.20100000500679016
+        ],
+        [
+          0.0989999994635582,
+          0.125
+        ],
+        [
+          2.177999973297119,
+          2.197999954223633
+        ]
+      ],
+      "vertices": 222,
+      "polygons": 240
+    },
+    "Eye socket": {
+      "groups": [
+        "head"
+      ],
+      "materials": [
+        "Hair leather and fur"
+      ],
+      "geometry_sha256": "12ef136f5ac95619536809d462d1662dbc1093ee162762f5535ea3cc969f0973",
+      "bindings_sha256": "ed916940e1f34d2d7dcf5462dcb4410f795469f78248fb915aab82d3ececdb5a",
+      "rest_center": [
+        0.1720001,
+        -0.12,
+        2.1800005
+      ],
+      "world_extents": [
+        [
+          0.1379999816417694,
+          0.20600001513957977
+        ],
+        [
+          -0.1600000113248825,
+          -0.07999999821186066
+        ],
+        [
+          2.1530001163482666,
+          2.2070000171661377
+        ]
+      ],
+      "vertices": 222,
+      "polygons": 240
+    },
+    "Eye socket.001": {
+      "groups": [
+        "head"
+      ],
+      "materials": [
+        "Hair leather and fur"
+      ],
+      "geometry_sha256": "d5c30f93e69b602be6c4b9dcd8c33047eefc4449fb8fc14ce6fc0c88192a634b",
+      "bindings_sha256": "4f49ce651f132a322401be213f0d6b34471e0d31204e845dc33f0bcdc09eafaf",
+      "rest_center": [
+        0.1720001,
+        0.12,
+        2.1800005
+      ],
+      "world_extents": [
+        [
+          0.1379999816417694,
+          0.20600001513957977
+        ],
+        [
+          0.07999998331069946,
+          0.1599999964237213
+        ],
+        [
+          2.1530001163482666,
+          2.2070000171661377
+        ]
+      ],
+      "vertices": 222,
+      "polygons": 240
+    },
+    "Fingers": {
+      "groups": [
+        "forearm.near"
+      ],
+      "materials": [
+        "Warm skin"
+      ],
+      "geometry_sha256": "05052c475b7a286ee828b72c61da81775bd615dff7da2471ac92d7d5399b4bf6",
+      "bindings_sha256": "b9e8a5fbdbc769af543f887053b7a00385124f42842bd37efb47d1b5a3fe217a",
+      "rest_center": [
+        0.3775,
+        -0.391,
+        1.1500001
+      ],
+      "world_extents": [
+        [
+          0.3394128978252411,
+          0.41558709740638733
+        ],
+        [
+          -0.4090000092983246,
+          -0.37299999594688416
+        ],
+        [
+          1.1154427528381348,
+          1.1845571994781494
+        ]
+      ],
+      "vertices": 24,
+      "polygons": 14
+    },
+    "Fingers.001": {
+      "groups": [
+        "forearm.near"
+      ],
+      "materials": [
+        "Warm skin"
+      ],
+      "geometry_sha256": "08a72e14f708c8ba1816b4a6d5cbbf5698b64643d57b89bc03252ef99e12acf2",
+      "bindings_sha256": "b561d1719a90f46c3ea6bf53793105dd46112ba11115ae8c4f6d9f7f4a8a3b7f",
+      "rest_center": [
+        0.3775,
+        -0.3600001,
+        1.1500001
+      ],
+      "world_extents": [
+        [
+          0.3394128978252411,
+          0.41558709740638733
+        ],
+        [
+          -0.37800002098083496,
+          -0.34200000762939453
+        ],
+        [
+          1.1154427528381348,
+          1.1845571994781494
+        ]
+      ],
+      "vertices": 24,
+      "polygons": 14
+    },
+    "Fingers.002": {
+      "groups": [
+        "forearm.near"
+      ],
+      "materials": [
+        "Warm skin"
+      ],
+      "geometry_sha256": "30ed09fbad6453ce8d974a7c35bb013db7de77454db85db93c721ba7c7fc9dbd",
+      "bindings_sha256": "d5920eeae8c79db57dca1de87afac6439ac774cc5c8ed31558e37165b648c739",
+      "rest_center": [
+        0.3775,
+        -0.3289999,
+        1.1500001
+      ],
+      "world_extents": [
+        [
+          0.3394128978252411,
+          0.41558709740638733
+        ],
+        [
+          -0.34700000286102295,
+          -0.3109999895095825
+        ],
+        [
+          1.1154427528381348,
+          1.1845571994781494
+        ]
+      ],
+      "vertices": 24,
+      "polygons": 14
+    },
+    "Fingers.003": {
+      "groups": [
+        "forearm.far"
+      ],
+      "materials": [
+        "Warm skin"
+      ],
+      "geometry_sha256": "47002c8ea1fa51bad91fa6914505e5d0e68a630f7c1bd243494e3503eb0d19df",
+      "bindings_sha256": "9268b1b4906e82137248b293efb07c61a63620e330d93be38b286e68845089ed",
+      "rest_center": [
+        0.3775,
+        0.299,
+        1.1500001
+      ],
+      "world_extents": [
+        [
+          0.3394128978252411,
+          0.41558709740638733
+        ],
+        [
+          0.2809999883174896,
+          0.31700000166893005
+        ],
+        [
+          1.1154427528381348,
+          1.1845571994781494
+        ]
+      ],
+      "vertices": 24,
+      "polygons": 14
+    },
+    "Fingers.004": {
+      "groups": [
+        "forearm.far"
+      ],
+      "materials": [
+        "Warm skin"
+      ],
+      "geometry_sha256": "b1e04d9d34fef5f1dbbed77efc564b004f65139f305269210e8bcb1966dfa30b",
+      "bindings_sha256": "c297e6bcfa2b54d05af7e0cee772eef779d06dedf69d3624ff7671a0f40995b7",
+      "rest_center": [
+        0.3775,
+        0.33,
+        1.1500001
+      ],
+      "world_extents": [
+        [
+          0.3394128978252411,
+          0.41558709740638733
+        ],
+        [
+          0.31200000643730164,
+          0.34800001978874207
+        ],
+        [
+          1.1154427528381348,
+          1.1845571994781494
+        ]
+      ],
+      "vertices": 24,
+      "polygons": 14
+    },
+    "Fingers.005": {
+      "groups": [
+        "forearm.far"
+      ],
+      "materials": [
+        "Warm skin"
+      ],
+      "geometry_sha256": "ea1f66c13775d2acaca753e74bda86ab050649b3672f12c6fdc8ba74b7bed593",
+      "bindings_sha256": "00f772e83cb0cfbe548f556f1ad759ab39cc0abb454b4037a1c4424d987d2f01",
+      "rest_center": [
+        0.3775,
+        0.361,
+        1.1500001
+      ],
+      "world_extents": [
+        [
+          0.3394128978252411,
+          0.41558709740638733
+        ],
+        [
+          0.34299999475479126,
+          0.3790000081062317
+        ],
+        [
+          1.1154427528381348,
+          1.1845571994781494
+        ]
+      ],
+      "vertices": 24,
+      "polygons": 14
+    },
+    "Forearm": {
+      "groups": [
+        "forearm.near"
+      ],
+      "materials": [
+        "Warm skin"
+      ],
+      "geometry_sha256": "ef427faabe85d80008d2168d141bb5fc956d4a3fe9fe943fc672739a7b20b36a",
+      "bindings_sha256": "b047e042dbf3f0f6b39ac6e509d3d395add710cb9da089f8f5e8a36deb0a9d2b",
+      "rest_center": [
+        0.1825,
+        -0.35075,
+        1.26
+      ],
+      "world_extents": [
+        [
+          -0.021722476929426193,
+          0.3706013560295105
+        ],
+        [
+          -0.4514279067516327,
+          -0.26157212257385254
+        ],
+        [
+          1.0954744815826416,
+          1.446175217628479
+        ]
+      ],
+      "vertices": 24,
+      "polygons": 14
+    },
+    "Forearm.001": {
+      "groups": [
+        "forearm.far"
+      ],
+      "materials": [
+        "Warm skin"
+      ],
+      "geometry_sha256": "ee19af34f17b0527db19d02ad7f0411bb2e9770bdb4bbc992d4268b93e631b16",
+      "bindings_sha256": "1f176dfa8f99152bab87ce5912b0326b81cf618774b929cd672ab2effe213457",
+      "rest_center": [
+        0.1825,
+        0.3507501,
+        1.26
+      ],
+      "world_extents": [
+        [
+          -0.021722476929426193,
+          0.3706013560295105
+        ],
+        [
+          0.2615721523761749,
+          0.4514279365539551
+        ],
+        [
+          1.0954744815826416,
+          1.446175217628479
+        ]
+      ],
+      "vertices": 24,
+      "polygons": 14
+    },
+    "Fullered sword blade": {
+      "groups": [
+        "forearm.near"
+      ],
+      "materials": [
+        "Tempered blue steel"
+      ],
+      "geometry_sha256": "57da8f5246ea55b14f5c68c43b9efd2dbdf45b684f45f57914585b6c422219c3",
+      "bindings_sha256": "eb9700a03a1fd3ab80014037433f4042f20bad64a0d554dbdb5b2cef364156ba",
+      "rest_center": [
+        0.4878571,
+        -0.35,
+        1.7999998
+      ],
+      "world_extents": [
+        [
+          0.4000000059604645,
+          0.5600000023841858
+        ],
+        [
+          -0.4050000011920929,
+          -0.29499998688697815
+        ],
+        [
+          1.3200000524520874,
+          2.2799999713897705
+        ]
+      ],
+      "vertices": 7,
+      "polygons": 5
+    },
+    "Gold tabard hem": {
+      "groups": [
+        "spine"
+      ],
+      "materials": [
+        "Antique bronze edges"
+      ],
+      "geometry_sha256": "2297a0966e99c4d50f06bf2156b3f8e781f8d301a4635a6af57e436f762d62f5",
+      "bindings_sha256": "bf07cab5481dd1038dc8eaf3a09b03af5171d7a1480114d0fd01915e86f7ceeb",
+      "rest_center": [
+        0.281461,
+        0.0,
+        0.8486525
+      ],
+      "world_extents": [
+        [
+          0.24807600677013397,
+          0.31199920177459717
+        ],
+        [
+          -0.2444566786289215,
+          0.2444566935300827
+        ],
+        [
+          0.7984593510627747,
+          0.8919991850852966
+        ]
+      ],
+      "vertices": 200,
+      "polygons": 192
+    },
+    "Hand": {
+      "groups": [
+        "forearm.near"
+      ],
+      "materials": [
+        "Warm skin"
+      ],
+      "geometry_sha256": "ff958bb551668021b43463b8b64f2971c00f6c8606540fe0ee1875ea134ae593",
+      "bindings_sha256": "cd61e25fbd6615e2490d0e078302c5ed272e48b6e70df27050ed8a2bedef6c5c",
+      "rest_center": [
+        0.3399999,
+        -0.345,
+        1.1499984
+      ],
+      "world_extents": [
+        [
+          0.25199997425079346,
+          0.42800000309944153
+        ],
+        [
+          -0.41600000858306885,
+          -0.27399998903274536
+        ],
+        [
+          1.0709999799728394,
+          1.2289999723434448
+        ]
+      ],
+      "vertices": 222,
+      "polygons": 240
+    },
+    "Hand.001": {
+      "groups": [
+        "forearm.far"
+      ],
+      "materials": [
+        "Warm skin"
+      ],
+      "geometry_sha256": "975d0cbe261cb66a4543db2f2eb14488c3db825f45bb85a6986b92ea212217fd",
+      "bindings_sha256": "948b64ee399dc52f5bbe22b67f15e4d46c563df40441f12b79bd2018f973a644",
+      "rest_center": [
+        0.3399999,
+        0.345,
+        1.1499984
+      ],
+      "world_extents": [
+        [
+          0.25199997425079346,
+          0.42800000309944153
+        ],
+        [
+          0.27399998903274536,
+          0.41600000858306885
+        ],
+        [
+          1.0709999799728394,
+          1.2289999723434448
+        ]
+      ],
+      "vertices": 222,
+      "polygons": 240
+    },
+    "Hat braid": {
+      "groups": [
+        "head"
+      ],
+      "materials": [
+        "Antique bronze edges"
+      ],
+      "geometry_sha256": "cd2d4a6d9e82027c6ce773626c0b8715b7704ddab4508bcdcd523d5619d70213",
+      "bindings_sha256": "fba4b8a18bb330daa8ffbb410fc667ac4e61fa3ecbca9fd28e353119eb27e116",
+      "rest_center": [
+        -0.045,
+        -0.0,
+        2.3399985
+      ],
+      "world_extents": [
+        [
+          -0.2580000162124634,
+          0.1679999977350235
+        ],
+        [
+          -0.21299999952316284,
+          0.21299999952316284
+        ],
+        [
+          2.316999912261963,
+          2.36299991607666
+        ]
+      ],
+      "vertices": 256,
+      "polygons": 256
+    },
+    "Jaw": {
+      "groups": [
+        "head"
+      ],
+      "materials": [
+        "Warm skin"
+      ],
+      "geometry_sha256": "e3b0ff50582dac227070c231894afd89f815555fc6abe45e7c7d329496e684f4",
+      "bindings_sha256": "08f459053893986828edb0f28ecb6c2e4e2e59057bc3ad74f9f3ba59ee24e837",
+      "rest_center": [
+        0.068,
+        -0.0,
+        2.0200005
+      ],
+      "world_extents": [
+        [
+          -0.08200007677078247,
+          0.21800002455711365
+        ],
+        [
+          -0.15000003576278687,
+          0.15000000596046448
+        ],
+        [
+          1.9149999618530273,
+          2.125
+        ]
+      ],
+      "vertices": 222,
+      "polygons": 240
+    },
+    "Knee": {
+      "groups": [
+        "thigh.near"
+      ],
+      "materials": [
+        "Hair leather and fur"
+      ],
+      "geometry_sha256": "74cc535212f57111b2e530d9fa60751d90e17ce6c1be8870c7563286ddfa235c",
+      "bindings_sha256": "b42b75340043b5a97e83b4ec21635d2960262f9c4603d45a450630e63dc98141",
+      "rest_center": [
+        -0.0,
+        -0.2299999,
+        0.5699999
+      ],
+      "world_extents": [
+        [
+          -0.11200005561113358,
+          0.11200001835823059
+        ],
+        [
+          -0.34700003266334534,
+          -0.11300000548362732
+        ],
+        [
+          0.4619999825954437,
+          0.6779999732971191
+        ]
+      ],
+      "vertices": 222,
+      "polygons": 240
+    },
+    "Knee.001": {
+      "groups": [
+        "thigh.far"
+      ],
+      "materials": [
+        "Hair leather and fur"
+      ],
+      "geometry_sha256": "1ceb5c8cb446d0c3aee146e3c13d81ca48bcdb0ac191657793d170e5e614a342",
+      "bindings_sha256": "09ffe0fb79361ccd81f44f95a1136fe4b9aea03dd22574f3b8122b179d1baaf8",
+      "rest_center": [
+        -0.0,
+        0.23,
+        0.5699999
+      ],
+      "world_extents": [
+        [
+          -0.11200005561113358,
+          0.11200001835823059
+        ],
+        [
+          0.11299997568130493,
+          0.34700000286102295
+        ],
+        [
+          0.4619999825954437,
+          0.6779999732971191
+        ]
+      ],
+      "vertices": 222,
+      "polygons": 240
+    },
+    "Leather boot": {
+      "groups": [
+        "shin.near"
+      ],
+      "materials": [
+        "Hair leather and fur"
+      ],
+      "geometry_sha256": "984a8bfa35307611dc99513464525c23178555aa3248fff70dd3f1e8e0d971bd",
+      "bindings_sha256": "feabc7af7b03f499201c4d75c69df9c446e3bc6a6a6f4c3ad2112501b4c8d9d3",
+      "rest_center": [
+        0.1100001,
+        -0.23,
+        0.15
+      ],
+      "world_extents": [
+        [
+          -0.08000008761882782,
+          0.30000001192092896
+        ],
+        [
+          -0.33500003814697266,
+          -0.125
+        ],
+        [
+          0.04500000923871994,
+          0.2549999952316284
+        ]
+      ],
+      "vertices": 222,
+      "polygons": 240
+    },
+    "Leather boot.001": {
+      "groups": [
+        "shin.far"
+      ],
+      "materials": [
+        "Hair leather and fur"
+      ],
+      "geometry_sha256": "dcb9c038cbb076ded245c7c926614ed352956f291ee1fdb6faf98913cf57a7f3",
+      "bindings_sha256": "8d11c7b97d4024a66b328b0af6cdee14afcfc3e434a4d29b52ffa1cc72d06a91",
+      "rest_center": [
+        0.1100001,
+        0.2299999,
+        0.15
+      ],
+      "world_extents": [
+        [
+          -0.08000008761882782,
+          0.30000001192092896
+        ],
+        [
+          0.1249999850988388,
+          0.33500000834465027
+        ],
+        [
+          0.04500000923871994,
+          0.2549999952316284
+        ]
+      ],
+      "vertices": 222,
+      "polygons": 240
+    },
+    "Leather vambrace": {
+      "groups": [
+        "forearm.near"
+      ],
+      "materials": [
+        "Hair leather and fur"
+      ],
+      "geometry_sha256": "7cfd7cc83e11624136b2c61adff541235fdcf5a78f92a3918cb4c8e38caa3c0f",
+      "bindings_sha256": "cce7a7a6e8c16ee56a55828f01fd56e5764bae04586d2b4ec61758ad9d69ec0c",
+      "rest_center": [
+        0.14,
+        -0.35075,
+        1.29
+      ],
+      "world_extents": [
+        [
+          -0.0011068135499954224,
+          0.2715214490890503
+        ],
+        [
+          -0.4561052918434143,
+          -0.25229471921920776
+        ],
+        [
+          1.1611769199371338,
+          1.4316272735595703
+        ]
+      ],
+      "vertices": 24,
+      "polygons": 14
+    },
+    "Leather vambrace.001": {
+      "groups": [
+        "forearm.far"
+      ],
+      "materials": [
+        "Hair leather and fur"
+      ],
+      "geometry_sha256": "5384c87a802775936e1c59699bd140ba693c4b654ea3d8ae6e7f13552f37f1b4",
+      "bindings_sha256": "df4c0552b9523dd6d625e1af9642c0b4d2dfd3021a1ff005f0e60371736ecb3c",
+      "rest_center": [
+        0.14,
+        0.35075,
+        1.29
+      ],
+      "world_extents": [
+        [
+          -0.0011068135499954224,
+          0.2715214490890503
+        ],
+        [
+          0.2522946894168854,
+          0.4561052620410919
+        ],
+        [
+          1.1611769199371338,
+          1.4316272735595703
+        ]
+      ],
+      "vertices": 24,
+      "polygons": 14
+    },
+    "Leg binding": {
+      "groups": [
+        "shin.near"
+      ],
+      "materials": [
+        "Antique bronze edges"
+      ],
+      "geometry_sha256": "878d35e433d739c2876a420b646d529666df3e3e1fd27b52f3e4f4036a6cc96d",
+      "bindings_sha256": "6f88878c33429a0b4640aa44131dcfa1bef4ce50ac573f1753c6875c9da16368",
+      "rest_center": [
+        0.025,
+        -0.2300001,
+        0.2900003
+      ],
+      "world_extents": [
+        [
+          -0.0820000022649765,
+          0.13199999928474426
+        ],
+        [
+          -0.3370000123977661,
+          -0.12300000339746475
+        ],
+        [
+          0.2759999930858612,
+          0.30399999022483826
+        ]
+      ],
+      "vertices": 256,
+      "polygons": 256
+    },
+    "Leg binding.001": {
+      "groups": [
+        "shin.near"
+      ],
+      "materials": [
+        "Antique bronze edges"
+      ],
+      "geometry_sha256": "8f76cfa1a0ec2bfc57a2c5a001e621f177dc95e907f33330c9a39ed6a570b203",
+      "bindings_sha256": "07b42e5337b79a8c54ad7a76a988125c289c4adc842629d32b554fe68c1f52ac",
+      "rest_center": [
+        0.025,
+        -0.2300001,
+        0.4499997
+      ],
+      "world_extents": [
+        [
+          -0.0820000022649765,
+          0.13199999928474426
+        ],
+        [
+          -0.3370000123977661,
+          -0.12300000339746475
+        ],
+        [
+          0.4359999895095825,
+          0.46399998664855957
+        ]
+      ],
+      "vertices": 256,
+      "polygons": 256
+    },
+    "Leg binding.002": {
+      "groups": [
+        "shin.far"
+      ],
+      "materials": [
+        "Antique bronze edges"
+      ],
+      "geometry_sha256": "ea8d2895393a5af06caa6f55c5eded8d8b87da38f95c003fa734192dad3b0620",
+      "bindings_sha256": "ea50052a69d4cfdf277ff776fee0edddb5257cab31eba6e3164b01af63074cf9",
+      "rest_center": [
+        0.025,
+        0.23,
+        0.2900003
+      ],
+      "world_extents": [
+        [
+          -0.0820000022649765,
+          0.13199999928474426
+        ],
+        [
+          0.12300000339746475,
+          0.3370000123977661
+        ],
+        [
+          0.2759999930858612,
+          0.30399999022483826
+        ]
+      ],
+      "vertices": 256,
+      "polygons": 256
+    },
+    "Leg binding.003": {
+      "groups": [
+        "shin.far"
+      ],
+      "materials": [
+        "Antique bronze edges"
+      ],
+      "geometry_sha256": "c632250faa1b336d9eae842b74afd4ada01379304d239c1727474a4a9126216c",
+      "bindings_sha256": "082c5198339678a16a5cabbf652b2916769b5be7fdb8defe998b3616eac92812",
+      "rest_center": [
+        0.025,
+        0.23,
+        0.4499997
+      ],
+      "world_extents": [
+        [
+          -0.0820000022649765,
+          0.13199999928474426
+        ],
+        [
+          0.12300000339746475,
+          0.3370000123977661
+        ],
+        [
+          0.4359999895095825,
+          0.46399998664855957
+        ]
+      ],
+      "vertices": 256,
+      "polygons": 256
+    },
+    "Moustache": {
+      "groups": [
+        "head"
+      ],
+      "materials": [
+        "Hair leather and fur"
+      ],
+      "geometry_sha256": "452bdf863d64aca22c796c72195d13d8fe51ffea6425bd9787f254d0f10ffdc1",
+      "bindings_sha256": "4c1e4e014cac26ebe07815dec325b0818a4b6914d20f05239df38c6a0bb06bd1",
+      "rest_center": [
+        0.2287325,
+        -0.028991,
+        2.0771549
+      ],
+      "world_extents": [
+        [
+          0.18963176012039185,
+          0.25721681118011475
+        ],
+        [
+          -0.10291247814893723,
+          0.04240600764751434
+        ],
+        [
+          2.049281358718872,
+          2.1011648178100586
+        ]
+      ],
+      "vertices": 200,
+      "polygons": 192
+    },
+    "Mouth": {
+      "groups": [
+        "head"
+      ],
+      "materials": [
+        "Hair leather and fur"
+      ],
+      "geometry_sha256": "496f90e6afe9d4830f97a01f0a543cba73ca6a9bf634988f89500a0f1fa7560d",
+      "bindings_sha256": "b672ad5926f021b04d367d6896de2cd61aa94292c47058d55103571c422285c2",
+      "rest_center": [
+        0.2080226,
+        -0.0,
+        2.0382805
+      ],
+      "world_extents": [
+        [
+          0.1902615875005722,
+          0.22399984300136566
+        ],
+        [
+          -0.062272295355796814,
+          0.062272295355796814
+        ],
+        [
+          2.0270001888275146,
+          2.049988031387329
+        ]
+      ],
+      "vertices": 200,
+      "polygons": 192
+    },
+    "Neck": {
+      "groups": [
+        "head"
+      ],
+      "materials": [
+        "Warm skin"
+      ],
+      "geometry_sha256": "13b87d562e27d75118bcc0a34170d388884cb46a30b862138ca85ad2de531bc7",
+      "bindings_sha256": "48a7950abe1e9238ffe3d33bb51dd20ed253ff517d10e4ae4c994d9ae912bc59",
+      "rest_center": [
+        -0.0,
+        -0.0,
+        1.9300015
+      ],
+      "world_extents": [
+        [
+          -0.1000000461935997,
+          0.10000001639127731
+        ],
+        [
+          -0.11000002920627594,
+          0.10999999940395355
+        ],
+        [
+          1.7799999713897705,
+          2.0799999237060547
+        ]
+      ],
+      "vertices": 222,
+      "polygons": 240
+    },
+    "Nose": {
+      "groups": [
+        "head"
+      ],
+      "materials": [
+        "Warm skin"
+      ],
+      "geometry_sha256": "a05cbfdeebeb746eb1b7fe1edf09dc5b4f804096426e7bfe5e58bf663cad9565",
+      "bindings_sha256": "a691213aad7c921f559a228664240cc56e215004bd800b2127bca1280541805f",
+      "rest_center": [
+        0.2149999,
+        -0.025,
+        2.125
+      ],
+      "world_extents": [
+        [
+          0.12999996542930603,
+          0.30000001192092896
+        ],
+        [
+          -0.08000001311302185,
+          0.029999999329447746
+        ],
+        [
+          2.059999942779541,
+          2.190000057220459
+        ]
+      ],
+      "vertices": 222,
+      "polygons": 240
+    },
+    "Ostrich feather": {
+      "groups": [
+        "head"
+      ],
+      "materials": [
+        "Warm carved limestone"
+      ],
+      "geometry_sha256": "9f1911e83fcb4414637945ae8bc90b179a5087a8845ff14a888f90aa8424d7b9",
+      "bindings_sha256": "4c915c825ccfab1ec1ef2b8902edace4aa19afcbb243c1c9fe38236d2e73120b",
+      "rest_center": [
+        -0.2636814,
+        0.0519159,
+        2.6055224
+      ],
+      "world_extents": [
+        [
+          -0.42384451627731323,
+          -0.0786602795124054
+        ],
+        [
+          0.004136275500059128,
+          0.09662900865077972
+        ],
+        [
+          2.4335830211639404,
+          2.6996374130249023
+        ]
+      ],
+      "vertices": 200,
+      "polygons": 192
+    },
+    "Sculpted brow": {
+      "groups": [
+        "head"
+      ],
+      "materials": [
+        "Hair leather and fur"
+      ],
+      "geometry_sha256": "939b8a5c9a690002963f5cbd8d33118148418598874039bf69b4732f2f5b8eeb",
+      "bindings_sha256": "195e7db4eff3ef10eaea20f8b05410c97bb6e80675cc92159c2c0a4c70bb7ffa",
+      "rest_center": [
+        0.1795,
+        -0.124,
+        2.2175002
+      ],
+      "world_extents": [
+        [
+          0.15413889288902283,
+          0.2048611044883728
+        ],
+        [
+          -0.15801066160202026,
+          -0.08998933434486389
+        ],
+        [
+          2.19307017326355,
+          2.241929769515991
+        ]
+      ],
+      "vertices": 24,
+      "polygons": 14
+    },
+    "Sculpted brow.001": {
+      "groups": [
+        "head"
+      ],
+      "materials": [
+        "Hair leather and fur"
+      ],
+      "geometry_sha256": "87a7f2da184711790acd3ead5a3b70ef5ed03349602fcc08463e260e2438aaa0",
+      "bindings_sha256": "bc205d0c646966c898ddfe0f3292874ad6a2454144fd93ed6aa7adb06d34f6af",
+      "rest_center": [
+        0.1795,
+        0.116,
+        2.2175002
+      ],
+      "world_extents": [
+        [
+          0.15413889288902283,
+          0.2048611044883728
+        ],
+        [
+          0.0819893330335617,
+          0.15001066029071808
+        ],
+        [
+          2.19307017326355,
+          2.241929769515991
+        ]
+      ],
+      "vertices": 24,
+      "polygons": 14
+    },
+    "Sculpted chest waist and shoulders": {
+      "groups": [
+        "spine"
+      ],
+      "materials": [
+        "Deep turquoise cloth"
+      ],
+      "geometry_sha256": "f8d949119d8566750d19a8458fd79d7529b9c96d31d3d2e5f3ea576aaf0d8982",
+      "bindings_sha256": "f8f7383d27cb818387d11f9bce221ba1a11ad7e712ed85cbd0f4ee3fe66e0569",
+      "rest_center": [
+        0.0,
+        0.0,
+        1.5087501
+      ],
+      "world_extents": [
+        [
+          -0.23000000417232513,
+          0.23000000417232513
+        ],
+        [
+          -0.3400000035762787,
+          0.3400000035762787
+        ],
+        [
+          1.0299999713897705,
+          1.8799999952316284
+        ]
+      ],
+      "vertices": 160,
+      "polygons": 140
+    },
+    "Sculpted skull": {
+      "groups": [
+        "head"
+      ],
+      "materials": [
+        "Warm skin"
+      ],
+      "geometry_sha256": "6482cff01840d5cdb0bc7b973fea01464fe2fd049266e2798f488b782fbfd8fe",
+      "bindings_sha256": "4aed012c3da2f032dcfd82ec3316f626a4838e2ac4c5e0a4823f8a058f2bf843",
+      "rest_center": [
+        0.025,
+        -0.0,
+        2.1299999
+      ],
+      "world_extents": [
+        [
+          -0.17200008034706116,
+          0.22200003266334534
+        ],
+        [
+          -0.18000005185604095,
+          0.18000000715255737
+        ],
+        [
+          1.8900001049041748,
+          2.370000123977661
+        ]
+      ],
+      "vertices": 222,
+      "polygons": 240
+    },
+    "Shaped pelvis": {
+      "groups": [
+        "spine"
+      ],
+      "materials": [
+        "Deep turquoise cloth"
+      ],
+      "geometry_sha256": "ddaa98b4b9e60912dc0a36b714eea05b83eea6b43f46bc54c7c5538b129acea3",
+      "bindings_sha256": "858a459e86df515f05f9ad3dc892c2d81f8fc5a1bfbfae20a2717c706f31e158",
+      "rest_center": [
+        -0.0,
+        0.0,
+        1.0700003
+      ],
+      "world_extents": [
+        [
+          -0.22000010311603546,
+          0.2200000286102295
+        ],
+        [
+          -0.27000007033348083,
+          0.27000001072883606
+        ],
+        [
+          0.89000004529953,
+          1.25
+        ]
+      ],
+      "vertices": 222,
+      "polygons": 240
+    },
+    "Shaped thigh": {
+      "groups": [
+        "thigh.near"
+      ],
+      "materials": [
+        "Deep turquoise cloth"
+      ],
+      "geometry_sha256": "f16396a21aa8c1953e0f1775997f302356163ec48be95775c3cf9560a6c3b7b1",
+      "bindings_sha256": "19ca7816b4d61361753914f211885d555ecf9e4e0e83312edbc54c77d02f74a7",
+      "rest_center": [
+        -0.0,
+        -0.23,
+        0.8050002
+      ],
+      "world_extents": [
+        [
+          -0.1249999850988388,
+          0.1250000149011612
+        ],
+        [
+          -0.35499998927116394,
+          -0.10499998927116394
+        ],
+        [
+          0.6000000238418579,
+          1.0099999904632568
+        ]
+      ],
+      "vertices": 24,
+      "polygons": 14
+    },
+    "Shaped thigh.001": {
+      "groups": [
+        "thigh.far"
+      ],
+      "materials": [
+        "Deep turquoise cloth"
+      ],
+      "geometry_sha256": "c4ae5f69f874fa92891f30c0bbc360974877c8baa8dd752610a6406167159da4",
+      "bindings_sha256": "c10db8f1bb74fd3d804f693a65e03b00f9be736fea280e53be891cc18498d120",
+      "rest_center": [
+        -0.0,
+        0.23,
+        0.8050002
+      ],
+      "world_extents": [
+        [
+          -0.1249999850988388,
+          0.1250000149011612
+        ],
+        [
+          0.10500001907348633,
+          0.35500001907348633
+        ],
+        [
+          0.6000000238418579,
+          1.0099999904632568
+        ]
+      ],
+      "vertices": 24,
+      "polygons": 14
+    },
+    "Split tailored tabard": {
+      "groups": [
+        "spine"
+      ],
+      "materials": [
+        "Deep turquoise cloth"
+      ],
+      "geometry_sha256": "d47406f9ffd1a7c354234f3e49b35c57b8e6874a9812d98e113a9f3d5e007492",
+      "bindings_sha256": "70954ae263f9a2cb233dd67c3f3f3bd72d6eb332d0ed9c63556642e7295c697a",
+      "rest_center": [
+        0.2325,
+        -0.12875,
+        1.1475
+      ],
+      "world_extents": [
+        [
+          0.18000000715255737,
+          0.28999999165534973
+        ],
+        [
+          -0.23999999463558197,
+          -0.02500000037252903
+        ],
+        [
+          0.8199999928474426,
+          1.4500000476837158
+        ]
+      ],
+      "vertices": 4,
+      "polygons": 1
+    },
+    "Split tailored tabard.001": {
+      "groups": [
+        "spine"
+      ],
+      "materials": [
+        "Deep turquoise cloth"
+      ],
+      "geometry_sha256": "a22c43c8ac897e9fa2a8a2f1ea0dbea7e726f15309468306339afcc008d05878",
+      "bindings_sha256": "7ed3024affb8abcd393a4399b9140ca51afa3e6895e612925e996fc1613f9c04",
+      "rest_center": [
+        0.2325,
+        0.12875,
+        1.1475
+      ],
+      "world_extents": [
+        [
+          0.18000000715255737,
+          0.28999999165534973
+        ],
+        [
+          0.02500000037252903,
+          0.23999999463558197
+        ],
+        [
+          0.8199999928474426,
+          1.4500000476837158
+        ]
+      ],
+      "vertices": 4,
+      "polygons": 1
+    },
+    "Sweeping felt hat brim": {
+      "groups": [
+        "head"
+      ],
+      "materials": [
+        "Ink / recess"
+      ],
+      "geometry_sha256": "d154d6b2acb41d42673f20bbf5baf316aace34d902e653b815819029d74bf9cc",
+      "bindings_sha256": "4f2f5f5dc74d45e0d9316d10e99627101230dc402bb887e27f99cca5af5edcb1",
+      "rest_center": [
+        -0.01,
+        -0.0,
+        2.309999
+      ],
+      "world_extents": [
+        [
+          -0.35000014305114746,
+          0.33000004291534424
+        ],
+        [
+          -0.30000007152557373,
+          0.30000001192092896
+        ],
+        [
+          2.2649998664855957,
+          2.3550000190734863
+        ]
+      ],
+      "vertices": 222,
+      "polygons": 240
+    },
+    "Sword crossguard": {
+      "groups": [
+        "forearm.near"
+      ],
+      "materials": [
+        "Antique bronze edges"
+      ],
+      "geometry_sha256": "1d6016eb65fd6763e92b28d5b3bd071b4963fcd763a7b07caa8bac3c465f0d52",
+      "bindings_sha256": "bf918fe4ea3305ccc07bfc02784b26ad5f46e2965575aaab2b955ba937593d01",
+      "rest_center": [
+        0.42,
+        -0.3500001,
+        1.3
+      ],
+      "world_extents": [
+        [
+          0.3929999768733978,
+          0.44699999690055847
+        ],
+        [
+          -0.550000011920929,
+          -0.15000002086162567
+        ],
+        [
+          1.272999882698059,
+          1.3270000219345093
+        ]
+      ],
+      "vertices": 24,
+      "polygons": 14
+    },
+    "Sword pommel": {
+      "groups": [
+        "forearm.near"
+      ],
+      "materials": [
+        "Antique bronze edges"
+      ],
+      "geometry_sha256": "8b85cf180eaded7ba2c8db31021bca791799e0315456a1c646a09fecff510f38",
+      "bindings_sha256": "819f87386262727c9d298fa1c4d567d2be4584da82dbac53ad9c44ed53d00b49",
+      "rest_center": [
+        0.3800001,
+        -0.3499998,
+        1.0
+      ],
+      "world_extents": [
+        [
+          0.3229999542236328,
+          0.43700000643730164
+        ],
+        [
+          -0.40700000524520874,
+          -0.2929999828338623
+        ],
+        [
+          0.9300000071525574,
+          1.0700000524520874
+        ]
+      ],
+      "vertices": 222,
+      "polygons": 240
+    },
+    "Upper arm": {
+      "groups": [
+        "arm.near"
+      ],
+      "materials": [
+        "Deep turquoise cloth"
+      ],
+      "geometry_sha256": "b17e366c352571dedc2ace92304f45513740cdfe226efe2d822214e46f11a00a",
+      "bindings_sha256": "e2d07e248f87c762fb45fc2f14db8fc80397524f85f7ee98082a8081d75ee5c9",
+      "rest_center": [
+        0.0175,
+        -0.3392501,
+        1.55
+      ],
+      "world_extents": [
+        [
+          -0.09620948135852814,
+          0.11677806079387665
+        ],
+        [
+          -0.43848568201065063,
+          -0.22554627060890198
+        ],
+        [
+          1.3585028648376465,
+          1.7435259819030762
+        ]
+      ],
+      "vertices": 24,
+      "polygons": 14
+    },
+    "Upper arm.001": {
+      "groups": [
+        "arm.far"
+      ],
+      "materials": [
+        "Deep turquoise cloth"
+      ],
+      "geometry_sha256": "81bba4f8b8dbdfb2abf4b8bf946520249cafe9f4cfd317ad7f2569c1e0679b9e",
+      "bindings_sha256": "a5bf31b37a7b6fab9d684639ee788f76b511691cbab298a5ed1147868567cb38",
+      "rest_center": [
+        0.0175,
+        0.33925,
+        1.55
+      ],
+      "world_extents": [
+        [
+          -0.09620948880910873,
+          0.11677806824445724
+        ],
+        [
+          0.22554631531238556,
+          0.43848562240600586
+        ],
+        [
+          1.3585028648376465,
+          1.7435259819030762
+        ]
+      ],
+      "vertices": 24,
+      "polygons": 14
+    },
+    "Wind folded cloak": {
+      "groups": [
+        "spine"
+      ],
+      "materials": [
+        "Burnished terracotta"
+      ],
+      "geometry_sha256": "ef510650e3cef650ac3b811ddeb4333b4588b5a0a7aed87ee5ffbc064fe02d2e",
+      "bindings_sha256": "58f0497204dfe824c09d62edc968a3732edf9cf2ecff5ae355d18ab38bdbcc3e",
+      "rest_center": [
+        -0.3364444,
+        0.0,
+        1.3884292
+      ],
+      "world_extents": [
+        [
+          -0.48399999737739563,
+          -0.18000000715255737
+        ],
+        [
+          -0.30000001192092896,
+          0.30000001192092896
+        ],
+        [
+          0.9808214902877808,
+          1.7897871732711792
+        ]
+      ],
+      "vertices": 72,
+      "polygons": 56
+    },
+    "Wrapped sword grip": {
+      "groups": [
+        "forearm.near"
+      ],
+      "materials": [
+        "Hair leather and fur"
+      ],
+      "geometry_sha256": "2b43e527155bc497383943cbfd8417a4681f441a0a43bf8b19a82117d35c2dac",
+      "bindings_sha256": "ddb6fb4f92d5fb3e7be939ba3e1960f5ff7ab1108fce2defc5ecb614f14424f7",
+      "rest_center": [
+        0.3999999,
+        -0.35,
+        1.1700001
+      ],
+      "world_extents": [
+        [
+          0.344315767288208,
+          0.45568418502807617
+        ],
+        [
+          -0.38600000739097595,
+          -0.3139999806880951
+        ],
+        [
+          1.015242099761963,
+          1.3247580528259277
+        ]
+      ],
+      "vertices": 24,
+      "polygons": 14
+    }
+  },
+  "sampled_source_centers": {
+    "1": {
+      "Boot sole": [
+        0.13,
+        -0.23,
+        0.076
+      ],
+      "Boot sole.001": [
+        0.13,
+        0.23,
+        0.076
+      ],
+      "Fingers": [
+        0.3676938,
+        -0.3648437,
+        1.1330569
+      ],
+      "Fingers.001": [
+        0.3661017,
+        -0.3339075,
+        1.1342463
+      ],
+      "Fingers.002": [
+        0.3645096,
+        -0.3029712,
+        1.1354352
+      ],
+      "Fingers.003": [
+        0.3687944,
+        0.3251481,
+        1.1320698
+      ],
+      "Fingers.004": [
+        0.3672594,
+        0.3560845,
+        1.1333315
+      ],
+      "Fingers.005": [
+        0.3657242,
+        0.3870207,
+        1.1345931
+      ],
+      "Fullered sword blade": [
+        0.5073382,
+        -0.3413684,
+        1.7782768
+      ],
+      "Hand": [
+        0.3279254,
+        -0.3209309,
+        1.1365762
+      ],
+      "Hand.001": [
+        0.3291073,
+        0.3691258,
+        1.1356961
+      ],
+      "Leather boot": [
+        0.1100001,
+        -0.23,
+        0.15
+      ],
+      "Leather boot.001": [
+        0.1100001,
+        0.2299999,
+        0.15
+      ],
+      "Sword crossguard": [
+        0.4152899,
+        -0.3270477,
+        1.2823668
+      ],
+      "Sword pommel": [
+        0.3607733,
+        -0.3184173,
+        0.9847878
+      ],
+      "Wrapped sword grip": [
+        0.3890061,
+        -0.3234496,
+        1.1535405
+      ]
+    },
+    "3": {
+      "Boot sole": [
+        0.13,
+        -0.23,
+        0.076
+      ],
+      "Boot sole.001": [
+        0.13,
+        0.23,
+        0.076
+      ],
+      "Fingers": [
+        0.3676938,
+        -0.3648437,
+        1.1330569
+      ],
+      "Fingers.001": [
+        0.3661017,
+        -0.3339075,
+        1.1342463
+      ],
+      "Fingers.002": [
+        0.3645096,
+        -0.3029712,
+        1.1354352
+      ],
+      "Fingers.003": [
+        0.3687944,
+        0.3251481,
+        1.1320698
+      ],
+      "Fingers.004": [
+        0.3672594,
+        0.3560845,
+        1.1333315
+      ],
+      "Fingers.005": [
+        0.3657242,
+        0.3870207,
+        1.1345931
+      ],
+      "Fullered sword blade": [
+        0.5073382,
+        -0.3413684,
+        1.7782768
+      ],
+      "Hand": [
+        0.3279254,
+        -0.3209309,
+        1.1365762
+      ],
+      "Hand.001": [
+        0.3291073,
+        0.3691258,
+        1.1356961
+      ],
+      "Leather boot": [
+        0.1100001,
+        -0.23,
+        0.15
+      ],
+      "Leather boot.001": [
+        0.1100001,
+        0.2299999,
+        0.15
+      ],
+      "Sword crossguard": [
+        0.4152899,
+        -0.3270477,
+        1.2823668
+      ],
+      "Sword pommel": [
+        0.3607733,
+        -0.3184173,
+        0.9847878
+      ],
+      "Wrapped sword grip": [
+        0.3890061,
+        -0.3234496,
+        1.1535405
+      ]
+    },
+    "5": {
+      "Boot sole": [
+        0.0052321,
+        -0.23,
+        0.0921975
+      ],
+      "Boot sole.001": [
+        0.252574,
+        0.23,
+        0.1259025
+      ],
+      "Fingers": [
+        0.4869201,
+        -0.4264236,
+        1.2300756
+      ],
+      "Fingers.001": [
+        0.4887397,
+        -0.3955201,
+        1.2284399
+      ],
+      "Fingers.002": [
+        0.4905594,
+        -0.364617,
+        1.2268037
+      ],
+      "Fingers.003": [
+        0.3624076,
+        0.3018462,
+        1.1372354
+      ],
+      "Fingers.004": [
+        0.3623187,
+        0.332846,
+        1.1373267
+      ],
+      "Fingers.005": [
+        0.3622299,
+        0.3638458,
+        1.1374177
+      ],
+      "Fullered sword blade": [
+        0.5092673,
+        -0.3518863,
+        1.8860513
+      ],
+      "Hand": [
+        0.45254,
+        -0.3786623,
+        1.222386
+      ],
+      "Hand.001": [
+        0.3249796,
+        0.3477275,
+        1.1412731
+      ],
+      "Leather boot": [
+        -0.0050062,
+        -0.23,
+        0.1681658
+      ],
+      "Leather boot.001": [
+        0.2231498,
+        0.2299999,
+        0.1966853
+      ],
+      "Sword crossguard": [
+        0.5107706,
+        -0.3786477,
+        1.3821805
+      ],
+      "Sword pommel": [
+        0.5123789,
+        -0.3947408,
+        1.0799582
+      ],
+      "Wrapped sword grip": [
+        0.5088307,
+        -0.3854859,
+        1.250843
+      ]
+    },
+    "6": {
+      "Boot sole": [
+        0.0052321,
+        -0.23,
+        0.0921975
+      ],
+      "Boot sole.001": [
+        0.252574,
+        0.23,
+        0.1259025
+      ],
+      "Fingers": [
+        -0.1005475,
+        -0.2219664,
+        1.0635867
+      ],
+      "Fingers.001": [
+        -0.1005149,
+        -0.1929724,
+        1.0745569
+      ],
+      "Fingers.002": [
+        -0.1004823,
+        -0.1639783,
+        1.0855271
+      ],
+      "Fingers.003": [
+        0.4705019,
+        0.2883157,
+        1.1720276
+      ],
+      "Fingers.004": [
+        0.4708373,
+        0.3193122,
+        1.1717037
+      ],
+      "Fingers.005": [
+        0.4711727,
+        0.3503087,
+        1.1713793
+      ],
+      "Fullered sword blade": [
+        0.4801094,
+        -0.2947246,
+        1.3700279
+      ],
+      "Hand": [
+        -0.1235427,
+        -0.1893894,
+        1.1075436
+      ],
+      "Hand.001": [
+        0.4335024,
+        0.334714,
+        1.1713345
+      ],
+      "Leather boot": [
+        -0.0050062,
+        -0.23,
+        0.1681658
+      ],
+      "Leather boot.001": [
+        0.2231498,
+        0.2299999,
+        0.1966853
+      ],
+      "Sword crossguard": [
+        0.0439502,
+        -0.2045143,
+        1.1328927
+      ],
+      "Sword pommel": [
+        -0.2173062,
+        -0.150189,
+        0.9900844
+      ],
+      "Wrapped sword grip": [
+        -0.0708996,
+        -0.1817162,
+        1.0729773
+      ]
+    },
+    "7": {
+      "Boot sole": [
+        0.0052321,
+        -0.23,
+        0.0921975
+      ],
+      "Boot sole.001": [
+        0.252574,
+        0.23,
+        0.1259025
+      ],
+      "Fingers": [
+        0.508509,
+        -0.532823,
+        1.9607279
+      ],
+      "Fingers.001": [
+        0.5184553,
+        -0.5038552,
+        1.9655173
+      ],
+      "Fingers.002": [
+        0.5284014,
+        -0.4748872,
+        1.970306
+      ],
+      "Fingers.003": [
+        0.2168607,
+        0.3172073,
+        1.1343962
+      ],
+      "Fingers.004": [
+        0.2162105,
+        0.3481957,
+        1.1349385
+      ],
+      "Fingers.005": [
+        0.2155604,
+        0.3791842,
+        1.1354806
+      ],
+      "Fullered sword blade": [
+        -0.0846364,
+        -0.3176189,
+        2.1562436
+      ],
+      "Hand": [
+        0.5206593,
+        -0.4828661,
+        1.9310814
+      ],
+      "Hand.001": [
+        0.1785862,
+        0.3623431,
+        1.1388768
+      ],
+      "Leather boot": [
+        -0.0050062,
+        -0.23,
+        0.1681658
+      ],
+      "Leather boot.001": [
+        0.2231498,
+        0.2299999,
+        0.1966853
+      ],
+      "Sword crossguard": [
+        0.382933,
+        -0.4568564,
+        2.0274129
+      ],
+      "Sword pommel": [
+        0.663524,
+        -0.5405317,
+        1.9508148
+      ],
+      "Wrapped sword grip": [
+        0.5043371,
+        -0.4926197,
+        1.9916068
+      ]
+    },
+    "8": {
+      "Boot sole": [
+        0.0052321,
+        -0.23,
+        0.0921975
+      ],
+      "Boot sole.001": [
+        0.252574,
+        0.23,
+        0.1259025
+      ],
+      "Fingers": [
+        0.4359348,
+        -0.3680272,
+        1.2244313
+      ],
+      "Fingers.001": [
+        0.4339287,
+        -0.3370972,
+        1.2249861
+      ],
+      "Fingers.002": [
+        0.4319226,
+        -0.3061671,
+        1.2255408
+      ],
+      "Fingers.003": [
+        0.3554691,
+        0.3012796,
+        1.1791595
+      ],
+      "Fingers.004": [
+        0.3553902,
+        0.3322795,
+        1.1792239
+      ],
+      "Fingers.005": [
+        0.3553113,
+        0.3632794,
+        1.1792883
+      ],
+      "Fullered sword blade": [
+        0.4713422,
+        -0.3364536,
+        1.8833009
+      ],
+      "Hand": [
+        0.3957638,
+        -0.3244684,
+        1.2210842
+      ],
+      "Hand.001": [
+        0.3178553,
+        0.347185,
+        1.1787827
+      ],
+      "Leather boot": [
+        -0.0050062,
+        -0.23,
+        0.1681658
+      ],
+      "Leather boot.001": [
+        0.2231498,
+        0.2299999,
+        0.1966853
+      ],
+      "Sword crossguard": [
+        0.4589587,
+        -0.328212,
+        1.3789364
+      ],
+      "Sword pommel": [
+        0.4522371,
+        -0.3232224,
+        1.0763977
+      ],
+      "Wrapped sword grip": [
+        0.4534011,
+        -0.326216,
+        1.2475399
+      ]
+    }
+  }
+}

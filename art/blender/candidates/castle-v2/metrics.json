@@ -1,0 +1,588 @@
+{
+  "status": "rendered",
+  "source": "G:\\Repositories\\AgeOfMax\\art\\blender\\candidates\\castle-v2\\original-background-castle.blend",
+  "source_sha256": "bed90f869bfd8286fd04952af3b1ad978a5d5fe5de213d576e7ba3413b56bcbd",
+  "public_original_sha256": "193b4e66ede6b45e65d5fcade412028c3a6555ed3119c6d5d7db92ce0faf4de5",
+  "source_and_public_unchanged": true,
+  "camera_before": {
+    "name": "Battle valley / fixed horizon",
+    "matrix": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.13170000910758972,
+        -0.9912896156311035,
+        -70.0
+      ],
+      [
+        0.0,
+        0.9912896156311035,
+        0.13170000910758972,
+        12.850000381469727
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "type": "ORTHO",
+    "ortho_scale": 32.0,
+    "resolution": [
+      1600,
+      900,
+      100
+    ]
+  },
+  "camera_after": {
+    "name": "Battle valley / fixed horizon",
+    "matrix": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.13170000910758972,
+        -0.9912896156311035,
+        -70.0
+      ],
+      [
+        0.0,
+        0.9912896156311035,
+        0.13170000910758972,
+        12.850000381469727
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "type": "ORTHO",
+    "ortho_scale": 32.0,
+    "resolution": [
+      1600,
+      900,
+      100
+    ]
+  },
+  "camera_unchanged": true,
+  "terrain_sha256_before": "990c489013ff469d6ded88d2ac276af82e3c93915d36120b9560a285e956ee52",
+  "terrain_sha256_after": "990c489013ff469d6ded88d2ac276af82e3c93915d36120b9560a285e956ee52",
+  "terrain_unchanged": true,
+  "architecture_bounds_1280x720": {
+    "CAS_WestBastion": [
+      358.36,
+      171.14,
+      482.33,
+      360.35
+    ],
+    "CAS_SquareKeep": [
+      434.2,
+      117.16,
+      588.86,
+      361.85
+    ],
+    "CAS_RoundWatchtower": [
+      784.5,
+      139.33,
+      923.5,
+      407.04
+    ],
+    "CAS_InnerGreatHall": [
+      593.21,
+      131.74,
+      806.79,
+      357.02
+    ],
+    "CAS_RecessedGatehouse": [
+      573.08,
+      153.31,
+      730.92,
+      391.32
+    ],
+    "CAS_WestFrontCurtain": [
+      422.8,
+      205.49,
+      583.6,
+      349.81
+    ],
+    "CAS_EastFrontCurtain": [
+      720.8,
+      205.49,
+      857.2,
+      407.67
+    ],
+    "CAS_GateWestReturn": [
+      559.0,
+      198.66,
+      605.8,
+      353.82
+    ],
+    "CAS_GateEastReturn": [
+      698.6,
+      198.66,
+      745.4,
+      395.69
+    ],
+    "CAS_WestRearCurtain": [
+      404.37,
+      180.57,
+      475.63,
+      364.11
+    ],
+    "CAS_EastRearCurtain": [
+      727.72,
+      172.95,
+      874.28,
+      389.83
+    ],
+    "CAS_BastionAccessStair": [
+      450.99,
+      188.84,
+      503.81,
+      240.54
+    ],
+    "CAS_WatchtowerAccessStair": [
+      760.71,
+      185.63,
+      812.49,
+      239.75
+    ],
+    "CAS_GateBridgeApproach": [
+      503.15,
+      309.09,
+      687.1,
+      390.07
+    ]
+  },
+  "archived_objects": [
+    "Banner staff",
+    "Banner staff.001",
+    "Banner staff.002",
+    "Banner staff.003",
+    "Castle gate",
+    "Castle turret roof",
+    "Castle turret roof.001",
+    "Castle turret roof.002",
+    "Castle turret roof.003",
+    "Crenellation",
+    "Crenellation.001",
+    "Crenellation.002",
+    "Crenellation.003",
+    "Crenellation.004",
+    "Crenellation.005",
+    "Crenellation.006",
+    "Crenellation.007",
+    "Crenellation.008",
+    "Crenellation.009",
+    "Crenellation.010",
+    "Crenellation.011",
+    "Crenellation.012",
+    "Crenellation.013",
+    "Crenellation.014",
+    "Crenellation.015",
+    "Crenellation.016",
+    "Crenellation.017",
+    "Crenellation.018",
+    "Crenellation.019",
+    "Crenellation.020",
+    "Crenellation.021",
+    "Crenellation.022",
+    "Crenellation.023",
+    "Crenellation.024",
+    "Crenellation.025",
+    "Crenellation.026",
+    "Crenellation.027",
+    "Crenellation.028",
+    "Crenellation.029",
+    "Crenellation.030",
+    "Crenellation.031",
+    "Crenellation.032",
+    "Crenellation.033",
+    "Finial",
+    "Finial.001",
+    "Finial.002",
+    "Finial.003",
+    "Limestone curtain wall",
+    "Limestone curtain wall.001",
+    "Limestone curtain wall.002",
+    "Limestone curtain wall.003",
+    "Limestone curtain wall.004",
+    "Portcullis",
+    "Portcullis.001",
+    "Portcullis.002",
+    "Portcullis.003",
+    "Portcullis.004",
+    "Portcullis.005",
+    "Portcullis.006",
+    "Portcullis.007",
+    "Wall cap",
+    "Wall cap.001",
+    "Wall cap.002",
+    "Wall cap.003",
+    "Wall cap.004",
+    "Wind shaped woven banner",
+    "Wind shaped woven banner.001",
+    "Wind shaped woven banner.002",
+    "Wind shaped woven banner.003"
+  ],
+  "new_object_count": 1996,
+  "total_objects": 2528,
+  "terrain_footings": [
+    {
+      "name": "CAS_RecessedGatehouse",
+      "soil_heights": [
+        0.8421783447265625,
+        -0.2804718017578125,
+        0.04108619689941406,
+        0.43778228759765625,
+        0.31101417541503906
+      ],
+      "coping_top": 1.1121783447265625,
+      "world_center": [
+        0.3,
+        25.0
+      ],
+      "rotation": 0,
+      "perimeter_soil_samples": 44
+    },
+    {
+      "name": "CAS_WestBastion",
+      "soil_heights": [
+        0.8029575347900391,
+        1.3387622833251953,
+        0.8006858825683594,
+        0.6760711669921875,
+        0.9150791168212891
+      ],
+      "coping_top": 1.6087622833251953,
+      "world_center": [
+        -5.45,
+        23.65
+      ],
+      "rotation": -2,
+      "perimeter_soil_samples": 36
+    },
+    {
+      "name": "CAS_SquareKeep",
+      "soil_heights": [
+        0.46857452392578125,
+        0.46201515197753906,
+        0.15205764770507812,
+        0.21706199645996094,
+        0.2756309509277344
+      ],
+      "coping_top": 0.7385745239257813,
+      "world_center": [
+        -3.2,
+        28.1
+      ],
+      "rotation": -5,
+      "perimeter_soil_samples": 42
+    },
+    {
+      "name": "CAS_RoundWatchtower",
+      "soil_heights": [
+        -0.5160961151123047,
+        0.159423828125,
+        0.44829368591308594,
+        -0.28076171875,
+        -0.2620887756347656
+      ],
+      "coping_top": 0.718293685913086,
+      "world_center": [
+        5.35,
+        24.0
+      ],
+      "rotation": 2,
+      "perimeter_soil_samples": 40
+    },
+    {
+      "name": "CAS_InnerGreatHall",
+      "soil_heights": [
+        0.2767181396484375,
+        0.1057891845703125,
+        0.4676170349121094,
+        -0.007770538330078125,
+        0.2673149108886719
+      ],
+      "coping_top": 0.7376170349121094,
+      "world_center": [
+        1.5,
+        29.5
+      ],
+      "rotation": 4,
+      "perimeter_soil_samples": 50
+    }
+  ],
+  "geometry_checks": [
+    {
+      "name": "Unblocked real vaulted gate passage",
+      "ray_distance": 2.75,
+      "passed": true
+    },
+    {
+      "name": "Arrow slit penetrates the bastion wall",
+      "ray_distance": 0.8,
+      "passed": true
+    },
+    {
+      "name": "Six linked curtain-wall walks have actual clear depth above .70",
+      "passed": true
+    }
+  ],
+  "relocated_pine_groups": [
+    {
+      "objects": [
+        "Tapered pine trunk.004",
+        "Individually sculpted evergreen boughs.004",
+        "Soft conifer crown.004"
+      ],
+      "delta": [
+        -4.404617786407471,
+        7.809148788452148,
+        0.14180946350097656
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.006",
+        "Individually sculpted evergreen boughs.006",
+        "Soft conifer crown.006"
+      ],
+      "delta": [
+        9.073389053344727,
+        5.092709541320801,
+        1.5695075988769531
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.007",
+        "Individually sculpted evergreen boughs.007",
+        "Soft conifer crown.007"
+      ],
+      "delta": [
+        -2.430180072784424,
+        11.73985481262207,
+        0.8623714447021484
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.011",
+        "Individually sculpted evergreen boughs.011",
+        "Soft conifer crown.011"
+      ],
+      "delta": [
+        -5.919325828552246,
+        5.802998065948486,
+        0.2017803192138672
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.013",
+        "Individually sculpted evergreen boughs.013",
+        "Soft conifer crown.013"
+      ],
+      "delta": [
+        21.012319564819336,
+        8.777618408203125,
+        0.7516288757324219
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.019",
+        "Individually sculpted evergreen boughs.019",
+        "Soft conifer crown.019"
+      ],
+      "delta": [
+        -9.402593612670898,
+        19.704654693603516,
+        0.40792274475097656
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.022",
+        "Individually sculpted evergreen boughs.022",
+        "Soft conifer crown.022"
+      ],
+      "delta": [
+        -21.654102325439453,
+        8.005711555480957,
+        -0.11769485473632812
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.024",
+        "Individually sculpted evergreen boughs.024",
+        "Soft conifer crown.024"
+      ],
+      "delta": [
+        21.14560317993164,
+        12.541236877441406,
+        1.2364788055419922
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.025",
+        "Individually sculpted evergreen boughs.025",
+        "Soft conifer crown.025"
+      ],
+      "delta": [
+        2.6068594455718994,
+        20.363811492919922,
+        -0.9547958374023438
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.029",
+        "Individually sculpted evergreen boughs.029",
+        "Soft conifer crown.029"
+      ],
+      "delta": [
+        -2.1363394260406494,
+        12.182215690612793,
+        1.1267814636230469
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.031",
+        "Individually sculpted evergreen boughs.031",
+        "Soft conifer crown.031"
+      ],
+      "delta": [
+        18.036758422851562,
+        11.252553939819336,
+        0.6167716979980469
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.035",
+        "Individually sculpted evergreen boughs.035",
+        "Soft conifer crown.035"
+      ],
+      "delta": [
+        9.367568969726562,
+        14.773069381713867,
+        0.009305953979492188
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.039",
+        "Individually sculpted evergreen boughs.039",
+        "Soft conifer crown.039"
+      ],
+      "delta": [
+        -17.61568260192871,
+        19.040306091308594,
+        1.0614967346191406
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.047",
+        "Individually sculpted evergreen boughs.047",
+        "Soft conifer crown.047"
+      ],
+      "delta": [
+        17.952608108520508,
+        4.128798484802246,
+        0.08063125610351562
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.051",
+        "Individually sculpted evergreen boughs.051",
+        "Soft conifer crown.051"
+      ],
+      "delta": [
+        -5.872442722320557,
+        21.892749786376953,
+        -0.06069183349609375
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.052",
+        "Individually sculpted evergreen boughs.052",
+        "Soft conifer crown.052"
+      ],
+      "delta": [
+        -22.096282958984375,
+        9.089497566223145,
+        0.8155021667480469
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.055",
+        "Individually sculpted evergreen boughs.055",
+        "Soft conifer crown.055"
+      ],
+      "delta": [
+        17.733505249023438,
+        15.265536308288574,
+        0.36946678161621094
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.061",
+        "Individually sculpted evergreen boughs.061",
+        "Soft conifer crown.061"
+      ],
+      "delta": [
+        -5.138484954833984,
+        20.695587158203125,
+        -0.26367759704589844
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.069",
+        "Individually sculpted evergreen boughs.069",
+        "Soft conifer crown.069"
+      ],
+      "delta": [
+        -14.459481239318848,
+        10.587224960327148,
+        1.305593490600586
+      ]
+    }
+  ],
+  "bridge": {
+    "length": 4.893108462526093,
+    "deck_planks": 28,
+    "trail_soil_samples": 54
+  },
+  "rendered": true,
+  "publication": "candidate only",
+  "render_samples": 32,
+  "render_devices": [
+    "NVIDIA GeForce RTX 4070 Ti SUPER"
+  ],
+  "render_seconds": 6.7,
+  "render_path": "G:\\Repositories\\AgeOfMax\\art\\blender\\candidates\\castle-v2\\candidate.png"
+}

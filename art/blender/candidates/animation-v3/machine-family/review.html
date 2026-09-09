@@ -1,0 +1,53 @@
+<!doctype html><html lang="de"><meta charset="utf-8"><title>AgeOfMax – Maschinenstudie</title>
+<style>
+body{font:16px system-ui;background:#121b23;color:#e4ebee;margin:28px}main{max-width:1300px;margin:auto}
+h1{font-size:28px}p{line-height:1.5;max-width:1100px;color:#b8c8d3}
+button,select,input{font:inherit;padding:8px;border-radius:5px;background:#273745;color:#eef5f8;border:1px solid #647381}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid #f0c078}
+nav{display:flex;gap:12px;align-items:center;flex-wrap:wrap;position:sticky;top:0;background:#121b23;padding:12px 0;z-index:1}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(580px,1fr));gap:18px}.card{background:#1b2833;padding:14px}
+canvas{width:100%;max-width:608px;height:auto;background:#202f3a}h2{margin:4px 0 12px;font-size:21px}a{color:#edc177}
+label{display:flex;gap:8px;align-items:center}.small{font-size:13px;color:#aac0cc}
+</style><main><h1>Kanone und Panzer: echte Mechanik in 16 Frames</h1>
+<p>Isolierte Blender-Kandidaten. Links der gesicherte bisherige Stand, rechts die neue Bewegung bei derselben nominellen Spielgeschwindigkeit und Größe. Die Kanone rollt eine halbe Radumdrehung, der Panzer drei Kettenglieder bei einer Vierteldrehung der Laufräder. Angriffe dauern unverändert 320 ms, Kontakt auf Frame 12 nach 160 ms. Diese Ansicht ist eine Animationsprüfung, keine gespielte Partie.</p>
+<nav><button id="play">Anhalten</button><select id="clip"><option value="walk">Fahrt</option><option value="attack">Angriff</option></select>
+<label>Tempo<select id="speed"><option value=".5">½×</option><option value="1" selected>1×</option><option value="4">4×</option></select></label>
+<label><input type="checkbox" id="travel" checked> Mit Wegstrecke</label>
+<label><input type="checkbox" id="socket" checked> Mündungsanker</label>
+<label>Frame<input id="frame" type="range" min="0" max="15" value="0"><output id="frameLabel">0</output></label></nav>
+<div class="cards"></div><p class="small">Die Wiedergabe berechnet die Phase aus Wegstrecke und der gemessenen Zyklusstrecke. Pause friert die Ansicht ein. Frame8 der Blender-Action dient nur als Schleifen-/Recovery-Abschluss und ist nicht einer der16Sprites. Die mechanische Schleife darf gleichartige Speichen/Kettenglieder permutieren; feine prozedurale Materialunterschiede an dieser Grenze sind im Bildprüfbericht gesondert gemessen.</p></main>
+<script>
+const models=[{"key": "cannon", "unit": "cannon", "gait": {"nominalSpeedPxPerSecond": 25, "referenceDisplayScale": 0.51, "cycleDistancePixels": 36.82678420799417, "nominalCycleDurationMs": 1473.0713683197669, "motionKind": "wheel-or-track", "stanceFraction": 0, "doubleSupportFrames": []}, "sockets": [[208.021, 189.906], [208.021, 189.906], [208.021, 189.906], [208.021, 189.906], [208.021, 189.906], [208.021, 189.906], [208.021, 189.906], [208.021, 189.906], [208.021, 189.906], [207.977, 189.084], [207.897, 187.85], [207.847, 187.192], [205.759, 187.127], [198.721, 187.093], [203.722, 188.865], [206.871, 190.517]]}, {"key": "cannon-enemy", "unit": "cannon", "gait": {"nominalSpeedPxPerSecond": 25, "referenceDisplayScale": 0.51, "cycleDistancePixels": 36.82678420799417, "nominalCycleDurationMs": 1473.0713683197669, "motionKind": "wheel-or-track", "stanceFraction": 0, "doubleSupportFrames": []}, "sockets": [[208.021, 189.906], [208.021, 189.906], [208.021, 189.906], [208.021, 189.906], [208.021, 189.906], [208.021, 189.906], [208.021, 189.906], [208.021, 189.906], [208.021, 189.906], [207.977, 189.084], [207.897, 187.85], [207.847, 187.192], [205.759, 187.127], [198.721, 187.093], [203.722, 188.865], [206.871, 190.517]]}, {"key": "tank", "unit": "tank", "gait": {"nominalSpeedPxPerSecond": 31, "referenceDisplayScale": 0.51, "cycleDistancePixels": 10.047837817067121, "nominalCycleDurationMs": 324.1238005505523, "motionKind": "wheel-or-track", "stanceFraction": 0, "doubleSupportFrames": []}, "sockets": [[224.103, 161.717], [224.103, 161.717], [224.103, 161.717], [224.103, 161.717], [224.103, 161.717], [224.103, 161.717], [224.103, 161.717], [224.103, 161.717], [224.103, 161.717], [224.057, 160.691], [223.999, 159.665], [223.965, 159.151], [221.485, 159.305], [214.563, 159.314], [219.566, 160.711], [223.068, 162.285]]}, {"key": "tank-enemy", "unit": "tank", "gait": {"nominalSpeedPxPerSecond": 31, "referenceDisplayScale": 0.51, "cycleDistancePixels": 10.047837817067121, "nominalCycleDurationMs": 324.1238005505523, "motionKind": "wheel-or-track", "stanceFraction": 0, "doubleSupportFrames": []}, "sockets": [[224.103, 161.717], [224.103, 161.717], [224.103, 161.717], [224.103, 161.717], [224.103, 161.717], [224.103, 161.717], [224.103, 161.717], [224.103, 161.717], [224.103, 161.717], [224.057, 160.691], [223.999, 159.665], [223.965, 159.151], [221.485, 159.305], [214.563, 159.314], [219.566, 160.711], [223.068, 162.285]]}], panels=[]; let running=true,elapsed=0,last=performance.now(),manualFrame=null;
+const el=id=>document.getElementById(id);
+for(const m of models){
+ const card=document.createElement('section');card.className='card';
+ card.innerHTML='<h2>'+m.key+'</h2><canvas width="608" height="260"></canvas><p class="small">'+m.gait.cycleDistancePixels.toFixed(4)+' Spielpixel / '+m.gait.nominalCycleDurationMs.toFixed(3)+' ms | <a href="'+m.key+'/contact-sheet.jpg">Alle Phasen</a> | <a href="'+m.key+'/unit-'+m.key+'.blend">Blenderquelle</a></p>';
+ document.querySelector('.cards').append(card);
+ const old=new Image(),sheet=new Image();old.src=m.key+'/baseline/'+m.unit+'.png';sheet.src=m.key+'/'+m.key+'-16.png';
+ panels.push({...m,canvas:card.querySelector('canvas'),old,sheet});
+}
+el('play').onclick=()=>{running=!running;manualFrame=null;el('play').textContent=running?'Anhalten':'Abspielen'};
+el('clip').onchange=()=>{elapsed=0;manualFrame=null};
+el('frame').oninput=()=>{running=false;el('play').textContent='Abspielen';manualFrame=Number(el('frame').value);el('frameLabel').textContent=manualFrame;el('clip').value=manualFrame>=8?'attack':'walk'};
+function draw(m){
+ const c=m.canvas.getContext('2d'),attack=manualFrame===null?el('clip').value==='attack':manualFrame>=8;
+ const duration=attack?320:m.gait.nominalCycleDurationMs;
+ const frame=manualFrame===null?Math.floor((elapsed%duration)/duration*8)+(attack?8:0):manualFrame;
+ const oldFrame=manualFrame===null?Math.floor((elapsed%(attack?320:520))/(attack?80:130))+(attack?4:0):Math.floor((frame%8)/2)+(attack?4:0);
+ const shownTime=manualFrame===null?elapsed%duration:(frame%8)*duration/8;
+ const distance=attack||!el('travel').checked?0:(elapsed*m.gait.nominalSpeedPxPerSecond/1000)%105;
+ c.clearRect(0,0,608,260);c.fillStyle='#24343e';c.fillRect(0,0,608,260);
+ c.fillStyle='#e1e7df';c.font='15px system-ui';c.fillText('Bisher / 8 Frames',12,22);c.fillText('Studie / 16 Frames',320,22);
+ c.strokeStyle='#677a7d';c.beginPath();c.moveTo(0,218);c.lineTo(608,218);c.stroke();
+ for(let i=0;i<2;i++){
+  const x=i*304+38+distance,im=i?m.sheet:m.old,f=i?frame:oldFrame,s=.51;
+  if(im.complete&&im.naturalWidth)c.drawImage(im,f*256,0,256,256,x,218-256*.92*s,256*s,256*s);
+  c.fillStyle='#b6cbd5';c.fillText('Frame '+f+' / '+shownTime.toFixed(0)+' ms',i*304+12,247);
+  if(i&&el('socket').checked){const p=m.sockets[frame];c.strokeStyle=frame===12?'#f7df56':'#ed758a';c.beginPath();c.arc(x+p[0]*s,218-256*.92*s+p[1]*s,3,0,Math.PI*2);c.stroke();}
+ }
+ m.canvas.dataset.frame=frame;m.canvas.dataset.elapsed=elapsed.toFixed(3);m.canvas.dataset.distance=distance.toFixed(4);
+}
+function tick(now){if(running)elapsed+=Math.max(0,now-last)*Number(el('speed').value);last=now;for(const m of panels)draw(m);requestAnimationFrame(tick)}
+requestAnimationFrame(tick);
+window.machineReview={models,panels,get running(){return running},get elapsed(){return elapsed}};
+</script></html>

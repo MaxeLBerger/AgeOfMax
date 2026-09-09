@@ -1,0 +1,18 @@
+[
+  {
+    "texture": "laser-soldier",
+    "file": "art/blender/candidates/animation-v3/ranged-family-2/laser-soldier/laser-soldier-16.png"
+  },
+  {
+    "texture": "laser-soldier-enemy",
+    "file": "art/blender/candidates/animation-v3/ranged-family-2/laser-soldier-enemy/laser-soldier-enemy-16.png"
+  },
+  {
+    "texture": "plasma-trooper",
+    "file": "art/blender/candidates/animation-v3/ranged-family-2/plasma-trooper/plasma-trooper-16.png"
+  },
+  {
+    "texture": "plasma-trooper-enemy",
+    "file": "art/blender/candidates/animation-v3/ranged-family-2/plasma-trooper-enemy/plasma-trooper-enemy-16.png"
+  }
+]

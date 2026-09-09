@@ -1,0 +1,11 @@
+{
+  "tank": {
+    "nominalSpeedPxPerSecond": 31,
+    "referenceDisplayScale": 0.51,
+    "cycleDistancePixels": 10.047837817067121,
+    "nominalCycleDurationMs": 324.1238005505523,
+    "motionKind": "wheel-or-track",
+    "stanceFraction": 0,
+    "doubleSupportFrames": []
+  }
+}

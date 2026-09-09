@@ -1,0 +1,21 @@
+{
+  "checkedAt": "2026-09-09T02:16:08.740Z",
+  "functionFilesCompared": 41,
+  "functionSourcesUnchanged": true,
+  "sourceFingerprint": "22125e733639fa6ed281981fc15bd8e5db0b2f8f618950d8552eb1cd82cf286b",
+  "runtimeContract": {
+    "pngs": 70,
+    "files": 71,
+    "numericFramesPerUnit": 8,
+    "unitMarkerIds": 20,
+    "finitePointsPerMarker": 8,
+    "distinctFactions": true
+  },
+  "backgroundHashes": {
+    "stone": "81eb79b9204a718fd33df699e466c7d78cc6255771fd23119fdbd20d80a269e4",
+    "castle": "193b4e66ede6b45e65d5fcade412028c3a6555ed3119c6d5d7db92ce0faf4de5",
+    "renaissance": "f425856159a807538728c2f0869f237f60539081ca94c8cbf27731d21c46ab09",
+    "modern": "c9c3a4d85f95ea39ac716c9669c10ee717d8785370dd41747e8462314441e8f8",
+    "future": "a996b5c56821a60b48b33e25746bbabf769dd8d7af25d824b7ecf206752cfa39"
+  }
+}

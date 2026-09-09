@@ -1,0 +1,70 @@
+{
+  "status": "passed",
+  "source_sha256": "290cc6435fa195f74afcd550838550da8811264bdfcd5e2778239529e192a544",
+  "source_unchanged": true,
+  "dolmen_bearing_contacts": [
+    {
+      "support": "STN_DolmenBearingOrthostat",
+      "cap_underside": 3.4680798053741455,
+      "orthostat_top": 3.4680798053741455,
+      "gap": 0.0
+    },
+    {
+      "support": "STN_DolmenBearingOrthostat.001",
+      "cap_underside": 3.4680798053741455,
+      "orthostat_top": 3.4680798053741455,
+      "gap": 0.0
+    },
+    {
+      "support": "STN_DolmenBearingOrthostat.002",
+      "cap_underside": 3.4680798053741455,
+      "orthostat_top": 3.4680798053741455,
+      "gap": 0.0
+    }
+  ],
+  "entrance_clearance_rays": [
+    {
+      "shelter": "STN_MainHideShelter",
+      "horizontal_offset": -0.2,
+      "clear_depth": 0.55,
+      "passed": true
+    },
+    {
+      "shelter": "STN_MainHideShelter",
+      "horizontal_offset": 0,
+      "clear_depth": 0.55,
+      "passed": true
+    },
+    {
+      "shelter": "STN_MainHideShelter",
+      "horizontal_offset": 0.2,
+      "clear_depth": 0.55,
+      "passed": true
+    },
+    {
+      "shelter": "STN_SmallToolShelter",
+      "horizontal_offset": -0.2,
+      "clear_depth": 0.55,
+      "passed": true
+    },
+    {
+      "shelter": "STN_SmallToolShelter",
+      "horizontal_offset": 0,
+      "clear_depth": 0.55,
+      "passed": true
+    },
+    {
+      "shelter": "STN_SmallToolShelter",
+      "horizontal_offset": 0.2,
+      "clear_depth": 0.55,
+      "passed": true
+    }
+  ],
+  "all_new_geometry_bounds_1280x720": [
+    -169.59,
+    104.45,
+    1480.42,
+    408.23
+  ],
+  "all_new_geometry_above_combat_lane": true
+}

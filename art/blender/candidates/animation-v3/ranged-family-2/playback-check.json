@@ -1,0 +1,80 @@
+{
+  "passed": true,
+  "errors": [],
+  "videos": [
+    {
+      "file": "musketeer/motion-comparison.webm",
+      "presented": 141,
+      "wraps": 1,
+      "previous": 0.543478,
+      "width": 640,
+      "height": 336,
+      "duration": 2.52,
+      "currentTime": 0.739503,
+      "paused": false,
+      "error": null
+    },
+    {
+      "file": "musketeer-enemy/motion-comparison.webm",
+      "presented": 174,
+      "wraps": 1,
+      "previous": 0.541599,
+      "width": 640,
+      "height": 336,
+      "duration": 2.52,
+      "currentTime": 0.737549,
+      "paused": false,
+      "error": null
+    },
+    {
+      "file": "laser-soldier/motion-comparison.webm",
+      "presented": 169,
+      "wraps": 1,
+      "previous": 0.543946,
+      "width": 640,
+      "height": 336,
+      "duration": 2.52,
+      "currentTime": 0.739915,
+      "paused": false,
+      "error": null
+    },
+    {
+      "file": "laser-soldier-enemy/motion-comparison.webm",
+      "presented": 178,
+      "wraps": 1,
+      "previous": 0.54157,
+      "width": 640,
+      "height": 336,
+      "duration": 2.52,
+      "currentTime": 0.7375,
+      "paused": false,
+      "error": null
+    },
+    {
+      "file": "plasma-trooper/motion-comparison.webm",
+      "presented": 176,
+      "wraps": 1,
+      "previous": 0.54405,
+      "width": 640,
+      "height": 336,
+      "duration": 2.52,
+      "currentTime": 0.693514,
+      "paused": false,
+      "error": null
+    },
+    {
+      "file": "plasma-trooper-enemy/motion-comparison.webm",
+      "presented": 174,
+      "wraps": 1,
+      "previous": 0.544229,
+      "width": 640,
+      "height": 336,
+      "duration": 2.52,
+      "currentTime": 0.693636,
+      "paused": false,
+      "error": null
+    }
+  ],
+  "inspectedContactTimeSeconds": 1.72,
+  "productionChanged": false
+}

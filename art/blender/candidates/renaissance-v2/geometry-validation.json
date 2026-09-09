@@ -1,0 +1,44 @@
+{
+  "checks": [
+    {
+      "name": "Observatory window has a true front-wall opening and recessed backing",
+      "result": {
+        "hit": true,
+        "object": "REN_ObservatoryPalazzo_Window04_RecessBack",
+        "local_hit": [
+          0.10000038146972656,
+          -1.2474995851516724,
+          1.5299999713897705
+        ]
+      },
+      "passed": true
+    },
+    {
+      "name": "Solid fa\u00e7ade beside the opening remains at the outer wall plane",
+      "result": {
+        "hit": true,
+        "object": "REN_ObservatoryPalazzo_PerforatedWallPanel.035",
+        "local_hit": [
+          0.5100005865097046,
+          -1.4999982118606567,
+          1.5299999713897705
+        ]
+      },
+      "passed": true
+    },
+    {
+      "name": "Loggia arch is open through both sides, without an opaque backdrop",
+      "result": {
+        "hit": false,
+        "object": null,
+        "local_hit": null
+      },
+      "passed": true
+    },
+    {
+      "name": "All six terrace top planes exceed their sampled soil heights",
+      "passed": true
+    }
+  ],
+  "passed": true
+}

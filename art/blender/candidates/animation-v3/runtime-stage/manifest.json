@@ -1,0 +1,78 @@
+{
+  "stagedAt": "2026-09-09T03:45:44.229Z",
+  "status": "prepared_only_not_applied",
+  "stage": "G:\\Repositories\\AgeOfMax\\art\\blender\\candidates\\animation-v3\\runtime-stage",
+  "changed": [
+    {
+      "file": "src/scenes/BootScene.ts",
+      "beforeSha256": "089a4ca26ec8974e56bbfcc4dc1f9ff0017a44aa48cc0b779ece19a3c53fdeba",
+      "stagedSha256": "63b5c0dc166dbc7c776bd367c7e595f1c3af3728761e094aa4764602658ca5c0"
+    },
+    {
+      "file": "src/scenes/BattleScene.ts",
+      "beforeSha256": "076ee302eb9f97af2d2acf6d6c747f8b0c785f85c221fd7e09142fd2c5b998af",
+      "stagedSha256": "cffdfa4b4191916d2c8e00d1493e4733f09d7b7e441f4514996b517d171f6149"
+    },
+    {
+      "file": "vite.config.ts",
+      "beforeSha256": "3f9773be475bed7be5793fdad6184926f501fa612288c077471bbe9c064461e9",
+      "stagedSha256": "abd255e5b0a433849130f345be950f6c99015f76c3639bacbcf9aa6c97fa92ca"
+    },
+    {
+      "file": "e2e/check-assets.ts",
+      "beforeSha256": "83fc2fc4b982ce8d5a5206e82dd31891473ce2d558f9779976376b0f797a179f",
+      "stagedSha256": "b763d6fe43ccc2f25b194c9a0dcc3eafcb1f1af7a6cb04d678d5f7fa8fb9b93c"
+    },
+    {
+      "file": "e2e/menus-assets.spec.ts",
+      "beforeSha256": "a81670fb0a177205dbbe6c6aae616c4e82cb68e867f3eba9b0430189e5cd03de",
+      "stagedSha256": "a653b62943ecf92315b0fee6a00dd8d3265c4c71781d6cb38cb53831f6fada8b"
+    },
+    {
+      "file": "src/__tests__/projectilePresentation.test.ts",
+      "beforeSha256": "0892a6be4e3df6755cfc3c2719fd0e440dbf0e3d18e83d35fe3ad935e27028dd",
+      "stagedSha256": "3a1a2c4bf73c1fddbd66cee6a6e3896656da5c622614806355ba84d0b7186e20"
+    },
+    {
+      "file": "tools/production-smoke.mjs",
+      "beforeSha256": "417e342b90d9f38396fd4bb942f99dd3405be9a6107ada1caa788b95b0bdecae",
+      "stagedSha256": "7276ff7f48f6e228649def3025fcb18e1defc56cd9ccb6c3425592950704d515"
+    },
+    {
+      "file": "tools/visual-epoch.mjs",
+      "beforeSha256": "03761c9320c2e3238b7147ce7ed5a9f94272bfdc8c1b032c16fd473a8ca2964f",
+      "stagedSha256": "7cedff57bfb59d6acd01a82f6243d4b88785f447a9bc36ada9efc722bb9ab561"
+    },
+    {
+      "file": "tools/combat-playthrough.mjs",
+      "beforeSha256": "a78f6dac83a8cfd498a04098f5ce4a83a6d64e44635d719570d791757d26acd4",
+      "stagedSha256": "2959c203b435540a757239e7d53434079a36deb0e2c95eb2d90081db7f7484df"
+    },
+    {
+      "file": "tools/blender/render.ps1",
+      "beforeSha256": "389a5097207e8f4e49c481bcb1ecacce1763977e8af641fe1db364f37e25200c",
+      "stagedSha256": "f48f7a158e512567d053e05f378cc2ccf6c9634e4702133936c22df6e07ad0ba"
+    },
+    {
+      "file": "tools/blender/export_scenes.py",
+      "beforeSha256": "f4b9efd7cec8eb79988467ab4fc8f55438618f060c74824a0e5014aa1594d6eb",
+      "stagedSha256": "7d7ffaa23d547bdb239bc40d1eeecf79f67b7712501b89250d4a03b2d8c78bad"
+    },
+    {
+      "file": "tools/blender/pack_sheets.py",
+      "beforeSha256": "94247793091a67344dc6a5ff0b14b663b7edec604d721d019a4b3e345939e877",
+      "stagedSha256": "921a2f8ce48d128e16335995fea1fb81cc970fe3ea40e8912f707c93e6c873c3"
+    },
+    {
+      "file": "tools/blender/verify_art.py",
+      "beforeSha256": "c4ff39be6cd8f2ee61be8f826c47ab2c2e486dfb19651aa0453abca9a51289ab",
+      "stagedSha256": "e49e73b4351faaa91c33c7ba3e8abb538c052a2a61cb709b573af28d01fb6e78"
+    }
+  ],
+  "requirements": [
+    "All 40 authored 4096x256 sheets approved",
+    "20 identical-team gait entries and 20x16 sockets",
+    "Source hash guards and whole-contract promotion",
+    "Browser motion, stop, contact, pause and restart checks"
+  ]
+}

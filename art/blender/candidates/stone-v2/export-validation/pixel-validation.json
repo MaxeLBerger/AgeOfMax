@@ -1,0 +1,20 @@
+{
+  "status": "validated_with_minimal_rgb_rounding_difference",
+  "candidate_size": [
+    1600,
+    900
+  ],
+  "export_size": [
+    1600,
+    900
+  ],
+  "rgba_pixels_identical": false,
+  "candidate_sha256": "4f6a38d257a0c1076f01b5ea5ebe7f19f9fed97d00c7bb0b053bf98453435fe4",
+  "reexport_sha256": "1e1ba4b33b4e481232f9918a8dd2e378901ec0e2d05f056c02a72675d51965d3",
+  "comparison": "Every RGBA byte and all three RGB channels, independently of alpha difference.",
+  "maximum_rgb_channel_difference_8bit": 1,
+  "mean_rgb_channel_difference_8bit": 5.277777777777778e-05,
+  "different_rgb_pixels": 228,
+  "total_pixels": 1440000,
+  "fraction_different": 0.00015833333333333332
+}

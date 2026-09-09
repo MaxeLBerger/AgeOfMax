@@ -1,0 +1,327 @@
+{
+  "passed": true,
+  "unit": "duelist",
+  "faction": "enemy",
+  "source_hashes": {
+    "source": "0cd7850ee2276a4f3811fc893b223e8f6a5d258c00c924f31091b3469631ed66",
+    "sheet": "d50a7123845590d72b486853dc8ef1bea93a396a1b40208dda4a35d44768da4e",
+    "sockets": "40f9fe76b2dd2d54b9a4161df792571ce9d83a900e5c6ee36a699743a29444a4"
+  },
+  "production_unchanged": true,
+  "mesh_count": 61,
+  "mesh_contracts": {
+    "Boot sole": "8040ae650f0438678fd1267ff43c5d3401e5dda1762e6ead68feb2755ae28fc6",
+    "Boot sole.001": "3afe24ef6310727f268bcb23560d0a5c3824021a28d4a84c915e2a2e156a536d",
+    "Broad leather girdle": "995ecee665d248d1ac8e2eb0e38d9c49a0ce2a73d4166b135c680ee2e7497a09",
+    "Bronze belt buckle": "156503d754993830e765ba94f5872cabcde25b879e3aaf345511e6bb9047ef64",
+    "Calf": "53b51e9a385afa90df6e168c9f2bf4c1af46dd2712197b46404489ec7bab817c",
+    "Calf.001": "84d2a50c9ebfdf414e7ca8d8c11e105d96c3390d8980be8a13e624d29b73c6a0",
+    "Cocked hat crown": "1a332c4e0531024206b4f16bab46493796ed1daf46cf07406bea82c1fb58aa00",
+    "Deltoid": "92fe33304f66350616b5190ca9f6c28788f9ce43491d990fba82c2b304bfd59e",
+    "Deltoid.001": "234ef00e2b7c9088b0f0bbbe8ed1e23c0922baa044ba37b5a62f5479c3d02f1b",
+    "Ear": "c262656d3ea6022672f634b04982a9234aba61b59618d5a968e32f426ae48f82",
+    "Elbow": "e1c73118977fa5ee7740be44c64d8aeed0e6628d764e99b67fbc397edafda4aa",
+    "Elbow.001": "967fbd62f62a44212dbde191a251f5a6ace1d35fd4d10b286c4eaa6807c557eb",
+    "Eye glint": "e6d6223e26f9d16a4b636b4a8e04038dfab80856739b4162d79d6a2b6b26662f",
+    "Eye glint.001": "23e0c8abe1e4334d3ccee00cdb8a3db83a70bce5c45c659bc3157d5fba42dace",
+    "Eye socket": "12ef136f5ac95619536809d462d1662dbc1093ee162762f5535ea3cc969f0973",
+    "Eye socket.001": "d5c30f93e69b602be6c4b9dcd8c33047eefc4449fb8fc14ce6fc0c88192a634b",
+    "Fingers": "05052c475b7a286ee828b72c61da81775bd615dff7da2471ac92d7d5399b4bf6",
+    "Fingers.001": "08a72e14f708c8ba1816b4a6d5cbbf5698b64643d57b89bc03252ef99e12acf2",
+    "Fingers.002": "30ed09fbad6453ce8d974a7c35bb013db7de77454db85db93c721ba7c7fc9dbd",
+    "Fingers.003": "47002c8ea1fa51bad91fa6914505e5d0e68a630f7c1bd243494e3503eb0d19df",
+    "Fingers.004": "b1e04d9d34fef5f1dbbed77efc564b004f65139f305269210e8bcb1966dfa30b",
+    "Fingers.005": "ea1f66c13775d2acaca753e74bda86ab050649b3672f12c6fdc8ba74b7bed593",
+    "Forearm": "ef427faabe85d80008d2168d141bb5fc956d4a3fe9fe943fc672739a7b20b36a",
+    "Forearm.001": "ee19af34f17b0527db19d02ad7f0411bb2e9770bdb4bbc992d4268b93e631b16",
+    "Fullered sword blade": "57da8f5246ea55b14f5c68c43b9efd2dbdf45b684f45f57914585b6c422219c3",
+    "Gold tabard hem": "2297a0966e99c4d50f06bf2156b3f8e781f8d301a4635a6af57e436f762d62f5",
+    "Hand": "ff958bb551668021b43463b8b64f2971c00f6c8606540fe0ee1875ea134ae593",
+    "Hand.001": "975d0cbe261cb66a4543db2f2eb14488c3db825f45bb85a6986b92ea212217fd",
+    "Hat braid": "cd2d4a6d9e82027c6ce773626c0b8715b7704ddab4508bcdcd523d5619d70213",
+    "Jaw": "e3b0ff50582dac227070c231894afd89f815555fc6abe45e7c7d329496e684f4",
+    "Knee": "74cc535212f57111b2e530d9fa60751d90e17ce6c1be8870c7563286ddfa235c",
+    "Knee.001": "1ceb5c8cb446d0c3aee146e3c13d81ca48bcdb0ac191657793d170e5e614a342",
+    "Leather boot": "984a8bfa35307611dc99513464525c23178555aa3248fff70dd3f1e8e0d971bd",
+    "Leather boot.001": "dcb9c038cbb076ded245c7c926614ed352956f291ee1fdb6faf98913cf57a7f3",
+    "Leather vambrace": "7cfd7cc83e11624136b2c61adff541235fdcf5a78f92a3918cb4c8e38caa3c0f",
+    "Leather vambrace.001": "5384c87a802775936e1c59699bd140ba693c4b654ea3d8ae6e7f13552f37f1b4",
+    "Leg binding": "878d35e433d739c2876a420b646d529666df3e3e1fd27b52f3e4f4036a6cc96d",
+    "Leg binding.001": "8f76cfa1a0ec2bfc57a2c5a001e621f177dc95e907f33330c9a39ed6a570b203",
+    "Leg binding.002": "ea8d2895393a5af06caa6f55c5eded8d8b87da38f95c003fa734192dad3b0620",
+    "Leg binding.003": "c632250faa1b336d9eae842b74afd4ada01379304d239c1727474a4a9126216c",
+    "Moustache": "452bdf863d64aca22c796c72195d13d8fe51ffea6425bd9787f254d0f10ffdc1",
+    "Mouth": "496f90e6afe9d4830f97a01f0a543cba73ca6a9bf634988f89500a0f1fa7560d",
+    "Neck": "13b87d562e27d75118bcc0a34170d388884cb46a30b862138ca85ad2de531bc7",
+    "Nose": "a05cbfdeebeb746eb1b7fe1edf09dc5b4f804096426e7bfe5e58bf663cad9565",
+    "Ostrich feather": "9f1911e83fcb4414637945ae8bc90b179a5087a8845ff14a888f90aa8424d7b9",
+    "Sculpted brow": "939b8a5c9a690002963f5cbd8d33118148418598874039bf69b4732f2f5b8eeb",
+    "Sculpted brow.001": "87a7f2da184711790acd3ead5a3b70ef5ed03349602fcc08463e260e2438aaa0",
+    "Sculpted chest waist and shoulders": "f8d949119d8566750d19a8458fd79d7529b9c96d31d3d2e5f3ea576aaf0d8982",
+    "Sculpted skull": "6482cff01840d5cdb0bc7b973fea01464fe2fd049266e2798f488b782fbfd8fe",
+    "Shaped pelvis": "ddaa98b4b9e60912dc0a36b714eea05b83eea6b43f46bc54c7c5538b129acea3",
+    "Shaped thigh": "f16396a21aa8c1953e0f1775997f302356163ec48be95775c3cf9560a6c3b7b1",
+    "Shaped thigh.001": "c4ae5f69f874fa92891f30c0bbc360974877c8baa8dd752610a6406167159da4",
+    "Split tailored tabard": "d47406f9ffd1a7c354234f3e49b35c57b8e6874a9812d98e113a9f3d5e007492",
+    "Split tailored tabard.001": "a22c43c8ac897e9fa2a8a2f1ea0dbea7e726f15309468306339afcc008d05878",
+    "Sweeping felt hat brim": "d154d6b2acb41d42673f20bbf5baf316aace34d902e653b815819029d74bf9cc",
+    "Sword crossguard": "1d6016eb65fd6763e92b28d5b3bd071b4963fcd763a7b07caa8bac3c465f0d52",
+    "Sword pommel": "8b85cf180eaded7ba2c8db31021bca791799e0315456a1c646a09fecff510f38",
+    "Upper arm": "b17e366c352571dedc2ace92304f45513740cdfe226efe2d822214e46f11a00a",
+    "Upper arm.001": "81bba4f8b8dbdfb2abf4b8bf946520249cafe9f4cfd317ad7f2569c1e0679b9e",
+    "Wind folded cloak": "ef510650e3cef650ac3b811ddeb4333b4588b5a0a7aed87ee5ffbc064fe02d2e",
+    "Wrapped sword grip": "2b43e527155bc497383943cbfd8417a4681f441a0a43bf8b19a82117d35c2dac"
+  },
+  "rest_geometry_and_materials_preserved": true,
+  "original_bones": {
+    "root": [
+      [
+        0.0,
+        0.0,
+        0.11999999731779099
+      ],
+      [
+        0.0,
+        0.0,
+        1.0299999713897705
+      ],
+      null
+    ],
+    "spine": [
+      [
+        0.0,
+        0.0,
+        1.0299999713897705
+      ],
+      [
+        0.0,
+        0.0,
+        1.840000033378601
+      ],
+      "root"
+    ],
+    "head": [
+      [
+        0.0,
+        0.0,
+        1.840000033378601
+      ],
+      [
+        0.0,
+        0.0,
+        2.3399999141693115
+      ],
+      "spine"
+    ],
+    "arm.near": [
+      [
+        0.0,
+        -0.32199999690055847,
+        1.7799999713897705
+      ],
+      [
+        0.03500000014901161,
+        -0.3564999997615814,
+        1.3700000047683716
+      ],
+      "spine"
+    ],
+    "forearm.near": [
+      [
+        0.03500000014901161,
+        -0.3564999997615814,
+        1.3700000047683716
+      ],
+      [
+        0.33000001311302185,
+        -0.3449999988079071,
+        1.149999976158142
+      ],
+      "arm.near"
+    ],
+    "arm.far": [
+      [
+        0.0,
+        0.32199999690055847,
+        1.7799999713897705
+      ],
+      [
+        0.03500000014901161,
+        0.3564999997615814,
+        1.3700000047683716
+      ],
+      "spine"
+    ],
+    "forearm.far": [
+      [
+        0.03500000014901161,
+        0.3564999997615814,
+        1.3700000047683716
+      ],
+      [
+        0.33000001311302185,
+        0.3449999988079071,
+        1.149999976158142
+      ],
+      "arm.far"
+    ],
+    "thigh.near": [
+      [
+        0.0,
+        -0.23000000417232513,
+        1.0299999713897705
+      ],
+      [
+        0.0,
+        -0.23000000417232513,
+        0.5699999928474426
+      ],
+      "root"
+    ],
+    "shin.near": [
+      [
+        0.0,
+        -0.23000000417232513,
+        0.5699999928474426
+      ],
+      [
+        0.03999999910593033,
+        -0.23000000417232513,
+        0.14000000059604645
+      ],
+      "thigh.near"
+    ],
+    "thigh.far": [
+      [
+        0.0,
+        0.23000000417232513,
+        1.0299999713897705
+      ],
+      [
+        0.0,
+        0.23000000417232513,
+        0.5699999928474426
+      ],
+      "root"
+    ],
+    "shin.far": [
+      [
+        0.0,
+        0.23000000417232513,
+        0.5699999928474426
+      ],
+      [
+        0.03999999910593033,
+        0.23000000417232513,
+        0.14000000059604645
+      ],
+      "thigh.far"
+    ]
+  },
+  "original_bones_preserved": true,
+  "bone_count": 16,
+  "actions": {
+    "walk": {
+      "duelist animation rig": "Melee duelist-enemy / walk / duelist animation rig",
+      "Weapon muzzle / runtime socket": "Melee duelist-enemy / walk / Weapon muzzle / runtime socket"
+    },
+    "attack": {
+      "duelist animation rig": "Melee duelist-enemy / attack / duelist animation rig",
+      "Weapon muzzle / runtime socket": "Melee duelist-enemy / attack / Weapon muzzle / runtime socket"
+    }
+  },
+  "frames": 16,
+  "contact_index": 12,
+  "contact_ms": 160,
+  "walk_ms": 520,
+  "attack_ms": 320,
+  "cycle_distance_world": 0.8103741911423021,
+  "runtime_speed": 47,
+  "runtime_scale": 0.43,
+  "weapon_grip_rest": [
+    0.4,
+    -0.35,
+    1.17
+  ],
+  "weapon_bone": "weapon.wrist",
+  "hand_mesh": "Hand",
+  "far_hand_mesh": "Hand.001",
+  "far_weapon_grip_rest": null,
+  "sole_meshes": [
+    "Boot sole",
+    "Boot sole.001"
+  ],
+  "all_original_bindings_preserved": false,
+  "shield_grip_rest": null,
+  "sockets": [
+    [
+      200.619,
+      129.899
+    ],
+    [
+      200.51,
+      127.738
+    ],
+    [
+      200.459,
+      128.269
+    ],
+    [
+      200.51,
+      129.751
+    ],
+    [
+      200.619,
+      129.899
+    ],
+    [
+      200.709,
+      130.056
+    ],
+    [
+      200.74,
+      131.548
+    ],
+    [
+      200.709,
+      132.069
+    ],
+    [
+      200.619,
+      129.899
+    ],
+    [
+      201.695,
+      141.302
+    ],
+    [
+      200.161,
+      155.694
+    ],
+    [
+      217.816,
+      158.488
+    ],
+    [
+      237.652,
+      164.49
+    ],
+    [
+      228.571,
+      160.623
+    ],
+    [
+      207.012,
+      149.891
+    ],
+    [
+      203.212,
+      138.278
+    ]
+  ],
+  "authored_motion_note": "Compact sword counter-thrust with a low forward guard, quick extension and controlled withdrawal; distinct from the Swordsman cut.",
+  "key_counts": {
+    "walk": 131,
+    "attack": 129
+  }
+}

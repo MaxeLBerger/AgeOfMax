@@ -1,0 +1,364 @@
+{
+  "passed": true,
+  "unit": "spearman",
+  "faction": "player",
+  "source_hashes": {
+    "source": "62d3e4a110eae1d290c9362311b53795e9a9fd8ce37ae451de1ae870452eee1c",
+    "sheet": "a88ae8331096d3095e6c132a063be80850a78d5ecbf284884b3f69cf8323fb55",
+    "sockets": "40f9fe76b2dd2d54b9a4161df792571ce9d83a900e5c6ee36a699743a29444a4"
+  },
+  "production_unchanged": true,
+  "mesh_count": 94,
+  "mesh_contracts": {
+    "Beard": "97a52c0a734313b361d167ba19581ce9e28f862e90d3d87b1dccfc6d6c5e93e6",
+    "Bone necklace tooth": "bf92d235e80875915fdb26484e797d6627827dccf358cef4f60874d285c58bd0",
+    "Bone necklace tooth.001": "fd1c03a7fa632cf246479d806d135bd300ac85fdc72f3f2a4e3957698b175bb4",
+    "Bone necklace tooth.002": "3074306aef708817ac8e79b41552bbf14bdddd62bcdf5c74bd6e365b349215cf",
+    "Bone necklace tooth.003": "e4b54af1c90b31ccfe183b3596c7889cdbadbdaeef89bce4eb5699fd32be0636",
+    "Bone necklace tooth.004": "94412df0f5330226551eaa8ebcb272cff922146190aaebaa9367143e591d02ee",
+    "Boot sole": "8040ae650f0438678fd1267ff43c5d3401e5dda1762e6ead68feb2755ae28fc6",
+    "Boot sole.001": "3afe24ef6310727f268bcb23560d0a5c3824021a28d4a84c915e2a2e156a536d",
+    "Broad leather girdle": "995ecee665d248d1ac8e2eb0e38d9c49a0ce2a73d4166b135c680ee2e7497a09",
+    "Bronze belt buckle": "156503d754993830e765ba94f5872cabcde25b879e3aaf345511e6bb9047ef64",
+    "Calf": "8d906de8cf285d5f0c8c947094ee8c8bd9a189028c5a4926d52e71463e5866fb",
+    "Calf.001": "318e8177800d0cab7567389894c1c872667e05a02dac69eed8b14fe6c8bca355",
+    "Deltoid": "a581b426d1db981ea3085ac999bfe1902adaf903c3e8b8b4385dcfaa797a4865",
+    "Deltoid.001": "6fc9adb164f65ee2e8f91bef4c1adeb36345458b3aa2c07e012bc9358db51a22",
+    "Ear": "8eaa8540d4ad1f33c4084a93884a8cf35747b24a80c32b3f4c1854846e3d7743",
+    "Elbow": "e1c73118977fa5ee7740be44c64d8aeed0e6628d764e99b67fbc397edafda4aa",
+    "Elbow.001": "0ac49cd3409a36482f142435cf217c462516507426e4a3839094b8e45209f72c",
+    "Eye glint": "ebb169c5553f74d01a2ee598c082b508c252d53de3ce1c6fe34cccf2b8ef8707",
+    "Eye glint.001": "668920ba629ce7efc3c0c3ca1b4f4012b13721a1081ed39110acc62d18d5af95",
+    "Eye socket": "909e9e2f6035fcac736813f3223932b23ce019d412a15cf836b73cfeb6b9fb29",
+    "Eye socket.001": "9a569c414d7ebc4eca8117920568cd737a9b0c71293bb3be052de7ee55b360b8",
+    "Fingers": "05052c475b7a286ee828b72c61da81775bd615dff7da2471ac92d7d5399b4bf6",
+    "Fingers.001": "08a72e14f708c8ba1816b4a6d5cbbf5698b64643d57b89bc03252ef99e12acf2",
+    "Fingers.002": "30ed09fbad6453ce8d974a7c35bb013db7de77454db85db93c721ba7c7fc9dbd",
+    "Fingers.003": "47002c8ea1fa51bad91fa6914505e5d0e68a630f7c1bd243494e3503eb0d19df",
+    "Fingers.004": "b1e04d9d34fef5f1dbbed77efc564b004f65139f305269210e8bcb1966dfa30b",
+    "Fingers.005": "ea1f66c13775d2acaca753e74bda86ab050649b3672f12c6fdc8ba74b7bed593",
+    "Forearm": "ef427faabe85d80008d2168d141bb5fc956d4a3fe9fe943fc672739a7b20b36a",
+    "Forearm.001": "ee19af34f17b0527db19d02ad7f0411bb2e9770bdb4bbc992d4268b93e631b16",
+    "Fur collar tufts": "a54bc0d0de906d19a9c7614f56e8203331e2431054ac88399f0c05252a532505",
+    "Fur collar tufts.001": "bbfa8d0e4d9042358447bc766e0ebfb1b399a71b71d3dd28bc7a404407590bd5",
+    "Fur collar tufts.002": "6d0ae36c9e574654b1a0a4989e127c9269440359d5f20c26889f06f6b0a927ae",
+    "Fur collar tufts.003": "ac90d1f66886f6f5022930bc68384dbfe0326ca9bc02973406825ce033677a1b",
+    "Fur collar tufts.004": "628e9ce5381e95d6447120b510f984ca490580132b46ac35096ca82eff80c8b6",
+    "Hand": "fd44d3bcd4f0a31fbbcdd78859526ce0ee5393ab46b7a31ba69f9f6e0f27bbc3",
+    "Hand.001": "975d0cbe261cb66a4543db2f2eb14488c3db825f45bb85a6986b92ea212217fd",
+    "Individual hair lock": "d0e9471cdc60b32a715f68e79c1b6a8c6c1237f21185f288aa1d8336deb5a1b9",
+    "Individual hair lock.001": "b48f7be851920ebf817162e7c433b4134262ae7c551b082ab1aaf57e89daf289",
+    "Individual hair lock.002": "9e550132489b9e0540f53a3aa401ef53cb8f710a066c8cef12001334c5311287",
+    "Individual hair lock.003": "924a8a083fa4ff1a776901b6d402267eedbdf2575187a9c024067acc10fe85c1",
+    "Individual hair lock.004": "f27a4c0cdb5604aa17bbd47413bd11e408386e575f3b024b8398a24a9260be7d",
+    "Individual hair lock.005": "b7447aa18ebb00072774ac4b1ba13ca9d6bdbc51e36b7c916308fdeb8ce02aae",
+    "Individual hair lock.006": "3ccfdf86fe82721ac3c7a05b123e1ec53e7b3d7db9bbf5346ee03d859fa5ba5b",
+    "Jaw": "2298ccc390166a807e146dfa62aa6f6f441d25c1d0ef90b1fb196dc1f338aff3",
+    "Knapped spearhead": "1a1d7fc35e7cac74014d452a46831088eb591c622bf5292a015b791e1acd824a",
+    "Knee": "8ee1740e9bc51d56b140d341987dc1eaed5384ee4bca27f4d892e8cc8fd2c253",
+    "Knee.001": "d151fa1a6ce0846c876ed6449f02f5d10680247d49698879b1f31e087d6a42ed",
+    "Layered fur tunic fringe": "6f5738a80b8307a7c594ee6648065554a03037e5da87846d639227db294743ae",
+    "Layered fur tunic fringe.001": "5ab7cac5604dabfbc1feb07d528941ff5d134548479e78ad4c68f771a26a15a6",
+    "Layered fur tunic fringe.002": "54b6f0c5582d090c8df25db4e973e34eeeb42114c1eab4dfcd960c4669675cd0",
+    "Layered fur tunic fringe.003": "b47389f9f2665f2600d4432fb7a675355be6130575a904dbd2b45ec226eb69ce",
+    "Layered fur tunic fringe.004": "983d9f5a5a001011878f13cd08988c08f0e9436ec97bdd2389d0743cfa5fe9f6",
+    "Layered fur tunic fringe.005": "747c2dde7ce949e3c8fc455410539d9af183da659af6b277647333b1a40c03bc",
+    "Layered fur tunic fringe.006": "8d35b3f5b78e7db50714f3da5b39c88f08b5f95fe52065b11079c043225bf92f",
+    "Layered fur tunic fringe.007": "3f63c43c63d16599d599f731cb650056fa74200af1b03868401078c4641df35e",
+    "Layered fur tunic fringe.008": "c38d45390b7a8afa767a169738cfed1c978a8dfcf2ffa0a5cf735c798624bc7d",
+    "Layered fur tunic fringe.009": "3b577723ef91a051b950969c57f93113efbc420db01b062a919b4e1b37d8ef09",
+    "Layered fur tunic fringe.010": "47a7b739ff0daf50194d90f50520d24878700569ddcfd8da79148d23cc270427",
+    "Leather boot": "05ba5b83a02091876ec1e9a90d3df7fb5cb70075b1d892ce9ec92a74e8657f9d",
+    "Leather boot.001": "42e0fc18308de96165ef02fed68a90f8bef4d83bbdc20d9b914ac3868c295587",
+    "Leather vambrace": "7cfd7cc83e11624136b2c61adff541235fdcf5a78f92a3918cb4c8e38caa3c0f",
+    "Leather vambrace.001": "5384c87a802775936e1c59699bd140ba693c4b654ea3d8ae6e7f13552f37f1b4",
+    "Leg binding": "8d8b933b1b30090a0b692156c5fda4bad2326f11fd8a184905ecc541a424956b",
+    "Leg binding.001": "1827f2ecc625d4c7fe3dad2b8b9fbca6df244f20607ee3ed7339d50dfa9fdcbb",
+    "Leg binding.002": "2cf802c04b10abeca2300260e0c3175cb40a60ebd73a1fc121889ae17d0893c3",
+    "Leg binding.003": "96733d94c6ae4590e67b4357de0be5e4965384fca07976216846952d390c011c",
+    "Long ash spear": "1beb1bce11a20e3631db22b52cd2d4b19fe6c3d85ad63bdb42ab739a2cfab173",
+    "Mouth": "496f90e6afe9d4830f97a01f0a543cba73ca6a9bf634988f89500a0f1fa7560d",
+    "Neck": "9740d38d96820e2a7f2f6939bb4fa0008e7803fcb95409b0d7cf14370559e4e2",
+    "Nose": "4213735e6758f57b8c43ae8e77cc8b62cdca49d1c4d7d7b491d8ff5e01468b90",
+    "Round hide shield": "e4ce99780f95124c257b77c682f331a6fa5e170b77eeb57fd6abb3daad29ca92",
+    "Sculpted brow": "939b8a5c9a690002963f5cbd8d33118148418598874039bf69b4732f2f5b8eeb",
+    "Sculpted brow.001": "87a7f2da184711790acd3ead5a3b70ef5ed03349602fcc08463e260e2438aaa0",
+    "Sculpted chest waist and shoulders": "f8d949119d8566750d19a8458fd79d7529b9c96d31d3d2e5f3ea576aaf0d8982",
+    "Sculpted skull": "3a22c6ce3b9505f70c9a5671a237851c5ac15d93a8327c81f6e4c1ed1362e6aa",
+    "Shaped pelvis": "e1d9e27ca013ad2f5e6aca5247ddfca21d095c2641888646b35c9a895ded8ae1",
+    "Shaped thigh": "990782000648becb64ff18570a392d57cbb910bca424ef60720ec18151cd0f2a",
+    "Shaped thigh.001": "14905e648189c5b64b549011e2ff50801b425788d81b69bfdd0e16ea63158227",
+    "Shield boss": "30e775260965fa7898af979956ba2054712c72bd67a709f8e0064160ec8a2405",
+    "Shield bronze rim": "94add2844ff196250d2ff8169104d59586ccc22a8404603ae9fdbcf186690c43",
+    "Shield rivet": "3f58b4f5d8a2df429dcb8b345d106fc300e6162f2d9876e6c2731d3a1cc5f439",
+    "Shield rivet.001": "eef1e39d70de9a7e8f28c5fa8139289de225bda36ca2f821c63d0e9aa1aca461",
+    "Shield rivet.002": "f5fe78bb701ded434bb46338b79ed8cd59c411edc7651d21c209ee116897e1d0",
+    "Shield rivet.003": "f83812e10ca52fc5e3b069e7ebe6534d1ac9ba6d77ee7173e14cf61692fd448f",
+    "Shield rivet.004": "b4ddc90fca96b08f67740df016e51d2f85f5f6f1da835cb3c5d4bbdec38c10d4",
+    "Shield rivet.005": "b71c142832600e0630e70d587428a0d773c9560abb6a7e2e6a8d1bc99442a0b4",
+    "Shield rivet.006": "adb78e331417060a75af5284eb781e7d1592d4a08dbf3f0291b1e036d98d6195",
+    "Shield rivet.007": "ad237469dcfce61de8f87bf56feca65746fd3e2f2ae165af01b053b65d98d098",
+    "Shoulder fur": "c160500d104878a04b94a959c37cadafb91a896b4456c4af44ae952536a95d01",
+    "Spear socket": "3a4b25e569ee97dd2167d20990ca6e51b12546e07432989193c623d02e96e97b",
+    "Swept hair cap": "986e95b5e2ab59e4281ac7f62349e146543718290002b6fc84974f4947d4fd75",
+    "Turquoise headband": "fd61d32d533b7953f6ccf2da6680f01f59fbfe7a931cff5c2ca1d5d3194b8eff",
+    "Upper arm": "a1a65eaab2ae89bcefaaf1b69ea9c0b59eed4324364352304b94601dee8bc499",
+    "Upper arm.001": "b69655b874ec0b2fe0ef48c1add007e6cb2db18537fa0e2e521b213e35f69509"
+  },
+  "rest_geometry_and_materials_preserved": true,
+  "original_bones": {
+    "root": [
+      [
+        0.0,
+        0.0,
+        0.11999999731779099
+      ],
+      [
+        0.0,
+        0.0,
+        1.0299999713897705
+      ],
+      null
+    ],
+    "spine": [
+      [
+        0.0,
+        0.0,
+        1.0299999713897705
+      ],
+      [
+        0.0,
+        0.0,
+        1.840000033378601
+      ],
+      "root"
+    ],
+    "head": [
+      [
+        0.0,
+        0.0,
+        1.840000033378601
+      ],
+      [
+        0.0,
+        0.0,
+        2.3399999141693115
+      ],
+      "spine"
+    ],
+    "arm.near": [
+      [
+        0.0,
+        -0.32199999690055847,
+        1.7799999713897705
+      ],
+      [
+        0.03500000014901161,
+        -0.3564999997615814,
+        1.3700000047683716
+      ],
+      "spine"
+    ],
+    "forearm.near": [
+      [
+        0.03500000014901161,
+        -0.3564999997615814,
+        1.3700000047683716
+      ],
+      [
+        0.33000001311302185,
+        -0.3449999988079071,
+        1.149999976158142
+      ],
+      "arm.near"
+    ],
+    "arm.far": [
+      [
+        0.0,
+        0.32199999690055847,
+        1.7799999713897705
+      ],
+      [
+        0.03500000014901161,
+        0.3564999997615814,
+        1.3700000047683716
+      ],
+      "spine"
+    ],
+    "forearm.far": [
+      [
+        0.03500000014901161,
+        0.3564999997615814,
+        1.3700000047683716
+      ],
+      [
+        0.33000001311302185,
+        0.3449999988079071,
+        1.149999976158142
+      ],
+      "arm.far"
+    ],
+    "thigh.near": [
+      [
+        0.0,
+        -0.23000000417232513,
+        1.0299999713897705
+      ],
+      [
+        0.0,
+        -0.23000000417232513,
+        0.5699999928474426
+      ],
+      "root"
+    ],
+    "shin.near": [
+      [
+        0.0,
+        -0.23000000417232513,
+        0.5699999928474426
+      ],
+      [
+        0.03999999910593033,
+        -0.23000000417232513,
+        0.14000000059604645
+      ],
+      "thigh.near"
+    ],
+    "thigh.far": [
+      [
+        0.0,
+        0.23000000417232513,
+        1.0299999713897705
+      ],
+      [
+        0.0,
+        0.23000000417232513,
+        0.5699999928474426
+      ],
+      "root"
+    ],
+    "shin.far": [
+      [
+        0.0,
+        0.23000000417232513,
+        0.5699999928474426
+      ],
+      [
+        0.03999999910593033,
+        0.23000000417232513,
+        0.14000000059604645
+      ],
+      "thigh.far"
+    ]
+  },
+  "original_bones_preserved": true,
+  "bone_count": 17,
+  "actions": {
+    "walk": {
+      "spearman animation rig": "Melee spearman / walk / spearman animation rig",
+      "Weapon muzzle / runtime socket": "Melee spearman / walk / Weapon muzzle / runtime socket"
+    },
+    "attack": {
+      "spearman animation rig": "Melee spearman / attack / spearman animation rig",
+      "Weapon muzzle / runtime socket": "Melee spearman / attack / Weapon muzzle / runtime socket"
+    }
+  },
+  "frames": 16,
+  "contact_index": 12,
+  "contact_ms": 160,
+  "walk_ms": 520,
+  "attack_ms": 320,
+  "cycle_distance_world": 0.6551961545405848,
+  "runtime_speed": 38,
+  "runtime_scale": 0.43,
+  "weapon_grip_rest": [
+    0.4,
+    -0.35,
+    1.31
+  ],
+  "weapon_bone": "weapon.wrist",
+  "hand_mesh": "Hand",
+  "far_hand_mesh": "Hand.001",
+  "far_weapon_grip_rest": null,
+  "sole_meshes": [
+    "Boot sole",
+    "Boot sole.001"
+  ],
+  "all_original_bindings_preserved": false,
+  "shield_grip_rest": [
+    0.20000000298023224,
+    -0.48500001430511475,
+    1.4299999475479126
+  ],
+  "sockets": [
+    [
+      193.524,
+      100.823
+    ],
+    [
+      193.004,
+      98.744
+    ],
+    [
+      192.783,
+      99.312
+    ],
+    [
+      193.004,
+      100.757
+    ],
+    [
+      193.524,
+      100.823
+    ],
+    [
+      194.027,
+      100.906
+    ],
+    [
+      194.23,
+      102.368
+    ],
+    [
+      194.027,
+      102.919
+    ],
+    [
+      193.524,
+      100.823
+    ],
+    [
+      200.154,
+      116.468
+    ],
+    [
+      202.654,
+      141.991
+    ],
+    [
+      218.002,
+      147.663
+    ],
+    [
+      243.347,
+      150.558
+    ],
+    [
+      237.772,
+      147.919
+    ],
+    [
+      216.728,
+      131.614
+    ],
+    [
+      201.78,
+      112.46
+    ]
+  ],
+  "authored_motion_note": "Axial spear thrust from a drawn-back chamber; continuous grip on the real ash shaft, shield on the other arm.",
+  "key_counts": {
+    "walk": 131,
+    "attack": 129
+  }
+}

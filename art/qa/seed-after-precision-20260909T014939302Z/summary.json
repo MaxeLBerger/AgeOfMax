@@ -1,0 +1,232 @@
+{
+  "group": "seed-after-precision-20260909T014939302Z",
+  "baselinePath": "art/qa/seed-matrix-20260909T014354814Z/summary.json",
+  "profiles": [
+    {
+      "difficulty": "medium",
+      "mode": "mixed",
+      "speed": "1"
+    },
+    {
+      "difficulty": "hard",
+      "mode": "mixed",
+      "speed": "1"
+    },
+    {
+      "difficulty": "medium",
+      "mode": "line",
+      "speed": "1"
+    },
+    {
+      "difficulty": "medium",
+      "mode": "mixed",
+      "speed": "4"
+    }
+  ],
+  "runs": [
+    {
+      "label": "medium-mixed-101-1x",
+      "seconds": 184.9166666666506,
+      "winner": "player",
+      "endedBy": "base-destroyed",
+      "kills": 36,
+      "recruits": 33,
+      "unitGold": 3255,
+      "minimumBase": {
+        "fraction": 1,
+        "hp": 4200,
+        "maxHp": 4200,
+        "t": 0,
+        "epoch": 0
+      },
+      "meteorCasts": 0,
+      "artilleryCasts": 0,
+      "finalSample": {
+        "t": 185,
+        "absoluteTimeMs": 184916.6666666506,
+        "gold": 96,
+        "xp": 3159,
+        "kills": 36,
+        "epoch": 1,
+        "enemyEpoch": 1,
+        "wave": 4,
+        "player": 5600,
+        "enemy": 0,
+        "pArmy": 11,
+        "eArmy": 0,
+        "shots": 0,
+        "pFront": 1081,
+        "objects": 63
+      },
+      "sourceFingerprint": "5c4077b107a81ef5133060bee0234a731fd2d0f619b8ea9afa34ce25dbff0278",
+      "report": "art\\qa\\seed-after-precision-20260909T014939302Z\\combat-medium-mixed-1x-seed-101-20260909T014940316Z-ca882843.json",
+      "baseline": {
+        "seconds": 183.38333333331815,
+        "winner": "player",
+        "kills": 36,
+        "recruits": 34,
+        "minimumBase": {
+          "fraction": 1,
+          "hp": 4200,
+          "maxHp": 4200,
+          "t": 0,
+          "epoch": 0
+        },
+        "artifact": "art\\qa\\seed-matrix-20260909T014354814Z\\combat-medium-mixed-1x-seed-101-20260909T014355672Z-32e6634c.json"
+      }
+    },
+    {
+      "label": "hard-mixed-101-1x",
+      "seconds": 314.6666666666668,
+      "winner": "player",
+      "endedBy": "base-destroyed",
+      "kills": 81,
+      "recruits": 55,
+      "unitGold": 8625,
+      "minimumBase": {
+        "fraction": 1,
+        "hp": 4200,
+        "maxHp": 4200,
+        "t": 0,
+        "epoch": 0
+      },
+      "meteorCasts": 4,
+      "artilleryCasts": 1,
+      "finalSample": {
+        "t": 315,
+        "absoluteTimeMs": 314666.6666666668,
+        "gold": 112,
+        "xp": 2144,
+        "kills": 81,
+        "epoch": 3,
+        "enemyEpoch": 2,
+        "wave": 7,
+        "player": 10000,
+        "enemy": 0,
+        "pArmy": 10,
+        "eArmy": 0,
+        "shots": 0,
+        "pFront": 981,
+        "objects": 55
+      },
+      "sourceFingerprint": "5c4077b107a81ef5133060bee0234a731fd2d0f619b8ea9afa34ce25dbff0278",
+      "report": "art\\qa\\seed-after-precision-20260909T014939302Z\\combat-hard-mixed-1x-seed-101-20260909T014946885Z-19b674d8.json",
+      "baseline": {
+        "seconds": 835.8999999995186,
+        "winner": "enemy",
+        "kills": 238,
+        "recruits": 138,
+        "minimumBase": {
+          "fraction": 0,
+          "hp": 0,
+          "maxHp": 14000,
+          "t": 835899.9999995186,
+          "epoch": 4
+        },
+        "artifact": "art\\qa\\seed-matrix-20260909T014354814Z\\combat-hard-mixed-1x-seed-101-20260909T014411294Z-fc2c701b.json"
+      }
+    },
+    {
+      "label": "medium-line-101-1x",
+      "seconds": 959.9999999992297,
+      "winner": null,
+      "endedBy": "simulation-limit",
+      "kills": 249,
+      "recruits": 176,
+      "unitGold": 54755,
+      "minimumBase": {
+        "fraction": 1,
+        "hp": 4200,
+        "maxHp": 4200,
+        "t": 0,
+        "epoch": 0
+      },
+      "meteorCasts": 17,
+      "artilleryCasts": 11,
+      "finalSample": {
+        "t": 960,
+        "absoluteTimeMs": 959999.9999992297,
+        "gold": 352,
+        "xp": 84,
+        "kills": 249,
+        "epoch": 4,
+        "enemyEpoch": 4,
+        "wave": 22,
+        "player": 14000,
+        "enemy": 9957,
+        "pArmy": 1,
+        "eArmy": 13,
+        "shots": 1,
+        "pFront": 425,
+        "objects": 71
+      },
+      "sourceFingerprint": "5c4077b107a81ef5133060bee0234a731fd2d0f619b8ea9afa34ce25dbff0278",
+      "report": "art\\qa\\seed-after-precision-20260909T014939302Z\\combat-medium-line-1x-seed-101-20260909T014952772Z-3c6f7762.json",
+      "baseline": {
+        "seconds": 959.9999999992297,
+        "winner": null,
+        "kills": 253,
+        "recruits": 180,
+        "minimumBase": {
+          "fraction": 0.7383928571428572,
+          "hp": 4135,
+          "maxHp": 5600,
+          "t": 233316.66666662242,
+          "epoch": 1
+        },
+        "artifact": "art\\qa\\seed-matrix-20260909T014354814Z\\combat-medium-line-1x-seed-101-20260909T014439602Z-f59bb446.json"
+      }
+    },
+    {
+      "label": "medium-mixed-101-4x",
+      "seconds": 185.3999999999959,
+      "winner": "player",
+      "endedBy": "base-destroyed",
+      "kills": 36,
+      "recruits": 34,
+      "unitGold": 3365,
+      "minimumBase": {
+        "fraction": 1,
+        "hp": 4200,
+        "maxHp": 4200,
+        "t": 0,
+        "epoch": 0
+      },
+      "meteorCasts": 0,
+      "artilleryCasts": 0,
+      "finalSample": {
+        "t": 185,
+        "absoluteTimeMs": 185399.99999999593,
+        "gold": 26,
+        "xp": 3159,
+        "kills": 36,
+        "epoch": 1,
+        "enemyEpoch": 1,
+        "wave": 4,
+        "player": 5600,
+        "enemy": 0,
+        "pArmy": 13,
+        "eArmy": 0,
+        "shots": 0,
+        "pFront": 1086,
+        "objects": 66
+      },
+      "sourceFingerprint": "5c4077b107a81ef5133060bee0234a731fd2d0f619b8ea9afa34ce25dbff0278",
+      "report": "art\\qa\\seed-after-precision-20260909T014939302Z\\combat-medium-mixed-4x-seed-101-20260909T015005242Z-20255cee.json",
+      "baseline": {
+        "seconds": 183.38333333331815,
+        "winner": "player",
+        "kills": 36,
+        "recruits": 34,
+        "minimumBase": {
+          "fraction": 1,
+          "hp": 4200,
+          "maxHp": 4200,
+          "t": 0,
+          "epoch": 0
+        },
+        "artifact": "art\\qa\\seed-matrix-20260909T014354814Z\\combat-medium-mixed-1x-seed-101-20260909T014355672Z-32e6634c.json"
+      }
+    }
+  ]
+}

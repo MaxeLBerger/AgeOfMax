@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "dimensions": [
+    1600,
+    900
+  ],
+  "reproduction_max_channel_difference": 1,
+  "reproduction_pixels_different": 237,
+  "total_pixels": 1440000,
+  "combat_band_mean_absolute_rgb_difference": [
+    0.9595008680555556,
+    0.9918532986111112,
+    0.8087847222222222
+  ],
+  "combat_band_maximum_channel_difference": 40,
+  "note": "Band pixel differences include changed building shadows and independent Cycles sampling; geometry and camera hashes are checked separately.",
+  "candidate_png_sha256": "a996b5c56821a60b48b33e25746bbabf769dd8d7af25d824b7ecf206752cfa39"
+}

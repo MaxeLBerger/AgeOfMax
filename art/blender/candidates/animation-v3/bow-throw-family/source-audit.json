@@ -1,0 +1,86 @@
+{
+  "grenadier": {
+    "passed": true,
+    "bone_count": 17,
+    "samples_per_clip": 513,
+    "loop_error_world": 0.0,
+    "attack_entry_error_world": 0.0,
+    "recovery_error_world": 0.0,
+    "attack_foot_drift_world": 2.534292839720093e-07,
+    "advected_stance_drift_world": 3.986196259392249e-05,
+    "grip_error_world": 0.0015055968566108427,
+    "mechanism_string_endpoint_error_world": 0,
+    "marker_subframe_error_world": 1.697686358526482e-06,
+    "socket_projection_error_pixels": 0.0006046024400683274,
+    "lowest_sole_vertex_world_z": 0.053459808230400085,
+    "unique_walk_poses": 8,
+    "unique_attack_poses": 8,
+    "visibility": [
+      {
+        "frame": 0,
+        "projectile_hidden": false
+      },
+      {
+        "frame": 1,
+        "projectile_hidden": false
+      },
+      {
+        "frame": 2,
+        "projectile_hidden": false
+      },
+      {
+        "frame": 3,
+        "projectile_hidden": false
+      },
+      {
+        "frame": 4,
+        "projectile_hidden": false
+      },
+      {
+        "frame": 5,
+        "projectile_hidden": false
+      },
+      {
+        "frame": 6,
+        "projectile_hidden": false
+      },
+      {
+        "frame": 7,
+        "projectile_hidden": false
+      },
+      {
+        "frame": 8,
+        "projectile_hidden": false
+      },
+      {
+        "frame": 9,
+        "projectile_hidden": false
+      },
+      {
+        "frame": 10,
+        "projectile_hidden": false
+      },
+      {
+        "frame": 11,
+        "projectile_hidden": false
+      },
+      {
+        "frame": 12,
+        "projectile_hidden": true
+      },
+      {
+        "frame": 13,
+        "projectile_hidden": true
+      },
+      {
+        "frame": 14,
+        "projectile_hidden": true
+      },
+      {
+        "frame": 15,
+        "projectile_hidden": true
+      }
+    ],
+    "production_unchanged": true
+  }
+}

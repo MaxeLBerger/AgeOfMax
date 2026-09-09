@@ -1,0 +1,312 @@
+{
+  "clubman": {
+    "passed": true,
+    "source_sha256": "1906439f7ecdcf6fa3034927622ddf7a1827e7d4c2949c5115444754334240bf",
+    "camera_preserved": true,
+    "all_referenced_material_inputs_links_and_color_ramps_preserved": true,
+    "unused_unreferenced_materials_omitted_by_blender_save": [],
+    "original_rest_meshes_preserved": true,
+    "original_bones_preserved": true,
+    "all_original_bindings_preserved": false,
+    "source_file_unchanged_by_validation": true,
+    "original_backups_verified": true,
+    "bone_count": 16,
+    "mesh_count": 84,
+    "gait": {
+      "nominalSpeedPxPerSecond": 40,
+      "referenceDisplayScale": 0.43,
+      "cycleDistancePixels": 20.8,
+      "nominalCycleDurationMs": 520,
+      "motionKind": "biped",
+      "stanceFraction": 0.6,
+      "doubleSupportFrames": [
+        0,
+        4
+      ]
+    },
+    "key_counts": {
+      "walk": 131,
+      "attack": 129
+    }
+  },
+  "clubman-enemy": {
+    "passed": true,
+    "source_sha256": "df6c0b9eb105bbf5d448e215737eb9ffe7b1724032bca24e4aed1c69f392b23a",
+    "camera_preserved": true,
+    "all_referenced_material_inputs_links_and_color_ramps_preserved": true,
+    "unused_unreferenced_materials_omitted_by_blender_save": [],
+    "original_rest_meshes_preserved": true,
+    "original_bones_preserved": true,
+    "all_original_bindings_preserved": false,
+    "source_file_unchanged_by_validation": true,
+    "original_backups_verified": true,
+    "bone_count": 16,
+    "mesh_count": 84,
+    "gait": {
+      "nominalSpeedPxPerSecond": 40,
+      "referenceDisplayScale": 0.43,
+      "cycleDistancePixels": 20.8,
+      "nominalCycleDurationMs": 520,
+      "motionKind": "biped",
+      "stanceFraction": 0.6,
+      "doubleSupportFrames": [
+        0,
+        4
+      ]
+    },
+    "key_counts": {
+      "walk": 131,
+      "attack": 129
+    }
+  },
+  "swordsman": {
+    "passed": true,
+    "source_sha256": "63704929c0267eee4ab770a794bdc1afc22b67ff83e6eaab873b9f11f055f097",
+    "camera_preserved": true,
+    "all_referenced_material_inputs_links_and_color_ramps_preserved": true,
+    "unused_unreferenced_materials_omitted_by_blender_save": [],
+    "original_rest_meshes_preserved": true,
+    "original_bones_preserved": true,
+    "all_original_bindings_preserved": false,
+    "source_file_unchanged_by_validation": true,
+    "original_backups_verified": true,
+    "bone_count": 17,
+    "mesh_count": 85,
+    "gait": {
+      "nominalSpeedPxPerSecond": 43,
+      "referenceDisplayScale": 0.43,
+      "cycleDistancePixels": 22.36,
+      "nominalCycleDurationMs": 520,
+      "motionKind": "biped",
+      "stanceFraction": 0.6,
+      "doubleSupportFrames": [
+        0,
+        4
+      ]
+    },
+    "key_counts": {
+      "walk": 131,
+      "attack": 129
+    }
+  },
+  "swordsman-enemy": {
+    "passed": true,
+    "source_sha256": "f4df3cf70b0d47a8a73abba77c9c76a604b8281ce74a630499ebc275c1bb8d45",
+    "camera_preserved": true,
+    "all_referenced_material_inputs_links_and_color_ramps_preserved": true,
+    "unused_unreferenced_materials_omitted_by_blender_save": [],
+    "original_rest_meshes_preserved": true,
+    "original_bones_preserved": true,
+    "all_original_bindings_preserved": false,
+    "source_file_unchanged_by_validation": true,
+    "original_backups_verified": true,
+    "bone_count": 17,
+    "mesh_count": 85,
+    "gait": {
+      "nominalSpeedPxPerSecond": 43,
+      "referenceDisplayScale": 0.43,
+      "cycleDistancePixels": 22.36,
+      "nominalCycleDurationMs": 520,
+      "motionKind": "biped",
+      "stanceFraction": 0.6,
+      "doubleSupportFrames": [
+        0,
+        4
+      ]
+    },
+    "key_counts": {
+      "walk": 131,
+      "attack": 129
+    }
+  },
+  "spearman": {
+    "passed": true,
+    "source_sha256": "e20fabc76c96db785d64f9a6909c6a5e031830168a046bf6f02ff55bba59b70e",
+    "camera_preserved": true,
+    "all_referenced_material_inputs_links_and_color_ramps_preserved": true,
+    "unused_unreferenced_materials_omitted_by_blender_save": [],
+    "original_rest_meshes_preserved": true,
+    "original_bones_preserved": true,
+    "all_original_bindings_preserved": false,
+    "source_file_unchanged_by_validation": true,
+    "original_backups_verified": true,
+    "bone_count": 17,
+    "mesh_count": 94,
+    "gait": {
+      "nominalSpeedPxPerSecond": 38,
+      "referenceDisplayScale": 0.43,
+      "cycleDistancePixels": 19.76,
+      "nominalCycleDurationMs": 520,
+      "motionKind": "biped",
+      "stanceFraction": 0.6,
+      "doubleSupportFrames": [
+        0,
+        4
+      ]
+    },
+    "key_counts": {
+      "walk": 131,
+      "attack": 129
+    }
+  },
+  "spearman-enemy": {
+    "passed": true,
+    "source_sha256": "33727abec33091bddd95cd782a7d505af14475581e6d302a8751a8d065d2e540",
+    "camera_preserved": true,
+    "all_referenced_material_inputs_links_and_color_ramps_preserved": true,
+    "unused_unreferenced_materials_omitted_by_blender_save": [],
+    "original_rest_meshes_preserved": true,
+    "original_bones_preserved": true,
+    "all_original_bindings_preserved": false,
+    "source_file_unchanged_by_validation": true,
+    "original_backups_verified": true,
+    "bone_count": 17,
+    "mesh_count": 94,
+    "gait": {
+      "nominalSpeedPxPerSecond": 38,
+      "referenceDisplayScale": 0.43,
+      "cycleDistancePixels": 19.76,
+      "nominalCycleDurationMs": 520,
+      "motionKind": "biped",
+      "stanceFraction": 0.6,
+      "doubleSupportFrames": [
+        0,
+        4
+      ]
+    },
+    "key_counts": {
+      "walk": 131,
+      "attack": 129
+    }
+  },
+  "duelist": {
+    "passed": true,
+    "source_sha256": "348bead5859aa2ebfa92bd228954f9f4e1ec3ce563fdbd792e0589f3b6a6311e",
+    "camera_preserved": true,
+    "all_referenced_material_inputs_links_and_color_ramps_preserved": true,
+    "unused_unreferenced_materials_omitted_by_blender_save": [],
+    "original_rest_meshes_preserved": true,
+    "original_bones_preserved": true,
+    "all_original_bindings_preserved": false,
+    "source_file_unchanged_by_validation": true,
+    "original_backups_verified": true,
+    "bone_count": 16,
+    "mesh_count": 61,
+    "gait": {
+      "nominalSpeedPxPerSecond": 47,
+      "referenceDisplayScale": 0.43,
+      "cycleDistancePixels": 24.44,
+      "nominalCycleDurationMs": 520,
+      "motionKind": "biped",
+      "stanceFraction": 0.6,
+      "doubleSupportFrames": [
+        0,
+        4
+      ]
+    },
+    "key_counts": {
+      "walk": 131,
+      "attack": 129
+    }
+  },
+  "duelist-enemy": {
+    "passed": true,
+    "source_sha256": "78cacfa8ee48a8b8cc907a6021419cb783ea2ab0991fe62ab8fce1a9755bfc76",
+    "camera_preserved": true,
+    "all_referenced_material_inputs_links_and_color_ramps_preserved": true,
+    "unused_unreferenced_materials_omitted_by_blender_save": [],
+    "original_rest_meshes_preserved": true,
+    "original_bones_preserved": true,
+    "all_original_bindings_preserved": false,
+    "source_file_unchanged_by_validation": true,
+    "original_backups_verified": true,
+    "bone_count": 16,
+    "mesh_count": 61,
+    "gait": {
+      "nominalSpeedPxPerSecond": 47,
+      "referenceDisplayScale": 0.43,
+      "cycleDistancePixels": 24.44,
+      "nominalCycleDurationMs": 520,
+      "motionKind": "biped",
+      "stanceFraction": 0.6,
+      "doubleSupportFrames": [
+        0,
+        4
+      ]
+    },
+    "key_counts": {
+      "walk": 131,
+      "attack": 129
+    }
+  },
+  "super-heavy": {
+    "passed": true,
+    "source_sha256": "68811d164121adf2a692371ea085f7d2430fce03a43d1a54fcbf33d3c4969625",
+    "camera_preserved": true,
+    "all_referenced_material_inputs_links_and_color_ramps_preserved": true,
+    "unused_unreferenced_materials_omitted_by_blender_save": [
+      "Aether emission",
+      "Antique bronze edges",
+      "Ink / recess",
+      "Tempered blue steel"
+    ],
+    "original_rest_meshes_preserved": true,
+    "original_bones_preserved": true,
+    "all_original_bindings_preserved": true,
+    "source_file_unchanged_by_validation": true,
+    "original_backups_verified": true,
+    "bone_count": 16,
+    "mesh_count": 112,
+    "gait": {
+      "nominalSpeedPxPerSecond": 31,
+      "referenceDisplayScale": 0.57,
+      "cycleDistancePixels": 16.12,
+      "nominalCycleDurationMs": 520,
+      "motionKind": "biped",
+      "stanceFraction": 0.6,
+      "doubleSupportFrames": [
+        0,
+        4
+      ]
+    },
+    "key_counts": {
+      "walk": 131,
+      "attack": 129
+    }
+  },
+  "super-heavy-enemy": {
+    "passed": true,
+    "source_sha256": "41110e4e0bd8c71686b7d276e843cc1ecbdbfc6b18ae728c210d49299768ce10",
+    "camera_preserved": true,
+    "all_referenced_material_inputs_links_and_color_ramps_preserved": true,
+    "unused_unreferenced_materials_omitted_by_blender_save": [
+      "Aether emission",
+      "Antique bronze edges",
+      "Ink / recess",
+      "Tempered blue steel"
+    ],
+    "original_rest_meshes_preserved": true,
+    "original_bones_preserved": true,
+    "all_original_bindings_preserved": true,
+    "source_file_unchanged_by_validation": true,
+    "original_backups_verified": true,
+    "bone_count": 16,
+    "mesh_count": 112,
+    "gait": {
+      "nominalSpeedPxPerSecond": 31,
+      "referenceDisplayScale": 0.57,
+      "cycleDistancePixels": 16.12,
+      "nominalCycleDurationMs": 520,
+      "motionKind": "biped",
+      "stanceFraction": 0.6,
+      "doubleSupportFrames": [
+        0,
+        4
+      ]
+    },
+    "key_counts": {
+      "walk": 131,
+      "attack": 129
+    }
+  }
+}

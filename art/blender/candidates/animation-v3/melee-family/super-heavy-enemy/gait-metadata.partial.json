@@ -1,0 +1,14 @@
+{
+  "super-heavy": {
+    "nominalSpeedPxPerSecond": 31,
+    "referenceDisplayScale": 0.57,
+    "cycleDistancePixels": 16.12,
+    "nominalCycleDurationMs": 520,
+    "motionKind": "biped",
+    "stanceFraction": 0.6,
+    "doubleSupportFrames": [
+      0,
+      4
+    ]
+  }
+}

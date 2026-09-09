@@ -1,0 +1,204 @@
+{
+  "passed": true,
+  "unit": "slinger",
+  "faction": "enemy",
+  "source_hashes": {
+    "source": "2f6638cfa67a983a67e87838bf96f9dfc4b752fd74718b0ba5f4750ff0bddce4",
+    "sheet": "9ae931afb7ce6653cf5fbb200eb686432cc9dd54e69de7ba98a42e13402ac6e1",
+    "sockets": "40f9fe76b2dd2d54b9a4161df792571ce9d83a900e5c6ee36a699743a29444a4"
+  },
+  "production_unchanged": true,
+  "preserved_body_accessory_meshes": 81,
+  "body_mesh_contracts": {
+    "Bone necklace tooth": "48de0e273a9904cc3e43bbd452a54d205a51f196ee248baf3398b3cea0213885",
+    "Bone necklace tooth.001": "1a69fe9ae37dbe8ab15f56762e4e180a5c4e9914bbbde959dd31b0fa40c8f1c8",
+    "Bone necklace tooth.002": "6de78f0c8fe1db0295418b2cd601f938bb61183e1694d90c5b4fba9c55712d96",
+    "Bone necklace tooth.003": "525b6c99da4dc88cd3387ff8a5902cde58e79d9f668120f48f0498abca1d1e03",
+    "Bone necklace tooth.004": "d21ac7d0b1f6956b38d0d5775381ad80759a02889711b0ccd3d4c27c6131eb90",
+    "Boot sole": "8040ae650f0438678fd1267ff43c5d3401e5dda1762e6ead68feb2755ae28fc6",
+    "Boot sole.001": "3afe24ef6310727f268bcb23560d0a5c3824021a28d4a84c915e2a2e156a536d",
+    "Broad leather girdle": "995ecee665d248d1ac8e2eb0e38d9c49a0ce2a73d4166b135c680ee2e7497a09",
+    "Bronze belt buckle": "156503d754993830e765ba94f5872cabcde25b879e3aaf345511e6bb9047ef64",
+    "Calf": "8d906de8cf285d5f0c8c947094ee8c8bd9a189028c5a4926d52e71463e5866fb",
+    "Calf.001": "318e8177800d0cab7567389894c1c872667e05a02dac69eed8b14fe6c8bca355",
+    "Deltoid": "30d50377f71d16df30119fc8fd3b80c8858d37a607794b81348e698e7708fdf4",
+    "Deltoid.001": "4668f2b316c67d22987eb029789399772209ac3c203470816a21469f0ce0f2b6",
+    "Ear": "c262656d3ea6022672f634b04982a9234aba61b59618d5a968e32f426ae48f82",
+    "Elbow": "cefdb20378c7cf9bf3d7960ef86470e71bfb918862c60be37f82b82cd753f1e4",
+    "Elbow.001": "987b69f579483c340b43c86ebc5d3920fc4019ea4a1630384c38f22abfc83565",
+    "Eye glint": "da7fffed08e63d5096c840cb3d6b2689e68b38e7bfa15ef171e167e1ff2bd444",
+    "Eye glint.001": "3cb42e447e7491685e971d6e49cdba473f1080653eedf3884e07a2fc53cbf46a",
+    "Eye socket": "96bd9255da5ec23fc42830ce0a5b5166cd301c45cf2d21d96234289d4052c59f",
+    "Eye socket.001": "e2374d8b6db67d8703dd8d022c8bfcdd7cb8aec01826de1fbf5cd960d5dcd7cf",
+    "Fingers": "05052c475b7a286ee828b72c61da81775bd615dff7da2471ac92d7d5399b4bf6",
+    "Fingers.001": "08a72e14f708c8ba1816b4a6d5cbbf5698b64643d57b89bc03252ef99e12acf2",
+    "Fingers.002": "30ed09fbad6453ce8d974a7c35bb013db7de77454db85db93c721ba7c7fc9dbd",
+    "Fingers.003": "47002c8ea1fa51bad91fa6914505e5d0e68a630f7c1bd243494e3503eb0d19df",
+    "Fingers.004": "b1e04d9d34fef5f1dbbed77efc564b004f65139f305269210e8bcb1966dfa30b",
+    "Fingers.005": "ea1f66c13775d2acaca753e74bda86ab050649b3672f12c6fdc8ba74b7bed593",
+    "Forearm": "ef427faabe85d80008d2168d141bb5fc956d4a3fe9fe943fc672739a7b20b36a",
+    "Forearm.001": "ee19af34f17b0527db19d02ad7f0411bb2e9770bdb4bbc992d4268b93e631b16",
+    "Fur collar tufts": "f5eb8471d00718294ed014b6622fb2d597136b6e76bd2ebbe4ac513a5267dd1f",
+    "Fur collar tufts.001": "332005ad43625ad756168abde457c4b9769c31cc80ab61b167a177eac95ca131",
+    "Fur collar tufts.002": "e8c5bc953b7c87ceabf5b583ee5760e4b4798a0e31f3b3fec56eb03496d0fff7",
+    "Fur collar tufts.003": "117693daed7f1f7009b44f8fb35f1778801c6aa80f3460e6159c40aeed94a2d1",
+    "Fur collar tufts.004": "a4a725610f5be95782a389bf12c790309155718d58439d52e422a174df76b68c",
+    "Hand": "0098ea1b09e3e5b73719a6b27d586608487835414e45b5ec5a6ad41a99fa9380",
+    "Hand.001": "c0cbf1a309360eecac270b4c9133c9af28b70dff7d7e39b0eb018a70a410b407",
+    "Individual hair lock": "d0e9471cdc60b32a715f68e79c1b6a8c6c1237f21185f288aa1d8336deb5a1b9",
+    "Individual hair lock.001": "b48f7be851920ebf817162e7c433b4134262ae7c551b082ab1aaf57e89daf289",
+    "Individual hair lock.002": "9e550132489b9e0540f53a3aa401ef53cb8f710a066c8cef12001334c5311287",
+    "Individual hair lock.003": "924a8a083fa4ff1a776901b6d402267eedbdf2575187a9c024067acc10fe85c1",
+    "Individual hair lock.004": "f27a4c0cdb5604aa17bbd47413bd11e408386e575f3b024b8398a24a9260be7d",
+    "Individual hair lock.005": "b7447aa18ebb00072774ac4b1ba13ca9d6bdbc51e36b7c916308fdeb8ce02aae",
+    "Individual hair lock.006": "3ccfdf86fe82721ac3c7a05b123e1ec53e7b3d7db9bbf5346ee03d859fa5ba5b",
+    "Jaw": "6b07ff519bcef0017811d3ec7e676a1127de91ccf62c459823ca7b872d495f4a",
+    "Knee": "ed9fcab651f2d998a78273b3fe02ada8e7484255bf1ac88837ab477b095fd5cd",
+    "Knee.001": "0368ab58b3a3a0ddb1a747fdfcf1f9fbdac0a26b2bfb57eccfb0a8ad7eeae50e",
+    "Layered fur tunic fringe": "8af3d3ac0ed78e368e7512665958bd3e5cbf375efb5e2f3cd339de38238aa5d8",
+    "Layered fur tunic fringe.001": "d50e93cfdfd2b9394e29ee5661174af0ee29211415a30b053b43826c4ed638fc",
+    "Layered fur tunic fringe.002": "0b181e86a423d6e7ca6be9f2070c3aa8f3c5e62bb1dbc7ea03b6d70bb0510756",
+    "Layered fur tunic fringe.003": "8b44968df0081bda4ac6d2bf1dfe6b464460ec7cc426193d90c485c64c0c8fa2",
+    "Layered fur tunic fringe.004": "6a69c728ef0bf4c35a5a24bbbe0906e77273bc9bb841c44081216342234ea69a",
+    "Layered fur tunic fringe.005": "2d0abd23363a74b7443eadcb8379831c0d14b5d31e0c4a784a1a8c75008b1779",
+    "Layered fur tunic fringe.006": "c6195c6fbd7ff321fa6ae164942bf4bfbf06472ee7cb38490a726b5f9449cb7f",
+    "Layered fur tunic fringe.007": "7580458a1638de20f40ae4991f7d346e1cad01ab0d2707a58e17a50e42ff1545",
+    "Layered fur tunic fringe.008": "0e9df783b02a652d08b6caf5aba0b9a981c0ce72141542b8f104a9edcbbec8f9",
+    "Layered fur tunic fringe.009": "b206e4214742f225c36fac263276c50550dae55f702bbebebe91889e04b7f306",
+    "Layered fur tunic fringe.010": "906967698176d76d812cc13cb99df8e4e38ef70ba705415a419055d7194ad27f",
+    "Leather boot": "c1e67a53b3a56f4aea5804d24392ab369714c39a8cb50b35b4c8cfefb6e4ba8d",
+    "Leather boot.001": "d3d33dd1aad9bbc436bee4de382fbfc55576b093e2347ef5e7589b6a74d0a088",
+    "Leather vambrace": "7cfd7cc83e11624136b2c61adff541235fdcf5a78f92a3918cb4c8e38caa3c0f",
+    "Leather vambrace.001": "5384c87a802775936e1c59699bd140ba693c4b654ea3d8ae6e7f13552f37f1b4",
+    "Leg binding": "8d8b933b1b30090a0b692156c5fda4bad2326f11fd8a184905ecc541a424956b",
+    "Leg binding.001": "1827f2ecc625d4c7fe3dad2b8b9fbca6df244f20607ee3ed7339d50dfa9fdcbb",
+    "Leg binding.002": "2cf802c04b10abeca2300260e0c3175cb40a60ebd73a1fc121889ae17d0893c3",
+    "Leg binding.003": "96733d94c6ae4590e67b4357de0be5e4965384fca07976216846952d390c011c",
+    "Loaded sling pouch": "6ce80144a660c7a17b623ba5353f26fed48b6395533c6f0637cd89395f9369d4",
+    "Mouth": "496f90e6afe9d4830f97a01f0a543cba73ca6a9bf634988f89500a0f1fa7560d",
+    "Neck": "86b74d4c4bf2023233e536c04bc155ab8707ea5ec4b755307afbd813731edc93",
+    "Nose": "2965f967086e59a2b4b466292df9b92e53ba027f8ed9ccad98ce0306c8c7550f",
+    "Sculpted brow": "939b8a5c9a690002963f5cbd8d33118148418598874039bf69b4732f2f5b8eeb",
+    "Sculpted brow.001": "87a7f2da184711790acd3ead5a3b70ef5ed03349602fcc08463e260e2438aaa0",
+    "Sculpted chest waist and shoulders": "f8d949119d8566750d19a8458fd79d7529b9c96d31d3d2e5f3ea576aaf0d8982",
+    "Sculpted skull": "ac15c2ec343e5b88b2aedcb677100e26949038b2fa8bf15f2c7b90d99b767610",
+    "Shaped pelvis": "4b79983c4046bb3866343e351e76e3ef4d1f23f1622be41a79bc46dddb85114e",
+    "Shaped thigh": "990782000648becb64ff18570a392d57cbb910bca424ef60720ec18151cd0f2a",
+    "Shaped thigh.001": "14905e648189c5b64b549011e2ff50801b425788d81b69bfdd0e16ea63158227",
+    "Shoulder fur": "3d917c84854eff45bf565fef22e7c324829849bce3a297d458fa78e0d61a1b7a",
+    "Sling stone": "2d669cfbf1d4574f6d6adc88115fba38a94cfe82cc0abb50b76d0502614a36a1",
+    "Swept hair cap": "dd9d96b702c9a060397eea5af91021e83439605d48daaf80146528f8c40191bb",
+    "Turquoise headband": "fd61d32d533b7953f6ccf2da6680f01f59fbfe7a931cff5c2ca1d5d3194b8eff",
+    "Upper arm": "a1a65eaab2ae89bcefaaf1b69ea9c0b59eed4324364352304b94601dee8bc499",
+    "Upper arm.001": "b69655b874ec0b2fe0ef48c1add007e6cb2db18537fa0e2e521b213e35f69509"
+  },
+  "mechanism": {
+    "kind": "two-cord sling with released free end",
+    "cord_radius_world": 0.57,
+    "replaced_geometry": [
+      "Woven sling"
+    ],
+    "adjusted_geometry": [],
+    "release_index": 12,
+    "mechanism_release_starts_ms": 150,
+    "release_visibility": "stone hide_render; empty pouch and both cords remain visible"
+  },
+  "actions": {
+    "walk": {
+      "slinger animation rig": "Study slinger-enemy / walk / slinger animation rig",
+      "Weapon muzzle / runtime socket": "Study slinger-enemy / walk / Weapon muzzle / runtime socket",
+      "Sling stone": "Study slinger-enemy / walk / Sling stone"
+    },
+    "attack": {
+      "slinger animation rig": "Study slinger-enemy / attack / slinger animation rig",
+      "Weapon muzzle / runtime socket": "Study slinger-enemy / attack / Weapon muzzle / runtime socket",
+      "Sling stone": "Study slinger-enemy / attack / Sling stone"
+    }
+  },
+  "gait": {
+    "nominalSpeedPxPerSecond": 36,
+    "referenceDisplayScale": 0.43,
+    "cycleDistancePixels": 18.72,
+    "nominalCycleDurationMs": 520,
+    "motionKind": "biped",
+    "stanceFraction": 0.6,
+    "doubleSupportFrames": [
+      0,
+      4
+    ]
+  },
+  "sockets": [
+    [
+      165.427,
+      135.619
+    ],
+    [
+      164.862,
+      134.601
+    ],
+    [
+      164.626,
+      134.182
+    ],
+    [
+      164.862,
+      134.601
+    ],
+    [
+      165.427,
+      135.619
+    ],
+    [
+      165.984,
+      136.648
+    ],
+    [
+      166.213,
+      137.076
+    ],
+    [
+      165.984,
+      136.648
+    ],
+    [
+      165.427,
+      135.619
+    ],
+    [
+      163.479,
+      162.071
+    ],
+    [
+      119.584,
+      165.373
+    ],
+    [
+      101.161,
+      110.316
+    ],
+    [
+      143.639,
+      84.516
+    ],
+    [
+      182.792,
+      112.786
+    ],
+    [
+      191.931,
+      165.213
+    ],
+    [
+      174.999,
+      140.316
+    ]
+  ],
+  "frames": 16,
+  "release_index": 12,
+  "release_ms": 160,
+  "bone_count": 18,
+  "cycle_distance_world": 0.6207121464068697,
+  "visible_projectiles": [
+    "Sling stone"
+  ]
+}

@@ -1,0 +1,10 @@
+[
+  {
+    "texture": "musketeer",
+    "file": "art/blender/candidates/animation-v3/ranged-family-2/musketeer/musketeer-16.png"
+  },
+  {
+    "texture": "musketeer-enemy",
+    "file": "art/blender/candidates/animation-v3/ranged-family-2/musketeer-enemy/musketeer-enemy-16.png"
+  }
+]

@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "reopened_protected_objects": 463,
+  "architecture_objects": 326,
+  "preserved_environment_materials": 14,
+  "preserved_existing_lights": 3,
+  "camera_hash": "a106fa0dcd63a6ff3411b5db6214f81fc27e0557e2660e861a3d340c2df2edc5",
+  "terrain_hash": "1111bb94a5f9d7286a21c0c0910a87fbe8b681c765187c45354494e3e44d28ba",
+  "exporter_preserves_architecture": true,
+  "public_unchanged": true,
+  "canonical_unchanged": true,
+  "canonical_blend_sha256": "c9b3cfa2aa3883f11a9b6ec31734f74014829f769ec9a79f3ad81b7baaa4381b",
+  "public_png_sha256": "8a40ba27d14cb3ae304297b2d970162e76f26fea920ab8e79ba5fcd04b29dc0c",
+  "candidate_blend_sha256": "6f0165df7c62e07c4f820c816619c2ef86bc8a857e70abfaf6e0a024e616975d",
+  "candidate_png_sha256": "a996b5c56821a60b48b33e25746bbabf769dd8d7af25d824b7ecf206752cfa39",
+  "regular_export_path": "reproduction/backgrounds/future.png",
+  "render_samples": 64
+}

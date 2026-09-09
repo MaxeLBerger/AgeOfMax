@@ -1,0 +1,14 @@
+{
+  "spearman": {
+    "nominalSpeedPxPerSecond": 38,
+    "referenceDisplayScale": 0.43,
+    "cycleDistancePixels": 19.76,
+    "nominalCycleDurationMs": 520,
+    "motionKind": "biped",
+    "stanceFraction": 0.6,
+    "doubleSupportFrames": [
+      0,
+      4
+    ]
+  }
+}

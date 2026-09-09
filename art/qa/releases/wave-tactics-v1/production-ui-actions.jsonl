@@ -1,0 +1,17 @@
+{"at":"2026-09-09T02:52:32.675Z","capture":"production-hard-progress"}
+{"at":"2026-09-09T02:52:59.245Z","capture":"production-defeat"}
+{"at":"2026-09-09T02:52:59.387Z","key":"i"}
+{"at":"2026-09-09T02:52:59.406Z","key":"q"}
+{"at":"2026-09-09T02:52:59.423Z","key":"3"}
+{"at":"2026-09-09T02:52:59.439Z","wait":200}
+{"at":"2026-09-09T02:52:59.654Z","capture":"production-defeat-commands"}
+{"at":"2026-09-09T02:52:59.708Z","key":"Enter"}
+{"at":"2026-09-09T02:52:59.743Z","wait":200}
+{"at":"2026-09-09T02:52:59.951Z","key":"q"}
+{"at":"2026-09-09T02:52:59.976Z","wait":180}
+{"at":"2026-09-09T02:53:00.176Z","capture":"production-result-restart"}
+{"at":"2026-09-09T02:53:00.240Z","key":"i"}
+{"at":"2026-09-09T02:53:00.245Z","wait":150}
+{"at":"2026-09-09T02:53:00.405Z","capture":"production-result-restart-scout"}
+{"at":"2026-09-09T02:53:00.467Z","key":"Space"}
+{"at":"2026-09-09T02:53:27.688Z","close":true}

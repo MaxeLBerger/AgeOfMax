@@ -1,0 +1,42 @@
+{
+  "status": "passed",
+  "measurement": "Transformed mesh bounding boxes in each wall local space",
+  "walls": [
+    {
+      "wall": "CAS_EastFrontCurtain",
+      "inner_face_of_outer_parapet": -0.2750006914138794,
+      "inner_face_of_handrail": 0.4449999928474426,
+      "actual_clear_width": 0.720000684261322
+    },
+    {
+      "wall": "CAS_EastRearCurtain",
+      "inner_face_of_outer_parapet": -0.2750009298324585,
+      "inner_face_of_handrail": 0.4449990391731262,
+      "actual_clear_width": 0.7199999690055847
+    },
+    {
+      "wall": "CAS_GateEastReturn",
+      "inner_face_of_outer_parapet": -0.27500006556510925,
+      "inner_face_of_handrail": 0.44499990344047546,
+      "actual_clear_width": 0.7199999690055847
+    },
+    {
+      "wall": "CAS_GateWestReturn",
+      "inner_face_of_outer_parapet": -0.2749999463558197,
+      "inner_face_of_handrail": 0.445000022649765,
+      "actual_clear_width": 0.7199999690055847
+    },
+    {
+      "wall": "CAS_WestFrontCurtain",
+      "inner_face_of_outer_parapet": -0.2750006914138794,
+      "inner_face_of_handrail": 0.4449999928474426,
+      "actual_clear_width": 0.720000684261322
+    },
+    {
+      "wall": "CAS_WestRearCurtain",
+      "inner_face_of_outer_parapet": -0.2750002145767212,
+      "inner_face_of_handrail": 0.4449995160102844,
+      "actual_clear_width": 0.7199997305870056
+    }
+  ]
+}

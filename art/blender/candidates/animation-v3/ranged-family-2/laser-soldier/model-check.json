@@ -1,0 +1,364 @@
+{
+  "passed": true,
+  "unit": "laser-soldier",
+  "faction": "player",
+  "source_hashes": {
+    "source": "4255bef88ad41eeecf0c7324fcd727e1a224d3d5375174434e625c655b642ae0",
+    "sheet": "ff9d2eb40126b50f4b1786e56c04eaebc498c73ce3e31845ba212744ff02eac1",
+    "sockets": "40f9fe76b2dd2d54b9a4161df792571ce9d83a900e5c6ee36a699743a29444a4"
+  },
+  "production_unchanged": true,
+  "mesh_count": 77,
+  "mesh_contracts": {
+    "Aether visor strip": "ef36128671829c5a6804abd10e838bbaad1e69c964dbc0bbcd7904c77eb8a6b6",
+    "Armoured exo helmet": "a0248e4dd4eac43fc4716d9956d8218d1709f1bc5dcc0f69df2647f5908734b3",
+    "Back power cell": "e30a5bb9a281632ae94ebe1594c4da2b7c8b7662af7bf28a68358fcc8f6e4469",
+    "Boot sole": "8040ae650f0438678fd1267ff43c5d3401e5dda1762e6ead68feb2755ae28fc6",
+    "Boot sole.001": "3afe24ef6310727f268bcb23560d0a5c3824021a28d4a84c915e2a2e156a536d",
+    "Broad leather girdle": "995ecee665d248d1ac8e2eb0e38d9c49a0ce2a73d4166b135c680ee2e7497a09",
+    "Bronze belt buckle": "156503d754993830e765ba94f5872cabcde25b879e3aaf345511e6bb9047ef64",
+    "Calf": "53b51e9a385afa90df6e168c9f2bf4c1af46dd2712197b46404489ec7bab817c",
+    "Calf.001": "84d2a50c9ebfdf414e7ca8d8c11e105d96c3390d8980be8a13e624d29b73c6a0",
+    "Chest reactor": "210efb3fd66a48649627608717cfcd09e6c34885996c26b6599e3020917c3160",
+    "Continuous dark visor": "aeed1110d421b37a0ae4a70913c80861e4dd45666749fa7f28a4a89a675a1c65",
+    "Deltoid": "cf7aa60b91add0720f54d0125af11e7d735bfb7e5ab3c28583801a4a99d83308",
+    "Deltoid.001": "432ae4bfe1ba55f97adeb5ec5dcaafaa86e55e7d4c0154ca1d781e14d754f45b",
+    "Ear": "36aef03c35205db01796b2cbd4d38c2ea69ca273a6dfec8899442e7668a7e98f",
+    "Elbow": "24a7a5b2cda4d6e4264567267d9ace4c6b545fa767ed07658edfcd9afbaa9328",
+    "Elbow.001": "0ac49cd3409a36482f142435cf217c462516507426e4a3839094b8e45209f72c",
+    "Eye glint": "fc6626d21dfe185c52b16a46475067b475318b1bb350ddf3496d1e7cab084e0e",
+    "Eye glint.001": "2de12fa70eaabe6e3352bc6e13e1243be4ed88ef16ff26832ffc6cc52d835002",
+    "Eye socket": "77be60c07d9c770f79a9dae25a97f8e6a03039348e3728bf233754dcec50f289",
+    "Eye socket.001": "599fed4ead4523765edf5567d560c7224370f7125a78689d3ef5902732db403a",
+    "Field pack": "a600a55e52caded320b8244261f86b211a0c63a93b789eaf9abe7ba9cd78130d",
+    "Fingers": "1d86d5141a2570ef5b2e16fe3e369c8904e761a6af1ae9eb12fa9592d862a0bb",
+    "Fingers.001": "49bbdf53db228ba8bce4af7802278f53765831d03e2ae8f03489bb70e90c487d",
+    "Fingers.002": "bd491c781d8801caeb789f35040a362d0a6adce63ce149a85e6cf67e820c4d52",
+    "Fingers.003": "3269281329c2c97f186c436dd5371f96bcd6eb91b77c527c9363106ee2eaf54b",
+    "Fingers.004": "49a6aa1a3f573dd8d810172ce441ba907240b45e8d6a00d79755c49a600b1ab5",
+    "Fingers.005": "84d21e32605796653a0c1f8aff35bce5984b06eb8241ba7255eaaf4cd4527bc9",
+    "Forearm": "ef427faabe85d80008d2168d141bb5fc956d4a3fe9fe943fc672739a7b20b36a",
+    "Forearm.001": "ee19af34f17b0527db19d02ad7f0411bb2e9770bdb4bbc992d4268b93e631b16",
+    "Gold pauldron lip": "36fb74798d70aa175f9d2028e1b5e698898206fbd21e5562947f387edd8bbe44",
+    "Gold pauldron lip.001": "8b2a1b69f38502c983cf6f955dab11e0e939db5e55493efc1737ec746b0f5925",
+    "Hand": "5ea881d269b88ed987cb86b7ba3f28b70e403d6dc7b1a3246755bd8979bf9a35",
+    "Hand.001": "35f65d567faae97a017751a4ed20f6a04e37ece14afc3f1de728d1eecccd8d54",
+    "Helmet comm disk": "5b248d12914ba34559f180d8d1e068ace4c2f65cfa2a29921bd0b74c903b6393",
+    "Helmet comm disk.001": "324b63d5d52c07bb057d88d05984e53c8961d420adc367aa5d250f3c900846d5",
+    "Jaw": "6643ea5fdc365677306725ef254d6dc6efbe934eb85b30c28bbf28303d44d070",
+    "Knee": "f61494441707461b17392b4496181fc1a5f985a585cbee0cd67988d9efcbbb17",
+    "Knee.001": "c236c81a900498a6b269846a20652ca1cdbc7ba403290598008cc333d1bb5918",
+    "Layered shoulder pauldron": "ef527da0baa2c3bfa3b2196dc1f9a7d1033b57ed523bce9b8bb007f70c624947",
+    "Layered shoulder pauldron.001": "1cde5d4b2e1a368b4ae1acf3a2926df04fc9d20190052dd4993e644a686210ec",
+    "Leather boot": "05ba5b83a02091876ec1e9a90d3df7fb5cb70075b1d892ce9ec92a74e8657f9d",
+    "Leather boot.001": "42e0fc18308de96165ef02fed68a90f8bef4d83bbdc20d9b914ac3868c295587",
+    "Leather vambrace": "afa00e309dd2e2daf997112936c91545b9e4f61cf51da59a71764a348c70ebc8",
+    "Leather vambrace.001": "300a5367ab1f8c79c357ebd8d461347142bd4d4bd14969ce4edd7d552070a940",
+    "Leg binding": "878d35e433d739c2876a420b646d529666df3e3e1fd27b52f3e4f4036a6cc96d",
+    "Leg binding.001": "8f76cfa1a0ec2bfc57a2c5a001e621f177dc95e907f33330c9a39ed6a570b203",
+    "Leg binding.002": "ea8d2895393a5af06caa6f55c5eded8d8b87da38f95c003fa734192dad3b0620",
+    "Leg binding.003": "c632250faa1b336d9eae842b74afd4ada01379304d239c1727474a4a9126216c",
+    "Load bearing ammunition pouch": "dd15f69f7cacdbffaa8bc80b445387e5664fe36429b9cb036d59c5b2746c3c9e",
+    "Load bearing ammunition pouch.001": "c64f65b5e179c622fd3a76671dde075232cfbf87d1b56f2f26dd38837a8ca9c0",
+    "Load bearing ammunition pouch.002": "be5682fa4c718378e873265605040d1c4a81bfc53c188c6dd63d27147e799dfc",
+    "Load bearing ammunition pouch.003": "e40219db2ee5e370cee2deda606c4dc3f6c796cc3b9dfb6435cc58a727bfbdc7",
+    "Mouth": "496f90e6afe9d4830f97a01f0a543cba73ca6a9bf634988f89500a0f1fa7560d",
+    "Neck": "b50c08d35459ba12a8208f2bd2d87f398c69517a3f4427d6414e5fc7e21d9492",
+    "Nose": "4213735e6758f57b8c43ae8e77cc8b62cdca49d1c4d7d7b491d8ff5e01468b90",
+    "Receiver": "c6f541aad05b0b5f3487d8a99ffd9093a10120f51fa7389d79956ac07a705fde",
+    "Rifle barrel": "6f8d84c22964fac3e1a9b3666d3cb860e24307d1b044f5352e4e6d0351bad723",
+    "Rifle energised coil": "414787a99b562c65a3c923d180c12da1f7237e699c2e776959356df41925acdc",
+    "Rifle energised coil.001": "c5dbf1e171fa6a78b8e512631e73b4bd1121f4174ad8de2f97418b532e934e54",
+    "Rifle energised coil.002": "8a5d22926eb478590874fa986037f0e17f4f9f8e041e3edbba80b021ebd54b3e",
+    "Sculpted brow": "939b8a5c9a690002963f5cbd8d33118148418598874039bf69b4732f2f5b8eeb",
+    "Sculpted brow.001": "87a7f2da184711790acd3ead5a3b70ef5ed03349602fcc08463e260e2438aaa0",
+    "Sculpted chest waist and shoulders": "e4362f9c99e35691037cd304dd17fdc0b3a48a6a819728605e000cb9b037d042",
+    "Sculpted skull": "2df9c6685ef5a343f423080d94e5568fd32e334d401fde8346aca012c4558b7d",
+    "Shaped pelvis": "2ccf67e61f819817dab0ac7ffc6e38f96cf42335e86518a77706251035fb1973",
+    "Shaped rifle stock": "7045a91a8a37c41a37556fc7695c7446e2f62412c561bbaf160543d542e7a935",
+    "Shaped thigh": "f16396a21aa8c1953e0f1775997f302356163ec48be95775c3cf9560a6c3b7b1",
+    "Shaped thigh.001": "c4ae5f69f874fa92891f30c0bbc360974877c8baa8dd752610a6406167159da4",
+    "Shin greave": "601dfc11a1326a4fbe4a80310083df3b44e426435e5c22fcde495f377993ca47",
+    "Shin greave.001": "05176ddedc47d10a0d41d1902bd9253ac8605eaba28732e4f6cc597821f1cf3b",
+    "Shoulder harness": "1b82484a026a7101cbc249adbaf284b74226545496d9663ef6a9813f3cdc24ab",
+    "Shoulder harness.001": "4adb89ec56b94c3cef7567ef05683a9f14cd42ab69286d347b4f204a26151123",
+    "Thigh plate": "4e99c37904cbeeaaaa01ffdda6afe435a2b3735696a78482c60e3134b17164c9",
+    "Thigh plate.001": "df76f9fccc985613aff0d928c46342b47e399153e5509b1b68a388086c506332",
+    "Trigger grip": "c230dca6c7a9fdd735a1cca6da3d12b1c45bec711393a6cc6943f98ae13ef6a6",
+    "Upper arm": "b17e366c352571dedc2ace92304f45513740cdfe226efe2d822214e46f11a00a",
+    "Upper arm.001": "81bba4f8b8dbdfb2abf4b8bf946520249cafe9f4cfd317ad7f2569c1e0679b9e"
+  },
+  "rest_geometry_and_materials_preserved": true,
+  "bone_count": 16,
+  "original_bones": {
+    "root": [
+      [
+        0.0,
+        0.0,
+        0.11999999731779099
+      ],
+      [
+        0.0,
+        0.0,
+        1.0299999713897705
+      ],
+      null
+    ],
+    "spine": [
+      [
+        0.0,
+        0.0,
+        1.0299999713897705
+      ],
+      [
+        0.0,
+        0.0,
+        1.840000033378601
+      ],
+      "root"
+    ],
+    "head": [
+      [
+        0.0,
+        0.0,
+        1.840000033378601
+      ],
+      [
+        0.0,
+        0.0,
+        2.3399999141693115
+      ],
+      "spine"
+    ],
+    "arm.near": [
+      [
+        0.0,
+        -0.32199999690055847,
+        1.7799999713897705
+      ],
+      [
+        0.03500000014901161,
+        -0.3564999997615814,
+        1.3700000047683716
+      ],
+      "spine"
+    ],
+    "forearm.near": [
+      [
+        0.03500000014901161,
+        -0.3564999997615814,
+        1.3700000047683716
+      ],
+      [
+        0.33000001311302185,
+        -0.3449999988079071,
+        1.149999976158142
+      ],
+      "arm.near"
+    ],
+    "arm.far": [
+      [
+        0.0,
+        0.32199999690055847,
+        1.7799999713897705
+      ],
+      [
+        0.03500000014901161,
+        0.3564999997615814,
+        1.3700000047683716
+      ],
+      "spine"
+    ],
+    "forearm.far": [
+      [
+        0.03500000014901161,
+        0.3564999997615814,
+        1.3700000047683716
+      ],
+      [
+        0.33000001311302185,
+        0.3449999988079071,
+        1.149999976158142
+      ],
+      "arm.far"
+    ],
+    "thigh.near": [
+      [
+        0.0,
+        -0.23000000417232513,
+        1.0299999713897705
+      ],
+      [
+        0.0,
+        -0.23000000417232513,
+        0.5699999928474426
+      ],
+      "root"
+    ],
+    "shin.near": [
+      [
+        0.0,
+        -0.23000000417232513,
+        0.5699999928474426
+      ],
+      [
+        0.03999999910593033,
+        -0.23000000417232513,
+        0.14000000059604645
+      ],
+      "thigh.near"
+    ],
+    "thigh.far": [
+      [
+        0.0,
+        0.23000000417232513,
+        1.0299999713897705
+      ],
+      [
+        0.0,
+        0.23000000417232513,
+        0.5699999928474426
+      ],
+      "root"
+    ],
+    "shin.far": [
+      [
+        0.0,
+        0.23000000417232513,
+        0.5699999928474426
+      ],
+      [
+        0.03999999910593033,
+        0.23000000417232513,
+        0.14000000059604645
+      ],
+      "thigh.far"
+    ]
+  },
+  "actions": {
+    "walk": {
+      "laser-soldier animation rig": "Study laser-soldier / walk / laser-soldier animation rig",
+      "Weapon muzzle / runtime socket": "Study laser-soldier / walk / Weapon muzzle / runtime socket"
+    },
+    "attack": {
+      "laser-soldier animation rig": "Study laser-soldier / attack / laser-soldier animation rig",
+      "Weapon muzzle / runtime socket": "Study laser-soldier / attack / Weapon muzzle / runtime socket"
+    }
+  },
+  "frames": 16,
+  "contact_index": 12,
+  "contact_ms": 160,
+  "walk_ms": 520,
+  "attack_ms": 320,
+  "cycle_distance_world": 0.8276161952091596,
+  "runtime_speed": 48,
+  "runtime_scale": 0.43,
+  "grips_in_weapon_rest": [
+    [
+      0.45,
+      -0.35,
+      1.15
+    ],
+    [
+      0.56,
+      -0.35,
+      1.23
+    ]
+  ],
+  "sockets": [
+    [
+      198.32,
+      134.358
+    ],
+    [
+      199.027,
+      134.238
+    ],
+    [
+      199.316,
+      134.66
+    ],
+    [
+      199.027,
+      134.238
+    ],
+    [
+      198.32,
+      134.358
+    ],
+    [
+      197.6,
+      136.091
+    ],
+    [
+      197.298,
+      137.281
+    ],
+    [
+      197.6,
+      136.091
+    ],
+    [
+      199.472,
+      124.845
+    ],
+    [
+      199.917,
+      122.798
+    ],
+    [
+      200.772,
+      120.536
+    ],
+    [
+      201.577,
+      121.177
+    ],
+    [
+      201.648,
+      121.415
+    ],
+    [
+      200.783,
+      120.094
+    ],
+    [
+      200.376,
+      119.828
+    ],
+    [
+      199.637,
+      125.67
+    ]
+  ],
+  "stance_note": "Two planted firing feet; weapon-specific brace, shoulder height and recoil.",
+  "mechanism_note": "Steady beam platform with minimal weapon recoil; all three luminous rails remain attached.",
+  "aim_rest": [
+    0.22,
+    -0.35,
+    1.37
+  ],
+  "recoil_samples_world": [
+    0,
+    0,
+    0,
+    0,
+    0.004,
+    0.012,
+    0.006,
+    0.002,
+    0
+  ],
+  "gait": {
+    "nominalSpeedPxPerSecond": 48,
+    "referenceDisplayScale": 0.43,
+    "cycleDistancePixels": 24.96,
+    "nominalCycleDurationMs": 520,
+    "motionKind": "biped",
+    "stanceFraction": 0.6,
+    "doubleSupportFrames": [
+      0,
+      4
+    ]
+  }
+}

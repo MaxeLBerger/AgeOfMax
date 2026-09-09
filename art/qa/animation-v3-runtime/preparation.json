@@ -1,0 +1,100 @@
+{
+  "createdAt": "2026-09-09T03:06:13.184Z",
+  "scope": "Pure runtime preparation only; no Boot/Battle/Vite/assets or production integration.",
+  "files": [
+    "src/game/unitAnimation.ts",
+    "src/__tests__/unitAnimation.test.ts"
+  ],
+  "hashes": {
+    "src/game/unitAnimation.ts": "93e6856fb3be7a3cbf584b65a80649a94260b23d8761b2cd1d36fbf38f2a250b",
+    "src/__tests__/unitAnimation.test.ts": "ebe451b046341418a19a82c9b894ddf8fba45220e3da46289cf2efe052cab5cd",
+    "data/units.json": "d0a35b91c5e2838785c7fe4dabae50f71a7686cd72b387cc1272fc07638b50c3"
+  },
+  "checks": {
+    "targetedJestPassed": 36,
+    "targetedJestTotal": 36,
+    "sourceTypeScript": "passed",
+    "twoFileESLint": "passed"
+  },
+  "exports": [
+    "UNIT_ANIMATION_LAYOUT",
+    "parseGaitMetadata",
+    "scaledCycleDistance",
+    "resetWalkPhase",
+    "advanceWalkPhase",
+    "walkFrameAtPhase",
+    "attackFrameAt"
+  ],
+  "layout": {
+    "metadataVersion": 1,
+    "animationLayoutVersion": 3,
+    "frameSize": [
+      256,
+      256
+    ],
+    "frames": 16,
+    "walk": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "attack": [
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "attackFrameDurationMs": 40,
+    "contactFrame": 12,
+    "contactDelayMs": 160,
+    "attackDurationMs": 320
+  },
+  "metadataAgreement": {
+    "partner": "blender_finish",
+    "exactUnitIds": 20,
+    "nominalSpeed": "exact match to data/units.json",
+    "distance": "nominalSpeedPxPerSecond * nominalCycleDurationMs /1000, checked with relative tolerance1e-6",
+    "motionKinds": [
+      "biped",
+      "mounted",
+      "mechanical-biped",
+      "wheel-or-track"
+    ],
+    "wheelOrTrack": "stanceFraction0, doubleSupportFrames[]; positive mechanical cycle duration may differ from520ms",
+    "otherMotion": "0<stanceFraction<1; at least one unique integer grounded walk frame in0..7",
+    "runtimeCatalog": "strict known fields and immutable cloned entries; nominal design gait-catalog.json is not a valid complete runtime metadata file"
+  },
+  "semantics": [
+    "Walk state contains previousX and normalized phase. Advance consumes only absolute actual x displacement divided by scaled cycle distance; no velocity, elapsed time, team or speed multiplier.",
+    "Scale ratio is abs(actualScaleX)/referenceDisplayScale, since cycleDistancePixels already uses reference scale.",
+    "Explicit reset is required on spawn, pool reuse and teleport; ordinary movement in either direction is counted.",
+    "Zero displacement returns the same walk state, including a raised-foot frame; there is no implicit idle snap.",
+    "Attack selector returns null before0ms and from320ms, frames8..15 inside, and12 at160ms. It neither schedules nor applies damage."
+  ],
+  "integrationNotes": [
+    "Current Battle.update calls updateRangedUnits then updateUnitPresentation. Formation limiting uses setPosition(limit, unit.y), while row alignment changes onlyy.",
+    "Local Phaser Systems.step: UPDATE -> scene.update -> POST_UPDATE. Arcade World.update is onUPDATE; World.postUpdate is onPOST_UPDATE and copies Body movement into Sprite coordinates.",
+    "For the phase shown in the same rendered frame, root should sample after Arcade World.postUpdate, with a listener registered after that physics handler. Sampling Sprite.x inside current Battle.update sees the pre-postUpdate coordinate.",
+    "Root still owns lifecycle reset hooks, attack/socket migration, phase storage, blocked formation stop/idle transition and live1x/4x/pause/teleport checks.",
+    "Schema checks and synthetic test metadata do not establish that all20 Blender gaits, measured foot contacts or wheel/track closures are approved."
+  ],
+  "sourceEvidence": [
+    "node_modules/phaser/src/scene/Systems.js:362-366",
+    "node_modules/phaser/src/physics/arcade/ArcadePhysics.js:142-145",
+    "node_modules/phaser/src/physics/arcade/Body.js:1159-1236",
+    "src/scenes/BattleScene.ts:update",
+    "src/scenes/BattleScene.ts:updateRangedUnits"
+  ],
+  "notPerformed": [
+    "No browser replay, full Jest suite, build, asset promotion, or production mutation was needed for this unintegrated module."
+  ]
+}

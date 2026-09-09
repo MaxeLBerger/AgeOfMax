@@ -1,0 +1,221 @@
+{
+  "passed": true,
+  "isolatedBrowser": true,
+  "sourceHtml": "review.html",
+  "videos": 10,
+  "playback": [
+    {
+      "src": "clubman/motion-comparison.webm",
+      "time": 0.928806,
+      "duration": 2.52,
+      "width": 640,
+      "height": 336,
+      "decoded": 205,
+      "error": null
+    },
+    {
+      "src": "clubman-enemy/motion-comparison.webm",
+      "time": 0.923552,
+      "duration": 2.52,
+      "width": 640,
+      "height": 336,
+      "decoded": 209,
+      "error": null
+    },
+    {
+      "src": "spearman/motion-comparison.webm",
+      "time": 0.917482,
+      "duration": 2.52,
+      "width": 640,
+      "height": 336,
+      "decoded": 208,
+      "error": null
+    },
+    {
+      "src": "spearman-enemy/motion-comparison.webm",
+      "time": 0.917829,
+      "duration": 2.52,
+      "width": 640,
+      "height": 336,
+      "decoded": 208,
+      "error": null
+    },
+    {
+      "src": "swordsman/motion-comparison.webm",
+      "time": 0.933105,
+      "duration": 2.52,
+      "width": 640,
+      "height": 336,
+      "decoded": 182,
+      "error": null
+    },
+    {
+      "src": "swordsman-enemy/motion-comparison.webm",
+      "time": 0.902635,
+      "duration": 2.52,
+      "width": 640,
+      "height": 336,
+      "decoded": 183,
+      "error": null
+    },
+    {
+      "src": "duelist/motion-comparison.webm",
+      "time": 0.882414,
+      "duration": 2.52,
+      "width": 640,
+      "height": 336,
+      "decoded": 145,
+      "error": null
+    },
+    {
+      "src": "duelist-enemy/motion-comparison.webm",
+      "time": 0.849893,
+      "duration": 2.52,
+      "width": 640,
+      "height": 336,
+      "decoded": 131,
+      "error": null
+    },
+    {
+      "src": "super-heavy/motion-comparison.webm",
+      "time": 0.837769,
+      "duration": 2.52,
+      "width": 640,
+      "height": 336,
+      "decoded": 132,
+      "error": null
+    },
+    {
+      "src": "super-heavy-enemy/motion-comparison.webm",
+      "time": 0.822901,
+      "duration": 2.52,
+      "width": 640,
+      "height": 336,
+      "decoded": 131,
+      "error": null
+    }
+  ],
+  "seeked": [
+    {
+      "requested": 0,
+      "actual": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "requested": 0.195,
+      "actual": [
+        0.195,
+        0.195,
+        0.195,
+        0.195,
+        0.195,
+        0.195,
+        0.195,
+        0.195,
+        0.195,
+        0.195
+      ]
+    },
+    {
+      "requested": 0.39,
+      "actual": [
+        0.39,
+        0.39,
+        0.39,
+        0.39,
+        0.39,
+        0.39,
+        0.39,
+        0.39,
+        0.39,
+        0.39
+      ]
+    },
+    {
+      "requested": 1.56,
+      "actual": [
+        1.56,
+        1.56,
+        1.56,
+        1.56,
+        1.56,
+        1.56,
+        1.56,
+        1.56,
+        1.56,
+        1.56
+      ]
+    },
+    {
+      "requested": 1.64,
+      "actual": [
+        1.64,
+        1.64,
+        1.64,
+        1.64,
+        1.64,
+        1.64,
+        1.64,
+        1.64,
+        1.64,
+        1.64
+      ]
+    },
+    {
+      "requested": 1.72,
+      "actual": [
+        1.72,
+        1.72,
+        1.72,
+        1.72,
+        1.72,
+        1.72,
+        1.72,
+        1.72,
+        1.72,
+        1.72
+      ]
+    },
+    {
+      "requested": 1.8,
+      "actual": [
+        1.8,
+        1.8,
+        1.8,
+        1.8,
+        1.8,
+        1.8,
+        1.8,
+        1.8,
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "requested": 1.84,
+      "actual": [
+        1.84,
+        1.84,
+        1.84,
+        1.84,
+        1.84,
+        1.84,
+        1.84,
+        1.84,
+        1.84,
+        1.84
+      ]
+    }
+  ],
+  "errors": []
+}

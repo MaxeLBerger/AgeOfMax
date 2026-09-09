@@ -1,0 +1,36 @@
+{
+  "clubman": {
+    "passed": true,
+    "mesh_count": 84,
+    "bone_count": 14,
+    "walk_loop_mesh_center_error": 0.0,
+    "attack_to_walk_recovery_mesh_center_error": 0.0,
+    "original_attack_foot_center_drift": 0.0,
+    "study_attack_foot_center_drift": 3.888061052491467e-06,
+    "subframe_marker_max_error_world": 0.003079553828703347,
+    "socket_projection_max_error_pixels": 0.0005340576171875,
+    "hand_to_wrist_max_error_world": 1.2087404603167323e-06,
+    "actual_hand_to_shaft_max_surface_gap_world": 0.0004517574270721525,
+    "lowest_foot_vertex_world_z": 0.05344570800662041,
+    "production_unchanged": true,
+    "samples_per_clip": 129,
+    "note": "Marker subframe error includes interpolation between authored keys. Runtime uses the exact16 projected samples."
+  },
+  "knight": {
+    "passed": true,
+    "mesh_count": 114,
+    "bone_count": 12,
+    "walk_loop_mesh_center_error": 2.9802322387695312e-08,
+    "attack_to_walk_recovery_mesh_center_error": 2.9802322387695312e-08,
+    "original_attack_foot_center_drift": 0.1493364752373099,
+    "study_attack_foot_center_drift": 0.0,
+    "subframe_marker_max_error_world": 0.00024739716315812796,
+    "socket_projection_max_error_pixels": 0.0006046024400683274,
+    "hand_to_wrist_max_error_world": 1.3121485687942097e-06,
+    "actual_hand_to_shaft_max_surface_gap_world": 0.0047109490260481834,
+    "lowest_foot_vertex_world_z": 0.07000000029802322,
+    "production_unchanged": true,
+    "samples_per_clip": 129,
+    "note": "Marker subframe error includes interpolation between authored keys. Runtime uses the exact16 projected samples."
+  }
+}

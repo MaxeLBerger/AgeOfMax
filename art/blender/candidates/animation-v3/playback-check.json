@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "errors": [],
+  "videos": [
+    {
+      "file": "clubman/motion-comparison.webm",
+      "presented": 113,
+      "wraps": 1,
+      "previous": 0.539732,
+      "width": 640,
+      "height": 336,
+      "duration": 2.52,
+      "currentTime": 0.748131,
+      "paused": false,
+      "error": null
+    },
+    {
+      "file": "knight/motion-comparison.webm",
+      "presented": 157,
+      "wraps": 1,
+      "previous": 0.539524,
+      "width": 640,
+      "height": 336,
+      "duration": 2.52,
+      "currentTime": 0.747856,
+      "paused": false,
+      "error": null
+    }
+  ],
+  "inspectedContactTimeSeconds": 1.72,
+  "productionChanged": false
+}

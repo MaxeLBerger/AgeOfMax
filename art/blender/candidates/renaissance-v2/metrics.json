@@ -1,0 +1,533 @@
+{
+  "source": "G:\\Repositories\\AgeOfMax\\art\\blender\\background-renaissance.blend",
+  "source_sha256": "185cceab82901f66580e7ea88d5add05b2820c63fc87f0a4660c32645741980d",
+  "candidate": "G:\\Repositories\\AgeOfMax\\art\\blender\\candidates\\renaissance-v2\\candidate.blend",
+  "camera_before": {
+    "name": "Battle valley / fixed horizon",
+    "matrix": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.13170000910758972,
+        -0.9912896156311035,
+        -70.0
+      ],
+      [
+        0.0,
+        0.9912896156311035,
+        0.13170000910758972,
+        12.850000381469727
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "type": "ORTHO",
+    "ortho_scale": 32.0,
+    "resolution": [
+      1600,
+      900,
+      100
+    ]
+  },
+  "camera_after": {
+    "name": "Battle valley / fixed horizon",
+    "matrix": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.13170000910758972,
+        -0.9912896156311035,
+        -70.0
+      ],
+      [
+        0.0,
+        0.9912896156311035,
+        0.13170000910758972,
+        12.850000381469727
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "type": "ORTHO",
+    "ortho_scale": 32.0,
+    "resolution": [
+      1600,
+      900,
+      100
+    ]
+  },
+  "camera_unchanged": true,
+  "terrain_sha256_before": "5e0f9ca4c299cf240f07c058db32620a1287bf4336c6c07885f4bffb91cc03f3",
+  "terrain_sha256_after": "5e0f9ca4c299cf240f07c058db32620a1287bf4336c6c07885f4bffb91cc03f3",
+  "terrain_unchanged": true,
+  "archived_source_objects": [
+    "Copper observatory dome",
+    "Inset window",
+    "Inset window.001",
+    "Inset window.002",
+    "Inset window.003",
+    "Inset window.004",
+    "Inset window.005",
+    "Inset window.006",
+    "Inset window.007",
+    "Inset window.008",
+    "Inset window.009",
+    "Inset window.010",
+    "Inset window.011",
+    "Inset window.012",
+    "Inset window.013",
+    "Inset window.014",
+    "Inset window.015",
+    "Inset window.016",
+    "Inset window.017",
+    "Inset window.018",
+    "Inset window.019",
+    "Inset window.020",
+    "Inset window.021",
+    "Inset window.022",
+    "Inset window.023",
+    "Inset window.024",
+    "Inset window.025",
+    "Inset window.026",
+    "Inset window.027",
+    "Inset window.028",
+    "Inset window.029",
+    "Inset window.030",
+    "Inset window.031",
+    "Inset window.032",
+    "Inset window.033",
+    "Inset window.034",
+    "Inset window.035",
+    "Inset window.036",
+    "Inset window.037",
+    "Inset window.038",
+    "Inset window.039",
+    "Observatory drum",
+    "Observatory spire",
+    "Old republic house",
+    "Old republic house.001",
+    "Old republic house.002",
+    "Old republic house.003",
+    "Old republic house.004",
+    "Old republic house.005",
+    "Old republic house.006",
+    "Old republic house.007",
+    "Old republic house.008",
+    "Old republic house.009",
+    "Terracotta gable",
+    "Terracotta gable.001",
+    "Terracotta gable.002",
+    "Terracotta gable.003",
+    "Terracotta gable.004",
+    "Terracotta gable.005",
+    "Terracotta gable.006",
+    "Terracotta gable.007",
+    "Terracotta gable.008",
+    "Terracotta gable.009"
+  ],
+  "new_object_count": 2154,
+  "architecture_bounds_1280x720": {
+    "REN_Observatory": [
+      650.7,
+      156.86,
+      877.3,
+      414.04
+    ],
+    "REN_LoggiaWest": [
+      282.48,
+      232.92,
+      456.75,
+      402.4
+    ],
+    "REN_CivicPalazzo": [
+      374.52,
+      167.36,
+      593.48,
+      364.25
+    ],
+    "REN_Workshop": [
+      561.12,
+      208.22,
+      662.88,
+      365.73
+    ],
+    "REN_EastHouseA": [
+      856.6,
+      208.81,
+      983.4,
+      397.35
+    ],
+    "REN_EastHouseB": [
+      944.78,
+      203.48,
+      1039.3,
+      335.72
+    ]
+  },
+  "terrace_grounding": [
+    {
+      "name": "REN_Observatory",
+      "soil_heights": [
+        0.3113384246826172,
+        -0.06882858276367188,
+        -0.14302444458007812,
+        0.29453277587890625,
+        -0.4739341735839844
+      ],
+      "coping_top": 0.5613384246826172,
+      "skirt_corner_penetration": 0.06,
+      "world_center": [
+        3.1,
+        22
+      ],
+      "rotation": -3
+    },
+    {
+      "name": "REN_LoggiaWest",
+      "soil_heights": [
+        0.1532421112060547,
+        1.2215003967285156,
+        1.3825740814208984,
+        0.45809364318847656,
+        0.8664112091064453
+      ],
+      "coping_top": 1.6325740814208984,
+      "skirt_corner_penetration": 0.06,
+      "world_center": [
+        -6.8,
+        19.2
+      ],
+      "rotation": 3
+    },
+    {
+      "name": "REN_CivicPalazzo",
+      "soil_heights": [
+        0.8657131195068359,
+        1.0252513885498047,
+        0.6721992492675781,
+        0.6994075775146484,
+        1.2133846282958984
+      ],
+      "coping_top": 1.4633846282958984,
+      "skirt_corner_penetration": 0.06,
+      "world_center": [
+        -3.9,
+        23
+      ],
+      "rotation": -5
+    },
+    {
+      "name": "REN_Workshop",
+      "soil_heights": [
+        0.742034912109375,
+        0.27114295959472656,
+        0.22102737426757812,
+        0.50189208984375,
+        0.4398479461669922
+      ],
+      "coping_top": 0.992034912109375,
+      "skirt_corner_penetration": 0.06,
+      "world_center": [
+        -0.7,
+        25.5
+      ],
+      "rotation": 7
+    },
+    {
+      "name": "REN_EastHouseA",
+      "soil_heights": [
+        -0.28934478759765625,
+        0.7431869506835938,
+        0.9774150848388672,
+        -0.07795524597167969,
+        0.25573158264160156
+      ],
+      "coping_top": 1.2274150848388672,
+      "skirt_corner_penetration": 0.06,
+      "world_center": [
+        7,
+        23.5
+      ],
+      "rotation": -7
+    },
+    {
+      "name": "REN_EastHouseB",
+      "soil_heights": [
+        0.8252048492431641,
+        1.2722454071044922,
+        1.2340507507324219,
+        0.7723445892333984,
+        1.068471908569336
+      ],
+      "coping_top": 1.5222454071044922,
+      "skirt_corner_penetration": 0.06,
+      "world_center": [
+        8.8,
+        27
+      ],
+      "rotation": 8
+    }
+  ],
+  "relocated_pine_groups": [
+    {
+      "objects": [
+        "Tapered pine trunk.004",
+        "Individually sculpted evergreen boughs.004",
+        "Soft conifer crown.004"
+      ],
+      "delta": [
+        -4.404617786407471,
+        7.809148788452148,
+        0.14180946350097656
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.006",
+        "Individually sculpted evergreen boughs.006",
+        "Soft conifer crown.006"
+      ],
+      "delta": [
+        9.073389053344727,
+        5.092709541320801,
+        1.5695075988769531
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.007",
+        "Individually sculpted evergreen boughs.007",
+        "Soft conifer crown.007"
+      ],
+      "delta": [
+        -2.430180072784424,
+        11.73985481262207,
+        0.8623714447021484
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.011",
+        "Individually sculpted evergreen boughs.011",
+        "Soft conifer crown.011"
+      ],
+      "delta": [
+        -5.919325828552246,
+        5.802998065948486,
+        0.2017803192138672
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.013",
+        "Individually sculpted evergreen boughs.013",
+        "Soft conifer crown.013"
+      ],
+      "delta": [
+        21.012319564819336,
+        8.777618408203125,
+        0.7516288757324219
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.019",
+        "Individually sculpted evergreen boughs.019",
+        "Soft conifer crown.019"
+      ],
+      "delta": [
+        -9.402593612670898,
+        19.704654693603516,
+        0.40792274475097656
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.022",
+        "Individually sculpted evergreen boughs.022",
+        "Soft conifer crown.022"
+      ],
+      "delta": [
+        -21.654102325439453,
+        8.005711555480957,
+        -0.11769485473632812
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.024",
+        "Individually sculpted evergreen boughs.024",
+        "Soft conifer crown.024"
+      ],
+      "delta": [
+        21.14560317993164,
+        12.541236877441406,
+        1.2364788055419922
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.025",
+        "Individually sculpted evergreen boughs.025",
+        "Soft conifer crown.025"
+      ],
+      "delta": [
+        2.6068594455718994,
+        20.363811492919922,
+        -0.9547958374023438
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.029",
+        "Individually sculpted evergreen boughs.029",
+        "Soft conifer crown.029"
+      ],
+      "delta": [
+        -2.1363394260406494,
+        12.182215690612793,
+        1.1267814636230469
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.031",
+        "Individually sculpted evergreen boughs.031",
+        "Soft conifer crown.031"
+      ],
+      "delta": [
+        18.036758422851562,
+        11.252553939819336,
+        0.6167716979980469
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.035",
+        "Individually sculpted evergreen boughs.035",
+        "Soft conifer crown.035"
+      ],
+      "delta": [
+        9.367568969726562,
+        14.773069381713867,
+        0.009305953979492188
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.039",
+        "Individually sculpted evergreen boughs.039",
+        "Soft conifer crown.039"
+      ],
+      "delta": [
+        -17.61568260192871,
+        19.040306091308594,
+        1.0614967346191406
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.047",
+        "Individually sculpted evergreen boughs.047",
+        "Soft conifer crown.047"
+      ],
+      "delta": [
+        17.952608108520508,
+        4.128798484802246,
+        0.08063125610351562
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.051",
+        "Individually sculpted evergreen boughs.051",
+        "Soft conifer crown.051"
+      ],
+      "delta": [
+        -5.872442722320557,
+        21.892749786376953,
+        -0.06069183349609375
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.052",
+        "Individually sculpted evergreen boughs.052",
+        "Soft conifer crown.052"
+      ],
+      "delta": [
+        -22.096282958984375,
+        9.089497566223145,
+        0.8155021667480469
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.055",
+        "Individually sculpted evergreen boughs.055",
+        "Soft conifer crown.055"
+      ],
+      "delta": [
+        17.733505249023438,
+        15.265536308288574,
+        0.36946678161621094
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.061",
+        "Individually sculpted evergreen boughs.061",
+        "Soft conifer crown.061"
+      ],
+      "delta": [
+        -5.138484954833984,
+        20.695587158203125,
+        -0.26367759704589844
+      ]
+    },
+    {
+      "objects": [
+        "Tapered pine trunk.069",
+        "Individually sculpted evergreen boughs.069",
+        "Soft conifer crown.069"
+      ],
+      "delta": [
+        -14.459481239318848,
+        10.587224960327148,
+        1.305593490600586
+      ]
+    }
+  ],
+  "rendered": true,
+  "public_assets_changed": false,
+  "notes": [
+    "Front facade walls contain geometric openings; window backs sit 0.27 units inside.",
+    "Loggia arches are open front to back, without opaque backing.",
+    "Octagonal observatory drum consists of eight perforated facets.",
+    "Terrain hash covers every source vertex, polygon index/material, and world matrix."
+  ],
+  "render_samples": 32,
+  "render_devices": [
+    "NVIDIA GeForce RTX 4070 Ti SUPER"
+  ],
+  "render_seconds": 6.84,
+  "render_path": "G:\\Repositories\\AgeOfMax\\art\\blender\\candidates\\renaissance-v2\\candidate.png"
+}

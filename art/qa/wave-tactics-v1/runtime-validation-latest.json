@@ -1,0 +1,23 @@
+{
+  "artifact": "art/qa/wave-tactics-v1/runtime-validation-20260909T024200853Z.json",
+  "createdAt": "2026-09-09T02:42:00.853Z",
+  "checks": {
+    "browser": {
+      "passed": 23,
+      "total": 23,
+      "duration": "1.3m",
+      "newWaveGates": 4
+    },
+    "jest": {
+      "passed": 120,
+      "total": 120,
+      "suites": 7
+    },
+    "sourceTypeScript": "passed",
+    "qaConfigTypeScript": "passed",
+    "sourceESLint": "passed",
+    "newE2EESLint": "passed",
+    "botSyntax": "passed"
+  },
+  "endSourceFingerprint": "d78b7d66f0c3c8a18ab72ac6916f9a8dcca00636dcb6bce4042497f8e29c5b26"
+}

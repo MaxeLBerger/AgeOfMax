@@ -1,0 +1,11 @@
+{
+  "ballista": {
+    "nominalSpeedPxPerSecond": 27,
+    "referenceDisplayScale": 0.51,
+    "cycleDistancePixels": 3.5511541572134764,
+    "nominalCycleDurationMs": 131.52422804494358,
+    "motionKind": "wheel-or-track",
+    "stanceFraction": 0,
+    "doubleSupportFrames": []
+  }
+}

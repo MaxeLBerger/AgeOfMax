@@ -1,0 +1,8 @@
+*.blend1
+*.log
+__pycache__/
+
+frames/
+pose-study/
+pose-study-2/
+attack-review/
