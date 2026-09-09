@@ -145,7 +145,7 @@ def wizard(start: int, end: int | None, pause_every: int, strict: bool):
 
     print_header(f"Asset Wizard: {selection[0].id} bis {selection[-1].id}")
     for idx, asset in enumerate(selection, start=1):
-        print(f"Asset {asset.id} — {asset.slug}  ({asset.w}x{asset.h})")
+        print(f"Asset {asset.id} - {asset.slug}  ({asset.w}x{asset.h})")
         print("Dateiname:", asset.filename)
         print("Prompt:")
         print(asset.prompt)

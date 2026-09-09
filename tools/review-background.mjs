@@ -1,0 +1,20 @@
+import { connectToManualPage } from './qa-browser.mjs';
+import fs from 'node:fs/promises';
+const {page}=await connectToManualPage();
+const bytes=await fs.readFile('art/blender/candidates/renaissance-v2/candidate.png');
+await page.evaluate(async data=>{
+const game=window.__AGE_OF_MAX__, b=game.scene.getScene('BattleScene'),ui=game.scene.getScene('UIScene');
+if(!b.paused)throw Error('Review requires paused game');
+window.__reviewBackground=b.backgroundImage.texture.key;
+ui.overlay.setVisible(false);
+const img=new Image();img.src=data;await img.decode();
+game.textures.addImage('renaissance-review',img);
+},'data:image/png;base64,'+bytes.toString('base64'));
+await page.waitForTimeout(120);
+await page.screenshot({path:'art/qa/renaissance-before-hud.jpg',type:'jpeg',quality:83});
+await page.evaluate(()=>window.__AGE_OF_MAX__.scene.getScene('BattleScene').backgroundImage.setTexture('renaissance-review').setDisplaySize(1280,720));
+await page.waitForTimeout(120);
+await page.screenshot({path:'art/qa/renaissance-candidate-hud.jpg',type:'jpeg',quality:83});
+await page.evaluate(()=>{const game=window.__AGE_OF_MAX__;game.scene.getScene('BattleScene').backgroundImage.setTexture(window.__reviewBackground).setDisplaySize(1280,720);game.scene.getScene('UIScene').overlay.setVisible(true);game.textures.remove('renaissance-review');delete window.__reviewBackground;});
+console.log('Saved paused, cosmetic-only HUD comparison; original background and overlay restored.');
+process.exit(0);
