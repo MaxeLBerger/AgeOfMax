@@ -1,0 +1,1561 @@
+{
+  "source": "Original editable Blender 4.5.13 scenes in art/blender",
+  "units": [
+    {
+      "id": "clubman",
+      "faction": "enemy",
+      "frames": 8,
+      "frameWidth": 256,
+      "frameHeight": 256,
+      "file": "units-enemy/clubman.png",
+      "anchor": [
+        0.5,
+        0.92
+      ],
+      "walk": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "attack": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "contactFrame": 6,
+      "direction": "right",
+      "frameBounds": [
+        [
+          105,
+          71,
+          167,
+          241
+        ],
+        [
+          93,
+          69,
+          166,
+          239
+        ],
+        [
+          105,
+          71,
+          167,
+          241
+        ],
+        [
+          104,
+          69,
+          174,
+          240
+        ],
+        [
+          105,
+          70,
+          169,
+          240
+        ],
+        [
+          105,
+          70,
+          205,
+          240
+        ],
+        [
+          99,
+          69,
+          220,
+          240
+        ],
+        [
+          105,
+          69,
+          179,
+          240
+        ]
+      ],
+      "distinctFrames": 8
+    },
+    {
+      "id": "spearman",
+      "faction": "enemy",
+      "frames": 8,
+      "frameWidth": 256,
+      "frameHeight": 256,
+      "file": "units-enemy/spearman.png",
+      "anchor": [
+        0.5,
+        0.92
+      ],
+      "walk": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "attack": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "contactFrame": 6,
+      "direction": "right",
+      "frameBounds": [
+        [
+          86,
+          71,
+          221,
+          241
+        ],
+        [
+          93,
+          69,
+          218,
+          239
+        ],
+        [
+          86,
+          71,
+          221,
+          241
+        ],
+        [
+          75,
+          69,
+          219,
+          240
+        ],
+        [
+          93,
+          70,
+          219,
+          240
+        ],
+        [
+          76,
+          70,
+          224,
+          240
+        ],
+        [
+          94,
+          69,
+          197,
+          240
+        ],
+        [
+          88,
+          69,
+          215,
+          240
+        ]
+      ],
+      "distinctFrames": 8
+    },
+    {
+      "id": "slinger",
+      "faction": "enemy",
+      "frames": 8,
+      "frameWidth": 256,
+      "frameHeight": 256,
+      "file": "units-enemy/slinger.png",
+      "anchor": [
+        0.5,
+        0.92
+      ],
+      "walk": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "attack": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "contactFrame": 6,
+      "direction": "right",
+      "frameBounds": [
+        [
+          105,
+          71,
+          181,
+          241
+        ],
+        [
+          93,
+          69,
+          181,
+          239
+        ],
+        [
+          105,
+          71,
+          181,
+          241
+        ],
+        [
+          104,
+          69,
+          179,
+          240
+        ],
+        [
+          105,
+          70,
+          180,
+          240
+        ],
+        [
+          103,
+          70,
+          173,
+          240
+        ],
+        [
+          99,
+          69,
+          164,
+          240
+        ],
+        [
+          105,
+          69,
+          180,
+          240
+        ]
+      ],
+      "distinctFrames": 8
+    },
+    {
+      "id": "dino-rider",
+      "faction": "enemy",
+      "frames": 8,
+      "frameWidth": 256,
+      "frameHeight": 256,
+      "file": "units-enemy/dino-rider.png",
+      "anchor": [
+        0.5,
+        0.92
+      ],
+      "walk": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "attack": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "contactFrame": 6,
+      "direction": "right",
+      "frameBounds": [
+        [
+          24,
+          85,
+          210,
+          239
+        ],
+        [
+          24,
+          84,
+          210,
+          240
+        ],
+        [
+          24,
+          85,
+          210,
+          235
+        ],
+        [
+          24,
+          84,
+          210,
+          240
+        ],
+        [
+          24,
+          84,
+          210,
+          240
+        ],
+        [
+          24,
+          84,
+          210,
+          240
+        ],
+        [
+          24,
+          84,
+          210,
+          240
+        ],
+        [
+          24,
+          83,
+          210,
+          240
+        ]
+      ],
+      "distinctFrames": 8
+    },
+    {
+      "id": "swordsman",
+      "faction": "enemy",
+      "frames": 8,
+      "frameWidth": 256,
+      "frameHeight": 256,
+      "file": "units-enemy/swordsman.png",
+      "anchor": [
+        0.5,
+        0.92
+      ],
+      "walk": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "attack": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "contactFrame": 6,
+      "direction": "right",
+      "frameBounds": [
+        [
+          88,
+          63,
+          166,
+          241
+        ],
+        [
+          88,
+          61,
+          163,
+          239
+        ],
+        [
+          88,
+          63,
+          166,
+          241
+        ],
+        [
+          88,
+          61,
+          174,
+          240
+        ],
+        [
+          88,
+          62,
+          165,
+          240
+        ],
+        [
+          88,
+          63,
+          179,
+          240
+        ],
+        [
+          88,
+          61,
+          164,
+          240
+        ],
+        [
+          88,
+          61,
+          164,
+          240
+        ]
+      ],
+      "distinctFrames": 8
+    },
+    {
+      "id": "archer",
+      "faction": "enemy",
+      "frames": 8,
+      "frameWidth": 256,
+      "frameHeight": 256,
+      "file": "units-enemy/archer.png",
+      "anchor": [
+        0.5,
+        0.92
+      ],
+      "walk": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "attack": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "contactFrame": 6,
+      "direction": "right",
+      "frameBounds": [
+        [
+          88,
+          68,
+          194,
+          241
+        ],
+        [
+          88,
+          66,
+          201,
+          239
+        ],
+        [
+          88,
+          68,
+          194,
+          241
+        ],
+        [
+          88,
+          66,
+          182,
+          240
+        ],
+        [
+          88,
+          67,
+          195,
+          240
+        ],
+        [
+          88,
+          67,
+          192,
+          240
+        ],
+        [
+          89,
+          66,
+          187,
+          240
+        ],
+        [
+          88,
+          66,
+          193,
+          240
+        ]
+      ],
+      "distinctFrames": 8
+    },
+    {
+      "id": "knight",
+      "faction": "enemy",
+      "frames": 8,
+      "frameWidth": 256,
+      "frameHeight": 256,
+      "file": "units-enemy/knight.png",
+      "anchor": [
+        0.5,
+        0.92
+      ],
+      "walk": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "attack": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "contactFrame": 6,
+      "direction": "right",
+      "frameBounds": [
+        [
+          51,
+          80,
+          200,
+          237
+        ],
+        [
+          51,
+          80,
+          200,
+          241
+        ],
+        [
+          51,
+          80,
+          200,
+          237
+        ],
+        [
+          51,
+          80,
+          200,
+          241
+        ],
+        [
+          51,
+          80,
+          200,
+          240
+        ],
+        [
+          51,
+          80,
+          200,
+          241
+        ],
+        [
+          51,
+          79,
+          200,
+          241
+        ],
+        [
+          51,
+          79,
+          200,
+          241
+        ]
+      ],
+      "distinctFrames": 8
+    },
+    {
+      "id": "ballista",
+      "faction": "enemy",
+      "frames": 8,
+      "frameWidth": 256,
+      "frameHeight": 256,
+      "file": "units-enemy/ballista.png",
+      "anchor": [
+        0.5,
+        0.92
+      ],
+      "walk": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "attack": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "contactFrame": 6,
+      "direction": "right",
+      "frameBounds": [
+        [
+          57,
+          127,
+          213,
+          249
+        ],
+        [
+          57,
+          127,
+          213,
+          248
+        ],
+        [
+          57,
+          127,
+          213,
+          249
+        ],
+        [
+          57,
+          127,
+          213,
+          248
+        ],
+        [
+          57,
+          127,
+          213,
+          249
+        ],
+        [
+          52,
+          127,
+          208,
+          247
+        ],
+        [
+          59,
+          127,
+          215,
+          249
+        ],
+        [
+          58,
+          127,
+          213,
+          248
+        ]
+      ],
+      "distinctFrames": 8
+    },
+    {
+      "id": "musketeer",
+      "faction": "enemy",
+      "frames": 8,
+      "frameWidth": 256,
+      "frameHeight": 256,
+      "file": "units-enemy/musketeer.png",
+      "anchor": [
+        0.5,
+        0.92
+      ],
+      "walk": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "attack": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "contactFrame": 6,
+      "direction": "right",
+      "frameBounds": [
+        [
+          88,
+          50,
+          223,
+          241
+        ],
+        [
+          88,
+          48,
+          229,
+          239
+        ],
+        [
+          88,
+          50,
+          223,
+          241
+        ],
+        [
+          88,
+          48,
+          212,
+          240
+        ],
+        [
+          88,
+          48,
+          224,
+          240
+        ],
+        [
+          88,
+          48,
+          222,
+          240
+        ],
+        [
+          86,
+          50,
+          216,
+          240
+        ],
+        [
+          88,
+          49,
+          221,
+          240
+        ]
+      ],
+      "distinctFrames": 8
+    },
+    {
+      "id": "cavalry",
+      "faction": "enemy",
+      "frames": 8,
+      "frameWidth": 256,
+      "frameHeight": 256,
+      "file": "units-enemy/cavalry.png",
+      "anchor": [
+        0.5,
+        0.92
+      ],
+      "walk": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "attack": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "contactFrame": 6,
+      "direction": "right",
+      "frameBounds": [
+        [
+          51,
+          73,
+          200,
+          237
+        ],
+        [
+          51,
+          72,
+          200,
+          241
+        ],
+        [
+          51,
+          73,
+          200,
+          237
+        ],
+        [
+          51,
+          72,
+          200,
+          241
+        ],
+        [
+          51,
+          72,
+          200,
+          240
+        ],
+        [
+          51,
+          72,
+          200,
+          241
+        ],
+        [
+          51,
+          74,
+          200,
+          241
+        ],
+        [
+          51,
+          73,
+          200,
+          241
+        ]
+      ],
+      "distinctFrames": 8
+    },
+    {
+      "id": "cannon",
+      "faction": "enemy",
+      "frames": 8,
+      "frameWidth": 256,
+      "frameHeight": 256,
+      "file": "units-enemy/cannon.png",
+      "anchor": [
+        0.5,
+        0.92
+      ],
+      "walk": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "attack": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "contactFrame": 6,
+      "direction": "right",
+      "frameBounds": [
+        [
+          65,
+          127,
+          211,
+          242
+        ],
+        [
+          64,
+          127,
+          211,
+          240
+        ],
+        [
+          65,
+          127,
+          211,
+          242
+        ],
+        [
+          65,
+          127,
+          211,
+          240
+        ],
+        [
+          64,
+          127,
+          211,
+          242
+        ],
+        [
+          64,
+          127,
+          206,
+          239
+        ],
+        [
+          65,
+          127,
+          213,
+          242
+        ],
+        [
+          65,
+          127,
+          211,
+          241
+        ]
+      ],
+      "distinctFrames": 8
+    },
+    {
+      "id": "duelist",
+      "faction": "enemy",
+      "frames": 8,
+      "frameWidth": 256,
+      "frameHeight": 256,
+      "file": "units-enemy/duelist.png",
+      "anchor": [
+        0.5,
+        0.92
+      ],
+      "walk": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "attack": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "contactFrame": 6,
+      "direction": "right",
+      "frameBounds": [
+        [
+          88,
+          50,
+          166,
+          241
+        ],
+        [
+          88,
+          48,
+          163,
+          239
+        ],
+        [
+          88,
+          50,
+          166,
+          241
+        ],
+        [
+          88,
+          48,
+          174,
+          240
+        ],
+        [
+          88,
+          48,
+          165,
+          240
+        ],
+        [
+          88,
+          48,
+          179,
+          240
+        ],
+        [
+          86,
+          50,
+          164,
+          240
+        ],
+        [
+          88,
+          49,
+          164,
+          240
+        ]
+      ],
+      "distinctFrames": 7
+    },
+    {
+      "id": "rifleman",
+      "faction": "enemy",
+      "frames": 8,
+      "frameWidth": 256,
+      "frameHeight": 256,
+      "file": "units-enemy/rifleman.png",
+      "anchor": [
+        0.5,
+        0.92
+      ],
+      "walk": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "attack": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "contactFrame": 6,
+      "direction": "right",
+      "frameBounds": [
+        [
+          101,
+          71,
+          204,
+          241
+        ],
+        [
+          93,
+          70,
+          210,
+          239
+        ],
+        [
+          101,
+          71,
+          204,
+          241
+        ],
+        [
+          100,
+          70,
+          194,
+          240
+        ],
+        [
+          102,
+          70,
+          206,
+          240
+        ],
+        [
+          103,
+          71,
+          203,
+          240
+        ],
+        [
+          96,
+          70,
+          197,
+          240
+        ],
+        [
+          99,
+          69,
+          202,
+          240
+        ]
+      ],
+      "distinctFrames": 8
+    },
+    {
+      "id": "grenadier",
+      "faction": "enemy",
+      "frames": 8,
+      "frameWidth": 256,
+      "frameHeight": 256,
+      "file": "units-enemy/grenadier.png",
+      "anchor": [
+        0.5,
+        0.92
+      ],
+      "walk": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "attack": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "contactFrame": 6,
+      "direction": "right",
+      "frameBounds": [
+        [
+          101,
+          71,
+          166,
+          241
+        ],
+        [
+          93,
+          70,
+          164,
+          239
+        ],
+        [
+          101,
+          71,
+          166,
+          241
+        ],
+        [
+          100,
+          70,
+          174,
+          240
+        ],
+        [
+          102,
+          70,
+          165,
+          240
+        ],
+        [
+          103,
+          71,
+          172,
+          240
+        ],
+        [
+          96,
+          70,
+          164,
+          240
+        ],
+        [
+          99,
+          69,
+          164,
+          240
+        ]
+      ],
+      "distinctFrames": 8
+    },
+    {
+      "id": "tank",
+      "faction": "enemy",
+      "frames": 8,
+      "frameWidth": 256,
+      "frameHeight": 256,
+      "file": "units-enemy/tank.png",
+      "anchor": [
+        0.5,
+        0.92
+      ],
+      "walk": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "attack": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "contactFrame": 6,
+      "direction": "right",
+      "frameBounds": [
+        [
+          40,
+          101,
+          226,
+          249
+        ],
+        [
+          40,
+          100,
+          226,
+          248
+        ],
+        [
+          40,
+          101,
+          226,
+          249
+        ],
+        [
+          40,
+          100,
+          226,
+          248
+        ],
+        [
+          40,
+          101,
+          226,
+          249
+        ],
+        [
+          36,
+          99,
+          222,
+          247
+        ],
+        [
+          41,
+          101,
+          228,
+          249
+        ],
+        [
+          40,
+          101,
+          226,
+          248
+        ]
+      ],
+      "distinctFrames": 8
+    },
+    {
+      "id": "sniper",
+      "faction": "enemy",
+      "frames": 8,
+      "frameWidth": 256,
+      "frameHeight": 256,
+      "file": "units-enemy/sniper.png",
+      "anchor": [
+        0.5,
+        0.92
+      ],
+      "walk": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "attack": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "contactFrame": 6,
+      "direction": "right",
+      "frameBounds": [
+        [
+          77,
+          71,
+          226,
+          241
+        ],
+        [
+          77,
+          73,
+          227,
+          242
+        ],
+        [
+          77,
+          71,
+          226,
+          241
+        ],
+        [
+          77,
+          73,
+          225,
+          236
+        ],
+        [
+          72,
+          89,
+          227,
+          243
+        ],
+        [
+          74,
+          91,
+          230,
+          243
+        ],
+        [
+          72,
+          91,
+          227,
+          243
+        ],
+        [
+          72,
+          89,
+          222,
+          243
+        ]
+      ],
+      "distinctFrames": 7
+    },
+    {
+      "id": "laser-soldier",
+      "faction": "enemy",
+      "frames": 8,
+      "frameWidth": 256,
+      "frameHeight": 256,
+      "file": "units-enemy/laser-soldier.png",
+      "anchor": [
+        0.5,
+        0.92
+      ],
+      "walk": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "attack": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "contactFrame": 6,
+      "direction": "right",
+      "frameBounds": [
+        [
+          99,
+          70,
+          204,
+          241
+        ],
+        [
+          93,
+          69,
+          210,
+          239
+        ],
+        [
+          99,
+          70,
+          204,
+          241
+        ],
+        [
+          99,
+          69,
+          194,
+          240
+        ],
+        [
+          101,
+          69,
+          206,
+          240
+        ],
+        [
+          102,
+          70,
+          203,
+          240
+        ],
+        [
+          94,
+          68,
+          197,
+          240
+        ],
+        [
+          97,
+          68,
+          202,
+          240
+        ]
+      ],
+      "distinctFrames": 8
+    },
+    {
+      "id": "mech",
+      "faction": "enemy",
+      "frames": 8,
+      "frameWidth": 256,
+      "frameHeight": 256,
+      "file": "units-enemy/mech.png",
+      "anchor": [
+        0.5,
+        0.92
+      ],
+      "walk": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "attack": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "contactFrame": 6,
+      "direction": "right",
+      "frameBounds": [
+        [
+          84,
+          85,
+          200,
+          244
+        ],
+        [
+          84,
+          82,
+          200,
+          238
+        ],
+        [
+          84,
+          85,
+          200,
+          244
+        ],
+        [
+          84,
+          82,
+          200,
+          243
+        ],
+        [
+          84,
+          85,
+          200,
+          242
+        ],
+        [
+          79,
+          84,
+          196,
+          240
+        ],
+        [
+          86,
+          86,
+          201,
+          243
+        ],
+        [
+          84,
+          85,
+          200,
+          242
+        ]
+      ],
+      "distinctFrames": 8
+    },
+    {
+      "id": "plasma-trooper",
+      "faction": "enemy",
+      "frames": 8,
+      "frameWidth": 256,
+      "frameHeight": 256,
+      "file": "units-enemy/plasma-trooper.png",
+      "anchor": [
+        0.5,
+        0.92
+      ],
+      "walk": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "attack": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "contactFrame": 6,
+      "direction": "right",
+      "frameBounds": [
+        [
+          93,
+          70,
+          204,
+          241
+        ],
+        [
+          93,
+          69,
+          210,
+          239
+        ],
+        [
+          93,
+          70,
+          204,
+          241
+        ],
+        [
+          93,
+          69,
+          194,
+          240
+        ],
+        [
+          95,
+          69,
+          206,
+          240
+        ],
+        [
+          96,
+          70,
+          203,
+          240
+        ],
+        [
+          88,
+          68,
+          197,
+          240
+        ],
+        [
+          92,
+          68,
+          202,
+          240
+        ]
+      ],
+      "distinctFrames": 8
+    },
+    {
+      "id": "super-heavy",
+      "faction": "enemy",
+      "frames": 8,
+      "frameWidth": 256,
+      "frameHeight": 256,
+      "file": "units-enemy/super-heavy.png",
+      "anchor": [
+        0.5,
+        0.92
+      ],
+      "walk": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "attack": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "contactFrame": 6,
+      "direction": "right",
+      "frameBounds": [
+        [
+          91,
+          87,
+          233,
+          246
+        ],
+        [
+          93,
+          88,
+          233,
+          247
+        ],
+        [
+          91,
+          87,
+          233,
+          246
+        ],
+        [
+          88,
+          88,
+          232,
+          241
+        ],
+        [
+          74,
+          42,
+          168,
+          248
+        ],
+        [
+          86,
+          39,
+          213,
+          248
+        ],
+        [
+          102,
+          94,
+          239,
+          248
+        ],
+        [
+          98,
+          92,
+          233,
+          248
+        ]
+      ],
+      "distinctFrames": 8
+    }
+  ],
+  "backgrounds": {
+    "stone": "backgrounds/stone.png",
+    "castle": "backgrounds/castle.png",
+    "renaissance": "backgrounds/renaissance.png",
+    "modern": "backgrounds/modern.png",
+    "future": "backgrounds/future.png"
+  },
+  "baseSize": [
+    512,
+    512
+  ],
+  "towerSize": [
+    256,
+    256
+  ],
+  "weaponSockets": "weapon-sockets.json"
+}
