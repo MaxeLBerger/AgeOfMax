@@ -54,7 +54,9 @@ Klicke einen gebauten Turm an, um ihn aufzuwerten oder zu verkaufen. Türme besi
 - Mischformationen, Durchbrüche, Schützen und Belagerungen verlangen unterschiedliche Antworten. Eine angekündigte Formation bleibt bis zum Angriff fest; sie reagiert nicht heimlich auf deine Käufe oder deinen Aufstieg.
 - Unterschiedliche Rollen ergänzen sich: Frontkämpfer, Fernkampf, schnelle Durchbrüche und Belagerung. Eine Armee ist auf 24 aktive Einheiten begrenzt.
 - Erfahrung ermöglicht einen bewussten Aufstieg. Jeder der fünf Epochen gehören vier Einheiten und drei Turmtypen.
-- Die Gegner entwickeln sich ebenfalls weiter. Einfach, Normal und Schwer unterscheiden sich unter anderem bei Startgold, Gegnerstärke und Entwicklungsdruck.
+- Die Gegner entwickeln sich ebenfalls weiter. Leicht, Normal und Schwer unterscheiden sich bei Startgold, Kopfgeld, Gegnerstärke, Wellengröße, Entwicklungstempo des Gegners, Festung, Festungsgeschütz und Spätverstärkung. Alle Werte stehen gebündelt in `DIFFICULTY` in `src/game/combatRules.ts`.
+- Die gegnerische Festung verteidigt sich mit einem Geschütz gegen Angreifer vor ihrer Mauer; unter einem Viertel ihrer Lebenspunkte verstummt es. Einzeln nachrückende Truppen reiben sich an Geschütz und frischen Wellen auf. Sammle Gold und greife mit einer geschlossenen Gruppe an.
+- Sobald der Gegner in der Zukunft kämpft, rückt jede weitere Welle etwas stärker an. Die Aufklärung zeigt den Zuschlag als „Stärke +X %“. So läuft keine Schlacht endlos fest.
 - Sieg und Niederlage führen zur Ergebnisansicht. Von dort sind eine neue Partie und der Rückweg ins Hauptmenü möglich.
 
 Musik, Effekte und reduzierte Bewegung lassen sich unter **Einstellungen** ändern. Diese Einstellungen werden lokal im Browser gespeichert. Musik und Geräusche entstehen zur Laufzeit über Web Audio und beginnen nach der ersten Bedienung.
@@ -109,6 +111,8 @@ Die Playwright-Prüfung benötigt alle fertigen Laufzeitbilder und Waffenmarker.
 Playwright nutzt lokal installiertes Chrome unter Windows, sonst sein Chromium. Über `QA_BROWSER_PATH` kann eine andere lokale Browserdatei gewählt werden. Falls kein Browser installiert ist, stellt `npx playwright install chromium` den Testbrowser bereit. Die Suite betreibt einen eigenen lokalen Vite-Server auf **127.0.0.1:5190**, ohne HMR und ohne automatisch geöffnete Fenster.
 
 `tools/combat-playthrough.mjs` ist eine zusätzliche technische Simulation mit automatisierten Kaufentscheidungen und beschleunigter interner Zeitschleife. Sie ersetzt keine tatsächlich über die Oberfläche gespielte Partie. Mit `QA_SEED` kontrolliert sie Startzeit, Zufallsfolgen und eine getrennte Testuhr; jede Ausführung schreibt neue Berichte statt alte Nachweise zu überschreiben. `node tools/run-seeded-balance.mjs` vergleicht drei Strategien/Schwierigkeiten mit drei Seeds. Ergebnisse, überprüfte Grenzen und echte Spielnachweise werden in [QA_REBUILD.md](docs/QA_REBUILD.md) getrennt dokumentiert.
+
+`node tools/balance-matrix.mjs` kalibriert die Schwierigkeitsgrade: Es spielt komplette Partien mit acht Spielertypen vom Anfänger bis zum Experten, jeweils mit gesetzter „Tagesform“ pro Seed, auf der internen Spieluhr ohne Darstellung. Es benötigt den QA-Server (Standard 127.0.0.1:5190, sonst `QA_BASE_URL`) und schreibt JSONL-Rohdaten sowie eine Markdown-Übersicht nach `art/qa/<Gruppe>/` (`QA_REPORT_GROUP`). `QA_DIFFICULTIES`, `QA_STRATEGIES`, `QA_SEEDS`, `QA_SPEED` (1, 2 oder 4), `QA_PARALLEL`, `QA_MAX_MINUTES` (Zeitgrenze, Standard 20) und `QA_VARIANTS` (JSON-Datei mit Balance-Varianten) steuern den Lauf. Bot-Ergebnisse ersetzen keine menschlichen Partien; die Kalibrierung und ihre Grenzen stehen in [QA_REBUILD.md](docs/QA_REBUILD.md).
 
 ## Orientierung im Projekt
 

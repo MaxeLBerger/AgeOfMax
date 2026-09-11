@@ -328,3 +328,148 @@ Am **9. September 2026 um 05:21 (Europe/Berlin)** wurde das geprüfte Steinzeitl
 Der Hauptauftrag hat alle 73 ausgelieferten HTTP-Dateien gegen die geprüften Paket-Hashes abgeglichen. Ein frischer Produktionsbrowser lud alle 71 Runtimeassets ohne Fehler und ohne Entwicklerbrücke. Über die reguläre Oberfläche wurden eine normale Schlacht gestartet, Q/W/E bezahlt rekrutiert, die Aufklärung geöffnet und geschlossen sowie pausiert. Das tatsächliche Schlachtbild wurde persönlich geprüft: neue Felsstützen mit aufliegender Deckplatte, gefaltete Zelthäute und eine lesbare freie Kampfbahn. Dieser kurze Asset-Abnahmelauf ist kein weiterer vollständiger Sieg; die vorstehende 8:26-Partie bleibt der vollständige aktuelle Kampfregel-Test. Die unveränderten 23 Browser- und 120 Regeltests gelten für denselben Spielcode.
 
 [Geprüfte Übernahme und vollständiges Dateimanifest](../art/qa/releases/stone-v2/integration.json), [HTTP- und echte UI-Prüfung](../art/qa/releases/stone-v2/production-validation.json), [Produktions-Schlachtbild](../art/qa/releases/stone-v2/production-stone-battle.jpg), [Aufklärung](../art/qa/releases/stone-v2/production-stone-scout.jpg).
+
+
+## Schwierigkeitsbalance mit Spielertypen
+
+Stand: 11. September 2026. Ziel: Leicht, Normal und Schwer sollen sich für unterschiedlich geübte Spieler klar unterscheiden, jede Schlacht soll mehrere Epochen zeigen und keine darf endlos festlaufen. Grundlage sind ausschließlich komplette Partien der echten Phaser-Simulation.
+
+### Ausgangslage
+
+Gemessen wurde mit denselben acht Spielertypen, Seeds und Grenzen wie im Ergebnis unten, nur mit den alten Werten als Variante `baseline` ([Übersicht](../art/qa/balance-v2-baseline/summary-4x.md), 240 Partien bei 4×, keine Laufzeitfehler). Eine erste Reihe mit den frühen Bot-Versionen (180 Partien ohne Tagesform) hatte dieselben drei Probleme gezeigt.
+
+| Befund | Messung |
+|---|---|
+| Leicht war trivial | Alle sieben aktiven Spielertypen gewannen 10/10, im Median ohne Basisschaden. Gelegenheits- und Durchschnittsspieler, Rusher und Experten siegten im Median nach 2:09 bis 2:29, meist noch in der Steinzeit. |
+| Normal und Schwer unterschieden sich für geübte Spieler kaum | Der Experte gewann beide 10/10 nach 3:07 bzw. 3:17. Eine überlegene Armee blieb vor der gegnerischen Festung stehen und besiegte jede einzeln erscheinende Welleneinheit sofort. |
+| Das Spätspiel lief fest | In der Zukunft gab der Gegner pro Welle etwa 1,8× so viel Gold aus, wie der Spieler verdiente. Türme hielten die eigene Basis, die eigene Armee kam nicht durch. Nach 20 Minuten waren auf Normal 18 und auf Schwer 21 der je 80 Partien offen, darunter alle zehn Turm-Partien auf Schwer. Die gegnerische Festung blieb dabei teils über zehn Minuten unverändert. |
+
+### Methode
+
+`tools/balance-matrix.mjs` startet jede Partie frisch über die Entwicklungsbrücke und steuert sie ausschließlich über dieselben UI-Ereignisse wie ein Spieler: Rekrutieren, Bauen, Ausbauen, Verkaufen, Fähigkeiten und Aufstieg. Die Partie läuft auf der internen Spieluhr ohne Darstellung. Zufall, Testuhr und Bot-Entscheidungen sind pro Seed festgelegt; derselbe Code mit demselben Seed ergibt feldgleiche Berichte. Vor der ersten Wertänderung wurde geprüft, dass der Umbau auf die Tabelle `DIFFICULTY` alle 180 Partien der ersten Reihe feldgleich reproduziert.
+
+| Spielertyp | Verhalten |
+|---|---|
+| Untätig | kauft nichts; Referenz für die Grundbedrohung |
+| Anfänger | reagiert langsam, kauft planlos nach Kartenreihenfolge, steigt spät auf, baut selten |
+| Gelegenheit | vernünftige Mischung, ein Turm, etwas späterer Aufstieg |
+| Durchschnitt | Rollenmischung, zwei Türme, rechtzeitige Fähigkeiten |
+| Rusher | frühere QA-Rotation, gibt sofort alles aus, baut nicht |
+| Experte | liest die Aufklärung, kontert, baut und verbessert Türme, setzt Fähigkeiten gezielt |
+| Turm-Spieler | füllt und verbessert zuerst alle drei Bauplätze, schickt Truppen danach einzeln |
+| Sammler | wie der Turm-Spieler, spart danach aber Gold und greift geschlossen an |
+
+Jede Partie erhält innerhalb ihres Typs eine gesetzte Tagesform (Reaktionszeit, Aufstiegsverzögerung, Kaufqualität). Ohne diese Streuung kippten Siegquoten wegen der festen Wellenzeiten sprunghaft zwischen 0 % und 100 %. Unterwegs fiel ein Modellfehler auf: Der erste Anfänger-Bot kaufte höchstens eine Einheit pro Entscheidung und hortete bis zu 5.000 Gold, während seine Basis fiel. Alle Tabellen dieses Abschnitts verwenden den korrigierten Bot. Gemessen werden Siege, Niederlagen, nach 20 Spielminuten offene Partien, Siegzeit und tiefster eigener Basisstand. Breite Reihen laufen mit 4×; Stichproben mit 1× prüfen, dass das Tempo die Ergebnisse nicht verfälscht. Insgesamt wurden für diese Kalibrierung rund 9.300 Partien gespielt; die Erkundungsreihen liegen nicht im Repository.
+
+### Änderungen
+
+Alle Schwierigkeitswerte stehen jetzt in der Tabelle `DIFFICULTY` in `src/game/combatRules.ts`. Ein Regressionstest stellt sicher, dass ein höherer Schwierigkeitsgrad in keinem Wert freundlicher ist als ein niedrigerer.
+
+| Wert (vorher in Klammern) | Leicht | Normal | Schwer |
+|---|---:|---:|---:|
+| Startgold | 300 (360) | 240 (240) | 150 (200) |
+| Anteil des Kopfgelds | 0,42 (0,35) | 0,38 (0,35) | 0,33 (0,35) |
+| Lebenspunkte und Schaden gegnerischer Truppen | ×0,92 (0,82) | ×1,10 (1,00) | ×1,15 (1,08) |
+| Wellengröße | -1 (-2) | 0 (0) | +2 (+2) |
+| Gegnerische Technologie alle | 155 s (155) | 145 s (135) | 125 s (118) |
+| Lebenspunkte der Gegnerfestung | ×1,5 (1) | ×1,5 (1) | ×1,5 (1) |
+| Festungsgeschütz | ×0,75 (neu) | ×1,0 (neu) | ×1,25 (neu) |
+| Spätverstärkung pro Welle | +8 % (neu) | +12 % (neu) | +12 % (neu) |
+
+Für alle Schwierigkeiten gilt zusätzlich:
+
+- Das Einkommen pro Sekunde beträgt je Epoche 8 / 15 / 26 / 42 / 68 statt 8 / 13 / 20 / 29 / 40. Erst damit kann eine gleich weit entwickelte Armee die großen Zukunftswellen schlagen.
+- Die gegnerische Festung besitzt ein Geschütz. Es schießt alle 1,5 s auf den nächsten Angreifer, der höchstens 280 px von ihr entfernt steht, mit 20 / 35 / 50 / 65 / 80 Schaden je Gegnerepoche mal Schwierigkeitsfaktor und 45 px Flächenwirkung. Unter 25 % Festungs-Lebenspunkten verstummt es. So reibt ein früher Belagerungsring nicht mehr jede Welle einzeln auf, eine fast gewonnene Belagerung lässt sich aber zu Ende bringen. Das Geschoss verwendet die vorhandenen Projektilgrafiken der jeweiligen Epoche.
+- Spätverstärkung: Ab der zweiten Welle der letzten gegnerischen Epoche rückt jede weitere Welle um den Tabellenwert stärker an (Lebenspunkte und Schaden, kumulativ). Die Aufklärung kündigt den Zuschlag als „Stärke +X %“ an. Damit endet jede Partie. Die Zusammensetzung der Wellen bleibt angekündigt und reagiert weiterhin nicht auf den Spieler.
+- Feldhandbuch und Ergebnisansicht erklären die Antwort auf befestigte Stellungen: Gold sammeln und geschlossen angreifen. Endet eine Niederlage, nachdem die Gegnerfestung mehr als zur Hälfte zerstört war, nennt die Ergebnisansicht genau diesen Tipp.
+
+Geprüft und verworfen wurden eine Drosselung von Maschinengewehr und Laserturm (keine Wirkung auf die Patts), ein Geschütz auch für die eigene Festung (verzögerte nur Niederlagen), eine kleinere Wellenobergrenze (kein stabiler Vorteil), ein im Spätspiel stärkeres Geschützprofil (erzeugte Patts) und eine schnellere gegnerische Technologie auf Schwer (Anfänger nach drei Minuten überrannt).
+
+### Ergebnis
+
+Offizielle Messung mit dem finalen Code in `art/qa/balance-v2/`, 240 Partien bei 4× (Seeds 1 bis 10) ohne Laufzeitfehler. Zelle: Siege von zehn Partien, Median der Siegzeit (N: Median der Spieldauer, wenn kein Sieg gelang) und, wenn die Mehrheit gewann, Median des tiefsten eigenen Basisstands.
+
+| Spielertyp | Leicht | Normal | Schwer |
+|---|---|---|---|
+| Untätig | 0/10, N 2:19 | 0/10, N 2:01 | 0/10, N 2:15 |
+| Anfänger | 10/10, 8:13, 100 % | 3/10, 8:52 | 2/10, 8:49 |
+| Gelegenheit | 10/10, 9:31, 100 % | 9/10, 8:55, 94 % | 4/10, 9:29 |
+| Durchschnitt | 10/10, 6:18, 100 % | 9/10, 7:15, 100 % | 4/10, 8:52 |
+| Rusher | 10/10, 5:02, 100 % | 10/10, 5:12, 95 % | 8/10, 8:46, 70 % |
+| Experte | 10/10, 4:35, 100 % | 10/10, 5:29, 100 % | 10/10, 8:14, 94 % |
+| Turm-Spieler | 9/10, 11:12, 100 %, 1 offen | 3/10, 11:07 | 0/10, N 15:41 |
+| Sammler | 10/10, 8:49, 100 % | 9/10, 9:43, 100 % | 9/10, 9:18, 93 % |
+
+Vergleich mit der Ausgangslage (gleiche Bots, Seeds und Grenzen, 4×; vorher → nachher):
+
+| Kennzahl | Leicht | Normal | Schwer |
+|---|---|---|---|
+| Siege aktiver Spielertypen (von 70) | 70 → 69 | 41 → 53 | 23 → 37 |
+| Offene Partien nach 20 Minuten | 0 → 1 | 18 → 0 | 21 → 0 |
+| Anfänger | 10/10 nach 3:18 → 10/10 nach 8:13 | 1/10 → 3/10 | 0/10 → 2/10 |
+| Median-Siegzeit Durchschnitt | 2:16 → 6:18 | 6:14 → 7:15 | 6:03 → 8:52 |
+| Median-Siegzeit Experte | 2:29 → 4:35 | 3:07 → 5:29 | 3:17 → 8:14 |
+
+Schwer endet heute öfter mit einem Sieg, weil keine Partie mehr festläuft. Der Experte braucht dort aber zweieinhalbmal so lange wie vorher, und Anfänger bis Durchschnittsspieler gewinnen höchstens 4 von 10 Partien.
+
+Stichprobe bei 1× mit den Seeds 21 bis 26, 108 Partien ohne Laufzeitfehler, keine davon offen:
+
+| Spielertyp | Leicht | Normal | Schwer |
+|---|---|---|---|
+| Anfänger | 6/6, 8:52 | 4/6, 10:16 | 0/6, N 4:16 |
+| Gelegenheit | 6/6, 9:15 | 6/6, 8:30 | 0/6, N 11:44 |
+| Durchschnitt | 6/6, 8:48 | 6/6, 8:06 | 3/6, 8:46 |
+| Experte | 6/6, 5:13 | 6/6, 7:30 | 5/6, 8:44 |
+| Turm-Spieler | 6/6, 11:23 | 1/6, 10:23 | 0/6, N 16:08 |
+| Sammler | 6/6, 9:09 | 6/6, 9:28 | 3/6, 9:36 |
+
+- **Leicht:** Aktive Spielertypen gewinnen 69 von 70 Partien bei 4× und alle 36 bei 1×; die Mediane der Siegzeit liegen zwischen 4:35 und 11:23. 65 der 69 Siege bei 4× gelingen in der Renaissance oder später. Wer nichts tut, verliert nach gut zwei Minuten.
+- **Normal:** Die Referenz. Gelegenheits- und Durchschnittsspieler gewinnen 9 von 10 (4×) bzw. 6 von 6 (1×) Partien nach 7 bis 9 Minuten, Anfänger 3 von 10 bzw. 4 von 6. Experten gewinnen sicher, im Median nach 5:29 (4×, vorher 3:07) bzw. 7:30 (1×).
+- **Schwer:** Verlässlich gewinnt nur zielstrebiges Spiel: Experte 10 von 10 bzw. 5 von 6, Sammler 9 von 10 bzw. 3 von 6. Durchschnittsspieler gewinnen 4 von 10 bzw. 3 von 6. Jeder Sieg auf Schwer gelingt erst in der Zukunft.
+- Auf Normal und Schwer blieb keine offizielle Partie offen. Auf Leicht blieb eine Partie eines sehr langsamen Turm-Spielers (Tagesform 0,01 von 1) nach 20 Minuten offen, mit unberührter eigener Basis und der Gegnerfestung bei 24 %. Ohne Zeitgrenze nachgespielt endete sie nach 28:06 mit einer Niederlage ([Nachspiel](../art/qa/balance-v2-long/summary-4x.md)).
+
+### Echte Eingaben
+
+Zusätzlich wurde mit dem finalen Code je Schwierigkeitsgrad eine komplette Partie über echte Maus- und Tastatureingaben gespielt: Menüs per Klick, Rekrutierung, Aufstieg und Fähigkeiten per Tastatur, Tempo 4×. Das Eingabemuster rekrutiert in fester Reihenfolge, schickt Einheiten einzeln nach und kam in diesen drei Partien nicht zum Turmbau. Gold, Erfahrung, Wellen und Lebenspunkte wurden nur gelesen, kein Seitenfehler trat auf.
+
+| Schwierigkeit | Ergebnis | Zeit | Besiegte Gegner | Epoche | Tiefster Basisstand |
+|---|---|---:|---:|---|---:|
+| Leicht | Sieg | 7:44 | 101 | Moderne | 100 % |
+| Normal | Sieg | 10:18 | 155 | Zukunft | 61 % |
+| Schwer | Niederlage | 12:19 | 206 | Zukunft | 0 % |
+
+Auf Schwer stand die Gegnerfestung ab etwa zehn Minuten unverändert bei 74 %; die einzeln nachrückenden Truppen verloren gegen +48 % Wellenstärke. Die Ergebnisansicht zeigte passend dazu den Tipp zur starken Front, weil die Festung noch mehr als zur Hälfte stand. Das passt zu den Bot-Ergebnissen: Wer Truppen nur einzeln nachschickt, verliert auf Schwer (Turm-Spieler 0/10).
+
+Ebenfalls mit dem finalen Code sichtgeprüft: das Festungsgeschoss im Flug und sein Einschlag bei 1× in einer echten Normal-Partie, die Anzeige „Stärke +12 %“ in der Aufklärung und der Niederlagen-Tipp zum Sturm auf die Festung (beide technische Einrichtung) sowie das Feldhandbuch: [Geschoss](../art/qa/balance-v2/ui-fortress-gun-1x.png), [Einschlag](../art/qa/balance-v2/ui-fortress-gun-1x-hit.png), [Aufklärung](../art/qa/balance-v2/ui-scout-surge-hard.png), [Niederlagen-Tipp](../art/qa/balance-v2/ui-result-tip.png), [Feldhandbuch](../art/qa/balance-v2/ui-help.png), [Sieg Leicht](../art/qa/balance-v2/play-easy-end.png), [Sieg Normal](../art/qa/balance-v2/play-medium-end.png), [Niederlage Schwer](../art/qa/balance-v2/play-hard-end.png).
+
+Prüfstand: 164 von 164 Jest-Tests (neu: Festungsgeschütz, Spätverstärkung, Reihenfolge der Schwierigkeitstabelle), TypeScript für Spielquellen und QA-/Build-Konfiguration, ESLint und 23 von 23 Playwright-Prüfungen auf dem finalen Code. Zwei Browserprüfungen und `tools/combat-playthrough.mjs` lesen Startgold, Einkommen, Wellengröße und Epochenzeiten jetzt aus den Spielregeln statt aus festen Zahlen.
+
+### Grenzen
+
+- Die Spielertypen sind Modelle. Sie ersetzen keine Partien echter Menschen; besonders Anfänger spielen vielfältiger als jeder Bot.
+- Leicht bleibt bewusst nachsichtig: Anfänger gewinnen dort jede Partie, im Median mit 100 % (4×) bzw. 96 % (1×) ihrer Festung.
+- Wer sich nur verschanzt und Truppen einzeln nachschickt, verliert auf Normal und Schwer durch die Spätverstärkung (Turm-Spieler 3/10 bzw. 0/10). Die geschlossene Gruppe ist die vorgesehene Antwort.
+- Auf Schwer können Anfänger bei 1× schon nach etwa vier Minuten überrannt werden.
+- 1× und 4× stimmen in der Summe überein, einzelne Partien verlaufen verschieden. Die 1×-Stichprobe umfasst sechs Seeds je Zelle.
+
+### Reproduktion
+
+```powershell
+# QA-Server in einem eigenen Terminal
+node node_modules/vite/bin/vite.js --config e2e/vite.config.ts --host 127.0.0.1 --port 5190 --strictPort
+
+# Breite Reihe: drei Schwierigkeiten × acht Spielertypen × zehn Seeds bei 4×
+$env:QA_REPORT_GROUP = 'balance-check'
+node tools/balance-matrix.mjs
+
+# Stichprobe bei 1×
+$env:QA_SPEED = '1'; $env:QA_STRATEGIES = 'novice,casual,average,expert,turtle,massing'; $env:QA_SEEDS = '21,22,23,24,25,26'
+node tools/balance-matrix.mjs
+
+# Ausgangslage: alte Werte als Variante, sonst wie die Reihe bei 4×
+$env:QA_SPEED = $null; $env:QA_STRATEGIES = $null; $env:QA_SEEDS = $null
+$env:QA_REPORT_GROUP = 'balance-check-baseline'; $env:QA_VARIANTS = 'art/qa/balance-v2-baseline/variants.json'
+node tools/balance-matrix.mjs
+```
+
+Jede Gruppe erhält unter `art/qa/<Gruppe>/` die Übersichten `summary-<Tempo>x.md` und `summary-<Tempo>x.json` sowie die Rohdaten jeder Partie mit 30-Sekunden-Schnappschüssen in `matches-<Tempo>x.jsonl`. Ein weiterer Lauf in derselben Gruppe hängt an diese Rohdaten an; für einen sauberen Vergleich daher eine neue Gruppe wählen. Die Belege dieses Abschnitts liegen in `art/qa/balance-v2/`, `art/qa/balance-v2-baseline/` und `art/qa/balance-v2-long/`. Für Balance-Experimente nimmt `QA_VARIANTS` eine JSON-Datei mit Varianten entgegen, zum Beispiel `[{"name": "probe", "patch": {"/src/game/combatRules.ts": {"DIFFICULTY.medium": {"enemyStats": 1.15}}}}]`. Die Ausgangslage verwendet [`variants.json`](../art/qa/balance-v2-baseline/variants.json).
