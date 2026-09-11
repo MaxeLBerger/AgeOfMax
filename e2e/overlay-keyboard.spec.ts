@@ -1,5 +1,5 @@
 import type { Page } from '@playwright/test';
-import { test, expect, clickGame, sceneActive, snapshot, startBattle, technicalSetup } from './game-fixture';
+import { test, expect, captureEvidence, clickGame, sceneActive, snapshot, startBattle, technicalSetup } from './game-fixture';
 
 async function expectFocus(page: Page, index: number): Promise<void> {
   // Inspect the actual rendered button styles, not merely an internal focus index.
@@ -112,7 +112,7 @@ test('Pause overlay supports visible keyboard focus, pointer handoff and a clean
   await page.mouse.move(bounds.x + 640 * bounds.width / 1280, bounds.y + 412 * bounds.height / 720);
   await page.mouse.move(bounds.x + 640 * bounds.width / 1280, bounds.y + 470 * bounds.height / 720);
   await expectFocus(page, 1);
-  await page.screenshot({ path: 'art/qa/pause-keyboard-focus.png' });
+  await captureEvidence(page, 'art/qa/pause-keyboard-focus.png');
   await page.keyboard.press('Enter');
   await menuToBattle(page);
   expect((await snapshot(page)).subscriptions).toEqual(subscriptions);
@@ -128,7 +128,7 @@ for (const winner of ['player', 'enemy'] as const) {
     expect((await snapshot(page)).overlayTexts).toContain(winner === 'player' ? 'SIEG' : 'NIEDERLAGE');
     await expectFocus(page, 0);
     await blockedBattleCommands(page);
-    await page.screenshot({ path: `art/qa/${winner === 'player' ? 'victory' : 'defeat'}-keyboard-focus.png` });
+    await captureEvidence(page, `art/qa/${winner === 'player' ? 'victory' : 'defeat'}-keyboard-focus.png`);
     await page.keyboard.press('Enter');
     await expect.poll(async () => (await snapshot(page)).gameOver).toBe(false);
     expect((await snapshot(page)).subscriptions).toEqual(subscriptions);

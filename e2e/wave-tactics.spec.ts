@@ -1,5 +1,5 @@
 import type { Page } from '@playwright/test';
-import { test, expect, clickGame, snapshot, startBattle, technicalSetup } from './game-fixture';
+import { test, expect, captureEvidence, clickGame, snapshot, startBattle, technicalSetup } from './game-fixture';
 
 async function waveSnapshot(page: Page) {
   return page.evaluate(() => {
@@ -237,7 +237,7 @@ test('Technical epoch-boundary setup: all five intelligence cards fit at 900px a
       expect(object.top, object.label).toBeGreaterThanOrEqual(layout.panel.top);
       expect(object.bottom, object.label).toBeLessThanOrEqual(layout.panel.bottom);
     }
-    await page.screenshot({ path: 'art/qa/wave-tactics-v1/intel-' + entry.id + '-900.png' });
+    await captureEvidence(page, 'art/qa/wave-tactics-v1/intel-' + entry.id + '-900.png');
   }
   await clickGame(page, 952, 111);
   await expect.poll(async () => (await waveSnapshot(page)).visible).toBe(false);
