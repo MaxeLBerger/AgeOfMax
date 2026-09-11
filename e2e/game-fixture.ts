@@ -1,4 +1,5 @@
 import { test as base, expect, type Page } from '@playwright/test';
+import { basename } from 'node:path';
 
 declare global { interface Window { __AGE_OF_MAX__: any; } }
 
@@ -15,6 +16,12 @@ export const test = base.extend<{ cleanRuntime: void }>({
   }, { auto: true }],
 });
 export { expect };
+
+/** A normal run keeps its screenshot in the ignored test output; only QA_CAPTURE_EVIDENCE=1 refreshes the recorded art/qa evidence. */
+export async function captureEvidence(page: Page, evidencePath: string): Promise<void> {
+  const refresh = process.env.QA_CAPTURE_EVIDENCE === '1';
+  await page.screenshot({ path: refresh ? evidencePath : test.info().outputPath(basename(evidencePath)) });
+}
 
 export async function sceneActive(page: Page, key: string): Promise<void> {
   await expect.poll(() => page.evaluate(key => window.__AGE_OF_MAX__?.scene.isActive(key) ?? false, key), { timeout: 30000 }).toBe(true);
