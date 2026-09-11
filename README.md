@@ -110,6 +110,16 @@ Die Playwright-Prüfung benötigt alle fertigen Laufzeitbilder und Waffenmarker.
 
 Playwright nutzt lokal installiertes Chrome unter Windows, sonst sein Chromium. Über `QA_BROWSER_PATH` kann eine andere lokale Browserdatei gewählt werden. Falls kein Browser installiert ist, stellt `npx playwright install chromium` den Testbrowser bereit. Die Suite betreibt einen eigenen lokalen Vite-Server auf **127.0.0.1:5190**, ohne HMR und ohne automatisch geöffnete Fenster.
 
+Bildschirmfotos der Browserprüfung schreibt ein normaler `npm test` nur in den ignorierten Ordner `test-results/`, je Test in einen eigenen Unterordner. Die aufgezeichneten Nachweisbilder in `art/qa/` bleiben dabei unverändert: die drei Dialogbilder `pause-keyboard-focus.png`, `victory-keyboard-focus.png` und `defeat-keyboard-focus.png` sowie die fünf Aufklärungskarten `wave-tactics-v1/intel-{epoch}-900.png` für `stone`, `castle`, `renaissance`, `modern` und `future`. Nur ein ausdrücklich angeforderter Nachweislauf überschreibt diese acht Dateien. Sieh dir die neuen Bilder danach an und übernimm sie nur bewusst in einen Commit.
+
+```powershell
+# Nachweisbilder in art/qa/ bewusst neu aufnehmen
+$env:QA_CAPTURE_EVIDENCE = '1'
+npm test
+# Sonst gilt die Variable für jeden weiteren Lauf dieser PowerShell-Sitzung
+Remove-Item Env:QA_CAPTURE_EVIDENCE
+```
+
 `tools/combat-playthrough.mjs` ist eine zusätzliche technische Simulation mit automatisierten Kaufentscheidungen und beschleunigter interner Zeitschleife. Sie ersetzt keine tatsächlich über die Oberfläche gespielte Partie. Mit `QA_SEED` kontrolliert sie Startzeit, Zufallsfolgen und eine getrennte Testuhr; jede Ausführung schreibt neue Berichte statt alte Nachweise zu überschreiben. `node tools/run-seeded-balance.mjs` vergleicht drei Strategien/Schwierigkeiten mit drei Seeds. Ergebnisse, überprüfte Grenzen und echte Spielnachweise werden in [QA_REBUILD.md](docs/QA_REBUILD.md) getrennt dokumentiert.
 
 `node tools/balance-matrix.mjs` kalibriert die Schwierigkeitsgrade: Es spielt komplette Partien mit acht Spielertypen vom Anfänger bis zum Experten, jeweils mit gesetzter „Tagesform“ pro Seed, auf der internen Spieluhr ohne Darstellung. Es benötigt den QA-Server (Standard 127.0.0.1:5190, sonst `QA_BASE_URL`) und schreibt JSONL-Rohdaten sowie eine Markdown-Übersicht nach `art/qa/<Gruppe>/` (`QA_REPORT_GROUP`). `QA_DIFFICULTIES`, `QA_STRATEGIES`, `QA_SEEDS`, `QA_SPEED` (1, 2 oder 4), `QA_PARALLEL`, `QA_MAX_MINUTES` (Zeitgrenze, Standard 20) und `QA_VARIANTS` (JSON-Datei mit Balance-Varianten) steuern den Lauf. Bot-Ergebnisse ersetzen keine menschlichen Partien; die Kalibrierung und ihre Grenzen stehen in [QA_REBUILD.md](docs/QA_REBUILD.md).
