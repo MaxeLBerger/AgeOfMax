@@ -53,9 +53,9 @@ export class MenuScene extends Phaser.Scene {
     displayText(this, 106, 124, 'Dein Weg zum Sieg', 40);
     uiText(this, 108, 185, 'Zerstöre die gegnerische Basis rechts. Beschütze deine Basis links.', 20, UI.text);
     const columns = [
-      { x: 108, title: '01   ARMEE AUFBAUEN', text: 'Rekrutiere mit Gold. Nahkämpfer halten die Front; Fernkämpfer wirken aus der zweiten Reihe. Schwere Einheiten brechen die Linie.' },
-      { x: 484, title: '02   STELLUNG HALTEN', text: 'Baue Türme an deiner Basis. Prüfe mit I die nächste Welle und passe deine Truppen an. Fähigkeiten helfen gegen dichte Gruppen.' },
-      { x: 860, title: '03   WEITERENTWICKELN', text: 'Im Kampf gewinnst du Erfahrung. Investiere sie in das nächste Zeitalter und schalte stärkere Truppen sowie neue Technik frei.' }
+      { x: 108, title: '01   ARMEE AUFBAUEN', text: 'Rekrutiere mit Gold. Nahkämpfer halten die Front; Fernkämpfer wirken aus der zweiten Reihe. Schwere Einheiten brechen die Linie. Fähigkeiten helfen gegen dichte Gruppen.' },
+      { x: 484, title: '02   STELLUNG HALTEN', text: 'Baue Türme an deiner Basis und prüfe mit I die nächste Welle. Die feindliche Festung schießt zurück: Sammle Gold und greife mit einer geschlossenen Gruppe an.' },
+      { x: 860, title: '03   WEITERENTWICKELN', text: 'Im Kampf gewinnst du Erfahrung. Investiere sie in das nächste Zeitalter und schalte stärkere Truppen frei. Zögere nicht: In der Zukunft wird jede Welle stärker.' }
     ];
     columns.forEach(column => {
       uiText(this, column.x, 242, column.title, 13, UI.goldText).setLetterSpacing(0.8);

@@ -11,6 +11,9 @@ jest.mock('phaser', () => ({
 }));
 
 import { BattleScene } from '../scenes/BattleScene';
+import { DIFFICULTY, FORTRESS_GUN } from '../game/combatRules';
+import { planEnemyWave } from '../game/enemyWaves';
+import type { UnitType } from '../game/types';
 import unitData from '../../data/units.json';
 
 function sprite(id: string, side = 'player') {
@@ -58,7 +61,7 @@ function harness() {
   battle.music = { playBattleMusic: jest.fn(), stop: jest.fn() };
   battle.killStreakManager = { registerKill: () => 0, reset: jest.fn() };
   battle.goldFeedback = { showGoldGain: jest.fn() };
-  for (const method of ['createHealthBar', 'updateHealthBar', 'destroyHealthBar', 'showFloatingDamage', 'showDeathEffect', 'showGoldParticles', 'updateBaseHealthBar', 'updateBackground', 'hideTurretGrid', 'closeTurretMenu', 'updateAllHealthBars', 'updateSpecialCooldowns', 'updateTurrets', 'spawnMuzzleFlash', 'animateRangedAttack', 'updateUnitPresentation']) battle[method] = jest.fn();
+  for (const method of ['createHealthBar', 'updateHealthBar', 'destroyHealthBar', 'showFloatingDamage', 'showDeathEffect', 'showGoldParticles', 'updateBaseHealthBar', 'updateBackground', 'hideTurretGrid', 'closeTurretMenu', 'updateAllHealthBars', 'updateSpecialCooldowns', 'updateTurrets', 'updateFortressGun', 'spawnMuzzleFlash', 'animateRangedAttack', 'updateUnitPresentation']) battle[method] = jest.fn();
   return { battle, events, timerCallbacks, advanceClock };
 }
 
@@ -522,6 +525,81 @@ describe('Battle gameplay integration', () => {
     battle.fireTurretProjectile(slot, enemy);
     expect(enemy.getData('hp')).toBe(enemy.maxHp - 16);
     expect(battle.launchProjectile).not.toHaveBeenCalled();
+  });
+
+  it('lets the enemy fortress gun hit the closest attacker in range on its own clock, and stay silent when disabled', () => {
+    const { battle } = harness();
+    battle.updateFortressGun = (BattleScene.prototype as any).updateFortressGun.bind(battle);
+    const shots: any[] = [];
+    battle.projectiles.get = jest.fn(() => { const shot = sprite('slinger'); shots.push(shot); return shot; });
+    const near = sprite('clubman'); near.x = 1180 - 150;
+    const far = sprite('spearman'); far.x = 1180 - FORTRESS_GUN.range - 1;
+    battle.playerUnits.children.entries = [far, near];
+    battle.enemyEpochIndex = 1;
+    const previous = DIFFICULTY.medium.enemyGun;
+    try {
+      DIFFICULTY.medium.enemyGun = 0;
+      battle.simulationTime = 10000;
+      battle.updateFortressGun();
+      expect(shots).toHaveLength(0);
+      DIFFICULTY.medium.enemyGun = 1.5;
+      battle.updateFortressGun();
+      expect(shots).toHaveLength(1);
+      expect(shots[0].getData('owner')).toBe('enemy');
+      expect(shots[0].getData('damage')).toBe(Math.round(FORTRESS_GUN.damage[1] * 1.5));
+      expect(shots[0].getData('splash')).toBe(FORTRESS_GUN.splash);
+      expect(shots[0].texture.key).toBe('arrow');
+      expect(shots[0].body.velocity.x).toBeLessThan(0);
+      battle.simulationTime += FORTRESS_GUN.intervalMs - 1;
+      battle.updateFortressGun();
+      expect(shots).toHaveLength(1);
+      // The remaining troop stands one pixel beyond the gun's reach.
+      battle.simulationTime += 1;
+      near.active = false;
+      battle.updateFortressGun();
+      expect(shots).toHaveLength(1);
+      // A fortress below a quarter of its hit points falls silent; at exactly a quarter it still fires.
+      near.active = true;
+      battle.simulationTime += FORTRESS_GUN.intervalMs;
+      battle.enemyBase.hp = battle.enemyBase.maxHp * FORTRESS_GUN.silentBelow - 1;
+      battle.updateFortressGun();
+      expect(shots).toHaveLength(1);
+      battle.enemyBase.hp = battle.enemyBase.maxHp * FORTRESS_GUN.silentBelow;
+      battle.updateFortressGun();
+      expect(shots).toHaveLength(2);
+    } finally {
+      DIFFICULTY.medium.enemyGun = previous;
+    }
+  });
+
+  it('strengthens every further wave of the final enemy epoch and announces that strength in advance', () => {
+    const { battle, events } = harness();
+    const updates: any[] = []; events.on('updateWave', update => updates.push(update));
+    battle.spawnUnitByData = jest.fn();
+    battle.makeWavePlan = (number: number) => planEnemyWave(number, 'medium', 'future', unitData as UnitType[]);
+    battle.wavePlan = battle.makeWavePlan(1);
+    const surge = DIFFICULTY.medium.lateSurge;
+    battle.simulationTime = 12000; battle.updateWaves();
+    expect(battle.waveSurge).toBe(1);
+    expect(updates.at(-1).surge).toBe(1);
+    battle.simulationTime = 40000; battle.updateWaves();
+    expect(battle.wavePhase).toBe('respite');
+    expect(updates.at(-1).surge).toBeCloseTo(1 + surge);
+    battle.simulationTime = 56000; battle.updateWaves();
+    expect(battle.waveSurge).toBeCloseTo(1 + surge);
+    expect(updates.at(-1).surge).toBeCloseTo(1 + surge);
+  });
+
+  it('applies the difficulty and wave strength to the hit points and damage of arriving enemies', () => {
+    const { battle } = harness();
+    const recycled = sprite('clubman', 'enemy'); recycled.active = false;
+    battle.enemyUnits.children.entries = [recycled]; battle.enemyUnits.get = () => recycled;
+    battle.waveSurge = 1.5;
+    const clubman = unitData.find(unit => unit.id === 'clubman')!;
+    expect(battle.spawnUnitByData('enemy', clubman)).toBe(true);
+    const stats = DIFFICULTY.medium.enemyStats * 1.5;
+    expect(recycled.getData('hp')).toBe(Math.round(clubman.hp * stats));
+    expect(recycled.getData('damage')).toBe(Math.round(clubman.damage * stats));
   });
 
   it('uses distinct laser and plasma shots for future towers', () => {

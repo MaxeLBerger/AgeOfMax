@@ -1,5 +1,15 @@
 import type { Page } from '@playwright/test';
 import { test, expect, clickGame, snapshot, startBattle, technicalSetup } from './game-fixture';
+import { DIFFICULTY, INITIAL_PREPARE_MS, WAVE_ASSAULT_MS, WAVE_RESPITE_MS, waveSize } from '../src/game/combatRules';
+
+/** The first normal wave that belongs to an enemy epoch, and the respite that announces it. */
+function enemyEpochBoundary(epoch: number) {
+  const cycle = WAVE_ASSAULT_MS + WAVE_RESPITE_MS;
+  let wave = 1;
+  while (INITIAL_PREPARE_MS + (wave - 1) * cycle < epoch * DIFFICULTY.medium.enemyEpochMs) wave++;
+  const attackAt = INITIAL_PREPARE_MS + (wave - 1) * cycle;
+  return { wave, attackAt, respiteAt: attackAt - WAVE_RESPITE_MS };
+}
 
 async function waveSnapshot(page: Page) {
   return page.evaluate(() => {
@@ -44,7 +54,7 @@ test('Wave intelligence is a nonmodal announcement with keyboard, hover, pin and
   const initial = await waveSnapshot(page);
   expect(initial.plan.number).toBe(1);
   expect(initial.plan.epoch).toBe('stone');
-  expect(initial.plan.unitIds).toHaveLength(8);
+  expect(initial.plan.unitIds).toHaveLength(waveSize(1, 'medium'));
   expect(initial.announced).toEqual(initial.plan);
   expect(initial.header).toContain('Mischformation');
   expect(initial.detail).toContain('Angriff in');
@@ -110,19 +120,20 @@ test('Technical XP and wave-boundary setup: player evolution cannot change a com
   await page.keyboard.press('u');
   await expect.poll(async () => (await snapshot(page)).epoch).toBe(1);
   expect((await waveSnapshot(page)).plan).toEqual(initial);
-  // Real normal wave 3 ends at 128 s; the next assault starts at 144 s,
-  // crossing the enemy's 135 s Castle threshold during the announced respite.
-  const upcoming = await prepareRespite(page, 3, 128000);
+  // The respite before the first normal Castle wave announces the enemy's
+  // advance while the enemy itself is still in the Stone Age.
+  const castle = enemyEpochBoundary(1);
+  const upcoming = await prepareRespite(page, castle.wave - 1, castle.respiteAt);
   expect(upcoming.phase).toBe('respite');
-  expect(upcoming.attackAt).toBe(144000);
+  expect(upcoming.attackAt).toBe(castle.attackAt);
   expect(upcoming.enemyEpoch).toBe(0);
-  expect(upcoming.plan.number).toBe(4);
+  expect(upcoming.plan.number).toBe(castle.wave);
   expect(upcoming.plan.epoch).toBe('castle');
   await page.keyboard.press('i');
   const intel = await waveSnapshot(page);
   expect(intel.announced).toEqual(upcoming.plan);
   expect(intel.texts.join(' ')).toContain('Mittelalter');
-  expect(intel.header).toContain('4');
+  expect(intel.header).toContain(String(castle.wave));
   const nextXP = await page.evaluate(() => window.__AGE_OF_MAX__.scene.getScene('BattleScene').epochs[1].xpToNext);
   await technicalSetup(page, { xp: nextXP });
   await page.keyboard.press('u');
@@ -195,11 +206,12 @@ test('Technical blocked-exit and clock setup: attempts follow announced IDs with
     expect(counters.arrived).toBe(index + 1);
     expect(counters.at).toBeCloseTo(12000 + (index + 1) * 25000 / result.plan.unitIds.length, 5);
   }
-  expect(result.exhausted).toEqual({ attempted: 8, arrived: 7, count: 7 });
+  const troops = waveSize(1, 'medium');
+  expect(result.exhausted).toEqual({ attempted: troops, arrived: troops - 1, count: troops - 1 });
   expect(result.goldAfter).toBe(result.goldBefore);
   expect(result.phase).toBe('respite');
   expect(result.nextPlan.number).toBe(2);
-  expect(result.nextAttackAt).toBe(56000);
+  expect(result.nextAttackAt).toBe(INITIAL_PREPARE_MS + WAVE_ASSAULT_MS + WAVE_RESPITE_MS);
 });
 
 test('Technical epoch-boundary setup: all five intelligence cards fit at 900px and show their real enemy portraits', async ({ page }) => {
@@ -207,11 +219,10 @@ test('Technical epoch-boundary setup: all five intelligence cards fit at 900px a
   await startBattle(page);
   await moveGame(page, 500, 370);
   await page.keyboard.press('i');
-  const entries = [
-    { id: 'stone', wave: 0, at: 0 }, { id: 'castle', wave: 3, at: 128000 },
-    { id: 'renaissance', wave: 6, at: 260000 }, { id: 'modern', wave: 9, at: 392000 },
-    { id: 'future', wave: 12, at: 524000 },
-  ];
+  const entries = [{ id: 'stone', wave: 0, at: 0 }, ...['castle', 'renaissance', 'modern', 'future'].map((id, index) => {
+    const boundary = enemyEpochBoundary(index + 1);
+    return { id, wave: boundary.wave - 1, at: boundary.respiteAt };
+  })];
   for (const entry of entries) {
     if (entry.wave) await prepareRespite(page, entry.wave, entry.at);
     const state = await waveSnapshot(page);

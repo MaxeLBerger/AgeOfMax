@@ -22,7 +22,7 @@ import { turretNames } from '../ui/catalog';
 import { loadGameSettings, saveGameSettings } from '../ui/theme';
 import { consumeKeyboardEvent } from '../ui/keyboard';
 import { UnitSelectionSystem } from '../utils/UnitSelectionSystem';
-import { ARMY_LIMIT, BASE_HP, EPOCH_INCOME, INITIAL_PREPARE_MS, WAVE_ASSAULT_MS, WAVE_RESPITE_MS, canAttack, damageAgainst, enemyEpochAt, segmentHitFraction, unitRole, FORMATION_OFFSETS, formationGap, segmentBoxHitFraction } from '../game/combatRules';
+import { ARMY_LIMIT, BASE_HP, DIFFICULTY, FORTRESS_GUN, EPOCH_INCOME, INITIAL_PREPARE_MS, type Difficulty, WAVE_ASSAULT_MS, WAVE_RESPITE_MS, canAttack, damageAgainst, enemyEpochAt, segmentHitFraction, unitRole, FORMATION_OFFSETS, formationGap, segmentBoxHitFraction } from '../game/combatRules';
 import { KillStreakManager } from '../utils/KillStreakManager';
 import { planEnemyWave, type EnemyWavePlan } from '../game/enemyWaves';
 
@@ -128,17 +128,15 @@ export class BattleScene extends Phaser.Scene {
   // Unit Selection System (instantiated for side effects)
   private killStreakManager!: KillStreakManager;
 
-  // Difficulty settings
-  private difficulty: 'easy' | 'medium' | 'hard' = 'medium';
-  private difficultyMultipliers = {
-    easy: { enemyStats: 0.82, startingGold: 360 },
-    medium: { enemyStats: 1.0, startingGold: 240 },
-    hard: { enemyStats: 1.08, startingGold: 200 }
-  };
+  // Difficulty settings live in DIFFICULTY (combatRules).
+  private difficulty: Difficulty = 'medium';
 
   // Special abilities
   private rainingRocksLastUsed = -RAINING_ROCKS_COOLDOWN; // Available at start
   private artilleryStrikeLastUsed = -ARTILLERY_STRIKE_COOLDOWN; // Available at start
+  private fortressShotAt = 0;
+  private finalWaves = 0;
+  private waveSurge = 1;
 
   // Debug overlay
   private debugEnabled = false;
@@ -204,6 +202,9 @@ export class BattleScene extends Phaser.Scene {
     this.physics.resume();
     this.rainingRocksLastUsed = -RAINING_ROCKS_COOLDOWN;
     this.artilleryStrikeLastUsed = -ARTILLERY_STRIKE_COOLDOWN;
+    this.fortressShotAt = 0;
+    this.finalWaves = 0;
+    this.waveSurge = 1;
     this.debugEnabled = false;
     this.spawnQueue = [];
     this.lastSpawnTime = { player: 0, enemy: 0 };
@@ -216,7 +217,7 @@ export class BattleScene extends Phaser.Scene {
     console.log(`🎮 Difficulty: ${this.difficulty.toUpperCase()}`);
     
     // Apply difficulty-based starting gold
-    this.gold = this.difficultyMultipliers[this.difficulty].startingGold;
+    this.gold = DIFFICULTY[this.difficulty].startingGold;
     this.wavePlan = this.makeWavePlan(1, INITIAL_PREPARE_MS);
     
     // Initialize feedback systems
@@ -354,8 +355,9 @@ export class BattleScene extends Phaser.Scene {
     return getEpochSafe(this.epochs, this.currentEpochIndex);
   }
 
-  private getBaseMaxHP(epochIndex: number): number {
-    return BASE_HP[Math.max(0, Math.min(epochIndex, BASE_HP.length - 1))];
+  private getBaseMaxHP(epochIndex: number, side: 'player' | 'enemy' = 'player'): number {
+    const hp = BASE_HP[Math.max(0, Math.min(epochIndex, BASE_HP.length - 1))];
+    return side === 'enemy' ? Math.round(hp * DIFFICULTY[this.difficulty].enemyFortress) : hp;
   }
 
   private createBackground(): void {
@@ -389,9 +391,10 @@ export class BattleScene extends Phaser.Scene {
   }
 
   private createBases(): void {
-    const maxHP = this.getBaseMaxHP(this.currentEpochIndex);
-    this.playerBase = { hp: maxHP, maxHp: maxHP, x: PLAYER_BASE_X, y: LANE_Y, side: 'player' };
-    this.enemyBase = { hp: maxHP, maxHp: maxHP, x: ENEMY_BASE_X, y: LANE_Y, side: 'enemy' };
+    const playerHP = this.getBaseMaxHP(this.currentEpochIndex, 'player');
+    const enemyHP = this.getBaseMaxHP(this.enemyEpochIndex, 'enemy');
+    this.playerBase = { hp: playerHP, maxHp: playerHP, x: PLAYER_BASE_X, y: LANE_Y, side: 'player' };
+    this.enemyBase = { hp: enemyHP, maxHp: enemyHP, x: ENEMY_BASE_X, y: LANE_Y, side: 'enemy' };
     const make = (x: number, enemy: boolean) => {
       this.add.ellipse(x, LANE_Y + 2, 184, 20, 0x0b1720, 0.27).setDepth(-3);
       const image = this.add.image(x, LANE_Y + 2, enemy ? 'base-stone-enemy' : 'base-stone').setOrigin(0.5, 0.92).setDisplaySize(236, 236).setDepth(0);
@@ -1112,8 +1115,8 @@ export class BattleScene extends Phaser.Scene {
       return false;
     }
     if (side === 'player' && unitData.epoch !== this.getCurrentEpoch().id) return false;
-    // Apply difficulty multiplier to enemy units
-    const statMultiplier = side === 'enemy' ? this.difficultyMultipliers[this.difficulty].enemyStats : 1.0;
+    // Enemy units carry the difficulty multiplier and the late wave strength
+    const statMultiplier = side === 'enemy' ? DIFFICULTY[this.difficulty].enemyStats * this.waveSurge : 1.0;
     
     // Check cost for player units
     if (side === 'player') {
@@ -1496,9 +1499,10 @@ export class BattleScene extends Phaser.Scene {
   }
 
   private addKillToStreak(unitCost: number): number {
-    const baseBounty = Math.round(calculateKillGoldBounty(unitCost) * 0.35);
+    const share = DIFFICULTY[this.difficulty].bounty;
+    const baseBounty = Math.round(calculateKillGoldBounty(unitCost) * share);
     const bonus = this.killStreakManager.registerKill(baseBounty, this.simulationTime);
-    return baseBounty + Math.round(bonus * 0.35);
+    return baseBounty + Math.round(bonus * share);
   }
 
   private awardEnemyKill(unit: Phaser.Physics.Arcade.Sprite): void {
@@ -1528,6 +1532,7 @@ export class BattleScene extends Phaser.Scene {
     this.updateWaves();
     this.updateRangedUnits(step);
     this.updateTurrets();
+    this.updateFortressGun();
     this.updateAllHealthBars();
     this.updateUnitPresentation();
     this.updateSpecialCooldowns();
@@ -1561,8 +1566,12 @@ export class BattleScene extends Phaser.Scene {
     this.incomeAccumulator += delta;
     while (this.incomeAccumulator >= 1000) {
       this.incomeAccumulator -= 1000;
-      this.addGold(EPOCH_INCOME[this.currentEpochIndex]);
+      this.addGold(this.incomePerSecond());
     }
+  }
+
+  private incomePerSecond(): number {
+    return Math.round(EPOCH_INCOME[this.currentEpochIndex] * DIFFICULTY[this.difficulty].income);
   }
 
   private emitBattleStatus(): void {
@@ -1572,9 +1581,9 @@ export class BattleScene extends Phaser.Scene {
       number: Math.max(1, this.waveNumber), phase: this.wavePhase,
       remainingMs: Math.max(0, this.phaseEndsAt - this.simulationTime),
       enemyEpoch: this.epochs[this.enemyEpochIndex].id,
-      incomePerSecond: EPOCH_INCOME[this.currentEpochIndex], elapsedMs: this.simulationTime,
+      incomePerSecond: this.incomePerSecond(), elapsedMs: this.simulationTime,
       army: this.playerUnits?.countActive(true) ?? 0, armyLimit: ARMY_LIMIT,
-      plan: this.wavePlan, attempted: this.wavePhase === 'assault' ? this.waveSpawned : 0,
+      plan: this.wavePlan, surge: this.upcomingSurge(), attempted: this.wavePhase === 'assault' ? this.waveSpawned : 0,
       arrived: this.wavePhase === 'assault' ? this.waveArrived : 0,
     });
   }
@@ -1582,6 +1591,13 @@ export class BattleScene extends Phaser.Scene {
   private makeWavePlan(number: number, attackAt: number): EnemyWavePlan {
     const epoch = this.epochs[enemyEpochAt(attackAt, this.difficulty)].id;
     return planEnemyWave(number, this.difficulty, epoch, this.unitsDatabase);
+  }
+
+  /** Strength of the announced wave: the running assault, or the next one between two assaults. */
+  private upcomingSurge(): number {
+    if (this.wavePhase === 'assault') return this.waveSurge;
+    const final = this.wavePlan?.epoch === this.epochs[this.epochs.length - 1].id;
+    return final ? 1 + DIFFICULTY[this.difficulty].lateSurge * this.finalWaves : 1;
   }
 
   private updateWaves(): void {
@@ -1599,11 +1615,14 @@ export class BattleScene extends Phaser.Scene {
         this.waveArrived = 0;
         this.nextEnemySpawnAt = this.simulationTime;
         this.phaseEndsAt = this.simulationTime + WAVE_ASSAULT_MS;
+        // From the second wave of the enemy's final epoch on, every wave arrives a little stronger.
+        if (this.wavePlan.epoch === this.epochs[this.epochs.length - 1].id) this.finalWaves++;
+        this.waveSurge = 1 + DIFFICULTY[this.difficulty].lateSurge * Math.max(0, this.finalWaves - 1);
         const nextEpoch = this.epochs.findIndex(epoch => epoch.id === this.wavePlan!.epoch);
         if (nextEpoch !== this.enemyEpochIndex) {
           this.enemyEpochIndex = nextEpoch;
           const ratio = this.enemyBase.hp / this.enemyBase.maxHp;
-          this.enemyBase.maxHp = this.getBaseMaxHP(nextEpoch);
+          this.enemyBase.maxHp = this.getBaseMaxHP(nextEpoch, 'enemy');
           this.enemyBase.hp = Math.max(1, Math.round(ratio * this.enemyBase.maxHp));
           this.updateBaseHealthBar('enemy');
           this.scene.get('UIScene').events.emit('updateBaseHP', this.enemyBase.hp, this.enemyBase.maxHp, 'enemy');
@@ -1620,6 +1639,31 @@ export class BattleScene extends Phaser.Scene {
       this.waveSpawned++;
       this.nextEnemySpawnAt += (WAVE_ASSAULT_MS - 3000) / count;
     }
+  }
+
+  /** The enemy fortress fires at the closest attacker near its wall; strength follows its epoch and the difficulty. */
+  private updateFortressGun(): void {
+    const scale = DIFFICULTY[this.difficulty].enemyGun;
+    if (scale <= 0 || this.simulationTime - this.fortressShotAt < FORTRESS_GUN.intervalMs) return;
+    if (this.enemyBase.hp < this.enemyBase.maxHp * FORTRESS_GUN.silentBelow) return;
+    let target: Phaser.Physics.Arcade.Sprite | undefined;
+    let closest = Infinity;
+    for (const child of this.playerUnits.children.entries) {
+      const unit = child as Phaser.Physics.Arcade.Sprite;
+      const distance = Math.abs(unit.x - this.enemyBase.x);
+      if (unit.active && distance <= FORTRESS_GUN.range && distance < closest) { closest = distance; target = unit; }
+    }
+    if (!target) return;
+    this.fortressShotAt = this.simulationTime;
+    const texture = ['rock', 'arrow', 'cannonball', 'bullet', 'laser'][this.enemyEpochIndex];
+    const damage = Math.round(FORTRESS_GUN.damage[this.enemyEpochIndex] * scale);
+    const x = this.enemyBase.x - 48, y = LANE_Y - 118;
+    const shot = this.launchProjectile(x, y, target, texture, 'enemy', damage, 620);
+    if (!shot) return;
+    shot.setScale(this.getProjectileScale(texture));
+    shot.setData('splash', FORTRESS_GUN.splash);
+    if (!['rock', 'arrow'].includes(texture)) this.spawnMuzzleFlash(x, y, 'enemy', texture);
+    this.soundEffects.play('turret_fire', 0.2);
   }
 
   private updateTurrets(): void {
@@ -2067,6 +2111,7 @@ export class BattleScene extends Phaser.Scene {
     this.scene.get('UIScene').events.emit('gameOver', {
       winner: loserSide === 'player' ? 'enemy' : 'player', elapsedMs: this.simulationTime,
       kills: this.kills, epoch: this.getCurrentEpoch().name,
+      enemyFortress: this.enemyBase.hp / this.enemyBase.maxHp,
     });
   }
 
