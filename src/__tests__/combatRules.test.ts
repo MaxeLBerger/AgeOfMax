@@ -1,5 +1,5 @@
 import { describe, it, expect } from '@jest/globals';
-import { canAttack, damageAgainst, enemyEpochAt, segmentHitFraction, waveSize, EPOCH_INCOME, formationFootprint, formationGap, segmentBoxHitFraction } from '../game/combatRules';
+import { canAttack, damageAgainst, enemyEpochAt, segmentHitFraction, waveSize, DIFFICULTY, EPOCH_INCOME, formationFootprint, formationGap, segmentBoxHitFraction } from '../game/combatRules';
 import units from '../../data/units.json';
 import epochs from '../../data/epochs.json';
 import type { UnitType } from '../game/types';
@@ -57,9 +57,26 @@ describe('Combat rules', () => {
       expect(waveSize(wave, 'medium')).toBeLessThan(waveSize(wave, 'hard'));
       expect(waveSize(wave, 'hard')).toBeLessThanOrEqual(16);
     }
-    expect(enemyEpochAt(134999, 'medium')).toBe(0);
-    expect(enemyEpochAt(135000, 'medium')).toBe(1);
+    const interval = DIFFICULTY.medium.enemyEpochMs;
+    expect(enemyEpochAt(interval - 1, 'medium')).toBe(0);
+    expect(enemyEpochAt(interval, 'medium')).toBe(1);
     expect(enemyEpochAt(60 * 60000, 'hard')).toBe(4);
+  });
+
+  it('never makes a harder difficulty friendlier on any lever of the difficulty table', () => {
+    const levels = [DIFFICULTY.easy, DIFFICULTY.medium, DIFFICULTY.hard];
+    for (let index = 1; index < levels.length; index++) {
+      const easier = levels[index - 1], harder = levels[index];
+      expect(harder.startingGold).toBeLessThanOrEqual(easier.startingGold);
+      expect(harder.income).toBeLessThanOrEqual(easier.income);
+      expect(harder.bounty).toBeLessThanOrEqual(easier.bounty);
+      expect(harder.enemyEpochMs).toBeLessThanOrEqual(easier.enemyEpochMs);
+      expect(harder.enemyStats).toBeGreaterThanOrEqual(easier.enemyStats);
+      expect(harder.waveSizeOffset).toBeGreaterThan(easier.waveSizeOffset);
+      expect(harder.enemyGun).toBeGreaterThanOrEqual(easier.enemyGun);
+      expect(harder.enemyFortress).toBeGreaterThanOrEqual(easier.enemyFortress);
+      expect(harder.lateSurge).toBeGreaterThanOrEqual(easier.lateSurge);
+    }
   });
 
   it('supports all five epochs with affordable units, distinct roles and complete unlocks', () => {

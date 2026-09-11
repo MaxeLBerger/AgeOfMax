@@ -1,6 +1,7 @@
 import { test, expect, clickGame, openMenu, sceneActive, snapshot, startBattle } from './game-fixture';
 import { units, epochs } from './catalog';
 import { installAudioProbe, audioSnapshot } from './audio-probe';
+import { DIFFICULTY, EPOCH_INCOME } from '../src/game/combatRules';
 
 test('Boot loads the complete five-epoch texture contract and eight real frames per troop', async ({ page }) => {
   await openMenu(page);
@@ -103,9 +104,10 @@ for (const difficulty of ['easy', 'medium', 'hard'] as const) {
     await page.keyboard.press('Space');
     await expect.poll(async () => (await snapshot(page)).paused).toBe(true);
     const state = await snapshot(page);
-    const initial = { easy: 360, medium: 240, hard: 200 }[difficulty];
+    const initial = DIFFICULTY[difficulty].startingGold;
+    const income = Math.round(EPOCH_INCOME[0] * DIFFICULTY[difficulty].income);
     expect(state.difficulty).toBe(difficulty);
-    expect(state.gold).toBe(initial + Math.floor(state.simulationTime / 1000) * 8);
+    expect(state.gold).toBe(initial + Math.floor(state.simulationTime / 1000) * income);
     expect(state.epoch).toBe(0);
     expect(state.playerBase.hp).toBe(state.playerBase.maxHp);
     expect(state.enemyBase.hp).toBe(state.enemyBase.maxHp);

@@ -13,8 +13,8 @@ type Card = { bg: Phaser.GameObjects.Rectangle; image: Phaser.GameObjects.Image;
   price: Phaser.GameObjects.Text; id: string; index: number };
 type Wave = { number: number; phase: 'prepare' | 'assault' | 'respite'; remainingMs: number;
   enemyEpoch: string; incomePerSecond: number; elapsedMs: number; army: number; armyLimit: number;
-  plan?: EnemyWavePlan; attempted?: number; arrived?: number };
-type Result = { winner: 'player' | 'enemy'; elapsedMs: number; kills: number; epoch: string };
+  plan?: EnemyWavePlan; surge?: number; attempted?: number; arrived?: number };
+type Result = { winner: 'player' | 'enemy'; elapsedMs: number; kills: number; epoch: string; enemyFortress?: number };
 
 export class UIScene extends Phaser.Scene {
   private gold = 0;
@@ -276,11 +276,12 @@ export class UIScene extends Phaser.Scene {
   private refreshScoutVisibility(): void {
     this.scout?.setVisible(!this.paused && !this.gameOver && !!this.scoutWave?.plan && (this.scoutPinned || this.scoutHover));
   }
-  private rebuildScout(plan: EnemyWavePlan): void {
+  private rebuildScout(plan: EnemyWavePlan, surge: number): void {
     this.scout.removeAll(true);
     const background = this.rect(0, 0, 344, 240, C.ink, 0.98).setStrokeStyle(1, C.gold, 0.7).setInteractive();
     const title = this.text(16, 12, plan.title, 18, '#e6c58b');
-    const subtitle = this.text(16, 38, `Welle ${plan.number} · ${epochNames[plan.epoch]} · ${plan.unitIds.length} Einheiten`, 11, C.muted);
+    const subtitle = this.text(16, 38, `Welle ${plan.number} · ${epochNames[plan.epoch]} · ${plan.unitIds.length} Einheiten`
+      + (surge > 0 ? ` · Stärke +${surge} %` : ''), 11, surge > 0 ? '#e0afa1' : C.muted);
     const close = this.rect(310, 10, 24, 24, C.card).setInteractive({ useHandCursor: true });
     close.on('pointerdown', () => this.setScoutPinned(false));
     this.scout.add([background, title, subtitle, close, this.text(322, 22, '×', 18, C.muted).setOrigin(0.5)]);
@@ -311,8 +312,9 @@ export class UIScene extends Phaser.Scene {
     if (this.waveText.width > 266) this.waveText.setFontSize(11);
     this.waveDetail.setText(wave.phase === 'assault' ? `Noch ${seconds} s · Aufklärung mit I` : `Angriff in ${seconds} s · Aufklärung mit I`);
     if (plan) {
-      const revision = `${plan.number}:${plan.epoch}:${plan.tactic}`;
-      if (revision !== this.scoutRevision) { this.scoutRevision = revision; this.rebuildScout(plan); }
+      const surge = Math.round(((wave.surge ?? 1) - 1) * 100);
+      const revision = `${plan.number}:${plan.epoch}:${plan.tactic}:${surge}`;
+      if (revision !== this.scoutRevision) { this.scoutRevision = revision; this.rebuildScout(plan, surge); }
       this.scoutStatus.setText(wave.phase === 'assault'
         ? `Geplant: ${plan.unitIds.length} · Eingetroffen: ${wave.arrived ?? 0} · Aufklärung: I`
         : `Geplante Aufstellung · Angriff in ${seconds} s`);
@@ -397,7 +399,11 @@ export class UIScene extends Phaser.Scene {
       `${this.formatTime(result?.elapsedMs || 0)} gespielt  ·  ${result?.kills || 0} Gegner besiegt  ·  ${epochNames[this.currentEpoch.id]}`);
     this.overlayButton(514, 392, 252, 'Noch eine Schlacht', () => this.restart());
     this.overlayButton(514, 448, 252, 'Zum Hauptmenü', () => this.returnToMenu());
-    this.overlay.add(this.text(640, 538, won ? 'Andere Taktik. Neue Herausforderung.' : 'Tipp: Halte Fernkämpfer hinter einer starken Front.', 12, C.muted).setOrigin(0.5));
+    // A defeat with the enemy fortress already half destroyed was lost at the finish: point to the assault group.
+    const tip = won ? 'Andere Taktik. Neue Herausforderung.'
+      : (result?.enemyFortress ?? 1) < 0.5 ? 'Tipp: Sammle Gold und stürme die Festung mit einer geschlossenen Gruppe.'
+        : 'Tipp: Halte Fernkämpfer hinter einer starken Front.';
+    this.overlay.add(this.text(640, 538, tip, 12, C.muted).setOrigin(0.5));
   }
   private restart(): void { this.scene.stop('BattleScene'); this.scene.restart(); this.scene.launch('BattleScene'); }
   private returnToMenu(): void { this.scene.stop('BattleScene'); this.scene.start('MenuScene'); }

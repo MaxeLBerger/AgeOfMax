@@ -88,7 +88,8 @@ try {
       incomeAccumulator: battle.incomeAccumulator, wavePlan: battle.wavePlan ?? null,
       rng: { mathState: randomState, mathCalls: randomCalls, phaserState: Phaser.Math.RND.state() },
     };
-    const expectedGold = { easy: 360, medium: 240, hard: 200 }[options.difficulty];
+    const rules = await import('/src/game/combatRules.ts');
+    const expectedGold = rules.DIFFICULTY[options.difficulty].startingGold;
     if (initial.gold !== expectedGold || initial.xp !== 0 || initial.kills !== 0 || initial.playerArmy || initial.enemyArmy
       || initial.incomeAccumulator !== 0 || initial.phaseEndsAt !== 12000) throw new Error('The initial snapshot is not a fresh, unmodified battle.');
 

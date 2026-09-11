@@ -1,0 +1,20 @@
+{
+  "createdAt": "2026-09-11T00:17:35.402Z",
+  "base": "http://127.0.0.1:5190/",
+  "speed": 4,
+  "maxMinutes": 40,
+  "seeds": [
+    "1"
+  ],
+  "difficulties": [
+    "easy"
+  ],
+  "strategies": [
+    "turtle"
+  ],
+  "variants": [
+    "current"
+  ],
+  "matches": 1,
+  "errors": []
+}

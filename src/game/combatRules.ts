@@ -1,11 +1,50 @@
 import type { UnitType } from './types';
 
 export type Difficulty = 'easy' | 'medium' | 'hard';
+
+/** Everything that separates the three difficulty levels, in one table. */
+export interface DifficultyProfile {
+  /** Gold available when the battle begins. */
+  startingGold: number;
+  /** Multiplier for passive income per second. */
+  income: number;
+  /** Share of the kill bounty paid for a defeated enemy. */
+  bounty: number;
+  /** Hit point and damage multiplier for enemy troops. */
+  enemyStats: number;
+  /** Troops added to every announced wave. */
+  waveSizeOffset: number;
+  /** Game milliseconds between two enemy technology advances. */
+  enemyEpochMs: number;
+  /** Hit point multiplier for the enemy fortress. */
+  enemyFortress: number;
+  /** Damage multiplier for the gun of the enemy fortress (0 disables it). */
+  enemyGun: number;
+  /** Extra enemy troop strength for every further wave of the final enemy epoch, so no match stalls forever. */
+  lateSurge: number;
+}
+
+// Tuned with complete bot matches of novice to expert player archetypes; see docs/QA_REBUILD.md.
+export const DIFFICULTY: Record<Difficulty, DifficultyProfile> = {
+  easy: { startingGold: 300, income: 1, bounty: 0.42, enemyStats: 0.92, waveSizeOffset: -1, enemyEpochMs: 155000, enemyFortress: 1.5, enemyGun: 0.75, lateSurge: 0.08 },
+  medium: { startingGold: 240, income: 1, bounty: 0.38, enemyStats: 1.1, waveSizeOffset: 0, enemyEpochMs: 145000, enemyFortress: 1.5, enemyGun: 1, lateSurge: 0.12 },
+  hard: { startingGold: 150, income: 1, bounty: 0.33, enemyStats: 1.15, waveSizeOffset: 2, enemyEpochMs: 125000, enemyFortress: 1.5, enemyGun: 1.25, lateSurge: 0.12 },
+};
+
+/** Announced waves grow by one troop every second wave until the cap. */
+export const WAVE_GROWTH = { first: 8, cap: 14 };
+/**
+ * The enemy fortress fires at the closest attacker near its wall; damage follows its epoch.
+ * Strong against an early siege, restrained later so a late assault can still break the wall.
+ * Below a quarter of its hit points the gun falls silent, so a nearly won siege can be finished.
+ */
+export const FORTRESS_GUN = { range: 280, intervalMs: 1500, splash: 45, silentBelow: 0.25, damage: [20, 35, 50, 65, 80] };
 export const ARMY_LIMIT = 24;
 export const WAVE_ASSAULT_MS = 28000;
 export const WAVE_RESPITE_MS = 16000;
 export const INITIAL_PREPARE_MS = 12000;
-export const EPOCH_INCOME = [8, 13, 20, 29, 40];
+// Later epochs pay enough to finish a match against the larger late waves.
+export const EPOCH_INCOME = [8, 15, 26, 42, 68];
 export const BASE_HP = [4200, 5600, 7600, 10000, 14000];
 export const FORMATION_OFFSETS = [-7, 0, 7] as const;
 
@@ -25,13 +64,12 @@ export function canAttack(nowMs: number, previousMs: number, intervalSeconds: nu
 }
 
 export function waveSize(wave: number, difficulty: Difficulty): number {
-  const baseline = Math.min(14, 8 + Math.floor(wave / 2));
-  return Math.max(3, baseline + (difficulty === 'easy' ? -2 : difficulty === 'hard' ? 2 : 0));
+  const baseline = Math.min(WAVE_GROWTH.cap, WAVE_GROWTH.first + Math.floor(wave / 2));
+  return Math.max(3, baseline + DIFFICULTY[difficulty].waveSizeOffset);
 }
 
 export function enemyEpochAt(elapsedMs: number, difficulty: Difficulty): number {
-  const interval = difficulty === 'easy' ? 155000 : difficulty === 'hard' ? 118000 : 135000;
-  return Math.min(4, Math.floor(elapsedMs / interval));
+  return Math.min(4, Math.floor(elapsedMs / DIFFICULTY[difficulty].enemyEpochMs));
 }
 
 export function unitRole(id: string): 'line' | 'ranged' | 'assault' | 'siege' {
