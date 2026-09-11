@@ -1,0 +1,13 @@
+[
+  {
+    "name": "baseline",
+    "patch": {
+      "/src/game/combatRules.ts": {
+        "DIFFICULTY.easy": { "startingGold": 360, "income": 1, "bounty": 0.35, "enemyStats": 0.82, "waveSizeOffset": -2, "enemyEpochMs": 155000, "enemyFortress": 1, "enemyGun": 0, "lateSurge": 0 },
+        "DIFFICULTY.medium": { "startingGold": 240, "income": 1, "bounty": 0.35, "enemyStats": 1, "waveSizeOffset": 0, "enemyEpochMs": 135000, "enemyFortress": 1, "enemyGun": 0, "lateSurge": 0 },
+        "DIFFICULTY.hard": { "startingGold": 200, "income": 1, "bounty": 0.35, "enemyStats": 1.08, "waveSizeOffset": 2, "enemyEpochMs": 118000, "enemyFortress": 1, "enemyGun": 0, "lateSurge": 0 },
+        "EPOCH_INCOME": [8, 13, 20, 29, 40]
+      }
+    }
+  }
+]
