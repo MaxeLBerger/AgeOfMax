@@ -100,7 +100,9 @@ export async function towerMenuPoint(page: Page, action: 'upgrade' | 'sell' | 'c
   return page.evaluate(action => {
     const menu = window.__AGE_OF_MAX__.scene.getScene('BattleScene').turretMenuContainer;
     if (!menu?.active) return null;
-    return { x: menu.x + (action === 'upgrade' ? -60 : action === 'sell' ? 60 : 105), y: menu.y + (action === 'close' ? -52.5 : 42.5) };
+    // Ask the real control for its position instead of repeating the menu layout here.
+    const control = menu.getByName('turret-' + action);
+    return control ? { x: menu.x + control.x, y: menu.y + control.y } : null;
   }, action);
 }
 
