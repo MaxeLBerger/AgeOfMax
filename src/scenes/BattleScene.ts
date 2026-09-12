@@ -19,12 +19,15 @@ import { MusicManager } from '../utils/MusicManager';
 import { BattleEffects } from '../game/BattleEffects';
 import { muzzlePoint, unitTargetHeight, projectileTexture, type WeaponSockets } from '../game/projectilePresentation';
 import { turretNames } from '../ui/catalog';
-import { loadGameSettings, saveGameSettings } from '../ui/theme';
+import { formatSeconds, loadGameSettings, saveGameSettings } from '../ui/theme';
 import { consumeKeyboardEvent } from '../ui/keyboard';
 import { UnitSelectionSystem } from '../utils/UnitSelectionSystem';
 import { ARMY_LIMIT, BASE_HP, DIFFICULTY, FORTRESS_GUN, EPOCH_INCOME, INITIAL_PREPARE_MS, type Difficulty, WAVE_ASSAULT_MS, WAVE_RESPITE_MS, canAttack, damageAgainst, enemyEpochAt, segmentHitFraction, unitRole, FORMATION_OFFSETS, formationGap, segmentBoxHitFraction } from '../game/combatRules';
 import { KillStreakManager } from '../utils/KillStreakManager';
 import { planEnemyWave, type EnemyWavePlan } from '../game/enemyWaves';
+
+// Every battlefield label uses the same face as the HUD; Phaser's default is a monospace fallback.
+const UI_FONT = 'Segoe UI, Arial, sans-serif';
 
 // Lane configuration constants
 const LANE_Y = 500; // Ganz unten am Boden der Basen
@@ -115,6 +118,8 @@ export class BattleScene extends Phaser.Scene {
   private wavePlan?: EnemyWavePlan;
   private lastStatusAt = -1000;
   private kills = 0;
+  /** Income and bounty of the running battle; a tower refund is returned money, not earnings. */
+  private goldEarned = 0;
   private uiSubscriptions: Array<{ event: string; callback: (...args: any[]) => void }> = [];
 
   // Feedback Systems
@@ -191,6 +196,7 @@ export class BattleScene extends Phaser.Scene {
     this.wavePlan = undefined;
     this.lastStatusAt = -1000;
     this.kills = 0;
+    this.goldEarned = 0;
     this.selectedTurretIndex = -1;
     this.turretGrid = [];
     this.turretMenuContainer = undefined;
@@ -479,7 +485,8 @@ export class BattleScene extends Phaser.Scene {
         const x = TURRET_GRID_START_X + col * TURRET_CELL_SIZE;
         const y = TURRET_GRID_START_Y + row * TURRET_CELL_SIZE;
         this.add.ellipse(x, y, 72, 16, 0x292f28, 0.28).setStrokeStyle(1, 0xc4b88f, 0.5).setDepth(3);
-        this.add.text(x, y + 13, `BAUPLATZ ${col + 1}`, { fontFamily: 'Segoe UI, sans-serif', fontSize: '8px', color: '#d0c3a2' }).setOrigin(0.5).setAlpha(0.8).setDepth(3);
+        this.add.text(x, y + 13, `BAUPLATZ ${col + 1}`, { fontFamily: UI_FONT, fontSize: '9px', color: '#ddd2b4' })
+          .setOrigin(0.5).setAlpha(0.9).setDepth(3);
         
         // Create visual grid slot highlight (hidden by default)
         const gridVisual = this.add.rectangle(x, y, TURRET_CELL_SIZE - 4, TURRET_CELL_SIZE - 4);
@@ -600,6 +607,7 @@ export class BattleScene extends Phaser.Scene {
       if (active() && data) this.spawnUnitByData('player', data);
     });
     on('selectTurret', (index: number) => { if (active()) this.selectTurretType(index); });
+    on('closeTurretMenu', () => this.closeTurretMenu());
     on('useRainingRocks', () => { if (active()) this.useRainingRocks(); });
     on('useArtilleryStrike', () => { if (active()) this.useArtilleryStrike(); });
     on('startTurretDrag', (index: number) => { if (active()) this.onStartTurretDrag(index); });
@@ -626,6 +634,8 @@ export class BattleScene extends Phaser.Scene {
   private setPaused(paused: boolean): void {
     if (this.gameOver) return;
     this.paused = paused;
+    // Nothing stays open behind the pause screen and reappears on resume.
+    if (paused) this.closeTurretMenu();
     this.time.timeScale = paused ? 0 : this.simulationSpeed;
     this.tweens.timeScale = paused ? 0 : this.simulationSpeed;
     if (paused) this.physics.pause(); else this.physics.resume();
@@ -699,8 +709,9 @@ export class BattleScene extends Phaser.Scene {
         this.placeTurret(slotInfo.row, slotInfo.col, this.draggedTurretData);
         this.addGold(-this.draggedTurretData.goldCost);
       } else {
-        const uiScene = this.scene.get('UIScene');
-        uiScene.events.emit('turretPlacementFailed', 'Not enough gold!');
+        const missing = Math.ceil(this.draggedTurretData.goldCost - this.gold);
+        this.scene.get('UIScene')?.events.emit('turretPlacementFailed',
+          `Für ${turretNames[this.draggedTurretData.id] || this.draggedTurretData.name} fehlen ${missing} Gold.`);
       }
     }
 
@@ -806,8 +817,9 @@ export class BattleScene extends Phaser.Scene {
       if (!turretData) return;
 
       if (this.gold < turretData.goldCost) {
-        const uiScene = this.scene.get('UIScene');
-        uiScene.events.emit('turretPlacementFailed', 'Not enough gold!');
+        const missing = Math.ceil(turretData.goldCost - this.gold);
+        this.scene.get('UIScene')?.events.emit('turretPlacementFailed',
+          `Für ${turretNames[turretData.id] || turretData.name} fehlen ${missing} Gold.`);
         return;
       }
 
@@ -846,6 +858,8 @@ export class BattleScene extends Phaser.Scene {
       slot.levelText = undefined;
     }
     
+    // Replace the standing "choose a building site" instruction with the result of the order.
+    this.scene.get('UIScene')?.events.emit('feedback', `${turretNames[turretData.id] || turretData.name} gebaut.`);
     console.log(`Placed ${turretData.name} at (${row}, ${col}) - Range: ${turretData.range}`);
   }
 
@@ -866,21 +880,23 @@ export class BattleScene extends Phaser.Scene {
 
     const upgradeCost = lvl === 1 ? upgradeLvl2Cost : (lvl === 2 ? upgradeLvl3Cost : 0);
 
-    const menuWidth = 240;
-    const menuHeight = 135;
-    const menuX = Phaser.Math.Clamp(slot.x, 140, 1140);
+    const menuWidth = 300;
+    const menuHeight = 152;
+    const menuX = Phaser.Math.Clamp(slot.x, menuWidth / 2 + 12, 1280 - menuWidth / 2 - 12);
     const menuY = Math.max(menuHeight / 2 + 90, slot.y - 128);
 
     this.turretMenuContainer = this.add.container(menuX, menuY);
     this.turretMenuContainer.setDepth(3000);
 
-    const bg = this.add.rectangle(0, 0, menuWidth, menuHeight, 0x101f2a, 0.95);
+    // The panel swallows its own clicks so only a click outside dismisses it.
+    const bg = this.add.rectangle(0, 0, menuWidth, menuHeight, 0x101f2a, 0.96).setInteractive();
     bg.setStrokeStyle(2, 0xc9a66a, 1.0);
     this.turretMenuContainer.add(bg);
 
-    const title = this.add.text(0, -menuHeight / 2 + 20, `${turretNames[turretData.id] || turretData.name} · Stufe ${lvl}`, {
-      fontSize: '14px',
-      color: '#ffd700',
+    const title = this.add.text(0, -menuHeight / 2 + 22, `${turretNames[turretData.id] || turretData.name}  ·  Stufe ${lvl}`, {
+      fontFamily: UI_FONT,
+      fontSize: '15px',
+      color: '#e6c58b',
       fontStyle: 'bold'
     }).setOrigin(0.5);
     this.turretMenuContainer.add(title);
@@ -888,33 +904,38 @@ export class BattleScene extends Phaser.Scene {
     const currentDmg = this.getTurretDamage(slot);
     const currentRange = this.getTurretRange(slot);
     const currentSpeed = this.getTurretAttackSpeed(slot);
-    
-    let statsStr = `Schaden ${currentDmg} · Reichweite ${currentRange} · ${currentSpeed.toFixed(1)}s`;
+
+    let statsStr = `${currentDmg} Schaden  ·  ${currentRange} Reichweite  ·  alle ${formatSeconds(currentSpeed)} s`;
     if (lvl < 3) {
       const nextLvlSlot = { ...slot, level: lvl + 1 };
       const nextDmg = this.getTurretDamage(nextLvlSlot);
       const nextRange = this.getTurretRange(nextLvlSlot);
       const nextSpeed = this.getTurretAttackSpeed(nextLvlSlot);
-      statsStr += `\nNächste Stufe: Schaden +${nextDmg - currentDmg} · Reichweite +${nextRange - currentRange} · Takt -${(currentSpeed - nextSpeed).toFixed(1)}s`;
+      statsStr += `\nNächste Stufe: +${nextDmg - currentDmg} Schaden · +${nextRange - currentRange} Reichweite`
+        + `\n${formatSeconds(currentSpeed - nextSpeed)} s schnellerer Takt`;
     } else {
-      statsStr += `\nHÖCHSTE STUFE`;
+      statsStr += '\nHöchste Stufe erreicht';
     }
 
-    const statsText = this.add.text(0, -10, statsStr, {
+    // The upgrade line is long: wrap it inside the panel instead of letting it run off the screen.
+    const statsText = this.add.text(0, -6, statsStr, {
+      fontFamily: UI_FONT,
       fontSize: '11px',
-      color: '#ffffff',
+      color: '#c3d0cf',
       align: 'center',
-      lineSpacing: 4
+      lineSpacing: 5,
+      wordWrap: { width: menuWidth - 34 }
     }).setOrigin(0.5);
     this.turretMenuContainer.add(statsText);
 
-    const btnY = menuHeight / 2 - 25;
-    
-    const upgradeBtn = this.add.rectangle(-60, btnY, 100, 26, 0x222222);
+    const btnY = menuHeight / 2 - 26;
+
+    const upgradeBtn = this.add.rectangle(-73, btnY, 132, 30, 0x222222).setName('turret-upgrade');
     upgradeBtn.setStrokeStyle(1.5, 0x86bcb0, 0.8);
-    const upgradeText = this.add.text(-60, btnY, lvl < 3 ? `Ausbau · ${upgradeCost} G` : 'Maximum', {
+    const upgradeText = this.add.text(-73, btnY, lvl < 3 ? `Ausbau  ·  ${upgradeCost} Gold` : 'Höchste Stufe', {
+      fontFamily: UI_FONT,
       fontSize: '11px',
-      color: lvl < 3 ? '#2ecc71' : '#888888',
+      color: lvl < 3 ? '#92c9b7' : '#7f8c8a',
       fontStyle: 'bold'
     }).setOrigin(0.5);
 
@@ -923,7 +944,7 @@ export class BattleScene extends Phaser.Scene {
         const affordable = this.gold >= upgradeCost;
         upgradeBtn.setFillStyle(affordable ? 0x35564e : 0x222222, 0.4)
           .setStrokeStyle(1.5, affordable ? 0x86bcb0 : 0x555555, affordable ? 0.8 : 0.5);
-        upgradeText.setColor(affordable ? '#92c9b7' : '#666666');
+        upgradeText.setColor(affordable ? '#92c9b7' : '#6f7e7c');
         if (affordable) upgradeBtn.setInteractive({ useHandCursor: true });
         else upgradeBtn.disableInteractive();
       };
@@ -941,7 +962,7 @@ export class BattleScene extends Phaser.Scene {
     }
     this.turretMenuContainer.add([upgradeBtn, upgradeText]);
 
-    const sellBtn = this.add.rectangle(60, btnY, 100, 26, 0x222222);
+    const sellBtn = this.add.rectangle(73, btnY, 132, 30, 0x222222).setName('turret-sell');
     sellBtn.setStrokeStyle(1.5, 0xd39383, 0.8);
     sellBtn.setFillStyle(0x623e37, 0.4);
     sellBtn.setInteractive({ useHandCursor: true });
@@ -951,20 +972,22 @@ export class BattleScene extends Phaser.Scene {
       this.sellTurret(slot, row, col, sellRefund);
     });
 
-    const sellText = this.add.text(60, btnY, `Verkauf · ${sellRefund} G`, {
+    const sellText = this.add.text(73, btnY, `Verkauf  ·  ${sellRefund} Gold`, {
+      fontFamily: UI_FONT,
       fontSize: '11px',
-      color: '#e74c3c',
+      color: '#e0afa1',
       fontStyle: 'bold'
     }).setOrigin(0.5);
     this.turretMenuContainer.add([sellBtn, sellText]);
 
-    const closeBtn = this.add.text(menuWidth / 2 - 15, -menuHeight / 2 + 15, '✕', {
-      fontSize: '14px',
-      color: '#aaaaaa',
+    const closeBtn = this.add.text(menuWidth / 2 - 16, -menuHeight / 2 + 16, '✕', {
+      fontFamily: UI_FONT,
+      fontSize: '15px',
+      color: '#9fb0af',
       fontStyle: 'bold'
-    }).setOrigin(0.5).setInteractive({ useHandCursor: true });
-    closeBtn.on('pointerover', () => closeBtn.setColor('#ffffff'));
-    closeBtn.on('pointerout', () => closeBtn.setColor('#aaaaaa'));
+    }).setOrigin(0.5).setInteractive({ useHandCursor: true }).setName('turret-close');
+    closeBtn.on('pointerover', () => closeBtn.setColor('#f1ebde'));
+    closeBtn.on('pointerout', () => closeBtn.setColor('#9fb0af'));
     closeBtn.on('pointerdown', () => this.closeTurretMenu());
     this.turretMenuContainer.add(closeBtn);
 
@@ -976,6 +999,22 @@ export class BattleScene extends Phaser.Scene {
       this.turretRangeGraphics.fillCircle(slot.x, slot.y, currentRange);
     }
     this.updateGridVisuals(row, col);
+    this.dismissTurretMenuOnOutsideClick(slot);
+    this.scene.get('UIScene')?.events.emit('turretMenuOpen', true);
+  }
+
+  /** A click that lands neither in the panel nor on its tower closes the menu, like any popover. */
+  private dismissTurretMenuOnOutsideClick(slot: TurretSlot): void {
+    const openedFrame = this.game.loop.frame;
+    const dismiss = (_pointer: Phaser.Input.Pointer, over: Phaser.GameObjects.GameObject[]) => {
+      const menu = this.turretMenuContainer;
+      // The click that opened this menu is still being delivered in the very same frame.
+      if (!menu || this.game.loop.frame === openedFrame) return;
+      if (over.some(object => object === slot.turret || menu.list.includes(object))) return;
+      this.closeTurretMenu();
+    };
+    this.input.on('pointerdown', dismiss);
+    this.turretMenuContainer?.once('destroy', () => this.input.off('pointerdown', dismiss));
   }
 
   private upgradeTurret(slot: TurretSlot, _row: number, _col: number, cost: number): void {
@@ -987,20 +1026,21 @@ export class BattleScene extends Phaser.Scene {
     slot.level = (slot.level || 1) + 1;
 
     if (!slot.levelText) {
-      slot.levelText = this.add.text(slot.x, slot.y - 25, `Lvl ${slot.level}`, {
-        fontSize: '12px',
-        color: '#ffd700',
+      slot.levelText = this.add.text(slot.x, slot.y - 25, `Stufe ${slot.level}`, {
+        fontFamily: UI_FONT,
+        fontSize: '11px',
+        color: '#e6c58b',
         fontStyle: 'bold',
-        stroke: '#000000',
-        strokeThickness: 2
+        stroke: '#0a151c',
+        strokeThickness: 3
       }).setOrigin(0.5);
       slot.levelText.setDepth(1600);
     } else {
-      slot.levelText.setText(`Lvl ${slot.level}`);
+      slot.levelText.setText(`Stufe ${slot.level}`);
     }
 
     this.soundEffects.playXPGain();
-    this.showFloatingFeedback(slot.x, slot.y - 40, 'LEVEL UP!', '#2ecc71');
+    this.showFloatingFeedback(slot.x, slot.y - 40, `Stufe ${slot.level}`, '#92c9b7');
     this.closeTurretMenu();
   }
 
@@ -1008,7 +1048,7 @@ export class BattleScene extends Phaser.Scene {
     if (this.gameOver) return;
     if (!slot.occupied) return;
 
-    this.addGold(refund);
+    this.addGold(refund, undefined, undefined, false);
 
     if (slot.turret) {
       slot.turret.destroy();
@@ -1019,7 +1059,7 @@ export class BattleScene extends Phaser.Scene {
       slot.levelText = undefined;
     }
 
-    this.showFloatingFeedback(slot.x, slot.y - 20, `+${refund}g`, '#ffd700');
+    this.showFloatingFeedback(slot.x, slot.y - 20, `+${refund} Gold`, '#e6c58b');
     this.soundEffects.playGoldCollect();
 
     slot.occupied = false;
@@ -1034,6 +1074,7 @@ export class BattleScene extends Phaser.Scene {
       this.turretMenuContainer.destroy();
       this.turretMenuContainer = undefined;
     }
+    this.scene.get('UIScene')?.events.emit('turretMenuOpen', false);
     if (this.turretRangeGraphics) {
       this.turretRangeGraphics.clear();
     }
@@ -1042,10 +1083,11 @@ export class BattleScene extends Phaser.Scene {
 
   private showFloatingFeedback(x: number, y: number, text: string, color: string = '#ffd700'): void {
     const fbText = this.add.text(x, y, text, {
-      fontSize: '16px',
+      fontFamily: UI_FONT,
+      fontSize: '15px',
       fontStyle: 'bold',
       color: color,
-      stroke: '#000000',
+      stroke: '#0a151c',
       strokeThickness: 3
     }).setOrigin(0.5).setDepth(3000);
     
@@ -1129,7 +1171,7 @@ export class BattleScene extends Phaser.Scene {
     
     const spawn = this.findFormationSpawn(side, unitData.id);
     if (!spawn) {
-      if (side === 'player') this.scene.get('UIScene').events.emit('commandFailed', 'Ausgang belegt – kurz warten');
+      if (side === 'player') this.scene.get('UIScene').events.emit('commandFailed', 'Ausgang belegt: warte einen Moment.');
       return false;
     }
     const texture = this.getUnitTexture(unitData, side);
@@ -1427,9 +1469,10 @@ export class BattleScene extends Phaser.Scene {
     this.emitBattleStatus();
   }
 
-  private addGold(amount: number, x?: number, y?: number): void {
+  private addGold(amount: number, x?: number, y?: number, earned = true): void {
     if (!Number.isFinite(amount)) return;
     this.gold = Math.max(0, this.gold + amount);
+    if (amount > 0 && earned) this.goldEarned += amount;
     
     // Play sound only for positive gains (not for spending)
     if (amount > 0 && x !== undefined) {
@@ -1474,10 +1517,11 @@ export class BattleScene extends Phaser.Scene {
    */
   private showFloatingDamage(x: number, y: number, damage: number): void {
     const dmgText = this.add.text(x, y, `-${damage}`, {
+      fontFamily: UI_FONT,
       fontSize: '12px',
       fontStyle: 'bold',
       color: '#e4bcaa',
-      stroke: '#000000',
+      stroke: '#0a151c',
       strokeThickness: 3
     }).setOrigin(0.5).setDepth(3000);
     
@@ -2112,6 +2156,8 @@ export class BattleScene extends Phaser.Scene {
       winner: loserSide === 'player' ? 'enemy' : 'player', elapsedMs: this.simulationTime,
       kills: this.kills, epoch: this.getCurrentEpoch().name,
       enemyFortress: this.enemyBase.hp / this.enemyBase.maxHp,
+      goldEarned: Math.round(this.goldEarned), waves: Math.max(1, this.waveNumber),
+      bestStreak: this.killStreakManager?.bestStreak ?? 0,
     });
   }
 
