@@ -54,6 +54,11 @@ export function saveGameSettings(scene: Phaser.Scene, settings: GameSettings): b
   catch { return false; }
 }
 
+/** German number format for the one-decimal timings shown in tooltips and tower menus. */
+export function formatSeconds(value: number): string {
+  return value.toLocaleString('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+}
+
 export function uiText(scene: Phaser.Scene, x: number, y: number, text: string, size = 18,
   color: string = UI.text, width?: number): Phaser.GameObjects.Text {
   return scene.add.text(x, y, text, {
