@@ -18,7 +18,7 @@ export class DifficultyScene extends Phaser.Scene {
     menuHeader(this, 'NEUE SCHLACHT', 'Wähle deine Herausforderung', 'Jede Schlacht beginnt in der Steinzeit. Wie weit führst du dein Volk?');
     const definitions: Array<{ level: DifficultyLevel; rank: string; title: string; subtitle: string; description: string; traits: string[] }> = [
       { level: 'easy', rank: 'I', title: 'Entdecker', subtitle: 'LEICHT', description: 'Lerne deine Armee kennen und\nfinde deinen eigenen Rhythmus.', traits: ['Großzügiger Startvorrat', 'Mehr Zeit für deinen Aufbau', 'Ein nachsichtiger Gegner'] },
-      { level: 'medium', rank: 'II', title: 'Feldherr', subtitle: 'NORMAL', description: 'Plane deine Angriffe und halte\nOffensive und Verteidigung im Gleichgewicht.', traits: ['Ausgewogene Ressourcen', 'Ein entschlossener Gegner', 'Eine echte Herausforderung'] },
+      { level: 'medium', rank: 'II', title: 'Feldherr', subtitle: 'NORMAL', description: 'Plane deine Angriffe und halte\ndie Balance aus Angriff und Abwehr.', traits: ['Ausgewogene Ressourcen', 'Ein entschlossener Gegner', 'Eine echte Herausforderung'] },
       { level: 'hard', rank: 'III', title: 'Eroberer', subtitle: 'SCHWER', description: 'Jede Entscheidung zählt.\nErgreife die Initiative.', traits: ['Begrenzter Startvorrat', 'Früher Druck auf deine Front', 'Für erfahrene Strategen'] }
     ];
     const nav: MenuButton[] = [];

@@ -1,4 +1,4 @@
-import { test, expect, clickGame, snapshot, startBattle, technicalSetup, clickTowerAction } from './game-fixture';
+import { test, expect, clickGame, snapshot, startBattle, technicalSetup, clickTowerAction, towerMenuPoint } from './game-fixture';
 import { units, epochs, turrets } from './catalog';
 
 test('Recruitment buttons spend real gold once and keyboard recruitment uses the same contract', async ({ page }) => {
@@ -93,10 +93,7 @@ test('Technical setup: tower selection cancels, build spends gold, upgrade caps 
   await clickTowerAction(page, 0, 'upgrade'); // Disabled maximum-level button.
   expect((await snapshot(page)).towers[0].level).toBe(3);
   // The menu is already open after the disabled action; dismiss through its real close control.
-  const close = await page.evaluate(() => {
-    const menu = window.__AGE_OF_MAX__.scene.getScene('BattleScene').turretMenuContainer;
-    return { x: menu.x + 105, y: menu.y - 52.5 };
-  });
+  const close = (await towerMenuPoint(page, 'close'))!;
   await clickGame(page, close.x, close.y);
   await expect.poll(() => page.evaluate(() => !!window.__AGE_OF_MAX__.scene.getScene('BattleScene').turretMenuContainer?.active)).toBe(false);
   await clickTowerAction(page, 0, 'sell');
@@ -122,10 +119,7 @@ test('An open upgrade menu becomes usable when real income reaches its price', a
   await expect.poll(async () => (await snapshot(page)).gold).toBeGreaterThanOrEqual(upgradeCost);
   expect(await page.evaluate(() => window.__AGE_OF_MAX__.scene.getScene('BattleScene').turretMenuContainer === (window as any).__upgradeMenu)).toBe(true);
   await page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
-  const point = await page.evaluate(() => {
-    const menu = window.__AGE_OF_MAX__.scene.getScene('BattleScene').turretMenuContainer;
-    return { x: menu.x - 60, y: menu.y + 42.5 };
-  });
+  const point = (await towerMenuPoint(page, 'upgrade'))!;
   const before = await snapshot(page);
   await clickGame(page, point.x, point.y);
   await expect.poll(async () => (await snapshot(page)).towers[0].level).toBe(2);

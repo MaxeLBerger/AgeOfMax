@@ -6,6 +6,7 @@ import epochsData from '../../data/epochs.json';
 import unitsData from '../../data/units.json';
 import turretsData from '../../data/turrets.json';
 import { epochNames, unitNames, unitRoles, turretNames, turretTexture } from '../ui/catalog';
+import { formatSeconds } from '../ui/theme';
 
 const C = { ink: 0x09141d, panel: 0x101f2a, card: 0x172b36, hover: 0x25414b, border: 0x354a53,
   gold: 0xd8b574, teal: 0x78b9af, red: 0xdb8d80, text: '#eee7d6', muted: '#99abae' };
@@ -14,7 +15,11 @@ type Card = { bg: Phaser.GameObjects.Rectangle; image: Phaser.GameObjects.Image;
 type Wave = { number: number; phase: 'prepare' | 'assault' | 'respite'; remainingMs: number;
   enemyEpoch: string; incomePerSecond: number; elapsedMs: number; army: number; armyLimit: number;
   plan?: EnemyWavePlan; surge?: number; attempted?: number; arrived?: number };
-type Result = { winner: 'player' | 'enemy'; elapsedMs: number; kills: number; epoch: string; enemyFortress?: number };
+type Result = { winner: 'player' | 'enemy'; elapsedMs: number; kills: number; epoch: string; enemyFortress?: number;
+  goldEarned?: number; waves?: number; bestStreak?: number };
+
+/** The opening hint belongs to a session, not to every restart of a battle. */
+let openingHintShown = false;
 
 export class UIScene extends Phaser.Scene {
   private gold = 0;
@@ -61,6 +66,8 @@ export class UIScene extends Phaser.Scene {
   private overlay?: Phaser.GameObjects.Container;
   private overlayButtons: Array<{ bg: Phaser.GameObjects.Rectangle; activate: () => void }> = [];
   private overlayFocus = 0;
+  private towerMenuOpen = false;
+  private epochBanner?: Phaser.GameObjects.Container;
   private hp: Record<string, { fill: Phaser.GameObjects.Rectangle; text: Phaser.GameObjects.Text }> = {};
 
   constructor() { super({ key: 'UIScene' }); }
@@ -71,7 +78,10 @@ export class UIScene extends Phaser.Scene {
     this.abilityButtons = []; this.abilityTexts = []; this.speedButtons = []; this.cooldowns = [0, 0];
     this.hp = {}; this.overlay = undefined; this.overlayButtons = []; this.overlayFocus = 0; this.speed = 1;
     this.scoutWave = undefined; this.scoutPinned = false; this.scoutHover = false; this.scoutRevision = '';
+    this.towerMenuOpen = false; this.epochBanner = undefined;
     this.buildHUD(); this.listenToBattle(); this.refreshEpoch();
+    // One sentence for a first-time commander, once per session, standing until the first order.
+    if (!openingHintShown) { openingHintShown = true; this.showFeedback('Rekrutiere deine erste Truppe: Karte anklicken oder Q W E R drücken.', 14000); }
     const keyboard = (event: KeyboardEvent) => this.onKey(event);
     this.input.keyboard?.on('keydown', keyboard);
     this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => { this.input.keyboard?.off('keydown', keyboard); this.feedbackTimer?.remove(); });
@@ -148,7 +158,7 @@ export class UIScene extends Phaser.Scene {
     this.feedbackText = this.text(0, 0, '', 14).setOrigin(0.5);
     const feedbackBG = this.add.rectangle(0, 0, 620, 39, C.ink, 0.93).setStrokeStyle(1, C.gold, 0.5);
     this.feedback = this.add.container(640, 167, [feedbackBG, this.feedbackText]).setDepth(50).setVisible(false);
-    const tooltipBG = this.rect(0, 0, 406, 92, C.ink, 0.98).setStrokeStyle(1, C.gold, 0.65);
+    const tooltipBG = this.rect(0, 0, 430, 92, C.ink, 0.98).setStrokeStyle(1, C.gold, 0.65);
     this.tooltipTitle = this.text(16, 10, '', 17, '#e6c58b'); this.tooltipRole = this.text(16, 36, '', 12);
     this.tooltipStats = this.text(16, 63, '', 12, C.muted);
     this.tooltip = this.add.container(24, 452, [tooltipBG, this.tooltipTitle, this.tooltipRole, this.tooltipStats]).setDepth(100).setVisible(false);
@@ -171,8 +181,19 @@ export class UIScene extends Phaser.Scene {
     const on = (event: string, fn: (...args: any[]) => void) => { this.events.on(event, fn); listeners.push([event, fn]); };
     on('updateGold', (gold: number) => { this.gold = gold; this.goldText.setText(Math.floor(gold).toLocaleString('de-DE')); this.refreshStates(); });
     on('updateXP', (xp: number, threshold: number) => { this.xp = xp; this.currentEpoch = { ...this.currentEpoch, xpToNext: threshold }; this.updateXP(); });
-    on('updateEpoch', (epoch: Epoch) => { this.currentEpoch = { ...epoch }; this.selectedTurretIndex = -1; this.tooltip.setVisible(false); this.refreshEpoch(); });
-    on('updateEpochReady', (ready: boolean) => { this.epochReady = ready; this.refreshStates(); });
+    on('updateEpoch', (epoch: Epoch) => {
+      const previous = this.currentEpoch.id;
+      this.currentEpoch = { ...epoch }; this.selectedTurretIndex = -1; this.tooltip.setVisible(false); this.refreshEpoch();
+      // Reaching a new age is the biggest moment of a battle; give it a stage and repeat it in the HUD.
+      if (previous !== epoch.id) { this.announceEpoch(epoch); this.pulseEpochHud(); }
+    });
+    on('turretMenuOpen', (open: boolean) => { this.towerMenuOpen = open; });
+    on('updateEpochReady', (ready: boolean) => {
+      // Say it once, the moment the experience is there; the button stays lit afterwards.
+      const unlocked = ready && !this.epochReady && !this.gameOver;
+      this.epochReady = ready; this.refreshStates();
+      if (unlocked) this.showFeedback('Neue Epoche verfügbar: drücke U für stärkere Truppen und Türme.');
+    });
     on('updateBaseHP', (hp: number, max: number, side: string) => {
       const bar = this.hp[side]; if (!bar) return;
       bar.text.setText(`${Math.max(0, Math.ceil(hp))} / ${max}`); bar.fill.width = 150 * Phaser.Math.Clamp(hp / max, 0, 1);
@@ -219,6 +240,46 @@ export class UIScene extends Phaser.Scene {
     this.xpFill.width = threshold > 0 ? 174 * Phaser.Math.Clamp(this.xp / threshold, 0, 1) : 174;
   }
 
+  /** A short banner across the battlefield: an age changes a few times per battle, so it may take the stage. */
+  private announceEpoch(epoch: Epoch): void {
+    const reduced = this.registry.get('settings')?.reducedMotion === true;
+    this.epochBanner?.destroy();
+    const title = this.add.text(640, 306, (epochNames[epoch.id] || epoch.name).toUpperCase(),
+      { fontFamily: 'Georgia, "Times New Roman", serif', fontSize: '34px', color: '#f0d8a9' }).setOrigin(0.5).setLetterSpacing(2);
+    const banner = this.add.container(0, 0, [
+      this.rect(0, 258, 1280, 96, C.ink, 0.93),
+      this.rect(0, 258, 1280, 1, C.gold, 0.8),
+      this.rect(0, 353, 1280, 1, C.gold, 0.8),
+      this.text(640, 274, 'NEUE EPOCHE', 12, '#d8b574').setOrigin(0.5).setLetterSpacing(3),
+      title,
+      this.text(640, 336, 'Neue Truppen und Verteidigungen stehen bereit.', 13, C.muted).setOrigin(0.5),
+    ]).setDepth(300);
+    this.epochBanner = banner;
+    const clear = () => { if (this.epochBanner === banner) this.epochBanner = undefined; banner.destroy(); };
+    if (reduced) { this.time.delayedCall(1600, clear); return; }
+    banner.setAlpha(0);
+    title.setScale(0.92);
+    this.tweens.add({ targets: banner, alpha: 1, duration: 200, ease: 'Quad.easeOut' });
+    this.tweens.add({ targets: title, scale: 1, duration: 420, ease: 'Back.easeOut' });
+    this.tweens.add({ targets: banner, alpha: 0, delay: 1180, duration: 340, ease: 'Quad.easeIn', onComplete: clear });
+  }
+
+  /** The same news where the player is already looking: age label, the fresh catalogue, the spent experience. */
+  private pulseEpochHud(): void {
+    const reduced = this.registry.get('settings')?.reducedMotion === true;
+    for (const card of [...this.unitCards, ...this.turretCards]) card.bg.setStrokeStyle(2, C.gold, 0.95);
+    this.time.delayedCall(620, () => this.refreshStates());
+    this.epochText.setColor('#f0d8a9');
+    this.time.delayedCall(reduced ? 620 : 220, () => this.epochText.setColor(C.text));
+    if (reduced) return;
+    this.time.delayedCall(380, () => this.epochText.setColor('#f0d8a9'));
+    this.time.delayedCall(620, () => this.epochText.setColor(C.text));
+    // The bar was full a moment ago: let the player watch that experience being spent.
+    const target = this.xpFill.width;
+    this.xpFill.width = 174;
+    this.tweens.add({ targets: this.xpFill, width: target, duration: 560, ease: 'Quad.easeOut' });
+  }
+
   private refreshStates(): void {
     for (const [cards, database] of [[this.unitCards, this.units], [this.turretCards, this.turrets]] as const) cards.forEach(card => {
       const item = database[card.index]; if (!item) return;
@@ -237,12 +298,17 @@ export class UIScene extends Phaser.Scene {
 
   private recruit(slot: number): void {
     if (this.paused || this.gameOver) return;
+    // The card tooltip sits over the marching lane: never let it hide the troop just paid for.
+    this.tooltip.setVisible(false);
     const unit = this.units[this.unitCards[slot]?.index]; if (!unit) return;
     if (this.gold < unit.goldCost) { this.showFeedback(`Noch ${Math.ceil(unit.goldCost - this.gold)} Gold für ${unitNames[unit.id]} nötig.`); return; }
+    // A carried out order answers every standing hint; a rejection during the spawn still speaks up.
+    this.hideFeedback();
     this.events.emit('spawnUnit', unit.id);
   }
   private selectTower(slot: number): void {
     if (this.paused || this.gameOver) return;
+    this.tooltip.setVisible(false);
     const card = this.turretCards[slot], tower = this.turrets[card?.index]; if (!tower) return;
     if (this.gold < tower.goldCost) { this.showFeedback(`Für ${turretNames[tower.id]} fehlen ${Math.ceil(tower.goldCost - this.gold)} Gold.`); return; }
     const index = card.index === this.selectedTurretIndex ? -1 : card.index;
@@ -332,17 +398,18 @@ export class UIScene extends Phaser.Scene {
   private showTooltip(card: Card, tower: boolean): void {
     if (this.gameOver || this.paused || card.index < 0) return;
     const item = tower ? this.turrets[card.index] : this.units[card.index];
-    this.tooltip.setPosition(Phaser.Math.Clamp(card.bg.x, 24, 850), 452).setVisible(true);
+    this.tooltip.setPosition(Phaser.Math.Clamp(card.bg.x, 24, 826), 452).setVisible(true);
     this.tooltipTitle.setText((tower ? turretNames : unitNames)[item.id] || item.name);
     this.tooltipRole.setText(tower ? 'Bauplatz wählen. Gebaute Türme: verbessern oder verkaufen.' : unitRoles[item.id]);
-    this.tooltipStats.setText(`${item.hp} LP   ·   ${item.damage} Schaden   ·   ${item.range} Reichweite   ·   ${item.attackSpeed} s`);
+    this.tooltipStats.setText(`${item.hp} LP   ·   ${item.damage} Schaden   ·   ${item.range} Reichweite   ·   alle ${formatSeconds(item.attackSpeed)} s`);
   }
-  private showFeedback(message: string): void {
+  private showFeedback(message: string, durationMs = 3600): void {
     if (this.gameOver) return;
     const translated = message.replace('Not enough gold!', 'Nicht genug Gold.');
     this.feedbackText.setText(translated).setFontSize(translated.length > 84 ? 12 : 14); this.feedback.setVisible(true);
-    this.feedbackTimer?.remove(); this.feedbackTimer = this.time.delayedCall(3600, () => this.feedback.setVisible(false));
+    this.feedbackTimer?.remove(); this.feedbackTimer = this.time.delayedCall(durationMs, () => this.feedback.setVisible(false));
   }
+  private hideFeedback(): void { this.feedbackTimer?.remove(); this.feedback.setVisible(false); }
 
   private requestPause(): void { if (!this.gameOver) this.events.emit('togglePause'); }
   private setPaused(paused: boolean): void {
@@ -397,12 +464,18 @@ export class UIScene extends Phaser.Scene {
     const won = result?.winner === 'player';
     this.overlay = this.makeOverlay(won ? 'Dein Reich besteht.' : 'Ein Reich fällt. Ein neues wartet.', won ? 'SIEG' : 'NIEDERLAGE',
       `${this.formatTime(result?.elapsedMs || 0)} gespielt  ·  ${result?.kills || 0} Gegner besiegt  ·  ${epochNames[this.currentEpoch.id]}`);
+    const streak = (result?.bestStreak ?? 0) >= 2 ? `beste Serie ${result!.bestStreak}` : 'keine Serie';
+    const waves = result?.waves ?? 0;
+    this.overlay.add(this.text(640, 356, `${Math.round(result?.goldEarned ?? 0).toLocaleString('de-DE')} Gold verdient`
+      + `   ·   ${waves} ${waves === 1 ? 'Welle' : 'Wellen'}   ·   ${streak}`, 13, '#c3d0cf').setOrigin(0.5));
     this.overlayButton(514, 392, 252, 'Noch eine Schlacht', () => this.restart());
     this.overlayButton(514, 448, 252, 'Zum Hauptmenü', () => this.returnToMenu());
     // A defeat with the enemy fortress already half destroyed was lost at the finish: point to the assault group.
     const tip = won ? 'Andere Taktik. Neue Herausforderung.'
-      : (result?.enemyFortress ?? 1) < 0.5 ? 'Tipp: Sammle Gold und stürme die Festung mit einer geschlossenen Gruppe.'
-        : 'Tipp: Halte Fernkämpfer hinter einer starken Front.';
+      // Somebody who never recruited needs the first step, not a formation lesson.
+      : (result?.kills ?? 0) === 0 ? 'Tipp: Ohne eigene Truppen fällt jede Basis. Rekrutiere früh mit Q W E R.'
+        : (result?.enemyFortress ?? 1) < 0.5 ? 'Tipp: Sammle Gold und stürme die Festung mit einer geschlossenen Gruppe.'
+          : 'Tipp: Halte Fernkämpfer hinter einer starken Front.';
     this.overlay.add(this.text(640, 538, tip, 12, C.muted).setOrigin(0.5));
   }
   private restart(): void { this.scene.stop('BattleScene'); this.scene.restart(); this.scene.launch('BattleScene'); }
@@ -427,6 +500,8 @@ export class UIScene extends Phaser.Scene {
     }
     if (this.gameOver) return;
     if (event.code === 'Escape' && this.selectedTurretIndex >= 0 && !this.paused) { this.events.emit('selectTurret', -1); this.showFeedback('Bauauswahl aufgehoben.'); return; }
+    // An open tower menu is the closest dialog: Escape dismisses it before it reaches the pause screen.
+    if (event.code === 'Escape' && this.towerMenuOpen && !this.paused) { event.preventDefault(); this.events.emit('closeTurretMenu'); return; }
     if (event.code === 'Escape' && this.scoutPinned) { event.preventDefault(); this.setScoutPinned(false); return; }
     if (pauseKey) { event.preventDefault(); this.requestPause(); return; }
     if (this.paused) return;

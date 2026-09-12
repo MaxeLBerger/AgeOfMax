@@ -63,9 +63,16 @@ export class MenuScene extends Phaser.Scene {
     });
     this.add.graphics().lineStyle(1, UI.line).lineBetween(108, 418, 1172, 418);
     uiText(this, 108, 443, 'BEFEHLE', 12, UI.goldText).setLetterSpacing(2);
-    uiText(this, 108, 474, 'Q W E R   Truppen\nA S D       Verteidigung', 16, UI.text);
-    uiText(this, 450, 474, 'F / G   Fähigkeiten\nU         Zeitalter entwickeln', 16, UI.text);
-    uiText(this, 828, 474, '1 / 2 / 3   Tempo\nLeertaste   Pause\nI                 Aufklärung', 16, UI.text);
+    // Two real columns: spaces never align a proportional font.
+    const legend: Array<[number, Array<[string, string]>]> = [
+      [108, [['Q W E R', 'Truppen'], ['A S D', 'Verteidigung']]],
+      [450, [['F / G', 'Fähigkeiten'], ['U', 'Zeitalter entwickeln']]],
+      [828, [['1 / 2 / 3', 'Tempo'], ['Leertaste', 'Pause'], ['I', 'Aufklärung']]]
+    ];
+    legend.forEach(([x, rows]) => rows.forEach(([keys, label], row) => {
+      uiText(this, x, 474 + row * 27, keys, 16, UI.goldText);
+      uiText(this, x + 106, 474 + row * 27, label, 16, UI.text);
+    }));
     uiText(this, 108, 579, 'ESC schließt dieses Handbuch. Im Spiel: Auswahl / Aufklärung / Pause.', 14, UI.muted);
     this.helpClose = menuButton(this, 942, 564, 230, 48, 'Verstanden', () => this.closeHelp(), true);
     const content = this.children.list.filter(child => !before.has(child));

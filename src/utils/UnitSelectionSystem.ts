@@ -16,9 +16,15 @@ export class UnitSelectionSystem {
       else this.clearSelection();
     };
     const update = () => this.update();
-    scene.input.on('gameobjectdown', select); scene.events.on(Phaser.Scenes.Events.UPDATE, update);
+    // Clicking the empty battlefield puts the inspection panel away again.
+    const dismiss = (_pointer: Phaser.Input.Pointer, over: Phaser.GameObjects.GameObject[]) => {
+      if (!over.some(object => object.getData('isUnit'))) this.clearSelection();
+    };
+    scene.input.on('gameobjectdown', select); scene.input.on('pointerdown', dismiss);
+    scene.events.on(Phaser.Scenes.Events.UPDATE, update);
     scene.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
-      scene.input.off('gameobjectdown', select); scene.events.off(Phaser.Scenes.Events.UPDATE, update); this.clearSelection();
+      scene.input.off('gameobjectdown', select); scene.input.off('pointerdown', dismiss);
+      scene.events.off(Phaser.Scenes.Events.UPDATE, update); this.clearSelection();
     });
   }
 

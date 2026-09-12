@@ -3,6 +3,8 @@
 export class KillStreakManager {
   private scene: Phaser.Scene;
   private currentStreak: number = 0;
+  /** Longest streak of the running battle; the result screen reports it. */
+  bestStreak: number = 0;
   private lastKillTime: number = 0;
   private readonly STREAK_TIMEOUT = 5000; // 5 seconds
   private streakText?: Phaser.GameObjects.Text;
@@ -19,14 +21,15 @@ export class KillStreakManager {
     }
     
     this.currentStreak++;
+    this.bestStreak = Math.max(this.bestStreak, this.currentStreak);
     this.lastKillTime = now;
     
     // Calculate bonus multiplier
     const multiplier = this.getMultiplier();
     const bonusGold = Math.floor(gold * (multiplier - 1));
     
-    // Show streak feedback
-    if (this.currentStreak > 1) {
+    // Announce a streak only once it actually pays a bonus: "+0 %" is noise, not feedback.
+    if (multiplier > 1) {
       this.showStreakFeedback();
     }
     
@@ -47,7 +50,8 @@ export class KillStreakManager {
     }
     
     const multiplier = this.getMultiplier();
-    const streakMsg = `${this.currentStreak}er-Serie  ·  +${Math.floor((multiplier - 1) * 100)} % Gold`;
+    // Binary fractions: floor turns the exact 20 % bonus into "+19 %".
+    const streakMsg = `${this.currentStreak}er-Serie  ·  +${Math.round((multiplier - 1) * 100)} % Gold`;
     
     this.streakText = this.scene.add.text(
       this.scene.cameras.main.centerX,
@@ -82,6 +86,7 @@ export class KillStreakManager {
   
   reset() {
     this.currentStreak = 0;
+    this.bestStreak = 0;
     this.lastKillTime = 0;
     if (this.streakText) {
       this.streakText.destroy();

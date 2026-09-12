@@ -51,6 +51,9 @@ function harness() {
     for (const timer of due) { scheduled.splice(scheduled.indexOf(timer), 1); timer.callback(); }
   };
   battle.tweens = { timeScale: 1, killTweensOf: jest.fn() };
+  // The tower menu registers a dismiss handler on the scene input and stamps the current frame.
+  battle.game = { loop: { frame: 0 } };
+  battle.input = { on: jest.fn(), off: jest.fn() };
   battle.physics = { world: { timeScale: 1 }, pause: jest.fn(), resume: jest.fn(),
     velocityFromRotation: (angle: number, speed: number, velocity: any) => Object.assign(velocity, { x: Math.cos(angle) * speed, y: Math.sin(angle) * speed }) };
   const group = () => ({ children: { entries: [] as any[] }, countActive: function () { return this.children.entries.filter(unit => unit.active).length; }, killAndHide: jest.fn() });
@@ -254,7 +257,7 @@ describe('Battle gameplay integration', () => {
     battle.spawnUnitByData('player', unitData[0]);
     expect(battle.gold).toBe(500);
     expect(battle.playerUnits.get).not.toHaveBeenCalled();
-    expect(failure).toHaveBeenCalledWith('Ausgang belegt – kurz warten');
+    expect(failure).toHaveBeenCalledWith('Ausgang belegt: warte einen Moment.');
     battle.playerUnits.children.entries[1].active = false;
     expect(battle.findFormationSpawn('player', 'clubman')).toEqual({ x: 140, y: 500, row: 1 });
   });
@@ -478,6 +481,7 @@ describe('Battle gameplay integration', () => {
       const object: any = new EventEmitter();
       Object.assign(object, { x, y, text, list: [], active: true });
       for (const method of ['setDepth', 'setOrigin', 'setStrokeStyle', 'setFillStyle', 'setColor']) object[method] = () => object;
+      object.setName = (name: string) => { object.name = name; return object; };
       object.setInteractive = () => { object.input = { enabled: true }; return object; };
       object.disableInteractive = () => { if (object.input) object.input.enabled = false; return object; };
       object.setText = (text: string) => { object.text = text; return object; };
@@ -493,7 +497,7 @@ describe('Battle gameplay integration', () => {
     battle.gold = 50;
     battle.showTurretMenu(slot, 0, 2);
     const menu = battle.turretMenuContainer;
-    const upgrade = menu.list.find((child: any) => child.x === -60 && child.text === '');
+    const upgrade = menu.list.find((child: any) => child.name === 'turret-upgrade');
     expect(upgrade.input?.enabled ?? false).toBe(false);
     expect(events.listenerCount('updateGold')).toBe(1);
     battle.addGold(16);

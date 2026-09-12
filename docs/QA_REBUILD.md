@@ -475,3 +475,69 @@ node tools/balance-matrix.mjs
 ```
 
 Jede Gruppe erhält unter `art/qa/<Gruppe>/` die Übersichten `summary-<Tempo>x.md` und `summary-<Tempo>x.json` sowie die Rohdaten jeder Partie mit 30-Sekunden-Schnappschüssen in `matches-<Tempo>x.jsonl`. Ein weiterer Lauf in derselben Gruppe hängt an diese Rohdaten an; für einen sauberen Vergleich daher eine neue Gruppe wählen. Die Belege dieses Abschnitts liegen in `art/qa/balance-v2/`, `art/qa/balance-v2-baseline/` und `art/qa/balance-v2-long/`. Für Balance-Experimente nimmt `QA_VARIANTS` eine JSON-Datei mit Varianten entgegen, zum Beispiel `[{"name": "probe", "patch": {"/src/game/combatRules.ts": {"DIFFICULTY.medium": {"enemyStats": 1.15}}}}]`. Die Ausgangslage verwendet [`variants.json`](../art/qa/balance-v2-baseline/variants.json).
+
+
+## Bedienbarkeit: Playtest-Durchgang vom 12. September 2026
+
+Stand: 12. September 2026. Dieser Durchgang prüfte nicht die Balance, sondern die Bedienung: Was sieht, versteht und trifft ein Spieler tatsächlich? Die Belege liegen in `art/qa/ux-v1/`.
+
+### Methode
+
+Gespielt wurde in einem GPU-beschleunigten Browser mit 60-Bilder-Deckel bei 1280 × 720, ausschließlich über echte Maus- und Tastatureingaben. Zwischen zwei Eingaben wurde die Phaser-Schleife angehalten, damit Denkpausen die laufende Schlacht nicht verändern; jede Eingabe und jede gemessene Wartezeit lief bei normaler Bildrate.
+
+| Durchlauf | Inhalt |
+|---|---|
+| Eigene Partie, Normal | Steinzeit bis Mittelalter mit Rekrutierung per Maus und Tastatur, Turmbau, Ausbau, Verkauf, Aufklärung, Meteor, Pause, Tempowechsel, Einheiteninfo |
+| Drei vollständige Partien mit automatisierten echten Tastenbefehlen | Sieg nach 6:36 mit 92 besiegten Gegnern vor den Korrekturen, Sieg nach 3:37 mit 46 besiegten Gegnern danach und Sieg nach 9:11 mit 138 besiegten Gegnern über alle fünf Epochen mit den Erweiterungen; keine Laufzeitfehler |
+| Zwei Niederlagen ohne eigene Truppen | Ergebnisansicht, Tipp und Neustart über die Oberfläche |
+| Menüs | Hauptmenü, Feldhandbuch, Schwierigkeitswahl, Einstellungen, Mitwirkende, Pausenmenü, Rückweg ins Hauptmenü |
+| Fenstergrößen | 1024 × 640, 1280 × 720, 1920 × 1080 und Hochformat 390 × 844 |
+
+### Gefundene Mängel und Korrekturen
+
+| Befund | Wirkung für den Spieler | Korrektur |
+|---|---|---|
+| Turmmenü in der Phaser-Standardschrift, Ausbauzeile lief über den linken Bildschirmrand hinaus | Die entscheidenden Werte des Ausbaus waren abgeschnitten und unlesbar | Panel 300 × 152 Pixel, Spielschrift, umbrechende Wertezeile, benannte Schaltflächen |
+| Escape öffnete die Pause, obwohl das Turmmenü offen war; ein Klick daneben schloss es nicht | Der Dialog blieb hinter der Pause stehen und ließ sich nur über das ✕ schließen | Escape schließt zuerst das Turmmenü, ein Klick außerhalb ebenfalls; beim Pausieren wird es geschlossen |
+| Der Hinweis „Wähle einen markierten Bauplatz“ blieb nach dem Bau stehen | Der Spieler las eine Aufforderung, die er gerade erfüllt hatte | Bestätigung „<Turm> gebaut.“ |
+| Der Einheiten-Tooltip verdeckte Basis und Aufmarschpunkt und blieb nach dem Klick stehen | Die gerade bezahlte Truppe war im entscheidenden Moment unsichtbar | Der Tooltip verschwindet mit dem Kauf und mit dem Bauauftrag |
+| Serienanzeige meldete „+19 %“ statt „+20 %“ und zeigte auch „+0 % Gold“ | Falsche Zahl und Meldungen ohne Belohnung | Runden statt Abschneiden, Anzeige erst ab einem tatsächlichen Bonus |
+| Der Epochenwechsel blieb ohne Rückmeldung | Der größte Moment einer Partie geschah stumm | Ansage „<Epoche> erreicht: neue Truppen und Verteidigungen stehen bereit.“ |
+| Kein Hinweis, sobald ein Aufstieg möglich ist | Die Freischaltung wurde übersehen, Erfahrung blieb liegen | Einmalige Ansage beim Erreichen der nötigen Erfahrung |
+| Kein Einstieg in der ersten Schlacht | Ein neuer Spieler wusste nicht, wo er beginnt | Hinweis zur ersten Rekrutierung, der bis zum ersten Kauf stehen bleibt und dann verschwindet |
+| Niederlage ohne eine einzige eigene Truppe zeigte einen Formationstipp | Der Tipp passte nicht zum tatsächlichen Fehler | Eigener Tipp: ohne eigene Truppen fällt jede Basis |
+| Befehlsliste im Feldhandbuch war mit Leerzeichen ausgerichtet | Die Spalten standen sichtbar versetzt | Zwei echte Spalten, Tasten in Gold gesetzt |
+| Die Beschreibung von „Feldherr“ lief in die Trennlinie der Karte | Unruhiges Kartenbild in der Schwierigkeitswahl | Kürzerer Text, zwei Zeilen wie bei den anderen Karten |
+| Sekundenwerte mit Punkt („1.2 s“), englische Reste („Lvl 2“, „LEVEL UP!“, „Not enough gold!“) | Brüche in einer sonst durchgehend deutschen Oberfläche | Deutsche Dezimalkommas, „Stufe 2“, deutsche Meldung mit dem konkret fehlenden Betrag |
+| Die Einheiteninfo ließ sich nicht schließen | Das Panel blieb über der Schlacht stehen | Ein Klick auf das freie Schlachtfeld blendet es aus |
+| Kein Favicon, der Browser meldete 404 | Leeres Tab-Symbol | SVG-Favicon im Spielzeichen |
+| Bauplatzbeschriftung mit 8 Pixeln | Die drei Bauplätze waren kaum zu erkennen | 9 Pixel und höherer Kontrast |
+
+### Anschließend beauftragte Erweiterungen
+
+| Erweiterung | Umsetzung |
+|---|---|
+| Inszenierter Epochenwechsel | Ein Banner über dem Schlachtfeld nennt „NEUE EPOCHE“ und den Namen des Zeitalters, blendet in 0,2 s ein, steht 1,2 s und verschwindet wieder. Gleichzeitig blinkt die Epochenbeschriftung im HUD gold, die neue Kartenreihe leuchtet kurz auf und die Erfahrungsleiste läuft sichtbar von voll auf den Rest zurück. Bei „Bewegung reduzieren“ steht das Banner ohne Bewegung und die Leiste springt. |
+| Drehhinweis im Hochformat | `index.html` zeigt bei stehendem Format unter 820 Pixeln Breite einen Vollbildhinweis mit Drehsymbol; das Spiel läuft darunter unverändert weiter und der Hinweis verschwindet beim Drehen. Reine CSS-Medienabfrage, kein Eingriff in die Spiellogik. |
+| Kennzahlen in der Ergebnisansicht | Unter der Zusammenfassung steht jetzt „<verdientes Gold> Gold verdient · <Wellen> · <beste Serie>“. Verdientes Gold zählt Einkommen und Kopfgeld, nicht den Rückfluss aus verkauften Türmen; die beste Serie kommt aus der Serienverwaltung und wird je Partie zurückgesetzt. |
+
+### Prüfstand nach den Korrekturen
+
+| Prüfung | Ergebnis |
+|---|---|
+| Jest | 164 von 164 bestanden |
+| Playwright | 23 von 23 bestanden, 2,3 Minuten |
+| TypeScript und ESLint | Erfolgreich |
+| Partien nach der Korrektur | Sieg nach 3:37 und Sieg nach 9:11 über alle fünf Epochen, beide ohne Laufzeitfehler; Niederlage mit neuem Tipp und Neustart aus der Ergebnisansicht |
+| Kennzahlen im Sieg | Die Ergebnisansicht der 9:11-Partie meldete 26.354 verdientes Gold, 13 Wellen und beste Serie 14 |
+
+Zwei Prüfungen wurden mitgeführt: Die Browserprüfung fragt die Schaltflächen des Turmmenüs jetzt über ihre Namen ab, statt die Menügeometrie zu wiederholen; die Regressionsprüfung deckt den neuen Namen und die geänderte Meldung ab.
+
+Belege: [Turmmenü](../art/qa/ux-v1/tower-menu.png), [Epochenbanner mit HUD-Puls](../art/qa/ux-v1/epoch-banner.png), [Einstiegshinweis](../art/qa/ux-v1/opening-hint.png), [Niederlagentipp](../art/qa/ux-v1/defeat-tip.png), [Kennzahlen der Ergebnisansicht](../art/qa/ux-v1/result-stats.png), [Drehhinweis im Hochformat](../art/qa/ux-v1/rotate-hint.png), [Feldhandbuch](../art/qa/ux-v1/help-legend.png), [Sieg nach dem Durchgang](../art/qa/ux-v1/victory-after-pass.png).
+
+### Weiterhin offen
+
+- **Hochformat:** Der Drehhinweis erklärt die Lage, ein eigenes Hochformat-Layout gibt es weiterhin nicht.
+- **Toter Code:** Die Ereignisse `startTurretDrag`, `dragTurretMove` und `endTurretDrag` werden von keiner Oberfläche gesendet; der zugehörige Ablauf in `BattleScene` ist unbenutzt.
+- **Ton:** Musik und Effekte wurden in diesem Durchgang nicht bewertet; die Browserprüfung misst nur, dass die Busse arbeiten.
+- Diese Prüfung ist ein Bedienungsdurchgang einer Person, keine Studie mit mehreren Spielern. Sie belegt weder Spielspaß noch Zugänglichkeit im Sinne einer Norm.

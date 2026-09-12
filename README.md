@@ -43,9 +43,9 @@ Alle Hauptbefehle sind über die Oberfläche erreichbar. Tastaturbefehle gelten 
 | I | Aufklärung der angekündigten Welle ein- oder ausblenden |
 | 1 / 2 / 3 | Spieltempo 1× / 2× / 4× |
 | Leertaste | Pause ein- oder ausschalten |
-| Escape | Zuerst Bauauswahl abbrechen, dann offene Aufklärung schließen; sonst Pause öffnen/schließen |
+| Escape | Zuerst Bauauswahl abbrechen, dann Turmmenü und offene Aufklärung schließen; sonst Pause öffnen/schließen |
 
-Klicke einen gebauten Turm an, um ihn aufzuwerten oder zu verkaufen. Türme besitzen drei Ausbaustufen. Klicke eine Einheit an, um ihre Werte zu sehen. In Menüs navigieren Tab und Pfeiltasten; Enter bestätigt die Auswahl. Das gilt auch für Pause und Ergebnisansicht. Shift+Tab wählt die vorherige Aktion; der hervorgehobene Fokus folgt auch der Maus.
+Klicke einen gebauten Turm an, um ihn aufzuwerten oder zu verkaufen. Türme besitzen drei Ausbaustufen. Ein Klick daneben, Escape oder das ✕ schließen das Turmmenü wieder. Klicke eine Einheit an, um ihre Werte zu sehen; ein Klick auf das freie Schlachtfeld blendet die Anzeige wieder aus. In Menüs navigieren Tab und Pfeiltasten; Enter bestätigt die Auswahl. Das gilt auch für Pause und Ergebnisansicht. Shift+Tab wählt die vorherige Aktion; der hervorgehobene Fokus folgt auch der Maus.
 
 ## Spielablauf
 
